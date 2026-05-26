@@ -257,9 +257,9 @@ const teams = [
     logo: "/logos/csgopositive.png",
     name: "CSGOPOSITIVE",
     flag: "/flags/russia.svg",
-    points: 319,
-    change: +11,
-    record: "10-4",
+    points: 325,
+    change: +17,
+    record: "11-3",
     division: "Main",
   },
                               {
