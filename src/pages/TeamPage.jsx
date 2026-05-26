@@ -13,9 +13,7 @@ const teams = [
       losses: 5,
     },
     players: ["dezl3bio", "SquEzxc", "pleynnn", "tw1sterzaza", "DAN9ARMATURA"],
-    matches: [
-     ,
-    ],
+    matches: [],
   },
   {
     slug: "eternal-premium",
@@ -28,9 +26,7 @@ const teams = [
       losses: 5,
     },
     players: ["skept1K", "smith", "MRcreed", "dazzy", "P1kan0"],
-    matches: [
-     ,
-    ],
+    matches: [],
   },
   {
     slug: "new-vision",
@@ -43,9 +39,7 @@ const teams = [
       losses: 4,
     },
     players: ["fen2k", "wonimo", "hahanz0", "w0l33n", "x1nk1n"],
-    matches: [
-      ,
-    ],
+    matches: [],
   },
     {
     slug: "donstu-esports",
@@ -58,9 +52,7 @@ const teams = [
       losses: 2,
     },
     players: ["Due1yant", "NeoLife", "maQuein", "gleb86rus", "LAKSHERi"],
-    matches: [
-      ,
-    ],
+    matches: [],
   },
     {
     slug: "quazar",
@@ -73,9 +65,7 @@ const teams = [
       losses: 4,
     },
     players: ["kaioriii", "gehji", "newt", "Ne1XXX", "Porya-"],
-    matches: [
-     ,
-    ],
+    matches: [],
   },
     {
     slug: "bankapepsi",
@@ -88,9 +78,7 @@ const teams = [
       losses: 6,
     },
     players: ["lesswill", "SEMSYS", "lUMiER", "xsepower", "HuckLer"],
-    matches: [
-      ,
-    ],
+    matches: [],
   },
     {
     slug: "enjoy",
@@ -103,9 +91,7 @@ const teams = [
       losses: 4,
     },
     players: ["kurosa", "sh1geo", "roxesz", "zazzer", "nbl"],
-    matches: [
-      ,
-    ],
+    matches: [],
   },
     {
     slug: "jumbo-team",
@@ -118,9 +104,7 @@ const teams = [
       losses: 6,
     },
     players: ["matusik", "reNIK", "Snoob", "kinyx", "str0ngl"],
-    matches: [
-     
-    ],
+    matches: [],
   },
     {
     slug: "aurora-young-blud",
@@ -133,9 +117,7 @@ const teams = [
       losses: 5,
     },
     players: ["redzed", "r1pa4", "meetyoxanaji", "k1nco", "kurosse"],
-    matches: [
-      
-    ],
+    matches: [],
   },
     {
     slug: "young-tigeres",
@@ -148,9 +130,7 @@ const teams = [
       losses: 4,
     },
     players: ["wh1teout", "seberya", "Gashhhi4", "tronic", "z3ndy"],
-    matches: [
-      
-    ],
+    matches: [],
   },
     {
     slug: "vpprodigy",
@@ -163,9 +143,7 @@ const teams = [
       losses: 5,
     },
     players: ["rokilan", "lasfas", "Tri-Borgg1", "prrincee", "Stoynes"],
-    matches: [
-     
-    ],
+    matches: [],
   },
     {
     slug: "arch",
@@ -178,9 +156,7 @@ const teams = [
       losses: 3,
     },
     players: ["WeB_SuN", "-MaLLiC-", "-ka1d0", "-f1R", "-Dis1-"],
-    matches: [
-   
-    ],
+    matches: [],
   },
     {
     slug: "lfo-corh9k",
@@ -193,9 +169,7 @@ const teams = [
       losses: 6,
     },
     players: ["CheckWay", "herkulesz", "lom1k", "nottoday", "Renw1e"],
-    matches: [
-    
-    ],
+    matches: [],
   },
     {
     slug: "wingmanlfo",
@@ -208,9 +182,7 @@ const teams = [
       losses: 7,
     },
     players: ["-mowel", "Minor", "la3euka", "xnkkaaa", "Z1W0W666"],
-    matches: [
-  
-    ],
+    matches: [],
   },
       {
     slug: "ex-peep",
@@ -223,9 +195,7 @@ const teams = [
       losses: 7,
     },
     players: ["vrnskY", "ekztasii", "-Denzi", "LE4R", "tokyoshi"],
-    matches: [
-   
-    ],
+    matches: [],
   },
       {
     slug: "golovastiki",
@@ -238,9 +208,7 @@ const teams = [
       losses: 2,
     },
     players: ["fudzhy", "dep999", "basinskiy", "Swem95", "yat0o0same"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "gamesport",
@@ -253,9 +221,7 @@ const teams = [
       losses: 4,
     },
     players: ["yagagarin", "rioeagle", "vova-triceps", "ksolter", "cartilag"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "xcity",
@@ -268,9 +234,7 @@ const teams = [
       losses: 4,
     },
     players: ["gag", "ATLASSS", "mda", "qu1ckk", "tuzon"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "tsa-green",
@@ -283,9 +247,7 @@ const teams = [
       losses: 4,
     },
     players: ["d3nks", "maun", "-FlyTex", "saizius666", "xne"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "mellren",
@@ -298,9 +260,7 @@ const teams = [
       losses: 5,
     },
     players: ["shootic", "ment4lbr0k3n", "menddel", "lollipop21k", "Maksilvl"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "nemesis-academy",
@@ -313,9 +273,7 @@ const teams = [
       losses: 5,
     },
     players: ["soerrr", "texas999", "floww", "dyhace", "morifay"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "duggedup",
@@ -328,9 +286,7 @@ const teams = [
       losses: 5,
     },
     players: ["Twiksarr", "isolation333", "Kre1N", "Carnivore--", "21storm"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "roc-team",
@@ -343,9 +299,7 @@ const teams = [
       losses: 5,
     },
     players: ["rovvdy", "w1nore", "-rudeus", "Nxbody", "koretss"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "partizan",
@@ -358,9 +312,7 @@ const teams = [
       losses: 5,
     },
     players: ["Draysh", "11sheesh_", "DUNYAA-", "heso", "darui"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "csgopositive",
@@ -373,9 +325,7 @@ const teams = [
       losses: 3,
     },
     players: ["Baronus", "Jiwoo", "SBolt-", "verso-markov", "headmashin1e"],
-    matches: [
-      
-    ],
+    matches: [],
   },
   
       {
@@ -389,9 +339,7 @@ const teams = [
       losses: 6,
     },
     players: ["ArmanZwerrr", "bonyAjkE", "PhoeniXLUV", "ch1psik-", "Roomz"],
-    matches: [
-      
-    ],
+    matches: [],
   },
   
       {
@@ -405,9 +353,7 @@ const teams = [
       losses: 6,
     },
     players: ["_En1GmA_", "Kakav0ziK", "Malibar", "Removee2k", "-BALBES--"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "playfire",
@@ -420,9 +366,7 @@ const teams = [
       losses: 6,
     },
     players: ["ARING", "stinger-_", "JbIBOTHOE", "4R2D2-_-", "0808080809"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "olympia",
@@ -435,9 +379,7 @@ const teams = [
       losses: 6,
     },
     players: ["ToniDare", "valenz0", "EngerS", "xsiyz", "fynchojka"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "way-In-future",
@@ -450,9 +392,7 @@ const teams = [
       losses: 7,
     },
     players: ["PokeballX21", "rdzl", "isuzu_1", "mellstroy911", "-rasyk0"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "redtigersgaming",
@@ -465,9 +405,7 @@ const teams = [
       losses: 7,
     },
     players: ["Marv1n", "yasxojusyma", "yasxojysyma", "kobz0n", "Hellabandz"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "kislyakk",
@@ -480,9 +418,7 @@ const teams = [
       losses: 7,
     },
     players: ["fl1nkk666", "frsunr1se", "YarNik", "kaban", "yutiik"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "wobuzhidao",
@@ -495,9 +431,7 @@ const teams = [
       losses: 7,
     },
     players: ["M3GA_MYXA", "KOT_XAMEP", "0b535510n", "jzx", "l21p"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
      slug: "p7ay3r5",
@@ -510,9 +444,7 @@ const teams = [
       losses: 7,
     },
     players: ["ulqu1ora", "v0ice_e", "gradex", "k10tje", "lazerboss"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "dire",
@@ -525,9 +457,7 @@ const teams = [
       losses: 7,
     },
     players: ["bottl9", "pyJIb-wick", "pyJIb-happy", "pyJIb-rcR333", "RAWFEAR-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "z17",
@@ -540,9 +470,7 @@ const teams = [
       losses: 7,
     },
     players: ["j4NU4RY", "akaza7331", "z0nger", "thsleepphase", "qxwy"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "aeternum",
@@ -555,9 +483,7 @@ const teams = [
       losses: 7,
     },
     players: ["-twiz", "s1leNceRr_", "shazam-_-", "red1ct666", "glowstar"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "godbless",
@@ -570,9 +496,7 @@ const teams = [
       losses: 8,
     },
     players: ["YURk3N", "kenobass", "SEXYVLAD1K", "PALICH44", "flAndEmAdZ"],
-    matches: [
-      
-    ],
+    matches: [],
   },
       {
     slug: "aokigahara",
@@ -585,9 +509,7 @@ const teams = [
       losses: 8,
     },
     players: ["-sh1k1mos1k", "IaNeR", "tsy", "nukleos143", "-auxaa"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "m33",
@@ -600,9 +522,7 @@ const teams = [
       losses: 8,
     },
     players: ["Groysss", "Jagermaister", "Kapibaris", "-Re333", "deceyced"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "graf-monte-cristo",
@@ -615,9 +535,7 @@ const teams = [
       losses: 0,
     },
     players: ["ectaza", "cr1s-_-", "BOSSPREMA", "91914", "vviniciouss"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "aogiri",
@@ -630,9 +548,7 @@ const teams = [
       losses: 1,
     },
     players: ["qdead", "Madaraya", "-_-ecl1pse", "d3fuser", "SyZ3r0x1"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "saqa-omuk",
@@ -645,9 +561,7 @@ const teams = [
       losses: 2,
     },
     players: ["ne1l", "saddamy", "FlaRip111", "lula", "sakha"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "donatrix",
@@ -660,9 +574,7 @@ const teams = [
       losses: 3,
     },
     players: ["f0lkfan111", "6akug4n_b0y", "vorja77", "sekkwoya", "sexxx"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "sakura",
@@ -675,9 +587,7 @@ const teams = [
       losses: 3,
     },
     players: ["Ujaueu", "ylinsx", "-Meniwa", "flercayd", "49mTTuon"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "allinners",
@@ -690,9 +600,7 @@ const teams = [
       losses: 3,
     },
     players: ["Astro71", "ayken999", "sdqw_", "Sorr1k", "lnKognITo228"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "prem3adpotbi",
@@ -705,9 +613,7 @@ const teams = [
       losses: 4,
     },
     players: ["nerouk", "ILYAXAGVOZDb", "L1s0m4N", "nara999", "-ddecembeR"],
-    matches: [
-      
-    ],
+    matches: [],
   },
         {
     slug: "team-ka6anbi",
@@ -720,9 +626,7 @@ const teams = [
       losses: 4,
     },
     players: ["pinwud", "KLYXA_AAA", "marcelobraun", "A-plus-eto", "_f0ma"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "wapa",
@@ -735,9 +639,7 @@ const teams = [
       losses: 4,
     },
     players: ["OrhunDura", "CoolezW", "Iark666", "fIy-", "Blackout"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "infernals",
@@ -750,9 +652,7 @@ const teams = [
       losses: 9,
     },
     players: ["paketAAA", "rmboo0_o", "Acura-", "25yokid", "yoshimaaa"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "dzungarz",
@@ -765,9 +665,7 @@ const teams = [
       losses: 9,
     },
     players: ["Rezolix", "KCooks", "fosia", "labbies", "mistich"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "sunthraw",
@@ -780,9 +678,7 @@ const teams = [
       losses: 5,
     },
     players: ["we1rdxd", "lrnk", "-frenzzzz", "kyonig", "-Ginger_"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "3nation",
@@ -795,9 +691,7 @@ const teams = [
       losses: 5,
     },
     players: ["sl1nxy", "Reivann", "GrandLove", "faerky", "awvree"],
-    matches: [
-      
-    ],
+    matches: [],
   },
           {
     slug: "yelets-esports",
@@ -810,9 +704,7 @@ const teams = [
       losses: 5,
     },
     players: ["sw1zza", "aleL", "-Wentyy", "vikingdewu", "iSennCool"],
-    matches: [
-      
-    ],
+    matches: [],
   },
             {
     slug: "1337",
@@ -825,9 +717,7 @@ const teams = [
       losses: 5,
     },
     players: ["ganjubas44", "EFFES", "newera2026", "deactivated", "Iazarus"],
-    matches: [
-      
-    ],
+    matches: [],
   },
             {
     slug: "turtles",
@@ -840,9 +730,7 @@ const teams = [
       losses: 5,
     },
     players: ["h0kaN777", "darcy-", "awpwindow", "EMERALDEN", "anchous95"],
-    matches: [
-      
-    ],
+    matches: [],
   },
             {
     slug: "teamworkers",
@@ -855,9 +743,7 @@ const teams = [
       losses: 5,
     },
     players: ["l3d4n", "Rizz_7", "PbI6OJLOB", "sanlxrdb0b", "g6c"],
-    matches: [
-      
-    ],
+    matches: [],
   },
               {
     slug: "ablaze-team",
@@ -870,9 +756,7 @@ const teams = [
       losses: 10,
     },
     players: ["-marsoN", "Salfetka--", "emoyarik-", "m4ks_b4mbLb1", "g3y_kapkAn67"],
-    matches: [
-      
-    ],
+    matches: [],
   },
               {
     slug: "drags",
@@ -885,9 +769,7 @@ const teams = [
       losses: 11,
     },
     players: ["t1l7T", "decij", "david_M5", "zhvJESUS", "made666"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                 {
     slug: "force -syndicate",
@@ -900,9 +782,7 @@ const teams = [
       losses: 6,
     },
     players: ["_Destroy3r_", "saya1337", "trized", "diqued", "finterjazz"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                 {
     slug: "all-eyes-on-me",
@@ -915,9 +795,7 @@ const teams = [
       losses: 6,
     },
     players: ["xekri", "kiseki", "dreamaker", "CaHTeXHuK-", "san9PS1XOPAT"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                 {
     slug: "lqnely",
@@ -930,9 +808,7 @@ const teams = [
       losses: 6,
     },
     players: ["21Mifixzq", "t1pr0", "notOxic2", "Matveychegg", "IcoweL"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                 {
     slug: "eon",
@@ -945,9 +821,7 @@ const teams = [
       losses: 6,
     },
     players: ["Acuko", "wavyqq", "-DiZu", "BI0ody", "Aoki-l"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                 {
     slug: "clickbate",
@@ -960,9 +834,7 @@ const teams = [
       losses: 6,
     },
     players: ["-M0uZe-", "-wARTHUNDER", "y9wonky", "nctive", "wh1tiger"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                   {
     slug: "ne-priehali",
@@ -975,9 +847,7 @@ const teams = [
       losses: 7,
     },
     players: ["berg1sssssss", "Panardedi", "k1oten", "ps1xx", "Supportzzz"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                     {
     slug: "magic-fairies",
@@ -990,9 +860,7 @@ const teams = [
       losses: 7,
     },
     players: ["npoe6aJlu", "-Mendoza", "sw0ksi", "-EREM777", "0CEMEHiTEJIb"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                       {
     slug: "youth4ez",
@@ -1005,9 +873,7 @@ const teams = [
       losses: 7,
     },
     players: ["PeR4eLo", "Jefim4ik", "KPS_", "VahaXg0d", "kyousuke666"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                         {
     slug: "ronins",
@@ -1020,9 +886,7 @@ const teams = [
       losses: 7,
     },
     players: ["Zomba4ek", "-k0ndrat-", "Mapkuss", "Nermy", "vampireD"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                           {
     slug: "donstu youngsters",
@@ -1035,9 +899,7 @@ const teams = [
       losses: 7,
     },
     players: ["smO_oki", "EvilLAne", "posland", "rt_mod", "vopros1k"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                           {
     slug: "quazar school",
@@ -1050,9 +912,7 @@ const teams = [
       losses: 7,
     },
     players: ["Yoshwu", "--Timo", "tox1s-", "-__Size__-", "Lorgarrr"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                           {
     slug: "gsq",
@@ -1065,9 +925,7 @@ const teams = [
       losses: 7,
     },
     players: ["S1LLE", "FryseN", "819", "-m1kassa-", "r4zlom"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                             {
     slug: "c0b0r",
@@ -1080,9 +938,7 @@ const teams = [
       losses: 8,
     },
     players: ["mvvand", "COM4Z0R", "peacebang", "dozarchuk", "DimblebeE"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                               {
     slug: "baks-esports",
@@ -1095,9 +951,7 @@ const teams = [
       losses: 1,
     },
     players: ["xd3N15Z3R4--", "turbo67", "-k9ppy", "whisperr23", "Sa1nTy"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                 {
     slug: "iuhop",
@@ -1110,9 +964,7 @@ const teams = [
       losses: 2,
     },
     players: ["MrTrelog", "1337fir", "nofaN", "OGbrigada77", "saizius"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                 {
     slug: "fartflow",
@@ -1125,9 +977,7 @@ const teams = [
       losses: 2,
     },
     players: ["KirilleN", "Ch3rv9chok", "kreoN", "Ultemer", "f1uNeXx"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                 {
     slug: "bhemanha",
@@ -1140,9 +990,7 @@ const teams = [
       losses: 2,
     },
     players: ["akr", "-Akima", "--mero", "tw1nk131", "Teamo-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                   {
     slug: "lynx",
@@ -1155,9 +1003,7 @@ const teams = [
       losses: 3,
     },
     players: ["actava", "hikaru-", "rockStyX", "sleepy111", "frinn"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                   {
     slug: "trafficpills-esports",
@@ -1170,9 +1016,7 @@ const teams = [
       losses: 3,
     },
     players: ["F1n3tw", "drzk", "seNsite", "taouser", "gl3bka"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                   {
     slug: "kda-team",
@@ -1185,9 +1029,7 @@ const teams = [
       losses: 3,
     },
     players: ["Resaj", "skAnna", "fI4m1ng", "shte1N7", "Mudkip7"],
-    matches: [
-      
-    ],
+    matches: [ ],
   },
                                   {
     slug: "fortis",
@@ -1200,9 +1042,7 @@ const teams = [
       losses: 3,
     },
     players: ["friend444", "UnIQu8", "sh1neccc", "seikee", "z1gich"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                     {
     slug: "mayak-arena",
@@ -1215,9 +1055,7 @@ const teams = [
       losses: 4,
     },
     players: ["qioke", "himurra", "Yahiko_016", "borischainik", "konq"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                     {
     slug: "lan1t",
@@ -1230,9 +1068,7 @@ const teams = [
       losses: 4,
     },
     players: ["AllMuteTrash", "MAGaaaaz", "dErzz", "hallyhood", "6I0cc6a6y"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                     {
     slug: "vexar",
@@ -1245,9 +1081,7 @@ const teams = [
       losses: 4,
     },
     players: ["KEEMBO", "killeatery", "ADntZ", "MaksimSuper-", "datet-_-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                       {
     slug: "prius",
@@ -1260,9 +1094,7 @@ const teams = [
       losses: 4,
     },
     players: ["tourneur", "stembix", "JackkSparrow", "tYTOXX", "-greenf1re"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                       {
     slug: "goodjob",
@@ -1275,9 +1107,7 @@ const teams = [
       losses: 4,
     },
     players: ["w1nen", "BANANAS192", "shotta36", "koshak666-", "ITamiSoul"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                       {
     slug: "lanklan",
@@ -1290,9 +1120,7 @@ const teams = [
       losses: 4,
     },
     players: ["m0NZ0R999", "nexozis", "riflerka", "L0fer-", "xdxdxdxd1721"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                       {
     slug: "fate",
@@ -1305,9 +1133,7 @@ const teams = [
       losses: 4,
     },
     players: ["ecstaci", "rqx-", "danc3d3sh", "kabanBMW67", "------_____"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                         {
     slug: "aeris",
@@ -1320,9 +1146,7 @@ const teams = [
       losses: 4,
     },
     players: ["GH0STNAME19", "SavingsGOD", "fxcker", "ducatto-iwnl", "fLK-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                         {
     slug: "dnk",
@@ -1335,9 +1159,7 @@ const teams = [
       losses: 4,
     },
     players: ["RamBLBi_-", "MAKTPAXEEPP", "Pla1n7", "t1er0_s", "indoubt_"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                         {
     slug: "homo-sapiens",
@@ -1350,9 +1172,7 @@ const teams = [
       losses: 4,
     },
     players: ["nomicsry", "lif5e", "SHAG888", "101", "Juzeppe"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                         {
     slug: "cerberus",
@@ -1365,9 +1185,7 @@ const teams = [
       losses: 4,
     },
     players: ["_L1nia_", "kerankyss", "sunketsu", "sm1lebossu", "Sammy14"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                           {
     slug: "fak1e-lab",
@@ -1380,9 +1198,7 @@ const teams = [
       losses: 5,
     },
     players: ["Minlaic", "KpyT0u_6o6ep", "sapphire", "wergentt", "yoogin_"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                           {
     slug: "mana",
@@ -1395,9 +1211,7 @@ const teams = [
       losses: 5,
     },
     players: ["deca43", "TESNO", "vershh", "qanax", "SKYLLLER"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                           {
     slug: "smokinsexxystyle",
@@ -1410,9 +1224,7 @@ const teams = [
       losses: 5,
     },
     players: ["ezeeuqs", "-m3z1k", "Innerpeace-", "SellorMEOW", "l1vanski"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                           {
     slug: "eternal",
@@ -1425,9 +1237,7 @@ const teams = [
       losses: 5,
     },
     players: ["aut0stop", "_-___-_--", "4AJIbTyXu", "qgar-_-", "anemie"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                           {
     slug: "fusion",
@@ -1440,9 +1250,7 @@ const teams = [
       losses: 5,
     },
     players: ["s1mkl", "-arTy2k_", "CEMEN_CEMEN", "Mokurai", "_-_NIK_-_"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                             {
     slug: "posle-zavoda",
@@ -1455,9 +1263,7 @@ const teams = [
       losses: 5,
     },
     players: ["hope666", "x0de", "hudsen", "w1lroom-", "Keyz1c"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                             {
     slug: "thekomyakz",
@@ -1470,9 +1276,7 @@ const teams = [
       losses: 5,
     },
     players: ["setqa", "_Kyoko_", "g9ddg", "Sip1z", "Shmykanov"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                             {
     slug: "nightmare-esports",
@@ -1485,9 +1289,7 @@ const teams = [
       losses: 5,
     },
     players: ["F1Nik", "9G-", "sunshine--", "diray", "Kiyose"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                             {
     slug: "s1wka-team",
@@ -1500,9 +1302,7 @@ const teams = [
       losses: 5,
     },
     players: ["marginal4ik", "rostikxxx", "danulka2013", "sShadyY", "m4s1cs"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                               {
     slug: "eca-esports",
@@ -1515,9 +1315,7 @@ const teams = [
       losses: 5,
     },
     players: ["Tenzik", "-dunk", "BblLLIu6aJla", "Saydashev", "x1nse"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                               {
     slug: "pivstar",
@@ -1530,9 +1328,7 @@ const teams = [
       losses: 5,
     },
     players: ["decadance", "n3d1s-", "F4NAT_MARVEL", "3yb11Kk", "MiNeuR-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                               {
     slug: "fnbet",
@@ -1545,9 +1341,7 @@ const teams = [
       losses: 5,
     },
     players: ["kobi666", "Titch-", "Hen4ik", "MEGAKNIGHT67", "-santic"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                               {
     slug: "urat",
@@ -1560,9 +1354,7 @@ const teams = [
       losses: 5,
     },
     players: ["a6yssw", "SKOTOBGOO35", "A1phaO_O", "Marthf", "kai"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                 {
     slug: "unknowns",
@@ -1575,9 +1367,7 @@ const teams = [
       losses: 5,
     },
     players: ["SplyZzZ", "LenS1ck", "Junctions1", "pANDEV1CH", "BloodyImp"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                 {
     slug: "dodg3rs",
@@ -1590,9 +1380,7 @@ const teams = [
       losses: 5,
     },
     players: ["DISKLAME", "KriBs1337", "L00K1", "13avg_boss", "clawzQ"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                 {
     slug: "sixseven",
@@ -1604,9 +1392,7 @@ const teams = [
       losses: 5,
     },
     players: ["Yokusha", "berjum", "slabosilnaya", "LXVII", "re1gn999"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                   {
     slug: "stubborn-boys",
@@ -1619,9 +1405,7 @@ const teams = [
       losses: 6,
     },
     players: ["Foxan", "kubaru-", "Deitas", "CAPTAIN_WLAD", "neonri_off"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                   {
     slug: "critical",
@@ -1634,9 +1418,7 @@ const teams = [
       losses: 6,
     },
     players: ["1CAP1", "katarosix7", "_MARbl4_", "arcanum44", "k4muro-"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                   {
     slug: "mephi",
@@ -1649,9 +1431,7 @@ const teams = [
       losses: 6,
     },
     players: ["k1pler", "-impromptu", "qn0me", "tletl", "-Markelle"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                   {
     slug: "zbk",
@@ -1664,9 +1444,7 @@ const teams = [
       losses: 6,
     },
     players: ["re1axbtw", "BuuBl1k", "OxycodoneV3", "-tRI3INI1312", "n0c4r3"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                     {
     slug: "ha-ncuxotponhbix",
@@ -1679,9 +1457,7 @@ const teams = [
       losses: 6,
     },
     players: ["Fogi", "Titov", "yoyoyooo_O", "kubidoo", "RAY3ZERA7331"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                     {
     slug: "kynetic",
@@ -1694,9 +1470,7 @@ const teams = [
       losses: 6,
     },
     players: ["-_MAJlbIW_-", "WhyyfloWer", "quoyo", "Atom_qq", "theft999"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                     {
     slug: "outsiders",
@@ -1709,9 +1483,7 @@ const teams = [
       losses: 6,
     },
     players: ["qyzeez666", "aKroZz", "madalex", "kydou666", "_m4sh"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                     {
     slug: "m0nkeys",
@@ -1724,9 +1496,7 @@ const teams = [
       losses: 6,
     },
     players: ["sIeeplover", "D1M0N228-", "retrikbtw", "Yuzya_Egoist", "kostyaSSS"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                       {
     slug: "1minute",
@@ -1739,9 +1509,7 @@ const teams = [
       losses: 6,
     },
     players: ["L-n1nG", "-opss-", "pod1s", "Nippard", "DR0BOVIKTOR"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                       {
     slug: "only-gamers",
@@ -1754,9 +1522,7 @@ const teams = [
       losses: 6,
     },
     players: ["BOTIRSHOT", "karimoff999", "bReelGx", "mukhas", "GRINCHxueta"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                       {
     slug: "inputlag-enjoyers",
@@ -1769,9 +1535,7 @@ const teams = [
       losses: 6,
     },
     players: ["p1k", "evcosa", "phenta21", "olegbandit", "-cucman"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                       {
     slug: "justtag",
@@ -1784,9 +1548,7 @@ const teams = [
       losses: 6,
     },
     players: ["dAT53", "Hosh1xd", "b0rkAAA", "Nicosmos", "GGrindelwald"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                         {
     slug: "leetcase",
@@ -1799,9 +1561,7 @@ const teams = [
       losses: 6,
     },
     players: ["1braa", "qweaky", "neonzer0", "bezo", "kihir0"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                         {
     slug: "w1nks",
@@ -1814,9 +1574,7 @@ const teams = [
       losses: 6,
     },
     players: ["TOTT1k", "Advice1010", "Svumpzy", "-svyat", "Yatshi"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                         {
     slug: "bestaimmers",
@@ -1829,9 +1587,7 @@ const teams = [
       losses: 6,
     },
     players: ["verso-opker", "nesquax", "-_-tanto666", "ynichhhhhh", "suzurru"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                         {
     slug: "the-relics",
@@ -1844,9 +1600,7 @@ const teams = [
       losses: 6,
     },
     players: ["Mask--", "Romantik", "yakooo__", "llexsir", "Nelow"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                           {
     slug: "kagen",
@@ -1859,9 +1613,7 @@ const teams = [
       losses: 6,
     },
     players: ["9Nagi", "Tearz--", "miura-", "notebait", "nikeEGOISTO"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                           {
     slug: "back2back",
@@ -1874,9 +1626,7 @@ const teams = [
       losses: 6,
     },
     players: ["6e3p43JIu4uE", "F1RSOW", "mindlex", "NotoX-", "qentblock"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                           {
     slug: "full-dobro",
@@ -1889,9 +1639,7 @@ const teams = [
       losses: 6,
     },
     players: ["Po1337", "rawka", "DekuDI", "Locust", "Vasilich"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                             {
     slug: "ronin",
@@ -1904,9 +1652,7 @@ const teams = [
       losses: 6,
     },
     players: ["kugato", "LLIuLLIka", "sa1ko", "dremor", "Renai"],
-    matches: [
-      
-    ],
+    matches: [],
 
   },
                                                             {
@@ -1920,9 +1666,7 @@ const teams = [
       losses: 6,
     },
     players: ["f4ad", "lyufi", "Norm115", "_z1ro", "henkisuru"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                               {
     slug: "hodes",
@@ -1935,9 +1679,7 @@ const teams = [
       losses: 3,
     },
     players: ["fxrgxt10", "s1ner-", "susa", "akari999", "waqvs"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                                 {
     slug: "flame-guardians",
@@ -1950,9 +1692,7 @@ const teams = [
       losses: 7,
     },
     players: ["Lamp4x", "Winterix", "-1saD", "stomp999", "ceodemona"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                                   {
     slug: "weclear",
@@ -1965,9 +1705,7 @@ const teams = [
       losses: 4,
     },
     players: ["111awsadawqw", "w1se666_", "ubcvnu", "karastaze", "-493"],
-    matches: [
-      
-    ],
+    matches: [],
   },
                                                                     {
     slug: "cybercom",
@@ -1980,9 +1718,7 @@ const teams = [
       losses: 7,
     },
     players: ["Ob1ivionb0b", "painy343", "HrEp_", "05kdlord", "_makon__"],
-    matches: [
-      
-    ],
+    matches: [],
   },
 ]
 
