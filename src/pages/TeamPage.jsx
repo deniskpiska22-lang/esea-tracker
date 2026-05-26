@@ -5,6 +5,7 @@ const teams = [
     slug: "cybershoke-prospects",
     name: "CYBERSHOKE Prospects",
     logo: "/logos/cybershoke.png",
+    flag: "/flags/russia.svg",
 
     division: "Advanced",
     stats: {
@@ -20,6 +21,7 @@ const teams = [
     slug: "eternal-premium",
     name: "eternal premium",
     logo: "/logos/ep.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 9,
@@ -34,6 +36,7 @@ const teams = [
     slug: "new-vision",
     name: "NEW VISION",
     logo: "/logos/newwision.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 10,
@@ -47,6 +50,7 @@ const teams = [
     {
     slug: "donstu-esports",
     name: "DONSTU ESPORTS",
+    flag: "/flags/russia.svg",
     logo: "/logos/donstu.png",
     division: "Advanced",
     stats: {
@@ -62,6 +66,7 @@ const teams = [
     slug: "quazar",
     name: "QUAZAR",
     logo: "/logos/quazar.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 10,
@@ -76,6 +81,7 @@ const teams = [
     slug: "bankapepsi",
     name: "bankaPEPSI",
     logo: "/logos/pepsi.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 8,
@@ -90,6 +96,7 @@ const teams = [
     slug: "enjoy",
     name: "Enjoy",
     logo: "/logos/enjoy.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 10,
@@ -104,6 +111,7 @@ const teams = [
     slug: "jumbo-team",
     name: "Jumbo team",
     logo: "/logos/jumbo.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 8,
@@ -118,6 +126,7 @@ const teams = [
     slug: "aurora-young-blud",
     name: "Aurora Young Blud",
     logo: "/logos/aurora.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 9,
@@ -132,6 +141,7 @@ const teams = [
     slug: "young-tigeres",
     name: "Young TigeRES",
     logo: "/logos/youngtigeres.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 10,
@@ -146,6 +156,7 @@ const teams = [
     slug: "vpprodigy",
     name: "VPProdigy",
     logo: "/logos/vpp.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 9,
@@ -160,6 +171,7 @@ const teams = [
     slug: "arch",
     name: "Arch",
     logo: "/logos/arch.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 10,
@@ -174,6 +186,7 @@ const teams = [
     slug: "lfo-corh9k",
     name: "LFO_COPH9K",
     logo: "/logos/sornyak.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 8,
@@ -188,6 +201,7 @@ const teams = [
     slug: "wingmanlfo",
     name: "WingmanLFO",
     logo: "/logos/wingman.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 7,
@@ -202,6 +216,7 @@ const teams = [
     slug: "ex-peep",
     name: "ex-PeeP",
     logo: "/logos/peep.png",
+    flag: "/flags/russia.svg",
     division: "Advanced",
     stats: {
       wins: 7,
@@ -216,6 +231,7 @@ const teams = [
     slug: "golovastiki",
     name: "VPF2",
     logo: "/logos/vpf2.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 12,
@@ -230,6 +246,7 @@ const teams = [
     slug: "gamesport",
     name: "GAMESPORT",
     logo: "/logos/gamesport.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 10,
@@ -244,6 +261,7 @@ const teams = [
     slug: "xcity",
     name: "Xcity",
     logo: "/logos/xcity.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 10,
@@ -258,6 +276,7 @@ const teams = [
     slug: "tsa-green",
     name: "TSA Green",
     logo: "/logos/tsagreen.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 10,
@@ -272,6 +291,7 @@ const teams = [
     slug: "mellren",
     name: "mellren",
     logo: "/logos/mellren.png",
+    flag: "/flags/bel.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -286,6 +306,7 @@ const teams = [
     slug: "nemesis-academy",
     name: "Nemesis Academy",
     logo: "/logos/nemesis.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -300,6 +321,7 @@ const teams = [
     slug: "duggedup",
     name: "Duggedup",
     logo: "/logos/duggedup.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -314,6 +336,7 @@ const teams = [
     slug: "roc-team",
     name: "ROC Team",
     logo: "/logos/rocteam.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -328,6 +351,7 @@ const teams = [
     slug: "partizan",
     name: "PARTIZAN",
     logo: "/logos/partizan.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -342,6 +366,7 @@ const teams = [
     slug: "csgopositive",
     name: "CSGOPOSITIVE",
     logo: "/logos/csgopositive.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 9,
@@ -357,6 +382,7 @@ const teams = [
     slug: "platoon-beta",
     name: "PLATOON BETA",
     logo: "/logos/platoon.png",
+    flag: "/flags/bel.svg",
     division: "Main",
     stats: {
       wins: 8,
@@ -372,6 +398,7 @@ const teams = [
     slug: "wnt",
     name: "wnT",
     logo: "/logos/wnt.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 8,
@@ -386,6 +413,7 @@ const teams = [
     slug: "playfire",
     name: "playfire",
     logo: "/logos/playfire.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 8,
@@ -400,6 +428,7 @@ const teams = [
     slug: "olympia",
     name: "OLYMPIA",
     logo: "/logos/olympia.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 8,
@@ -414,6 +443,7 @@ const teams = [
     slug: "way-In-future",
     name: "Way In Future",
     logo: "/logos/way.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -428,6 +458,7 @@ const teams = [
     slug: "redtigersgaming",
     name: "RedTigersGaming",
     logo: "/logos/red.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -442,6 +473,7 @@ const teams = [
     slug: "kislyakk",
     name: "KISLYAKK",
     logo: "/logos/kislyak.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -456,6 +488,7 @@ const teams = [
     slug: "wobuzhidao",
     name: "Wobuzhidao",
     logo: "/logos/wobuzhidao.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -470,6 +503,7 @@ const teams = [
      slug: "p7ay3r5",
     name: "P7AY3R5",
     logo: "/logos/p7.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -484,6 +518,7 @@ const teams = [
     slug: "dire",
     name: "Dire",
     logo: "/logos/dire.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -498,6 +533,7 @@ const teams = [
     slug: "z17",
     name: "Z17",
     logo: "/logos/z17.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -512,6 +548,7 @@ const teams = [
     slug: "aeternum",
     name: "AETERNUM",
     logo: "/logos/aeternum.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 7,
@@ -526,6 +563,7 @@ const teams = [
     slug: "godbless",
     name: "Godbless",
     logo: "/logos/godbles.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 6,
@@ -540,6 +578,7 @@ const teams = [
     slug: "aokigahara",
     name: "aokigahara",
     logo: "/logos/aokigahara.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 6,
@@ -554,6 +593,7 @@ const teams = [
     slug: "m33",
     name: "M33",
     logo: "/logos/m33.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 6,
@@ -568,6 +608,7 @@ const teams = [
     slug: "graf-monte-cristo",
     name: "Graf Monte-Cristo",
     logo: "/logos/graf.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 14,
@@ -582,6 +623,7 @@ const teams = [
     slug: "aogiri",
     name: "Aogiri",
     logo: "/logos/aogiri.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 13,
@@ -596,6 +638,7 @@ const teams = [
     slug: "saqa-omuk",
     name: "SAQA OMUK",
     logo: "/logos/saqa.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 12,
@@ -610,6 +653,7 @@ const teams = [
     slug: "donatrix",
     name: "Donatrix",
     logo: "/logos/donatrix.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 11,
@@ -624,6 +668,7 @@ const teams = [
     slug: "sakura",
     name: "Sakura",
     logo: "/logos/sakura.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 11,
@@ -638,6 +683,7 @@ const teams = [
     slug: "allinners",
     name: "ALLINNERS",
     logo: "/logos/allinners.png",
+    flag: "/flags/kaz.svg",
     division: "Intermediate",
     stats: {
       wins: 11,
@@ -652,6 +698,7 @@ const teams = [
     slug: "prem3adpotbi",
     name: "Prem3aDPOTbl",
     logo: "/logos/prem.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 10,
@@ -666,6 +713,7 @@ const teams = [
     slug: "team-ka6anbi",
     name: "TEAM KA6ANbl",
     logo: "/logos/kabani.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 10,
@@ -680,6 +728,7 @@ const teams = [
     slug: "wapa",
     name: "WaPa",
     logo: "/logos/wapa.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 10,
@@ -694,6 +743,7 @@ const teams = [
     slug: "infernals",
     name: "iNFERNALES",
     logo: "iNFR",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 5,
@@ -708,6 +758,7 @@ const teams = [
     slug: "dzungarz",
     name: "dzungarz",
     logo: "dzg",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 5,
@@ -722,6 +773,7 @@ const teams = [
     slug: "sunthraw",
     name: "SUNTHRAW",
     logo: "/logos/sunthraw.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -736,6 +788,7 @@ const teams = [
     slug: "3nation",
     name: "3Nation",
     logo: "3NAT",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -750,6 +803,7 @@ const teams = [
     slug: "yelets-esports",
     name: "Yelets Esports",
     logo: "/logos/yelets.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -764,6 +818,7 @@ const teams = [
     slug: "1337",
     name: "1337",
     logo: "1337",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -778,6 +833,7 @@ const teams = [
     slug: "turtles",
     name: "TURTLES",
     logo: "/logos/turtles.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -792,6 +848,7 @@ const teams = [
     slug: "teamworkers",
     name: "TEAMWORKERS",
     logo: "/logos/teamwork.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 9,
@@ -806,6 +863,7 @@ const teams = [
     slug: "ablaze-team",
     name: "ABlaze Team",
     logo: "/logos/ablaze.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 4,
@@ -820,6 +878,7 @@ const teams = [
     slug: "drags",
     name: "dragS",
     logo: "/logos/drags.png",
+    flag: "/flags/russia.svg",
     division: "Main",
     stats: {
       wins: 3,
@@ -834,6 +893,7 @@ const teams = [
     slug: "force -syndicate",
     name: "Force Syndicate",
     logo: "/logos/force.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 8,
@@ -848,6 +908,7 @@ const teams = [
     slug: "all-eyes-on-me",
     name: "all eyes on me",
     logo: "/logos/alleyes.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 8,
@@ -862,6 +923,7 @@ const teams = [
     slug: "lqnely",
     name: "lqnely",
     logo: "/logos/iqneli.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 8,
@@ -876,6 +938,7 @@ const teams = [
     slug: "eon",
     name: "Eon",
     logo: "/logos/eon.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 8,
@@ -890,6 +953,7 @@ const teams = [
     slug: "clickbate",
     name: "ClickBate",
     logo: "/logos/clickbate.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 8,
@@ -904,6 +968,7 @@ const teams = [
     slug: "ne-priehali",
     name: "NE PRIEHALI",
     logo: "/logos/nepriehali.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -918,6 +983,7 @@ const teams = [
     slug: "magic-fairies",
     name: "Magic Fairies",
     logo: "/logos/magic.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -932,6 +998,7 @@ const teams = [
     slug: "youth4ez",
     name: "YouTH4eZ",
     logo: "/logos/you.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -946,6 +1013,7 @@ const teams = [
     slug: "ronins",
     name: "Ronins",
     logo: "RON",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -960,6 +1028,7 @@ const teams = [
     slug: "donstu youngsters",
     name: "DONSTU YOUNGSTERS",
     logo: "/logos/donstuyoung.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -974,6 +1043,7 @@ const teams = [
     slug: "quazar school",
     name: "QUAZAR SCHOOL",
     logo: "/logos/quazarschool.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -988,6 +1058,7 @@ const teams = [
     slug: "gsq",
     name: "GSQ",
     logo: "/logos/gsq.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 7,
@@ -1002,6 +1073,7 @@ const teams = [
     slug: "c0b0r",
     name: "c0b0r",
     logo: "CBR",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins: 6,
@@ -1016,6 +1088,7 @@ const teams = [
     slug: "baks-esports",
     name: "BAKS Esports",
     logo: "/logos/baks.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 13,
@@ -1030,6 +1103,7 @@ const teams = [
     slug: "iuhop",
     name: "iuhop",
     logo: "IUH",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 12,
@@ -1044,6 +1118,7 @@ const teams = [
     slug: "fartflow",
     name: "FartFlow",
     logo: "/logos/fartflow.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 12,
@@ -1058,6 +1133,7 @@ const teams = [
     slug: "bhemanha",
     name: "BHemanha",
     logo: "BHN",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 12,
@@ -1072,6 +1148,7 @@ const teams = [
     slug: "lynx",
     name: "LYNX",
     logo: "/logos/lynx.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 11,
@@ -1086,6 +1163,7 @@ const teams = [
     slug: "trafficpills-esports",
     name: "TrafficPills Esports",
     logo: "TPE",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 11,
@@ -1100,6 +1178,7 @@ const teams = [
     slug: "kda-team",
     name: "KDA Team",
     logo: "/logos/kda.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 11,
@@ -1114,6 +1193,7 @@ const teams = [
     slug: "fortis",
     name: "FORTIS",
     logo: "/logos/fortis.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 11,
@@ -1128,6 +1208,7 @@ const teams = [
     slug: "mayak-arena",
     name: "MAYAK ARENA",
     logo: "/logos/mayakarena.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1142,6 +1223,7 @@ const teams = [
     slug: "lan1t",
     name: "LAN1T",
     logo: "/logos/lan1t.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1156,6 +1238,7 @@ const teams = [
     slug: "vexar",
     name: "Vexar",
     logo: "/logos/vexar.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1170,6 +1253,7 @@ const teams = [
     slug: "prius",
     name: "Prius",
     logo: "/logos/prius.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1184,6 +1268,7 @@ const teams = [
     slug: "goodjob",
     name: "GoodJob",
     logo: "/logos/good.png",
+    flag: "/flags/bel.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1198,6 +1283,7 @@ const teams = [
     slug: "lanklan",
     name: "LANK",
     logo: "VPF",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1212,6 +1298,7 @@ const teams = [
     slug: "fate",
     name: "FATE",
     logo: "/logos/fate.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1226,6 +1313,7 @@ const teams = [
     slug: "aeris",
     name: "AERIS",
     logo: "/logos/aeris.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1240,6 +1328,7 @@ const teams = [
     slug: "dnk",
     name: "DNK",
     logo: "/logos/dnk.png",
+    flag: "/flags/kaz.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1254,6 +1343,7 @@ const teams = [
     slug: "homo-sapiens",
     name: "homo_sapiens",
     logo: "HS",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1268,6 +1358,7 @@ const teams = [
     slug: "cerberus",
     name: "CERBERUS",
     logo: "/logos/cerberus.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 10,
@@ -1282,6 +1373,7 @@ const teams = [
     slug: "fak1e-lab",
     name: "Fak1E Lab",
     logo: "/logos/fakie.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1296,6 +1388,7 @@ const teams = [
     slug: "mana",
     name: "MANA",
     logo: "MANA",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1310,6 +1403,7 @@ const teams = [
     slug: "smokinsexxystyle",
     name: "SmokinSexxyStyle",
     logo: "/logos/smoki.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1324,6 +1418,7 @@ const teams = [
     slug: "eternal",
     name: "eternal",
     logo: "/logos/eternal.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1338,6 +1433,7 @@ const teams = [
     slug: "fusion",
     name: "FUSION",
     logo: "/logos/fusion.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1352,6 +1448,7 @@ const teams = [
     slug: "posle-zavoda",
     name: "POSLE ZAVODA",
     logo: "PZ",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1366,6 +1463,7 @@ const teams = [
     slug: "thekomyakz",
     name: "THEKOMYAKZ",
     logo: "/logos/thekom.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1380,6 +1478,7 @@ const teams = [
     slug: "nightmare-esports",
     name: "Nightmare Esports",
     logo: "/logos/nightmare.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1394,6 +1493,7 @@ const teams = [
     slug: "s1wka-team",
     name: "S1WKA Team",
     logo: "/logos/siwka.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1408,6 +1508,7 @@ const teams = [
     slug: "eca-esports",
     name: "ECA Esports",
     logo: "/logos/eca.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1422,6 +1523,7 @@ const teams = [
     slug: "pivstar",
     name: "pivstar",
     logo: "PS",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1436,6 +1538,7 @@ const teams = [
     slug: "fnbet",
     name: "FNbet",
     logo: "/logos/fnb.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1450,6 +1553,7 @@ const teams = [
     slug: "urat",
     name: "UraT",
     logo: "URAT",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1464,6 +1568,7 @@ const teams = [
     slug: "unknowns",
     name: "unknowns",
     logo: "/logos/unknow.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1478,6 +1583,7 @@ const teams = [
     slug: "dodg3rs",
     name: "dodg3rs",
     logo: "/logos/dodg.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 9,
@@ -1506,6 +1612,7 @@ const teams = [
     slug: "stubborn-boys",
     name: "Stubborn Boys",
     logo: "STB",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1520,6 +1627,7 @@ const teams = [
     slug: "critical",
     name: "Critical",
     logo: "/logos/critical.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1534,6 +1642,7 @@ const teams = [
     slug: "mephi",
     name: "MEPHI",
     logo: "/logos/mephi.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1548,6 +1657,7 @@ const teams = [
     slug: "zbk",
     name: "ZBK",
     logo: "/logos/zbk.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1562,6 +1672,7 @@ const teams = [
     slug: "ha-ncuxotponhbix",
     name: "Ha ncuxoTPonHblx",
     logo: "/logos/ha.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1576,6 +1687,7 @@ const teams = [
     slug: "kynetic",
     name: "Kynetic",
     logo: "/logos/kynetic.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1590,6 +1702,7 @@ const teams = [
     slug: "outsiders",
     name: "Outsiders",
     logo: "/logos/out.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1604,6 +1717,7 @@ const teams = [
     slug: "m0nkeys",
     name: "m0nkeys",
     logo: "/logos/monkeys.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1618,6 +1732,7 @@ const teams = [
     slug: "1minute",
     name: "1Minute",
     logo: "/logos/1min.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1632,6 +1747,7 @@ const teams = [
     slug: "only-gamers",
     name: "ONLY GAMERS",
     logo: "/logos/only.png",
+    flag: "/flags/uzb.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1646,6 +1762,7 @@ const teams = [
     slug: "inputlag-enjoyers",
     name: "inputlag enjoyers",
     logo: "/logos/input.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1660,6 +1777,7 @@ const teams = [
     slug: "justtag",
     name: "JustTag",
     logo: "JT",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1674,6 +1792,7 @@ const teams = [
     slug: "leetcase",
     name: "LeetCase",
     logo: "/logos/leet.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1688,6 +1807,7 @@ const teams = [
     slug: "w1nks",
     name: "W1NKS",
     logo: "/logos/winks.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1702,6 +1822,7 @@ const teams = [
     slug: "bestaimmers",
     name: "bestAIMMERS",
     logo: "/logos/best.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1716,6 +1837,7 @@ const teams = [
     slug: "the-relics",
     name: "The Relics",
     logo: "/logos/relics.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1730,6 +1852,7 @@ const teams = [
     slug: "kagen",
     name: "KageN",
     logo: "/logos/kagen.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1744,6 +1867,7 @@ const teams = [
     slug: "back2back",
     name: "back2back",
     logo: "b2b",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1758,6 +1882,7 @@ const teams = [
     slug: "full-dobro",
     name: "Full Dobro",
     logo: "/logos/full.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1772,6 +1897,7 @@ const teams = [
     slug: "ronin",
     name: "RONIN",
     logo: "/logos/ronin.png",
+    flag: "/flags/kaz.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1787,6 +1913,7 @@ const teams = [
     slug: "emlight",
     name: "Emlight",
     logo: "/logos/eml.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1801,6 +1928,7 @@ const teams = [
     slug: "hodes",
     name: "HODES",
     logo: "/logos/hodes.png",
+    flag: "/flags/bel.svg",
     division: "Entry",
     stats: {
       wins:11,
@@ -1815,6 +1943,7 @@ const teams = [
     slug: "flame-guardians",
     name: "Flame Guardians",
     logo: "/logos/flameguardians.png",
+    flag: "/flags/russia.svg",
     division: "Intermediate",
     stats: {
       wins:7,
@@ -1829,6 +1958,7 @@ const teams = [
     slug: "weclear",
     name: "WeClear",
     logo: "/logos/weclear.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins:10,
@@ -1843,6 +1973,7 @@ const teams = [
     slug: "cybercom",
     name: "CYBERCOM",
     logo: "/logos/cybercom.png",
+    flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
       wins:7,
@@ -1863,7 +1994,9 @@ function TeamPage() {
   if (!team) {
     return (
       <div className="bg-[#0f1419] min-h-screen text-white p-8">
-        <h1 className="text-3xl font-bold">Team not found</h1>
+        <h1 className="text-3xl font-bold">
+          Team not found
+        </h1>
       </div>
     )
   }
@@ -1891,13 +2024,26 @@ function TeamPage() {
 
         {/* INFO */}
         <div className="text-center md:text-left">
-          <h1 className="text-3xl md:text-5xl font-bold text-orange-500">
-            {team.name}
-          </h1>
 
-          <p className="text-gray-400 mt-1">
+          {/* FLAG + NAME */}
+          <div className="flex items-center gap-3 justify-center md:justify-start">
+
+            <img
+              src={team.flag}
+              alt="flag"
+              className="w-8 h-8 rounded-md object-cover"
+            />
+
+            <h1 className="text-3xl md:text-5xl font-bold text-orange-500">
+              {team.name}
+            </h1>
+
+          </div>
+
+          <p className="text-gray-400 mt-2">
             Division: {team.division}
           </p>
+
         </div>
       </div>
 
@@ -1905,17 +2051,30 @@ function TeamPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl">
 
         <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">Wins</p>
-          <p className="text-2xl font-bold">{team.stats.wins}</p>
+          <p className="text-gray-400 text-sm">
+            Wins
+          </p>
+
+          <p className="text-2xl font-bold">
+            {team.stats.wins}
+          </p>
         </div>
 
         <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">Losses</p>
-          <p className="text-2xl font-bold">{team.stats.losses}</p>
+          <p className="text-gray-400 text-sm">
+            Losses
+          </p>
+
+          <p className="text-2xl font-bold">
+            {team.stats.losses}
+          </p>
         </div>
 
         <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">Winrate</p>
+          <p className="text-gray-400 text-sm">
+            Winrate
+          </p>
+
           <p className="text-2xl font-bold text-orange-400">
             {winrate}%
           </p>
@@ -1928,11 +2087,13 @@ function TeamPage() {
 
         {/* ROSTER */}
         <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
+
           <h2 className="text-xl font-semibold mb-4">
             Roster
           </h2>
 
           <div className="space-y-3">
+
             {team.players.map((p) => (
               <div
                 key={p}
@@ -1941,29 +2102,38 @@ function TeamPage() {
                 {p}
               </div>
             ))}
+
           </div>
+
         </div>
 
         {/* MATCHES */}
         <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
+
           <h2 className="text-xl font-semibold mb-4">
             Last Matches
           </h2>
 
           <div className="space-y-3">
+
             {team.matches.map((m, i) => (
               <div
                 key={i}
                 className="flex justify-between bg-[#232a34] p-3 rounded-lg border border-gray-800"
               >
-                <span>{m.opponent}</span>
+                <span>
+                  {m.opponent}
+                </span>
 
                 <span className="text-orange-400 font-semibold">
                   {m.result}
                 </span>
+
               </div>
             ))}
+
           </div>
+
         </div>
 
       </div>
