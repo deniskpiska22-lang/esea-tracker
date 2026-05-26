@@ -20,7 +20,7 @@ function MediaPage() {
       {/* POSTS */}
       <div className="max-w-4xl mx-auto grid gap-6">
 
-        {posts.map((post) => (
+        {[...posts].reverse().map((post) => (
           <div
             key={post.id}
             className="bg-[#141922] border border-gray-800 rounded-2xl overflow-hidden shadow-xl"
