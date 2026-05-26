@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 
+
 const teams = [
   {
     rank: 1,
