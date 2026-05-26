@@ -156,8 +156,9 @@ const teams = [
     logo: "/logos/peep.png",
     name: "ex-PeeP",
     flag: "/flags/russia.svg",
-    points: 328,
-    record: "7-7",
+    points: 333,
+    change: +5,
+    record: "8-6",
     division: "Advanced",
   },
                  {

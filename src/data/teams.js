@@ -1,13 +1,26 @@
 export const teams = [
-  {
-    slug: "donstu-esports",
-    name: "DONSTU ESPORTS",
-    division: "Advanced",
-    logo: "/logos/donstu.png",
-    country: "CIS",
-    players: ["narkoman812", "Due1yant", "SEXYVOVA", "gleb86rus", "NeoLife"],
-    rating: 1.12
-  },
+{
+  slug: "cybershoke-prospects",
+  logo: "/logos/cybershoke.png",
+  name: "CYBERSHOKE Prospects",
+  flag: "/flags/russia.svg",
+
+  points: 380,
+  change: +24,
+  record: "9-5",
+  division: "Advanced",
+
+  history: [
+    { week: "May 24", rank: 1 },
+    { week: "May 26", rank: 1 },
+    { week: "Apr 15", rank: 7 },
+    { week: "Apr 22", rank: 5 },
+    { week: "Apr 29", rank: 3 },
+  ],
+
+  players: ["dezl3bio", "SquEzxc", "pleynnn", "tw1sterzaza", "DAN9ARMATURA"],
+  matches: [],
+},
   {
     slug: "quazar",
     name: "QUAZAR",
