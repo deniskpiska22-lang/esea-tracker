@@ -127,23 +127,25 @@ function About() {
               больше функций, статистики и улучшений интерфейса.
             </p>
 
-            <div className="mt-6">
+<div className="flex flex-col gap-2">
+  
+  <a
+    href="https://t.me/LisssTzz1"
+    target="_blank"
+    rel="noreferrer"
+    className="text-orange-400 hover:text-orange-300 transition"
+  >
+    TG - @LisssTzz1
+  </a>
 
-              <p className="text-sm text-gray-500 mb-2">
-                Контакты
-              </p>
+  <a
+    href="mailto:deadinsidick11@mail.ru"
+    className="text-orange-400 hover:text-orange-300 transition"
+  >
+    Mail - deadinsidick11@mail.ru
+  </a>
 
-              <a
-                href="https://t.me/LisssTzz1"
-                target="_blank"
-                rel="noreferrer"
-                className="text-orange-400 hover:text-orange-300 transition"
-              >
-                TG - @LisssTzz1
-                Mail - deadinsidick11@mail.ru
-              </a>
-
-            </div>
+</div>
 
           </div>
 
