@@ -38,6 +38,7 @@ const teams = [
     flag: "/flags/russia.svg",
     name: "DONSTU ESPORTS",
     points: 350,
+    change: +10,
     record: "12-2",
     division: "Advanced",
   },
@@ -1317,7 +1318,7 @@ function App() {
 
       {/* NAVBAR */}
       <nav className="border-b border-gray-800 bg-[#0d1117]">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
           {/* LOGO */}
           <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
@@ -1365,7 +1366,7 @@ function App() {
       </nav>
 
       {/* CONTENT */}
-      <div className="max-w-6xl mx-auto p-4 md:p-8">
+      <div className="max-w-7xl mx-auto p-4 md:p-8">
 
         <h2 className="text-2xl md:text-4xl font-bold mb-6">
           CIS Team Rankings ESEA
@@ -1373,14 +1374,26 @@ function App() {
 
         {/* TABLE */}
         <div className="overflow-x-auto">
-          <div className="bg-[#141922] rounded-xl overflow-hidden border border-gray-800 shadow-xl min-w-[700px]">
+          <div className="bg-[#141922] rounded-xl overflow-hidden border border-gray-800 shadow-xl min-w-[1000px]">
 
             {/* HEADER */}
-            <div className="grid grid-cols-5 bg-[#1f2630] p-4 text-gray-400 font-semibold text-sm uppercase tracking-wide">
+            <div
+              className="
+                grid
+                grid-cols-[80px_2fr_170px_120px_140px]
+                bg-[#1f2630]
+                p-4
+                text-gray-400
+                font-semibold
+                text-sm
+                uppercase
+                tracking-wide
+              "
+            >
               <div>Rank</div>
               <div>Team</div>
-              <div>Points</div>
-              <div>Record</div>
+              <div className="pl-4">Points</div>
+              <div className="pl-2">Record</div>
               <div>Division</div>
             </div>
 
@@ -1389,48 +1402,85 @@ function App() {
               <Link
                 key={team.rank}
                 to={`/teams/${team.slug}`}
-                className={`grid grid-cols-5 p-4 border-t border-gray-800 transition duration-150 items-center ${
-                  team.rank === 1
-                    ? "bg-yellow-500/10"
-                    : "hover:bg-[#2a313d]"
-                }`}
+                className={`
+                  grid
+                  grid-cols-[80px_2fr_170px_120px_140px]
+                  p-4
+                  border-t
+                  border-gray-800
+                  transition
+                  duration-150
+                  items-center
+                  ${
+                    team.rank === 1
+                      ? "bg-yellow-500/10"
+                      : "hover:bg-[#2a313d]"
+                  }
+                `}
               >
+
                 {/* RANK */}
-                <div className="text-gray-300">
+                <div className="text-gray-300 font-medium">
                   #{team.rank}
                 </div>
 
                 {/* TEAM */}
-                <div className="flex items-center gap-3 font-semibold hover:text-orange-400 transition">
+                <div className="flex items-center gap-3 min-w-0">
 
                   {/* FLAG */}
                   <img
                     src={team.flag}
                     alt="flag"
-                    className="w-5 h-5 rounded-sm object-cover"
+                    className="w-5 h-5 rounded-sm object-cover flex-shrink-0"
                   />
 
                   {/* LOGO */}
                   <img
                     src={team.logo}
                     alt={team.name}
-                    className="w-8 h-8 object-contain"
+                    className="w-9 h-9 object-contain flex-shrink-0"
                   />
 
                   {/* NAME */}
-                  <span>
+                  <span className="font-semibold hover:text-orange-400 transition truncate">
                     {team.name}
                   </span>
 
                 </div>
 
-                {/* POINTS */}
-                <div className="text-gray-300">
-                  {team.points}
+                {/* POINTS + CHANGE */}
+                <div className="flex items-center gap-2 pl-4">
+
+                  {/* POINTS */}
+                  <span className="text-gray-300 font-medium">
+                    {team.points}
+                  </span>
+
+                  {/* UP */}
+                  {team.change > 0 && (
+                    <span className="text-green-400 text-sm font-bold">
+                      ▲ +{team.change}
+                    </span>
+                  )}
+
+                  {/* DOWN */}
+                  {team.change < 0 && (
+                    <span className="text-red-400 text-sm font-bold">
+                      ▼ {team.change}
+                    </span>
+                  )}
+
+                  {/* NO CHANGE */}
+                  {team.change === 0 && (
+                    <span className="text-gray-500 text-sm font-bold">
+                      —
+                    </span>
+                  )}
+
                 </div>
 
                 {/* RECORD */}
-                <div className="text-gray-300">
+                <div className="text-gray-300 pl-2">
                   {team.record}
                 </div>
 
