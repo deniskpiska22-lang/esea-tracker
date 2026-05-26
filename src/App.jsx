@@ -6,6 +6,7 @@ const teams = [
     slug: "cybershoke-prospects",
     logo: "/logos/cybershoke.png",
     name: "CYBERSHOKE Prospects",
+    flag: "/flags/russia.svg",
     points: 356,
     record: "9-5",
     division: "Advanced",
@@ -1264,33 +1265,46 @@ function App() {
                     : "hover:bg-[#2a313d]"
                 }`}
               >
+                {/* RANK */}
                 <div className="text-gray-300">
                   #{team.rank}
                 </div>
 
-                {/* TEAM + LOGO */}
+                {/* TEAM */}
                 <div className="flex items-center gap-3 font-semibold hover:text-orange-400 transition">
 
+                  {/* FLAG */}
+                  <img
+                    src={team.flag}
+                    alt="flag"
+                    className="w-5 h-5 rounded-sm object-cover"
+                  />
+
+                  {/* LOGO */}
                   <img
                     src={team.logo}
                     alt={team.name}
                     className="w-8 h-8 object-contain"
                   />
 
+                  {/* NAME */}
                   <span>
                     {team.name}
                   </span>
 
                 </div>
 
+                {/* POINTS */}
                 <div className="text-gray-300">
                   {team.points}
                 </div>
 
+                {/* RECORD */}
                 <div className="text-gray-300">
                   {team.record}
                 </div>
 
+                {/* DIVISION */}
                 <div className="text-orange-400 font-medium">
                   {team.division}
                 </div>
