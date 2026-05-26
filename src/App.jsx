@@ -1367,7 +1367,7 @@ function App() {
             </Link>
 
             <Link
-              to="/teams"
+              
               className={`transition ${
                 isActive("/teams")
                   ? "text-white border-b-2 border-orange-500 pb-1"

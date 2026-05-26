@@ -6,7 +6,6 @@ const teams = [
     name: "CYBERSHOKE Prospects",
     logo: "/logos/cybershoke.png",
     flag: "/flags/russia.svg",
-
     division: "Advanced",
     stats: {
       wins: 9,
@@ -1739,7 +1738,7 @@ function TeamPage() {
 
   const winrate =
     total === 0 ? 0 : Math.round((team.stats.wins / total) * 100)
-
+const mapStats = team.mapStats || []
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-10 py-8">
 
@@ -1846,6 +1845,52 @@ function TeamPage() {
           )}
         </div>
       </div>
+      {/* MAP WINRATES */}
+{mapStats.length > 0 && (
+  <div className="mt-8 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
+    <h2 className="text-xl font-semibold mb-4">Map Winrates</h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {mapStats.map((m) => (
+        <div
+          key={m.map}
+          className="bg-[#0f141c] border border-[#1f2a3a] rounded-xl p-4"
+        >
+          {/* HEADER */}
+          <div className="flex justify-between mb-2">
+            <span className="text-white font-medium">{m.map}</span>
+
+            <span
+              className={`font-bold ${
+                m.winrate >= 60
+                  ? "text-green-400"
+                  : m.winrate >= 45
+                  ? "text-yellow-400"
+                  : "text-red-400"
+              }`}
+            >
+              {m.winrate}%
+            </span>
+          </div>
+
+          {/* BAR */}
+          <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+            <div
+              className={`h-full transition-all duration-500 ${
+                m.winrate >= 60
+                  ? "bg-green-400"
+                  : m.winrate >= 45
+                  ? "bg-yellow-400"
+                  : "bg-red-400"
+              }`}
+              style={{ width: `${m.winrate}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
     </div>
   )
 }
