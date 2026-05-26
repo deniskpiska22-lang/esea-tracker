@@ -1805,13 +1805,16 @@ function TeamPage() {
 
           <div className="space-y-3">
             {team.players.map((p) => (
-              <div
-                key={p}
-                className="bg-[#0f141c] hover:bg-[#141c28] transition border border-[#1f2a3a] rounded-xl px-4 py-3 text-sm"
-              >
-                {p}
-              </div>
-            ))}
+  <a
+    key={p}
+    href={`https://www.faceit.com/en/players/${p}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block bg-[#232a34] p-3 rounded-lg border border-gray-800 hover:bg-[#2a3340] transition"
+  >
+    {p}
+  </a>
+))}
           </div>
         </div>
 
