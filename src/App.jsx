@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
+import { useState } from "react"
 
 const teams = [
   {
@@ -1319,10 +1320,24 @@ const teams = [
 function App() {
   const location = useLocation()
 
+  const [selectedDivision, setSelectedDivision] =
+    useState("All")
+
   const isActive = (path) => location.pathname === path
 
-  // 🔥 СОРТИРОВКА ПО POINTS (HLTV STYLE)
-  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
+  // 🔥 SORT BY POINTS
+  const sortedTeams = [...teams].sort(
+    (a, b) => b.points - a.points
+  )
+
+  // 🔥 FILTER DIVISIONS
+  const filteredTeams =
+    selectedDivision === "All"
+      ? sortedTeams
+      : sortedTeams.filter(
+          (team) =>
+            team.division === selectedDivision
+        )
 
   return (
     <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
@@ -1331,10 +1346,12 @@ function App() {
       <nav className="border-b border-gray-800 bg-[#0d1117]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
+          {/* LOGO */}
           <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
             CIS ESEA Rankings
           </h1>
 
+          {/* NAV LINKS */}
           <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
             <Link
@@ -1377,9 +1394,42 @@ function App() {
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
 
-        <h2 className="text-2xl md:text-4xl font-bold mb-6">
-          CIS Team Rankings ESEA
-        </h2>
+        {/* TITLE */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+
+          <h2 className="text-2xl md:text-4xl font-bold">
+            CIS Team Rankings ESEA
+          </h2>
+
+          {/* FILTERS */}
+          <div className="flex flex-wrap gap-2">
+
+            {[
+              "All",
+              "Advanced",
+              "Main",
+              "Intermediate",
+              "Entry",
+            ].map((division) => (
+
+              <button
+                key={division}
+                onClick={() =>
+                  setSelectedDivision(division)
+                }
+                className={`px-4 py-2 rounded-lg border transition text-sm ${
+                  selectedDivision === division
+                    ? "bg-orange-500 border-orange-500 text-white"
+                    : "bg-[#1a1f26] border-gray-800 text-gray-400 hover:text-white"
+                }`}
+              >
+                {division}
+              </button>
+
+            ))}
+
+          </div>
+        </div>
 
         {/* TABLE */}
         <div className="overflow-x-auto">
@@ -1400,16 +1450,25 @@ function App() {
               "
             >
               <div>Rank</div>
+
               <div>Team</div>
-              <div className="pl-4">Points</div>
-              <div className="pl-2">Record</div>
+
+              <div className="pl-4">
+                Points
+              </div>
+
+              <div className="pl-2">
+                Record
+              </div>
+
               <div>Division</div>
             </div>
 
             {/* ROWS */}
-            {sortedTeams.map((team, index) => (
+            {filteredTeams.map((team, index) => (
+
               <Link
-                key={team.id || team.slug}
+                key={team.slug}
                 to={`/teams/${team.slug}`}
                 className={`
                   grid
@@ -1436,43 +1495,49 @@ function App() {
                 {/* TEAM */}
                 <div className="flex items-center gap-3 min-w-0">
 
+                  {/* FLAG */}
                   <img
                     src={team.flag}
                     alt="flag"
                     className="w-5 h-5 rounded-sm object-cover flex-shrink-0"
                   />
 
+                  {/* LOGO */}
                   <img
                     src={team.logo}
                     alt={team.name}
                     className="w-9 h-9 object-contain flex-shrink-0"
                   />
 
+                  {/* NAME */}
                   <span className="font-semibold hover:text-orange-400 transition truncate">
                     {team.name}
                   </span>
 
                 </div>
 
-                {/* POINTS + CHANGE */}
+                {/* POINTS */}
                 <div className="flex items-center gap-2 pl-4">
 
                   <span className="text-gray-300 font-medium">
                     {team.points}
                   </span>
 
+                  {/* CHANGE UP */}
                   {team.change > 0 && (
                     <span className="text-green-400 text-sm font-bold">
                       ▲ +{team.change}
                     </span>
                   )}
 
+                  {/* CHANGE DOWN */}
                   {team.change < 0 && (
                     <span className="text-red-400 text-sm font-bold">
                       ▼ {team.change}
                     </span>
                   )}
 
+                  {/* NO CHANGE */}
                   {team.change === 0 && (
                     <span className="text-gray-500 text-sm font-bold">
                       —
@@ -1492,6 +1557,7 @@ function App() {
                 </div>
 
               </Link>
+
             ))}
 
           </div>
