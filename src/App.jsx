@@ -7,7 +7,8 @@ const teams = [
     logo: "/logos/cybershoke.png",
     name: "CYBERSHOKE Prospects",
     flag: "/flags/russia.svg",
-    points: 356,
+    points: 380,
+    change: +24,
     record: "9-5",
     division: "Advanced",
   },
@@ -17,7 +18,8 @@ const teams = [
     logo: "/logos/ep.png",
     name: "eternal premium",
     flag: "/flags/russia.svg",
-    points: 354,
+    points: 350,
+    change: -4,
     record: "9-5",
     division: "Advanced",
   },
@@ -27,7 +29,8 @@ const teams = [
     logo: "/logos/newwision.png",
     flag: "/flags/russia.svg",
     name: "NEW VISION",
-    points: 352,
+    points: 356,
+    change: +4,
     record: "10-4",
     division: "Advanced",
   },
@@ -37,7 +40,8 @@ const teams = [
     logo: "/logos/donstu.png",
     flag: "/flags/russia.svg",
     name: "DONSTU ESPORTS",
-    points: 350,
+    points: 368,
+    change: +18,
     record: "12-2",
     division: "Advanced",
   },
@@ -47,7 +51,8 @@ const teams = [
     logo: "/logos/quazar.png",
     flag: "/flags/russia.svg",
     name: "QUAZAR",
-    points: 348,
+    points: 346,
+    change: -2,
     record: "10-4",
     division: "Advanced",
   },
@@ -57,7 +62,8 @@ const teams = [
     logo: "/logos/pepsi.png",
     flag: "/flags/russia.svg",
     name: "bankaPEPSI",
-    points: 346,
+    points: 344,
+    change: -2,
     record: "8-6",
     division: "Advanced",
   },
@@ -67,7 +73,8 @@ const teams = [
     logo: "/logos/enjoy.png",
     flag: "/flags/russia.svg",
     name: "Enjoy",
-    points: 344,
+    points: 370,
+    change: +26,
     record: "10-4",
     division: "Advanced",
   },
@@ -87,7 +94,8 @@ const teams = [
     logo: "/logos/aurora.png",
     name: "Aurora Young Blud",
     flag: "/flags/russia.svg",
-    points: 340,
+    points: 348,
+    change: +8,
     record: "9-5",
     division: "Advanced",
   },
@@ -277,7 +285,8 @@ const teams = [
     logo: "/logos/baks.png",
     name: "BAKS Esports",
     flag: "/flags/russia.svg",
-    points: 302,
+    points: 366,
+    change: +64,
     record: "13-1",
     division: "Entry",
   },
@@ -1312,6 +1321,9 @@ function App() {
 
   const isActive = (path) => location.pathname === path
 
+  // 🔥 СОРТИРОВКА ПО POINTS (HLTV STYLE)
+  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
+
   return (
     <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
@@ -1319,12 +1331,10 @@ function App() {
       <nav className="border-b border-gray-800 bg-[#0d1117]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-          {/* LOGO */}
           <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
             CIS ESEA Rankings
           </h1>
 
-          {/* NAV LINKS */}
           <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
             <Link
@@ -1397,9 +1407,9 @@ function App() {
             </div>
 
             {/* ROWS */}
-            {teams.map((team) => (
+            {sortedTeams.map((team, index) => (
               <Link
-                key={team.rank}
+                key={team.id || team.slug}
                 to={`/teams/${team.slug}`}
                 className={`
                   grid
@@ -1411,7 +1421,7 @@ function App() {
                   duration-150
                   items-center
                   ${
-                    team.rank === 1
+                    index === 0
                       ? "bg-yellow-500/10"
                       : "hover:bg-[#2a313d]"
                   }
@@ -1420,27 +1430,24 @@ function App() {
 
                 {/* RANK */}
                 <div className="text-gray-300 font-medium">
-                  #{team.rank}
+                  #{index + 1}
                 </div>
 
                 {/* TEAM */}
                 <div className="flex items-center gap-3 min-w-0">
 
-                  {/* FLAG */}
                   <img
                     src={team.flag}
                     alt="flag"
                     className="w-5 h-5 rounded-sm object-cover flex-shrink-0"
                   />
 
-                  {/* LOGO */}
                   <img
                     src={team.logo}
                     alt={team.name}
                     className="w-9 h-9 object-contain flex-shrink-0"
                   />
 
-                  {/* NAME */}
                   <span className="font-semibold hover:text-orange-400 transition truncate">
                     {team.name}
                   </span>
@@ -1450,26 +1457,22 @@ function App() {
                 {/* POINTS + CHANGE */}
                 <div className="flex items-center gap-2 pl-4">
 
-                  {/* POINTS */}
                   <span className="text-gray-300 font-medium">
                     {team.points}
                   </span>
 
-                  {/* UP */}
                   {team.change > 0 && (
                     <span className="text-green-400 text-sm font-bold">
                       ▲ +{team.change}
                     </span>
                   )}
 
-                  {/* DOWN */}
                   {team.change < 0 && (
                     <span className="text-red-400 text-sm font-bold">
                       ▼ {team.change}
                     </span>
                   )}
 
-                  {/* NO CHANGE */}
                   {team.change === 0 && (
                     <span className="text-gray-500 text-sm font-bold">
                       —
