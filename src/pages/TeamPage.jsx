@@ -1,0 +1,1974 @@
+import { useParams } from "react-router-dom"
+
+const teams = [
+  {
+    slug: "cybershoke-prospects",
+    name: "CYBERSHOKE Prospects",
+    logo: "/logos/cybershoke.png",
+
+    division: "Advanced",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["dezl3bio", "SquEzxc", "pleynnn", "tw1sterzaza", "DAN9ARMATURA"],
+    matches: [
+     ,
+    ],
+  },
+  {
+    slug: "eternal-premium",
+    name: "eternal premium",
+    logo: "/logos/ep.png",
+    division: "Advanced",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["skept1K", "smith", "MRcreed", "dazzy", "P1kan0"],
+    matches: [
+     ,
+    ],
+  },
+  {
+    slug: "new-vision",
+    name: "NEW VISION",
+    logo: "/logos/newwision.png",
+    division: "Advanced",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["fen2k", "wonimo", "hahanz0", "w0l33n", "x1nk1n"],
+    matches: [
+      ,
+    ],
+  },
+    {
+    slug: "donstu-esports",
+    name: "DONSTU ESPORTS",
+    logo: "/logos/donstu.png",
+    division: "Advanced",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["Due1yant", "NeoLife", "maQuein", "gleb86rus", "LAKSHERi"],
+    matches: [
+      ,
+    ],
+  },
+    {
+    slug: "quazar",
+    name: "QUAZAR",
+    logo: "/logos/quazar.png",
+    division: "Advanced",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["kaioriii", "gehji", "newt", "Ne1XXX", "Porya-"],
+    matches: [
+     ,
+    ],
+  },
+    {
+    slug: "bankapepsi",
+    name: "bankaPEPSI",
+    logo: "/logos/pepsi.png",
+    division: "Advanced",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["lesswill", "SEMSYS", "lUMiER", "xsepower", "HuckLer"],
+    matches: [
+      ,
+    ],
+  },
+    {
+    slug: "enjoy",
+    name: "Enjoy",
+    logo: "/logos/enjoy.png",
+    division: "Advanced",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["kurosa", "sh1geo", "roxesz", "zazzer", "nbl"],
+    matches: [
+      ,
+    ],
+  },
+    {
+    slug: "jumbo-team",
+    name: "Jumbo team",
+    logo: "/logos/jumbo.png",
+    division: "Advanced",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["matusik", "reNIK", "Snoob", "kinyx", "str0ngl"],
+    matches: [
+     
+    ],
+  },
+    {
+    slug: "aurora-young-blud",
+    name: "Aurora Young Blud",
+    logo: "/logos/aurora.png",
+    division: "Advanced",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["redzed", "r1pa4", "meetyoxanaji", "k1nco", "kurosse"],
+    matches: [
+      
+    ],
+  },
+    {
+    slug: "young-tigeres",
+    name: "Young TigeRES",
+    logo: "/logos/youngtigeres.png",
+    division: "Main",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["wh1teout", "seberya", "Gashhhi4", "tronic", "z3ndy"],
+    matches: [
+      
+    ],
+  },
+    {
+    slug: "vpprodigy",
+    name: "VPProdigy",
+    logo: "/logos/vpp.png",
+    division: "Advanced",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["rokilan", "lasfas", "Tri-Borgg1", "prrincee", "Stoynes"],
+    matches: [
+     
+    ],
+  },
+    {
+    slug: "arch",
+    name: "Arch",
+    logo: "/logos/arch.png",
+    division: "Advanced",
+    stats: {
+      wins: 10,
+      losses: 3,
+    },
+    players: ["WeB_SuN", "-MaLLiC-", "-ka1d0", "-f1R", "-Dis1-"],
+    matches: [
+   
+    ],
+  },
+    {
+    slug: "lfo-corh9k",
+    name: "LFO_COPH9K",
+    logo: "/logos/sornyak.png",
+    division: "Advanced",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["CheckWay", "herkulesz", "lom1k", "nottoday", "Renw1e"],
+    matches: [
+    
+    ],
+  },
+    {
+    slug: "wingmanlfo",
+    name: "WingmanLFO",
+    logo: "/logos/wingman.png",
+    division: "Advanced",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["-mowel", "Minor", "la3euka", "xnkkaaa", "Z1W0W666"],
+    matches: [
+  
+    ],
+  },
+      {
+    slug: "ex-peep",
+    name: "ex-PeeP",
+    logo: "/logos/peep.png",
+    division: "Advanced",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["vrnskY", "ekztasii", "-Denzi", "LE4R", "tokyoshi"],
+    matches: [
+   
+    ],
+  },
+      {
+    slug: "golovastiki",
+    name: "VPF2",
+    logo: "/logos/vpf2.png",
+    division: "Main",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["fudzhy", "dep999", "basinskiy", "Swem95", "yat0o0same"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "gamesport",
+    name: "GAMESPORT",
+    logo: "/logos/gamesport.png",
+    division: "Main",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["yagagarin", "rioeagle", "vova-triceps", "ksolter", "cartilag"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "xcity",
+    name: "Xcity",
+    logo: "/logos/xcity.png",
+    division: "Main",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["gag", "ATLASSS", "mda", "qu1ckk", "tuzon"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "tsa-green",
+    name: "TSA Green",
+    logo: "/logos/tsagreen.png",
+    division: "Main",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["d3nks", "maun", "-FlyTex", "saizius666", "xne"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "mellren",
+    name: "mellren",
+    logo: "/logos/mellren.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["shootic", "ment4lbr0k3n", "menddel", "lollipop21k", "Maksilvl"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "nemesis-academy",
+    name: "Nemesis Academy",
+    logo: "/logos/nemesis.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["soerrr", "texas999", "floww", "dyhace", "morifay"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "duggedup",
+    name: "Duggedup",
+    logo: "/logos/duggedup.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["Twiksarr", "isolation333", "Kre1N", "Carnivore--", "21storm"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "roc-team",
+    name: "ROC Team",
+    logo: "/logos/rocteam.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["rovvdy", "w1nore", "-rudeus", "Nxbody", "koretss"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "partizan",
+    name: "PARTIZAN",
+    logo: "/logos/partizan.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["Draysh", "11sheesh_", "DUNYAA-", "heso", "darui"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "csgopositive",
+    name: "CSGOPOSITIVE",
+    logo: "/logos/csgopositive.png",
+    division: "Main",
+    stats: {
+      wins: 9,
+      losses: 3,
+    },
+    players: ["Baronus", "Jiwoo", "SBolt-", "verso-markov", "headmashin1e"],
+    matches: [
+      
+    ],
+  },
+  
+      {
+    slug: "platoon-beta",
+    name: "PLATOON BETA",
+    logo: "/logos/platoon.png",
+    division: "Main",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["ArmanZwerrr", "bonyAjkE", "PhoeniXLUV", "ch1psik-", "Roomz"],
+    matches: [
+      
+    ],
+  },
+  
+      {
+    slug: "wnt",
+    name: "wnT",
+    logo: "/logos/wnt.png",
+    division: "Main",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["_En1GmA_", "Kakav0ziK", "Malibar", "Removee2k", "-BALBES--"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "playfire",
+    name: "playfire",
+    logo: "/logos/playfire.png",
+    division: "Main",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["ARING", "stinger-_", "JbIBOTHOE", "4R2D2-_-", "0808080809"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "olympia",
+    name: "OLYMPIA",
+    logo: "/logos/olympia.png",
+    division: "Main",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["ToniDare", "valenz0", "EngerS", "xsiyz", "fynchojka"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "way-In-future",
+    name: "Way In Future",
+    logo: "/logos/way.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["PokeballX21", "rdzl", "isuzu_1", "mellstroy911", "-rasyk0"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "redtigersgaming",
+    name: "RedTigersGaming",
+    logo: "/logos/red.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["Marv1n", "yasxojusyma", "yasxojysyma", "kobz0n", "Hellabandz"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "kislyakk",
+    name: "KISLYAKK",
+    logo: "/logos/kislyak.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["fl1nkk666", "frsunr1se", "YarNik", "kaban", "yutiik"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "wobuzhidao",
+    name: "Wobuzhidao",
+    logo: "/logos/wobuzhidao.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["M3GA_MYXA", "KOT_XAMEP", "0b535510n", "jzx", "l21p"],
+    matches: [
+      
+    ],
+  },
+      {
+     slug: "p7ay3r5",
+    name: "P7AY3R5",
+    logo: "/logos/p7.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["ulqu1ora", "v0ice_e", "gradex", "k10tje", "lazerboss"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "dire",
+    name: "Dire",
+    logo: "/logos/dire.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["bottl9", "pyJIb-wick", "pyJIb-happy", "pyJIb-rcR333", "RAWFEAR-"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "z17",
+    name: "Z17",
+    logo: "/logos/z17.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["j4NU4RY", "akaza7331", "z0nger", "thsleepphase", "qxwy"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "aeternum",
+    name: "AETERNUM",
+    logo: "/logos/aeternum.png",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["-twiz", "s1leNceRr_", "shazam-_-", "red1ct666", "glowstar"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "godbless",
+    name: "Godbless",
+    logo: "/logos/godbles.png",
+    division: "Main",
+    stats: {
+      wins: 6,
+      losses: 8,
+    },
+    players: ["YURk3N", "kenobass", "SEXYVLAD1K", "PALICH44", "flAndEmAdZ"],
+    matches: [
+      
+    ],
+  },
+      {
+    slug: "aokigahara",
+    name: "aokigahara",
+    logo: "/logos/aokigahara.png",
+    division: "Main",
+    stats: {
+      wins: 6,
+      losses: 8,
+    },
+    players: ["-sh1k1mos1k", "IaNeR", "tsy", "nukleos143", "-auxaa"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "m33",
+    name: "M33",
+    logo: "/logos/m33.png",
+    division: "Main",
+    stats: {
+      wins: 6,
+      losses: 8,
+    },
+    players: ["Groysss", "Jagermaister", "Kapibaris", "-Re333", "deceyced"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "graf-monte-cristo",
+    name: "Graf Monte-Cristo",
+    logo: "/logos/graf.png",
+    division: "Intermediate",
+    stats: {
+      wins: 14,
+      losses: 0,
+    },
+    players: ["ectaza", "cr1s-_-", "BOSSPREMA", "91914", "vviniciouss"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "aogiri",
+    name: "Aogiri",
+    logo: "/logos/aogiri.png",
+    division: "Intermediate",
+    stats: {
+      wins: 13,
+      losses: 1,
+    },
+    players: ["qdead", "Madaraya", "-_-ecl1pse", "d3fuser", "SyZ3r0x1"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "saqa-omuk",
+    name: "SAQA OMUK",
+    logo: "/logos/saqa.png",
+    division: "Intermediate",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["ne1l", "saddamy", "FlaRip111", "lula", "sakha"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "donatrix",
+    name: "Donatrix",
+    logo: "/logos/donatrix.png",
+    division: "Intermediate",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["f0lkfan111", "6akug4n_b0y", "vorja77", "sekkwoya", "sexxx"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "sakura",
+    name: "Sakura",
+    logo: "/logos/sakura.png",
+    division: "Intermediate",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["Ujaueu", "ylinsx", "-Meniwa", "flercayd", "49mTTuon"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "allinners",
+    name: "ALLINNERS",
+    logo: "/logos/allinners.png",
+    division: "Intermediate",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["Astro71", "ayken999", "sdqw_", "Sorr1k", "lnKognITo228"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "prem3adpotbi",
+    name: "Prem3aDPOTbl",
+    logo: "/logos/prem.png",
+    division: "Intermediate",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["nerouk", "ILYAXAGVOZDb", "L1s0m4N", "nara999", "-ddecembeR"],
+    matches: [
+      
+    ],
+  },
+        {
+    slug: "team-ka6anbi",
+    name: "TEAM KA6ANbl",
+    logo: "/logos/kabani.png",
+    division: "Intermediate",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["pinwud", "KLYXA_AAA", "marcelobraun", "A-plus-eto", "_f0ma"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "wapa",
+    name: "WaPa",
+    logo: "/logos/wapa.png",
+    division: "Intermediate",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["OrhunDura", "CoolezW", "Iark666", "fIy-", "Blackout"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "infernals",
+    name: "iNFERNALES",
+    logo: "iNFR",
+    division: "Main",
+    stats: {
+      wins: 5,
+      losses: 9,
+    },
+    players: ["paketAAA", "rmboo0_o", "Acura-", "25yokid", "yoshimaaa"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "dzungarz",
+    name: "dzungarz",
+    logo: "dzg",
+    division: "Main",
+    stats: {
+      wins: 5,
+      losses: 9,
+    },
+    players: ["Rezolix", "KCooks", "fosia", "labbies", "mistich"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "sunthraw",
+    name: "SUNTHRAW",
+    logo: "/logos/sunthraw.png",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["we1rdxd", "lrnk", "-frenzzzz", "kyonig", "-Ginger_"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "3nation",
+    name: "3Nation",
+    logo: "3NAT",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["sl1nxy", "Reivann", "GrandLove", "faerky", "awvree"],
+    matches: [
+      
+    ],
+  },
+          {
+    slug: "yelets-esports",
+    name: "Yelets Esports",
+    logo: "/logos/yelets.png",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["sw1zza", "aleL", "-Wentyy", "vikingdewu", "iSennCool"],
+    matches: [
+      
+    ],
+  },
+            {
+    slug: "1337",
+    name: "1337",
+    logo: "1337",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["ganjubas44", "EFFES", "newera2026", "deactivated", "Iazarus"],
+    matches: [
+      
+    ],
+  },
+            {
+    slug: "turtles",
+    name: "TURTLES",
+    logo: "/logos/turtles.png",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["h0kaN777", "darcy-", "awpwindow", "EMERALDEN", "anchous95"],
+    matches: [
+      
+    ],
+  },
+            {
+    slug: "teamworkers",
+    name: "TEAMWORKERS",
+    logo: "/logos/teamwork.png",
+    division: "Intermediate",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["l3d4n", "Rizz_7", "PbI6OJLOB", "sanlxrdb0b", "g6c"],
+    matches: [
+      
+    ],
+  },
+              {
+    slug: "ablaze-team",
+    name: "ABlaze Team",
+    logo: "/logos/ablaze.png",
+    division: "Main",
+    stats: {
+      wins: 4,
+      losses: 10,
+    },
+    players: ["-marsoN", "Salfetka--", "emoyarik-", "m4ks_b4mbLb1", "g3y_kapkAn67"],
+    matches: [
+      
+    ],
+  },
+              {
+    slug: "drags",
+    name: "dragS",
+    logo: "/logos/drags.png",
+    division: "Main",
+    stats: {
+      wins: 3,
+      losses: 11,
+    },
+    players: ["t1l7T", "decij", "david_M5", "zhvJESUS", "made666"],
+    matches: [
+      
+    ],
+  },
+                {
+    slug: "force -syndicate",
+    name: "Force Syndicate",
+    logo: "/logos/force.png",
+    division: "Intermediate",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["_Destroy3r_", "saya1337", "trized", "diqued", "finterjazz"],
+    matches: [
+      
+    ],
+  },
+                {
+    slug: "all-eyes-on-me",
+    name: "all eyes on me",
+    logo: "/logos/alleyes.png",
+    division: "Intermediate",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["xekri", "kiseki", "dreamaker", "CaHTeXHuK-", "san9PS1XOPAT"],
+    matches: [
+      
+    ],
+  },
+                {
+    slug: "lqnely",
+    name: "lqnely",
+    logo: "/logos/iqneli.png",
+    division: "Intermediate",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["21Mifixzq", "t1pr0", "notOxic2", "Matveychegg", "IcoweL"],
+    matches: [
+      
+    ],
+  },
+                {
+    slug: "eon",
+    name: "Eon",
+    logo: "/logos/eon.png",
+    division: "Intermediate",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["Acuko", "wavyqq", "-DiZu", "BI0ody", "Aoki-l"],
+    matches: [
+      
+    ],
+  },
+                {
+    slug: "clickbate",
+    name: "ClickBate",
+    logo: "/logos/clickbate.png",
+    division: "Intermediate",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["-M0uZe-", "-wARTHUNDER", "y9wonky", "nctive", "wh1tiger"],
+    matches: [
+      
+    ],
+  },
+                  {
+    slug: "ne-priehali",
+    name: "NE PRIEHALI",
+    logo: "/logos/nepriehali.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["berg1sssssss", "Panardedi", "k1oten", "ps1xx", "Supportzzz"],
+    matches: [
+      
+    ],
+  },
+                    {
+    slug: "magic-fairies",
+    name: "Magic Fairies",
+    logo: "/logos/magic.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["npoe6aJlu", "-Mendoza", "sw0ksi", "-EREM777", "0CEMEHiTEJIb"],
+    matches: [
+      
+    ],
+  },
+                      {
+    slug: "youth4ez",
+    name: "YouTH4eZ",
+    logo: "/logos/you.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["PeR4eLo", "Jefim4ik", "KPS_", "VahaXg0d", "kyousuke666"],
+    matches: [
+      
+    ],
+  },
+                        {
+    slug: "ronins",
+    name: "Ronins",
+    logo: "RON",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["Zomba4ek", "-k0ndrat-", "Mapkuss", "Nermy", "vampireD"],
+    matches: [
+      
+    ],
+  },
+                          {
+    slug: "donstu youngsters",
+    name: "DONSTU YOUNGSTERS",
+    logo: "/logos/donstuyoung.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["smO_oki", "EvilLAne", "posland", "rt_mod", "vopros1k"],
+    matches: [
+      
+    ],
+  },
+                          {
+    slug: "quazar school",
+    name: "QUAZAR SCHOOL",
+    logo: "/logos/quazarschool.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["Yoshwu", "--Timo", "tox1s-", "-__Size__-", "Lorgarrr"],
+    matches: [
+      
+    ],
+  },
+                          {
+    slug: "gsq",
+    name: "GSQ",
+    logo: "/logos/gsq.png",
+    division: "Intermediate",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["S1LLE", "FryseN", "819", "-m1kassa-", "r4zlom"],
+    matches: [
+      
+    ],
+  },
+                            {
+    slug: "c0b0r",
+    name: "c0b0r",
+    logo: "CBR",
+    division: "Intermediate",
+    stats: {
+      wins: 6,
+      losses: 8,
+    },
+    players: ["mvvand", "COM4Z0R", "peacebang", "dozarchuk", "DimblebeE"],
+    matches: [
+      
+    ],
+  },
+                              {
+    slug: "baks-esports",
+    name: "BAKS Esports",
+    logo: "/logos/baks.png",
+    division: "Entry",
+    stats: {
+      wins: 13,
+      losses: 1,
+    },
+    players: ["xd3N15Z3R4--", "turbo67", "-k9ppy", "whisperr23", "Sa1nTy"],
+    matches: [
+      
+    ],
+  },
+                                {
+    slug: "iuhop",
+    name: "iuhop",
+    logo: "IUH",
+    division: "Entry",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["MrTrelog", "1337fir", "nofaN", "OGbrigada77", "saizius"],
+    matches: [
+      
+    ],
+  },
+                                {
+    slug: "fartflow",
+    name: "FartFlow",
+    logo: "/logos/fartflow.png",
+    division: "Entry",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["KirilleN", "Ch3rv9chok", "kreoN", "Ultemer", "f1uNeXx"],
+    matches: [
+      
+    ],
+  },
+                                {
+    slug: "bhemanha",
+    name: "BHemanha",
+    logo: "BHN",
+    division: "Entry",
+    stats: {
+      wins: 12,
+      losses: 2,
+    },
+    players: ["akr", "-Akima", "--mero", "tw1nk131", "Teamo-"],
+    matches: [
+      
+    ],
+  },
+                                  {
+    slug: "lynx",
+    name: "LYNX",
+    logo: "/logos/lynx.png",
+    division: "Entry",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["actava", "hikaru-", "rockStyX", "sleepy111", "frinn"],
+    matches: [
+      
+    ],
+  },
+                                  {
+    slug: "trafficpills-esports",
+    name: "TrafficPills Esports",
+    logo: "TPE",
+    division: "Entry",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["F1n3tw", "drzk", "seNsite", "taouser", "gl3bka"],
+    matches: [
+      
+    ],
+  },
+                                  {
+    slug: "kda-team",
+    name: "KDA Team",
+    logo: "/logos/kda.png",
+    division: "Entry",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["Resaj", "skAnna", "fI4m1ng", "shte1N7", "Mudkip7"],
+    matches: [
+      
+    ],
+  },
+                                  {
+    slug: "fortis",
+    name: "FORTIS",
+    logo: "/logos/fortis.png",
+    division: "Entry",
+    stats: {
+      wins: 11,
+      losses: 3,
+    },
+    players: ["friend444", "UnIQu8", "sh1neccc", "seikee", "z1gich"],
+    matches: [
+      
+    ],
+  },
+                                    {
+    slug: "mayak-arena",
+    name: "MAYAK ARENA",
+    logo: "/logos/mayakarena.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["qioke", "himurra", "Yahiko_016", "borischainik", "konq"],
+    matches: [
+      
+    ],
+  },
+                                    {
+    slug: "lan1t",
+    name: "LAN1T",
+    logo: "/logos/lan1t.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["AllMuteTrash", "MAGaaaaz", "dErzz", "hallyhood", "6I0cc6a6y"],
+    matches: [
+      
+    ],
+  },
+                                    {
+    slug: "vexar",
+    name: "Vexar",
+    logo: "/logos/vexar.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["KEEMBO", "killeatery", "ADntZ", "MaksimSuper-", "datet-_-"],
+    matches: [
+      
+    ],
+  },
+                                      {
+    slug: "prius",
+    name: "Prius",
+    logo: "/logos/prius.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["tourneur", "stembix", "JackkSparrow", "tYTOXX", "-greenf1re"],
+    matches: [
+      
+    ],
+  },
+                                      {
+    slug: "goodjob",
+    name: "GoodJob",
+    logo: "/logos/good.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["w1nen", "BANANAS192", "shotta36", "koshak666-", "ITamiSoul"],
+    matches: [
+      
+    ],
+  },
+                                      {
+    slug: "lanklan",
+    name: "LANK",
+    logo: "VPF",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["m0NZ0R999", "nexozis", "riflerka", "L0fer-", "xdxdxdxd1721"],
+    matches: [
+      
+    ],
+  },
+                                      {
+    slug: "fate",
+    name: "FATE",
+    logo: "/logos/fate.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["ecstaci", "rqx-", "danc3d3sh", "kabanBMW67", "------_____"],
+    matches: [
+      
+    ],
+  },
+                                        {
+    slug: "aeris",
+    name: "AERIS",
+    logo: "/logos/aeris.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["GH0STNAME19", "SavingsGOD", "fxcker", "ducatto-iwnl", "fLK-"],
+    matches: [
+      
+    ],
+  },
+                                        {
+    slug: "dnk",
+    name: "DNK",
+    logo: "/logos/dnk.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["RamBLBi_-", "MAKTPAXEEPP", "Pla1n7", "t1er0_s", "indoubt_"],
+    matches: [
+      
+    ],
+  },
+                                        {
+    slug: "homo-sapiens",
+    name: "homo_sapiens",
+    logo: "HS",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["nomicsry", "lif5e", "SHAG888", "101", "Juzeppe"],
+    matches: [
+      
+    ],
+  },
+                                        {
+    slug: "cerberus",
+    name: "CERBERUS",
+    logo: "/logos/cerberus.png",
+    division: "Entry",
+    stats: {
+      wins: 10,
+      losses: 4,
+    },
+    players: ["_L1nia_", "kerankyss", "sunketsu", "sm1lebossu", "Sammy14"],
+    matches: [
+      
+    ],
+  },
+                                          {
+    slug: "fak1e-lab",
+    name: "Fak1E Lab",
+    logo: "/logos/fakie.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["Minlaic", "KpyT0u_6o6ep", "sapphire", "wergentt", "yoogin_"],
+    matches: [
+      
+    ],
+  },
+                                          {
+    slug: "mana",
+    name: "MANA",
+    logo: "MANA",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["deca43", "TESNO", "vershh", "qanax", "SKYLLLER"],
+    matches: [
+      
+    ],
+  },
+                                          {
+    slug: "smokinsexxystyle",
+    name: "SmokinSexxyStyle",
+    logo: "/logos/smoki.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["ezeeuqs", "-m3z1k", "Innerpeace-", "SellorMEOW", "l1vanski"],
+    matches: [
+      
+    ],
+  },
+                                          {
+    slug: "eternal",
+    name: "eternal",
+    logo: "/logos/eternal.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["aut0stop", "_-___-_--", "4AJIbTyXu", "qgar-_-", "anemie"],
+    matches: [
+      
+    ],
+  },
+                                          {
+    slug: "fusion",
+    name: "FUSION",
+    logo: "/logos/fusion.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["s1mkl", "-arTy2k_", "CEMEN_CEMEN", "Mokurai", "_-_NIK_-_"],
+    matches: [
+      
+    ],
+  },
+                                            {
+    slug: "posle-zavoda",
+    name: "POSLE ZAVODA",
+    logo: "PZ",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["hope666", "x0de", "hudsen", "w1lroom-", "Keyz1c"],
+    matches: [
+      
+    ],
+  },
+                                            {
+    slug: "thekomyakz",
+    name: "THEKOMYAKZ",
+    logo: "/logos/thekom.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["setqa", "_Kyoko_", "g9ddg", "Sip1z", "Shmykanov"],
+    matches: [
+      
+    ],
+  },
+                                            {
+    slug: "nightmare-esports",
+    name: "Nightmare Esports",
+    logo: "/logos/nightmare.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["F1Nik", "9G-", "sunshine--", "diray", "Kiyose"],
+    matches: [
+      
+    ],
+  },
+                                            {
+    slug: "s1wka-team",
+    name: "S1WKA Team",
+    logo: "/logos/siwka.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["marginal4ik", "rostikxxx", "danulka2013", "sShadyY", "m4s1cs"],
+    matches: [
+      
+    ],
+  },
+                                              {
+    slug: "eca-esports",
+    name: "ECA Esports",
+    logo: "/logos/eca.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["Tenzik", "-dunk", "BblLLIu6aJla", "Saydashev", "x1nse"],
+    matches: [
+      
+    ],
+  },
+                                              {
+    slug: "pivstar",
+    name: "pivstar",
+    logo: "PS",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["decadance", "n3d1s-", "F4NAT_MARVEL", "3yb11Kk", "MiNeuR-"],
+    matches: [
+      
+    ],
+  },
+                                              {
+    slug: "fnbet",
+    name: "FNbet",
+    logo: "/logos/fnb.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["kobi666", "Titch-", "Hen4ik", "MEGAKNIGHT67", "-santic"],
+    matches: [
+      
+    ],
+  },
+                                              {
+    slug: "urat",
+    name: "UraT",
+    logo: "URAT",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["a6yssw", "SKOTOBGOO35", "A1phaO_O", "Marthf", "kai"],
+    matches: [
+      
+    ],
+  },
+                                                {
+    slug: "unknowns",
+    name: "unknowns",
+    logo: "/logos/unknow.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["SplyZzZ", "LenS1ck", "Junctions1", "pANDEV1CH", "BloodyImp"],
+    matches: [
+      
+    ],
+  },
+                                                {
+    slug: "dodg3rs",
+    name: "dodg3rs",
+    logo: "/logos/dodg.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["DISKLAME", "KriBs1337", "L00K1", "13avg_boss", "clawzQ"],
+    matches: [
+      
+    ],
+  },
+                                                {
+    slug: "sixseven",
+    name: "SixSeven",
+    logo: "/logos/sixseven.png",
+    division: "Entry",
+    stats: {
+      wins: 9,
+      losses: 5,
+    },
+    players: ["Yokusha", "berjum", "slabosilnaya", "LXVII", "re1gn999"],
+    matches: [
+      
+    ],
+  },
+                                                  {
+    slug: "stubborn-boys",
+    name: "Stubborn Boys",
+    logo: "STB",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["Foxan", "kubaru-", "Deitas", "CAPTAIN_WLAD", "neonri_off"],
+    matches: [
+      
+    ],
+  },
+                                                  {
+    slug: "critical",
+    name: "Critical",
+    logo: "/logos/critical.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["1CAP1", "katarosix7", "_MARbl4_", "arcanum44", "k4muro-"],
+    matches: [
+      
+    ],
+  },
+                                                  {
+    slug: "mephi",
+    name: "MEPHI",
+    logo: "/logos/mephi.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["k1pler", "-impromptu", "qn0me", "tletl", "-Markelle"],
+    matches: [
+      
+    ],
+  },
+                                                  {
+    slug: "zbk",
+    name: "ZBK",
+    logo: "/logos/zbk.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["re1axbtw", "BuuBl1k", "OxycodoneV3", "-tRI3INI1312", "n0c4r3"],
+    matches: [
+      
+    ],
+  },
+                                                    {
+    slug: "ha-ncuxotponhbix",
+    name: "Ha ncuxoTPonHblx",
+    logo: "/logos/ha.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["Fogi", "Titov", "yoyoyooo_O", "kubidoo", "RAY3ZERA7331"],
+    matches: [
+      
+    ],
+  },
+                                                    {
+    slug: "kynetic",
+    name: "Kynetic",
+    logo: "/logos/kynetic.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["-_MAJlbIW_-", "WhyyfloWer", "quoyo", "Atom_qq", "theft999"],
+    matches: [
+      
+    ],
+  },
+                                                    {
+    slug: "outsiders",
+    name: "Outsiders",
+    logo: "/logos/out.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["qyzeez666", "aKroZz", "madalex", "kydou666", "_m4sh"],
+    matches: [
+      
+    ],
+  },
+                                                    {
+    slug: "m0nkeys",
+    name: "m0nkeys",
+    logo: "/logos/monkeys.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["sIeeplover", "D1M0N228-", "retrikbtw", "Yuzya_Egoist", "kostyaSSS"],
+    matches: [
+      
+    ],
+  },
+                                                      {
+    slug: "1minute",
+    name: "1Minute",
+    logo: "/logos/1min.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["L-n1nG", "-opss-", "pod1s", "Nippard", "DR0BOVIKTOR"],
+    matches: [
+      
+    ],
+  },
+                                                      {
+    slug: "only-gamers",
+    name: "ONLY GAMERS",
+    logo: "/logos/only.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["BOTIRSHOT", "karimoff999", "bReelGx", "mukhas", "GRINCHxueta"],
+    matches: [
+      
+    ],
+  },
+                                                      {
+    slug: "inputlag-enjoyers",
+    name: "inputlag enjoyers",
+    logo: "/logos/input.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["p1k", "evcosa", "phenta21", "olegbandit", "-cucman"],
+    matches: [
+      
+    ],
+  },
+                                                      {
+    slug: "justtag",
+    name: "JustTag",
+    logo: "JT",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["dAT53", "Hosh1xd", "b0rkAAA", "Nicosmos", "GGrindelwald"],
+    matches: [
+      
+    ],
+  },
+                                                        {
+    slug: "leetcase",
+    name: "LeetCase",
+    logo: "/logos/leet.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["1braa", "qweaky", "neonzer0", "bezo", "kihir0"],
+    matches: [
+      
+    ],
+  },
+                                                        {
+    slug: "w1nks",
+    name: "W1NKS",
+    logo: "/logos/winks.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["TOTT1k", "Advice1010", "Svumpzy", "-svyat", "Yatshi"],
+    matches: [
+      
+    ],
+  },
+                                                        {
+    slug: "bestaimmers",
+    name: "bestAIMMERS",
+    logo: "/logos/best.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["verso-opker", "nesquax", "-_-tanto666", "ynichhhhhh", "suzurru"],
+    matches: [
+      
+    ],
+  },
+                                                        {
+    slug: "the-relics",
+    name: "The Relics",
+    logo: "/logos/relics.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["Mask--", "Romantik", "yakooo__", "llexsir", "Nelow"],
+    matches: [
+      
+    ],
+  },
+                                                          {
+    slug: "kagen",
+    name: "KageN",
+    logo: "/logos/kagen.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["9Nagi", "Tearz--", "miura-", "notebait", "nikeEGOISTO"],
+    matches: [
+      
+    ],
+  },
+                                                          {
+    slug: "back2back",
+    name: "back2back",
+    logo: "b2b",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["6e3p43JIu4uE", "F1RSOW", "mindlex", "NotoX-", "qentblock"],
+    matches: [
+      
+    ],
+  },
+                                                          {
+    slug: "full-dobro",
+    name: "Full Dobro",
+    logo: "/logos/full.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["Po1337", "rawka", "DekuDI", "Locust", "Vasilich"],
+    matches: [
+      
+    ],
+  },
+                                                            {
+    slug: "ronin",
+    name: "RONIN",
+    logo: "/logos/ronin.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["kugato", "LLIuLLIka", "sa1ko", "dremor", "Renai"],
+    matches: [
+      
+    ],
+
+  },
+                                                            {
+    slug: "emlight",
+    name: "Emlight",
+    logo: "/logos/eml.png",
+    division: "Entry",
+    stats: {
+      wins: 8,
+      losses: 6,
+    },
+    players: ["f4ad", "lyufi", "Norm115", "_z1ro", "henkisuru"],
+    matches: [
+      
+    ],
+  },
+                                                              {
+    slug: "hodes",
+    name: "HODES",
+    logo: "/logos/hodes.png",
+    division: "Entry",
+    stats: {
+      wins:11,
+      losses: 3,
+    },
+    players: ["fxrgxt10", "s1ner-", "susa", "akari999", "waqvs"],
+    matches: [
+      
+    ],
+  },
+                                                                {
+    slug: "flame-guardians",
+    name: "Flame Guardians",
+    logo: "/logos/flameguardians.png",
+    division: "Intermediate",
+    stats: {
+      wins:7,
+      losses: 7,
+    },
+    players: ["Lamp4x", "Winterix", "-1saD", "stomp999", "ceodemona"],
+    matches: [
+      
+    ],
+  },
+                                                                  {
+    slug: "weclear",
+    name: "WeClear",
+    logo: "/logos/weclear.png",
+    division: "Entry",
+    stats: {
+      wins:10,
+      losses: 4,
+    },
+    players: ["111awsadawqw", "w1se666_", "ubcvnu", "karastaze", "-493"],
+    matches: [
+      
+    ],
+  },
+                                                                    {
+    slug: "cybercom",
+    name: "CYBERCOM",
+    logo: "/logos/cybercom.png",
+    division: "Entry",
+    stats: {
+      wins:7,
+      losses: 7,
+    },
+    players: ["Ob1ivionb0b", "painy343", "HrEp_", "05kdlord", "_makon__"],
+    matches: [
+      
+    ],
+  },
+]
+
+function TeamPage() {
+  const { slug } = useParams()
+
+  const team = teams.find((t) => t.slug === slug)
+
+  if (!team) {
+    return (
+      <div className="bg-[#0f1419] min-h-screen text-white p-8">
+        <h1 className="text-3xl font-bold">Team not found</h1>
+      </div>
+    )
+  }
+
+  const winrate = Math.round(
+    (team.stats.wins / (team.stats.wins + team.stats.losses)) * 100
+  )
+
+  return (
+    <div className="bg-[#0f1419] min-h-screen text-white p-4 md:p-8 overflow-x-hidden">
+
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
+
+        {/* LOGO */}
+        <div className="w-24 h-24 bg-[#1f2630] flex items-center justify-center rounded-xl border border-gray-800 overflow-hidden">
+
+          <img
+            src={team.logo}
+            alt={team.name}
+            className="w-full h-full object-contain p-2"
+          />
+
+        </div>
+
+        {/* INFO */}
+        <div className="text-center md:text-left">
+          <h1 className="text-3xl md:text-5xl font-bold text-orange-500">
+            {team.name}
+          </h1>
+
+          <p className="text-gray-400 mt-1">
+            Division: {team.division}
+          </p>
+        </div>
+      </div>
+
+      {/* STATS */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl">
+
+        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-sm">Wins</p>
+          <p className="text-2xl font-bold">{team.stats.wins}</p>
+        </div>
+
+        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-sm">Losses</p>
+          <p className="text-2xl font-bold">{team.stats.losses}</p>
+        </div>
+
+        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
+          <p className="text-gray-400 text-sm">Winrate</p>
+          <p className="text-2xl font-bold text-orange-400">
+            {winrate}%
+          </p>
+        </div>
+
+      </div>
+
+      {/* CONTENT GRID */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
+
+        {/* ROSTER */}
+        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
+          <h2 className="text-xl font-semibold mb-4">
+            Roster
+          </h2>
+
+          <div className="space-y-3">
+            {team.players.map((p) => (
+              <div
+                key={p}
+                className="bg-[#232a34] p-3 rounded-lg border border-gray-800"
+              >
+                {p}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* MATCHES */}
+        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
+          <h2 className="text-xl font-semibold mb-4">
+            Last Matches
+          </h2>
+
+          <div className="space-y-3">
+            {team.matches.map((m, i) => (
+              <div
+                key={i}
+                className="flex justify-between bg-[#232a34] p-3 rounded-lg border border-gray-800"
+              >
+                <span>{m.opponent}</span>
+
+                <span className="text-orange-400 font-semibold">
+                  {m.result}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+export default TeamPage
