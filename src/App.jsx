@@ -38,7 +38,6 @@ const teams = [
     flag: "/flags/russia.svg",
     name: "DONSTU ESPORTS",
     points: 350,
-    change: +10,
     record: "12-2",
     division: "Advanced",
   },
