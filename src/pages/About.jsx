@@ -139,7 +139,8 @@ function About() {
                 rel="noreferrer"
                 className="text-orange-400 hover:text-orange-300 transition"
               >
-                @LisssTzz1
+                TG - @LisssTzz1
+                Mail - deadinsidick11@mail.ru
               </a>
 
             </div>
