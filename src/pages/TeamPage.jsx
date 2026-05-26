@@ -1729,149 +1729,119 @@ function TeamPage() {
 
   if (!team) {
     return (
-      <div className="bg-[#0f1419] min-h-screen text-white p-8">
-        <h1 className="text-3xl font-bold">
-          Team not found
-        </h1>
+      <div className="bg-[#0b0f14] min-h-screen text-white flex items-center justify-center">
+        <h1 className="text-3xl font-bold text-gray-400">Team not found</h1>
       </div>
     )
   }
 
-  const winrate = Math.round(
-    (team.stats.wins / (team.stats.wins + team.stats.losses)) * 100
-  )
+  const total = team.stats.wins + team.stats.losses
+
+  const winrate =
+    total === 0 ? 0 : Math.round((team.stats.wins / total) * 100)
 
   return (
-    <div className="bg-[#0f1419] min-h-screen text-white p-4 md:p-8 overflow-x-hidden">
+    <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-10 py-8">
 
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
+      {/* HEADER CARD */}
+      <div className="bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-xl">
 
         {/* LOGO */}
-        <div className="w-24 h-24 bg-[#1f2630] flex items-center justify-center rounded-xl border border-gray-800 overflow-hidden">
-
+        <div className="w-28 h-28 bg-[#0f141c] rounded-xl border border-[#1f2a3a] flex items-center justify-center overflow-hidden">
           <img
             src={team.logo}
             alt={team.name}
             className="w-full h-full object-contain p-2"
           />
-
         </div>
 
         {/* INFO */}
-        <div className="text-center md:text-left">
+        <div className="flex-1 text-center md:text-left">
 
-          {/* FLAG + NAME */}
           <div className="flex items-center gap-3 justify-center md:justify-start">
-
             <img
               src={team.flag}
+              className="w-7 h-7 rounded-sm"
               alt="flag"
-              className="w-8 h-8 rounded-md object-cover"
             />
 
-            <h1 className="text-3xl md:text-5xl font-bold text-orange-500">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
               {team.name}
             </h1>
-
           </div>
 
           <p className="text-gray-400 mt-2">
-            Division: {team.division}
+            Division:{" "}
+            <span className="text-orange-400 font-medium">
+              {team.division}
+            </span>
           </p>
 
+          {/* mini stats bar */}
+          <div className="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
+
+            <span className="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-sm">
+              Wins: {team.stats.wins}
+            </span>
+
+            <span className="px-3 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full text-sm">
+              Losses: {team.stats.losses}
+            </span>
+
+            <span className="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-full text-sm">
+              WR: {winrate}%
+            </span>
+
+          </div>
         </div>
       </div>
 
-      {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-2xl">
-
-        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">
-            Wins
-          </p>
-
-          <p className="text-2xl font-bold">
-            {team.stats.wins}
-          </p>
-        </div>
-
-        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">
-            Losses
-          </p>
-
-          <p className="text-2xl font-bold">
-            {team.stats.losses}
-          </p>
-        </div>
-
-        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-sm">
-            Winrate
-          </p>
-
-          <p className="text-2xl font-bold text-orange-400">
-            {winrate}%
-          </p>
-        </div>
-
-      </div>
-
-      {/* CONTENT GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
+      {/* MAIN GRID */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
 
         {/* ROSTER */}
-        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
-
-          <h2 className="text-xl font-semibold mb-4">
-            Roster
-          </h2>
+        <div className="lg:col-span-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
+          <h2 className="text-xl font-semibold mb-4">Roster</h2>
 
           <div className="space-y-3">
-
             {team.players.map((p) => (
               <div
                 key={p}
-                className="bg-[#232a34] p-3 rounded-lg border border-gray-800"
+                className="bg-[#0f141c] hover:bg-[#141c28] transition border border-[#1f2a3a] rounded-xl px-4 py-3 text-sm"
               >
                 {p}
               </div>
             ))}
-
           </div>
-
         </div>
 
         {/* MATCHES */}
-        <div className="bg-[#1a1f26] border border-gray-800 rounded-xl p-6">
+        <div className="lg:col-span-2 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
+          <h2 className="text-xl font-semibold mb-4">Last Matches</h2>
 
-          <h2 className="text-xl font-semibold mb-4">
-            Last Matches
-          </h2>
+          {team.matches.length === 0 ? (
+            <div className="text-gray-500 text-sm">
+              No matches available yet
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {team.matches.map((m, i) => (
+                <div
+                  key={i}
+                  className="flex justify-between items-center bg-[#0f141c] border border-[#1f2a3a] rounded-xl px-4 py-3"
+                >
+                  <span className="text-gray-300">
+                    {m.opponent}
+                  </span>
 
-          <div className="space-y-3">
-
-            {team.matches.map((m, i) => (
-              <div
-                key={i}
-                className="flex justify-between bg-[#232a34] p-3 rounded-lg border border-gray-800"
-              >
-                <span>
-                  {m.opponent}
-                </span>
-
-                <span className="text-orange-400 font-semibold">
-                  {m.result}
-                </span>
-
-              </div>
-            ))}
-
-          </div>
-
+                  <span className="font-semibold text-orange-400">
+                    {m.result}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
       </div>
     </div>
   )
