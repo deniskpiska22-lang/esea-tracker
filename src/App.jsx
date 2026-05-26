@@ -1350,7 +1350,7 @@ function App() {
 
           {/* LOGO */}
           <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
-            CIS ESEA Rankings
+            Esea Tracker
           </h1>
 
           {/* NAV LINKS */}
