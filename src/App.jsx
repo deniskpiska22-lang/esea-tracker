@@ -1368,14 +1368,14 @@ function App() {
             </Link>
 
             <Link
-              
+              to="/Media"
               className={`transition ${
                 isActive("/teams")
                   ? "text-white border-b-2 border-orange-500 pb-1"
                   : "text-gray-400 hover:text-white"
               }`}
             >
-              Teams
+              Media
             </Link>
 
             <Link
