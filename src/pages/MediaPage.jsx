@@ -18,7 +18,7 @@ function MediaPage() {
       </div>
 
       {/* POSTS */}
-      <div className="max-w-6xl mx-auto grid gap-6">
+      <div className="max-w-4xl mx-auto grid gap-6">
 
         {posts.map((post) => (
           <div
