@@ -25,7 +25,7 @@ const teams = [
       wins: 9,
       losses: 5,
     },
-    players: ["skept1K", "smith", "MRcreed", "dazzy", "P1kan0"],
+    players: ["skept1K", "sm1th47", "MRcreed", "dazzy_y", "P1kaN0--"],
     matches: [],
   },
   {
@@ -38,7 +38,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["fen2k", "wonimo", "hahanz0", "w0l33n", "x1nk1n"],
+    players: ["fen2k-", "wonimo", "hahanz0-", "-w0L33N", "x1nk1n"],
     matches: [],
   },
     {
@@ -51,7 +51,7 @@ const teams = [
       wins: 12,
       losses: 2,
     },
-    players: ["Due1yant", "NeoLife", "maQuein", "gleb86rus", "LAKSHERi"],
+    players: ["narkoman812", "Due1yant", "gleb86rus", "NeoLife", "maQuein"],
     matches: [],
   },
     {
@@ -90,7 +90,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["kurosa", "sh1geo", "roxesz", "zazzer", "nbl"],
+    players: ["overwhelmedd", "kurosa", "roxesz-", "zazzer", "nbl-"],
     matches: [],
   },
     {
@@ -116,7 +116,7 @@ const teams = [
       wins: 9,
       losses: 5,
     },
-    players: ["redzed", "r1pa4", "meetyoxanaji", "k1nco", "kurosse"],
+    players: ["redzedsei", "r1pa4-", "bleedmagneto", "k1nco-", "linesayer111"],
     matches: [],
   },
     {
