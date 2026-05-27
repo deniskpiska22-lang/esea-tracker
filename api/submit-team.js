@@ -1,20 +1,22 @@
 export default async function handler(req, res) {
-  // Только POST запросы
-  if (req.method !== "POST") {
-    return res.status(405).json({
-      error: "Method not allowed",
-    })
-  }
+  try {
+    // Проверяем метод
+    if (req.method !== "POST") {
+      return res.status(405).json({
+        error: "Method not allowed",
+      })
+    }
 
-  const {
-    teamName,
-    eseaLink,
-    contact,
-    note,
-  } = req.body
+    const body = req.body || {}
 
-  // Сообщение в Telegram
-  const text = `
+    const {
+      teamName,
+      eseaLink,
+      contact,
+      note,
+    } = body
+
+    const text = `
 📥 New Team Submission
 
 🏷 Team: ${teamName}
@@ -29,8 +31,7 @@ ${contact}
 ${note || "No note"}
 `
 
-  try {
-    const response = await fetch(
+    const telegramResponse = await fetch(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         method: "POST",
@@ -44,16 +45,19 @@ ${note || "No note"}
       }
     )
 
-    const data = await response.json()
+    const telegramData =
+      await telegramResponse.json()
 
     return res.status(200).json({
       success: true,
-      telegram: data,
+      telegramData,
     })
 
   } catch (error) {
+    console.error(error)
+
     return res.status(500).json({
-      error: "Failed to send message",
+      error: error.message,
     })
   }
 }

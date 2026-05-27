@@ -1327,6 +1327,35 @@ function App() {
 
   const isActive = (path) => location.pathname === path
 
+  // 🔥 TEST SUBMIT
+  const submitTestTeam = async () => {
+    try {
+      const response = await fetch("/api/submit-team", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          teamName: "TEST TEAM",
+          eseaLink: "https://play.esea.net/",
+          contact: "@test",
+          note: "Test message from website",
+        }),
+      })
+
+      const data = await response.json()
+
+      console.log(data)
+
+      alert("Message sent to Telegram ✅")
+
+    } catch (error) {
+      console.error(error)
+
+      alert("Something went wrong ❌")
+    }
+  }
+
   // 🔥 SORT BY POINTS
   const sortedTeams = [...teams].sort(
     (a, b) => b.points - a.points
@@ -1341,79 +1370,77 @@ function App() {
             team.division === selectedDivision
         )
 
- return (
-  <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
+  return (
+    <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
-    {/* NAVBAR */}
-    <nav className="border-b border-gray-800 bg-[#0d1117]">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* NAVBAR */}
+      <nav className="border-b border-gray-800 bg-[#0d1117]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-        {/* LOGO */}
-        <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
-          Esea Tracker
-        </h1>
+          {/* LOGO */}
+          <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
+            Esea Tracker
+          </h1>
 
-        {/* NAV LINKS */}
-        <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
+          {/* NAV LINKS */}
+          <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
-          <Link
-            to="/"
-            className={`transition ${
-              isActive("/")
-                ? "text-white border-b-2 border-orange-500 pb-1"
-                : "text-gray-400 hover:text-white"
-            }`}
+            <Link
+              to="/"
+              className={`transition ${
+                isActive("/")
+                  ? "text-white border-b-2 border-orange-500 pb-1"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Rankings
+            </Link>
+
+            <Link
+              to="/Media"
+              className={`transition ${
+                isActive("/Media")
+                  ? "text-white border-b-2 border-orange-500 pb-1"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Media
+            </Link>
+
+            <Link
+              to="/about"
+              className={`transition ${
+                isActive("/about")
+                  ? "text-white border-b-2 border-orange-500 pb-1"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              About
+            </Link>
+
+          </div>
+
+          {/* SUBMIT TEAM BUTTON */}
+          <button
+            onClick={submitTestTeam}
+            className="
+              bg-orange-500
+              hover:bg-orange-600
+              transition
+              px-4
+              py-2
+              rounded-lg
+              text-sm
+              font-semibold
+              shadow-lg
+              hover:shadow-orange-500/20
+            "
           >
-            Rankings
-          </Link>
-
-          <Link
-            to="/Media"
-            className={`transition ${
-              isActive("/Media")
-                ? "text-white border-b-2 border-orange-500 pb-1"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Media
-          </Link>
-
-          <Link
-            to="/about"
-            className={`transition ${
-              isActive("/about")
-                ? "text-white border-b-2 border-orange-500 pb-1"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            About
-          </Link>
+            Submit Team
+          </button>
 
         </div>
-
-        {/* SUBMIT TEAM BUTTON */}
-        <a
-          href="https://t.me/ТВОЙ_ТГ"
-          target="_blank"
-          rel="noreferrer"
-          className="
-            bg-orange-500
-            hover:bg-orange-600
-            transition
-            px-4
-            py-2
-            rounded-lg
-            text-sm
-            font-semibold
-            shadow-lg
-            hover:shadow-orange-500/20
-          "
-        >
-          Submit Team
-        </a>
-
-      </div>
-    </nav>
+      </nav>
 
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
@@ -1519,21 +1546,18 @@ function App() {
                 {/* TEAM */}
                 <div className="flex items-center gap-3 min-w-0">
 
-                  {/* FLAG */}
                   <img
                     src={team.flag}
                     alt="flag"
                     className="w-5 h-5 rounded-sm object-cover flex-shrink-0"
                   />
 
-                  {/* LOGO */}
                   <img
                     src={team.logo}
                     alt={team.name}
                     className="w-9 h-9 object-contain flex-shrink-0"
                   />
 
-                  {/* NAME */}
                   <span className="font-semibold hover:text-orange-400 transition truncate">
                     {team.name}
                   </span>
@@ -1547,21 +1571,18 @@ function App() {
                     {team.points}
                   </span>
 
-                  {/* CHANGE UP */}
                   {team.change > 0 && (
                     <span className="text-green-400 text-sm font-bold">
                       ▲ +{team.change}
                     </span>
                   )}
 
-                  {/* CHANGE DOWN */}
                   {team.change < 0 && (
                     <span className="text-red-400 text-sm font-bold">
                       ▼ {team.change}
                     </span>
                   )}
 
-                  {/* NO CHANGE */}
                   {team.change === 0 && (
                     <span className="text-gray-500 text-sm font-bold">
                       —
