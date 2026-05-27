@@ -1,5 +1,7 @@
 const submitTeam = async () => {
   try {
+    console.log("🔥 CLICKED")
+
     const response = await fetch("/api/submit-team", {
       method: "POST",
       headers: {
@@ -13,27 +15,15 @@ const submitTeam = async () => {
       }),
     })
 
-    const data = await response.json()
+    console.log("📡 STATUS:", response.status)
 
-    console.log("SERVER RESPONSE:", data)
+    const text = await response.text()
 
-    if (!response.ok) {
-      alert(data.error || "Server error ❌")
-      return
-    }
+    console.log("📦 RAW RESPONSE:", text)
 
-    alert("Application sent ✅")
-
-    setShowModal(false)
-
-    setTeamName("")
-    setFaceitLink("")
-    setContact("")
-    setNote("")
-
+    alert(`STATUS: ${response.status}\n\n${text}`)
   } catch (error) {
-    console.error("FETCH ERROR:", error)
-
-    alert(error.message || "Something went wrong ❌")
+    console.log("💥 FETCH ERROR:", error)
+    alert("FETCH FAILED: " + error.message)
   }
 }
