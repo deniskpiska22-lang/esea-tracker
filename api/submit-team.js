@@ -1,74 +1,47 @@
 export default async function handler(req, res) {
   try {
-    // ❌ только POST
     if (req.method !== "POST") {
-      return res.status(405).json({
-        success: false,
-        error: "Method not allowed",
-      })
+      return res.status(405).json({ error: "Only POST" })
     }
+
+    console.log("BODY:", req.body)
 
     const { teamName, faceitLink, contact, note } = req.body || {}
 
-    // ❌ валидация
-    if (!teamName || !faceitLink || !contact) {
-      return res.status(400).json({
-        success: false,
-        error: "Missing required fields",
-      })
-    }
+    console.log("ENV CHECK:", {
+      token: process.env.TELEGRAM_BOT_TOKEN ? "OK" : "MISSING",
+      chat: process.env.TELEGRAM_CHAT_ID ? "OK" : "MISSING",
+    })
 
-    // 📩 сообщение в Telegram
     const text = `
-📥 NEW TEAM SUBMISSION
+NEW TEAM
 
-🏷 Team: ${teamName}
-🎯 FACEIT: ${faceitLink}
-📞 Contact: ${contact}
-📝 Note: ${note || "No note"}
-    `.trim()
+Team: ${teamName}
+FACEIT: ${faceitLink}
+Contact: ${contact}
+Note: ${note || "-"}
+`.trim()
 
-    // 📡 отправка в Telegram
-    const telegramResponse = await fetch(
+    const r = await fetch(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: process.env.TELEGRAM_CHAT_ID,
           text,
-          disable_web_page_preview: true,
         }),
       }
     )
 
-    const telegramData = await telegramResponse.json()
+    const data = await r.json()
 
-    // ❌ ошибка Telegram
-    if (!telegramResponse.ok || !telegramData.ok) {
-      console.error("Telegram API error:", telegramData)
+    console.log("TELEGRAM RESPONSE:", data)
 
-      return res.status(500).json({
-        success: false,
-        error: "Telegram API failed",
-        details: telegramData,
-      })
-    }
+    return res.status(200).json({ success: true, data })
 
-    // ✅ успех
-    return res.status(200).json({
-      success: true,
-      message: "Sent to Telegram",
-    })
-
-  } catch (error) {
-    console.error("API ERROR:", error)
-
-    return res.status(500).json({
-      success: false,
-      error: error.message,
-    })
+  } catch (e) {
+    console.error("API ERROR:", e)
+    return res.status(500).json({ error: e.message })
   }
 }
