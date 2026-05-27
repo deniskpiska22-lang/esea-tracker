@@ -1343,37 +1343,38 @@ function App() {
     location.pathname === path
 
   // 🔥 SUBMIT TEAM
-  const submitTeam = async () => {
-    try {
-      const response = await fetch("/api/submit-team", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          teamName,
-          eseaLink,
-          contact,
-          note,
-        }),
-      })
+const submitTeam = async () => {
+  try {
+    const response = await fetch("/api/submit-team", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teamName,
+        faceitLink: eseaLink, // ← если ты ещё не переименовал state
+        contact,
+        note,
+      }),
+    })
 
-      await response.json()
+    const data = await response.json()
+    console.log(data)
 
-      alert("Application sent ✅")
+    alert("Application sent ✅")
 
-      setShowModal(false)
+    setShowModal(false)
 
-      setTeamName("")
-      setEseaLink("")
-      setContact("")
-      setNote("")
+    setTeamName("")
+    setEseaLink("")
+    setContact("")
+    setNote("")
 
-    } catch (error) {
-      console.error(error)
-      alert("Something went wrong ❌")
-    }
+  } catch (error) {
+    console.error(error)
+    alert("Something went wrong ❌")
   }
+}
 
   // 🔥 SORT BY POINTS
   const sortedTeams = [...teams].sort(
@@ -1517,11 +1518,10 @@ function App() {
             />
 
             <input
-              placeholder="ESEA Link"
-              value={eseaLink}
-              onChange={(e) => setEseaLink(e.target.value)}
-              className="w-full p-2 bg-[#1a1f26] rounded"
-            />
+  placeholder="FACEIT Link команды"
+  value={faceitLink}
+  onChange={(e) => setFaceitLink(e.target.value)}
+/>
 
             <input
               placeholder="Contact"
