@@ -1325,10 +1325,26 @@ function App() {
   const [selectedDivision, setSelectedDivision] =
     useState("All")
 
-  const isActive = (path) => location.pathname === path
+  const [showModal, setShowModal] =
+    useState(false)
 
-  // 🔥 TEST SUBMIT
-  const submitTestTeam = async () => {
+  const [teamName, setTeamName] =
+    useState("")
+
+  const [eseaLink, setEseaLink] =
+    useState("")
+
+  const [contact, setContact] =
+    useState("")
+
+  const [note, setNote] =
+    useState("")
+
+  const isActive = (path) =>
+    location.pathname === path
+
+  // 🔥 SUBMIT TEAM
+  const submitTeam = async () => {
     try {
       const response = await fetch("/api/submit-team", {
         method: "POST",
@@ -1336,22 +1352,26 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          teamName: "TEST TEAM",
-          eseaLink: "https://play.esea.net/",
-          contact: "@test",
-          note: "Test message from website",
+          teamName,
+          eseaLink,
+          contact,
+          note,
         }),
       })
 
-      const data = await response.json()
+      await response.json()
 
-      console.log(data)
+      alert("Application sent ✅")
 
-      alert("Message sent to Telegram ✅")
+      setShowModal(false)
+
+      setTeamName("")
+      setEseaLink("")
+      setContact("")
+      setNote("")
 
     } catch (error) {
       console.error(error)
-
       alert("Something went wrong ❌")
     }
   }
@@ -1369,7 +1389,6 @@ function App() {
           (team) =>
             team.division === selectedDivision
         )
-
   return (
     <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
@@ -1420,24 +1439,24 @@ function App() {
 
           </div>
 
-          {/* SUBMIT TEAM BUTTON */}
-          <button
-            onClick={submitTestTeam}
-            className="
-              bg-orange-500
-              hover:bg-orange-600
-              transition
-              px-4
-              py-2
-              rounded-lg
-              text-sm
-              font-semibold
-              shadow-lg
-              hover:shadow-orange-500/20
-            "
-          >
-            Submit Team
-          </button>
+         {/* SUBMIT TEAM BUTTON */}
+<button
+  onClick={() => setShowModal(true)}
+  className="
+    bg-orange-500
+    hover:bg-orange-600
+    transition
+    px-4
+    py-2
+    rounded-lg
+    text-sm
+    font-semibold
+    shadow-lg
+    hover:shadow-orange-500/20
+  "
+>
+  Submit Team
+</button>
 
         </div>
       </nav>
