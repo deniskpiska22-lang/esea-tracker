@@ -1,7 +1,7 @@
 const submitTeam = async () => {
-  console.log("🔥 submitTeam triggered")
-
   try {
+    console.log("🔥 CLICKED")
+
     const res = await fetch("/api/submit-team", {
       method: "POST",
       headers: {
@@ -18,11 +18,13 @@ const submitTeam = async () => {
     console.log("📡 STATUS:", res.status)
 
     const text = await res.text()
-    console.log("📦 RAW RESPONSE:", text)
+    console.log("📦 RAW:", text)
 
-    alert("STATUS: " + res.status + "\n" + text)
+    // НЕ парсим JSON — чтобы не падало
+    alert("STATUS: " + res.status + "\n\n" + text)
+
   } catch (err) {
-    console.log("💥 FETCH ERROR:", err)
-    alert("FETCH ERROR: " + err.message)
+    console.log("💥 ERROR:", err)
+    alert("FETCH FAILED: " + err.message)
   }
 }
