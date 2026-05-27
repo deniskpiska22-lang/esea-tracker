@@ -10,7 +10,7 @@ function About() {
         <div className="mb-12">
 
           <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-4">
-            О проекте CIS ESEA Rankings
+            О проекте Esea Tracker
           </h1>
 
           <p className="text-gray-400 text-lg max-w-3xl leading-8">
