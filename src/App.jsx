@@ -1325,8 +1325,7 @@ function App() {
   const [selectedDivision, setSelectedDivision] =
     useState("All")
 
-  const [showModal, setShowModal] =
-    useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const [teamName, setTeamName] =
     useState("")
@@ -1386,9 +1385,9 @@ function App() {
     selectedDivision === "All"
       ? sortedTeams
       : sortedTeams.filter(
-          (team) =>
-            team.division === selectedDivision
+          (team) => team.division === selectedDivision
         )
+
   return (
     <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
@@ -1396,67 +1395,33 @@ function App() {
       <nav className="border-b border-gray-800 bg-[#0d1117]">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-          {/* LOGO */}
           <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
             Esea Tracker
           </h1>
 
-          {/* NAV LINKS */}
           <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
-            <Link
-              to="/"
-              className={`transition ${
-                isActive("/")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
+            <Link to="/" className={`transition ${isActive("/") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
               Rankings
             </Link>
 
-            <Link
-              to="/Media"
-              className={`transition ${
-                isActive("/Media")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
+            <Link to="/Media" className={`transition ${isActive("/Media") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
               Media
             </Link>
 
-            <Link
-              to="/about"
-              className={`transition ${
-                isActive("/about")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
+            <Link to="/about" className={`transition ${isActive("/about") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
               About
             </Link>
 
           </div>
 
-         {/* SUBMIT TEAM BUTTON */}
-<button
-  onClick={() => setShowModal(true)}
-  className="
-    bg-orange-500
-    hover:bg-orange-600
-    transition
-    px-4
-    py-2
-    rounded-lg
-    text-sm
-    font-semibold
-    shadow-lg
-    hover:shadow-orange-500/20
-  "
->
-  Submit Team
-</button>
+          {/* BUTTON */}
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-orange-500 hover:bg-orange-600 transition px-4 py-2 rounded-lg text-sm font-semibold shadow-lg hover:shadow-orange-500/20"
+          >
+            Submit Team
+          </button>
 
         </div>
       </nav>
@@ -1464,29 +1429,18 @@ function App() {
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
 
-        {/* TITLE */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
           <h2 className="text-2xl md:text-4xl font-bold">
             CIS Team Rankings ESEA
           </h2>
 
-          {/* FILTERS */}
           <div className="flex flex-wrap gap-2">
 
-            {[
-              "All",
-              "Advanced",
-              "Main",
-              "Intermediate",
-              "Entry",
-            ].map((division) => (
-
+            {["All", "Advanced", "Main", "Intermediate", "Entry"].map((division) => (
               <button
                 key={division}
-                onClick={() =>
-                  setSelectedDivision(division)
-                }
+                onClick={() => setSelectedDivision(division)}
                 className={`px-4 py-2 rounded-lg border transition text-sm ${
                   selectedDivision === division
                     ? "bg-orange-500 border-orange-500 text-white"
@@ -1495,7 +1449,6 @@ function App() {
               >
                 {division}
               </button>
-
             ))}
 
           </div>
@@ -1505,129 +1458,98 @@ function App() {
         <div className="overflow-x-auto">
           <div className="bg-[#141922] rounded-xl overflow-hidden border border-gray-800 shadow-xl min-w-[1000px]">
 
-            {/* HEADER */}
-            <div
-              className="
-                grid
-                grid-cols-[80px_2fr_170px_120px_140px]
-                bg-[#1f2630]
-                p-4
-                text-gray-400
-                font-semibold
-                text-sm
-                uppercase
-                tracking-wide
-              "
-            >
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#1f2630] p-4 text-gray-400 font-semibold text-sm uppercase tracking-wide">
               <div>Rank</div>
-
               <div>Team</div>
-
-              <div className="pl-4">
-                Points
-              </div>
-
-              <div className="pl-2">
-                Record
-              </div>
-
+              <div className="pl-4">Points</div>
+              <div className="pl-2">Record</div>
               <div>Division</div>
             </div>
 
-            {/* ROWS */}
             {filteredTeams.map((team, index) => (
-
               <Link
                 key={team.slug}
                 to={`/teams/${team.slug}`}
-                className={`
-                  grid
-                  grid-cols-[80px_2fr_170px_120px_140px]
-                  p-4
-                  border-t
-                  border-gray-800
-                  transition
-                  duration-150
-                  items-center
-                  ${
-                    index === 0
-                      ? "bg-yellow-500/10"
-                      : "hover:bg-[#2a313d]"
-                  }
-                `}
+                className={`grid grid-cols-[80px_2fr_170px_120px_140px] p-4 border-t border-gray-800 items-center transition ${
+                  index === 0 ? "bg-yellow-500/10" : "hover:bg-[#2a313d]"
+                }`}
               >
 
-                {/* RANK */}
-                <div className="text-gray-300 font-medium">
-                  #{index + 1}
-                </div>
+                <div>#{index + 1}</div>
 
-                {/* TEAM */}
                 <div className="flex items-center gap-3 min-w-0">
-
-                  <img
-                    src={team.flag}
-                    alt="flag"
-                    className="w-5 h-5 rounded-sm object-cover flex-shrink-0"
-                  />
-
-                  <img
-                    src={team.logo}
-                    alt={team.name}
-                    className="w-9 h-9 object-contain flex-shrink-0"
-                  />
-
-                  <span className="font-semibold hover:text-orange-400 transition truncate">
+                  <img src={team.flag} className="w-5 h-5" />
+                  <img src={team.logo} className="w-9 h-9" />
+                  <span className="truncate font-semibold hover:text-orange-400">
                     {team.name}
                   </span>
-
                 </div>
 
-                {/* POINTS */}
-                <div className="flex items-center gap-2 pl-4">
-
-                  <span className="text-gray-300 font-medium">
-                    {team.points}
-                  </span>
-
-                  {team.change > 0 && (
-                    <span className="text-green-400 text-sm font-bold">
-                      ▲ +{team.change}
-                    </span>
-                  )}
-
-                  {team.change < 0 && (
-                    <span className="text-red-400 text-sm font-bold">
-                      ▼ {team.change}
-                    </span>
-                  )}
-
-                  {team.change === 0 && (
-                    <span className="text-gray-500 text-sm font-bold">
-                      —
-                    </span>
-                  )}
-
+                <div className="flex gap-2 pl-4">
+                  <span>{team.points}</span>
+                  {team.change > 0 && <span className="text-green-400">▲ +{team.change}</span>}
+                  {team.change < 0 && <span className="text-red-400">▼ {team.change}</span>}
+                  {team.change === 0 && <span className="text-gray-500">—</span>}
                 </div>
 
-                {/* RECORD */}
-                <div className="text-gray-300 pl-2">
-                  {team.record}
-                </div>
+                <div className="pl-2">{team.record}</div>
 
-                {/* DIVISION */}
-                <div className="text-orange-400 font-medium">
-                  {team.division}
-                </div>
+                <div className="text-orange-400">{team.division}</div>
 
               </Link>
-
             ))}
 
           </div>
         </div>
 
       </div>
+
+      {/* MODAL */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-[#141922] p-6 rounded-xl w-[400px] space-y-3">
+
+            <input
+              placeholder="Team Name"
+              value={teamName}
+              onChange={(e) => setTeamName(e.target.value)}
+              className="w-full p-2 bg-[#1a1f26] rounded"
+            />
+
+            <input
+              placeholder="ESEA Link"
+              value={eseaLink}
+              onChange={(e) => setEseaLink(e.target.value)}
+              className="w-full p-2 bg-[#1a1f26] rounded"
+            />
+
+            <input
+              placeholder="Contact"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              className="w-full p-2 bg-[#1a1f26] rounded"
+            />
+
+            <textarea
+              placeholder="Note"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="w-full p-2 bg-[#1a1f26] rounded"
+            />
+
+            <div className="flex gap-2">
+              <button onClick={submitTeam} className="bg-orange-500 px-4 py-2 rounded w-full">
+                Send
+              </button>
+              <button onClick={() => setShowModal(false)} className="bg-gray-700 px-4 py-2 rounded w-full">
+                Cancel
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
