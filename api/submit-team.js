@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    // ❌ только POST
+    // ❌ only POST
     if (req.method !== "POST") {
       return res.status(405).json({
         success: false,
@@ -8,14 +8,16 @@ export default async function handler(req, res) {
       })
     }
 
+    const body = req.body || {}
+
     const {
       teamName,
       faceitLink,
       contact,
       note,
-    } = req.body || {}
+    } = body
 
-    // ❌ защита от пустых данных
+    // ❌ validation
     if (!teamName || !faceitLink || !contact) {
       return res.status(400).json({
         success: false,
@@ -23,7 +25,7 @@ export default async function handler(req, res) {
       })
     }
 
-    // 📩 формат сообщения
+    // 📩 Telegram message
     const text = `
 📥 NEW TEAM SUBMISSION
 
@@ -34,9 +36,9 @@ export default async function handler(req, res) {
 📞 Contact: ${contact}
 
 📝 Note: ${note || "No note"}
-`
+    `.trim()
 
-    // 📡 отправка в Telegram
+    // 📡 send to Telegram
     const telegramResponse = await fetch(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -47,7 +49,6 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           chat_id: process.env.TELEGRAM_CHAT_ID,
           text,
-          parse_mode: "HTML",
           disable_web_page_preview: true,
         }),
       }
@@ -55,18 +56,20 @@ export default async function handler(req, res) {
 
     const telegramData = await telegramResponse.json()
 
-    // ❌ если Telegram упал
-    if (!telegramData.ok) {
+    // ❌ Telegram error handling
+    if (!telegramResponse.ok || !telegramData.ok) {
+      console.error("Telegram error:", telegramData)
+
       return res.status(500).json({
         success: false,
-        error: "Telegram API error",
-        telegramData,
+        error: "Telegram API failed",
+        details: telegramData,
       })
     }
 
     return res.status(200).json({
       success: true,
-      message: "Sent to Telegram",
+      message: "Sent successfully",
     })
 
   } catch (error) {
