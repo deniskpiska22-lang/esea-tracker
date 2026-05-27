@@ -1352,7 +1352,7 @@ const submitTeam = async () => {
       },
       body: JSON.stringify({
         teamName,
-        faceitLink: eseaLink, // ← если ты ещё не переименовал state
+        faceitLink,
         contact,
         note,
       }),
