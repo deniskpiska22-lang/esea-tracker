@@ -1,47 +1,39 @@
-export default async function handler(req, res) {
+const submitTeam = async () => {
   try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Only POST" })
-    }
-
-    console.log("BODY:", req.body)
-
-    const { teamName, faceitLink, contact, note } = req.body || {}
-
-    console.log("ENV CHECK:", {
-      token: process.env.TELEGRAM_BOT_TOKEN ? "OK" : "MISSING",
-      chat: process.env.TELEGRAM_CHAT_ID ? "OK" : "MISSING",
+    const response = await fetch("/api/submit-team", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teamName,
+        faceitLink,
+        contact,
+        note,
+      }),
     })
 
-    const text = `
-NEW TEAM
+    const data = await response.json()
 
-Team: ${teamName}
-FACEIT: ${faceitLink}
-Contact: ${contact}
-Note: ${note || "-"}
-`.trim()
+    console.log("SERVER RESPONSE:", data)
 
-    const r = await fetch(
-      `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: process.env.TELEGRAM_CHAT_ID,
-          text,
-        }),
-      }
-    )
+    if (!response.ok) {
+      alert(data.error || "Server error ❌")
+      return
+    }
 
-    const data = await r.json()
+    alert("Application sent ✅")
 
-    console.log("TELEGRAM RESPONSE:", data)
+    setShowModal(false)
 
-    return res.status(200).json({ success: true, data })
+    setTeamName("")
+    setFaceitLink("")
+    setContact("")
+    setNote("")
 
-  } catch (e) {
-    console.error("API ERROR:", e)
-    return res.status(500).json({ error: e.message })
+  } catch (error) {
+    console.error("FETCH ERROR:", error)
+
+    alert(error.message || "Something went wrong ❌")
   }
 }
