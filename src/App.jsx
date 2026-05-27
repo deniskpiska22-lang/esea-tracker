@@ -1330,7 +1330,7 @@ function App() {
   const [teamName, setTeamName] =
     useState("")
 
-  const [eseaLink, setEseaLink] =
+  const [faceitLink, setFaceitLink] =
     useState("")
 
   const [contact, setContact] =
@@ -1506,7 +1506,7 @@ const submitTeam = async () => {
       </div>
 
       {/* MODAL */}
-      {showModal && (
+            {showModal && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-[#141922] p-6 rounded-xl w-[400px] space-y-3">
 
@@ -1518,38 +1518,45 @@ const submitTeam = async () => {
             />
 
             <input
-  placeholder="FACEIT Link команды"
-  value={faceitLink}
-  onChange={(e) => setFaceitLink(e.target.value)}
-/>
+              placeholder="FACEIT Link"
+              value={faceitLink}
+              onChange={(e) => setFaceitLink(e.target.value)}
+              className="w-full p-2 bg-[#1a1f26] rounded"
+            />
 
             <input
-              placeholder="Contact"
+              placeholder="Contact (Discord / Telegram)"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
               className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
             <textarea
-              placeholder="Note"
+              placeholder="Note (optional)"
               value={note}
               onChange={(e) => setNote(e.target.value)}
               className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
             <div className="flex gap-2">
-              <button onClick={submitTeam} className="bg-orange-500 px-4 py-2 rounded w-full">
+              <button
+                onClick={submitTeam}
+                className="bg-orange-500 hover:bg-orange-600 transition px-4 py-2 rounded w-full"
+              >
                 Send
               </button>
-              <button onClick={() => setShowModal(false)} className="bg-gray-700 px-4 py-2 rounded w-full">
+
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-700 hover:bg-gray-600 transition px-4 py-2 rounded w-full"
+              >
                 Cancel
               </button>
             </div>
 
           </div>
-        </div>
-      )}
-
+        </div>   
+        )}
     </div>
   )
 }

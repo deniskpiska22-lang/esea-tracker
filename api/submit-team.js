@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    // ❌ only POST
+    // ❌ только POST
     if (req.method !== "POST") {
       return res.status(405).json({
         success: false,
@@ -8,16 +8,9 @@ export default async function handler(req, res) {
       })
     }
 
-    const body = req.body || {}
+    const { teamName, faceitLink, contact, note } = req.body || {}
 
-    const {
-      teamName,
-      faceitLink,
-      contact,
-      note,
-    } = body
-
-    // ❌ validation
+    // ❌ валидация
     if (!teamName || !faceitLink || !contact) {
       return res.status(400).json({
         success: false,
@@ -25,20 +18,17 @@ export default async function handler(req, res) {
       })
     }
 
-    // 📩 Telegram message
+    // 📩 сообщение в Telegram
     const text = `
 📥 NEW TEAM SUBMISSION
 
 🏷 Team: ${teamName}
-
 🎯 FACEIT: ${faceitLink}
-
 📞 Contact: ${contact}
-
 📝 Note: ${note || "No note"}
     `.trim()
 
-    // 📡 send to Telegram
+    // 📡 отправка в Telegram
     const telegramResponse = await fetch(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -56,9 +46,9 @@ export default async function handler(req, res) {
 
     const telegramData = await telegramResponse.json()
 
-    // ❌ Telegram error handling
+    // ❌ ошибка Telegram
     if (!telegramResponse.ok || !telegramData.ok) {
-      console.error("Telegram error:", telegramData)
+      console.error("Telegram API error:", telegramData)
 
       return res.status(500).json({
         success: false,
@@ -67,9 +57,10 @@ export default async function handler(req, res) {
       })
     }
 
+    // ✅ успех
     return res.status(200).json({
       success: true,
-      message: "Sent successfully",
+      message: "Sent to Telegram",
     })
 
   } catch (error) {
