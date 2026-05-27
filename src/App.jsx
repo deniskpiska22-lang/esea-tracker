@@ -1341,57 +1341,79 @@ function App() {
             team.division === selectedDivision
         )
 
-  return (
-    <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
+ return (
+  <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
-      {/* NAVBAR */}
-      <nav className="border-b border-gray-800 bg-[#0d1117]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    {/* NAVBAR */}
+    <nav className="border-b border-gray-800 bg-[#0d1117]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-          {/* LOGO */}
-          <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
-            Esea Tracker
-          </h1>
+        {/* LOGO */}
+        <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
+          Esea Tracker
+        </h1>
 
-          {/* NAV LINKS */}
-          <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
+        {/* NAV LINKS */}
+        <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
-            <Link
-              to="/"
-              className={`transition ${
-                isActive("/")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              Rankings
-            </Link>
+          <Link
+            to="/"
+            className={`transition ${
+              isActive("/")
+                ? "text-white border-b-2 border-orange-500 pb-1"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Rankings
+          </Link>
 
-            <Link
-              to="/Media"
-              className={`transition ${
-                isActive("/teams")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              Media
-            </Link>
+          <Link
+            to="/Media"
+            className={`transition ${
+              isActive("/Media")
+                ? "text-white border-b-2 border-orange-500 pb-1"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Media
+          </Link>
 
-            <Link
-              to="/about"
-              className={`transition ${
-                isActive("/about")
-                  ? "text-white border-b-2 border-orange-500 pb-1"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              About
-            </Link>
+          <Link
+            to="/about"
+            className={`transition ${
+              isActive("/about")
+                ? "text-white border-b-2 border-orange-500 pb-1"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            About
+          </Link>
 
-          </div>
         </div>
-      </nav>
+
+        {/* SUBMIT TEAM BUTTON */}
+        <a
+          href="https://t.me/ТВОЙ_ТГ"
+          target="_blank"
+          rel="noreferrer"
+          className="
+            bg-orange-500
+            hover:bg-orange-600
+            transition
+            px-4
+            py-2
+            rounded-lg
+            text-sm
+            font-semibold
+            shadow-lg
+            hover:shadow-orange-500/20
+          "
+        >
+          Submit Team
+        </a>
+
+      </div>
+    </nav>
 
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
