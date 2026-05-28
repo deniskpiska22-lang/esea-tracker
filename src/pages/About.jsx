@@ -1,10 +1,24 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 function About() {
   return (
+
     <div className="bg-[#0f1419] min-h-screen text-white px-4 md:px-8 py-10">
 
       <div className="max-w-5xl mx-auto">
+
+        {/* LOGO */}
+        <div className="mb-8">
+
+          <Link
+            to="/"
+            className="text-2xl md:text-3xl font-bold text-orange-500 hover:text-orange-400 transition"
+          >
+            Esea Tracker
+          </Link>
+
+        </div>
 
         {/* TITLE */}
         <div className="mb-12">
@@ -127,25 +141,25 @@ function About() {
               больше функций, статистики и улучшений интерфейса.
             </p>
 
-<div className="flex flex-col gap-2">
-  
-  <a
-    href="https://t.me/LisssTzz1"
-    target="_blank"
-    rel="noreferrer"
-    className="text-orange-400 hover:text-orange-300 transition"
-  >
-    TG - @LisssTzz1
-  </a>
+            <div className="flex flex-col gap-2 mt-6">
 
-  <a
-    href="mailto:deadinsidick11@mail.ru"
-    className="text-orange-400 hover:text-orange-300 transition"
-  >
-    Mail - deadinsidick11@mail.ru
-  </a>
+              <a
+                href="https://t.me/LisssTzz1"
+                target="_blank"
+                rel="noreferrer"
+                className="text-orange-400 hover:text-orange-300 transition"
+              >
+                TG — @LisssTzz1
+              </a>
 
-</div>
+              <a
+                href="mailto:deadinsidick11@mail.ru"
+                className="text-orange-400 hover:text-orange-300 transition"
+              >
+                Mail — deadinsidick11@mail.ru
+              </a>
+
+            </div>
 
           </div>
 

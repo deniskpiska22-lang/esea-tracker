@@ -1,3 +1,5 @@
+import React from "react"
+import { Link } from "react-router-dom"
 import posts from "../data/posts"
 
 function MediaPage() {
@@ -6,6 +8,18 @@ function MediaPage() {
 
       {/* HEADER */}
       <div className="max-w-6xl mx-auto mb-10">
+
+        {/* LOGO */}
+        <div className="mb-6">
+
+          <Link
+            to="/"
+            className="text-2xl md:text-3xl font-bold text-orange-500 hover:text-orange-400 transition"
+          >
+            Esea Tracker
+          </Link>
+
+        </div>
 
         <h1 className="text-4xl md:text-5xl font-bold text-orange-500">
           Media
@@ -36,6 +50,7 @@ function MediaPage() {
               />
 
               <div>
+
                 <h2 className="font-bold text-lg">
                   {post.team}
                 </h2>
@@ -43,6 +58,7 @@ function MediaPage() {
                 <p className="text-gray-500 text-sm">
                   {post.time}
                 </p>
+
               </div>
 
             </div>
