@@ -1095,6 +1095,7 @@ const teams = [
     slug: "sixseven",
     logo: "/logos/sixseven.png",
     name: "SixSeven",
+    flag: "/flags/russia.svg",
     points: 144,
     record: "9-5",
     division: "Entry",
