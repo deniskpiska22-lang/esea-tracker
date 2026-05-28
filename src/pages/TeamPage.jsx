@@ -1743,84 +1743,164 @@ function TeamPage() {
       : Math.round((team.stats.wins / total) * 100)
 
   const mapStats = team.mapStats || []
+  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
+
+const currentRank =
+  sortedTeams.findIndex((t) => t.slug === team.slug) + 1
 
   return (
-    <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-10 py-8">
+    <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
 
-      {/* BACK BUTTON */}
+      {/* TOP LOGO */}
       <Link
         to="/"
-        className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-400 transition mb-6"
+        className="inline-flex items-center gap-3 mb-8 hover:opacity-80 transition"
       >
-        ← Back to Rankings
+        <span className="text-2xl md:text-3xl font-black text-orange-500">
+          ESEA Tracker
+        </span>
       </Link>
 
-      {/* HEADER CARD */}
-      <div className="bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-xl">
+      {/* HERO HEADER */}
+      <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-[#1f2a3a] bg-[#111823] shadow-2xl">
 
-        {/* LOGO */}
-        <div className="w-28 h-28 bg-[#0f141c] rounded-xl border border-[#1f2a3a] flex items-center justify-center overflow-hidden">
+        {/* BACKGROUND */}
+        <div className="absolute inset-0">
           <img
-            src={team.logo}
-            alt={team.name}
-            className="w-full h-full object-contain p-2"
+            src="/maps/inferno.jpg"
+            alt="bg"
+            className="w-full h-full object-cover opacity-10"
           />
         </div>
 
-        {/* INFO */}
-        <div className="flex-1 text-center md:text-left">
+        <div className="relative z-10 p-6 md:p-10">
 
-          <div className="flex items-center gap-3 justify-center md:justify-start">
+          <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-8">
 
-            <img
-              src={team.flag}
-              className="w-7 h-7 rounded-sm"
-              alt="flag"
-            />
+            {/* LEFT */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
 
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              {team.name}
-            </h1>
+              {/* LOGO */}
+              <div className="w-32 h-32 rounded-2xl bg-[#0f141c] border border-[#263041] flex items-center justify-center overflow-hidden shadow-lg">
+
+                <img
+                  src={team.logo}
+                  alt={team.name}
+                  className="w-full h-full object-contain p-4"
+                />
+
+              </div>
+
+              {/* INFO */}
+              <div className="text-center md:text-left">
+
+                <div className="flex items-center gap-3 justify-center md:justify-start">
+
+                  <img
+                    src={team.flag}
+                    alt="flag"
+                    className="w-7 h-7 rounded-sm"
+                  />
+
+                  <h1 className="text-4xl md:text-6xl font-black tracking-tight">
+                    {team.name}
+                  </h1>
+
+                </div>
+
+                <p className="text-gray-400 mt-3 text-lg">
+                  Competing in{" "}
+                  <span className="text-orange-400 font-semibold">
+                    {team.division}
+                  </span>
+                </p>
+
+                <div className="flex flex-wrap gap-3 mt-5 justify-center md:justify-start">
+
+                  <span className="px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-400 font-semibold">
+                    {team.points} Points
+                  </span>
+
+                  <span className="px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 font-semibold">
+                    {winrate}% WR
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* RANK */}
+            <div className="text-center">
+
+              <p className="text-gray-500 uppercase tracking-widest text-sm">
+                Current Rank
+              </p>
+
+              <h2 className="text-7xl md:text-8xl font-black text-orange-500 leading-none">
+                #{currentRank}
+              </h2>
+
+            </div>
 
           </div>
 
-          <p className="text-gray-400 mt-2">
-            Division:{" "}
-            <span className="text-orange-400 font-medium">
-              {team.division}
-            </span>
-          </p>
+          {/* STATS CARDS */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
 
-          {/* MINI STATS */}
-          <div className="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
+            <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
+              <p className="text-gray-400 text-sm mb-2">
+                Wins
+              </p>
 
-            <span className="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-sm">
-              Wins: {team.stats.wins}
-            </span>
+              <p className="text-3xl font-bold text-green-400">
+                {team.stats.wins}
+              </p>
+            </div>
 
-            <span className="px-3 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full text-sm">
-              Losses: {team.stats.losses}
-            </span>
+            <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
+              <p className="text-gray-400 text-sm mb-2">
+                Losses
+              </p>
 
-            <span className="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-full text-sm">
-              WR: {winrate}%
-            </span>
+              <p className="text-3xl font-bold text-red-400">
+                {team.stats.losses}
+              </p>
+            </div>
 
-            <span className="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-sm">
-              Points: {team.points}
-            </span>
+            <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
+              <p className="text-gray-400 text-sm mb-2">
+                Winrate
+              </p>
+
+              <p className="text-3xl font-bold text-orange-400">
+                {winrate}%
+              </p>
+            </div>
+
+            <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
+              <p className="text-gray-400 text-sm mb-2">
+                Points
+              </p>
+
+              <p className="text-3xl font-bold text-blue-400">
+                {team.points}
+              </p>
+            </div>
 
           </div>
+
         </div>
       </div>
 
       {/* MAIN GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
 
         {/* ROSTER */}
-        <div className="lg:col-span-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
+        <div className="bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
 
-          <h2 className="text-xl font-semibold mb-4">
+          <h2 className="text-2xl font-bold mb-5">
             Roster
           </h2>
 
@@ -1832,24 +1912,33 @@ function TeamPage() {
                 href={`https://www.faceit.com/en/players/${p}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-[#232a34] p-3 rounded-lg border border-gray-800 hover:bg-[#2a3340] transition"
+                className="flex items-center justify-between bg-[#1a2330] border border-[#263041] hover:border-orange-500/40 transition rounded-xl px-4 py-4"
               >
-                {p}
+
+                <span className="font-medium">
+                  {p}
+                </span>
+
+                <span className="text-gray-500 text-sm">
+                  FACEIT →
+                </span>
+
               </a>
             ))}
 
           </div>
+
         </div>
 
         {/* MATCHES */}
         <div className="lg:col-span-2 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
 
-          <h2 className="text-xl font-semibold mb-4">
+          <h2 className="text-2xl font-bold mb-5">
             Last Matches
           </h2>
 
           {team.matches.length === 0 ? (
-            <div className="text-gray-500 text-sm">
+            <div className="text-gray-500">
               No matches available yet
             </div>
           ) : (
@@ -1858,84 +1947,141 @@ function TeamPage() {
               {team.matches.map((m, i) => (
                 <div
                   key={i}
-                  className="flex justify-between items-center bg-[#0f141c] border border-[#1f2a3a] rounded-xl px-4 py-3"
+                  className="flex items-center justify-between bg-[#1a2330] border border-[#263041] rounded-xl px-5 py-4"
                 >
 
-                  <span className="text-gray-300">
-                    {m.opponent}
-                  </span>
+                  <div>
+                    <p className="text-gray-500 text-sm">
+                      Opponent
+                    </p>
 
-                  <span className="font-semibold text-orange-400">
-                    {m.result}
-                  </span>
+                    <p className="font-semibold text-white">
+                      {m.opponent}
+                    </p>
+                  </div>
+
+                  <div className="text-right">
+
+                    <p className="text-gray-500 text-sm">
+                      Result
+                    </p>
+
+                    <p className="font-bold text-orange-400">
+                      {m.result}
+                    </p>
+
+                  </div>
 
                 </div>
               ))}
 
             </div>
           )}
+
         </div>
 
       </div>
 
-      {/* MAP WINRATES */}
+      {/* MAP POOL */}
       {mapStats.length > 0 && (
-        <div className="mt-8 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
+        <div className="max-w-6xl mx-auto mt-8">
 
-          <h2 className="text-xl font-semibold mb-4">
-            Map Winrates
+          <h2 className="text-3xl font-black mb-6">
+            Map Pool
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
             {mapStats.map((m) => (
+
               <div
                 key={m.map}
-                className="bg-[#0f141c] border border-[#1f2a3a] rounded-xl p-4"
+                className="bg-[#111823] border border-[#1f2a3a] rounded-2xl overflow-hidden hover:border-orange-500/40 transition duration-300"
               >
 
-                {/* HEADER */}
-                <div className="flex justify-between mb-2">
+                {/* IMAGE */}
+                <div className="relative h-44 overflow-hidden">
 
-                  <span className="text-white font-medium">
-                    {m.map}
-                  </span>
-
-                  <span
-                    className={`font-bold ${
-                      m.winrate >= 60
-                        ? "text-green-400"
-                        : m.winrate >= 45
-                        ? "text-yellow-400"
-                        : "text-red-400"
-                    }`}
-                  >
-                    {m.winrate}%
-                  </span>
-
-                </div>
-
-                {/* BAR */}
-                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-
-                  <div
-                    className={`h-full transition-all duration-500 ${
-                      m.winrate >= 60
-                        ? "bg-green-400"
-                        : m.winrate >= 45
-                        ? "bg-yellow-400"
-                        : "bg-red-400"
-                    }`}
-                    style={{ width: `${m.winrate}%` }}
+                  <img
+                    src={m.image}
+                    alt={m.map}
+                    className="w-full h-full object-cover"
                   />
 
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                  <div className="absolute bottom-4 left-4">
+
+                    <h3 className="text-3xl font-black text-white">
+                      {m.map}
+                    </h3>
+
+                  </div>
+
                 </div>
+
+                {/* CONTENT */}
+                <div className="p-5">
+
+                  <div className="flex items-center justify-between mb-4">
+
+                    <div>
+                      <p className="text-gray-500 text-sm">
+                        Winrate
+                      </p>
+
+                      <p
+                        className={`text-3xl font-black ${
+                          m.winrate >= 60
+                            ? "text-green-400"
+                            : m.winrate >= 45
+                            ? "text-yellow-400"
+                            : "text-red-400"
+                        }`}
+                      >
+                        {m.winrate}%
+                      </p>
+                    </div>
+
+                    <div className="text-right">
+                      <p className="text-gray-500 text-sm">
+                        Played
+                      </p>
+
+                      <p className="text-xl font-bold text-white">
+                        {m.played}
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* BAR */}
+                  <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+
+                    <div
+                      className={`h-full transition-all duration-700 ${
+                        m.winrate >= 60
+                          ? "bg-green-400"
+                          : m.winrate >= 45
+                          ? "bg-yellow-400"
+                          : "bg-red-400"
+                      }`}
+                      style={{ width: `${m.winrate}%` }}
+                    />
+
+                  </div>
+
+                </div>
+
               </div>
+
             ))}
 
           </div>
+
         </div>
       )}
+
     </div>
   )
 }
