@@ -1,6 +1,46 @@
 {
   "cybershoke-prospects": [
-    { "week": "2026-05-024", "rating": 356 },
-    { "week": "2026-05-031", "rating": 380 }
+    { "week": "2026-05-19", "rating": 356 },
+    { "week": "2026-05-26", "rating": 380 }
+  ],
+  "enjoy": [
+    { "week": "2026-05-19", "rating": 344 },
+    { "week": "2026-05-26", "rating": 370 }
+  ],
+  "donstu-esports": [
+    { "week": "2026-05-19", "rating": 350 },
+    { "week": "2026-05-26", "rating": 368 }
+  ],
+  "baks-esports": [
+    { "week": "2026-05-19", "rating": 302 },
+    { "week": "2026-05-26", "rating": 366 }
+  ],
+  "new-vision": [
+    { "week": "2026-05-19", "rating": 352 },
+    { "week": "2026-05-26", "rating": 356 }
+  ],
+  "eternal-premium": [
+    { "week": "2026-05-19", "rating": 354 },
+    { "week": "2026-05-26", "rating": 350 }
+  ],
+  "aurora-young-blud": [
+    { "week": "2026-05-19", "rating": 340 },
+    { "week": "2026-05-26", "rating": 348 }
+  ],
+  "quazar": [
+    { "week": "2026-05-19", "rating": 348 },
+    { "week": "2026-05-26", "rating": 346 }
+  ],
+  "bankapepsi": [
+    { "week": "2026-05-19", "rating": 346 },
+    { "week": "2026-05-26", "rating": 344 }
+  ],
+  "ex-peep": [
+    { "week": "2026-05-19", "rating": 328 },
+    { "week": "2026-05-26", "rating": 331 }
+  ],
+  "csgopositive": [
+    { "week": "2026-05-19", "rating": 308 },
+    { "week": "2026-05-26", "rating": 325 }
   ]
 }
