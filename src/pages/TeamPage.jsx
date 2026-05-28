@@ -1743,10 +1743,6 @@ function TeamPage() {
       : Math.round((team.stats.wins / total) * 100)
 
   const mapStats = team.mapStats || []
-  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
-
-const currentRank =
-  sortedTeams.findIndex((t) => t.slug === team.slug) + 1
 
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
@@ -1782,20 +1778,17 @@ const currentRank =
 
               {/* LOGO */}
               <div className="w-32 h-32 rounded-2xl bg-[#0f141c] border border-[#263041] flex items-center justify-center overflow-hidden shadow-lg">
-
                 <img
                   src={team.logo}
                   alt={team.name}
                   className="w-full h-full object-contain p-4"
                 />
-
               </div>
 
               {/* INFO */}
               <div className="text-center md:text-left">
 
                 <div className="flex items-center gap-3 justify-center md:justify-start">
-
                   <img
                     src={team.flag}
                     alt="flag"
@@ -1805,7 +1798,6 @@ const currentRank =
                   <h1 className="text-4xl md:text-6xl font-black tracking-tight">
                     {team.name}
                   </h1>
-
                 </div>
 
                 <p className="text-gray-400 mt-3 text-lg">
@@ -1828,20 +1820,6 @@ const currentRank =
                 </div>
 
               </div>
-
-            </div>
-
-            {/* RANK */}
-            <div className="text-center">
-
-              <p className="text-gray-500 uppercase tracking-widest text-sm">
-                Current Rank
-              </p>
-
-              <h2 className="text-7xl md:text-8xl font-black text-orange-500 leading-none">
-                #{currentRank}
-              </h2>
-
             </div>
 
           </div>
@@ -1850,40 +1828,28 @@ const currentRank =
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
 
             <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
-              <p className="text-gray-400 text-sm mb-2">
-                Wins
-              </p>
-
+              <p className="text-gray-400 text-sm mb-2">Wins</p>
               <p className="text-3xl font-bold text-green-400">
                 {team.stats.wins}
               </p>
             </div>
 
             <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
-              <p className="text-gray-400 text-sm mb-2">
-                Losses
-              </p>
-
+              <p className="text-gray-400 text-sm mb-2">Losses</p>
               <p className="text-3xl font-bold text-red-400">
                 {team.stats.losses}
               </p>
             </div>
 
             <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
-              <p className="text-gray-400 text-sm mb-2">
-                Winrate
-              </p>
-
+              <p className="text-gray-400 text-sm mb-2">Winrate</p>
               <p className="text-3xl font-bold text-orange-400">
                 {winrate}%
               </p>
             </div>
 
             <div className="bg-[#1a2330]/80 backdrop-blur border border-[#263041] rounded-2xl p-5">
-              <p className="text-gray-400 text-sm mb-2">
-                Points
-              </p>
-
+              <p className="text-gray-400 text-sm mb-2">Points</p>
               <p className="text-3xl font-bold text-blue-400">
                 {team.points}
               </p>
@@ -1900,9 +1866,7 @@ const currentRank =
         {/* ROSTER */}
         <div className="bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
 
-          <h2 className="text-2xl font-bold mb-5">
-            Roster
-          </h2>
+          <h2 className="text-2xl font-bold mb-5">Roster</h2>
 
           <div className="space-y-3">
 
@@ -1914,20 +1878,14 @@ const currentRank =
                 rel="noopener noreferrer"
                 className="flex items-center justify-between bg-[#1a2330] border border-[#263041] hover:border-orange-500/40 transition rounded-xl px-4 py-4"
               >
-
-                <span className="font-medium">
-                  {p}
-                </span>
-
+                <span className="font-medium">{p}</span>
                 <span className="text-gray-500 text-sm">
                   FACEIT →
                 </span>
-
               </a>
             ))}
 
           </div>
-
         </div>
 
         {/* MATCHES */}
@@ -1949,29 +1907,19 @@ const currentRank =
                   key={i}
                   className="flex items-center justify-between bg-[#1a2330] border border-[#263041] rounded-xl px-5 py-4"
                 >
-
                   <div>
-                    <p className="text-gray-500 text-sm">
-                      Opponent
-                    </p>
-
+                    <p className="text-gray-500 text-sm">Opponent</p>
                     <p className="font-semibold text-white">
                       {m.opponent}
                     </p>
                   </div>
 
                   <div className="text-right">
-
-                    <p className="text-gray-500 text-sm">
-                      Result
-                    </p>
-
+                    <p className="text-gray-500 text-sm">Result</p>
                     <p className="font-bold text-orange-400">
                       {m.result}
                     </p>
-
                   </div>
-
                 </div>
               ))}
 
@@ -1993,61 +1941,39 @@ const currentRank =
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
             {mapStats.map((m) => (
-
               <div
                 key={m.map}
                 className="bg-[#111823] border border-[#1f2a3a] rounded-2xl overflow-hidden hover:border-orange-500/40 transition duration-300"
               >
 
-                {/* IMAGE */}
                 <div className="relative h-44 overflow-hidden">
-
                   <img
                     src={m.image}
                     alt={m.map}
                     className="w-full h-full object-cover"
                   />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
                   <div className="absolute bottom-4 left-4">
-
                     <h3 className="text-3xl font-black text-white">
                       {m.map}
                     </h3>
-
                   </div>
-
                 </div>
 
-                {/* CONTENT */}
                 <div className="p-5">
 
                   <div className="flex items-center justify-between mb-4">
 
                     <div>
-                      <p className="text-gray-500 text-sm">
-                        Winrate
-                      </p>
-
-                      <p
-                        className={`text-3xl font-black ${
-                          m.winrate >= 60
-                            ? "text-green-400"
-                            : m.winrate >= 45
-                            ? "text-yellow-400"
-                            : "text-red-400"
-                        }`}
-                      >
+                      <p className="text-gray-500 text-sm">Winrate</p>
+                      <p className="text-3xl font-black text-orange-400">
                         {m.winrate}%
                       </p>
                     </div>
 
                     <div className="text-right">
-                      <p className="text-gray-500 text-sm">
-                        Played
-                      </p>
-
+                      <p className="text-gray-500 text-sm">Played</p>
                       <p className="text-xl font-bold text-white">
                         {m.played}
                       </p>
@@ -2055,26 +1981,16 @@ const currentRank =
 
                   </div>
 
-                  {/* BAR */}
                   <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-
                     <div
-                      className={`h-full transition-all duration-700 ${
-                        m.winrate >= 60
-                          ? "bg-green-400"
-                          : m.winrate >= 45
-                          ? "bg-yellow-400"
-                          : "bg-red-400"
-                      }`}
+                      className="h-full bg-orange-400"
                       style={{ width: `${m.winrate}%` }}
                     />
-
                   </div>
 
                 </div>
 
               </div>
-
             ))}
 
           </div>
