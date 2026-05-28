@@ -1,5 +1,4 @@
-import { useParams } from "react-router-dom"
-
+import { Link, useParams } from "react-router-dom"
 const teams = [
   {
     slug: "cybershoke-prospects",
@@ -1729,7 +1728,9 @@ function TeamPage() {
   if (!team) {
     return (
       <div className="bg-[#0b0f14] min-h-screen text-white flex items-center justify-center">
-        <h1 className="text-3xl font-bold text-gray-400">Team not found</h1>
+        <h1 className="text-3xl font-bold text-gray-400">
+          Team not found
+        </h1>
       </div>
     )
   }
@@ -1737,10 +1738,22 @@ function TeamPage() {
   const total = team.stats.wins + team.stats.losses
 
   const winrate =
-    total === 0 ? 0 : Math.round((team.stats.wins / total) * 100)
-const mapStats = team.mapStats || []
+    total === 0
+      ? 0
+      : Math.round((team.stats.wins / total) * 100)
+
+  const mapStats = team.mapStats || []
+
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-10 py-8">
+
+      {/* BACK BUTTON */}
+      <Link
+        to="/"
+        className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-400 transition mb-6"
+      >
+        ← Back to Rankings
+      </Link>
 
       {/* HEADER CARD */}
       <div className="bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-xl">
@@ -1758,6 +1771,7 @@ const mapStats = team.mapStats || []
         <div className="flex-1 text-center md:text-left">
 
           <div className="flex items-center gap-3 justify-center md:justify-start">
+
             <img
               src={team.flag}
               className="w-7 h-7 rounded-sm"
@@ -1767,6 +1781,7 @@ const mapStats = team.mapStats || []
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
               {team.name}
             </h1>
+
           </div>
 
           <p className="text-gray-400 mt-2">
@@ -1776,7 +1791,7 @@ const mapStats = team.mapStats || []
             </span>
           </p>
 
-          {/* mini stats bar */}
+          {/* MINI STATS */}
           <div className="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
 
             <span className="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-sm">
@@ -1791,6 +1806,10 @@ const mapStats = team.mapStats || []
               WR: {winrate}%
             </span>
 
+            <span className="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-sm">
+              Points: {team.points}
+            </span>
+
           </div>
         </div>
       </div>
@@ -1800,26 +1819,34 @@ const mapStats = team.mapStats || []
 
         {/* ROSTER */}
         <div className="lg:col-span-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4">Roster</h2>
+
+          <h2 className="text-xl font-semibold mb-4">
+            Roster
+          </h2>
 
           <div className="space-y-3">
+
             {team.players.map((p) => (
-  <a
-    key={p}
-    href={`https://www.faceit.com/en/players/${p}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block bg-[#232a34] p-3 rounded-lg border border-gray-800 hover:bg-[#2a3340] transition"
-  >
-    {p}
-  </a>
-))}
+              <a
+                key={p}
+                href={`https://www.faceit.com/en/players/${p}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-[#232a34] p-3 rounded-lg border border-gray-800 hover:bg-[#2a3340] transition"
+              >
+                {p}
+              </a>
+            ))}
+
           </div>
         </div>
 
         {/* MATCHES */}
         <div className="lg:col-span-2 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4">Last Matches</h2>
+
+          <h2 className="text-xl font-semibold mb-4">
+            Last Matches
+          </h2>
 
           {team.matches.length === 0 ? (
             <div className="text-gray-500 text-sm">
@@ -1827,11 +1854,13 @@ const mapStats = team.mapStats || []
             </div>
           ) : (
             <div className="space-y-3">
+
               {team.matches.map((m, i) => (
                 <div
                   key={i}
                   className="flex justify-between items-center bg-[#0f141c] border border-[#1f2a3a] rounded-xl px-4 py-3"
                 >
+
                   <span className="text-gray-300">
                     {m.opponent}
                   </span>
@@ -1839,58 +1868,74 @@ const mapStats = team.mapStats || []
                   <span className="font-semibold text-orange-400">
                     {m.result}
                   </span>
+
                 </div>
               ))}
+
             </div>
           )}
         </div>
+
       </div>
+
       {/* MAP WINRATES */}
-{mapStats.length > 0 && (
-  <div className="mt-8 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
-    <h2 className="text-xl font-semibold mb-4">Map Winrates</h2>
+      {mapStats.length > 0 && (
+        <div className="mt-8 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {mapStats.map((m) => (
-        <div
-          key={m.map}
-          className="bg-[#0f141c] border border-[#1f2a3a] rounded-xl p-4"
-        >
-          {/* HEADER */}
-          <div className="flex justify-between mb-2">
-            <span className="text-white font-medium">{m.map}</span>
+          <h2 className="text-xl font-semibold mb-4">
+            Map Winrates
+          </h2>
 
-            <span
-              className={`font-bold ${
-                m.winrate >= 60
-                  ? "text-green-400"
-                  : m.winrate >= 45
-                  ? "text-yellow-400"
-                  : "text-red-400"
-              }`}
-            >
-              {m.winrate}%
-            </span>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-          {/* BAR */}
-          <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className={`h-full transition-all duration-500 ${
-                m.winrate >= 60
-                  ? "bg-green-400"
-                  : m.winrate >= 45
-                  ? "bg-yellow-400"
-                  : "bg-red-400"
-              }`}
-              style={{ width: `${m.winrate}%` }}
-            />
+            {mapStats.map((m) => (
+              <div
+                key={m.map}
+                className="bg-[#0f141c] border border-[#1f2a3a] rounded-xl p-4"
+              >
+
+                {/* HEADER */}
+                <div className="flex justify-between mb-2">
+
+                  <span className="text-white font-medium">
+                    {m.map}
+                  </span>
+
+                  <span
+                    className={`font-bold ${
+                      m.winrate >= 60
+                        ? "text-green-400"
+                        : m.winrate >= 45
+                        ? "text-yellow-400"
+                        : "text-red-400"
+                    }`}
+                  >
+                    {m.winrate}%
+                  </span>
+
+                </div>
+
+                {/* BAR */}
+                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+
+                  <div
+                    className={`h-full transition-all duration-500 ${
+                      m.winrate >= 60
+                        ? "bg-green-400"
+                        : m.winrate >= 45
+                        ? "bg-yellow-400"
+                        : "bg-red-400"
+                    }`}
+                    style={{ width: `${m.winrate}%` }}
+                  />
+
+                </div>
+              </div>
+            ))}
+
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-)}
+      )}
     </div>
   )
 }

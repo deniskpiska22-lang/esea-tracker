@@ -1389,16 +1389,20 @@ const submitTeam = async () => {
           (team) => team.division === selectedDivision
         )
 
-  return (
-    <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
+ return (
+  <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
 
-      {/* NAVBAR */}
-      <nav className="border-b border-gray-800 bg-[#0d1117]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    {/* NAVBAR */}
+    <nav className="border-b border-gray-800 bg-[#0d1117]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-          <h1 className="text-xl md:text-2xl font-bold text-orange-500 text-center">
-            Esea Tracker
-          </h1>
+        {/* CLICKABLE LOGO */}
+        <Link
+          to="/"
+          className="text-xl md:text-2xl font-bold text-orange-500 text-center hover:text-orange-400 transition"
+        >
+          Esea Tracker
+        </Link>
 
           <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
 
