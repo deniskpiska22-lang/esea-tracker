@@ -126,7 +126,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["wh1teout", "seberya", "Gashhhi4", "tronic", "z3ndy"],
+    players: ["wh1teout", "seberya", "Gashhhhi4", "tronic", "ameameame73"],
     matches: [],
   },
     {
