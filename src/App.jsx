@@ -270,7 +270,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 306,
     record: "14-0",
-    division: "intermediate",
+    division: "Intermediate",
   },
                                       {
     rank: 27,
