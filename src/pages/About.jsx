@@ -3,160 +3,146 @@ import { Link } from "react-router-dom"
 
 function About() {
   return (
+    <div className="min-h-screen text-white bg-[#05070a]">
 
-    <div className="bg-[#0f1419] min-h-screen text-white px-4 md:px-8 py-10">
+      {/* background glow */}
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(255,140,0,0.06),transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 relative">
 
-        {/* LOGO */}
-        <div className="mb-8">
+        {/* HEADER */}
+        <div className="flex items-center justify-between mb-10">
 
           <Link
             to="/"
-            className="text-2xl md:text-3xl font-bold text-orange-500 hover:text-orange-400 transition"
+            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
           >
             Esea Tracker
           </Link>
 
+          <div className="text-sm text-gray-500">
+            About Project
+          </div>
+
         </div>
 
-        {/* TITLE */}
+        {/* TITLE BLOCK */}
         <div className="mb-12">
 
-          <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-4">
-            О проекте Esea Tracker
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            О проекте <span className="text-orange-500">Esea Tracker</span>
           </h1>
 
-          <p className="text-gray-400 text-lg max-w-3xl leading-8">
-            Независимая рейтинговая платформа, посвящённая CIS-командам,
-            выступающим в лигах ESEA. Цель проекта — освещать молодые
-            таланты, отслеживать развитие команд и создать единый хаб
-            для полупрофессиональной сцены СНГ.
+          <p className="text-gray-400 mt-4 max-w-3xl leading-7">
+            Независимая рейтинговая платформа CIS-команд ESEA.
+            Цель — отслеживание прогресса, развитие сцены и создание единого рейтинга полупро сцены.
           </p>
 
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {/* PROJECT */}
-          <div className="bg-[#1a1f26] border border-gray-800 rounded-2xl p-6">
+          {/* CARD */}
+          <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
-            <h2 className="text-2xl font-semibold mb-4 text-orange-400">
+            <h2 className="text-lg font-semibold text-orange-400 mb-4">
               Проект
             </h2>
 
             <p className="text-gray-300 leading-7">
-              CIS ESEA Rankings был создан для того, чтобы дать больше
-              внимания командам вне тир-1 сцены. Многие сильные составы
-              из Advanced, Main, Intermediate и Entry практически не
-              получают достаточного медийного освещения, несмотря на
-              хорошие результаты и перспективных игроков.
+              CIS ESEA Rankings создан, чтобы дать внимание командам вне тир-1 сцены.
+              Многие составы из Advanced / Main / Intermediate / Entry остаются без медиа-освещения.
             </p>
 
-            <p className="text-gray-300 leading-7 mt-4">
-              Система рейтинга учитывает результаты матчей,
-              стабильность, уровень дивизиона и текущую форму команды,
-              формируя динамический рейтинг CIS-региона.
+            <p className="text-gray-400 leading-7 mt-4">
+              Рейтинг формируется на основе результатов матчей, стабильности и дивизиона.
             </p>
 
           </div>
 
-          {/* FEATURES */}
-          <div className="bg-[#1a1f26] border border-gray-800 rounded-2xl p-6">
+          {/* CARD */}
+          <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
-            <h2 className="text-2xl font-semibold mb-4 text-orange-400">
+            <h2 className="text-lg font-semibold text-orange-400 mb-4">
               Возможности
             </h2>
 
-            <ul className="space-y-3 text-gray-300 leading-7">
+            <ul className="space-y-2 text-gray-300">
               <li>• Рейтинг CIS команд ESEA</li>
-              <li>• Страницы команд с составом и матчами</li>
-              <li>• Отслеживание дивизионов</li>
-              <li>• Социальные сети команд</li>
-              <li>• Полная адаптация под телефон</li>
-              <li>• Регулярные обновления рейтинга</li>
+              <li>• Страницы команд с аналитикой</li>
+              <li>• Дивизионная система</li>
+              <li>• Статистика и динамика</li>
+              <li>• Mobile-first интерфейс</li>
             </ul>
 
           </div>
 
-          {/* RANKING SYSTEM */}
-          <div className="bg-[#1a1f26] border border-gray-800 rounded-2xl p-6">
+          {/* CARD */}
+          <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
-            <h2 className="text-2xl font-semibold mb-4 text-orange-400">
+            <h2 className="text-lg font-semibold text-orange-400 mb-4">
               Система рейтинга
             </h2>
 
-            <div className="space-y-5 text-gray-300">
+            <div className="space-y-4 text-gray-300">
 
               <div>
-                <p className="font-semibold text-white mb-1">
-                  Advanced
-                </p>
-
-                <p>
-                  Максимальный множитель очков и высокий вес матчей.
-                </p>
+                <div className="text-white font-medium">Advanced</div>
+                <div className="text-gray-400 text-sm">
+                  Высокий множитель и вес матчей
+                </div>
               </div>
 
               <div>
-                <p className="font-semibold text-white mb-1">
-                  Main
-                </p>
-
-                <p>
-                  Высокий множитель и бонус за стабильные результаты.
-                </p>
+                <div className="text-white font-medium">Main</div>
+                <div className="text-gray-400 text-sm">
+                  Стабильность и бонус за победы
+                </div>
               </div>
 
               <div>
-                <p className="font-semibold text-white mb-1">
-                  Intermediate / Entry
-                </p>
-
-                <p>
-                  Основной акцент на винрейт и прогресс команды.
-                </p>
+                <div className="text-white font-medium">Intermediate / Entry</div>
+                <div className="text-gray-400 text-sm">
+                  Прогресс и базовый винрейт
+                </div>
               </div>
 
             </div>
 
           </div>
 
-          {/* CREATOR */}
-          <div className="bg-[#1a1f26] border border-gray-800 rounded-2xl p-6">
+          {/* CARD */}
+          <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
-            <h2 className="text-2xl font-semibold mb-4 text-orange-400">
+            <h2 className="text-lg font-semibold text-orange-400 mb-4">
               Создатель
             </h2>
 
             <p className="text-gray-300 leading-7">
-              Проект создан CIS-тренером, который занимается развитием
-              молодых игроков и стремится повысить узнаваемость
-              полупрофессиональной сцены.
+              Проект создан CIS-тренером, работающим с молодыми игроками и командами.
             </p>
 
-            <p className="text-gray-300 leading-7 mt-4">
-              Сайт активно развивается, и в будущем планируется ещё
-              больше функций, статистики и улучшений интерфейса.
+            <p className="text-gray-400 leading-7 mt-4">
+              Фокус — развитие сцены и повышение видимости перспективных игроков.
             </p>
 
-            <div className="flex flex-col gap-2 mt-6">
+            <div className="mt-6 space-y-2">
 
               <a
                 href="https://t.me/LisssTzz1"
                 target="_blank"
                 rel="noreferrer"
-                className="text-orange-400 hover:text-orange-300 transition"
+                className="text-orange-400 hover:text-orange-300 transition block"
               >
-                TG — @LisssTzz1
+                Telegram → @LisssTzz1
               </a>
 
               <a
                 href="mailto:deadinsidick11@mail.ru"
-                className="text-orange-400 hover:text-orange-300 transition"
+                className="text-orange-400 hover:text-orange-300 transition block"
               >
-                Mail — deadinsidick11@mail.ru
+                Email → contact
               </a>
 
             </div>
@@ -166,7 +152,6 @@ function About() {
         </div>
 
       </div>
-
     </div>
   )
 }

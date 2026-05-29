@@ -4,93 +4,114 @@ import posts from "../data/posts"
 
 function MediaPage() {
   return (
-    <div className="bg-[#0f1419] min-h-screen text-white px-4 md:px-8 py-8">
+    <div className="min-h-screen text-white bg-[#05070a]">
 
-      {/* HEADER */}
-      <div className="max-w-6xl mx-auto mb-10">
+      {/* background glow */}
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(255,140,0,0.06),transparent_60%)] pointer-events-none" />
 
-        {/* LOGO */}
-        <div className="mb-6">
+      <div className="max-w-5xl mx-auto px-4 md:px-8 py-10 relative">
 
+        {/* HEADER */}
+        <div className="mb-10">
           <Link
             to="/"
-            className="text-2xl md:text-3xl font-bold text-orange-500 hover:text-orange-400 transition"
+            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
           >
             Esea Tracker
           </Link>
 
+          <h1 className="text-4xl md:text-5xl font-bold mt-6">
+            Media
+          </h1>
+
+          <p className="text-gray-400 mt-3 max-w-2xl">
+            Community updates, team highlights and CIS scene insights.
+          </p>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-orange-500">
-          Media
-        </h1>
+        {/* FEED */}
+        <div className="space-y-5">
 
-        <p className="text-gray-400 mt-3 text-lg">
-          Community posts, rankings updates and CIS scene highlights.
-        </p>
+          {[...posts].reverse().map((post) => (
+            <div
+              key={post.id}
+              className="
+                bg-[#0b0f14]
+                border border-white/5
+                rounded-xl
+                overflow-hidden
+                shadow-[0_8px_22px_rgba(0,0,0,0.55)]
+                hover:border-orange-500/20
+                transition
+              "
+            >
 
-      </div>
+              {/* TOP BAR */}
+              <div className="flex items-center gap-4 p-4 border-b border-white/5">
 
-      {/* POSTS */}
-      <div className="max-w-4xl mx-auto grid gap-6">
+                <img
+                  src={post.logo}
+                  alt={post.team}
+                  className="w-9 h-9 rounded-md object-contain"
+                />
 
-        {[...posts].reverse().map((post) => (
-          <div
-            key={post.id}
-            className="bg-[#141922] border border-gray-800 rounded-2xl overflow-hidden shadow-xl"
-          >
+                <div className="flex flex-col">
+                  <span className="font-semibold text-white text-sm">
+                    {post.team}
+                  </span>
 
-            {/* TOP */}
-            <div className="flex items-center gap-4 p-5 border-b border-gray-800">
+                  <span className="text-xs text-gray-500">
+                    {post.time}
+                  </span>
+                </div>
 
-              <img
-                src={post.logo}
-                alt={post.team}
-                className="w-12 h-12 object-contain"
-              />
+              </div>
 
-              <div>
+              {/* CONTENT */}
+              <div className="p-4">
 
-                <h2 className="font-bold text-lg">
-                  {post.team}
-                </h2>
-
-                <p className="text-gray-500 text-sm">
-                  {post.time}
+                <p className="text-gray-300 leading-7 mb-4 text-base">
+                  {post.text}
                 </p>
+
+                {/* IMAGE — NO HOVER EFFECT AT ALL */}
+                <div className="overflow-hidden rounded-lg border border-white/5">
+                  <img
+                    src={post.image}
+                    alt="post"
+                    className="w-full block"
+                  />
+                </div>
+
+                {/* ACTION */}
+                <div className="mt-4 flex justify-end">
+
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                      bg-orange-500/90
+                      hover:bg-orange-500
+                      px-4 py-2
+                      rounded-lg
+                      font-semibold
+                      text-sm
+                      transition
+                      shadow-[0_0_15px_rgba(255,140,0,0.10)]
+                    "
+                  >
+                    Open Post
+                  </a>
+
+                </div>
 
               </div>
 
             </div>
+          ))}
 
-            {/* TEXT */}
-            <div className="p-5">
-
-              <p className="text-gray-300 text-lg mb-5">
-                {post.text}
-              </p>
-
-              {/* IMAGE */}
-              <img
-                src={post.image}
-                alt="post"
-                className="rounded-xl border border-gray-800 w-full"
-              />
-
-              {/* BUTTON */}
-              <a
-                href={post.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block mt-5 bg-orange-500 hover:bg-orange-600 transition px-5 py-3 rounded-xl font-semibold"
-              >
-                Open Post
-              </a>
-
-            </div>
-
-          </div>
-        ))}
+        </div>
 
       </div>
     </div>
