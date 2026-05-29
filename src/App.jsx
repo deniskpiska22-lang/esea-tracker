@@ -1446,7 +1446,7 @@ function App() {
 
           <div className="flex items-center gap-2">
 
-            {/* SEARCH BUTTON */}
+            {/* SEARCH ICON */}
             <button
               onClick={() => setShowSearch(true)}
               className="
@@ -1558,9 +1558,17 @@ function App() {
 
       {/* SEARCH OVERLAY */}
       {showSearch && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center pt-32">
-
-          <div className="w-full max-w-xl bg-[#0b0f14] border border-white/10 rounded-2xl overflow-hidden">
+        <div
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center pt-32"
+          onClick={() => {
+            setShowSearch(false)
+            setSearch("")
+          }}
+        >
+          <div
+            className="w-full max-w-xl bg-[#0b0f14] border border-white/10 rounded-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
 
             <input
               autoFocus
@@ -1602,8 +1610,14 @@ function App() {
 
       {/* MODAL */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50">
-          <div className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3">
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50"
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3"
+            onClick={(e) => e.stopPropagation()}
+          >
 
             <h2 className="text-lg font-bold mb-2">Submit Team</h2>
 
