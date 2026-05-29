@@ -1426,14 +1426,14 @@ function App() {
 
             <button
               onClick={() => setShowSearch(true)}
-              className="p-2 rounded-lg bg-[#0f131a] border border-white/5 text-gray-400 hover:text-white"
+              className="p-2 rounded-lg bg-[#0f131a] border border-white/5 text-gray-400 hover:text-white hover:bg-[#121a25] transition"
             >
               🔍
             </button>
 
             <button
               onClick={() => setShowModal(true)}
-              className="bg-[#0f131a] border border-white/5 text-gray-300 px-4 py-2 rounded-lg text-sm"
+              className="bg-[#0f131a] border border-white/5 text-gray-300 px-4 py-2 rounded-lg text-sm hover:bg-[#121a25] hover:text-white transition"
             >
               Submit Team
             </button>
@@ -1448,7 +1448,7 @@ function App() {
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
 
-            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] p-4 text-gray-400 text-sm font-semibold">
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] p-4 text-gray-400 text-sm font-semibold rounded-xl border border-white/5">
               <div>Rank</div>
               <div>Team</div>
               <div>Points</div>
@@ -1489,12 +1489,18 @@ function App() {
                     to={`/teams/${team.slug}`}
                     className="
                       group grid grid-cols-[80px_2fr_170px_120px_140px]
-                      p-4 bg-[#0c1016]
+                      items-center
+                      p-4
+                      bg-[#0c1016]
                       border border-white/5
                       rounded-xl
-                      transition-all
+                      relative overflow-hidden
+                      transition-all duration-300
                       hover:-translate-y-[3px]
                       hover:bg-[#121a25]
+                      hover:border-orange-500/20
+                      hover:shadow-[0_18px_45px_rgba(0,0,0,0.75)]
+                      hover:z-10
                     "
                   >
 
@@ -1507,7 +1513,7 @@ function App() {
                     <div className="flex items-center gap-3 min-w-0">
                       <img src={team.flag} className="w-5 h-5" />
                       <img src={team.logo} className="w-9 h-9" />
-                      <span className="truncate font-semibold">
+                      <span className="truncate font-semibold group-hover:text-orange-400 transition">
                         {team.name}
                       </span>
                     </div>
@@ -1524,7 +1530,7 @@ function App() {
                     </div>
 
                     {/* DIVISION */}
-                    <div className="text-orange-400">
+                    <div className="text-orange-400 font-medium">
                       {team.division}
                     </div>
 
@@ -1555,7 +1561,7 @@ function App() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={handleSearchKey}
-              className="w-full p-4 bg-[#0f131a] text-white"
+              className="w-full p-4 bg-[#0f131a] text-white outline-none"
               placeholder="Search team..."
             />
           </div>
@@ -1575,7 +1581,7 @@ function App() {
             <h2 className="text-lg mb-2">Submit Team</h2>
 
             <input
-              className="w-full p-2 mb-2"
+              className="w-full p-2 mb-2 bg-[#121a25] rounded"
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
@@ -1583,7 +1589,7 @@ function App() {
 
             <button
               onClick={submitTeam}
-              className="bg-orange-500 w-full py-2 rounded"
+              className="bg-orange-500 w-full py-2 rounded hover:bg-orange-600 transition"
             >
               Send
             </button>
