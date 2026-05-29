@@ -1456,18 +1456,24 @@ function App() {
                 <Link
                   key={team.slug}
                   to={`/teams/${team.slug}`}
-                  className={`
+                  className="
+                    group
                     grid grid-cols-[80px_2fr_170px_120px_140px]
                     items-center p-4
                     bg-[#0c1016]
                     border border-white/5
                     rounded-xl
+                    relative
+                    overflow-hidden
+
                     transition-all duration-300
+
+                    hover:-translate-y-[3px]
                     hover:bg-[#121a25]
                     hover:border-orange-500/20
-                    hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)]
-                    relative overflow-hidden
-                  `}
+                    hover:shadow-[0_18px_45px_rgba(0,0,0,0.75)]
+                    hover:z-10
+                  "
                 >
 
                   {/* glow line */}
@@ -1482,7 +1488,7 @@ function App() {
                   <div className="flex items-center gap-3 min-w-0">
                     <img src={team.flag} className="w-5 h-5" />
                     <img src={team.logo} className="w-9 h-9" />
-                    <span className="truncate font-semibold hover:text-orange-400 transition">
+                    <span className="truncate font-semibold group-hover:text-orange-400 transition">
                       {team.name}
                     </span>
                   </div>
