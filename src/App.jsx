@@ -1401,11 +1401,26 @@ function App() {
           </div>
 
           <button
-            onClick={() => setShowModal(true)}
-            className="bg-orange-500/90 hover:bg-orange-500 transition px-4 py-2 rounded-lg text-sm font-semibold shadow-[0_0_25px_rgba(255,140,0,0.15)]"
-          >
-            Submit Team
-          </button>
+  onClick={() => setShowModal(true)}
+  className="
+    bg-[#0f131a]
+    border border-white/5
+    text-gray-300
+    px-4 py-2
+    rounded-lg
+    text-sm font-semibold
+
+    transition-all duration-300
+
+    hover:text-white
+    hover:border-orange-500/30
+    hover:bg-[#121a25]
+    hover:-translate-y-[2px]
+    hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
+  "
+>
+  Submit Team
+</button>
 
         </div>
       </nav>
