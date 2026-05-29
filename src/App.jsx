@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
 
@@ -1390,28 +1390,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
-        e.preventDefault()
-        setShowSearch(true)
-      }
-
-      if (e.ctrlKey && e.key.toLowerCase() === "k") {
-        e.preventDefault()
-        setShowSearch(true)
-      }
-
-      if (e.key === "Escape") {
-        setShowSearch(false)
-        setSearch("")
-      }
-    }
-
-    window.addEventListener("keydown", onKeyDown)
-    return () => window.removeEventListener("keydown", onKeyDown)
-  }, [])
-
   return (
     <div className="min-h-screen text-white bg-[#05070a]">
 
@@ -1446,42 +1424,16 @@ function App() {
 
           <div className="flex items-center gap-2">
 
-            {/* SEARCH ICON */}
             <button
               onClick={() => setShowSearch(true)}
-              className="
-                p-2 rounded-lg
-                bg-[#0f131a]
-                border border-white/5
-                text-gray-400
-                hover:text-white
-                hover:border-orange-500/30
-                hover:bg-[#121a25]
-                hover:-translate-y-[2px]
-                hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
-                transition-all duration-300
-              "
+              className="p-2 rounded-lg bg-[#0f131a] border border-white/5 text-gray-400 hover:text-white"
             >
               🔍
             </button>
 
-            {/* SUBMIT */}
             <button
               onClick={() => setShowModal(true)}
-              className="
-                bg-[#0f131a]
-                border border-white/5
-                text-gray-300
-                px-4 py-2
-                rounded-lg
-                text-sm font-semibold
-                transition-all duration-300
-                hover:text-white
-                hover:border-orange-500/30
-                hover:bg-[#121a25]
-                hover:-translate-y-[2px]
-                hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
-              "
+              className="bg-[#0f131a] border border-white/5 text-gray-300 px-4 py-2 rounded-lg text-sm"
             >
               Submit Team
             </button>
@@ -1490,13 +1442,13 @@ function App() {
         </div>
       </nav>
 
-      {/* CONTENT */}
+      {/* TABLE */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
 
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
 
-            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] border border-white/5 p-4 text-gray-400 text-sm font-semibold uppercase tracking-wide rounded-xl">
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] p-4 text-gray-400 text-sm font-semibold">
               <div>Rank</div>
               <div>Team</div>
               <div>Points</div>
@@ -1505,105 +1457,107 @@ function App() {
             </div>
 
             <div className="space-y-2 mt-3">
-              {sortedTeams.map((team, index) => (
-                <Link
-                  key={team.slug}
-                  to={`/teams/${team.slug}`}
-                  className="
-                    group
-                    grid grid-cols-[80px_2fr_170px_120px_140px]
-                    items-center p-4
-                    bg-[#0c1016]
-                    border border-white/5
-                    rounded-xl
-                    relative overflow-hidden
-                    transition-all duration-300
-                    hover:-translate-y-[3px]
-                    hover:bg-[#121a25]
-                    hover:border-orange-500/20
-                    hover:shadow-[0_18px_45px_rgba(0,0,0,0.75)]
-                    hover:z-10
-                  "
-                >
-                  <div className="text-orange-400 font-bold">
-                    #{index + 1}
-                  </div>
+              {sortedTeams.map((team, index) => {
 
-                  <div className="flex items-center gap-3 min-w-0">
-                    <img src={team.flag} className="w-5 h-5" />
-                    <img src={team.logo} className="w-9 h-9" />
-                    <span className="truncate font-semibold group-hover:text-orange-400 transition">
-                      {team.name}
+                const change = team.change ?? 0
+
+                let indicator = null
+
+                if (change > 0) {
+                  indicator = (
+                    <span className="ml-2 text-green-400 text-xs">
+                      ▲ +{change}
                     </span>
-                  </div>
+                  )
+                } else if (change < 0) {
+                  indicator = (
+                    <span className="ml-2 text-red-400 text-xs">
+                      ▼ {change}
+                    </span>
+                  )
+                } else {
+                  indicator = (
+                    <span className="ml-2 text-gray-500 text-xs">
+                      •
+                    </span>
+                  )
+                }
 
-                  <div className="font-semibold">
-                    {team.points}
-                  </div>
+                return (
+                  <Link
+                    key={team.slug}
+                    to={`/teams/${team.slug}`}
+                    className="
+                      group grid grid-cols-[80px_2fr_170px_120px_140px]
+                      p-4 bg-[#0c1016]
+                      border border-white/5
+                      rounded-xl
+                      transition-all
+                      hover:-translate-y-[3px]
+                      hover:bg-[#121a25]
+                    "
+                  >
 
-                  <div className="text-gray-300">
-                    {team.record}
-                  </div>
+                    {/* RANK */}
+                    <div className="text-orange-400 font-bold">
+                      #{index + 1}
+                    </div>
 
-                  <div className="text-orange-400 font-medium">
-                    {team.division}
-                  </div>
-                </Link>
-              ))}
+                    {/* TEAM */}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img src={team.flag} className="w-5 h-5" />
+                      <img src={team.logo} className="w-9 h-9" />
+                      <span className="truncate font-semibold">
+                        {team.name}
+                      </span>
+                    </div>
+
+                    {/* POINTS + CHANGE */}
+                    <div className="font-semibold flex items-center">
+                      {team.points}
+                      {indicator}
+                    </div>
+
+                    {/* RECORD */}
+                    <div className="text-gray-300">
+                      {team.record}
+                    </div>
+
+                    {/* DIVISION */}
+                    <div className="text-orange-400">
+                      {team.division}
+                    </div>
+
+                  </Link>
+                )
+              })}
             </div>
 
           </div>
         </div>
       </div>
 
-      {/* SEARCH OVERLAY */}
+      {/* SEARCH */}
       {showSearch && (
         <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center pt-32"
+          className="fixed inset-0 bg-black/70 flex items-start justify-center pt-32"
           onClick={() => {
             setShowSearch(false)
             setSearch("")
           }}
         >
           <div
-            className="w-full max-w-xl bg-[#0b0f14] border border-white/10 rounded-2xl overflow-hidden"
+            className="w-full max-w-xl bg-[#0b0f14] rounded-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-
             <input
               autoFocus
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={handleSearchKey}
+              className="w-full p-4 bg-[#0f131a] text-white"
               placeholder="Search team..."
-              className="w-full p-4 bg-[#0f131a] text-white outline-none border-b border-white/10"
             />
-
-            <div className="max-h-[300px] overflow-y-auto">
-              {sortedTeams
-                .filter((t) =>
-                  t.name.toLowerCase().includes(search.toLowerCase())
-                )
-                .slice(0, 8)
-                .map((team) => (
-                  <div
-                    key={team.slug}
-                    onClick={() => {
-                      navigate(`/teams/${team.slug}`)
-                      setShowSearch(false)
-                      setSearch("")
-                    }}
-                    className="flex items-center gap-3 p-3 hover:bg-[#121a25] cursor-pointer"
-                  >
-                    <img src={team.logo} className="w-7 h-7" />
-                    <span>{team.name}</span>
-                    <span className="ml-auto text-gray-400 text-sm">
-                      {team.points} pts
-                    </span>
-                  </div>
-                ))}
-            </div>
-
           </div>
         </div>
       )}
@@ -1611,38 +1565,20 @@ function App() {
       {/* MODAL */}
       {showModal && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center"
           onClick={() => setShowModal(false)}
         >
           <div
-            className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3"
+            className="bg-[#0b0f14] p-6 rounded-xl w-[400px]"
             onClick={(e) => e.stopPropagation()}
           >
+            <h2 className="text-lg mb-2">Submit Team</h2>
 
-            <h2 className="text-lg font-bold mb-2">Submit Team</h2>
-
-            <input className="w-full p-2 bg-[#121a25] rounded"
+            <input
+              className="w-full p-2 mb-2"
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
-            />
-
-            <input className="w-full p-2 bg-[#121a25] rounded"
-              placeholder="FACEIT Link"
-              value={faceitLink}
-              onChange={(e) => setFaceitLink(e.target.value)}
-            />
-
-            <input className="w-full p-2 bg-[#121a25] rounded"
-              placeholder="Contact"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-            />
-
-            <textarea className="w-full p-2 bg-[#121a25] rounded"
-              placeholder="Note"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
             />
 
             <button
@@ -1651,7 +1587,6 @@ function App() {
             >
               Send
             </button>
-
           </div>
         </div>
       )}
