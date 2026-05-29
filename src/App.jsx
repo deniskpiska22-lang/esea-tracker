@@ -1369,11 +1369,11 @@ function App() {
       : sortedTeams.filter((team) => team.division === selectedDivision)
 
   return (
-    <div className="bg-gradient-to-b from-[#07090c] to-[#05070a] min-h-screen text-white">
+    <div className="min-h-screen text-white bg-[#05070a]">
 
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 bg-[#0b0f14]/70 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <nav className="sticky top-0 z-50 bg-[#0b0f14]/60 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
 
           <Link
             to="/"
@@ -1382,14 +1382,14 @@ function App() {
             Esea Tracker
           </Link>
 
-          <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
+          <div className="flex gap-6 text-sm">
             {["/", "/Media", "/about"].map((path) => (
               <Link
                 key={path}
                 to={path}
                 className={`transition ${
                   isActive(path)
-                    ? "text-white border-b-2 border-orange-500 pb-1"
+                    ? "text-white border-b border-orange-500"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
@@ -1402,7 +1402,7 @@ function App() {
 
           <button
             onClick={() => setShowModal(true)}
-            className="bg-orange-500 hover:bg-orange-600 transition px-4 py-2 rounded-lg text-sm font-semibold shadow-lg hover:shadow-orange-500/20"
+            className="bg-orange-500/90 hover:bg-orange-500 transition px-4 py-2 rounded-lg text-sm font-semibold shadow-[0_0_25px_rgba(255,140,0,0.15)]"
           >
             Submit Team
           </button>
@@ -1426,8 +1426,8 @@ function App() {
                 onClick={() => setSelectedDivision(division)}
                 className={`px-4 py-2 rounded-lg border transition text-sm ${
                   selectedDivision === division
-                    ? "bg-orange-500 border-orange-500 text-white"
-                    : "bg-[#0f141a] border-gray-800 text-gray-400 hover:text-white hover:bg-[#141922]"
+                    ? "bg-orange-500 border-orange-500 text-white shadow-[0_0_20px_rgba(255,140,0,0.15)]"
+                    : "bg-[#0f131a] border-white/5 text-gray-400 hover:text-white hover:bg-[#111826]"
                 }`}
               >
                 {division}
@@ -1436,10 +1436,12 @@ function App() {
           </div>
         </div>
 
-        {/* HEADER */}
+        {/* TABLE */}
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
-            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#121824] p-4 text-gray-400 text-sm font-semibold uppercase tracking-wide rounded-t-xl border border-gray-800">
+
+            {/* HEADER */}
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] border border-white/5 p-4 text-gray-400 text-sm font-semibold uppercase tracking-wide rounded-xl">
               <div>Rank</div>
               <div>Team</div>
               <div className="pl-4">Points</div>
@@ -1448,7 +1450,7 @@ function App() {
             </div>
 
             {/* ROWS */}
-            <div className="space-y-2 mt-2">
+            <div className="space-y-2 mt-3">
 
               {filteredTeams.map((team, index) => (
                 <Link
@@ -1457,22 +1459,22 @@ function App() {
                   className={`
                     grid grid-cols-[80px_2fr_170px_120px_140px]
                     items-center p-4
-                    bg-[#0f141a]
-                    border border-gray-800/60
+                    bg-[#0c1016]
+                    border border-white/5
                     rounded-xl
                     transition-all duration-300
-                    hover:bg-[#151c26]
-                    hover:border-orange-500/30
-                    hover:shadow-[0_0_25px_rgba(0,0,0,0.7)]
+                    hover:bg-[#121a25]
+                    hover:border-orange-500/20
+                    hover:shadow-[0_10px_30px_rgba(0,0,0,0.6)]
                     relative overflow-hidden
                   `}
                 >
 
-                  {/* left glow line */}
-                  <div className="absolute left-0 top-0 h-full w-[2px] bg-orange-500 opacity-0 hover:opacity-100 transition" />
+                  {/* glow line */}
+                  <div className="absolute left-0 top-0 h-full w-[2px] bg-orange-500 opacity-0 group-hover:opacity-100 transition" />
 
                   {/* RANK */}
-                  <div className="font-bold text-orange-400">
+                  <div className="text-orange-400 font-bold">
                     #{index + 1}
                   </div>
 
@@ -1523,31 +1525,31 @@ function App() {
 
       {/* MODAL */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50">
 
-          <div className="bg-[#0f141a] border border-gray-800 rounded-2xl p-6 w-[400px] space-y-3">
+          <div className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3 shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
 
             <h2 className="text-lg font-bold mb-2">Submit Team</h2>
 
-            <input className="w-full p-2 bg-[#141922] rounded"
+            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
             />
 
-            <input className="w-full p-2 bg-[#141922] rounded"
+            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
               placeholder="FACEIT Link"
               value={faceitLink}
               onChange={(e) => setFaceitLink(e.target.value)}
             />
 
-            <input className="w-full p-2 bg-[#141922] rounded"
+            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
               placeholder="Contact"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
 
-            <textarea className="w-full p-2 bg-[#141922] rounded"
+            <textarea className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
               placeholder="Note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
@@ -1556,14 +1558,14 @@ function App() {
             <div className="flex gap-2">
               <button
                 onClick={submitTeam}
-                className="bg-orange-500 hover:bg-orange-600 w-full py-2 rounded transition"
+                className="bg-orange-500 hover:bg-orange-600 w-full py-2 rounded transition shadow-[0_0_20px_rgba(255,140,0,0.15)]"
               >
                 Send
               </button>
 
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-700 hover:bg-gray-600 w-full py-2 rounded transition"
+                className="bg-white/5 hover:bg-white/10 w-full py-2 rounded transition"
               >
                 Cancel
               </button>
