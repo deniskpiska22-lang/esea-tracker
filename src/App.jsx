@@ -1,5 +1,6 @@
-import { Link, useLocation } from "react-router-dom"
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+
 
 const teams = [
   {
@@ -1322,6 +1323,7 @@ const teams = [
 
 function App() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const [selectedDivision, setSelectedDivision] = useState("All")
   const [showModal, setShowModal] = useState(false)
@@ -1330,6 +1332,9 @@ function App() {
   const [faceitLink, setFaceitLink] = useState("")
   const [contact, setContact] = useState("")
   const [note, setNote] = useState("")
+
+  const [search, setSearch] = useState("")
+  const [showSearch, setShowSearch] = useState(false)
 
   const isActive = (path) => location.pathname === path
 
@@ -1361,12 +1366,51 @@ function App() {
     }
   }
 
-  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
+  const sortedTeams = useMemo(
+    () => [...teams].sort((a, b) => b.points - a.points),
+    []
+  )
 
-  const filteredTeams =
-    selectedDivision === "All"
-      ? sortedTeams
-      : sortedTeams.filter((team) => team.division === selectedDivision)
+  const handleSearchKey = (e) => {
+    if (e.key === "Enter" && search.trim()) {
+      const found = sortedTeams.find((t) =>
+        t.name.toLowerCase().includes(search.toLowerCase())
+      )
+
+      if (found) {
+        navigate(`/teams/${found.slug}`)
+        setShowSearch(false)
+        setSearch("")
+      }
+    }
+
+    if (e.key === "Escape") {
+      setShowSearch(false)
+      setSearch("")
+    }
+  }
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+        e.preventDefault()
+        setShowSearch(true)
+      }
+
+      if (e.ctrlKey && e.key.toLowerCase() === "k") {
+        e.preventDefault()
+        setShowSearch(true)
+      }
+
+      if (e.key === "Escape") {
+        setShowSearch(false)
+        setSearch("")
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [])
 
   return (
     <div className="min-h-screen text-white bg-[#05070a]">
@@ -1400,74 +1444,68 @@ function App() {
             ))}
           </div>
 
-          <button
-  onClick={() => setShowModal(true)}
-  className="
-    bg-[#0f131a]
-    border border-white/5
-    text-gray-300
-    px-4 py-2
-    rounded-lg
-    text-sm font-semibold
+          <div className="flex items-center gap-2">
 
-    transition-all duration-300
+            {/* SEARCH BUTTON */}
+            <button
+              onClick={() => setShowSearch(true)}
+              className="
+                p-2 rounded-lg
+                bg-[#0f131a]
+                border border-white/5
+                text-gray-400
+                hover:text-white
+                hover:border-orange-500/30
+                hover:bg-[#121a25]
+                hover:-translate-y-[2px]
+                hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
+                transition-all duration-300
+              "
+            >
+              🔍
+            </button>
 
-    hover:text-white
-    hover:border-orange-500/30
-    hover:bg-[#121a25]
-    hover:-translate-y-[2px]
-    hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
-  "
->
-  Submit Team
-</button>
+            {/* SUBMIT */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="
+                bg-[#0f131a]
+                border border-white/5
+                text-gray-300
+                px-4 py-2
+                rounded-lg
+                text-sm font-semibold
+                transition-all duration-300
+                hover:text-white
+                hover:border-orange-500/30
+                hover:bg-[#121a25]
+                hover:-translate-y-[2px]
+                hover:shadow-[0_10px_30px_rgba(255,140,0,0.12)]
+              "
+            >
+              Submit Team
+            </button>
 
+          </div>
         </div>
       </nav>
 
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-
-          <h2 className="text-2xl md:text-4xl font-bold">
-            CIS Team Rankings ESEA
-          </h2>
-
-          <div className="flex flex-wrap gap-2">
-            {["All", "Advanced", "Main", "Intermediate", "Entry"].map((division) => (
-              <button
-                key={division}
-                onClick={() => setSelectedDivision(division)}
-                className={`px-4 py-2 rounded-lg border transition text-sm ${
-                  selectedDivision === division
-                    ? "bg-orange-500 border-orange-500 text-white shadow-[0_0_20px_rgba(255,140,0,0.15)]"
-                    : "bg-[#0f131a] border-white/5 text-gray-400 hover:text-white hover:bg-[#111826]"
-                }`}
-              >
-                {division}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* TABLE */}
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
 
-            {/* HEADER */}
             <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] border border-white/5 p-4 text-gray-400 text-sm font-semibold uppercase tracking-wide rounded-xl">
               <div>Rank</div>
               <div>Team</div>
-              <div className="pl-4">Points</div>
-              <div className="pl-2">Record</div>
+              <div>Points</div>
+              <div>Record</div>
               <div>Division</div>
             </div>
 
-            {/* ROWS */}
             <div className="space-y-2 mt-3">
-
-              {filteredTeams.map((team, index) => (
+              {sortedTeams.map((team, index) => (
                 <Link
                   key={team.slug}
                   to={`/teams/${team.slug}`}
@@ -1478,11 +1516,8 @@ function App() {
                     bg-[#0c1016]
                     border border-white/5
                     rounded-xl
-                    relative
-                    overflow-hidden
-
+                    relative overflow-hidden
                     transition-all duration-300
-
                     hover:-translate-y-[3px]
                     hover:bg-[#121a25]
                     hover:border-orange-500/20
@@ -1490,16 +1525,10 @@ function App() {
                     hover:z-10
                   "
                 >
-
-                  {/* glow line */}
-                  <div className="absolute left-0 top-0 h-full w-[2px] bg-orange-500 opacity-0 group-hover:opacity-100 transition" />
-
-                  {/* RANK */}
                   <div className="text-orange-400 font-bold">
                     #{index + 1}
                   </div>
 
-                  {/* TEAM */}
                   <div className="flex items-center gap-3 min-w-0">
                     <img src={team.flag} className="w-5 h-5" />
                     <img src={team.logo} className="w-9 h-9" />
@@ -1508,89 +1537,106 @@ function App() {
                     </span>
                   </div>
 
-                  {/* POINTS */}
-                  <div className="flex gap-2 pl-4">
-                    <span className="font-semibold">{team.points}</span>
-
-                    {team.change > 0 && (
-                      <span className="text-green-400">▲ +{team.change}</span>
-                    )}
-
-                    {team.change < 0 && (
-                      <span className="text-red-400">▼ {team.change}</span>
-                    )}
-
-                    {team.change === 0 && (
-                      <span className="text-gray-500">—</span>
-                    )}
+                  <div className="font-semibold">
+                    {team.points}
                   </div>
 
-                  {/* RECORD */}
-                  <div className="text-gray-300 pl-2">
+                  <div className="text-gray-300">
                     {team.record}
                   </div>
 
-                  {/* DIVISION */}
                   <div className="text-orange-400 font-medium">
                     {team.division}
                   </div>
-
                 </Link>
               ))}
-
             </div>
+
           </div>
         </div>
-
       </div>
+
+      {/* SEARCH OVERLAY */}
+      {showSearch && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center pt-32">
+
+          <div className="w-full max-w-xl bg-[#0b0f14] border border-white/10 rounded-2xl overflow-hidden">
+
+            <input
+              autoFocus
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleSearchKey}
+              placeholder="Search team..."
+              className="w-full p-4 bg-[#0f131a] text-white outline-none border-b border-white/10"
+            />
+
+            <div className="max-h-[300px] overflow-y-auto">
+              {sortedTeams
+                .filter((t) =>
+                  t.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .slice(0, 8)
+                .map((team) => (
+                  <div
+                    key={team.slug}
+                    onClick={() => {
+                      navigate(`/teams/${team.slug}`)
+                      setShowSearch(false)
+                      setSearch("")
+                    }}
+                    className="flex items-center gap-3 p-3 hover:bg-[#121a25] cursor-pointer"
+                  >
+                    <img src={team.logo} className="w-7 h-7" />
+                    <span>{team.name}</span>
+                    <span className="ml-auto text-gray-400 text-sm">
+                      {team.points} pts
+                    </span>
+                  </div>
+                ))}
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50">
-
-          <div className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3 shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
+          <div className="bg-[#0b0f14] border border-white/5 rounded-2xl p-6 w-[400px] space-y-3">
 
             <h2 className="text-lg font-bold mb-2">Submit Team</h2>
 
-            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
+            <input className="w-full p-2 bg-[#121a25] rounded"
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
             />
 
-            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
+            <input className="w-full p-2 bg-[#121a25] rounded"
               placeholder="FACEIT Link"
               value={faceitLink}
               onChange={(e) => setFaceitLink(e.target.value)}
             />
 
-            <input className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
+            <input className="w-full p-2 bg-[#121a25] rounded"
               placeholder="Contact"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
 
-            <textarea className="w-full p-2 bg-[#121a25] border border-white/5 rounded"
+            <textarea className="w-full p-2 bg-[#121a25] rounded"
               placeholder="Note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
 
-            <div className="flex gap-2">
-              <button
-                onClick={submitTeam}
-                className="bg-orange-500 hover:bg-orange-600 w-full py-2 rounded transition shadow-[0_0_20px_rgba(255,140,0,0.15)]"
-              >
-                Send
-              </button>
-
-              <button
-                onClick={() => setShowModal(false)}
-                className="bg-white/5 hover:bg-white/10 w-full py-2 rounded transition"
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              onClick={submitTeam}
+              className="bg-orange-500 w-full py-2 rounded"
+            >
+              Send
+            </button>
 
           </div>
         </div>
