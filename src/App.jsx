@@ -1336,7 +1336,14 @@ function App() {
   const [search, setSearch] = useState("")
   const [showSearch, setShowSearch] = useState(false)
 
+  const searchRef = useRef(null)
+
   const isActive = (path) => location.pathname === path
+
+  const sortedTeams = useMemo(
+    () => [...teams].sort((a, b) => b.points - a.points),
+    []
+  )
 
   const submitTeam = async () => {
     try {
@@ -1366,11 +1373,7 @@ function App() {
     }
   }
 
-  const sortedTeams = useMemo(
-    () => [...teams].sort((a, b) => b.points - a.points),
-    []
-  )
-
+  // ENTER + ESC
   const handleSearchKey = (e) => {
     if (e.key === "Enter" && search.trim()) {
       const found = sortedTeams.find((t) =>
@@ -1389,6 +1392,31 @@ function App() {
       setSearch("")
     }
   }
+
+  // OUTSIDE CLICK + ESC
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") {
+        setShowSearch(false)
+        setSearch("")
+      }
+    }
+
+    const handleClick = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowSearch(false)
+        setSearch("")
+      }
+    }
+
+    window.addEventListener("keydown", handleKey)
+    window.addEventListener("mousedown", handleClick)
+
+    return () => {
+      window.removeEventListener("keydown", handleKey)
+      window.removeEventListener("mousedown", handleClick)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen text-white bg-[#05070a]">
@@ -1424,6 +1452,7 @@ function App() {
 
           <div className="flex items-center gap-2">
 
+            {/* SEARCH BUTTON */}
             <button
               onClick={() => setShowSearch(true)}
               className="p-2 rounded-lg bg-[#0f131a] border border-white/5 text-gray-400 hover:text-white hover:bg-[#121a25] transition"
@@ -1442,9 +1471,8 @@ function App() {
         </div>
       </nav>
 
-      {/* TABLE */}
+      {/* TABLE (UNCHANGED) */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
-
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
 
@@ -1461,7 +1489,9 @@ function App() {
 
                 const change = team.change ?? 0
 
-                let indicator = null
+                let indicator = (
+                  <span className="ml-2 text-gray-500 text-xs">•</span>
+                )
 
                 if (change > 0) {
                   indicator = (
@@ -1473,12 +1503,6 @@ function App() {
                   indicator = (
                     <span className="ml-2 text-red-400 text-xs">
                       ▼ {change}
-                    </span>
-                  )
-                } else {
-                  indicator = (
-                    <span className="ml-2 text-gray-500 text-xs">
-                      •
                     </span>
                   )
                 }
@@ -1504,12 +1528,10 @@ function App() {
                     "
                   >
 
-                    {/* RANK */}
                     <div className="text-orange-400 font-bold">
                       #{index + 1}
                     </div>
 
-                    {/* TEAM */}
                     <div className="flex items-center gap-3 min-w-0">
                       <img src={team.flag} className="w-5 h-5" />
                       <img src={team.logo} className="w-9 h-9" />
@@ -1518,18 +1540,15 @@ function App() {
                       </span>
                     </div>
 
-                    {/* POINTS + CHANGE */}
                     <div className="font-semibold flex items-center">
                       {team.points}
                       {indicator}
                     </div>
 
-                    {/* RECORD */}
                     <div className="text-gray-300">
                       {team.record}
                     </div>
 
-                    {/* DIVISION */}
                     <div className="text-orange-400 font-medium">
                       {team.division}
                     </div>
@@ -1543,32 +1562,87 @@ function App() {
         </div>
       </div>
 
-      {/* SEARCH */}
+      {/* SEARCH (CENTER MODAL - HLTV STYLE) */}
       {showSearch && (
         <div
-          className="fixed inset-0 bg-black/70 flex items-start justify-center pt-32"
+          className="fixed inset-0 bg-black/70 flex items-start justify-center pt-28 z-50"
           onClick={() => {
             setShowSearch(false)
             setSearch("")
           }}
         >
           <div
-            className="w-full max-w-xl bg-[#0b0f14] rounded-2xl"
+            ref={searchRef}
+            className="w-full max-w-2xl bg-[#0b0f14] border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <input
-              autoFocus
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={handleSearchKey}
-              className="w-full p-4 bg-[#0f131a] text-white outline-none"
-              placeholder="Search team..."
-            />
+
+            {/* INPUT */}
+            <div className="p-4 border-b border-white/5">
+              <input
+                autoFocus
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={handleSearchKey}
+                placeholder="Search teams..."
+                className="w-full p-3 bg-[#0f131a] text-white outline-none rounded-lg"
+              />
+            </div>
+
+            {/* RESULTS */}
+            <div className="max-h-[400px] overflow-y-auto">
+
+              {sortedTeams
+                .filter((t) =>
+                  t.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .slice(0, 8)
+                .map((team) => (
+                  <div
+                    key={team.slug}
+                    onClick={() => {
+                      navigate(`/teams/${team.slug}`)
+                      setShowSearch(false)
+                      setSearch("")
+                    }}
+                    className="
+                      flex items-center gap-3 p-3
+                      hover:bg-[#121a25]
+                      cursor-pointer
+                      transition
+                      border-b border-white/5
+                    "
+                  >
+
+                    <img src={team.flag} className="w-5 h-5" />
+                    <img src={team.logo} className="w-8 h-8" />
+
+                    <div className="flex flex-col">
+                      <span className="text-white font-medium">
+                        {team.name}
+                      </span>
+                      <span className="text-xs text-gray-400">
+                        {team.division} • {team.points} pts
+                      </span>
+                    </div>
+
+                  </div>
+                ))}
+
+              {search && sortedTeams.filter((t) =>
+                t.name.toLowerCase().includes(search.toLowerCase())
+              ).length === 0 && (
+                <div className="p-6 text-center text-gray-500">
+                  No teams found
+                </div>
+              )}
+
+            </div>
           </div>
         </div>
       )}
 
-      {/* MODAL */}
+      {/* MODAL (UNCHANGED) */}
       {showModal && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center"
@@ -1585,6 +1659,27 @@ function App() {
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
+            />
+
+            <input
+              className="w-full p-2 mb-2 bg-[#121a25] rounded"
+              placeholder="Faceit Link"
+              value={faceitLink}
+              onChange={(e) => setFaceitLink(e.target.value)}
+            />
+
+            <input
+              className="w-full p-2 mb-2 bg-[#121a25] rounded"
+              placeholder="Contact"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+            />
+
+            <textarea
+              className="w-full p-2 mb-3 bg-[#121a25] rounded"
+              placeholder="Note"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
             />
 
             <button
