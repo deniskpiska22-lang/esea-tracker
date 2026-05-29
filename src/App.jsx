@@ -1323,105 +1323,83 @@ const teams = [
 function App() {
   const location = useLocation()
 
-  const [selectedDivision, setSelectedDivision] =
-    useState("All")
-
+  const [selectedDivision, setSelectedDivision] = useState("All")
   const [showModal, setShowModal] = useState(false)
 
-  const [teamName, setTeamName] =
-    useState("")
+  const [teamName, setTeamName] = useState("")
+  const [faceitLink, setFaceitLink] = useState("")
+  const [contact, setContact] = useState("")
+  const [note, setNote] = useState("")
 
-  const [faceitLink, setFaceitLink] =
-    useState("")
+  const isActive = (path) => location.pathname === path
 
-  const [contact, setContact] =
-    useState("")
+  const submitTeam = async () => {
+    try {
+      const response = await fetch("/api/submit-team", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          teamName,
+          faceitLink,
+          contact,
+          note,
+        }),
+      })
 
-  const [note, setNote] =
-    useState("")
+      await response.json()
 
-  const isActive = (path) =>
-    location.pathname === path
+      alert("Application sent ✅")
+      setShowModal(false)
 
-  // 🔥 SUBMIT TEAM
-const submitTeam = async () => {
-  try {
-    const response = await fetch("/api/submit-team", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        teamName,
-        faceitLink,
-        contact,
-        note,
-      }),
-    })
-
-    const data = await response.json()
-    console.log(data)
-
-    alert("Application sent ✅")
-
-    setShowModal(false)
-
-    setTeamName("")
-    setEseaLink("")
-    setContact("")
-    setNote("")
-
-  } catch (error) {
-    console.error(error)
-    alert("Something went wrong ❌")
+      setTeamName("")
+      setFaceitLink("")
+      setContact("")
+      setNote("")
+    } catch (error) {
+      console.error(error)
+      alert("Something went wrong ❌")
+    }
   }
-}
 
-  // 🔥 SORT BY POINTS
-  const sortedTeams = [...teams].sort(
-    (a, b) => b.points - a.points
-  )
+  const sortedTeams = [...teams].sort((a, b) => b.points - a.points)
 
-  // 🔥 FILTER DIVISIONS
   const filteredTeams =
     selectedDivision === "All"
       ? sortedTeams
-      : sortedTeams.filter(
-          (team) => team.division === selectedDivision
-        )
+      : sortedTeams.filter((team) => team.division === selectedDivision)
 
- return (
-  <div className="bg-[#0f1419] min-h-screen text-white overflow-x-hidden">
+  return (
+    <div className="bg-gradient-to-b from-[#07090c] to-[#05070a] min-h-screen text-white">
 
-    {/* NAVBAR */}
-    <nav className="border-b border-gray-800 bg-[#0d1117]">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* NAVBAR */}
+      <nav className="sticky top-0 z-50 bg-[#0b0f14]/70 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
-        {/* CLICKABLE LOGO */}
-        <Link
-          to="/"
-          className="text-xl md:text-2xl font-bold text-orange-500 text-center hover:text-orange-400 transition"
-        >
-          Esea Tracker
-        </Link>
+          <Link
+            to="/"
+            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
+          >
+            Esea Tracker
+          </Link>
 
           <div className="flex gap-4 md:gap-8 text-sm flex-wrap justify-center">
-
-            <Link to="/" className={`transition ${isActive("/") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
-              Rankings
-            </Link>
-
-            <Link to="/Media" className={`transition ${isActive("/Media") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
-              Media
-            </Link>
-
-            <Link to="/about" className={`transition ${isActive("/about") ? "text-white border-b-2 border-orange-500 pb-1" : "text-gray-400 hover:text-white"}`}>
-              About
-            </Link>
-
+            {["/", "/Media", "/about"].map((path) => (
+              <Link
+                key={path}
+                to={path}
+                className={`transition ${
+                  isActive(path)
+                    ? "text-white border-b-2 border-orange-500 pb-1"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {path === "/"
+                  ? "Rankings"
+                  : path.replace("/", "").replace("Media", "Media").replace("about", "About")}
+              </Link>
+            ))}
           </div>
 
-          {/* BUTTON */}
           <button
             onClick={() => setShowModal(true)}
             className="bg-orange-500 hover:bg-orange-600 transition px-4 py-2 rounded-lg text-sm font-semibold shadow-lg hover:shadow-orange-500/20"
@@ -1442,7 +1420,6 @@ const submitTeam = async () => {
           </h2>
 
           <div className="flex flex-wrap gap-2">
-
             {["All", "Advanced", "Main", "Intermediate", "Entry"].map((division) => (
               <button
                 key={division}
@@ -1450,21 +1427,19 @@ const submitTeam = async () => {
                 className={`px-4 py-2 rounded-lg border transition text-sm ${
                   selectedDivision === division
                     ? "bg-orange-500 border-orange-500 text-white"
-                    : "bg-[#1a1f26] border-gray-800 text-gray-400 hover:text-white"
+                    : "bg-[#0f141a] border-gray-800 text-gray-400 hover:text-white hover:bg-[#141922]"
                 }`}
               >
                 {division}
               </button>
             ))}
-
           </div>
         </div>
 
-        {/* TABLE */}
+        {/* HEADER */}
         <div className="overflow-x-auto">
-          <div className="bg-[#141922] rounded-xl overflow-hidden border border-gray-800 shadow-xl min-w-[1000px]">
-
-            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#1f2630] p-4 text-gray-400 font-semibold text-sm uppercase tracking-wide">
+          <div className="min-w-[1000px]">
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#121824] p-4 text-gray-400 text-sm font-semibold uppercase tracking-wide rounded-t-xl border border-gray-800">
               <div>Rank</div>
               <div>Team</div>
               <div className="pl-4">Points</div>
@@ -1472,96 +1447,132 @@ const submitTeam = async () => {
               <div>Division</div>
             </div>
 
-            {filteredTeams.map((team, index) => (
-              <Link
-                key={team.slug}
-                to={`/teams/${team.slug}`}
-                className={`grid grid-cols-[80px_2fr_170px_120px_140px] p-4 border-t border-gray-800 items-center transition ${
-                  index === 0 ? "bg-yellow-500/10" : "hover:bg-[#2a313d]"
-                }`}
-              >
+            {/* ROWS */}
+            <div className="space-y-2 mt-2">
 
-                <div>#{index + 1}</div>
+              {filteredTeams.map((team, index) => (
+                <Link
+                  key={team.slug}
+                  to={`/teams/${team.slug}`}
+                  className={`
+                    grid grid-cols-[80px_2fr_170px_120px_140px]
+                    items-center p-4
+                    bg-[#0f141a]
+                    border border-gray-800/60
+                    rounded-xl
+                    transition-all duration-300
+                    hover:bg-[#151c26]
+                    hover:border-orange-500/30
+                    hover:shadow-[0_0_25px_rgba(0,0,0,0.7)]
+                    relative overflow-hidden
+                  `}
+                >
 
-                <div className="flex items-center gap-3 min-w-0">
-                  <img src={team.flag} className="w-5 h-5" />
-                  <img src={team.logo} className="w-9 h-9" />
-                  <span className="truncate font-semibold hover:text-orange-400">
-                    {team.name}
-                  </span>
-                </div>
+                  {/* left glow line */}
+                  <div className="absolute left-0 top-0 h-full w-[2px] bg-orange-500 opacity-0 hover:opacity-100 transition" />
 
-                <div className="flex gap-2 pl-4">
-                  <span>{team.points}</span>
-                  {team.change > 0 && <span className="text-green-400">▲ +{team.change}</span>}
-                  {team.change < 0 && <span className="text-red-400">▼ {team.change}</span>}
-                  {team.change === 0 && <span className="text-gray-500">—</span>}
-                </div>
+                  {/* RANK */}
+                  <div className="font-bold text-orange-400">
+                    #{index + 1}
+                  </div>
 
-                <div className="pl-2">{team.record}</div>
+                  {/* TEAM */}
+                  <div className="flex items-center gap-3 min-w-0">
+                    <img src={team.flag} className="w-5 h-5" />
+                    <img src={team.logo} className="w-9 h-9" />
+                    <span className="truncate font-semibold hover:text-orange-400 transition">
+                      {team.name}
+                    </span>
+                  </div>
 
-                <div className="text-orange-400">{team.division}</div>
+                  {/* POINTS */}
+                  <div className="flex gap-2 pl-4">
+                    <span className="font-semibold">{team.points}</span>
 
-              </Link>
-            ))}
+                    {team.change > 0 && (
+                      <span className="text-green-400">▲ +{team.change}</span>
+                    )}
 
+                    {team.change < 0 && (
+                      <span className="text-red-400">▼ {team.change}</span>
+                    )}
+
+                    {team.change === 0 && (
+                      <span className="text-gray-500">—</span>
+                    )}
+                  </div>
+
+                  {/* RECORD */}
+                  <div className="text-gray-300 pl-2">
+                    {team.record}
+                  </div>
+
+                  {/* DIVISION */}
+                  <div className="text-orange-400 font-medium">
+                    {team.division}
+                  </div>
+
+                </Link>
+              ))}
+
+            </div>
           </div>
         </div>
 
       </div>
 
       {/* MODAL */}
-            {showModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#141922] p-6 rounded-xl w-[400px] space-y-3">
+      {showModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
 
-            <input
+          <div className="bg-[#0f141a] border border-gray-800 rounded-2xl p-6 w-[400px] space-y-3">
+
+            <h2 className="text-lg font-bold mb-2">Submit Team</h2>
+
+            <input className="w-full p-2 bg-[#141922] rounded"
               placeholder="Team Name"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
-              className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
-            <input
+            <input className="w-full p-2 bg-[#141922] rounded"
               placeholder="FACEIT Link"
               value={faceitLink}
               onChange={(e) => setFaceitLink(e.target.value)}
-              className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
-            <input
-              placeholder="Contact (Discord / Telegram)"
+            <input className="w-full p-2 bg-[#141922] rounded"
+              placeholder="Contact"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
-              className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
-            <textarea
-              placeholder="Note (optional)"
+            <textarea className="w-full p-2 bg-[#141922] rounded"
+              placeholder="Note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              className="w-full p-2 bg-[#1a1f26] rounded"
             />
 
             <div className="flex gap-2">
               <button
                 onClick={submitTeam}
-                className="bg-orange-500 hover:bg-orange-600 transition px-4 py-2 rounded w-full"
+                className="bg-orange-500 hover:bg-orange-600 w-full py-2 rounded transition"
               >
                 Send
               </button>
 
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-700 hover:bg-gray-600 transition px-4 py-2 rounded w-full"
+                className="bg-gray-700 hover:bg-gray-600 w-full py-2 rounded transition"
               >
                 Cancel
               </button>
             </div>
 
           </div>
-        </div>   
-        )}
+        </div>
+      )}
+
     </div>
   )
 }
