@@ -142,7 +142,7 @@ function About() {
                 href="mailto:deadinsidick11@mail.ru"
                 className="text-orange-400 hover:text-orange-300 transition block"
               >
-                Email → contact
+                Email → deadinsidick11@mail.ru
               </a>
 
             </div>
