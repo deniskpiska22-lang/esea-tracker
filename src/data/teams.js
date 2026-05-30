@@ -769,7 +769,7 @@ const teams = [
     matches: [],
   },
                 {
-    slug: "force -syndicate",
+    slug: "force-syndicate",
     name: "Force Syndicate",
     logo: "/logos/force.png",
     flag: "/flags/russia.svg",
@@ -886,7 +886,7 @@ const teams = [
     matches: [],
   },
                           {
-    slug: "donstu youngsters",
+    slug: "donstu-youngsters",
     name: "DONSTU YOUNGSTERS",
     logo: "/logos/donstuyoung.png",
     flag: "/flags/russia.svg",
@@ -899,7 +899,7 @@ const teams = [
     matches: [],
   },
                           {
-    slug: "quazar school",
+    slug: "quazar-school",
     name: "QUAZAR SCHOOL",
     logo: "/logos/quazarschool.png",
     flag: "/flags/russia.svg",
@@ -1409,7 +1409,7 @@ const teams = [
     slug: "critical",
     name: "Critical",
     logo: "/logos/critical.png",
-    flag: "/flags/russia.svg",
+    flag: "/flags/bel.svg",
     division: "Entry",
     stats: {
       wins: 8,

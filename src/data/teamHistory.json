@@ -42,5 +42,321 @@
   "csgopositive": [
     { "week": "2026-05-19", "rating": 308 },
     { "week": "2026-05-26", "rating": 325 }
+  ],
+    "cybercom": [
+    { "week": "2026-05-24", "rating": 100 },
+    { "week": "2026-05-31", "rating": 96 }
+  ],
+    "emlight": [
+    { "week": "2026-05-24", "rating": 101 },
+    { "week": "2026-05-31", "rating": 97 }
+  ],
+      "ronin": [
+    { "week": "2026-05-24", "rating": 102 },
+    { "week": "2026-05-31", "rating": 109 }
+  ],
+        "full-dobro": [
+    { "week": "2026-05-24", "rating": 104 },
+    { "week": "2026-05-31", "rating": 100 }
+  ],
+          "back2back": [
+    { "week": "2026-05-24", "rating": 106 },
+    { "week": "2026-05-31", "rating": 113 }
+  ],
+            "kagen": [
+    { "week": "2026-05-24", "rating": 108 },
+    { "week": "2026-05-31", "rating": 103 }
+  ],
+              "the-relics": [
+    { "week": "2026-05-24", "rating": 110 },
+    { "week": "2026-05-31", "rating": 116 }
+  ],
+                "bestaimmers": [
+    { "week": "2026-05-24", "rating": 112 },
+    { "week": "2026-05-31", "rating": 108 }
+  ],
+                "w1nks": [
+    { "week": "2026-05-24", "rating": 114 },
+    { "week": "2026-05-31", "rating": 110 }
+  ],
+                  "leetcase": [
+    { "week": "2026-05-24", "rating": 116 },
+    { "week": "2026-05-31", "rating": 132 }
+  ],
+                    "justtag": [
+    { "week": "2026-05-24", "rating": 118 },
+    { "week": "2026-05-31", "rating": 113 }
+  ],
+                      "inputlag-enjoyers": [
+    { "week": "2026-05-24", "rating": 120 },
+    { "week": "2026-05-31", "rating": 123 }
+  ],
+                        "only-gamers": [
+    { "week": "2026-05-24", "rating": 122 },
+    { "week": "2026-05-31", "rating": 129 }
+  ],
+                          "1minute": [
+    { "week": "2026-05-24", "rating": 124 },
+    { "week": "2026-05-31", "rating": 131 }
+  ],
+                            "m0nkeys": [
+    { "week": "2026-05-24", "rating": 126 },
+    { "week": "2026-05-31", "rating": 132 }
+  ],
+                            "outsiders": [
+    { "week": "2026-05-24", "rating": 128 },
+    { "week": "2026-05-31", "rating": 123 }
+  ],
+                              "kynetic": [
+    { "week": "2026-05-24", "rating": 130 },
+    { "week": "2026-05-31", "rating": 136 }
+  ],
+                                "ha-ncuxotponhbix": [
+    { "week": "2026-05-24", "rating": 132 },
+    { "week": "2026-05-31", "rating": 127 }
+  ],
+                                  "zbk": [
+    { "week": "2026-05-24", "rating": 136 },
+    { "week": "2026-05-31", "rating": 131 }
+  ],
+                                    "mephi": [
+    { "week": "2026-05-24", "rating": 138 },
+    { "week": "2026-05-31", "rating": 145 }
+  ],
+                                      "critical": [
+    { "week": "2026-05-24", "rating": 140 },
+    { "week": "2026-05-31", "rating": 158 }
+  ],
+                                        "stubborn-boys": [
+    { "week": "2026-05-24", "rating": 142 },
+    { "week": "2026-05-31", "rating": 148 }
+  ],
+                                          "sixseven": [
+    { "week": "2026-05-24", "rating": 144 },
+    { "week": "2026-05-31", "rating": 149 }
+  ],
+                                            "dodg3rs": [
+    { "week": "2026-05-24", "rating": 146 },
+    { "week": "2026-05-31", "rating": 151 }
+  ],
+                                              "unknowns": [
+    { "week": "2026-05-24", "rating": 148 },
+    { "week": "2026-05-31", "rating": 168 }
+  ],
+                                                "urat": [
+    { "week": "2026-05-24", "rating": 150 },
+    { "week": "2026-05-31", "rating": 156 }
+  ],
+                                                  "fnbet": [
+    { "week": "2026-05-24", "rating": 152 },
+    { "week": "2026-05-31", "rating": 158 }
+  ],
+        "pivstar": [
+    { "week": "2026-05-24", "rating": 154 },
+    { "week": "2026-05-31", "rating": 160 }
+  ],
+       "eca-esports": [
+    { "week": "2026-05-24", "rating": 156 },
+    { "week": "2026-05-31", "rating": 162 }
+  ],
+      "c0b0r": [
+    { "week": "2026-05-24", "rating": 158 },
+    { "week": "2026-05-31", "rating": 166 }
+  ],
+        "gsq": [
+    { "week": "2026-05-24", "rating": 160 },
+    { "week": "2026-05-31", "rating": 181 }
+  ],
+          "quazar-school": [
+    { "week": "2026-05-24", "rating": 162 },
+    { "week": "2026-05-31", "rating": 159 }
+  ],
+            "donstu-youngsters": [
+    { "week": "2026-05-24", "rating": 164 },
+    { "week": "2026-05-31", "rating": 170 }
+  ],
+              "ronins": [
+    { "week": "2026-05-24", "rating": 166 },
+    { "week": "2026-05-31", "rating": 171 }
+  ],
+                "youth4ez": [
+    { "week": "2026-05-24", "rating": 168 },
+    { "week": "2026-05-31", "rating": 165 }
+  ],
+                  "magic-fairies": [
+    { "week": "2026-05-24", "rating": 170 },
+    { "week": "2026-05-31", "rating": 177 }
+  ],
+    "ne-priehali": [
+    { "week": "2026-05-24", "rating": 172 },
+    { "week": "2026-05-31", "rating": 169 }
+  ],
+  "flame-guardians": [
+    { "week": "2026-05-24", "rating": 173 },
+    { "week": "2026-05-31", "rating": 180 }
+  ],
+   "s1wka-team": [
+    { "week": "2026-05-24", "rating": 174 },
+    { "week": "2026-05-31", "rating": 180 }
+  ],
+     "nightmare-esports": [
+    { "week": "2026-05-24", "rating": 176 },
+    { "week": "2026-05-31", "rating": 182 }
+  ],
+   "thekomyakz": [
+    { "week": "2026-05-24", "rating": 178 },
+    { "week": "2026-05-31", "rating": 184 }
+  ],
+   "posle-zavoda": [
+    { "week": "2026-05-24", "rating": 180 },
+    { "week": "2026-05-31", "rating": 187 }
+  ],
+   "fusion": [
+    { "week": "2026-05-24", "rating": 182 },
+    { "week": "2026-05-31", "rating": 186 }
+  ],
+     "eternal": [
+    { "week": "2026-05-24", "rating": 184 },
+    { "week": "2026-05-31", "rating": 190 }
+  ],
+      "smokinsexxystyle": [
+    { "week": "2026-05-24", "rating": 186 },
+    { "week": "2026-05-31", "rating": 192 }
+  ],
+     "mana": [
+    { "week": "2026-05-24", "rating": 188 },
+    { "week": "2026-05-31", "rating": 193 }
+  ],
+    "fak1e-lab": [
+    { "week": "2026-05-24", "rating": 190 },
+    { "week": "2026-05-31", "rating": 207 }
+  ],
+  "clickbate": [
+    { "week": "2026-05-24", "rating": 192 },
+    { "week": "2026-05-31", "rating": 198 }
+  ],
+   "eon": [
+    { "week": "2026-05-24", "rating": 194 },
+    { "week": "2026-05-31", "rating": 188 }
+  ],
+    "lqnely": [
+    { "week": "2026-05-24", "rating": 196 },
+    { "week": "2026-05-31", "rating": 201 }
+  ],
+    "all-eyes-on-me": [
+    { "week": "2026-05-24", "rating": 198 },
+    { "week": "2026-05-31", "rating": 205 }
+  ],
+    "force-syndicate": [
+    { "week": "2026-05-24", "rating": 200 },
+    { "week": "2026-05-31", "rating": 210 }
+  ],
+    "cerberus": [
+    { "week": "2026-05-24", "rating": 206 },
+    { "week": "2026-05-31", "rating": 209 }
+  ],
+  "homo-sapiens": [
+    { "week": "2026-05-24", "rating": 208 },
+    { "week": "2026-05-31", "rating": 224 }
+  ],
+  "dnk": [
+    { "week": "2026-05-24", "rating": 210 },
+    { "week": "2026-05-31", "rating": 216 }
+  ],
+  "aeris": [
+    { "week": "2026-05-24", "rating": 212 },
+    { "week": "2026-05-31", "rating": 218 }
+  ],
+  "fate": [
+    { "week": "2026-05-24", "rating": 214 },
+    { "week": "2026-05-31", "rating": 230 }
+  ],
+  "lanklan": [
+    { "week": "2026-05-24", "rating": 216 },
+    { "week": "2026-05-31", "rating": 232 }
+  ],
+  "goodjob": [
+    { "week": "2026-05-24", "rating": 218 },
+    { "week": "2026-05-31", "rating": 232 }
+  ],
+  "prius": [
+    { "week": "2026-05-24", "rating": 220 },
+    { "week": "2026-05-31", "rating": 235 }
+  ],
+  "vexar": [
+    { "week": "2026-05-24", "rating": 222 },
+    { "week": "2026-05-31", "rating": 235 }
+  ],
+  "lan1t": [
+    { "week": "2026-05-24", "rating": 224 },
+    { "week": "2026-05-31", "rating": 238 }
+  ],
+  "mayak-arena": [
+    { "week": "2026-05-24", "rating": 226 },
+    { "week": "2026-05-31", "rating": 239 }
+  ],
+  "weclear": [
+    { "week": "2026-05-24", "rating": 227 },
+    { "week": "2026-05-31", "rating": 240 }
+  ],
+  "teamworkers": [
+    { "week": "2026-05-24", "rating": 228 },
+    { "week": "2026-05-31", "rating": 224 }
+  ],
+  "turtles": [
+    { "week": "2026-05-24", "rating": 230 },
+    { "week": "2026-05-31", "rating": 226 }
+  ],
+  "1337": [
+    { "week": "2026-05-24", "rating": 232 },
+    { "week": "2026-05-31", "rating": 252 }
+  ],
+  "yelets-esports": [
+    { "week": "2026-05-24", "rating": 234 },
+    { "week": "2026-05-31", "rating": 244 }
+  ],
+  "3nation": [
+    { "week": "2026-05-24", "rating": 236 },
+    { "week": "2026-05-31", "rating": 246 }
+  ],
+  "sunthraw": [
+    { "week": "2026-05-24", "rating": 238 },
+    { "week": "2026-05-31", "rating": 235 }
+  ],
+  "wapa": [
+    { "week": "2026-05-24", "rating": 242 },
+    { "week": "2026-05-31", "rating": 251 }
+  ],
+  "team-ka6anbi": [
+    { "week": "2026-05-24", "rating": 246 },
+    { "week": "2026-05-31", "rating": 255 }
+  ],
+  "prem3adpotbi": [
+    { "week": "2026-05-24", "rating": 248 },
+    { "week": "2026-05-31", "rating": 255 }
+  ],
+  "aokigahara": [
+    { "week": "2026-05-24", "rating": 252 },
+    { "week": "2026-05-31", "rating": 247 }
+  ],
+  "allinners": [
+    { "week": "2026-05-24", "rating": 256 },
+    { "week": "2026-05-31", "rating": 263 }
+  ],
+  "sakura": [
+    { "week": "2026-05-24", "rating": 258 },
+    { "week": "2026-05-31", "rating": 265 }
+  ],
+  "donatrix": [
+    { "week": "2026-05-24", "rating": 260 },
+    { "week": "2026-05-31", "rating": 267 }
+  ],
+  "aeternum": [
+    { "week": "2026-05-24", "rating": 262 },
+    { "week": "2026-05-31", "rating": 259 }
+  ],
+  "z17": [
+    { "week": "2026-05-24", "rating": 264 },
+    { "week": "2026-05-31", "rating": 289 }
   ]
 }
