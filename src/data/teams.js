@@ -1718,6 +1718,19 @@ const teams = [
     players: ["Ob1ivionb0b", "painy343", "HrEp_", "05kdlord", "_makon__"],
     matches: [],
   },
+     {
+    slug: "kittadiena",
+    name: "KittaDiena",
+    logo: "/logos/kitta.png",
+    flag: "/flags/russia.svg",
+    division: "Main",
+    stats: {
+      wins: 7,
+      losses: 7,
+    },
+    players: ["GogovskY", "Gr4zzy", "skoroprime21", "AYr-0", "wakenbaker"],
+    matches: [],
+  }
 ]
 
 export default teams

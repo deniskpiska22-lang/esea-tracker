@@ -513,5 +513,8 @@
   "jumbo-team": [
     { "week": "2026-05-24", "rating": 342 },
     { "week": "2026-05-31", "rating": 339 }
+  ],
+  "kittadiena": [
+    { "week": "2026-05-31", "rating": 262 }
   ]
 }

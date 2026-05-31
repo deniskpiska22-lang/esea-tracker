@@ -1433,6 +1433,16 @@ const teams = [
     record: "7-7",
     division: "Entry",
   },
+    {
+    rank: 133,
+     slug: "kittadiena",
+     logo: "/logos/kitta.png",
+    name: "KittaDiena",
+    flag: "/flags/russia.svg",
+    points: 262,
+    record: "7-7",
+    division: "Main",
+  }
 ]
 
 function App() {
