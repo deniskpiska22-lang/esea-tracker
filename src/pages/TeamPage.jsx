@@ -14,6 +14,8 @@ import {
 
 function TeamPage() {
   const { slug } = useParams()
+  console.log(slug)
+console.log(teams.map(t => t.slug))
 
   // 🧠 TEAM
   const team = teams?.find((t) => t.slug === slug)
@@ -142,43 +144,64 @@ function TeamPage() {
       </div>
     </div>
 
-{/* 🧑 PLAYERS CARDS (SAFE + MIXED DATA SUPPORT) */}
+{/* 🧑 PLAYERS CARDS (SAFE + CLEAN) */}
 <div className="max-w-6xl mx-auto mt-8 flex gap-4">
 
-  {(team.players ?? []).slice(0, 5).map((p) => {
-    
-    const nickname = typeof p === "string" ? p : p.nickname;
-    const elo = typeof p === "object" ? p.elo : null;
-    const rating = typeof p === "object" ? p.rating : null;
+  {(Array.isArray(team?.players) ? team.players : [])
+    .slice(0, 5)
+    .map((p, index) => {
 
-    return (
-      <a
-        key={nickname}
-        href={`https://www.faceit.com/en/players/${nickname}`}
-        target="_blank"
-        rel="noreferrer"
-        className="flex-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-5 hover:border-orange-500/40 transition hover:scale-[1.03]"
-      >
-        <div className="flex flex-col items-center text-center">
+      const nickname =
+        typeof p === "string"
+          ? p
+          : p?.nickname ?? "unknown";
 
-          <div className="w-14 h-14 rounded-full bg-[#1a2330] mb-3 flex items-center justify-center text-sm text-gray-300">
-            {nickname.slice(0, 2).toUpperCase()}
+      const elo = typeof p === "object" ? p?.elo : null;
+      const rating = typeof p === "object" ? p?.rating : null;
+      const avatar = typeof p === "object" ? p?.avatar : null;
+
+      return (
+        <a
+          key={`${nickname}-${index}`}
+          href={`https://www.faceit.com/en/players/${nickname}`}
+          target="_blank"
+          rel="noreferrer"
+          className="flex-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-5 hover:border-orange-500/40 transition hover:scale-[1.03]"
+        >
+          <div className="flex flex-col items-center text-center">
+
+            {/* AVATAR */}
+            {avatar ? (
+              <img
+                src={avatar}
+                alt={nickname}
+                className="w-14 h-14 rounded-full object-cover mb-3 border border-[#263041]"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            ) : (
+              <div className="w-14 h-14 rounded-full bg-[#1a2330] mb-3 flex items-center justify-center text-sm text-gray-300">
+                {nickname.slice(0, 2).toUpperCase()}
+              </div>
+            )}
+
+            {/* NICKNAME */}
+            <p className="font-semibold text-white">
+              {nickname}
+            </p>
+
+            {/* STATS */}
+            <p className="text-xs text-gray-400 mt-1">
+              {typeof p === "object" && elo && rating
+                ? `Elo: ${elo} • Rating: ${rating}`
+                : "FACEIT Player"}
+            </p>
+
           </div>
-
-          <p className="font-semibold text-white">
-            {nickname}
-          </p>
-
-          <p className="text-xs text-gray-400 mt-1">
-            {elo && rating
-              ? `Elo: ${elo} • Rating: ${rating}`
-              : "FACEIT Player"}
-          </p>
-
-        </div>
-      </a>
-    );
-  })}
+        </a>
+      );
+    })}
 
 </div>
 

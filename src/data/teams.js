@@ -87,7 +87,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["overwhelmedd", "kurosa", "roxesz-", "zazzer", "nbl-"],
+    players: ["overwhelmedd", "kurosa", "2n14g", "zazzer", "nbl-"],
     matches: [],
   },
     {
@@ -100,7 +100,7 @@ const teams = [
       wins: 8,
       losses: 6,
     },
-    players: ["matusik", "reNIK", "Snoob", "kinyx", "str0ngl"],
+    players: ["matusik", "reNIK", "--DeDe", "kinyx", "str0ngl"],
     matches: [],
   },
     {
