@@ -1449,6 +1449,7 @@ function App() {
 
   const [search, setSearch] = useState("")
   const [showSearch, setShowSearch] = useState(false)
+  const [divisionSearch, setDivisionSearch] = useState("")
 
   const searchRef = useRef(null)
 
@@ -1458,6 +1459,24 @@ function App() {
     () => [...teams].sort((a, b) => b.points - a.points),
     []
   )
+const divisions = [
+  "All",
+  "Advanced",
+  "Main",
+  "Intermediate",
+  "Entry"
+]
+
+const filteredDivisions = divisions.filter((division) =>
+  division.toLowerCase().includes(divisionSearch.toLowerCase())
+)
+
+const filteredTeams =
+  selectedDivision === "All"
+    ? sortedTeams
+    : sortedTeams.filter(
+        (team) => team.division === selectedDivision
+      )
 
   const submitTeam = async () => {
     try {
@@ -1585,6 +1604,44 @@ function App() {
         </div>
       </nav>
 
+<div className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
+  <div className="flex flex-wrap gap-2">
+
+    <button
+      onClick={() => setSelectedDivision("All")}
+      className={`px-4 py-2 rounded-lg text-sm transition ${
+        selectedDivision === "All"
+          ? "bg-orange-500 text-white"
+          : "bg-[#0f131a] border border-white/5 text-gray-300 hover:bg-[#121a25]"
+      }`}
+    >
+      All
+    </button>
+
+    {divisions
+      .filter((d) =>
+        d.toLowerCase().includes(divisionSearch.toLowerCase())
+      )
+      .filter((d) => d !== "All")
+      .map((division) => (
+        <button
+          key={division}
+          onClick={() => setSelectedDivision(division)}
+          className={`px-4 py-2 rounded-lg text-sm transition ${
+            selectedDivision === division
+              ? "bg-orange-500 text-white"
+              : "bg-[#0f131a] border border-white/5 text-gray-300 hover:bg-[#121a25]"
+          }`}
+        >
+          {division}
+        </button>
+      ))}
+
+  </div>
+
+
+</div>
+
       {/* TABLE (UNCHANGED) */}
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         <div className="overflow-x-auto">
@@ -1599,7 +1656,7 @@ function App() {
             </div>
 
             <div className="space-y-2 mt-3">
-              {sortedTeams.map((team, index) => {
+              {filteredTeams.map((team, index) => {
 
                 const change = team.change ?? 0
 
