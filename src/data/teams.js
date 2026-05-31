@@ -1006,7 +1006,7 @@ const teams = [
     slug: "trafficpills-esports",
     name: "TrafficPills Esports",
     logo: "TPE",
-    flag: "/flags/russia.svg",
+    flag: "/flags/bel.svg",
     division: "Entry",
     stats: {
       wins: 11,
