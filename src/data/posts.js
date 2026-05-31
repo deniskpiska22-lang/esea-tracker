@@ -16,8 +16,8 @@ const posts = [
       {
     id: 2,
     team: "Esea Tracker",
-    logo: "/logos/rating.png",
-    image: "/posts/team.png",
+    logo: "/logos/logo.png",
+    image: "/posts/raiting.png",
     text: "Первое обновление рейтинга приехало и теперь будет происходить каждое воскресенье!",
   },
 ]
