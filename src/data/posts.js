@@ -13,6 +13,13 @@ const posts = [
     image: "/posts/team.png",
     text: "Если вы не нашли себя в рейтинге, нажмите кнопку Submit team и подайте заявку, в течении этого же дня вы сможете найти себя",
   },
+      {
+    id: 2,
+    team: "Esea Tracker",
+    logo: "/logos/rating.png",
+    image: "/posts/team.png",
+    text: "Первое обновление рейтинга приехало и теперь будет происходить каждое воскресенье!",
+  },
 ]
 
 export default posts
