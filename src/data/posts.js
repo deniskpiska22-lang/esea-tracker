@@ -12,6 +12,7 @@ const posts = [
     logo: "/logos/logo.png",
     image: "/posts/team.png",
     text: "Если вы не нашли себя в рейтинге, нажмите кнопку Submit team и подайте заявку, в течении этого же дня вы сможете найти себя",
+    link: "https://t.me/LisssTzz/357",
   },
       {
     id: 2,
@@ -26,6 +27,7 @@ const posts = [
     logo: "/logos/logo.png",
     image: "/posts/rat.png",
     text: "У каждого игрока теперь показан рейтинг (Взято взвешенное среднее из игр регулярки и Плей-Офф)",
+    link: "https://t.me/LisssTzz/364",
   },
 ]
 
