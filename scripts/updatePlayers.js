@@ -42,7 +42,8 @@ async function getSeason57Rating(nickname) {
 
     const $ = cheerio.load(html);
 
-    let rating = null;
+    let bestRating = null;
+    let mostMatches = 0;
 
     $("tr").each((_, row) => {
       const text = $(row).text();
@@ -54,12 +55,25 @@ async function getSeason57Rating(nickname) {
 
       if (!isSeason57) return;
 
-      rating = parseFloat(
+      const foundRating = parseFloat(
         $(row).find(".col-hltv").first().text().trim()
       );
+
+      const matches = parseInt(
+        $(row).find(".col-matches").first().text().trim(),
+        10
+      );
+
+      if (
+        !Number.isNaN(foundRating) &&
+        matches > mostMatches
+      ) {
+        mostMatches = matches;
+        bestRating = foundRating;
+      }
     });
 
-    return rating;
+    return bestRating;
   } catch {
     return null;
   }
@@ -94,7 +108,7 @@ async function main() {
         playerData.elo = elo;
       }
 
-      if (rating) {
+      if (rating !== null) {
         playerData.rating = Number(rating.toFixed(2));
       }
 

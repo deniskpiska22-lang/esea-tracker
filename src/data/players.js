@@ -3,16 +3,16 @@ const players = {
     {
       "nickname": "ganjubas44",
       "elo": 3035,
-      "rating": 0.95
+      "rating": 0.96
     },
     {
       "nickname": "EFFES",
       "elo": 3143,
-      "rating": 1.2
+      "rating": 1.12
     },
     {
       "nickname": "newera2026",
-      "elo": 3348,
+      "elo": 3292,
       "rating": 1.22
     },
     {
@@ -20,8 +20,8 @@ const players = {
     },
     {
       "nickname": "Iazarus",
-      "elo": 3231,
-      "rating": 1.17
+      "elo": 3251,
+      "rating": 0.93
     }
   ],
   "cybershoke-prospects": [
@@ -33,12 +33,12 @@ const players = {
     {
       "nickname": "SquEzxc",
       "elo": 3702,
-      "rating": 1.19
+      "rating": 1.14
     },
     {
       "nickname": "pleynnn",
       "elo": 3219,
-      "rating": 1.15
+      "rating": 1.04
     },
     {
       "nickname": "tw1sterzaza",
@@ -47,7 +47,7 @@ const players = {
     },
     {
       "nickname": "DAN9ARMATURA",
-      "elo": 3580,
+      "elo": 3520,
       "rating": 1.04
     }
   ],
@@ -55,17 +55,17 @@ const players = {
     {
       "nickname": "skept1K",
       "elo": 3446,
-      "rating": 1.01
+      "rating": 0.9
     },
     {
       "nickname": "sm1th47",
-      "elo": 3457,
-      "rating": 0.86
+      "elo": 3428,
+      "rating": 1.02
     },
     {
       "nickname": "MRcreed",
-      "elo": 3216,
-      "rating": 1
+      "elo": 3186,
+      "rating": 1.11
     },
     {
       "nickname": "dazzy_y",
@@ -119,39 +119,39 @@ const players = {
     {
       "nickname": "gleb86rus",
       "elo": 3590,
-      "rating": 1.23
+      "rating": 1.1
     },
     {
       "nickname": "NeoLife",
       "elo": 3534,
-      "rating": 1.2
+      "rating": 1.32
     },
     {
       "nickname": "maQuein",
       "elo": 3318,
-      "rating": 1.22
+      "rating": 1.28
     }
   ],
   "quazar": [
     {
       "nickname": "kaioriii",
       "elo": 3757,
-      "rating": 1.26
+      "rating": 1.21
     },
     {
       "nickname": "gehji",
       "elo": 3658,
-      "rating": 0.85
+      "rating": 1.3
     },
     {
       "nickname": "newt",
       "elo": 3489,
-      "rating": 0.84
+      "rating": 1.02
     },
     {
       "nickname": "Ne1XXX",
       "elo": 3198,
-      "rating": 1.25
+      "rating": 1.35
     },
     {
       "nickname": "Porya-",
@@ -172,13 +172,13 @@ const players = {
     },
     {
       "nickname": "lUMiER",
-      "elo": 3569,
-      "rating": 0.77
+      "elo": 3573,
+      "rating": 0.86
     },
     {
       "nickname": "xsepower",
       "elo": 3214,
-      "rating": 1.29
+      "rating": 1.19
     },
     {
       "nickname": "HuckLer",
@@ -195,7 +195,7 @@ const players = {
     {
       "nickname": "kurosa",
       "elo": 3615,
-      "rating": 1.39
+      "rating": 1.17
     },
     {
       "nickname": "2n14g",
@@ -205,39 +205,39 @@ const players = {
     {
       "nickname": "zazzer",
       "elo": 3370,
-      "rating": 0.8
+      "rating": 0.85
     },
     {
       "nickname": "nbl-",
       "elo": 3527,
-      "rating": 1.06
+      "rating": 0.96
     }
   ],
   "jumbo-team": [
     {
       "nickname": "-matusik",
-      "elo": 3450,
+      "elo": 3510,
       "rating": 1.1
     },
     {
       "nickname": "-reNIK",
-      "elo": 4082,
+      "elo": 4077,
       "rating": 1.09
     },
     {
       "nickname": "--DeDe",
       "elo": 3488,
-      "rating": 1.32
+      "rating": 1.14
     },
     {
       "nickname": "kinyx",
       "elo": 3209,
-      "rating": 1.19
+      "rating": 1.12
     },
     {
       "nickname": "str0ngl",
       "elo": 3368,
-      "rating": 0.91
+      "rating": 1.05
     }
   ],
   "aurora-young-blud": [
@@ -247,7 +247,7 @@ const players = {
     {
       "nickname": "r1pa4-",
       "elo": 3184,
-      "rating": 1.04
+      "rating": 1.07
     },
     {
       "nickname": "bleedmagneto",
@@ -257,19 +257,19 @@ const players = {
     {
       "nickname": "k1nco-",
       "elo": 3460,
-      "rating": 1.17
+      "rating": 1.07
     },
     {
       "nickname": "linesayer111",
       "elo": 3454,
-      "rating": 0.94
+      "rating": 0.93
     }
   ],
   "young-tigeres": [
     {
       "nickname": "wh1teout",
       "elo": 3601,
-      "rating": 1.18
+      "rating": 1.2
     },
     {
       "nickname": "seberya",
@@ -279,16 +279,16 @@ const players = {
     {
       "nickname": "Gashhhhi4",
       "elo": 3191,
-      "rating": 0.82
+      "rating": 0.94
     },
     {
       "nickname": "tronic",
       "elo": 3633,
-      "rating": 1.54
+      "rating": 1.09
     },
     {
       "nickname": "ceomanhattan",
-      "elo": 3173,
+      "elo": 3171,
       "rating": 1.05
     }
   ],
@@ -296,27 +296,27 @@ const players = {
     {
       "nickname": "rokilan",
       "elo": 3644,
-      "rating": 1.14
+      "rating": 1.04
     },
     {
       "nickname": "lasfas",
       "elo": 3656,
-      "rating": 1.15
+      "rating": 1.18
     },
     {
       "nickname": "Tri-Borgg1",
       "elo": 3472,
-      "rating": 1.4
+      "rating": 1.26
     },
     {
       "nickname": "prrincee",
       "elo": 3702,
-      "rating": 0.78
+      "rating": 0.9
     },
     {
       "nickname": "Stoynes",
-      "elo": 2836,
-      "rating": 0.79
+      "elo": 2806,
+      "rating": 0.89
     }
   ],
   "arch": [
@@ -328,17 +328,17 @@ const players = {
     {
       "nickname": "-MaLLiC-",
       "elo": 3601,
-      "rating": 1.19
+      "rating": 1.06
     },
     {
       "nickname": "-ka1d0",
       "elo": 3641,
-      "rating": 1.29
+      "rating": 1.2
     },
     {
       "nickname": "-f1R",
-      "elo": 3576,
-      "rating": 1.09
+      "elo": 3546,
+      "rating": 1.06
     },
     {
       "nickname": "-Dis1-",
@@ -350,7 +350,7 @@ const players = {
     {
       "nickname": "CheckWay",
       "elo": 3316,
-      "rating": 0.81
+      "rating": 0.93
     },
     {
       "nickname": "herkulesz",
@@ -375,7 +375,7 @@ const players = {
     {
       "nickname": "-mowel",
       "elo": 3532,
-      "rating": 1.06
+      "rating": 1.09
     },
     {
       "nickname": "Minor",
@@ -385,7 +385,7 @@ const players = {
     {
       "nickname": "la3euka",
       "elo": 3782,
-      "rating": 1.82
+      "rating": 1.24
     },
     {
       "nickname": "xnkkaaa",
@@ -395,19 +395,19 @@ const players = {
     {
       "nickname": "Z1W0W666",
       "elo": 3617,
-      "rating": 1.04
+      "rating": 1.07
     }
   ],
   "ex-peep": [
     {
       "nickname": "vrnskY",
       "elo": 3301,
-      "rating": 1.23
+      "rating": 0.91
     },
     {
       "nickname": "ekztasii",
       "elo": 3157,
-      "rating": 0.92
+      "rating": 0.93
     },
     {
       "nickname": "-Denzi",
@@ -417,7 +417,7 @@ const players = {
     {
       "nickname": "LE4R",
       "elo": 3479,
-      "rating": 0.94
+      "rating": 1.14
     },
     {
       "nickname": "tokyoshi",
@@ -438,12 +438,12 @@ const players = {
     },
     {
       "nickname": "basinskiy",
-      "elo": 2847,
+      "elo": 2821,
       "rating": 0.88
     },
     {
       "nickname": "Swem95",
-      "elo": 3621,
+      "elo": 3650,
       "rating": 1.28
     },
     {
@@ -456,17 +456,17 @@ const players = {
     {
       "nickname": "yagagarin",
       "elo": 2777,
-      "rating": 0.49
+      "rating": 0.95
     },
     {
       "nickname": "rioeagle",
       "elo": 3287,
-      "rating": 0.91
+      "rating": 1
     },
     {
       "nickname": "vova-triceps",
       "elo": 3113,
-      "rating": 1.24
+      "rating": 1.26
     },
     {
       "nickname": "ksolter",
@@ -476,56 +476,56 @@ const players = {
     {
       "nickname": "cartilag",
       "elo": 3747,
-      "rating": 1.59
+      "rating": 1.66
     }
   ],
   "xcity": [
     {
       "nickname": "gag",
       "elo": 3578,
-      "rating": 1.06
+      "rating": 1.01
     },
     {
       "nickname": "ATLASSS",
       "elo": 3932,
-      "rating": 1.15
+      "rating": 1.16
     },
     {
       "nickname": "mda",
       "elo": 3046,
-      "rating": 0.93
+      "rating": 0.9
     },
     {
       "nickname": "qu1ckk",
       "elo": 3376,
-      "rating": 1.21
+      "rating": 1.17
     },
     {
       "nickname": "tuzon",
       "elo": 3703,
-      "rating": 1.3
+      "rating": 1.27
     }
   ],
   "tsa-green": [
     {
       "nickname": "d3nks",
       "elo": 3414,
-      "rating": 1.13
+      "rating": 1.01
     },
     {
       "nickname": "maun",
       "elo": 3352,
-      "rating": 1.06
+      "rating": 1.1
     },
     {
       "nickname": "-FlyTex",
       "elo": 3395,
-      "rating": 1.19
+      "rating": 1.18
     },
     {
       "nickname": "saizius666",
       "elo": 2873,
-      "rating": 1.17
+      "rating": 1.35
     },
     {
       "nickname": "xne",
@@ -537,7 +537,7 @@ const players = {
     {
       "nickname": "shootic",
       "elo": 3014,
-      "rating": 0.69
+      "rating": 1.12
     },
     {
       "nickname": "ment4lbr0k3n",
@@ -547,7 +547,7 @@ const players = {
     {
       "nickname": "menddel",
       "elo": 3279,
-      "rating": 1
+      "rating": 1.03
     },
     {
       "nickname": "lollipop21k",
@@ -564,7 +564,7 @@ const players = {
     {
       "nickname": "soerrr",
       "elo": 3221,
-      "rating": 0.85
+      "rating": 0.99
     },
     {
       "nickname": "texaas",
@@ -574,7 +574,7 @@ const players = {
     {
       "nickname": "floww",
       "elo": 3352,
-      "rating": 1.06
+      "rating": 0.88
     },
     {
       "nickname": "dyhace",
@@ -584,7 +584,7 @@ const players = {
     {
       "nickname": "morifay",
       "elo": 3082,
-      "rating": 1.16
+      "rating": 0.98
     }
   ],
   "duggedup": [
@@ -596,12 +596,12 @@ const players = {
     {
       "nickname": "isolation333",
       "elo": 3226,
-      "rating": 0.64
+      "rating": 1.18
     },
     {
       "nickname": "Kre1N",
       "elo": 3310,
-      "rating": 1.03
+      "rating": 1.28
     },
     {
       "nickname": "Carnivore--",
@@ -610,20 +610,20 @@ const players = {
     },
     {
       "nickname": "21storm",
-      "elo": 3294,
-      "rating": 1.76
+      "elo": 3264,
+      "rating": 1.39
     }
   ],
   "roc-team": [
     {
       "nickname": "rovvdy",
       "elo": 3388,
-      "rating": 0.94
+      "rating": 0.97
     },
     {
       "nickname": "w1nore",
       "elo": 3686,
-      "rating": 1.01
+      "rating": 0.88
     },
     {
       "nickname": "-rudeus",
@@ -633,34 +633,34 @@ const players = {
     {
       "nickname": "Nxbody",
       "elo": 3034,
-      "rating": 1.19
+      "rating": 1.16
     },
     {
       "nickname": "koretss",
       "elo": 2795,
-      "rating": 0.76
+      "rating": 0.82
     }
   ],
   "partizan": [
     {
       "nickname": "Draysh",
       "elo": 3507,
-      "rating": 1.06
+      "rating": 0.85
     },
     {
       "nickname": "11sheesh_",
       "elo": 3077,
-      "rating": 1.08
+      "rating": 1.07
     },
     {
       "nickname": "DUNYAA-",
       "elo": 2741,
-      "rating": 0.97
+      "rating": 1.14
     },
     {
       "nickname": "heso",
       "elo": 3210,
-      "rating": 1
+      "rating": 0.92
     },
     {
       "nickname": "darui",
@@ -672,12 +672,12 @@ const players = {
     {
       "nickname": "Baronus",
       "elo": 2799,
-      "rating": 0.71
+      "rating": 0.95
     },
     {
       "nickname": "Jiwoo",
       "elo": 3151,
-      "rating": 1.04
+      "rating": 1.01
     },
     {
       "nickname": "SBolt-",
@@ -692,41 +692,41 @@ const players = {
     {
       "nickname": "headmashin1e",
       "elo": 3725,
-      "rating": 1.22
+      "rating": 1.3
     }
   ],
   "platoon-beta": [
     {
       "nickname": "ArmanZwerrr",
       "elo": 2735,
-      "rating": 1.13
+      "rating": 1.12
     },
     {
       "nickname": "bonyAjkE",
-      "elo": 3218,
-      "rating": 0.73
+      "elo": 3248,
+      "rating": 1
     },
     {
       "nickname": "PhoeniXLUV",
       "elo": 3331,
-      "rating": 1.47
+      "rating": 1.28
     },
     {
       "nickname": "ch1psik-",
       "elo": 2833,
-      "rating": 0.76
+      "rating": 0.78
     },
     {
       "nickname": "Roomz",
       "elo": 3103,
-      "rating": 0.76
+      "rating": 1.09
     }
   ],
   "wnt": [
     {
       "nickname": "_En1GmA_",
       "elo": 3084,
-      "rating": 0.83
+      "rating": 0.92
     },
     {
       "nickname": "Kakav0ziK",
@@ -736,12 +736,12 @@ const players = {
     {
       "nickname": "Malibar",
       "elo": 2038,
-      "rating": 1.07
+      "rating": 0.98
     },
     {
       "nickname": "Removee2k",
       "elo": 3202,
-      "rating": 1.04
+      "rating": 0.99
     },
     {
       "nickname": "-BALBES--",
@@ -752,18 +752,18 @@ const players = {
   "playfire": [
     {
       "nickname": "ARING",
-      "elo": 3836,
+      "elo": 3806,
       "rating": 1.3
     },
     {
       "nickname": "stinger-_",
       "elo": 2693,
-      "rating": 0.93
+      "rating": 0.8
     },
     {
       "nickname": "JbIBOTHOE",
       "elo": 2930,
-      "rating": 0.9
+      "rating": 0.91
     },
     {
       "nickname": "4R2D2-_-",
@@ -779,35 +779,35 @@ const players = {
   "olympia": [
     {
       "nickname": "ToniDare",
-      "elo": 3426,
+      "elo": 3398,
       "rating": 0.99
     },
     {
       "nickname": "valenz0",
       "elo": 3269,
-      "rating": 1.03
+      "rating": 1.1
     },
     {
       "nickname": "EngerS",
       "elo": 3034,
-      "rating": 1.11
+      "rating": 1.26
     },
     {
       "nickname": "xsiyz",
       "elo": 3397,
-      "rating": 0.86
+      "rating": 0.95
     },
     {
       "nickname": "fynchojka",
       "elo": 3563,
-      "rating": 1.16
+      "rating": 1.2
     }
   ],
   "way-In-future": [
     {
       "nickname": "PokeballX21",
       "elo": 3596,
-      "rating": 1.13
+      "rating": 1.01
     },
     {
       "nickname": "rdzl",
@@ -816,13 +816,13 @@ const players = {
     },
     {
       "nickname": "isuzu_1",
-      "elo": 3549,
+      "elo": 3519,
       "rating": 0.86
     },
     {
       "nickname": "mellstroy911",
       "elo": 3138,
-      "rating": 0.95
+      "rating": 1.03
     },
     {
       "nickname": "-rasyk0",
@@ -839,7 +839,7 @@ const players = {
     {
       "nickname": "yasxojusyma",
       "elo": 3038,
-      "rating": 0.8
+      "rating": 0.99
     },
     {
       "nickname": "yasxojysyma",
@@ -861,44 +861,44 @@ const players = {
     {
       "nickname": "fl1nkk666",
       "elo": 3078,
-      "rating": 1.09
+      "rating": 1.04
     },
     {
       "nickname": "frsunr1se",
       "elo": 3084,
-      "rating": 1.21
+      "rating": 1.06
     },
     {
       "nickname": "YarNik",
       "elo": 2952,
-      "rating": 1.12
+      "rating": 1.09
     },
     {
       "nickname": "kaban",
-      "elo": 3062,
-      "rating": 0.98
+      "elo": 3006,
+      "rating": 1.02
     },
     {
       "nickname": "yutiik",
       "elo": 2990,
-      "rating": 0.91
+      "rating": 0.98
     }
   ],
   "wobuzhidao": [
     {
       "nickname": "hate_system",
-      "elo": 2813,
+      "elo": 2833,
       "rating": 1.01
     },
     {
       "nickname": "KOT_XAMEP",
       "elo": 3349,
-      "rating": 1.01
+      "rating": 1.1
     },
     {
       "nickname": "0b535510n",
       "elo": 3452,
-      "rating": 0.86
+      "rating": 0.74
     },
     {
       "nickname": "jzx",
@@ -908,24 +908,24 @@ const players = {
     {
       "nickname": "l21p",
       "elo": 3109,
-      "rating": 1.05
+      "rating": 1.02
     }
   ],
   "p7ay3r5": [
     {
       "nickname": "ulqu1ora",
       "elo": 3616,
-      "rating": 0.74
+      "rating": 0.86
     },
     {
       "nickname": "v0ice_e",
       "elo": 3229,
-      "rating": 0.81
+      "rating": 0.86
     },
     {
       "nickname": "gradex",
       "elo": 3029,
-      "rating": 1
+      "rating": 0.98
     },
     {
       "nickname": "k10tje",
@@ -935,7 +935,7 @@ const players = {
     {
       "nickname": "lazerboss",
       "elo": 3100,
-      "rating": 0.81
+      "rating": 0.86
     }
   ],
   "dire": [
@@ -957,7 +957,7 @@ const players = {
     {
       "nickname": "pyJIb-rcR333",
       "elo": 2770,
-      "rating": 0.92
+      "rating": 0.94
     },
     {
       "nickname": "3905U390",
@@ -974,12 +974,12 @@ const players = {
     {
       "nickname": "akaza7331",
       "elo": 3321,
-      "rating": 1.25
+      "rating": 1.24
     },
     {
       "nickname": "z0nger",
       "elo": 3245,
-      "rating": 1.28
+      "rating": 1.16
     },
     {
       "nickname": "thsleepphase",
@@ -996,7 +996,7 @@ const players = {
     {
       "nickname": "-twiz",
       "elo": 3029,
-      "rating": 1.01
+      "rating": 1.04
     },
     {
       "nickname": "s1leNceRr_",
@@ -1006,43 +1006,43 @@ const players = {
     {
       "nickname": "shazam-_-",
       "elo": 3212,
-      "rating": 0.92
+      "rating": 0.95
     },
     {
       "nickname": "red1ct666",
       "elo": 3299,
-      "rating": 0.87
+      "rating": 1.04
     },
     {
       "nickname": "glowstar",
       "elo": 3157,
-      "rating": 1.07
+      "rating": 1.17
     }
   ],
   "godbless": [
     {
       "nickname": "YURk3N",
-      "elo": 3040,
+      "elo": 3009,
       "rating": 0.75
     },
     {
       "nickname": "kenobass",
       "elo": 2715,
-      "rating": 0.64
+      "rating": 0.87
     },
     {
       "nickname": "SEXYVLAD1K",
       "elo": 3058,
-      "rating": 1.11
+      "rating": 0.99
     },
     {
       "nickname": "PALICH44",
       "elo": 2846,
-      "rating": 0.7
+      "rating": 1.06
     },
     {
       "nickname": "flAndEmAdZ",
-      "elo": 2955,
+      "elo": 2954,
       "rating": 0.98
     }
   ],
@@ -1050,61 +1050,61 @@ const players = {
     {
       "nickname": "-sh1k1mos1k",
       "elo": 2496,
-      "rating": 0.74
+      "rating": 0.7
     },
     {
       "nickname": "IaNeR",
       "elo": 3053,
-      "rating": 1.29
+      "rating": 1.2
     },
     {
       "nickname": "tsy",
       "elo": 3167,
-      "rating": 1.07
+      "rating": 1.05
     },
     {
       "nickname": "nukleos143",
       "elo": 3258,
-      "rating": 1.21
+      "rating": 1.15
     },
     {
       "nickname": "-auxaa",
       "elo": 2972,
-      "rating": 1.08
+      "rating": 1.03
     }
   ],
   "m33": [
     {
       "nickname": "Groysss",
       "elo": 2841,
-      "rating": 0.89
+      "rating": 0.99
     },
     {
       "nickname": "Jagermaister",
-      "elo": 3256,
+      "elo": 3227,
       "rating": 0.91
     },
     {
       "nickname": "Kapibaris",
-      "elo": 3378,
-      "rating": 0.64
+      "elo": 3376,
+      "rating": 0.86
     },
     {
       "nickname": "-Re333",
       "elo": 2875,
-      "rating": 0.58
+      "rating": 0.91
     },
     {
       "nickname": "deceyced",
       "elo": 3336,
-      "rating": 1.11
+      "rating": 0.92
     }
   ],
   "graf-monte-cristo": [
     {
       "nickname": "ectaza",
       "elo": 2801,
-      "rating": 0.89
+      "rating": 1.18
     },
     {
       "nickname": "AHTOH616",
@@ -1119,37 +1119,37 @@ const players = {
     {
       "nickname": "91914",
       "elo": 3424,
-      "rating": 1.32
+      "rating": 1.46
     },
     {
       "nickname": "Belkindryg",
-      "elo": 2296,
+      "elo": 2296
     }
   ],
   "aogiri": [
     {
       "nickname": "qdead",
-      "elo": 2785,
-      "rating": 0.93
+      "elo": 2802,
+      "rating": 1.03
     },
     {
       "nickname": "Madaraya",
-      "elo": 2753,
-      "rating": 1.32
+      "elo": 2770,
+      "rating": 1.18
     },
     {
       "nickname": "-_-ecl1pse",
-      "elo": 3546,
+      "elo": 3563,
       "rating": 1.22
     },
     {
       "nickname": "d3fuser",
-      "elo": 3108,
-      "rating": 0.77
+      "elo": 3125,
+      "rating": 1.04
     },
     {
       "nickname": "SyZ3r0x1-",
-      "elo": 3265,
+      "elo": 3282,
       "rating": 1.24
     }
   ],
@@ -1157,17 +1157,17 @@ const players = {
     {
       "nickname": "ne1l",
       "elo": 3278,
-      "rating": 1.3
+      "rating": 1.36
     },
     {
       "nickname": "saddamy",
       "elo": 3342,
-      "rating": 1.36
+      "rating": 1.15
     },
     {
       "nickname": "FlaRip111",
-      "elo": 2906,
-      "rating": 0.76
+      "elo": 2936,
+      "rating": 0.91
     },
     {
       "nickname": "varafo",
@@ -1176,7 +1176,7 @@ const players = {
     },
     {
       "nickname": "sakha",
-      "elo": 3836,
+      "elo": 3804,
       "rating": 1.52
     }
   ],
@@ -1184,44 +1184,44 @@ const players = {
     {
       "nickname": "f0lkfan111",
       "elo": 3313,
-      "rating": 1.19
+      "rating": 1.18
     },
     {
       "nickname": "6akug4n_b0y",
       "elo": 3488,
-      "rating": 1
+      "rating": 1.15
     },
     {
       "nickname": "vorja77",
-      "elo": 2838,
+      "elo": 2808,
       "rating": 0.94
     },
     {
       "nickname": "sekkwoya",
       "elo": 3059,
-      "rating": 1.23
+      "rating": 1.19
     },
     {
       "nickname": "sexxx",
       "elo": 3112,
-      "rating": 1.14
+      "rating": 1.17
     }
   ],
   "sakura": [
     {
       "nickname": "Ujaueu",
-      "elo": 3455,
+      "elo": 3500,
       "rating": 0.99
     },
     {
       "nickname": "ylinsx",
       "elo": 2658,
-      "rating": 0.99
+      "rating": 0.84
     },
     {
       "nickname": "-Meniwa",
-      "elo": 2680,
-      "rating": 1.17
+      "elo": 2725,
+      "rating": 0.89
     },
     {
       "nickname": "flercayd",
@@ -1231,7 +1231,7 @@ const players = {
     {
       "nickname": "49mTTuon",
       "elo": 2785,
-      "rating": 1.2
+      "rating": 1.13
     }
   ],
   "allinners": [
@@ -1243,49 +1243,49 @@ const players = {
     {
       "nickname": "ayken999",
       "elo": 3477,
-      "rating": 1.69
+      "rating": 1.22
     },
     {
       "nickname": "sdqw_",
-      "elo": 2982,
-      "rating": 0.8
+      "elo": 3011,
+      "rating": 0.91
     },
     {
       "nickname": "Sorr1k",
       "elo": 3205,
-      "rating": 1.4
+      "rating": 1.19
     },
     {
       "nickname": "lnKognITo228",
       "elo": 3256,
-      "rating": 1.03
+      "rating": 1.1
     }
   ],
   "prem3adpotbi": [
     {
       "nickname": "nerouk",
       "elo": 3315,
-      "rating": 1.01
+      "rating": 1.16
     },
     {
       "nickname": "ILYAXAGVOZDb",
       "elo": 3133,
-      "rating": 1.27
+      "rating": 1.24
     },
     {
       "nickname": "L1s0m4N",
       "elo": 3038,
-      "rating": 1.04
+      "rating": 1.09
     },
     {
       "nickname": "nara999",
       "elo": 3100,
-      "rating": 0.97
+      "rating": 1.14
     },
     {
       "nickname": "-ddecembeR",
       "elo": 3040,
-      "rating": 1.14
+      "rating": 1.05
     }
   ],
   "team-ka6anbi": [
@@ -1296,13 +1296,13 @@ const players = {
     },
     {
       "nickname": "uwantcatchme",
-      "elo": 2415,
-      "rating": 1.0
+      "elo": 2365,
+      "rating": 1
     },
     {
       "nickname": "marcelobraun",
       "elo": 3082,
-      "rating": 1.36
+      "rating": 1.07
     },
     {
       "nickname": "yogiri",
@@ -1319,22 +1319,22 @@ const players = {
     {
       "nickname": "OrhunDura",
       "elo": 2624,
-      "rating": 0.83
+      "rating": 1
     },
     {
       "nickname": "CoolezW",
       "elo": 3327,
-      "rating": 1.23
+      "rating": 1.25
     },
     {
       "nickname": "Iark666",
       "elo": 2495,
-      "rating": 1.08
+      "rating": 0.94
     },
     {
       "nickname": "fIy-",
       "elo": 3030,
-      "rating": 1.04
+      "rating": 0.86
     },
     {
       "nickname": "Blackout",
@@ -1346,11 +1346,11 @@ const players = {
     {
       "nickname": "paketAAA",
       "elo": 2947,
-      "rating": 0.95
+      "rating": 0.84
     },
     {
       "nickname": "rmboo0_o",
-      "elo": 2981,
+      "elo": 3011,
       "rating": 1.06
     },
     {
@@ -1366,7 +1366,7 @@ const players = {
     {
       "nickname": "yoshimaaa",
       "elo": 3439,
-      "rating": 1.17
+      "rating": 0.94
     }
   ],
   "dzungarz": [
@@ -1388,7 +1388,7 @@ const players = {
     {
       "nickname": "labbies",
       "elo": 3169,
-      "rating": 0.95
+      "rating": 0.9
     },
     {
       "nickname": "mistich",
@@ -1399,35 +1399,35 @@ const players = {
   "sunthraw": [
     {
       "nickname": "we1rdly",
-      "elo": 2424,
+      "elo": 2411,
       "rating": 0.74
     },
     {
       "nickname": "lrnk",
       "elo": 2635,
-      "rating": 0.84
+      "rating": 0.89
     },
     {
       "nickname": "-frenzzzz",
       "elo": 3584,
-      "rating": 1.53
+      "rating": 1.28
     },
     {
       "nickname": "kyonig",
       "elo": 2666,
-      "rating": 1
+      "rating": 1.09
     },
     {
       "nickname": "-Ginger_",
-      "elo": 3147,
-      "rating": 0.69
+      "elo": 3177,
+      "rating": 1.07
     }
   ],
   "3nation": [
     {
       "nickname": "sl1nxy",
       "elo": 3010,
-      "rating": 1.11
+      "rating": 1.13
     },
     {
       "nickname": "Reivann",
@@ -1436,7 +1436,7 @@ const players = {
     },
     {
       "nickname": "GrandLove",
-      "elo": 3286,
+      "elo": 3257,
       "rating": 0.95
     },
     {
@@ -1447,24 +1447,24 @@ const players = {
     {
       "nickname": "awvree",
       "elo": 3046,
-      "rating": 0.88
+      "rating": 1.06
     }
   ],
   "yelets-esports": [
     {
       "nickname": "sw1zza",
       "elo": 2523,
-      "rating": 0.9
+      "rating": 0.93
     },
     {
       "nickname": "aleL",
       "elo": 3120,
-      "rating": 1.04
+      "rating": 1.1
     },
     {
       "nickname": "-Wentyy",
       "elo": 3235,
-      "rating": 1.09
+      "rating": 1.06
     },
     {
       "nickname": "vikingdewu",
@@ -1473,30 +1473,30 @@ const players = {
     },
     {
       "nickname": "iSennCool",
-      "elo": 3165,
-      "rating": 1.64
+      "elo": 3253,
+      "rating": 1.05
     }
   ],
   "turtles": [
     {
       "nickname": "h0kaN777",
       "elo": 2528,
-      "rating": 1.03
+      "rating": 0.93
     },
     {
       "nickname": "darcy-",
-      "elo": 2780,
-      "rating": 1.21
+      "elo": 2797,
+      "rating": 1.17
     },
     {
       "nickname": "awpwindow",
       "elo": 2871,
-      "rating": 1.14
+      "rating": 1.12
     },
     {
       "nickname": "Shiiisha",
       "elo": 2721,
-      "rating": 1.12
+      "rating": 1.35
     },
     {
       "nickname": "chiefkeeff-",
@@ -1508,12 +1508,12 @@ const players = {
     {
       "nickname": "l3d4n",
       "elo": 2185,
-      "rating": 0.87
+      "rating": 0.95
     },
     {
       "nickname": "Rizz_7",
       "elo": 3066,
-      "rating": 1.17
+      "rating": 1.16
     },
     {
       "nickname": "PbI6OJLOB",
@@ -1522,39 +1522,40 @@ const players = {
     },
     {
       "nickname": "sanlxrdb0b",
-      "rating": 1.15
+      "elo": 3041,
+      "rating": 1.26
     },
     {
       "nickname": "g6c",
       "elo": 2581,
-      "rating": 0.93
+      "rating": 0.86
     }
   ],
   "ablaze-team": [
     {
       "nickname": "-marsoN",
-      "elo": 2509,
+      "elo": 2479,
       "rating": 0.65
     },
     {
       "nickname": "Salfetka--",
       "elo": 2704,
-      "rating": 1
+      "rating": 0.85
     },
     {
       "nickname": "emoyarik-",
       "elo": 2186,
-      "rating": 1.41
+      "rating": 0.83
     },
     {
       "nickname": "m4ks_b4mbLb1",
       "elo": 2686,
-      "rating": 0.74
+      "rating": 0.91
     },
     {
       "nickname": "g3y_kapkAn67",
       "elo": 2858,
-      "rating": 0.93
+      "rating": 0.77
     }
   ],
   "drags": [
@@ -1571,39 +1572,39 @@ const players = {
     {
       "nickname": "david_M5",
       "elo": 2755,
-      "rating": 0.96
+      "rating": 0.95
     },
     {
       "nickname": "zhvJESUS",
       "elo": 2593,
-      "rating": 0.66
+      "rating": 0.6
     },
     {
       "nickname": "made666",
       "elo": 1979,
-      "rating": 0.75
+      "rating": 0.66
     }
   ],
   "force-syndicate": [
     {
       "nickname": "_Destroy3r_",
       "elo": 2850,
-      "rating": 0.99
+      "rating": 1.2
     },
     {
       "nickname": "saya1337",
       "elo": 3015,
-      "rating": 0.94
+      "rating": 1
     },
     {
       "nickname": "trized",
       "elo": 3024,
-      "rating": 1.16
+      "rating": 0.96
     },
     {
       "nickname": "diqued",
       "elo": 2893,
-      "rating": 0.75
+      "rating": 0.97
     },
     {
       "nickname": "SIIngJinWoo",
@@ -1614,54 +1615,54 @@ const players = {
   "all-eyes-on-me": [
     {
       "nickname": "xekri",
-      "elo": 3016,
-      "rating": 0.94
+      "elo": 3067,
+      "rating": 0.93
     },
     {
       "nickname": "kiseki",
       "elo": 2328,
-      "rating": 0.96
+      "rating": 1.01
     },
     {
       "nickname": "dreamaker",
       "elo": 2716,
-      "rating": 0.82
+      "rating": 0.9
     },
     {
       "nickname": "CaHTeXHuK-",
-      "elo": 2800,
-      "rating": 1.19
+      "elo": 2851,
+      "rating": 1.1
     },
     {
       "nickname": "san9PS1XOPAT",
-      "elo": 3024,
-      "rating": 1.28
+      "elo": 3075,
+      "rating": 1.07
     }
   ],
   "lqnely": [
     {
       "nickname": "21Mifixzq",
       "elo": 2743,
-      "rating": 0.67
+      "rating": 0.89
     },
     {
       "nickname": "t1pr0",
       "elo": 2920,
-      "rating": 0.86
+      "rating": 0.98
     },
     {
       "nickname": "notOxic2",
       "elo": 2791,
-      "rating": 0.72
+      "rating": 1
     },
     {
       "nickname": "Matveychegg",
       "elo": 2770,
-      "rating": 0.74
+      "rating": 1.13
     },
     {
       "nickname": "IcoweL",
-      "elo": 2918,
+      "elo": 2916,
       "rating": 0.86
     }
   ],
@@ -1674,17 +1675,17 @@ const players = {
     {
       "nickname": "wavyqq",
       "elo": 2168,
-      "rating": 0.91
+      "rating": 0.9
     },
     {
       "nickname": "-DiZu",
       "elo": 2769,
-      "rating": 1.21
+      "rating": 1.13
     },
     {
       "nickname": "BI0ody",
       "elo": 2288,
-      "rating": 1.24
+      "rating": 0.79
     },
     {
       "nickname": "Aoki-l",
@@ -1696,12 +1697,12 @@ const players = {
     {
       "nickname": "-M0uZe-",
       "elo": 3027,
-      "rating": 0.88
+      "rating": 0.86
     },
     {
       "nickname": "-wARTHUNDER",
       "elo": 3161,
-      "rating": 1.24
+      "rating": 1.25
     },
     {
       "nickname": "y9wonky",
@@ -1710,7 +1711,7 @@ const players = {
     },
     {
       "nickname": "nctive",
-      "elo": 3186,
+      "elo": 3163,
       "rating": 1.14
     },
     {
@@ -1728,17 +1729,17 @@ const players = {
     {
       "nickname": "Panardedi",
       "elo": 3046,
-      "rating": 1.06
+      "rating": 1.09
     },
     {
       "nickname": "k1oten",
-      "elo": 2355,
+      "elo": 2421,
       "rating": 0.86
     },
     {
       "nickname": "ps1xx",
       "elo": 3024,
-      "rating": 0.71
+      "rating": 0.94
     },
     {
       "nickname": "Supportzzz",
@@ -1750,17 +1751,17 @@ const players = {
     {
       "nickname": "npoe6aJlu",
       "elo": 3024,
-      "rating": 1
+      "rating": 1.09
     },
     {
       "nickname": "-Mendoza",
       "elo": 2684,
-      "rating": 0.84
+      "rating": 0.94
     },
     {
       "nickname": "sw0ksi",
       "elo": 2536,
-      "rating": 0.82
+      "rating": 0.93
     },
     {
       "nickname": "Danuka-s",
@@ -1776,13 +1777,13 @@ const players = {
   "youth4ez": [
     {
       "nickname": "PeR4eLo",
-      "elo": 3074,
+      "elo": 3093,
       "rating": 0.93
     },
     {
       "nickname": "Jefim4ik",
-      "elo": 2777,
-      "rating": 1.06
+      "elo": 2796,
+      "rating": 0.9
     },
     {
       "nickname": "KPS4K",
@@ -1796,7 +1797,7 @@ const players = {
     },
     {
       "nickname": "kyousuke666",
-      "elo": 3021,
+      "elo": 3001,
       "rating": 1.22
     }
   ],
@@ -1809,22 +1810,22 @@ const players = {
     {
       "nickname": "-k0ndrat-",
       "elo": 2541,
-      "rating": 0.73
+      "rating": 0.96
     },
     {
       "nickname": "Mapkuss",
-      "elo": 2643,
+      "elo": 2590,
       "rating": 1.16
     },
     {
       "nickname": "Nermy",
       "elo": 2893,
-      "rating": 0.93
+      "rating": 0.97
     },
     {
       "nickname": "vampireD",
       "elo": 2933,
-      "rating": 1.41
+      "rating": 0.77
     }
   ],
   "donstu-youngsters": [
@@ -1835,7 +1836,7 @@ const players = {
     },
     {
       "nickname": "EvilLAne",
-      "elo": 2769,
+      "elo": 2800,
       "rating": 1.02
     },
     {
@@ -1858,7 +1859,7 @@ const players = {
     {
       "nickname": "Yoshwu",
       "elo": 2830,
-      "rating": 0.98
+      "rating": 1
     },
     {
       "nickname": "--Timo",
@@ -1868,7 +1869,7 @@ const players = {
     {
       "nickname": "tox1s-",
       "elo": 2334,
-      "rating": 0.79
+      "rating": 0.78
     },
     {
       "nickname": "-__Size__-",
@@ -1885,12 +1886,12 @@ const players = {
     {
       "nickname": "S1LLE",
       "elo": 2551,
-      "rating": 0.93
+      "rating": 0.87
     },
     {
       "nickname": "FryseN",
       "elo": 3045,
-      "rating": 0.97
+      "rating": 1.07
     },
     {
       "nickname": "819",
@@ -1905,29 +1906,29 @@ const players = {
     {
       "nickname": "r4zlom",
       "elo": 2902,
-      "rating": 0.87
+      "rating": 0.89
     }
   ],
   "c0b0r": [
     {
       "nickname": "mvvand",
       "elo": 2051,
-      "rating": 0.62
+      "rating": 0.56
     },
     {
       "nickname": "COM4Z0R",
       "elo": 2573,
-      "rating": 0.84
+      "rating": 1.09
     },
     {
       "nickname": "peacebang",
       "elo": 2309,
-      "rating": 0.88
+      "rating": 0.75
     },
     {
       "nickname": "dozarchuk",
       "elo": 1795,
-      "rating": 0.51
+      "rating": 0.6
     },
     {
       "nickname": "DimblebeE",
@@ -1944,49 +1945,49 @@ const players = {
     {
       "nickname": "turbo67",
       "elo": 3912,
-      "rating": 1.42
+      "rating": 1.38
     },
     {
       "nickname": "-k9ppy",
       "elo": 3473,
-      "rating": 1.05
+      "rating": 1.01
     },
     {
       "nickname": "whisperr23",
       "elo": 3900,
-      "rating": 1.51
+      "rating": 1.33
     },
     {
       "nickname": "Sa1nTy",
       "elo": 3700,
-      "rating": 1.32
+      "rating": 1.36
     }
   ],
   "iuhop": [
     {
       "nickname": "MrTrelog",
       "elo": 3156,
-      "rating": 1.12
+      "rating": 1.09
     },
     {
       "nickname": "1337fir",
       "elo": 3324,
-      "rating": 1.15
+      "rating": 1.17
     },
     {
       "nickname": "nofaN",
       "elo": 3526,
-      "rating": 1.17
+      "rating": 1.21
     },
     {
       "nickname": "OGbrigada77",
       "elo": 3651,
-      "rating": 0.94
+      "rating": 1.14
     },
     {
       "nickname": "saizius",
       "elo": 3883,
-      "rating": 1.18
+      "rating": 1.27
     }
   ],
   "fartflow": [
@@ -1998,12 +1999,12 @@ const players = {
     {
       "nickname": "Ch3rv9chok",
       "elo": 3137,
-      "rating": 1.87
+      "rating": 1.49
     },
     {
       "nickname": "kreoN",
-      "elo": 3179,
-      "rating": 1.5
+      "elo": 3150,
+      "rating": 1.45
     },
     {
       "nickname": "Ultemer",
@@ -2013,14 +2014,14 @@ const players = {
     {
       "nickname": "f1uNeXx",
       "elo": 2971,
-      "rating": 2.21
+      "rating": 1.77
     }
   ],
   "bhemanha": [
     {
       "nickname": "akr",
       "elo": 2703,
-      "rating": 1.3
+      "rating": 0.87
     },
     {
       "nickname": "-Akima",
@@ -2035,7 +2036,7 @@ const players = {
     {
       "nickname": "tw1nk131",
       "elo": 3147,
-      "rating": 1.46
+      "rating": 1.35
     },
     {
       "nickname": "Teamo-",
@@ -2046,23 +2047,23 @@ const players = {
   "lynx": [
     {
       "nickname": "actava",
-      "elo": 3602,
-      "rating": 1.21
+      "elo": 3568,
+      "rating": 1.18
     },
     {
       "nickname": "hikaru-",
       "elo": 3845,
-      "rating": 1.19
+      "rating": 1.07
     },
     {
       "nickname": "rockStyX",
-      "elo": 3323,
-      "rating": 0.98
+      "elo": 3308,
+      "rating": 1.1
     },
     {
       "nickname": "sleepy111",
       "elo": 3452,
-      "rating": 0.99
+      "rating": 1.27
     },
     {
       "nickname": "frinn",
@@ -2088,13 +2089,13 @@ const players = {
     },
     {
       "nickname": "taouser",
-      "elo": 3652,
+      "elo": 3622,
       "rating": 1.16
     },
     {
       "nickname": "gl3bka",
-      "elo": 3263,
-      "rating": 1.28
+      "elo": 3292,
+      "rating": 1.39
     }
   ],
   "kda-team": [
@@ -2106,12 +2107,12 @@ const players = {
     {
       "nickname": "skAnna",
       "elo": 3109,
-      "rating": 1.29
+      "rating": 1.23
     },
     {
       "nickname": "fI4m1ng",
       "elo": 3166,
-      "rating": 1.07
+      "rating": 1.09
     },
     {
       "nickname": "JohnnyCag3",
@@ -2142,7 +2143,7 @@ const players = {
     },
     {
       "nickname": "seikee",
-      "elo": 3390,
+      "elo": 3380,
       "rating": 1.23
     },
     {
@@ -2160,7 +2161,7 @@ const players = {
     {
       "nickname": "himurra",
       "elo": 3025,
-      "rating": 0.9
+      "rating": 0.96
     },
     {
       "nickname": "Yahiko_016",
@@ -2170,19 +2171,19 @@ const players = {
     {
       "nickname": "borischainik",
       "elo": 2836,
-      "rating": 1.02
+      "rating": 1.07
     },
     {
       "nickname": "konq",
       "elo": 3101,
-      "rating": 0.99
+      "rating": 1.17
     }
   ],
   "lan1t": [
     {
       "nickname": "AllMuteTrash",
       "elo": 2740,
-      "rating": 0.75
+      "rating": 0.88
     },
     {
       "nickname": "needless2say",
@@ -2192,12 +2193,12 @@ const players = {
     {
       "nickname": "dErzz",
       "elo": 3334,
-      "rating": 0.6
+      "rating": 1.12
     },
     {
       "nickname": "hallyhood",
       "elo": 3302,
-      "rating": 0.82
+      "rating": 0.87
     },
     {
       "nickname": "mara3m",
@@ -2214,21 +2215,22 @@ const players = {
     {
       "nickname": "killeatery",
       "elo": 3400,
-      "rating": 1.22
+      "rating": 1.09
     },
     {
       "nickname": "ADntZ",
-      "elo": 3484
+      "elo": 3484,
+      "rating": 1.03
     },
     {
       "nickname": "MaksimSuper-",
       "elo": 3590,
-      "rating": 0.88
+      "rating": 1.12
     },
     {
       "nickname": "datet-_-",
       "elo": 3491,
-      "rating": 1.1
+      "rating": 1.19
     }
   ],
   "prius": [
@@ -2240,17 +2242,17 @@ const players = {
     {
       "nickname": "stembix",
       "elo": 2888,
-      "rating": 1.84
+      "rating": 1.28
     },
     {
       "nickname": "JackkSparrow",
-      "elo": 3110,
+      "elo": 3140,
       "rating": 1.19
     },
     {
       "nickname": "tYTOXX",
       "elo": 2967,
-      "rating": 0.81
+      "rating": 1.04
     },
     {
       "nickname": "-greenf1re",
@@ -2267,7 +2269,7 @@ const players = {
     {
       "nickname": "BANANAS192",
       "elo": 3086,
-      "rating": 0.97
+      "rating": 1.02
     },
     {
       "nickname": "shotta36",
@@ -2276,7 +2278,7 @@ const players = {
     },
     {
       "nickname": "koshak666",
-      "elo": 2664,
+      "elo": 2688,
       "rating": 0.93
     },
     {
@@ -2294,11 +2296,11 @@ const players = {
     {
       "nickname": "nexozis",
       "elo": 3367,
-      "rating": 1.05
+      "rating": 0.96
     },
     {
       "nickname": "riflerka",
-      "elo": 3202,
+      "elo": 3232,
       "rating": 0.95
     },
     {
@@ -2308,25 +2310,25 @@ const players = {
     },
     {
       "nickname": "xdxdxdxd1721",
-      "elo": 3004,
+      "elo": 3003,
       "rating": 1.04
     }
   ],
   "fate": [
     {
       "nickname": "ecstaci",
-      "elo": 2528,
+      "elo": 2498,
       "rating": 0.78
     },
     {
       "nickname": "rqx-",
       "elo": 3361,
-      "rating": 1.19
+      "rating": 1.26
     },
     {
       "nickname": "danc3d3sh",
       "elo": 3319,
-      "rating": 1.28
+      "rating": 1.32
     },
     {
       "nickname": "kabanBMW67",
@@ -2335,7 +2337,7 @@ const players = {
     },
     {
       "nickname": "eplleptickid",
-      "elo": 3125,
+      "elo": 3154,
       "rating": 0.98
     }
   ],
@@ -2343,12 +2345,12 @@ const players = {
     {
       "nickname": "GH0STNAME19",
       "elo": 2539,
-      "rating": 0.85
+      "rating": 0.94
     },
     {
       "nickname": "SavingsGOD",
       "elo": 3151,
-      "rating": 0.76
+      "rating": 1.27
     },
     {
       "nickname": "fxcker",
@@ -2358,46 +2360,46 @@ const players = {
     {
       "nickname": "ducatto-iwnl",
       "elo": 2731,
-      "rating": 0.78
+      "rating": 0.83
     },
     {
       "nickname": "fLK-",
       "elo": 2819,
-      "rating": 0.71
+      "rating": 1.17
     }
   ],
   "dnk": [
     {
       "nickname": "RamBLBi_-",
       "elo": 2832,
-      "rating": 0.94
+      "rating": 1.01
     },
     {
       "nickname": "MAKTPAXEEPP",
       "elo": 2931,
-      "rating": 1.02
+      "rating": 1.04
     },
     {
       "nickname": "Pla1n7",
       "elo": 3255,
-      "rating": 0.9
+      "rating": 1.12
     },
     {
       "nickname": "t1er0_s",
       "elo": 2940,
-      "rating": 1
+      "rating": 1.21
     },
     {
       "nickname": "indoubt_",
       "elo": 3259,
-      "rating": 1.34
+      "rating": 1.13
     }
   ],
   "homo-sapiens": [
     {
       "nickname": "nomicsry",
       "elo": 3019,
-      "rating": 0.89
+      "rating": 1.09
     },
     {
       "nickname": "lif5e",
@@ -2406,12 +2408,12 @@ const players = {
     },
     {
       "nickname": "SHAG888",
-      "elo": 3466,
+      "elo": 3409,
       "rating": 1.54
     },
     {
       "nickname": "101",
-      "elo": 2567
+      "elo": 2597
     },
     {
       "nickname": "Juzeppe",
@@ -2423,43 +2425,43 @@ const players = {
     {
       "nickname": "_L1nia_",
       "elo": 2815,
-      "rating": 0.91
+      "rating": 1
     },
     {
       "nickname": "kerankyss",
       "elo": 2741,
-      "rating": 1.04
+      "rating": 1.11
     },
     {
       "nickname": "sunketsu",
       "elo": 2987,
-      "rating": 1.29
+      "rating": 1.18
     },
     {
       "nickname": "sm1lebossu",
-      "elo": 3190,
+      "elo": 3191,
       "rating": 1.45
     },
     {
       "nickname": "Sammy14",
       "elo": 3036,
-      "rating": 1.18
+      "rating": 1.06
     }
   ],
   "fak1e-lab": [
     {
       "nickname": "Minlaic",
       "elo": 3105,
-      "rating": 0.93
+      "rating": 1.08
     },
     {
       "nickname": "KpyT0u_6o6ep",
       "elo": 3009,
-      "rating": 1.37
+      "rating": 0.84
     },
     {
       "nickname": "sapphire",
-      "elo": 3181,
+      "elo": 3211,
       "rating": 1.16
     },
     {
@@ -2470,7 +2472,7 @@ const players = {
     {
       "nickname": "yoogin_",
       "elo": 3226,
-      "rating": 0.99
+      "rating": 1.03
     }
   ],
   "mana": [
@@ -2482,17 +2484,17 @@ const players = {
     {
       "nickname": "TESNO",
       "elo": 3215,
-      "rating": 1.14
+      "rating": 1.12
     },
     {
       "nickname": "vershh",
       "elo": 3473,
-      "rating": 1.11
+      "rating": 1.22
     },
     {
       "nickname": "qanax",
       "elo": 2828,
-      "rating": 1.01
+      "rating": 1
     },
     {
       "nickname": "SKYLLLER",
@@ -2504,22 +2506,22 @@ const players = {
     {
       "nickname": "ezeeuqs",
       "elo": 3234,
-      "rating": 1.01
+      "rating": 0.96
     },
     {
       "nickname": "-m3z1k",
       "elo": 2989,
-      "rating": 1.05
+      "rating": 1.19
     },
     {
       "nickname": "Innerpeace-",
       "elo": 3617,
-      "rating": 1.13
+      "rating": 1.24
     },
     {
       "nickname": "SellorMEOW",
       "elo": 2885,
-      "rating": 0.77
+      "rating": 0.91
     },
     {
       "nickname": "l1vanski",
@@ -2530,12 +2532,12 @@ const players = {
   "eternal": [
     {
       "nickname": "aut0stop",
-      "elo": 2971,
+      "elo": 2966,
       "rating": 1.12
     },
     {
       "nickname": "_-___-_--",
-      "elo": 2472,
+      "elo": 2497,
       "rating": 0.63
     },
     {
@@ -2547,24 +2549,24 @@ const players = {
     {
       "nickname": "anemie",
       "elo": 2431,
-      "rating": 0.95
+      "rating": 1.04
     }
   ],
   "fusion": [
     {
       "nickname": "s1mkl",
       "elo": 2801,
-      "rating": 1.71
+      "rating": 1.62
     },
     {
       "nickname": "-arTy2k_",
-      "elo": 2890,
-      "rating": 1.12
+      "elo": 2865,
+      "rating": 0.94
     },
     {
       "nickname": "CEMEN_CEMEN",
-      "elo": 2973,
-      "rating": 1.06
+      "elo": 3003,
+      "rating": 1.12
     },
     {
       "nickname": "Mokurai",
@@ -2581,7 +2583,7 @@ const players = {
     {
       "nickname": "hope666",
       "elo": 2520,
-      "rating": 0.93
+      "rating": 0.98
     },
     {
       "nickname": "x0de",
@@ -2591,34 +2593,34 @@ const players = {
     {
       "nickname": "hudsen",
       "elo": 2647,
-      "rating": 1.06
+      "rating": 0.87
     },
     {
       "nickname": "w1lroom-",
       "elo": 2719,
-      "rating": 0.84
+      "rating": 0.95
     },
     {
       "nickname": "Keyz1c",
       "elo": 3019,
-      "rating": 0.93
+      "rating": 1.24
     }
   ],
   "thekomyakz": [
     {
       "nickname": "setqa",
       "elo": 2795,
-      "rating": 0.92
+      "rating": 1.04
     },
     {
       "nickname": "_Kyoko_",
       "elo": 2593,
-      "rating": 1.17
+      "rating": 1.09
     },
     {
       "nickname": "g9ddg",
       "elo": 2600,
-      "rating": 1.26
+      "rating": 1.19
     },
     {
       "nickname": "Sip1z",
@@ -2635,7 +2637,7 @@ const players = {
     {
       "nickname": "F1Nik",
       "elo": 2539,
-      "rating": 0.61
+      "rating": 0.85
     },
     {
       "nickname": "9G-",
@@ -2650,7 +2652,7 @@ const players = {
     {
       "nickname": "diray",
       "elo": 2901,
-      "rating": 1.08
+      "rating": 1.19
     },
     {
       "nickname": "Kiyose",
@@ -2662,22 +2664,22 @@ const players = {
     {
       "nickname": "marginal4ik",
       "elo": 3008,
-      "rating": 1.01
+      "rating": 1
     },
     {
       "nickname": "rostikxxx",
       "elo": 3036,
-      "rating": 1.29
+      "rating": 1.09
     },
     {
       "nickname": "danulka2013",
-      "elo": 2411,
+      "elo": 2337,
       "rating": 0.96
     },
     {
       "nickname": "sShadyY",
       "elo": 3057,
-      "rating": 1.17
+      "rating": 1.22
     },
     {
       "nickname": "m4s1cs",
@@ -2689,7 +2691,7 @@ const players = {
     {
       "nickname": "Tenzik",
       "elo": 3255,
-      "rating": 1.38
+      "rating": 1.29
     },
     {
       "nickname": "-dunk",
@@ -2698,24 +2700,24 @@ const players = {
     },
     {
       "nickname": "BblLLIu6aJla",
-      "elo": 2750,
-      "rating": 1.61
+      "elo": 2743,
+      "rating": 0.85
     },
     {
       "nickname": "Saydashev",
       "elo": 3328,
-      "rating": 1.08
+      "rating": 1.02
     },
     {
       "nickname": "x1nse",
       "elo": 2237,
-      "rating": 1.02
+      "rating": 0.87
     }
   ],
   "pivstar": [
     {
       "nickname": "decadance",
-      "elo": 3149,
+      "elo": 3126,
       "rating": 0.79
     },
     {
@@ -2726,12 +2728,12 @@ const players = {
     },
     {
       "nickname": "3yb11Kk",
-      "elo": 3205,
-      "rating": 1.02
+      "elo": 3207,
+      "rating": 1.01
     },
     {
       "nickname": "MiNeuR-",
-      "elo": 2988,
+      "elo": 2990,
       "rating": 0.88
     }
   ],
@@ -2742,7 +2744,7 @@ const players = {
     {
       "nickname": "Titch-",
       "elo": 2497,
-      "rating": 0.97
+      "rating": 1
     },
     {
       "nickname": "Hen4ik",
@@ -2752,7 +2754,7 @@ const players = {
     {
       "nickname": "MEGAKNIGHT67",
       "elo": 2625,
-      "rating": 0.54
+      "rating": 0.83
     },
     {
       "nickname": "-santic",
@@ -2764,7 +2766,7 @@ const players = {
     {
       "nickname": "a6yssw",
       "elo": 3004,
-      "rating": 1.37
+      "rating": 1.08
     },
     {
       "nickname": "SKOTOBGOO35",
@@ -2779,7 +2781,7 @@ const players = {
     {
       "nickname": "Marthf",
       "elo": 3418,
-      "rating": 0.8
+      "rating": 1.08
     },
     {
       "nickname": "kai",
@@ -2790,23 +2792,23 @@ const players = {
   "unknowns": [
     {
       "nickname": "SplyZzZ",
-      "elo": 3680,
+      "elo": 3647,
       "rating": 1.14
     },
     {
       "nickname": "LenS1ck",
       "elo": 3041,
-      "rating": 0.89
+      "rating": 0.99
     },
     {
       "nickname": "Junctions1",
-      "elo": 3058,
+      "elo": 3025,
       "rating": 1.03
     },
     {
       "nickname": "pANDEV1CH",
-      "elo": 3464,
-      "rating": 1.26
+      "elo": 3459,
+      "rating": 1.17
     },
     {
       "nickname": "BloodyImp",
@@ -2818,12 +2820,12 @@ const players = {
     {
       "nickname": "DISKLAME",
       "elo": 2492,
-      "rating": 1.13
+      "rating": 1.03
     },
     {
       "nickname": "KriBs1337",
       "elo": 3177,
-      "rating": 1.17
+      "rating": 1.15
     },
     {
       "nickname": "L00K1",
@@ -2836,19 +2838,19 @@ const players = {
     {
       "nickname": "clawzQ",
       "elo": 2727,
-      "rating": 1.37
+      "rating": 1.11
     }
   ],
   "sixseven": [
     {
       "nickname": "Yokusha",
       "elo": 3092,
-      "rating": 1.39
+      "rating": 1.13
     },
     {
       "nickname": "berjum",
       "elo": 1868,
-      "rating": 0.67
+      "rating": 0.66
     },
     {
       "nickname": "slabosilnaya",
@@ -2858,12 +2860,12 @@ const players = {
     {
       "nickname": "LXVII",
       "elo": 2345,
-      "rating": 0.58
+      "rating": 1.18
     },
     {
       "nickname": "re1gn999",
       "elo": 3265,
-      "rating": 1.91
+      "rating": 1.82
     }
   ],
   "stubborn-boys": [
@@ -2875,12 +2877,12 @@ const players = {
     {
       "nickname": "kubaru-",
       "elo": 2850,
-      "rating": 0.62
+      "rating": 0.74
     },
     {
       "nickname": "Deitas",
       "elo": 2725,
-      "rating": 1.12
+      "rating": 0.96
     },
     {
       "nickname": "CAPTAIN_WLAD",
@@ -2890,22 +2892,22 @@ const players = {
     {
       "nickname": "neonri_off",
       "elo": 2290,
-      "rating": 0.86
+      "rating": 0.84
     }
   ],
   "critical": [
     {
       "nickname": "1CAP1",
-      "elo": 2013,
-      "rating": 0.94
+      "elo": 1986,
+      "rating": 0.75
     },
     {
       "nickname": "katarosix7"
     },
     {
       "nickname": "_MARbl4_",
-      "elo": 2908,
-      "rating": 1.65
+      "elo": 2881,
+      "rating": 1.12
     },
     {
       "nickname": "arcanum44",
@@ -2915,41 +2917,41 @@ const players = {
     {
       "nickname": "k4muro-",
       "elo": 2931,
-      "rating": 0.78
+      "rating": 0.87
     }
   ],
   "mephi": [
     {
       "nickname": "k1pler",
       "elo": 3219,
-      "rating": 1.56
+      "rating": 1.5
     },
     {
       "nickname": "-impromptu",
       "elo": 2916,
-      "rating": 0.83
+      "rating": 1.07
     },
     {
       "nickname": "qn0me",
       "elo": 1949,
-      "rating": 0.82
+      "rating": 0.75
     },
     {
       "nickname": "tletl",
       "elo": 2877,
-      "rating": 1.11
+      "rating": 1.04
     },
     {
       "nickname": "-Markelle",
       "elo": 2423,
-      "rating": 0.8
+      "rating": 0.91
     }
   ],
   "zbk": [
     {
       "nickname": "re1axbtw",
       "elo": 3387,
-      "rating": 0.77
+      "rating": 0.97
     },
     {
       "nickname": "BuuBl1k",
@@ -2962,34 +2964,34 @@ const players = {
     {
       "nickname": "-tRI3INI1312",
       "elo": 3635,
-      "rating": 1.19
+      "rating": 1.05
     },
     {
       "nickname": "n0c4r3",
       "elo": 2599,
-      "rating": 1.09
+      "rating": 1.05
     }
   ],
   "ha-ncuxotponhbix": [
     {
       "nickname": "Fogi",
       "elo": 3154,
-      "rating": 0.83
+      "rating": 1.13
     },
     {
       "nickname": "Titov",
       "elo": 2884,
-      "rating": 0.72
+      "rating": 0.9
     },
     {
       "nickname": "yoyoyooo_O",
       "elo": 3063,
-      "rating": 0.86
+      "rating": 1.24
     },
     {
       "nickname": "kubidoo",
       "elo": 3221,
-      "rating": 0.9
+      "rating": 1.19
     },
     {
       "nickname": "RAY3ZERA7331",
@@ -3008,7 +3010,7 @@ const players = {
     },
     {
       "nickname": "quoyo",
-      "elo": 2703,
+      "elo": 2643,
       "rating": 1.15
     },
     {
@@ -3019,19 +3021,19 @@ const players = {
     {
       "nickname": "theft999",
       "elo": 2935,
-      "rating": 0.98
+      "rating": 0.91
     }
   ],
   "outsiders": [
     {
       "nickname": "qyzeez666",
-      "elo": 2852,
+      "elo": 2853,
       "rating": 1.13
     },
     {
       "nickname": "aKroZz",
-      "elo": 2700,
-      "rating": 0.9
+      "elo": 2701,
+      "rating": 0.99
     },
     {
       "nickname": "madalex",
@@ -3052,67 +3054,67 @@ const players = {
   "m0nkeys": [
     {
       "nickname": "sIeeplover",
-      "elo": 2389,
+      "elo": 2414,
       "rating": 1.06
     },
     {
       "nickname": "D1M0N228-",
       "elo": 3059,
-      "rating": 1.13
+      "rating": 1.16
     },
     {
       "nickname": "retrikbtw",
       "elo": 2746,
-      "rating": 0.72
+      "rating": 1.06
     },
     {
       "nickname": "Yuzya_Egoist",
       "elo": 2400,
-      "rating": 0.29
+      "rating": 0.65
     },
     {
       "nickname": "kostyaSSS",
       "elo": 2871,
-      "rating": 1.49
+      "rating": 1.09
     }
   ],
   "1minute": [
     {
       "nickname": "L-n1nG",
-      "elo": 2350,
-      "rating": 0.9
+      "elo": 2320,
+      "rating": 0.84
     },
     {
       "nickname": "-opss-",
       "elo": 2770,
-      "rating": 0.91
+      "rating": 0.96
     },
     {
       "nickname": "pod1s",
       "elo": 3038,
-      "rating": 0.95
+      "rating": 1.05
     },
     {
       "nickname": "Nippard",
-      "elo": 3247,
+      "elo": 3221,
       "rating": 1.22
     },
     {
       "nickname": "DR0BOVIKTOR",
-      "elo": 2357,
+      "elo": 2387,
       "rating": 1
     }
   ],
   "only-gamers": [
     {
       "nickname": "BOTIRSHOT",
-      "elo": 3007,
-      "rating": 1.31
+      "elo": 2959,
+      "rating": 1.3
     },
     {
       "nickname": "karimoff999",
       "elo": 2855,
-      "rating": 0.87
+      "rating": 0.91
     },
     {
       "nickname": "bReelGx",
@@ -3122,12 +3124,12 @@ const players = {
     {
       "nickname": "mukhas",
       "elo": 2940,
-      "rating": 1.05
+      "rating": 0.98
     },
     {
       "nickname": "GRINCHxueta",
       "elo": 2500,
-      "rating": 0.28
+      "rating": 0.88
     }
   ],
   "inputlag-enjoyers": [
@@ -3144,7 +3146,7 @@ const players = {
     {
       "nickname": "phenta21",
       "elo": 2641,
-      "rating": 0.85
+      "rating": 1.04
     },
     {
       "nickname": "olegbandit",
@@ -3154,7 +3156,7 @@ const players = {
     {
       "nickname": "-cucman",
       "elo": 2824,
-      "rating": 1.42
+      "rating": 1.12
     }
   ],
   "justtag": [
@@ -3164,48 +3166,48 @@ const players = {
     {
       "nickname": "Hosh1xd",
       "elo": 2913,
-      "rating": 1.09
+      "rating": 1.01
     },
     {
       "nickname": "b0rkAAA",
       "elo": 2786,
-      "rating": 0.85
+      "rating": 0.88
     },
     {
       "nickname": "Nicosmos",
       "elo": 2102,
-      "rating": 0.99
+      "rating": 0.91
     },
     {
       "nickname": "GGrindelwald",
       "elo": 2960,
-      "rating": 1.12
+      "rating": 1.07
     }
   ],
   "leetcase": [
     {
       "nickname": "1braa",
       "elo": 2684,
-      "rating": 0.82
+      "rating": 0.9
     },
     {
       "nickname": "qweaky",
       "elo": 3315,
-      "rating": 1.18
+      "rating": 1.2
     },
     {
       "nickname": "neonzer0",
       "elo": 3184,
-      "rating": 1.18
+      "rating": 1.08
     },
     {
       "nickname": "bezo",
       "elo": 3656,
-      "rating": 0.7
+      "rating": 1.21
     },
     {
       "nickname": "kihir0",
-      "elo": 3624,
+      "elo": 3625,
       "rating": 1.11
     }
   ],
@@ -3213,17 +3215,17 @@ const players = {
     {
       "nickname": "TOTT1k",
       "elo": 2563,
-      "rating": 0.84
+      "rating": 0.92
     },
     {
       "nickname": "Advice1010",
       "elo": 2695,
-      "rating": 1.1
+      "rating": 1.01
     },
     {
       "nickname": "Svumpzy",
       "elo": 3104,
-      "rating": 1.03
+      "rating": 0.98
     },
     {
       "nickname": "-svyat"
@@ -3245,34 +3247,34 @@ const players = {
     },
     {
       "nickname": "-_-tanto666",
-      "elo": 2509,
+      "elo": 2484,
       "rating": 1.12
     },
     {
       "nickname": "ynichhhhhh",
       "elo": 2409,
-      "rating": 0.74
+      "rating": 0.69
     },
     {
       "nickname": "suzurru",
-      "elo": 2373,
-      "rating": 1.41
+      "elo": 2398,
+      "rating": 1.09
     }
   ],
   "the-relics": [
     {
       "nickname": "Mask--",
       "elo": 2806,
-      "rating": 1.31
+      "rating": 1.33
     },
     {
       "nickname": "Romantik",
       "elo": 1799,
-      "rating": 0.61
+      "rating": 0.71
     },
     {
       "nickname": "yakooo__",
-      "elo": 1664,
+      "elo": 1691,
       "rating": 0.6
     },
     {
@@ -3283,24 +3285,24 @@ const players = {
     {
       "nickname": "Nelow",
       "elo": 2828,
-      "rating": 1.06
+      "rating": 0.96
     }
   ],
   "kagen": [
     {
       "nickname": "9Nagi",
       "elo": 2348,
-      "rating": 1.12
+      "rating": 1.08
     },
     {
       "nickname": "Tearz--",
       "elo": 2854,
-      "rating": 1.56
+      "rating": 1.25
     },
     {
       "nickname": "miura-",
       "elo": 2226,
-      "rating": 0.81
+      "rating": 0.79
     },
     {
       "nickname": "notebait",
@@ -3310,7 +3312,7 @@ const players = {
     {
       "nickname": "nikeEGOISTO",
       "elo": 2920,
-      "rating": 0.75
+      "rating": 1.19
     }
   ],
   "back2back": [
@@ -3325,33 +3327,34 @@ const players = {
     {
       "nickname": "mindlex",
       "elo": 2552,
-      "rating": 1.05
+      "rating": 1
     },
     {
       "nickname": "NotoX-",
       "elo": 2730,
-      "rating": 1.22
+      "rating": 1.08
     },
     {
       "nickname": "qentblock",
       "elo": 2997,
-      "rating": 1.38
+      "rating": 1.28
     }
   ],
   "full-dobro": [
     {
       "nickname": "Po1337",
       "elo": 2826,
-      "rating": 1.5
+      "rating": 1.08
     },
     {
       "nickname": "rawka",
       "elo": 2730,
-      "rating": 1.65
+      "rating": 1.01
     },
     {
       "nickname": "DekuDI",
-      "elo": 2720
+      "elo": 2720,
+      "rating": 1.04
     },
     {
       "nickname": "Locust",
@@ -3360,7 +3363,7 @@ const players = {
     },
     {
       "nickname": "Vasilich",
-      "elo": 2442,
+      "elo": 2382,
       "rating": 0.82
     }
   ],
@@ -3368,7 +3371,7 @@ const players = {
     {
       "nickname": "kugato",
       "elo": 2527,
-      "rating": 0.84
+      "rating": 0.88
     },
     {
       "nickname": "LLIuLLIka",
@@ -3378,17 +3381,17 @@ const players = {
     {
       "nickname": "sa1ko",
       "elo": 2959,
-      "rating": 0.79
+      "rating": 0.89
     },
     {
       "nickname": "dremor",
       "elo": 2971,
-      "rating": 0.73
+      "rating": 1.09
     },
     {
       "nickname": "Renai",
       "elo": 3481,
-      "rating": 0.77
+      "rating": 1.18
     }
   ],
   "emlight": [
@@ -3405,38 +3408,38 @@ const players = {
     {
       "nickname": "Norm115",
       "elo": 2708,
-      "rating": 1.08
+      "rating": 1.03
     },
     {
       "nickname": "_z1ro",
       "elo": 2193,
-      "rating": 0.96
+      "rating": 0.85
     },
     {
       "nickname": "henkisuru",
-      "elo": 2728,
-      "rating": 1.18
+      "elo": 2698,
+      "rating": 1.04
     }
   ],
   "hodes": [
     {
       "nickname": "fxrgxt10",
       "elo": 2824,
-      "rating": 0.84
+      "rating": 0.95
     },
     {
       "nickname": "s1ner-",
-      "elo": 3549,
-      "rating": 1.48
+      "elo": 3550,
+      "rating": 1.15
     },
     {
       "nickname": "susa",
-      "elo": 3087,
+      "elo": 3088,
       "rating": 1.09
     },
     {
       "nickname": "akari999",
-      "elo": 2876,
+      "elo": 2847,
       "rating": 0.91
     },
     {
@@ -3454,20 +3457,22 @@ const players = {
     {
       "nickname": "Winterix",
       "elo": 3012,
-      "rating": 1.01
+      "rating": 1.03
     },
     {
       "nickname": "-1saD",
       "elo": 3060,
-      "rating": 1.02
+      "rating": 1.05
     },
     {
-      "nickname": "stomp999"
+      "nickname": "UAPb_CBUHEU",
+      "elo": 3225,
+      "rating": 1.25
     },
     {
       "nickname": "ceodemona",
       "elo": 2468,
-      "rating": 0.86
+      "rating": 0.93
     }
   ],
   "weclear": [
@@ -3478,13 +3483,13 @@ const players = {
     },
     {
       "nickname": "w1se666_",
-      "elo": 3537,
+      "elo": 3567,
       "rating": 1.35
     },
     {
       "nickname": "ubcvnu",
       "elo": 3244,
-      "rating": 0.85
+      "rating": 1.13
     },
     {
       "nickname": "karastaze",
@@ -3494,14 +3499,14 @@ const players = {
     {
       "nickname": "-493",
       "elo": 3094,
-      "rating": 0.8
+      "rating": 1.12
     }
   ],
   "cybercom": [
     {
       "nickname": "Ob1ivionb0b",
       "elo": 3044,
-      "rating": 0.86
+      "rating": 1.02
     },
     {
       "nickname": "painy343",
@@ -3511,34 +3516,34 @@ const players = {
     {
       "nickname": "HrEp_",
       "elo": 2890,
-      "rating": 0.75
+      "rating": 0.85
     },
     {
       "nickname": "05kdlord",
       "elo": 2990,
-      "rating": 1.05
+      "rating": 1.1
     },
     {
       "nickname": "_makon__",
       "elo": 2151,
-      "rating": 0.8
+      "rating": 0.93
     }
   ],
   "kittadiena": [
     {
       "nickname": "GogovskY",
       "elo": 2092,
-      "rating": 0.78
+      "rating": 0.58
     },
     {
       "nickname": "Gr4zzy",
       "elo": 2919,
-      "rating": 0.7
+      "rating": 0.71
     },
     {
       "nickname": "skoroprime21",
       "elo": 3209,
-      "rating": 1.09
+      "rating": 0.85
     },
     {
       "nickname": "AYr-0",
@@ -3548,7 +3553,7 @@ const players = {
     {
       "nickname": "wakenbaker",
       "elo": 2977,
-      "rating": 1.22
+      "rating": 1.12
     }
   ]
 }
