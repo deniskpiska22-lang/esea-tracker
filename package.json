@@ -12,6 +12,8 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@vercel/analytics": "^2.0.1",
+    "axios": "^1.17.0",
+    "cheerio": "^1.2.0",
     "node-cron": "^4.2.1",
     "node-fetch": "^3.3.2",
     "react": "^19.2.6",

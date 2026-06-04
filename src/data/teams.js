@@ -100,7 +100,7 @@ const teams = [
       wins: 8,
       losses: 6,
     },
-    players: ["matusik", "reNIK", "--DeDe", "kinyx", "str0ngl"],
+    players: ["-matusik", "-reNIK", "--DeDe", "kinyx", "str0ngl"],
     matches: [],
   },
     {
@@ -126,7 +126,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["wh1teout", "seberya", "Gashhhhi4", "tronic", "ameameame73"],
+    players: ["wh1teout", "seberya", "Gashhhhi4", "tronic", "ceomanhattan"],
     matches: [],
   },
     {
@@ -269,7 +269,7 @@ const teams = [
       wins: 9,
       losses: 5,
     },
-    players: ["soerrr", "texas999", "floww", "dyhace", "morifay"],
+    players: ["soerrr", "texaas", "floww", "dyhace", "morifay"],
     matches: [],
   },
       {
@@ -362,7 +362,7 @@ const teams = [
       wins: 8,
       losses: 6,
     },
-    players: ["ARING", "stinger-_", "JbIBOTHOE", "4R2D2-_-", "0808080809"],
+    players: ["ARING", "stinger-_", "JbIBOTHOE", "4R2D2-_-", "130130130"],
     matches: [],
   },
       {
@@ -427,7 +427,7 @@ const teams = [
       wins: 7,
       losses: 7,
     },
-    players: ["M3GA_MYXA", "KOT_XAMEP", "0b535510n", "jzx", "l21p"],
+    players: ["hate_system", "KOT_XAMEP", "0b535510n", "jzx", "l21p"],
     matches: [],
   },
       {
@@ -453,7 +453,7 @@ const teams = [
       wins: 7,
       losses: 7,
     },
-    players: ["bottl9", "pyJIb-wick", "pyJIb-happy", "pyJIb-rcR333", "RAWFEAR-"],
+    players: ["bottl9", "pyJIb-wick", "pyJIb-happy", "pyJIb-rcR333", "3905U390"],
     matches: [],
   },
       {
@@ -531,7 +531,7 @@ const teams = [
       wins: 14,
       losses: 0,
     },
-    players: ["ectaza", "cr1s-_-", "BOSSPREMA", "91914", "vviniciouss"],
+    players: ["ectaza", "AHTOH616", "BOSSPREMA", "91914", "Belkindryg"],
     matches: [],
   },
         {
@@ -544,7 +544,7 @@ const teams = [
       wins: 13,
       losses: 1,
     },
-    players: ["qdead", "Madaraya", "-_-ecl1pse", "d3fuser", "SyZ3r0x1"],
+    players: ["qdead", "Madaraya", "-_-ecl1pse", "d3fuser", "SyZ3r0x1-"],
     matches: [],
   },
         {
@@ -557,7 +557,7 @@ const teams = [
       wins: 12,
       losses: 2,
     },
-    players: ["ne1l", "saddamy", "FlaRip111", "lula", "sakha"],
+    players: ["ne1l", "saddamy", "FlaRip111", "varafo", "sakha"],
     matches: [],
   },
         {
@@ -622,7 +622,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["pinwud", "KLYXA_AAA", "marcelobraun", "A-plus-eto", "_f0ma"],
+    players: ["JIAPWICHNIK", "uwantcatchme", "marcelobraun", "yogiri", "_f0ma"],
     matches: [],
   },
           {
@@ -648,7 +648,7 @@ const teams = [
       wins: 5,
       losses: 9,
     },
-    players: ["paketAAA", "rmboo0_o", "Acura-", "25yokid", "yoshimaaa"],
+    players: ["paketAAA", "rmboo0_o", "Acura-", "strongkid666", "yoshimaaa"],
     matches: [],
   },
           {
@@ -674,7 +674,7 @@ const teams = [
       wins: 9,
       losses: 5,
     },
-    players: ["we1rdxd", "lrnk", "-frenzzzz", "kyonig", "-Ginger_"],
+    players: ["we1rdly", "lrnk", "-frenzzzz", "kyonig", "-Ginger_"],
     matches: [],
   },
           {
@@ -726,7 +726,7 @@ const teams = [
       wins: 9,
       losses: 5,
     },
-    players: ["h0kaN777", "darcy-", "awpwindow", "EMERALDEN", "anchous95"],
+    players: ["h0kaN777", "darcy-", "awpwindow", "Shiiisha", "chiefkeeff-"],
     matches: [],
   },
             {
@@ -778,7 +778,7 @@ const teams = [
       wins: 8,
       losses: 6,
     },
-    players: ["_Destroy3r_", "saya1337", "trized", "diqued", "finterjazz"],
+    players: ["_Destroy3r_", "saya1337", "trized", "diqued", "SIIngJinWoo"],
     matches: [],
   },
                 {
@@ -856,7 +856,7 @@ const teams = [
       wins: 7,
       losses: 7,
     },
-    players: ["npoe6aJlu", "-Mendoza", "sw0ksi", "-EREM777", "0CEMEHiTEJIb"],
+    players: ["npoe6aJlu", "-Mendoza", "sw0ksi", "Danuka-s", "-Imp0ssible-"],
     matches: [],
   },
                       {
@@ -869,7 +869,7 @@ const teams = [
       wins: 7,
       losses: 7,
     },
-    players: ["PeR4eLo", "Jefim4ik", "KPS_", "VahaXg0d", "kyousuke666"],
+    players: ["PeR4eLo", "Jefim4ik", "KPS4K", "VahaXg0d", "kyousuke666"],
     matches: [],
   },
                         {
@@ -947,7 +947,7 @@ const teams = [
       wins: 13,
       losses: 1,
     },
-    players: ["xd3N15Z3R4--", "turbo67", "-k9ppy", "whisperr23", "Sa1nTy"],
+    players: ["xddd1111", "turbo67", "-k9ppy", "whisperr23", "Sa1nTy"],
     matches: [],
   },
                                 {
@@ -1025,7 +1025,7 @@ const teams = [
       wins: 11,
       losses: 3,
     },
-    players: ["Resaj", "skAnna", "fI4m1ng", "shte1N7", "Mudkip7"],
+    players: ["Resaj", "skAnna", "fI4m1ng", "JohnnyCag3", "Mudkip7"],
     matches: [ ],
   },
                                   {
@@ -1064,7 +1064,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["AllMuteTrash", "MAGaaaaz", "dErzz", "hallyhood", "6I0cc6a6y"],
+    players: ["AllMuteTrash", "needless2say", "dErzz", "hallyhood", "mara3m"],
     matches: [],
   },
                                     {
@@ -1103,7 +1103,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["w1nen", "BANANAS192", "shotta36", "koshak666-", "ITamiSoul"],
+    players: ["w1nen", "BANANAS192", "shotta36", "koshak666", "NikiToS_2009"],
     matches: [],
   },
                                       {
@@ -1116,7 +1116,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["m0NZ0R999", "nexozis", "riflerka", "L0fer-", "xdxdxdxd1721"],
+    players: ["m0NZ0R999", "nexozis", "riflerka", "L0fer", "xdxdxdxd1721"],
     matches: [],
   },
                                       {
@@ -1129,7 +1129,7 @@ const teams = [
       wins: 10,
       losses: 4,
     },
-    players: ["ecstaci", "rqx-", "danc3d3sh", "kabanBMW67", "------_____"],
+    players: ["ecstaci", "rqx-", "danc3d3sh", "kabanBMW67", "eplleptickid"],
     matches: [],
   },
                                         {

@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom"
 import teams from "../data/teams"
 import history from "../data/teamHistory.json"
+import playersData from "../data/players"
 
 import {
   LineChart,
@@ -45,6 +46,7 @@ console.log(teams.map(t => t.slug))
   const total = wins + losses
 
   const winrate = total ? Math.round((wins / total) * 100) : 0
+  const teamPlayersStats = playersData?.[slug] ?? []
 
   return (
   <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
@@ -144,64 +146,50 @@ console.log(teams.map(t => t.slug))
       </div>
     </div>
 
-{/* 🧑 PLAYERS CARDS (SAFE + CLEAN) */}
-<div className="max-w-6xl mx-auto mt-8 flex gap-4">
+{/* 🧑 PLAYERS */}
+<div className="max-w-6xl mx-auto mt-8 flex gap-4 flex-wrap">
 
-  {(Array.isArray(team?.players) ? team.players : [])
-    .slice(0, 5)
-    .map((p, index) => {
+  {teamPlayersStats.map((player, index) => (
+    <a
+      key={`${player.nickname}-${index}`}
+      href={`https://www.faceit.com/en/players/${player.nickname}`}
+      target="_blank"
+      rel="noreferrer"
+      className="flex-1 min-w-[180px] bg-[#111823] border border-[#1f2a3a] rounded-2xl p-5 hover:border-orange-500/40 transition hover:scale-[1.03]"
+    >
+      <div className="flex flex-col items-center text-center">
 
-      const nickname =
-        typeof p === "string"
-          ? p
-          : p?.nickname ?? "unknown";
+        <div className="w-14 h-14 rounded-full bg-[#1a2330] mb-3 flex items-center justify-center text-sm text-gray-300">
+          {player.nickname.slice(0, 2).toUpperCase()}
+        </div>
 
-      const elo = typeof p === "object" ? p?.elo : null;
-      const rating = typeof p === "object" ? p?.rating : null;
-      const avatar = typeof p === "object" ? p?.avatar : null;
+        <p className="font-semibold text-white">
+          {player.nickname}
+        </p>
 
-      return (
-        <a
-          key={`${nickname}-${index}`}
-          href={`https://www.faceit.com/en/players/${nickname}`}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-5 hover:border-orange-500/40 transition hover:scale-[1.03]"
-        >
-          <div className="flex flex-col items-center text-center">
+        <div className="mt-3 space-y-1 text-sm">
 
-            {/* AVATAR */}
-            {avatar ? (
-              <img
-                src={avatar}
-                alt={nickname}
-                className="w-14 h-14 rounded-full object-cover mb-3 border border-[#263041]"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-            ) : (
-              <div className="w-14 h-14 rounded-full bg-[#1a2330] mb-3 flex items-center justify-center text-sm text-gray-300">
-                {nickname.slice(0, 2).toUpperCase()}
-              </div>
-            )}
+          <p
+  className={`font-semibold ${
+    player.rating >= 1.1
+      ? "text-green-400"
+      : player.rating < 0.95
+      ? "text-red-400"
+      : "text-orange-400"
+  }`}
+>
+  Rating: {player.rating ?? "-"}
+</p>
 
-            {/* NICKNAME */}
-            <p className="font-semibold text-white">
-              {nickname}
-            </p>
+          <p className="text-green-400">
+            Elo: {player.elo ?? "-"}
+          </p>
 
-            {/* STATS */}
-            <p className="text-xs text-gray-400 mt-1">
-              {typeof p === "object" && elo && rating
-                ? `Elo: ${elo} • Rating: ${rating}`
-                : "FACEIT Player"}
-            </p>
+        </div>
 
-          </div>
-        </a>
-      );
-    })}
+      </div>
+    </a>
+  ))}
 
 </div>
 
