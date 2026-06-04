@@ -29,7 +29,7 @@ async function getFaceitPlayer(nickname) {
   }
 }
 
-async function getSeason57Rating(nickname) {
+async function getSeason57Ratings(nickname) {
   try {
     const { data: html } = await axios.get(
       `https://faceitanalyser.com/hubs/${encodeURIComponent(nickname)}/cs2`,
@@ -42,40 +42,61 @@ async function getSeason57Rating(nickname) {
 
     const $ = cheerio.load(html);
 
-    let bestRating = null;
-    let mostMatches = 0;
+    let regularRating = null;
+    let regularMatches = 0;
+    let playoffRating = null;
+    let playoffMatches = 0;
 
     $("tr").each((_, row) => {
       const text = $(row).text();
 
-      const isSeason57 =
-        text.includes("S57") &&
-        text.includes("Regular Season") &&
-        !text.includes("Playoffs");
+      if (!text.includes("S57")) return;
 
-      if (!isSeason57) return;
+      const isRegular = text.includes("Regular Season");
+      const isPlayoff = text.includes("Playoffs");
 
-      const foundRating = parseFloat(
-        $(row).find(".col-hltv").first().text().trim()
-      );
+      if (!isRegular && !isPlayoff) return;
 
-      const matches = parseInt(
-        $(row).find(".col-matches").first().text().trim(),
-        10
-      );
+      const matches = parseInt($(row).find(".col-matches").text().trim(), 10);
+      const rating = parseFloat($(row).find(".col-hltv").first().text().trim());
+      if (isNaN(matches) || isNaN(rating)) return;
 
-      if (
-        !Number.isNaN(foundRating) &&
-        matches > mostMatches
-      ) {
-        mostMatches = matches;
-        bestRating = foundRating;
-      }
+      // Берём запись регулярки с максимальным количеством матчей
+if (isRegular && matches > regularMatches) {
+  regularRating = rating;
+  regularMatches = matches;
+}
+
+// Берём запись плей-оффа с максимальным количеством матчей
+if (isPlayoff && matches > playoffMatches) {
+  playoffRating = rating;
+  playoffMatches = matches;
+}
     });
 
-    return bestRating;
+    // Если есть только регулярка, возвращаем её
+    if (regularRating !== null && playoffRating === null) {
+      return { rating: regularRating, matches: regularMatches };
+    }
+
+    // Если есть и регулярка, и плей-офф, считаем взвешенное среднее
+    if (regularRating !== null && playoffRating !== null) {
+      const totalMatches = regularMatches + playoffMatches;
+      const weightedRating =
+        (regularRating * regularMatches + playoffRating * playoffMatches) /
+        totalMatches;
+
+      return { rating: weightedRating, matches: totalMatches };
+    }
+
+    // Если есть только плей-офф
+    if (regularRating === null && playoffRating !== null) {
+      return { rating: playoffRating, matches: playoffMatches };
+    }
+
+    return { rating: null, matches: 0 };
   } catch {
-    return null;
+    return { rating: null, matches: 0 };
   }
 }
 
@@ -84,33 +105,25 @@ async function main() {
 
   for (const team of teams) {
     console.log(`\n=== ${team.name} ===`);
-
     output[team.slug] = [];
 
     for (const nickname of team.players) {
       console.log(`→ ${nickname}`);
 
       const player = await getFaceitPlayer(nickname);
+      let elo = player?.games?.cs2?.faceit_elo;
 
-      let elo = undefined;
-
-      if (player?.games?.cs2?.faceit_elo) {
-        elo = player.games.cs2.faceit_elo;
-      }
-
-      const rating = await getSeason57Rating(nickname);
-
-      const playerData = {
-        nickname,
-      };
-
-      if (elo) {
-        playerData.elo = elo;
-      }
+      const { rating, matches } = await getSeason57Ratings(nickname);
 
       if (rating !== null) {
-        playerData.rating = Number(rating.toFixed(2));
+        console.log(
+          `RESULT: ${nickname} | ELO=${elo} | RATING=${rating.toFixed(2)} | MATCHES=${matches}`
+        );
       }
+
+      const playerData = { nickname };
+      if (elo) playerData.elo = elo;
+      if (rating !== null) playerData.rating = Number(rating.toFixed(2));
 
       output[team.slug].push(playerData);
 
@@ -118,18 +131,12 @@ async function main() {
     }
   }
 
-  const fileContent =
-`const players = ${JSON.stringify(output, null, 2)}
+  const fileContent = `const players = ${JSON.stringify(output, null, 2)}
 
 export default players;
 `;
 
-  fs.writeFileSync(
-    "./src/data/players.js",
-    fileContent,
-    "utf8"
-  );
-
+  fs.writeFileSync("./src/data/players.js", fileContent, "utf8");
   console.log("\n✅ players.js updated");
 }
 

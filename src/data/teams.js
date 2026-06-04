@@ -1689,7 +1689,7 @@ const teams = [
       wins:7,
       losses: 7,
     },
-    players: ["Lamp4x", "Winterix", "-1saD", "stomp999", "ceodemona"],
+    players: ["Lamp4x", "Winterix", "-1saD", "UAPb_CBUHEU", "ceodemona"],
     matches: [],
   },
                                                                   {
