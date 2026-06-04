@@ -47,6 +47,10 @@ console.log(teams.map(t => t.slug))
 
   const winrate = total ? Math.round((wins / total) * 100) : 0
   const teamPlayersStats = playersData?.[slug] ?? []
+  const mvp =
+  [...teamPlayersStats]
+    .filter((p) => p.rating)
+    .sort((a, b) => b.rating - a.rating)[0]
 
   return (
   <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
@@ -267,19 +271,32 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
       </h2>
 
       {teamHistory.length ? (
-        <div className="h-80">
+        <div className="h-96">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={teamHistory}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="week" />
               <YAxis />
-              <Tooltip />
+              <Tooltip
+  contentStyle={{
+    background: "#111823",
+    border: "1px solid #2a3547",
+    borderRadius: "12px",
+    color: "#fff",
+  }}
+/>
               <Line
-                type="monotone"
-                dataKey="rating"
-                stroke="#f97316"
-                strokeWidth={2}
-              />
+  type="monotone"
+  dataKey="rating"
+  stroke="#f97316"
+  strokeWidth={4}
+  dot={{
+    r: 5,
+    fill: "#f97316",
+    stroke: "#111823",
+    strokeWidth: 2,
+  }}
+/>
             </LineChart>
           </ResponsiveContainer>
         </div>
