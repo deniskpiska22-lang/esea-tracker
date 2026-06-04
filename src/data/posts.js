@@ -20,6 +20,13 @@ const posts = [
     image: "/posts/raiting.png",
     text: "Первое обновление рейтинга приехало и теперь будет происходить каждое воскресенье!",
   },
+   {
+    id: 3,
+    team: "Esea Tracker",
+    logo: "/logos/logo.png",
+    image: "/posts/rat.png",
+    text: "У каждого игрока теперь показан рейтинг (Взято взвешенное среднее из игр регулярки и Плей-Офф)",
+  },
 ]
 
 export default posts
