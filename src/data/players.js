@@ -3448,8 +3448,8 @@ const players = {
   "flame-guardians": [
     {
       "nickname": "Lamp4x",
-      "elo": 2456,
-      "rating": 0.91
+      "elo": 2476,
+      "rating": 1.01
     },
     {
       "nickname": "Winterix",
