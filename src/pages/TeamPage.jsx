@@ -147,49 +147,115 @@ console.log(teams.map(t => t.slug))
     </div>
 
 {/* 🧑 PLAYERS */}
+
 <div className="max-w-6xl mx-auto mt-8 flex gap-4 flex-wrap">
 
-  {teamPlayersStats.map((player, index) => (
-    <a
-      key={`${player.nickname}-${index}`}
-      href={`https://www.faceit.com/en/players/${player.nickname}`}
-      target="_blank"
-      rel="noreferrer"
-      className="flex-1 min-w-[180px] bg-[#111823] border border-[#1f2a3a] rounded-2xl p-5 hover:border-orange-500/40 transition hover:scale-[1.03]"
-    >
-      <div className="flex flex-col items-center text-center">
-
-        <div className="w-14 h-14 rounded-full bg-[#1a2330] mb-3 flex items-center justify-center text-sm text-gray-300">
-          {player.nickname.slice(0, 2).toUpperCase()}
-        </div>
-
-        <p className="font-semibold text-white">
-          {player.nickname}
-        </p>
-
-        <div className="mt-3 space-y-1 text-sm">
-
-          <p
-  className={`font-semibold ${
-    player.rating >= 1.1
-      ? "text-green-400"
-      : player.rating < 0.95
-      ? "text-red-400"
-      : "text-orange-400"
-  }`}
+{teamPlayersStats.map((player, index) => (
+<a
+key={`${player.nickname}-${index}`}
+href={`https://www.faceit.com/en/players/${player.nickname}`}
+target="_blank"
+rel="noreferrer"
+className="
+flex-1
+min-w-[190px]
+bg-gradient-to-b
+from-[#182230]
+to-[#0f141c]
+border
+border-[#2a3547]
+rounded-3xl
+p-6
+relative
+overflow-hidden
+transition-all
+duration-300
+hover:-translate-y-2
+hover:border-orange-500/50
+hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
+"
 >
-  Rating: {player.rating ?? "-"}
-</p>
+  {/* TOP COLOR BAR */}
+  <div
+    className={`absolute top-0 left-0 w-full h-1 ${
+      player.rating >= 1.1
+        ? "bg-green-500"
+        : player.rating < 0.95
+        ? "bg-red-500"
+        : "bg-orange-500"
+    }`}
+  />
 
-          <p className="text-green-400">
-            Elo: {player.elo ?? "-"}
-          </p>
+  <div className="flex flex-col items-center text-center">
 
-        </div>
+    {/* PLAYER ICON */}
+    <div
+      className="
+      w-16
+      h-16
+      rounded-full
+      bg-gradient-to-br
+      from-orange-500/20
+      to-orange-700/10
+      border
+      border-orange-500/20
+      flex
+      items-center
+      justify-center
+      text-xl
+      font-black
+      text-orange-300
+      mb-4
+      mt-2
+      "
+    >
+      {player.nickname[0].toUpperCase()}
+    </div>
 
+    {/* NICKNAME */}
+    <h3 className="font-bold text-white text-lg">
+      {player.nickname}
+    </h3>
+
+    {/* RATING */}
+    <div className="mt-5">
+
+      <div
+        className={`text-4xl font-black leading-none ${
+          player.rating >= 1.1
+            ? "text-green-400"
+            : player.rating < 0.95
+            ? "text-red-400"
+            : "text-orange-400"
+        }`}
+      >
+        {player.rating ?? "-"}
       </div>
-    </a>
-  ))}
+
+      <div className="text-[11px] uppercase tracking-[0.2em] text-gray-500 mt-1">
+        Rating
+      </div>
+
+    </div>
+
+    {/* ELO */}
+    <div className="mt-5 w-full border-t border-[#243041] pt-4">
+
+      <div className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
+        FACEIT ELO
+      </div>
+
+      <div className="text-white font-bold text-xl mt-1">
+        {player.elo ?? "-"}
+      </div>
+
+    </div>
+
+  </div>
+
+</a>
+
+))}
 
 </div>
 
