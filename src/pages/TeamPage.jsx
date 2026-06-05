@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom"
 import teams from "../data/teams"
 import history from "../data/teamHistory.json"
 import playersData from "../data/players"
+import matchesData from "../data/matches"
 
 import {
   LineChart,
@@ -46,11 +47,8 @@ console.log(teams.map(t => t.slug))
   const total = wins + losses
 
   const winrate = total ? Math.round((wins / total) * 100) : 0
+  const teamMatches = matchesData?.[slug] ?? []
   const teamPlayersStats = playersData?.[slug] ?? []
-  const mvp =
-  [...teamPlayersStats]
-    .filter((p) => p.rating)
-    .sort((a, b) => b.rating - a.rating)[0]
 
   return (
   <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
@@ -258,7 +256,6 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
   </div>
 
 </a>
-
 ))}
 
 </div>
@@ -290,12 +287,6 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
   dataKey="rating"
   stroke="#f97316"
   strokeWidth={4}
-  dot={{
-    r: 5,
-    fill: "#f97316",
-    stroke: "#111823",
-    strokeWidth: 2,
-  }}
 />
             </LineChart>
           </ResponsiveContainer>
@@ -307,10 +298,140 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
       )}
     </div>
 
-    {/* ❌ LAST MATCHES REMOVED */}
+    {/* 🕹 RECENT MATCHES */}
+<div className="max-w-6xl mx-auto mt-10 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
 
+  <h2 className="text-2xl font-bold mb-6">
+    Recent Matches
+  </h2>
+
+  {teamMatches.length ? (
+  <div className="space-y-4">
+  {teamMatches.slice(0, 5).map((match, index) => (
+    <a
+      key={`${match.matchId}-${index}`}
+      href={`https://www.faceit.com/en/cs2/room/${match.matchId}`}
+      target="_blank"
+      rel="noreferrer"
+      className="
+        block
+        bg-gradient-to-r
+        from-[#141d2a]
+        to-[#101722]
+        border
+        border-[#243041]
+        rounded-2xl
+        p-5
+        transition-all
+        duration-300
+        hover:border-orange-500/50
+        hover:translate-x-1
+        hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]
+      "
+    >
+      <div className="flex items-center justify-between">
+
+        {/* LEFT */}
+        <div>
+
+          <div className="flex items-center gap-3">
+            <span className="
+  px-2
+  py-1
+  rounded-lg
+  text-xs
+  font-bold
+  bg-orange-500/10
+  text-orange-400
+  border
+  border-orange-500/20
+">
+  MATCH
+</span>
+
+            <span className="
+              text-xs
+              uppercase
+              tracking-[0.2em]
+              text-gray-500
+            ">
+              {match.date}
+            </span>
+
+            <span className="
+              px-2
+              py-1
+              rounded-lg
+              text-xs
+              font-semibold
+              bg-orange-500/10
+              text-orange-400
+              border
+              border-orange-500/20
+            ">
+              ESEA
+            </span>
+
+          </div>
+
+          <div className="
+            text-white
+            font-bold
+            text-lg
+            mt-2
+          ">
+            {match.season}
+          </div>
+
+          <div className="
+            text-gray-500
+            text-sm
+            mt-1
+          ">
+            Click to open FACEIT match
+          </div>
+
+        </div>
+
+        {/* RIGHT */}
+        <div className="text-right">
+
+          <div className="
+            text-4xl
+            font-black
+            text-white
+            leading-none
+          ">
+            {match.score.replace("/", "-")}
+          </div>
+
+          <div className="
+            text-xs
+            uppercase
+            tracking-[0.2em]
+            text-gray-500
+            mt-2
+          ">
+            Result
+          </div>
+
+        </div>
+
+      </div>
+    </a>
+  ))}
+</div>
+) : (
+  <div className="text-gray-500">
+    No matches found
   </div>
-  );
+)}
+
+</div>   
+
+</div>   
+
+)
 }
 
-export default TeamPage;
+export default TeamPage
