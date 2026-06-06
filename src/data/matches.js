@@ -5,6 +5,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-c7f62efb-36dd-451e-a375-acfa6d16139b",
       "result": "LOSS",
+      "opponent": "SNITKO Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -36,6 +37,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-6a4bb78c-7467-41a9-9129-5b819675e0a4",
       "result": "WIN",
+      "opponent": "Gaming by Legends",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -60,6 +62,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-13e58098-0836-4b3f-b0b2-2d206aa7fd97",
       "result": "WIN",
+      "opponent": "Pagrabs",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -91,6 +94,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-6c0605c1-ac03-49a5-8bb5-6ee350ffbce1",
       "result": "WIN",
+      "opponent": "TEAMWORKERS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -115,6 +119,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Regular Season",
       "matchId": "1-c90c87ea-75fd-417d-a4cb-fc645e93a8d6",
       "result": "WIN",
+      "opponent": "R-Neck",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -126,14 +131,303 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-3049388d-6f4c-4dc7-a16b-33a1907f9c4e",
+      "result": "WIN",
+      "opponent": "Team Phoenix",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-3049388d-6f4c-4dc7-a16b-33a1907f9c4e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-1c75a1f3-7070-448d-af5c-5d1106347395",
+      "result": "LOSS",
+      "opponent": "Total Esport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-17",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-1c75a1f3-7070-448d-af5c-5d1106347395",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-af21104e-88b3-4358-990c-ee4b053f3b16",
+      "result": "LOSS",
+      "opponent": "Elitemilijoet",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-af21104e-88b3-4358-990c-ee4b053f3b16",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-b80c050c-b65a-4470-94ff-dc2f680a9394",
+      "result": "LOSS",
+      "opponent": "CAMALEAO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-b80c050c-b65a-4470-94ff-dc2f680a9394",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-cbb6a070-e7ce-4e21-978f-e899a8704481",
+      "result": "WIN",
+      "opponent": "era mentality",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-cbb6a070-e7ce-4e21-978f-e899a8704481",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-5613883a-ba70-4bf2-80d8-e13f5c711ab4",
+      "result": "WIN",
+      "opponent": "Mushu",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-5613883a-ba70-4bf2-80d8-e13f5c711ab4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-13d2fdfb-dcd6-4c53-877d-fd6100ef6a99",
+      "result": "WIN",
+      "opponent": "ECV esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-13d2fdfb-dcd6-4c53-877d-fd6100ef6a99",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-427bd4a3-b79b-4cea-9702-e2906a7661df",
+      "result": "LOSS",
+      "opponent": "SNITKO Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-427bd4a3-b79b-4cea-9702-e2906a7661df",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-d6eccb78-49f9-42de-8d10-bf038e0fed1b",
+      "result": "WIN",
+      "opponent": "Bangs",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "19 / 17",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-d6eccb78-49f9-42de-8d10-bf038e0fed1b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-50db89b5-b61d-46fd-bd93-36f7d9fd8fac",
+      "result": "LOSS",
+      "opponent": "KHOLODTSI",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-50db89b5-b61d-46fd-bd93-36f7d9fd8fac",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-7b26ef28-eda2-49a0-beae-bc9e5cc82a7b",
+      "result": "WIN",
+      "opponent": "160yold",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-7b26ef28-eda2-49a0-beae-bc9e5cc82a7b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-b383df42-b3b8-41e6-9913-eb0122a6d262",
+      "result": "WIN",
+      "opponent": "POOHANK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-b383df42-b3b8-41e6-9913-eb0122a6d262",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-07557e4a-2afb-4c66-a785-8352aca317d8",
+      "result": "WIN",
+      "opponent": "MGB TV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-07557e4a-2afb-4c66-a785-8352aca317d8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-a42770b3-12ae-4af9-a7ca-facb870359f3",
+      "result": "LOSS",
+      "opponent": "CIS  InfinityInsight",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "4 / 13",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-a42770b3-12ae-4af9-a7ca-facb870359f3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-84fcd66b-a3cb-416a-a427-190d31031357",
+      "result": "WIN",
+      "opponent": "Shihski Team ZEUS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 11",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-84fcd66b-a3cb-416a-a427-190d31031357",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "cybershoke-prospects": [
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-f082f1eb-3b10-493d-9464-d42d767a7557",
+      "result": "LOSS",
+      "opponent": "LFO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-f082f1eb-3b10-493d-9464-d42d767a7557",
+          "result": "LOSS"
+        }
+      ]
+    },
     {
       "date": "2026-05-13",
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-257607ca-645e-4b7a-9f04-2e16a137225f",
       "result": "WIN",
+      "opponent": "OKSUCC",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -151,6 +445,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-0caed79b-cf26-442b-adbb-8a916412673d",
       "result": "WIN",
+      "opponent": "Aurora Young Blud",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -168,6 +463,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-7e573388-3f1b-4717-a2bf-9b487da35c6b",
       "result": "LOSS",
+      "opponent": "XI Esport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -185,6 +481,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-fa8066dc-ec74-4d1c-9697-d10d10f622a4",
       "result": "WIN",
+      "opponent": "Diamant Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -202,6 +499,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-b0709331-ec8e-4228-83cf-8617845cd082",
       "result": "WIN",
+      "opponent": "Fire Flux TitanSeat",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -213,6 +511,78 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-1abe23c7-acdb-46fc-bdee-ba2256daa737",
+      "result": "LOSS",
+      "opponent": "megoshort",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-1abe23c7-acdb-46fc-bdee-ba2256daa737",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-81edf0ea-753c-4219-91de-bc69963c3389",
+      "result": "WIN",
+      "opponent": "bankaPEPSI",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-81edf0ea-753c-4219-91de-bc69963c3389",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
+      "result": "LOSS",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ef727a64-481f-4978-af7b-50cc30cf27ea",
+      "result": "WIN",
+      "opponent": "Project 91",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "4 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ef727a64-481f-4978-af7b-50cc30cf27ea",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "eternal-premium": [
@@ -221,6 +591,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-97b0e519-10e9-4370-b371-69aa0e6b7439",
       "result": "WIN",
+      "opponent": "TheNightClub",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -252,6 +623,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-b91c1559-bd58-4b52-9eec-1306a8f26503",
       "result": "LOSS",
+      "opponent": "QUAZAR",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -269,6 +641,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-f93b8301-b834-40dd-812d-6ef7551870b0",
       "result": "WIN",
+      "opponent": "COPH9K_LFO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -293,6 +666,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-ea825929-898e-4ecb-b3d6-e55992c9f130",
       "result": "LOSS",
+      "opponent": "Misa",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -310,6 +684,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-8941fdb9-3ecc-49df-bfa8-3d97af16ea93",
       "result": "WIN",
+      "opponent": "Bushido Wildcats",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -321,6 +696,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-8da9bc82-4906-4c58-ba1d-96e54c4aa073",
+      "result": "LOSS",
+      "opponent": "DONSTU ESPORTS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 2",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-8da9bc82-4906-4c58-ba1d-96e54c4aa073",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-d40a1653-ad2a-4703-b09d-b0a4ccdd8253",
+      "result": "LOSS",
+      "opponent": "VPProdigy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "14 / 16",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-d40a1653-ad2a-4703-b09d-b0a4ccdd8253",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-80afbc1c-9c1d-4cfe-9ec2-98b44070ba84",
+      "result": "WIN",
+      "opponent": "Falcons Force",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-80afbc1c-9c1d-4cfe-9ec2-98b44070ba84",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-50cf0e95-bf38-4da3-a499-06c9b4658ec5",
+      "result": "WIN",
+      "opponent": "NEW VISION",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "16 / 14",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-50cf0e95-bf38-4da3-a499-06c9b4658ec5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0ea30ac6-cf6a-4ed0-b4c1-dc7a7d6e3139",
+      "result": "LOSS",
+      "opponent": "Glitchtech",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0ea30ac6-cf6a-4ed0-b4c1-dc7a7d6e3139",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-e2985cc1-d6c0-4731-8d09-b8f4b25d50ee",
+      "result": "WIN",
+      "opponent": "SINQU",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 2",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-e2985cc1-d6c0-4731-8d09-b8f4b25d50ee",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-01bbde07-f9b2-4a69-8cfd-7f420a057eb3",
+      "result": "WIN",
+      "opponent": "G2 Ares",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "16 / 14",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-01bbde07-f9b2-4a69-8cfd-7f420a057eb3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-99c976a8-3a2d-4b09-92ca-46cf63d5fcc2",
+      "result": "WIN",
+      "opponent": "Rounds",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "21 / 25",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-99c976a8-3a2d-4b09-92ca-46cf63d5fcc2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c417a689-e981-43e2-b50f-7e4c18023c4a",
+      "result": "LOSS",
+      "opponent": "Enjoy1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "7 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c417a689-e981-43e2-b50f-7e4c18023c4a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-af0c22d5-8d08-433a-bd2b-108788419110",
+      "result": "WIN",
+      "opponent": "Oldboys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-af0c22d5-8d08-433a-bd2b-108788419110",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "new-vision": [
@@ -329,6 +884,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-0e289fdf-658e-4e64-99c6-5bba30d2e8a2",
       "result": "LOSS",
+      "opponent": "Fire Flux TitanSeat",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -360,6 +916,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-af7888f3-d74e-4b8d-bdbb-48493972c14f",
       "result": "WIN",
+      "opponent": "banger gang",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -384,6 +941,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-18f605f8-e601-4707-9b29-1192809f5868",
       "result": "WIN",
+      "opponent": "Jumbo team",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -415,6 +973,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-1146623f-734c-4de1-a19b-572372f59dc2",
       "result": "WIN",
+      "opponent": "banger gang",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -432,6 +991,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-b0a12194-118b-4111-b83a-166849be771f",
       "result": "LOSS",
+      "opponent": "G2 Ares",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -443,6 +1003,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c0ec90ca-a464-424d-a369-998593980d05",
+      "result": "WIN",
+      "opponent": "B8 Academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c0ec90ca-a464-424d-a369-998593980d05",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-074b1ea6-7e02-4eb4-8c1d-b3762d367c6f",
+      "result": "WIN",
+      "opponent": "OldBoys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "6 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-074b1ea6-7e02-4eb4-8c1d-b3762d367c6f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-6ce54b17-9777-4fbf-8848-89c9945d8728",
+      "result": "WIN",
+      "opponent": "ReThink",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-6ce54b17-9777-4fbf-8848-89c9945d8728",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-50cf0e95-bf38-4da3-a499-06c9b4658ec5",
+      "result": "LOSS",
+      "opponent": "eternal premium",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "16 / 14",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-50cf0e95-bf38-4da3-a499-06c9b4658ec5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c7c9f258-c191-403e-aef9-f5c656d50569",
+      "result": "LOSS",
+      "opponent": "Enjoy1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c7c9f258-c191-403e-aef9-f5c656d50569",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-6047f0f8-e9c2-447e-9a31-5ed6a2f44762",
+      "result": "WIN",
+      "opponent": "XI Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 8",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-6047f0f8-e9c2-447e-9a31-5ed6a2f44762",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-42bb2177-12fc-4c4f-a552-c52e208a3aff",
+      "result": "WIN",
+      "opponent": "Bushido Wildcats",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-42bb2177-12fc-4c4f-a552-c52e208a3aff",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3e73f648-0861-45b7-ba88-e8b1e9f5dc0f",
+      "result": "LOSS",
+      "opponent": "LFO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3e73f648-0861-45b7-ba88-e8b1e9f5dc0f",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "donstu-esports": [
@@ -451,6 +1155,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-34d86d96-3493-4cbf-95cc-8f2a2296229a",
       "result": "WIN",
+      "opponent": "COPH9K_LFO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -475,6 +1180,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-e86cb0ef-f314-448e-9a8f-97e947406d64",
       "result": "LOSS",
+      "opponent": "Fire Flux TitanSeat",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -506,6 +1212,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-1f0f071d-7e3e-4c32-bf05-c430347d3cd0",
       "result": "WIN",
+      "opponent": "Falcons Force",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -523,6 +1230,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-b28e1b2e-5666-4148-a5f1-0f608e71de58",
       "result": "WIN",
+      "opponent": "B8 Academy",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -540,6 +1248,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-8da9bc82-4906-4c58-ba1d-96e54c4aa073",
       "result": "WIN",
+      "opponent": "eternal premium",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -551,6 +1260,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-43885f14-af4d-4190-a110-0e8671b69718",
+      "result": "WIN",
+      "opponent": "G2 Ares",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-43885f14-af4d-4190-a110-0e8671b69718",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ce39a645-d8ad-437c-ba0c-e165885d9929",
+      "result": "WIN",
+      "opponent": "OldBoys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "4 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ce39a645-d8ad-437c-ba0c-e165885d9929",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ab536a72-c4e1-4c7e-8364-d68e062785aa",
+      "result": "WIN",
+      "opponent": "OLDBOYS PL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "8 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ab536a72-c4e1-4c7e-8364-d68e062785aa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-db4bc8b3-e941-4fa5-993d-8ab85af2d6ff",
+      "result": "LOSS",
+      "opponent": "ENRAGE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-db4bc8b3-e941-4fa5-993d-8ab85af2d6ff",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-1406c2ab-2366-4146-b6d3-c920dada94a6",
+      "result": "WIN",
+      "opponent": "uust_esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-1406c2ab-2366-4146-b6d3-c920dada94a6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-19939ddd-2686-49a7-8f21-f273db1b87a1",
+      "result": "WIN",
+      "opponent": "VPProdigy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "2 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-19939ddd-2686-49a7-8f21-f273db1b87a1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-7bbf13ea-c5e9-42d5-97ff-e2b3d02f886c",
+      "result": "WIN",
+      "opponent": "Pigeons",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-7bbf13ea-c5e9-42d5-97ff-e2b3d02f886c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3b18f500-12a2-401d-9831-2fcdbef8c9d3",
+      "result": "WIN",
+      "opponent": "banger gang",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "16 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3b18f500-12a2-401d-9831-2fcdbef8c9d3",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "quazar": [
@@ -559,6 +1412,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-4895dfaa-025c-4110-be8b-a2c3701b5038",
       "result": "WIN",
+      "opponent": "ReThink",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -583,6 +1437,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-a2004c1a-9832-418f-8665-b00fff589934",
       "result": "WIN",
+      "opponent": "Falcons Force",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -607,12 +1462,13 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-b91c1559-bd58-4b52-9eec-1306a8f26503",
       "result": "WIN",
+      "opponent": "eternal premium",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
         {
           "date": "2026-06-01",
-          "score": "16 / 12",
+          "score": "13 / 9",
           "season": "S57 EU Advanced Central - Playoffs",
           "matchId": "1-b91c1559-bd58-4b52-9eec-1306a8f26503",
           "result": "WIN"
@@ -624,6 +1480,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-5c674365-fea9-46a2-981a-7a755618fbc4",
       "result": "WIN",
+      "opponent": "ex-Peep",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -648,6 +1505,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-c53e57e1-340b-45ca-a69f-8889ad4dde95",
       "result": "LOSS",
+      "opponent": "G2 Ares",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -659,6 +1517,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0edecf0d-37dc-4647-ad08-6259d26f7c41",
+      "result": "LOSS",
+      "opponent": "banger gang",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "16 / 19",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0edecf0d-37dc-4647-ad08-6259d26f7c41",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-4f5759c5-df10-480b-bea7-c12d783f2a67",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-4f5759c5-df10-480b-bea7-c12d783f2a67",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-36d1111b-1140-4789-9dbc-a0716620bb94",
+      "result": "WIN",
+      "opponent": "OLDBOYS PL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-36d1111b-1140-4789-9dbc-a0716620bb94",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-a5573258-ba0e-4f99-b603-14c2765dca05",
+      "result": "LOSS",
+      "opponent": "Bushido Wildcats",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-a5573258-ba0e-4f99-b603-14c2765dca05",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
+      "result": "WIN",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "6 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2392c4e3-f4c9-4b3c-a628-25876fa81429",
+      "result": "LOSS",
+      "opponent": "Arch",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2392c4e3-f4c9-4b3c-a628-25876fa81429",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-b59c66a2-0034-46ff-87da-e2f69d607d78",
+      "result": "WIN",
+      "opponent": "Project 91",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 5",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-b59c66a2-0034-46ff-87da-e2f69d607d78",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-985548d3-8ad5-4ed8-a27f-0a78123d6aa2",
+      "result": "WIN",
+      "opponent": "PURE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "16 / 14",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-985548d3-8ad5-4ed8-a27f-0a78123d6aa2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-96282430-9939-45eb-8f08-7f1e6c9fa440",
+      "result": "WIN",
+      "opponent": "Clutchain Fe",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "1 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-96282430-9939-45eb-8f08-7f1e6c9fa440",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ab5c8e0e-8a50-43df-a35c-fb30fbea7496",
+      "result": "WIN",
+      "opponent": "VPProdigy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ab5c8e0e-8a50-43df-a35c-fb30fbea7496",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "bankapepsi": [
@@ -667,6 +1705,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-fe0035c2-d27a-4f54-ab57-f9f7c5ca31bd",
       "result": "LOSS",
+      "opponent": "VPProdigy",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -691,6 +1730,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-1295aaf3-8306-4e13-a7a1-73bc388fca37",
       "result": "WIN",
+      "opponent": "G2 Ares",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -708,6 +1748,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-182cd049-2e74-4e65-bec1-19c17cdfbb4f",
       "result": "WIN",
+      "opponent": "Jumbo team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -725,6 +1766,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-c2d7043e-e316-474f-8ed5-b790ec3d93ae",
       "result": "LOSS",
+      "opponent": "B8 Academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -742,6 +1784,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-50785358-7c11-47db-abef-d153fc0f94e1",
       "result": "LOSS",
+      "opponent": "VPProdigy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -753,6 +1796,96 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-340eb13f-a4e2-412d-ac1a-b0c62efe7061",
+      "result": "LOSS",
+      "opponent": "Enjoy1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-340eb13f-a4e2-412d-ac1a-b0c62efe7061",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-dcd0a1c4-f93a-4fc1-9b35-b9478ddaa21c",
+      "result": "WIN",
+      "opponent": "dripmen",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-dcd0a1c4-f93a-4fc1-9b35-b9478ddaa21c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-03e6e457-3dba-4446-8a87-7a28987126d6",
+      "result": "WIN",
+      "opponent": "Famalicao",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "7 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-03e6e457-3dba-4446-8a87-7a28987126d6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-81edf0ea-753c-4219-91de-bc69963c3389",
+      "result": "LOSS",
+      "opponent": "CYBERSHOKE Prospects",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-81edf0ea-753c-4219-91de-bc69963c3389",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0eda4b7a-4b79-4ba4-a3ad-7d0fdfeb66a7",
+      "result": "LOSS",
+      "opponent": "Falcons Force",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0eda4b7a-4b79-4ba4-a3ad-7d0fdfeb66a7",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "enjoy": [
@@ -761,6 +1894,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-53899008-7866-44a4-9a76-a8a14a1dd541",
       "result": "LOSS",
+      "opponent": "Enjoy1",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -792,6 +1926,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-d9751aee-341d-41be-962a-62ec854154a4",
       "result": "WIN",
+      "opponent": "XI Esport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -809,6 +1944,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-7b26ec43-2fc1-4e0b-a773-8f8a4810a67b",
       "result": "WIN",
+      "opponent": "banger gang",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -826,6 +1962,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-340eb13f-a4e2-412d-ac1a-b0c62efe7061",
       "result": "WIN",
+      "opponent": "bankaPEPSI",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -843,6 +1980,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-c7c9f258-c191-403e-aef9-f5c656d50569",
       "result": "WIN",
+      "opponent": "Enjoy1",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -854,6 +1992,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-4f5759c5-df10-480b-bea7-c12d783f2a67",
+      "result": "LOSS",
+      "opponent": "Enjoy1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-4f5759c5-df10-480b-bea7-c12d783f2a67",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-46cc1979-c848-40a3-873b-30c1385e2f80",
+      "result": "LOSS",
+      "opponent": "Bushido Wildcats",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 2",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-46cc1979-c848-40a3-873b-30c1385e2f80",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2cfbec46-2101-4338-a896-6fb0833890f9",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2cfbec46-2101-4338-a896-6fb0833890f9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-1ebece5d-1fcb-4fe0-b968-f9c58caea38f",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-1ebece5d-1fcb-4fe0-b968-f9c58caea38f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-9c9c8f61-46de-44b3-bd67-0c243c3ba1ac",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 8",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-9c9c8f61-46de-44b3-bd67-0c243c3ba1ac",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c417a689-e981-43e2-b50f-7e4c18023c4a",
+      "result": "WIN",
+      "opponent": "eternal premium",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "7 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c417a689-e981-43e2-b50f-7e4c18023c4a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-99c6f8e9-b8b0-450a-b21b-eaa09ce733e2",
+      "result": "LOSS",
+      "opponent": "Enjoy1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-99c6f8e9-b8b0-450a-b21b-eaa09ce733e2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2bdcf712-2401-4b7c-a964-dca4dc11d9af",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2bdcf712-2401-4b7c-a964-dca4dc11d9af",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "jumbo-team": [
@@ -862,6 +2144,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-c0cf0e66-c50e-4bbd-a8af-f6cbb07987fb",
       "result": "LOSS",
+      "opponent": "Misa",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -886,6 +2169,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-18f605f8-e601-4707-9b29-1192809f5868",
       "result": "LOSS",
+      "opponent": "NEW VISION",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -917,6 +2201,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-3f36eadf-cfae-45c2-9fe6-3e63813a0d13",
       "result": "LOSS",
+      "opponent": "VPProdigy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -934,6 +2219,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-3cc07f3c-440b-4e73-aa08-d390c593f46f",
       "result": "WIN",
+      "opponent": "Rounds",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -951,6 +2237,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-182cd049-2e74-4e65-bec1-19c17cdfbb4f",
       "result": "LOSS",
+      "opponent": "bankaPEPSI",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -962,6 +2249,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-d51242d0-4299-41b8-bfc9-835f47def903",
+      "result": "WIN",
+      "opponent": "PURE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 5",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-d51242d0-4299-41b8-bfc9-835f47def903",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-f30dc0a5-83c1-49cf-837c-5d6a74372405",
+      "result": "LOSS",
+      "opponent": "OldBoys",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-f30dc0a5-83c1-49cf-837c-5d6a74372405",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-fa1681fa-06ea-472b-858b-b7087256dacc",
+      "result": "WIN",
+      "opponent": "BIG EQUIPA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-fa1681fa-06ea-472b-858b-b7087256dacc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ec02b89c-027f-4708-b0e4-45be05affb56",
+      "result": "LOSS",
+      "opponent": "Arch",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ec02b89c-027f-4708-b0e4-45be05affb56",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-25899b29-a26f-43e2-a011-401eb18d8c16",
+      "result": "LOSS",
+      "opponent": "tincan",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-25899b29-a26f-43e2-a011-401eb18d8c16",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-65ce065e-aba9-42b2-9644-10a96c80a2f8",
+      "result": "WIN",
+      "opponent": "Nerve of Cow",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "6 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-65ce065e-aba9-42b2-9644-10a96c80a2f8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-d89d120f-cebf-4f46-abcd-4045c1819c23",
+      "result": "WIN",
+      "opponent": "XI Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 3",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-d89d120f-cebf-4f46-abcd-4045c1819c23",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-06eb1e36-326b-4c8b-8183-171d23b1dbe5",
+      "result": "LOSS",
+      "opponent": "G2 Ares",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-06eb1e36-326b-4c8b-8183-171d23b1dbe5",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "aurora-young-blud": [
@@ -970,6 +2401,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-84be8d1f-f092-48b8-9f5d-ee3794022b59",
       "result": "LOSS",
+      "opponent": "Fire Flux TitanSeat",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1001,6 +2433,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-f0a6b83b-2ccd-4119-bfef-a3578da306c8",
       "result": "WIN",
+      "opponent": "Glitchtech",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1018,6 +2451,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-9cb24c2c-a766-406d-84ee-030798c01fe5",
       "result": "WIN",
+      "opponent": "Famalicao",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1035,6 +2469,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-44225118-7d38-44d4-b429-9870fcc80273",
       "result": "WIN",
+      "opponent": "SE7ENS ESPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1052,6 +2487,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-0caed79b-cf26-442b-adbb-8a916412673d",
       "result": "LOSS",
+      "opponent": "CYBERSHOKE Prospects",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -1063,6 +2499,168 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-743f92e7-4a77-4ba8-b96d-ece8b83a9c02",
+      "result": "LOSS",
+      "opponent": "OldBoys",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-743f92e7-4a77-4ba8-b96d-ece8b83a9c02",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-55c8a8ef-4479-4f14-9bae-e0a00318ba95",
+      "result": "WIN",
+      "opponent": "PURE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "8 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-55c8a8ef-4479-4f14-9bae-e0a00318ba95",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0ab05837-d08f-4f10-ae07-cd0ce638a234",
+      "result": "LOSS",
+      "opponent": "OlyBet",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0ab05837-d08f-4f10-ae07-cd0ce638a234",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-52e17585-5a9b-428f-bbc3-2869ffcc5344",
+      "result": "WIN",
+      "opponent": "PeePuP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 1",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-52e17585-5a9b-428f-bbc3-2869ffcc5344",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-10b56921-59d3-4d75-bbb1-4ce30fb3c9a4",
+      "result": "WIN",
+      "opponent": "Aurora YB",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 2",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-10b56921-59d3-4d75-bbb1-4ce30fb3c9a4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-562923d6-66eb-4376-ad03-2f7f80755cfa",
+      "result": "WIN",
+      "opponent": "Rounds",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 16",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-562923d6-66eb-4376-ad03-2f7f80755cfa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-99c6f8e9-b8b0-450a-b21b-eaa09ce733e2",
+      "result": "WIN",
+      "opponent": "Enjoy1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-99c6f8e9-b8b0-450a-b21b-eaa09ce733e2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-b1bf6a99-2dcd-49d5-a4d4-5b3dbc0964d5",
+      "result": "LOSS",
+      "opponent": "Oldboys",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "16 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-b1bf6a99-2dcd-49d5-a4d4-5b3dbc0964d5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2cf78ef0-b8ac-422f-ba11-b9d985708f4c",
+      "result": "LOSS",
+      "opponent": "Misa Itemsatis",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2cf78ef0-b8ac-422f-ba11-b9d985708f4c",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "young-tigeres": [
@@ -1071,6 +2669,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-6a9c3f41-57fa-4756-a431-dbfb3a6dfb03",
       "result": "WIN",
+      "opponent": "Way In Future",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1102,6 +2701,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-ab90256c-7270-4b6d-abfa-a828b4dbb9ec",
       "result": "WIN",
+      "opponent": "Xcity",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1133,6 +2733,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-56fb50da-339f-444e-9a5c-f994c9b48ed5",
       "result": "LOSS",
+      "opponent": "Hermine Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1164,6 +2765,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-a88cd429-2426-41c0-baca-66727f81f149",
       "result": "WIN",
+      "opponent": "KISLYAKK",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1188,6 +2790,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-9ecfd82b-1a6f-4307-a8fb-059c54277d11",
       "result": "WIN",
+      "opponent": "KISLYAKK",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1199,6 +2802,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-5353074c-a862-44d5-a999-4edd317a0f36",
+      "result": "WIN",
+      "opponent": "Xcity",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 11",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-5353074c-a862-44d5-a999-4edd317a0f36",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-31d56d98-1106-4dee-a13f-96df98fe9273",
+      "result": "LOSS",
+      "opponent": "Entropy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-16",
+          "score": "13 / 5",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-31d56d98-1106-4dee-a13f-96df98fe9273",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-c177609a-75e4-4c8d-a4c2-4efbf304b486",
+      "result": "WIN",
+      "opponent": "VCGO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "2 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-c177609a-75e4-4c8d-a4c2-4efbf304b486",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-30776fa1-967a-4597-aeb5-d931c4934483",
+      "result": "WIN",
+      "opponent": "FAST LAYNERS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-30776fa1-967a-4597-aeb5-d931c4934483",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4cb27a04-5faa-4602-b655-67a08cd3d843",
+      "result": "LOSS",
+      "opponent": "IC Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4cb27a04-5faa-4602-b655-67a08cd3d843",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-998fe59e-399a-459c-8803-1c99c79fe6b0",
+      "result": "WIN",
+      "opponent": "TEAM GELO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 1",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-998fe59e-399a-459c-8803-1c99c79fe6b0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8994f307-5bbb-44db-8128-0a1380cc31d7",
+      "result": "WIN",
+      "opponent": "Godbless",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8994f307-5bbb-44db-8128-0a1380cc31d7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-deb95e52-c5f7-4c51-b2b1-2c7c9cc1bc99",
+      "result": "LOSS",
+      "opponent": "LPH Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "1 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-deb95e52-c5f7-4c51-b2b1-2c7c9cc1bc99",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0aa1990b-308c-4485-80a6-d2ac81f9b979",
+      "result": "WIN",
+      "opponent": "LEO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0aa1990b-308c-4485-80a6-d2ac81f9b979",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-788d411f-cc1d-4204-8a17-461611cdec0d",
+      "result": "LOSS",
+      "opponent": "EF AC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-788d411f-cc1d-4204-8a17-461611cdec0d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-5c192d22-903d-4528-bc7b-8068df4c3f26",
+      "result": "WIN",
+      "opponent": "playfire",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-5c192d22-903d-4528-bc7b-8068df4c3f26",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0a7d1146-21d0-422e-90b5-cf583d60a251",
+      "result": "WIN",
+      "opponent": "PELIA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0a7d1146-21d0-422e-90b5-cf583d60a251",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8229a67c-4859-4af5-8eac-8266a42d5917",
+      "result": "WIN",
+      "opponent": "301FPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8229a67c-4859-4af5-8eac-8266a42d5917",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "vpprodigy": [
@@ -1207,6 +3044,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-ba9d77c3-5429-443a-bc1f-7e4e6e57db51",
       "result": "LOSS",
+      "opponent": "OldBoys",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1238,6 +3076,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-4b83ac8c-ecfa-438c-9a60-d14076d37e71",
       "result": "LOSS",
+      "opponent": "ReThink",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1262,6 +3101,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-fe0035c2-d27a-4f54-ab57-f9f7c5ca31bd",
       "result": "WIN",
+      "opponent": "bankaPEPSI",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1286,6 +3126,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-3f36eadf-cfae-45c2-9fe6-3e63813a0d13",
       "result": "WIN",
+      "opponent": "Jumbo team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1303,6 +3144,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-aa37bd91-d8aa-480e-bbb1-92eba8d6ab0c",
       "result": "LOSS",
+      "opponent": "XI Esport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -1314,6 +3156,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-50785358-7c11-47db-abef-d153fc0f94e1",
+      "result": "WIN",
+      "opponent": "bankaPEPSI",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-50785358-7c11-47db-abef-d153fc0f94e1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-d40a1653-ad2a-4703-b09d-b0a4ccdd8253",
+      "result": "WIN",
+      "opponent": "eternal premium",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "14 / 16",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-d40a1653-ad2a-4703-b09d-b0a4ccdd8253",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-86f64563-e0bc-4d3b-b73d-6b54e89a6312",
+      "result": "LOSS",
+      "opponent": "Rounds",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-86f64563-e0bc-4d3b-b73d-6b54e89a6312",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-a13eed45-241a-4b54-9371-5eaa7f079a19",
+      "result": "LOSS",
+      "opponent": "PURE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-a13eed45-241a-4b54-9371-5eaa7f079a19",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-29a16364-4cbd-4727-9fad-299b58535cd4",
+      "result": "WIN",
+      "opponent": "OKSUCC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-29a16364-4cbd-4727-9fad-299b58535cd4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-b3268bb6-9d74-480f-b199-93a1e1e5bba1",
+      "result": "WIN",
+      "opponent": "OLDBOYS PL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 4",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-b3268bb6-9d74-480f-b199-93a1e1e5bba1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-e7256053-099e-4376-937f-9a54a5638ac5",
+      "result": "WIN",
+      "opponent": "BIG EQUIPA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-e7256053-099e-4376-937f-9a54a5638ac5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-dd2829f0-2f2d-43b7-92ed-e4666f2a5fbd",
+      "result": "WIN",
+      "opponent": "ReThink",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-dd2829f0-2f2d-43b7-92ed-e4666f2a5fbd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-75a5728b-54df-41e3-83b6-4370a14fe34c",
+      "result": "WIN",
+      "opponent": "PeePuP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-75a5728b-54df-41e3-83b6-4370a14fe34c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ab5c8e0e-8a50-43df-a35c-fb30fbea7496",
+      "result": "LOSS",
+      "opponent": "QUAZAR",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ab5c8e0e-8a50-43df-a35c-fb30fbea7496",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-19939ddd-2686-49a7-8f21-f273db1b87a1",
+      "result": "LOSS",
+      "opponent": "DONSTU ESPORTS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "2 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-19939ddd-2686-49a7-8f21-f273db1b87a1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-dde63caf-20da-4544-a225-3fc7a4ec1ed2",
+      "result": "WIN",
+      "opponent": "OldBoys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-dde63caf-20da-4544-a225-3fc7a4ec1ed2",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "arch": [
@@ -1322,6 +3380,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-bfc50a1b-5673-402a-b7d8-892ec35823b5",
       "result": "LOSS",
+      "opponent": "Fire Flux TitanSeat",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1353,6 +3412,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-2e95759c-ee1d-40b7-8f43-2ed11cdaf496",
       "result": "WIN",
+      "opponent": "UUST_Esports",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1384,6 +3444,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-4fdbea55-a4a6-4cff-8b81-60a1c116ed41",
       "result": "WIN",
+      "opponent": "OLDBOYS PL",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1415,6 +3476,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-f04b2cc5-2877-4ae9-9a57-594152a2e67a",
       "result": "WIN",
+      "opponent": "Famalicao",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1439,6 +3501,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-88309c38-bc9a-49ff-8849-9ed62f4945a9",
       "result": "LOSS",
+      "opponent": "B8 Academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -1450,6 +3513,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-13e832a7-6c05-440d-8623-0b6e1b5e2dba",
+      "result": "LOSS",
+      "opponent": "Bushido Wildcats",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-13e832a7-6c05-440d-8623-0b6e1b5e2dba",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-bc16195f-6fa7-4dd4-a77e-b59c8b202f02",
+      "result": "WIN",
+      "opponent": "G2 Ares",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-bc16195f-6fa7-4dd4-a77e-b59c8b202f02",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c973993a-af52-49c4-9a50-9bd899298a6e",
+      "result": "WIN",
+      "opponent": "Falcons Force",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 11",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c973993a-af52-49c4-9a50-9bd899298a6e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-1a188d67-c8ac-4410-85c8-599f6e7fa5c1",
+      "result": "WIN",
+      "opponent": "Fire Flux TitanSeat",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "14 / 16",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-1a188d67-c8ac-4410-85c8-599f6e7fa5c1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-12d61e88-d859-47d4-8490-bbeac035e3d2",
+      "result": "WIN",
+      "opponent": "ENRAGE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 10",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-12d61e88-d859-47d4-8490-bbeac035e3d2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-ec02b89c-027f-4708-b0e4-45be05affb56",
+      "result": "WIN",
+      "opponent": "Jumbo team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-ec02b89c-027f-4708-b0e4-45be05affb56",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-b55399bc-0997-4fff-81f3-6e5fb3368be3",
+      "result": "WIN",
+      "opponent": "Gamdom IMP AC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "12 / 16",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-b55399bc-0997-4fff-81f3-6e5fb3368be3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2392c4e3-f4c9-4b3c-a628-25876fa81429",
+      "result": "WIN",
+      "opponent": "QUAZAR",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2392c4e3-f4c9-4b3c-a628-25876fa81429",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-4ec4d692-d854-4ea3-a50b-410d154a555f",
+      "result": "WIN",
+      "opponent": "Nerve of Cow",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "16 / 14",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-4ec4d692-d854-4ea3-a50b-410d154a555f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-8ad2d3ed-3a4b-4a5d-ac51-62ca916ebbc7",
+      "result": "LOSS",
+      "opponent": "OldBoys",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-8ad2d3ed-3a4b-4a5d-ac51-62ca916ebbc7",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "lfo-corh9k": [
@@ -1458,6 +3701,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-34d86d96-3493-4cbf-95cc-8f2a2296229a",
       "result": "LOSS",
+      "opponent": "DONSTU ESPORTS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1482,6 +3726,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-a512d671-15e4-4500-b5a5-08048fdf4c36",
       "result": "WIN",
+      "opponent": "COPH9K_LFO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1506,6 +3751,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-f93b8301-b834-40dd-812d-6ef7551870b0",
       "result": "LOSS",
+      "opponent": "eternal premium",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1530,6 +3776,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-c13d5950-bcf9-4a16-8e11-87de099d9d46",
       "result": "WIN",
+      "opponent": "Glitchtech",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1547,6 +3794,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-37e2af7d-8dbc-4c09-b43d-6117d1e0d94a",
       "result": "WIN",
+      "opponent": "Nerve of Cow",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1558,6 +3806,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-85ca5f1c-d36c-4e80-aea5-63ec094233a3",
+      "result": "WIN",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 4",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-85ca5f1c-d36c-4e80-aea5-63ec094233a3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-00aec397-b391-453c-8de7-a2afa0b82deb",
+      "result": "LOSS",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "3 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-00aec397-b391-453c-8de7-a2afa0b82deb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-26962161-b54a-4eeb-956a-07468e6abece",
+      "result": "WIN",
+      "opponent": "SINQU",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "1 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-26962161-b54a-4eeb-956a-07468e6abece",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0dd95c1c-0dc4-4dbb-b255-55846122a2ff",
+      "result": "LOSS",
+      "opponent": "Rounds",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0dd95c1c-0dc4-4dbb-b255-55846122a2ff",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-9ccbbfbe-3cf7-49a8-b573-a1c73e804f9d",
+      "result": "LOSS",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-9ccbbfbe-3cf7-49a8-b573-a1c73e804f9d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-26a9663d-c3c8-4aaa-8465-adfa48c6402f",
+      "result": "LOSS",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "7 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-26a9663d-c3c8-4aaa-8465-adfa48c6402f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
+      "result": "LOSS",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "6 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-2b1f58bb-737c-4705-bbd4-7b6113be2c64",
+      "result": "WIN",
+      "opponent": "TEAM_COPH9K",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-2b1f58bb-737c-4705-bbd4-7b6113be2c64",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
+      "result": "WIN",
+      "opponent": "BRAWLSTARS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3808d3ea-efaa-4e7c-87ef-af18ffcc0a52",
+      "result": "LOSS",
+      "opponent": "OlyBet",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3808d3ea-efaa-4e7c-87ef-af18ffcc0a52",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
+      "result": "WIN",
+      "opponent": "CYBERSHOKE Prospects",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "wingmanlfo": [
@@ -1566,6 +4012,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-2e95759c-ee1d-40b7-8f43-2ed11cdaf496",
       "result": "LOSS",
+      "opponent": "Arch",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1597,6 +4044,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-631a1a9b-7973-467d-a8ce-129ab752faa2",
       "result": "WIN",
+      "opponent": "ENRAGE",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1621,6 +4069,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-06a588b9-06f9-4b36-ac5e-dacbc0971c64",
       "result": "WIN",
+      "opponent": "LFO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1645,6 +4094,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-170a92f4-cfd8-465a-949f-6ad9815b7640",
       "result": "WIN",
+      "opponent": "SE7ENS ESPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1662,6 +4112,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-e67182dd-b750-4b56-90b4-2fa38c7b03e6",
       "result": "WIN",
+      "opponent": "SINQU",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1673,6 +4124,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-8144dba2-e833-43f0-83a0-22b0b6f48fbd",
+      "result": "LOSS",
+      "opponent": "uust_esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "8 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-8144dba2-e833-43f0-83a0-22b0b6f48fbd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-f257e224-ea81-412f-b0d1-412753f0e10e",
+      "result": "LOSS",
+      "opponent": "Fire Flux TitanSeat",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 2",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-f257e224-ea81-412f-b0d1-412753f0e10e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-37ee3725-fae6-43d5-bbd7-8d933f99090c",
+      "result": "WIN",
+      "opponent": "uust_esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 5",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-37ee3725-fae6-43d5-bbd7-8d933f99090c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-fbfca955-72b2-422e-991a-eaad8419998e",
+      "result": "LOSS",
+      "opponent": "uust_esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "5 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-fbfca955-72b2-422e-991a-eaad8419998e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-10",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-4d2cbe65-3838-4228-a0ba-514e007784a4",
+      "result": "WIN",
+      "opponent": "Diamant Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-10",
+          "score": "7 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-4d2cbe65-3838-4228-a0ba-514e007784a4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-0aa3394b-dbcd-4e3f-8538-393eea996a51",
+      "result": "LOSS",
+      "opponent": "Famalicao",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-0aa3394b-dbcd-4e3f-8538-393eea996a51",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-9b0857c9-b1d1-40fe-8960-97da9cbd4aec",
+      "result": "WIN",
+      "opponent": "Clutchain Fe",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "6 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-9b0857c9-b1d1-40fe-8960-97da9cbd4aec",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-65e78392-6073-4b66-b978-9f6e2406579e",
+      "result": "LOSS",
+      "opponent": "uust_esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-65e78392-6073-4b66-b978-9f6e2406579e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-1406c2ab-2366-4146-b6d3-c920dada94a6",
+      "result": "LOSS",
+      "opponent": "uust_esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-1406c2ab-2366-4146-b6d3-c920dada94a6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-f2d50109-f882-435f-af87-e8d144db26e9",
+      "result": "WIN",
+      "opponent": "uust_esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-f2d50109-f882-435f-af87-e8d144db26e9",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "ex-peep": [
@@ -1681,6 +4312,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-a512d671-15e4-4500-b5a5-08048fdf4c36",
       "result": "LOSS",
+      "opponent": "COPH9K_LFO",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1705,6 +4337,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Playoffs",
       "matchId": "1-5c674365-fea9-46a2-981a-7a755618fbc4",
       "result": "LOSS",
+      "opponent": "QUAZAR",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1729,6 +4362,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-a9c95ed8-2c66-48f8-8a3b-f9248d616e6e",
       "result": "WIN",
+      "opponent": "PeePuP",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1746,6 +4380,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-8144dba2-e833-43f0-83a0-22b0b6f48fbd",
       "result": "WIN",
+      "opponent": "uust_esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1763,6 +4398,7 @@ const matches = {
       "season": "S57 EU Advanced Central - Regular Season",
       "matchId": "1-b4133d08-17d0-48ee-ac9e-7f5fcb200655",
       "result": "WIN",
+      "opponent": "Nerve of Cow",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1774,6 +4410,132 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-52e17585-5a9b-428f-bbc3-2869ffcc5344",
+      "result": "LOSS",
+      "opponent": "Aurora Young Blud",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 1",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-52e17585-5a9b-428f-bbc3-2869ffcc5344",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-83bbd3c8-855d-4451-b497-fd481602009f",
+      "result": "WIN",
+      "opponent": "Diamant Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-83bbd3c8-855d-4451-b497-fd481602009f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-75a5728b-54df-41e3-83b6-4370a14fe34c",
+      "result": "LOSS",
+      "opponent": "VPProdigy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-75a5728b-54df-41e3-83b6-4370a14fe34c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
+      "result": "LOSS",
+      "opponent": "BRAWLSTARS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "10 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-d13f3838-ad6b-4c2b-a11b-ce318c14c2f9",
+      "result": "WIN",
+      "opponent": "BIG EQUIPA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "15 / 19",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-d13f3838-ad6b-4c2b-a11b-ce318c14c2f9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-431bd17b-b79d-46e1-8dfc-130214b22495",
+      "result": "LOSS",
+      "opponent": "megoshort",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 6",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-431bd17b-b79d-46e1-8dfc-130214b22495",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Advanced Central - Regular Season",
+      "matchId": "1-3adbce77-7857-45a5-8792-016509d8c890",
+      "result": "LOSS",
+      "opponent": "BRAWLSTARS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "9 / 13",
+          "season": "S57 EU Advanced Central - Regular Season",
+          "matchId": "1-3adbce77-7857-45a5-8792-016509d8c890",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "golovastiki": [
@@ -1782,6 +4544,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-9d1fcf7b-ce98-4f78-9cca-1fda10704314",
       "result": "LOSS",
+      "opponent": "golovastiki",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -1806,6 +4569,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-94a0e16a-bec4-4648-ab74-3a59f2c2a467",
       "result": "WIN",
+      "opponent": "golovastiki",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1837,6 +4601,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-3646221d-f457-4fe1-a7b2-0594c591d1af",
       "result": "WIN",
+      "opponent": "golovastiki",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1861,6 +4626,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-c94fa52c-6be7-495d-9c6b-49eff85a2dc8",
       "result": "WIN",
+      "opponent": "Al Ahli Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1878,6 +4644,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-7e066fda-454c-497a-92ce-239ccf6967c6",
       "result": "WIN",
+      "opponent": "golovastiki",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -1889,6 +4656,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-acfa42d1-cea5-4927-9783-c31806f1f999",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-acfa42d1-cea5-4927-9783-c31806f1f999",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-7e3b502f-a112-48fe-8098-94195ce9043a",
+      "result": "LOSS",
+      "opponent": "golovastiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-7e3b502f-a112-48fe-8098-94195ce9043a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-6c685b6c-5abf-4997-8bac-86571a412658",
+      "result": "LOSS",
+      "opponent": "golovastiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "8 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-6c685b6c-5abf-4997-8bac-86571a412658",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-28561145-f28d-4c13-adb1-44132a81fb93",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-28561145-f28d-4c13-adb1-44132a81fb93",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-178e4f03-8e33-4e77-933f-a0fb9cddbc8b",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-178e4f03-8e33-4e77-933f-a0fb9cddbc8b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4e86fc42-e922-4cc4-a627-4222c05e3cb6",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4e86fc42-e922-4cc4-a627-4222c05e3cb6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-727f6767-a044-491d-ba02-b72ced729ba3",
+      "result": "WIN",
+      "opponent": "Bitfixgg",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-727f6767-a044-491d-ba02-b72ced729ba3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-fd14f39a-181d-4917-82e5-aac826add749",
+      "result": "WIN",
+      "opponent": "i2K Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-fd14f39a-181d-4917-82e5-aac826add749",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e7ee0321-b512-49a0-bb1a-9c2242db9aaa",
+      "result": "WIN",
+      "opponent": "aAa",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e7ee0321-b512-49a0-bb1a-9c2242db9aaa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4a32c179-7402-470a-8207-c4b81b92ae30",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4a32c179-7402-470a-8207-c4b81b92ae30",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c9665f65-2774-42bf-878d-8c5ddb28d091",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c9665f65-2774-42bf-878d-8c5ddb28d091",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "gamesport": [
@@ -1897,6 +4862,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-95cc50e5-3a8c-413a-a0c9-b75b3c395ae1",
       "result": "WIN",
+      "opponent": "GamersLab",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -1928,6 +4894,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-3b3306fa-ea3a-4cd0-bd9b-58d82ab58687",
       "result": "WIN",
+      "opponent": "nowheretorun",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -1952,6 +4919,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-b7cd7eda-625f-42ec-b3e9-1dedabeaa2f3",
       "result": "LOSS",
+      "opponent": "Z17",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -1983,6 +4951,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-1ceb2de3-aac0-48e4-9fcd-f1207a4a2104",
       "result": "WIN",
+      "opponent": "PLATOON BETA",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -2014,6 +4983,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-5f00a99f-c218-4e80-84fd-b15f096bffa8",
       "result": "LOSS",
+      "opponent": "NAVI Junior",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2025,6 +4995,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-acfa42d1-cea5-4927-9783-c31806f1f999",
+      "result": "LOSS",
+      "opponent": "golovastiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-acfa42d1-cea5-4927-9783-c31806f1f999",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d229c563-73fe-4c82-b4f2-71e88c5d8633",
+      "result": "WIN",
+      "opponent": "ROC Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d229c563-73fe-4c82-b4f2-71e88c5d8633",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d5ad1aaa-2931-4e1a-929c-f6817f335362",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d5ad1aaa-2931-4e1a-929c-f6817f335362",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-387f7887-e9eb-49a5-8ca3-6d1f4e7af451",
+      "result": "WIN",
+      "opponent": "Team Juvi",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-387f7887-e9eb-49a5-8ca3-6d1f4e7af451",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3065e763-44cc-4468-ab76-21c340f573f9",
+      "result": "WIN",
+      "opponent": "aAa",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3065e763-44cc-4468-ab76-21c340f573f9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-56d9a530-28ee-4038-b4bb-88494ddbf63a",
+      "result": "WIN",
+      "opponent": "Insiders Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-56d9a530-28ee-4038-b4bb-88494ddbf63a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c5a20f7a-edbc-4c54-b856-d92a68c7a119",
+      "result": "WIN",
+      "opponent": "EsportBERG",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c5a20f7a-edbc-4c54-b856-d92a68c7a119",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1a92f6dd-c646-47df-b376-9d005bd75fd9",
+      "result": "LOSS",
+      "opponent": "GENESIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "16 / 12",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1a92f6dd-c646-47df-b376-9d005bd75fd9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3b101aed-7f33-4748-bb43-10c37b2186a8",
+      "result": "WIN",
+      "opponent": "CTRL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3b101aed-7f33-4748-bb43-10c37b2186a8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-6ec8a856-0e8f-41ce-933e-3cc3b110e0c3",
+      "result": "LOSS",
+      "opponent": "Sosban Fach",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-6ec8a856-0e8f-41ce-933e-3cc3b110e0c3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0b9b5c5c-ca31-4078-822b-752ff6be8907",
+      "result": "WIN",
+      "opponent": "i2K Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "1 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0b9b5c5c-ca31-4078-822b-752ff6be8907",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-7ffba691-4269-4baf-a93c-6fb6174b12ef",
+      "result": "WIN",
+      "opponent": "INCEPTOR",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-7ffba691-4269-4baf-a93c-6fb6174b12ef",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "xcity": [
@@ -2033,6 +5219,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-ab90256c-7270-4b6d-abfa-a828b4dbb9ec",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -2064,6 +5251,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-e416d0c3-b77e-4b6b-8ad9-57570e7f466c",
       "result": "WIN",
+      "opponent": "GamersLab Esports",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2088,6 +5276,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-b8b2368b-c751-448e-9846-bccb3c8db011",
       "result": "WIN",
+      "opponent": "Citron Esport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2105,6 +5294,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-67852dcf-8af5-4004-9c9e-683fa9f557bc",
       "result": "LOSS",
+      "opponent": "HORIZON",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -2136,6 +5326,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-5353074c-a862-44d5-a999-4edd317a0f36",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2147,6 +5338,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-90beb15d-7f44-4c2a-953b-31a686f0b6b3",
+      "result": "WIN",
+      "opponent": "Godbless",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-90beb15d-7f44-4c2a-953b-31a686f0b6b3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4fea6e54-4e94-42eb-bc0a-28dfb101141e",
+      "result": "WIN",
+      "opponent": "mellren",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4fea6e54-4e94-42eb-bc0a-28dfb101141e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8b491004-aade-4b66-8ed7-afafb5a48989",
+      "result": "WIN",
+      "opponent": "GamersLab Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8b491004-aade-4b66-8ed7-afafb5a48989",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0f8dcf83-7b6c-48da-8424-fa5347dfd5d4",
+      "result": "WIN",
+      "opponent": "FANG ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0f8dcf83-7b6c-48da-8424-fa5347dfd5d4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-da911400-29ec-43cc-9c7b-7d170f1c65dd",
+      "result": "WIN",
+      "opponent": "BoolshetByLisco",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "17 / 19",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-da911400-29ec-43cc-9c7b-7d170f1c65dd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-d17c8bd0-2560-42ba-ba93-f8665c5a9552",
+      "result": "LOSS",
+      "opponent": "Entropy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-d17c8bd0-2560-42ba-ba93-f8665c5a9552",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-fd41a7cd-ebc9-4424-89eb-95ff5e3d2662",
+      "result": "LOSS",
+      "opponent": "EF AC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-fd41a7cd-ebc9-4424-89eb-95ff5e3d2662",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0e930822-896d-49fe-a851-29b6e4f542c3",
+      "result": "WIN",
+      "opponent": "UWUkittens",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "10 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0e930822-896d-49fe-a851-29b6e4f542c3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b2742924-f98d-4b0a-8089-e12d7dc2a266",
+      "result": "WIN",
+      "opponent": "playfire",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b2742924-f98d-4b0a-8089-e12d7dc2a266",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0df0a5ba-c9b3-4b81-a4d0-7b7015af6fcd",
+      "result": "LOSS",
+      "opponent": "LPH Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0df0a5ba-c9b3-4b81-a4d0-7b7015af6fcd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-270b647d-390b-45eb-8d3e-3fd1f484bb1d",
+      "result": "WIN",
+      "opponent": "BOHR",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "1 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-270b647d-390b-45eb-8d3e-3fd1f484bb1d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-422e8bf7-4b3b-4406-9c49-6b4974105791",
+      "result": "WIN",
+      "opponent": "Erlamand",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-422e8bf7-4b3b-4406-9c49-6b4974105791",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "tsa-green": [
@@ -2155,6 +5562,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-a5d852a8-dcda-4a4f-9f5a-37e5d9e9de98",
       "result": "LOSS",
+      "opponent": "Fraternity",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -2186,6 +5594,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-ef6a365b-1451-4e94-b539-5f0c227734d1",
       "result": "WIN",
+      "opponent": "CSGOPOSITIVE",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2210,6 +5619,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-ba729488-08a6-4748-849b-47be92a9b2e1",
       "result": "WIN",
+      "opponent": "Melilla Titans",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2234,6 +5644,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-c198369d-e764-4652-beeb-e73f7e8a9692",
       "result": "LOSS",
+      "opponent": "Al Ahli Esports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2251,6 +5662,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-d43a55e4-8d93-4cd3-b01f-50e96ca1bc19",
       "result": "LOSS",
+      "opponent": "CTRL",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2262,6 +5674,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0ce31c54-c973-469e-b559-316a80ee3efb",
+      "result": "WIN",
+      "opponent": "NAVI Junior",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "22 / 20",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0ce31c54-c973-469e-b559-316a80ee3efb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0679f0c7-bd0b-4b2d-90ae-947df28b4eb0",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0679f0c7-bd0b-4b2d-90ae-947df28b4eb0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-6c685b6c-5abf-4997-8bac-86571a412658",
+      "result": "WIN",
+      "opponent": "golovastiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "8 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-6c685b6c-5abf-4997-8bac-86571a412658",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3c9c0b16-3921-4db5-97ce-b2f13ba38a72",
+      "result": "WIN",
+      "opponent": "EXEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3c9c0b16-3921-4db5-97ce-b2f13ba38a72",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-af0d5352-a9d3-4214-8938-8a2d67ec71e4",
+      "result": "WIN",
+      "opponent": "AETERNUM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-af0d5352-a9d3-4214-8938-8a2d67ec71e4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-f867cca9-ad34-430e-a968-cca1a91a383a",
+      "result": "WIN",
+      "opponent": "KasaZaza",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-f867cca9-ad34-430e-a968-cca1a91a383a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c497c9b9-dac4-445f-aa5f-025d20a199a0",
+      "result": "WIN",
+      "opponent": "dragS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c497c9b9-dac4-445f-aa5f-025d20a199a0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-42d85a8f-a3fa-40dd-a43f-8801c473cff1",
+      "result": "WIN",
+      "opponent": "Project H",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-42d85a8f-a3fa-40dd-a43f-8801c473cff1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e4dc2a31-1302-45ba-9d0f-82ded0414ba4",
+      "result": "LOSS",
+      "opponent": "aAa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e4dc2a31-1302-45ba-9d0f-82ded0414ba4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-854c122c-c9b5-4c00-aa59-85092ae12a9e",
+      "result": "LOSS",
+      "opponent": "Entropy Eiensha",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-854c122c-c9b5-4c00-aa59-85092ae12a9e",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "mellren": [
@@ -2270,6 +5862,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-f8f1c385-4813-47d5-9171-4df9e7013a52",
       "result": "LOSS",
+      "opponent": "Hermine Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2294,6 +5887,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-0305ce40-9917-4a62-b4dd-5c280ba58ef4",
       "result": "WIN",
+      "opponent": "eSuba",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2318,6 +5912,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-7b9988dc-56a2-4917-90b1-6eae6a8e64bb",
       "result": "WIN",
+      "opponent": "ORGLESS",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -2349,6 +5944,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-3177be34-0518-4fb4-88a7-0d05d367ef82",
       "result": "WIN",
+      "opponent": "wnT",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -2380,6 +5976,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-b2f0d718-8ff7-4c8f-83e4-61039a802775",
       "result": "LOSS",
+      "opponent": "IC Academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2391,6 +5988,240 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-737680a3-1b5d-42a3-9e40-6762a8704ebb",
+      "result": "WIN",
+      "opponent": "Vandals Clan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-737680a3-1b5d-42a3-9e40-6762a8704ebb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4fea6e54-4e94-42eb-bc0a-28dfb101141e",
+      "result": "LOSS",
+      "opponent": "Xcity",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4fea6e54-4e94-42eb-bc0a-28dfb101141e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-34c9b6ce-a60c-4636-9972-a098345f7f53",
+      "result": "LOSS",
+      "opponent": "Entropy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-34c9b6ce-a60c-4636-9972-a098345f7f53",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6a597293-db98-47a0-96a6-f842cbb55093",
+      "result": "WIN",
+      "opponent": "TEAM GELO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "14 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6a597293-db98-47a0-96a6-f842cbb55093",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e70a7476-6457-4130-895b-b204ddd95eb2",
+      "result": "LOSS",
+      "opponent": "Qual4",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e70a7476-6457-4130-895b-b204ddd95eb2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0b6f95a5-5383-42d8-a99a-5d51abd33b01",
+      "result": "WIN",
+      "opponent": "GamersLab Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "10 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0b6f95a5-5383-42d8-a99a-5d51abd33b01",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0a6237a1-1048-4d9e-ad58-55b119e49ab8",
+      "result": "LOSS",
+      "opponent": "LPH Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "11 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0a6237a1-1048-4d9e-ad58-55b119e49ab8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-119d0007-d9f5-46ec-b550-affdb2234f80",
+      "result": "WIN",
+      "opponent": "Godbless",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "13 / 4",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-119d0007-d9f5-46ec-b550-affdb2234f80",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-99299844-6bae-48b2-b1d5-09e541413bba",
+      "result": "WIN",
+      "opponent": "FANG ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-99299844-6bae-48b2-b1d5-09e541413bba",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b824ba1f-f796-4208-aa88-4ab97150d1a7",
+      "result": "WIN",
+      "opponent": "Dire",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "16 / 14",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b824ba1f-f796-4208-aa88-4ab97150d1a7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9c10887d-65fd-4d5d-b7e7-04704200f070",
+      "result": "WIN",
+      "opponent": "Ira Draconis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9c10887d-65fd-4d5d-b7e7-04704200f070",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-a09d1338-d821-4618-89dc-efa5e33cd7bb",
+      "result": "WIN",
+      "opponent": "Strael-Bora",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-a09d1338-d821-4618-89dc-efa5e33cd7bb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-001f4172-b694-4b13-87e0-a3d5b558c275",
+      "result": "WIN",
+      "opponent": "Brest Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-001f4172-b694-4b13-87e0-a3d5b558c275",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "nemesis-academy": [
@@ -2399,6 +6230,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-874072d2-5b26-479d-9642-a382d4eeb2be",
       "result": "LOSS",
+      "opponent": "NoScope eSports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2423,6 +6255,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-fb6ed639-c458-4f48-9221-9b40286e9ef3",
       "result": "WIN",
+      "opponent": "2077ESPORTS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2447,6 +6280,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-776862ff-e04e-44cf-8d28-27a1faff408c",
       "result": "LOSS",
+      "opponent": "Privateer Gaming",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2471,6 +6305,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-383d9208-e738-48ae-af13-f9cce4fc3ced",
       "result": "WIN",
+      "opponent": "Animgraph2",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2488,6 +6323,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-68534b0b-60e3-4a3f-af18-a6c3f56e22de",
       "result": "LOSS",
+      "opponent": "SSPCS2",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2499,6 +6335,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e0232266-af31-4a78-8de1-0352d188e9d3",
+      "result": "WIN",
+      "opponent": "301FPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e0232266-af31-4a78-8de1-0352d188e9d3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-bc76be0c-b8f6-4f3d-a991-2c3fb7b6b2a9",
+      "result": "WIN",
+      "opponent": "29AvgAge",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-bc76be0c-b8f6-4f3d-a991-2c3fb7b6b2a9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-178b2085-1b0c-49b7-b6a5-71091c1c283a",
+      "result": "LOSS",
+      "opponent": "Citron Esport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 11",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-178b2085-1b0c-49b7-b6a5-71091c1c283a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-19b17216-e2db-440d-8ace-4ce58c6a8808",
+      "result": "WIN",
+      "opponent": "Godbless",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 5",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-19b17216-e2db-440d-8ace-4ce58c6a8808",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-fc838e7a-9e4f-4f1f-9e5d-6bf1e4e224f4",
+      "result": "LOSS",
+      "opponent": "FANG ESPORT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-fc838e7a-9e4f-4f1f-9e5d-6bf1e4e224f4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-302f59c0-8794-45c2-bf41-9d2c1d784ea6",
+      "result": "WIN",
+      "opponent": "FROX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "16 / 14",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-302f59c0-8794-45c2-bf41-9d2c1d784ea6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ad532d78-b9de-48ef-8d6d-1017e2cc2ac7",
+      "result": "WIN",
+      "opponent": "Brest Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ad532d78-b9de-48ef-8d6d-1017e2cc2ac7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6fc87437-c4bd-4916-8531-1d48dd966ebc",
+      "result": "WIN",
+      "opponent": "KISLYAKK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6fc87437-c4bd-4916-8531-1d48dd966ebc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9aabee37-bef2-4618-a010-d94df4b19aff",
+      "result": "LOSS",
+      "opponent": "wnT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9aabee37-bef2-4618-a010-d94df4b19aff",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-deb8d14b-d28c-44fb-a0f9-a1ff74ef2b4f",
+      "result": "WIN",
+      "opponent": "JuJiin",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-deb8d14b-d28c-44fb-a0f9-a1ff74ef2b4f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-03ea3a65-0b64-438a-91a1-cee47b6e400c",
+      "result": "LOSS",
+      "opponent": "playfire",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-03ea3a65-0b64-438a-91a1-cee47b6e400c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-df00f9ad-bd3b-43de-8bb7-6f80120a9e2f",
+      "result": "WIN",
+      "opponent": "EF AC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-df00f9ad-bd3b-43de-8bb7-6f80120a9e2f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "duggedup": [
@@ -2507,6 +6559,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-b47427fa-ac19-48e2-99d8-ee2c658482bf",
       "result": "LOSS",
+      "opponent": "WAVE Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -2538,6 +6591,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-59a0430f-0ff5-4a85-8765-e888cd8094ed",
       "result": "LOSS",
+      "opponent": "NAVI Junior",
       "boScore": "1-1",
       "mapsPlayed": 2,
       "maps": [
@@ -2562,6 +6616,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-9f478e79-be27-4203-b6fd-de37e8f99ab2",
       "result": "WIN",
+      "opponent": "GENESIS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2586,6 +6641,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-26e57365-b9e6-4aae-8b11-5873c3b036de",
       "result": "LOSS",
+      "opponent": "GENESIS",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2603,6 +6659,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-f07d787b-a1c4-4148-82a5-488c8fb11e77",
       "result": "WIN",
+      "opponent": "Radian Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2614,14 +6671,177 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-10",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-35a168cc-fd78-426e-828d-26406da83786",
+      "result": "LOSS",
+      "opponent": "Team Juvi",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-10",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-35a168cc-fd78-426e-828d-26406da83786",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-28561145-f28d-4c13-adb1-44132a81fb93",
+      "result": "LOSS",
+      "opponent": "golovastiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-28561145-f28d-4c13-adb1-44132a81fb93",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-140ba281-99bd-458b-bc6c-e8c6a97b6ec8",
+      "result": "WIN",
+      "opponent": "PARTIZAN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "2 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-140ba281-99bd-458b-bc6c-e8c6a97b6ec8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-509d262e-1a91-4cb3-bdc8-c4a57a65a9cc",
+      "result": "WIN",
+      "opponent": "Infinity",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-509d262e-1a91-4cb3-bdc8-c4a57a65a9cc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ca7a2964-1632-4bac-9a59-8113618ca0f1",
+      "result": "WIN",
+      "opponent": "PICKLES",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ca7a2964-1632-4bac-9a59-8113618ca0f1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e27f613c-95fc-4218-ba21-56b1223158cd",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e27f613c-95fc-4218-ba21-56b1223158cd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-205dd32f-ec41-4e64-be20-b1267b76c68e",
+      "result": "WIN",
+      "opponent": "CPLAY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-205dd32f-ec41-4e64-be20-b1267b76c68e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d09770cc-07bb-41b8-8aeb-e7a04ea3da08",
+      "result": "WIN",
+      "opponent": "ethernet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-12",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d09770cc-07bb-41b8-8aeb-e7a04ea3da08",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "roc-team": [
+    {
+      "date": "2026-05-30",
+      "season": "S57 EU Main B - Playoffs",
+      "matchId": "1-3b18148d-5f7f-4865-8932-33b0316e1640",
+      "result": "LOSS",
+      "opponent": "OLYMPIA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-30",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Playoffs",
+          "matchId": "1-3b18148d-5f7f-4865-8932-33b0316e1640",
+          "result": "LOSS"
+        }
+      ]
+    },
     {
       "date": "2026-05-28",
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-13e7739a-ee26-437b-9328-82652449292b",
       "result": "LOSS",
+      "opponent": "Infinity",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2646,6 +6866,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-495e399c-0016-48c8-9207-5058c0c28c68",
       "result": "WIN",
+      "opponent": "KittaDiena",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2663,6 +6884,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-bb2ada7a-4a05-4bcb-9092-459d4ac45771",
       "result": "WIN",
+      "opponent": "Team Juvi",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2680,6 +6902,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-61df7706-8376-4ad5-a652-44e26adb0a84",
       "result": "LOSS",
+      "opponent": "OLYMPIA",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2697,6 +6920,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-49aac6b9-3f71-4649-9b51-e0d98cbed01a",
       "result": "WIN",
+      "opponent": "GENESIS",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2708,6 +6932,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d7a9d589-94c0-4722-8613-33ae8166e88d",
+      "result": "WIN",
+      "opponent": "P7AY3R5",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d7a9d589-94c0-4722-8613-33ae8166e88d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d229c563-73fe-4c82-b4f2-71e88c5d8633",
+      "result": "LOSS",
+      "opponent": "GAMESPORT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d229c563-73fe-4c82-b4f2-71e88c5d8633",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-842a6936-c47c-4001-b621-93902de2ea7d",
+      "result": "LOSS",
+      "opponent": "Radian Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-842a6936-c47c-4001-b621-93902de2ea7d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-583c8c22-5b07-4a1b-a31e-f92968570f07",
+      "result": "WIN",
+      "opponent": "KasaZaza",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-583c8c22-5b07-4a1b-a31e-f92968570f07",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-5938a694-aecd-4603-86e0-bbcd2a0f80bb",
+      "result": "WIN",
+      "opponent": "DTL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-5938a694-aecd-4603-86e0-bbcd2a0f80bb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1ee263e7-9fe7-4441-980b-212e0eda70ce",
+      "result": "LOSS",
+      "opponent": "CTRL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1ee263e7-9fe7-4441-980b-212e0eda70ce",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0a0eb496-87c6-49c5-b437-55592db93f09",
+      "result": "WIN",
+      "opponent": "aokigahara",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0a0eb496-87c6-49c5-b437-55592db93f09",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3eff4465-996a-4fcf-8e12-ebdf3541e442",
+      "result": "WIN",
+      "opponent": "mXm-S",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3eff4465-996a-4fcf-8e12-ebdf3541e442",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-cea58b31-7e5e-47e4-8a8c-1520fb953903",
+      "result": "LOSS",
+      "opponent": "PLATOON BETA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "16 / 14",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-cea58b31-7e5e-47e4-8a8c-1520fb953903",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "partizan": [
@@ -2716,6 +7102,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-edafce36-355d-4e4b-8265-79d6489c3472",
       "result": "WIN",
+      "opponent": "CSGOPOSITIVE",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2740,6 +7127,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-da1660e6-56cb-4e53-a60f-6944b87efc1d",
       "result": "WIN",
+      "opponent": "OLYMPIA",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -2771,6 +7159,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-e9afdbc9-f566-4b67-a5e3-551289d7be50",
       "result": "LOSS",
+      "opponent": "Fraternity",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2795,6 +7184,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-1f46b8fb-3788-4c75-b033-575e375186ed",
       "result": "WIN",
+      "opponent": "EK CSKeisari",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2819,6 +7209,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-3318e95e-0a4b-43a0-87ba-65a7e3302947",
       "result": "LOSS",
+      "opponent": "aAa",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -2830,6 +7221,240 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-421d94ea-5216-4a19-a7d3-f33febd29559",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "5 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-421d94ea-5216-4a19-a7d3-f33febd29559",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-42a2f740-f212-4086-bd15-7f6e92d1a3d9",
+      "result": "WIN",
+      "opponent": "KasaZaza",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-42a2f740-f212-4086-bd15-7f6e92d1a3d9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ddaf1712-7904-4b8a-baf2-87858cecf035",
+      "result": "WIN",
+      "opponent": "GamersLab",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ddaf1712-7904-4b8a-baf2-87858cecf035",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c9450419-3fe7-4270-9c3c-9fe22291f02b",
+      "result": "LOSS",
+      "opponent": "Radian Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "8 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c9450419-3fe7-4270-9c3c-9fe22291f02b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4d01c0a8-f929-40fe-a6fd-eaab4e72c031",
+      "result": "LOSS",
+      "opponent": "EsportBERG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4d01c0a8-f929-40fe-a6fd-eaab4e72c031",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-140ba281-99bd-458b-bc6c-e8c6a97b6ec8",
+      "result": "LOSS",
+      "opponent": "Duggedup",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "2 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-140ba281-99bd-458b-bc6c-e8c6a97b6ec8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-06b3ede6-bfc7-48a6-b35e-13ee54102886",
+      "result": "LOSS",
+      "opponent": "Team Juvi",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-06b3ede6-bfc7-48a6-b35e-13ee54102886",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0c579bf2-3e49-4191-b106-6d2511d084fb",
+      "result": "WIN",
+      "opponent": "Project H",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0c579bf2-3e49-4191-b106-6d2511d084fb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0d150144-fcec-4e9f-a048-1b0e1c3d2c26",
+      "result": "WIN",
+      "opponent": "Bitfixgg",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0d150144-fcec-4e9f-a048-1b0e1c3d2c26",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-42765fa4-7bbe-4bf1-b728-0052d8ea0945",
+      "result": "WIN",
+      "opponent": "LFO-",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-42765fa4-7bbe-4bf1-b728-0052d8ea0945",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-46b6a952-dc91-475b-a404-65c1845d1da9",
+      "result": "WIN",
+      "opponent": "EXEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 11",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-46b6a952-dc91-475b-a404-65c1845d1da9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4b106fad-5c71-452c-ada5-ebd3784f2627",
+      "result": "WIN",
+      "opponent": "Pilske Airlines E-sports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4b106fad-5c71-452c-ada5-ebd3784f2627",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1226530d-8056-4c4c-8057-9f7618b6905d",
+      "result": "WIN",
+      "opponent": "ConstrictGaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1226530d-8056-4c4c-8057-9f7618b6905d",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "csgopositive": [
@@ -2838,6 +7463,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-edafce36-355d-4e4b-8265-79d6489c3472",
       "result": "LOSS",
+      "opponent": "PARTIZAN",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2862,6 +7488,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-802dd511-dc9b-43b7-aac7-70f9b96de5dd",
       "result": "WIN",
+      "opponent": "Team Juvi",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -2886,6 +7513,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-ef6a365b-1451-4e94-b539-5f0c227734d1",
       "result": "LOSS",
+      "opponent": "TSA Green",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2910,6 +7538,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-88eac5b7-f1be-44de-b806-c645f764ee70",
       "result": "WIN",
+      "opponent": "P7AY3R5",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -2941,6 +7570,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-4efc4706-de35-4cc6-9834-5d753ad577dc",
       "result": "WIN",
+      "opponent": "CTRL",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -2952,6 +7582,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ea452f73-4e22-49f1-84fe-27ea8ee09efb",
+      "result": "WIN",
+      "opponent": "NAVI Junior",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-23",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ea452f73-4e22-49f1-84fe-27ea8ee09efb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e146c104-cba8-4c5b-a970-a587dd137498",
+      "result": "LOSS",
+      "opponent": "Al Ahli Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "5 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e146c104-cba8-4c5b-a970-a587dd137498",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4bce90b3-035d-4f4e-8540-a64886707a26",
+      "result": "WIN",
+      "opponent": "Radian Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4bce90b3-035d-4f4e-8540-a64886707a26",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4aa6477f-33fb-4143-adaf-a4325b507282",
+      "result": "WIN",
+      "opponent": "Ancoris Esports Tide",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-09",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4aa6477f-33fb-4143-adaf-a4325b507282",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-263ac5c4-1c44-4dea-b5cd-85a648d36b44",
+      "result": "WIN",
+      "opponent": "Vitality Academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "14 / 16",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-263ac5c4-1c44-4dea-b5cd-85a648d36b44",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-807689fe-ccdf-4585-9bcf-9acd50110b29",
+      "result": "WIN",
+      "opponent": "EXEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-807689fe-ccdf-4585-9bcf-9acd50110b29",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-967c0fd3-62e7-43c4-a568-7440e4878b09",
+      "result": "LOSS",
+      "opponent": "Team Juvi",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 3",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-967c0fd3-62e7-43c4-a568-7440e4878b09",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-18239d02-9e04-4ff5-ad79-9a08aa69e6ee",
+      "result": "WIN",
+      "opponent": "Split ESC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-18239d02-9e04-4ff5-ad79-9a08aa69e6ee",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-eaadc5d9-946c-45f4-b4dc-ca78c6193c1a",
+      "result": "WIN",
+      "opponent": "ethernet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-eaadc5d9-946c-45f4-b4dc-ca78c6193c1a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-d1542883-d806-4f1b-857e-bb5927e32cfb",
+      "result": "LOSS",
+      "opponent": "aAa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-d1542883-d806-4f1b-857e-bb5927e32cfb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1e2f1f2f-f582-496b-b7f8-fea8271875ff",
+      "result": "WIN",
+      "opponent": "Moose sports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "2 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1e2f1f2f-f582-496b-b7f8-fea8271875ff",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-bb90f477-8f26-4371-a2af-1451839424e9",
+      "result": "WIN",
+      "opponent": "PulsePC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "5 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-bb90f477-8f26-4371-a2af-1451839424e9",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "platoon-beta": [
@@ -2960,6 +7806,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-ff505c9a-8bbe-4b0a-b800-077fa6a37798",
       "result": "LOSS",
+      "opponent": "CTRL",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -2984,6 +7831,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-7b388090-5e23-42fa-8310-34933feb5e6d",
       "result": "WIN",
+      "opponent": "5mix",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -3015,6 +7863,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-1ceb2de3-aac0-48e4-9fcd-f1207a4a2104",
       "result": "LOSS",
+      "opponent": "GAMESPORT",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3046,6 +7895,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-9fb33cb8-6170-4efe-afae-5fbe72f3de1d",
       "result": "WIN",
+      "opponent": "Scuttle Gap",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -3070,6 +7920,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-eac9890e-961b-4a60-9295-2382a923336b",
       "result": "LOSS",
+      "opponent": "ARROW",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3081,6 +7932,204 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-a91173fc-f73a-42e1-b252-65de029c4869",
+      "result": "LOSS",
+      "opponent": "No0RG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-a91173fc-f73a-42e1-b252-65de029c4869",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e59b7c95-9c15-4c2b-8adc-99eda96f96e2",
+      "result": "LOSS",
+      "opponent": "KasaZaza",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "14 / 16",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e59b7c95-9c15-4c2b-8adc-99eda96f96e2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-21246191-208f-4cd8-8803-75848c34e196",
+      "result": "WIN",
+      "opponent": "Bitfixgg",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "2 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-21246191-208f-4cd8-8803-75848c34e196",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-7065aa80-6f1c-4595-a711-a0a7ba0de083",
+      "result": "WIN",
+      "opponent": "mXm",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-7065aa80-6f1c-4595-a711-a0a7ba0de083",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-288aabaa-5a41-470d-b3eb-be593b9af47d",
+      "result": "WIN",
+      "opponent": "CPLAY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-288aabaa-5a41-470d-b3eb-be593b9af47d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c40b671a-c802-4213-8b3d-42fe660b1be7",
+      "result": "LOSS",
+      "opponent": "CTRL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 8",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c40b671a-c802-4213-8b3d-42fe660b1be7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-7dfff666-8b8f-47f0-a274-95917c3ff8b1",
+      "result": "LOSS",
+      "opponent": "Radian Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 11",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-7dfff666-8b8f-47f0-a274-95917c3ff8b1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-bba6c938-6429-4e7d-98e6-74cf6b56a148",
+      "result": "WIN",
+      "opponent": "Delta FIRE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-bba6c938-6429-4e7d-98e6-74cf6b56a148",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-cea58b31-7e5e-47e4-8a8c-1520fb953903",
+      "result": "WIN",
+      "opponent": "ROC Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "16 / 14",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-cea58b31-7e5e-47e4-8a8c-1520fb953903",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-19737fa6-e97a-46e2-8f30-5d98d8eec996",
+      "result": "LOSS",
+      "opponent": "Sosban Fach",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-19737fa6-e97a-46e2-8f30-5d98d8eec996",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-108eb06c-a499-4d39-a12b-00db592b18a4",
+      "result": "WIN",
+      "opponent": "Rcave",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-108eb06c-a499-4d39-a12b-00db592b18a4",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "wnt": [
@@ -3089,6 +8138,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-eb2cef2b-1401-44f6-8d0a-f7ba00861947",
       "result": "LOSS",
+      "opponent": "Entropy",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3113,6 +8163,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-3177be34-0518-4fb4-88a7-0d05d367ef82",
       "result": "LOSS",
+      "opponent": "mellren",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3144,6 +8195,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-2c182559-12a4-4d1d-af95-55a0289fb9b0",
       "result": "WIN",
+      "opponent": "JuJiin",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -3168,6 +8220,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-00568bd1-35a5-4b94-9b88-57cf53d4bb30",
       "result": "LOSS",
+      "opponent": "BoolshetByLisco",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3185,6 +8238,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-f42f8a6e-5a79-447d-b79f-fd3b0ae94d6a",
       "result": "WIN",
+      "opponent": "FROX",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3196,6 +8250,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e6ab3c6b-299b-4053-bf6c-d99f60e4da9b",
+      "result": "WIN",
+      "opponent": "JuJiin",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "12 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e6ab3c6b-299b-4053-bf6c-d99f60e4da9b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-2773eef7-67ce-4f8c-88b6-20e1b8dab917",
+      "result": "WIN",
+      "opponent": "Cyber Park Arena",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-2773eef7-67ce-4f8c-88b6-20e1b8dab917",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9a848852-3c90-4f9d-b78c-5f2411dacac6",
+      "result": "LOSS",
+      "opponent": "Animgraph2",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "13 / 11",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9a848852-3c90-4f9d-b78c-5f2411dacac6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-25f62ae3-56f7-46f6-b65f-6efe807df9c3",
+      "result": "LOSS",
+      "opponent": "uwuZA100sm",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-25f62ae3-56f7-46f6-b65f-6efe807df9c3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-88065e8e-c829-4207-81b3-2e7216087500",
+      "result": "WIN",
+      "opponent": "The UNCAGED",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 4",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-88065e8e-c829-4207-81b3-2e7216087500",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-3e868af1-7ddc-47a0-a6d5-94a7fccb4ab4",
+      "result": "WIN",
+      "opponent": "SUNFALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "25 / 23",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-3e868af1-7ddc-47a0-a6d5-94a7fccb4ab4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-5bb6eadd-fb25-4b35-aaef-1fd328918e95",
+      "result": "WIN",
+      "opponent": "VasterasEsport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-26",
+          "score": "13 / 11",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-5bb6eadd-fb25-4b35-aaef-1fd328918e95",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-d6bebc3e-fd53-4c74-94ff-7b8c031532e2",
+      "result": "LOSS",
+      "opponent": "Doxa Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-d6bebc3e-fd53-4c74-94ff-7b8c031532e2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9aabee37-bef2-4618-a010-d94df4b19aff",
+      "result": "WIN",
+      "opponent": "Nemesis Academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9aabee37-bef2-4618-a010-d94df4b19aff",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-24884943-302c-4301-b97b-53cf92713c9f",
+      "result": "WIN",
+      "opponent": "NEVERPLAY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "16 / 12",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-24884943-302c-4301-b97b-53cf92713c9f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8ee4490b-f05a-422f-9c35-220bdd45bb86",
+      "result": "LOSS",
+      "opponent": "Phantom Esports Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8ee4490b-f05a-422f-9c35-220bdd45bb86",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6da02cf1-6fca-47d2-997d-e8589511b2cf",
+      "result": "LOSS",
+      "opponent": "Inner Circle Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 5",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6da02cf1-6fca-47d2-997d-e8589511b2cf",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "playfire": [
@@ -3204,6 +8474,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-f1bc789c-38ba-43b3-b4d1-da5eca02f151",
       "result": "LOSS",
+      "opponent": "GamersLab Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3228,6 +8499,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-d66c2bef-04e9-412d-94ce-b2f89f6ca252",
       "result": "LOSS",
+      "opponent": "Huskies eSport",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3252,6 +8524,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-27cff824-f94c-4b21-8b0e-14c42dd83b93",
       "result": "LOSS",
+      "opponent": "Strael-Bora",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3265,10 +8538,83 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-98d7f1b4-7187-4900-a4c2-479e3f31c561",
+      "result": "LOSS",
+      "opponent": "FeedTheEgo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 6",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-98d7f1b4-7187-4900-a4c2-479e3f31c561",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-bdeb1b77-a620-444e-82aa-fba2b1ff5125",
+      "result": "WIN",
+      "opponent": "LEO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-bdeb1b77-a620-444e-82aa-fba2b1ff5125",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9f065dde-277f-430c-adeb-8980c9326d3d",
+      "result": "WIN",
+      "opponent": "The UNCAGED",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9f065dde-277f-430c-adeb-8980c9326d3d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-15822f10-3c61-4595-b871-d32c24893c74",
+      "result": "WIN",
+      "opponent": "Ryvex",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-15822f10-3c61-4595-b871-d32c24893c74",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-04-28",
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-f9b98263-85c0-436d-a5e9-13b3921bdacb",
       "result": "WIN",
+      "opponent": "DEEZ NUTS",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3286,6 +8632,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-5c192d22-903d-4528-bc7b-8068df4c3f26",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3297,6 +8644,78 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b2742924-f98d-4b0a-8089-e12d7dc2a266",
+      "result": "LOSS",
+      "opponent": "Xcity",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b2742924-f98d-4b0a-8089-e12d7dc2a266",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-a0fc1d59-1fda-4a08-96a2-8315c4b5c174",
+      "result": "LOSS",
+      "opponent": "Phantom Esports Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-a0fc1d59-1fda-4a08-96a2-8315c4b5c174",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-1171c76d-de91-469f-8133-41d6f44ea6ba",
+      "result": "LOSS",
+      "opponent": "Doxa Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-1171c76d-de91-469f-8133-41d6f44ea6ba",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-03ea3a65-0b64-438a-91a1-cee47b6e400c",
+      "result": "WIN",
+      "opponent": "Nemesis Academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-03ea3a65-0b64-438a-91a1-cee47b6e400c",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "olympia": [
@@ -3305,6 +8724,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-da1660e6-56cb-4e53-a60f-6944b87efc1d",
       "result": "LOSS",
+      "opponent": "PARTIZAN",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3336,6 +8756,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-a51c2cda-1cd1-4690-a260-250a9e257585",
       "result": "WIN",
+      "opponent": "mXm",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -3367,6 +8788,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-3b18148d-5f7f-4865-8932-33b0316e1640",
       "result": "WIN",
+      "opponent": "ROC Team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3384,6 +8806,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-7cdba0d1-ba72-4b61-9763-6b8accc07a4f",
       "result": "LOSS",
+      "opponent": "Z17",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3408,6 +8831,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-7e066fda-454c-497a-92ce-239ccf6967c6",
       "result": "LOSS",
+      "opponent": "golovastiki",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3419,6 +8843,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-61df7706-8376-4ad5-a652-44e26adb0a84",
+      "result": "WIN",
+      "opponent": "ROC Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-61df7706-8376-4ad5-a652-44e26adb0a84",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ad7d1869-86e6-434f-84e4-53839429e455",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ad7d1869-86e6-434f-84e4-53839429e455",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-b8bf26a5-d579-4707-be33-3dc1fd5895f8",
+      "result": "LOSS",
+      "opponent": "aAa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "28 / 26",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-b8bf26a5-d579-4707-be33-3dc1fd5895f8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-5a1d766a-175a-497b-8296-1f6b82c26466",
+      "result": "LOSS",
+      "opponent": "Vitality Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-5a1d766a-175a-497b-8296-1f6b82c26466",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-10ea973d-c5df-4ed5-bf5a-8ff3c9f6713b",
+      "result": "WIN",
+      "opponent": "Ancoris Esports Tide",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-10ea973d-c5df-4ed5-bf5a-8ff3c9f6713b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-77ac91ad-a1fa-445b-a50f-4825db1a6b4d",
+      "result": "LOSS",
+      "opponent": "GENESIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-77ac91ad-a1fa-445b-a50f-4825db1a6b4d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-6b934f55-d616-4dde-91a6-54d7a72dee19",
+      "result": "LOSS",
+      "opponent": "Infinity",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-6b934f55-d616-4dde-91a6-54d7a72dee19",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c198f1cd-6082-433f-bb62-5b14072fec25",
+      "result": "WIN",
+      "opponent": "Bitfixgg",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c198f1cd-6082-433f-bb62-5b14072fec25",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-80073c8c-cd04-4a02-b1b1-9c0ec1f76548",
+      "result": "WIN",
+      "opponent": "FC Synti",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-80073c8c-cd04-4a02-b1b1-9c0ec1f76548",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-fe4cc95b-794b-4fd9-b592-cea7d09a4ebf",
+      "result": "LOSS",
+      "opponent": "Radian Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-fe4cc95b-794b-4fd9-b592-cea7d09a4ebf",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e0a63e00-37c6-4a55-8282-028c22e6b936",
+      "result": "WIN",
+      "opponent": "VantaanVarjot",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 1",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e0a63e00-37c6-4a55-8282-028c22e6b936",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-047bd2c6-9025-4964-a4fe-2fbe1c795b16",
+      "result": "WIN",
+      "opponent": "DZIADGI",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-047bd2c6-9025-4964-a4fe-2fbe1c795b16",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "way-In-future": [
@@ -3427,6 +9067,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-6a9c3f41-57fa-4756-a431-dbfb3a6dfb03",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3458,6 +9099,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-07dc6313-6570-41ee-885b-6df8752d0b41",
       "result": "WIN",
+      "opponent": "Cyber Park Arena",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3475,6 +9117,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-4834c64e-abcd-425c-9996-5af52f58cbac",
       "result": "WIN",
+      "opponent": "BoolshetByLisco",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -3499,6 +9142,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-5d65cccb-764c-44c5-a580-ae9edf4acf78",
       "result": "LOSS",
+      "opponent": "LPH Gaming",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3523,6 +9167,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-b0c2f612-8f5f-4010-a55a-86501a4e6935",
       "result": "WIN",
+      "opponent": "VasterasEsport",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -3548,6 +9193,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-f74095c0-fa64-4404-b575-1c1748b083b1",
+      "result": "LOSS",
+      "opponent": "FROX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "12 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-f74095c0-fa64-4404-b575-1c1748b083b1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-22138df1-e987-4974-a07d-1e3295077349",
+      "result": "LOSS",
+      "opponent": "ORGLESS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "13 / 5",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-22138df1-e987-4974-a07d-1e3295077349",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-1733cace-54e5-4739-a210-31aa6987c470",
+      "result": "WIN",
+      "opponent": "HORIZON",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "11 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-1733cace-54e5-4739-a210-31aa6987c470",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8ecc25c8-4d1c-4d11-9595-599c8976e960",
+      "result": "LOSS",
+      "opponent": "Fortress Esport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "8 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8ecc25c8-4d1c-4d11-9595-599c8976e960",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-297c1551-a944-4f41-ac74-56d29156370e",
+      "result": "LOSS",
+      "opponent": "LPH Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-297c1551-a944-4f41-ac74-56d29156370e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0adeb27f-f724-4b37-aa4a-c65b1256adc7",
+      "result": "LOSS",
+      "opponent": "Privateer Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 4",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0adeb27f-f724-4b37-aa4a-c65b1256adc7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b161e899-faa4-477e-be99-6304ee986575",
+      "result": "WIN",
+      "opponent": "UWUkittens",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b161e899-faa4-477e-be99-6304ee986575",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6d08d9b6-a7ad-496f-987b-26517ac01465",
+      "result": "WIN",
+      "opponent": "dzungarz",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6d08d9b6-a7ad-496f-987b-26517ac01465",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-d45ea90a-e337-44e9-9c2e-2d241b1b92a9",
+      "result": "WIN",
+      "opponent": "FeedTheEgo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "13 / 5",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-d45ea90a-e337-44e9-9c2e-2d241b1b92a9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8df8fff3-1994-4ff8-984c-54150ac3087b",
+      "result": "LOSS",
+      "opponent": "GamersLab Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "4 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8df8fff3-1994-4ff8-984c-54150ac3087b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b872979b-7338-4645-bc71-019ae99bf59f",
+      "result": "WIN",
+      "opponent": "Hermine Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "10 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b872979b-7338-4645-bc71-019ae99bf59f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4fabbdf2-7143-4026-904b-49544c64a13f",
+      "result": "WIN",
+      "opponent": "Project conquerors",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4fabbdf2-7143-4026-904b-49544c64a13f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9b49f56f-f756-4c8c-a94f-471e87756b4d",
+      "result": "LOSS",
+      "opponent": "NoScope eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9b49f56f-f756-4c8c-a94f-471e87756b4d",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "redtigersgaming": [
@@ -3556,6 +9435,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-b8c62442-d1dc-4d35-9511-033faa19b4bc",
       "result": "LOSS",
+      "opponent": "Doxa Gaming",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3587,6 +9467,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-9450644b-a676-43fb-bde0-de4a1df60c50",
       "result": "WIN",
+      "opponent": "FeedTheEgo",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -3618,6 +9499,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-d106ad62-098f-46c6-a9b9-34734860b21b",
       "result": "LOSS",
+      "opponent": "Phantom Esports Academy",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3642,6 +9524,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-e87af9bc-c635-48bf-bd5b-5a0fb56d0560",
       "result": "WIN",
+      "opponent": "FROX",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -3666,6 +9549,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-e01dac2b-c370-4f29-9eb6-bf5039d4b4ec",
       "result": "LOSS",
+      "opponent": "Eternal 21",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3677,6 +9561,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e0232266-af31-4a78-8de1-0352d188e9d3",
+      "result": "LOSS",
+      "opponent": "301FPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e0232266-af31-4a78-8de1-0352d188e9d3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-f3a9f14c-6bec-4c04-a7d6-26fddd0f6224",
+      "result": "LOSS",
+      "opponent": "301FPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-f3a9f14c-6bec-4c04-a7d6-26fddd0f6224",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-74ed04f8-de19-45e5-abbe-e6b3cc635775",
+      "result": "WIN",
+      "opponent": "TEAM GELO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "8 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-74ed04f8-de19-45e5-abbe-e6b3cc635775",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-14889a97-1954-42b5-bd88-cf269eccd800",
+      "result": "WIN",
+      "opponent": "301FPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-14889a97-1954-42b5-bd88-cf269eccd800",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-f4a6dd6d-8853-4779-8f7b-9c39d7e95492",
+      "result": "LOSS",
+      "opponent": "301FPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-f4a6dd6d-8853-4779-8f7b-9c39d7e95492",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-06ce47ab-d21a-4253-ac29-af78ba39c107",
+      "result": "LOSS",
+      "opponent": "301FPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-06ce47ab-d21a-4253-ac29-af78ba39c107",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9e03be72-5fef-486c-8f01-4fd9d80d848e",
+      "result": "LOSS",
+      "opponent": "GamersLab Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9e03be72-5fef-486c-8f01-4fd9d80d848e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-deb82d68-fc51-4598-90e0-2affbfe44c5e",
+      "result": "WIN",
+      "opponent": "ORGLESS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-deb82d68-fc51-4598-90e0-2affbfe44c5e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e6e9e846-539a-47d5-9048-11d022c31eb0",
+      "result": "WIN",
+      "opponent": "NEVERPLAY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e6e9e846-539a-47d5-9048-11d022c31eb0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0e00df19-154a-42f4-8372-e95cd909ff93",
+      "result": "WIN",
+      "opponent": "301FPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0e00df19-154a-42f4-8372-e95cd909ff93",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-d3d85ea8-bfb7-4aa6-a63d-e88f36df0d29",
+      "result": "WIN",
+      "opponent": "Phantom Esports Academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-d3d85ea8-bfb7-4aa6-a63d-e88f36df0d29",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8229a67c-4859-4af5-8eac-8266a42d5917",
+      "result": "LOSS",
+      "opponent": "301FPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8229a67c-4859-4af5-8eac-8266a42d5917",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "kislyakk": [
@@ -3685,6 +9785,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-760aa768-31ac-41aa-9af4-d7c803852163",
       "result": "LOSS",
+      "opponent": "Strael-Bora",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3709,6 +9810,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-a88cd429-2426-41c0-baca-66727f81f149",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -3733,6 +9835,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-5d6c0c45-22f6-420a-b952-d58890da3097",
       "result": "WIN",
+      "opponent": "FANG ESPORT",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -3757,6 +9860,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-9ecfd82b-1a6f-4307-a8fb-059c54277d11",
       "result": "LOSS",
+      "opponent": "Young TigeRES",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3770,10 +9874,29 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-20",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-f685366b-f798-4ad1-b49c-346b6ec23000",
+      "result": "LOSS",
+      "opponent": "Animgraph2",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "8 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-f685366b-f798-4ad1-b49c-346b6ec23000",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
       "date": "2026-05-19",
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-bad09988-c90a-43c3-a198-457c091c2769",
       "result": "WIN",
+      "opponent": "Sicarios",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3785,6 +9908,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-36985c04-810e-413f-ae56-f057abfb06d7",
+      "result": "LOSS",
+      "opponent": "SUNFALL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "10 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-36985c04-810e-413f-ae56-f057abfb06d7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-1e869ba6-02d8-4bb8-9036-9716d04dd3cf",
+      "result": "WIN",
+      "opponent": "Strael-Bora",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-1e869ba6-02d8-4bb8-9036-9716d04dd3cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-649a9c3e-7864-4fde-8700-3861d72a1a14",
+      "result": "WIN",
+      "opponent": "VasterasEsport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-649a9c3e-7864-4fde-8700-3861d72a1a14",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-61c3d267-58dc-4155-9094-171b2b5eb6ac",
+      "result": "WIN",
+      "opponent": "ABlaze Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-61c3d267-58dc-4155-9094-171b2b5eb6ac",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4979e1f8-1fc6-4fbe-9c13-515fa9b25d44",
+      "result": "WIN",
+      "opponent": "TeamMischievous",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4979e1f8-1fc6-4fbe-9c13-515fa9b25d44",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-1fa1be1e-0867-4c1d-a2a4-dd7f986d1afa",
+      "result": "LOSS",
+      "opponent": "Hermine Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "8 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-1fa1be1e-0867-4c1d-a2a4-dd7f986d1afa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6fc87437-c4bd-4916-8531-1d48dd966ebc",
+      "result": "LOSS",
+      "opponent": "Nemesis Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6fc87437-c4bd-4916-8531-1d48dd966ebc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-d602b65f-7564-408c-9045-d36efbb55fe1",
+      "result": "WIN",
+      "opponent": "M1Z",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 8",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-d602b65f-7564-408c-9045-d36efbb55fe1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-7221a5a8-717e-4f68-9988-5b3730846562",
+      "result": "LOSS",
+      "opponent": "The Book Club",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "10 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-7221a5a8-717e-4f68-9988-5b3730846562",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "wobuzhidao": [
@@ -3793,6 +10078,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-e94a1881-4d0c-4243-a53c-967ffdca39f2",
       "result": "LOSS",
+      "opponent": "Armitra Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3824,6 +10110,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-7add4d9b-d10f-4c46-aab7-81975a637ac8",
       "result": "LOSS",
+      "opponent": "EK CSKeisari",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3841,6 +10128,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-aaecf0a8-3381-41a7-9088-60c89e720e18",
       "result": "LOSS",
+      "opponent": "GamersLab",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3858,6 +10146,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-8b71334d-b523-49d6-b07b-925ffc4bc074",
       "result": "WIN",
+      "opponent": "P7AY3R5",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3875,6 +10164,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-e49c7b0d-6f38-40b4-b850-42af77871580",
       "result": "WIN",
+      "opponent": "GENESIS",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -3886,6 +10176,132 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-10",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-df2d6003-986e-49d1-bbd7-84c6e45887ac",
+      "result": "LOSS",
+      "opponent": "EsportBERG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-10",
+          "score": "8 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-df2d6003-986e-49d1-bbd7-84c6e45887ac",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-619bca67-6563-4857-80a7-24ea96130920",
+      "result": "LOSS",
+      "opponent": "FC Synti",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-619bca67-6563-4857-80a7-24ea96130920",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-88fcd6b2-3531-4212-a6ac-4234c44da881",
+      "result": "WIN",
+      "opponent": "EXEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-88fcd6b2-3531-4212-a6ac-4234c44da881",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-892997d0-ea21-4882-89a6-436296e292b9",
+      "result": "LOSS",
+      "opponent": "Sosban Fach",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-892997d0-ea21-4882-89a6-436296e292b9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3cd4dfd2-a46f-4250-aed8-895b554305c7",
+      "result": "WIN",
+      "opponent": "Team Lynx",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3cd4dfd2-a46f-4250-aed8-895b554305c7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0d31328f-dd86-4788-a956-1d532f2a1595",
+      "result": "LOSS",
+      "opponent": "aAa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0d31328f-dd86-4788-a956-1d532f2a1595",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-169b7fec-7681-4ab4-8646-f416eb110b4d",
+      "result": "WIN",
+      "opponent": "SPEEDHUN72RZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-169b7fec-7681-4ab4-8646-f416eb110b4d",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "p7ay3r5": [
@@ -3894,6 +10310,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-88eac5b7-f1be-44de-b806-c645f764ee70",
       "result": "LOSS",
+      "opponent": "CSGOPOSITIVE",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -3925,6 +10342,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-305ebf92-0a13-49ac-978e-741ad1c56452",
       "result": "WIN",
+      "opponent": "i2K Esports",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -3956,6 +10374,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-c2ee27b8-a001-45b3-b39c-7030fb6b9b7c",
       "result": "LOSS",
+      "opponent": "GENESIS",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3973,6 +10392,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-ffab05e2-830d-413e-be4a-c8120659b8f7",
       "result": "LOSS",
+      "opponent": "EK CSKeisari",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -3990,6 +10410,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-d7a9d589-94c0-4722-8613-33ae8166e88d",
       "result": "LOSS",
+      "opponent": "ROC Team",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4001,6 +10422,132 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-8b71334d-b523-49d6-b07b-925ffc4bc074",
+      "result": "LOSS",
+      "opponent": "Wobuzhidao",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-8b71334d-b523-49d6-b07b-925ffc4bc074",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-46d4fe87-2240-4a83-be64-f6c1c9b7b254",
+      "result": "WIN",
+      "opponent": "Sosban Fach",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-46d4fe87-2240-4a83-be64-f6c1c9b7b254",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-2bf04c2f-ea60-4aa5-a266-e3ac8a47af01",
+      "result": "WIN",
+      "opponent": "DTL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-2bf04c2f-ea60-4aa5-a266-e3ac8a47af01",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c9e4e00f-974f-4727-9448-1354b49b1cbe",
+      "result": "LOSS",
+      "opponent": "5mix",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c9e4e00f-974f-4727-9448-1354b49b1cbe",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-287a0c4f-5caf-47e3-abf7-a3c664d34ced",
+      "result": "WIN",
+      "opponent": "ARROW",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-287a0c4f-5caf-47e3-abf7-a3c664d34ced",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-00c85325-b533-4c3b-b955-94a18cf844f8",
+      "result": "LOSS",
+      "opponent": "Infinity",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-00c85325-b533-4c3b-b955-94a18cf844f8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-48cb3923-ba67-46b3-8d7b-aad2b9f3aa94",
+      "result": "LOSS",
+      "opponent": "Guttaene",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-48cb3923-ba67-46b3-8d7b-aad2b9f3aa94",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "dire": [
@@ -4009,6 +10556,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-5d22a6ac-b8e1-4d54-872d-75611402f432",
       "result": "LOSS",
+      "opponent": "NextUP x Qual4",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4033,6 +10581,7 @@ const matches = {
       "season": "S57 EU Main A - Playoffs",
       "matchId": "1-310a4087-ed8a-463d-959c-f677e936fc72",
       "result": "LOSS",
+      "opponent": "FeedTheEgo",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4057,6 +10606,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-8870556e-f4d3-4cb6-9d19-487008af4ee1",
       "result": "WIN",
+      "opponent": "Huskies eSport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4074,6 +10624,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-4198c094-cb39-413a-8a26-30b1b032f110",
       "result": "LOSS",
+      "opponent": "LEO",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4091,6 +10642,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-4eb20104-1199-42dd-b06d-7616e1b4e407",
       "result": "LOSS",
+      "opponent": "Cyber Park Arena",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4102,6 +10654,168 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-da61fa85-5923-48b4-952f-61dd77a5a89b",
+      "result": "WIN",
+      "opponent": "2077ESPORTS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-da61fa85-5923-48b4-952f-61dd77a5a89b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-02a54ea3-6b5e-490e-94ee-6112791e621e",
+      "result": "WIN",
+      "opponent": "YoD Vortex",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-02a54ea3-6b5e-490e-94ee-6112791e621e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ead6e18f-ed03-43d2-b16c-dd7db2271646",
+      "result": "LOSS",
+      "opponent": "Doxa Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ead6e18f-ed03-43d2-b16c-dd7db2271646",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6ffd8d2a-72e8-4435-a37e-6be0c5ebc9dc",
+      "result": "LOSS",
+      "opponent": "Strael-Bora",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6ffd8d2a-72e8-4435-a37e-6be0c5ebc9dc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-9a74e0e7-ccab-488e-85ff-8cbaad44401d",
+      "result": "LOSS",
+      "opponent": "Ryvex",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "19 / 17",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-9a74e0e7-ccab-488e-85ff-8cbaad44401d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b824ba1f-f796-4208-aa88-4ab97150d1a7",
+      "result": "LOSS",
+      "opponent": "mellren",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "16 / 14",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b824ba1f-f796-4208-aa88-4ab97150d1a7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6e811824-5377-4afc-a13b-991eb66e4a80",
+      "result": "WIN",
+      "opponent": "Privateer Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "5 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6e811824-5377-4afc-a13b-991eb66e4a80",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-c34dc667-7561-4984-bc7d-287a90cc7599",
+      "result": "LOSS",
+      "opponent": "Sicarios",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "16 / 14",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-c34dc667-7561-4984-bc7d-287a90cc7599",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ef044205-72db-4f5d-ada1-5182fe8089c9",
+      "result": "WIN",
+      "opponent": "ABlaze Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "4 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ef044205-72db-4f5d-ada1-5182fe8089c9",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "z17": [
@@ -4110,6 +10824,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-0a2a431b-e83d-47fa-b467-9aea61e00e68",
       "result": "LOSS",
+      "opponent": "Fraternity",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4134,6 +10849,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-9d1fcf7b-ce98-4f78-9cca-1fda10704314",
       "result": "WIN",
+      "opponent": "golovastiki",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4158,6 +10874,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-b7cd7eda-625f-42ec-b3e9-1dedabeaa2f3",
       "result": "WIN",
+      "opponent": "GAMESPORT",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -4189,6 +10906,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-3c92d034-b613-43c4-82d9-40e2bcbdf152",
       "result": "WIN",
+      "opponent": "CTRL",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4213,6 +10931,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-7cdba0d1-ba72-4b61-9763-6b8accc07a4f",
       "result": "WIN",
+      "opponent": "OLYMPIA",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4231,6 +10950,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-267ca471-b7cd-45e9-a381-1d0cdc7303a7",
+      "result": "WIN",
+      "opponent": "Melilla Titans",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-267ca471-b7cd-45e9-a381-1d0cdc7303a7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-469ede8d-15ba-45e0-906a-bddbb8dfecdd",
+      "result": "LOSS",
+      "opponent": "Amo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-469ede8d-15ba-45e0-906a-bddbb8dfecdd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1a520772-8854-4906-ad88-4ab1043f3766",
+      "result": "LOSS",
+      "opponent": "EK CSKeisari",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1a520772-8854-4906-ad88-4ab1043f3766",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-7004b148-10ed-4c68-8ce3-3d69f6f2fc45",
+      "result": "WIN",
+      "opponent": "KasaZaza",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "5 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-7004b148-10ed-4c68-8ce3-3d69f6f2fc45",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-302cfde1-d364-45b7-8f04-ef68bef784d0",
+      "result": "LOSS",
+      "opponent": "Amo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-302cfde1-d364-45b7-8f04-ef68bef784d0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-29e86fcb-76f8-442f-a67b-e3b5d35057ca",
+      "result": "WIN",
+      "opponent": "Amo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-29e86fcb-76f8-442f-a67b-e3b5d35057ca",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-40b91fef-e394-4e61-8d8c-a591b766ed02",
+      "result": "WIN",
+      "opponent": "SCAFAZZATI CLUB",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "5 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-40b91fef-e394-4e61-8d8c-a591b766ed02",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-f9618956-89a6-41e5-be7d-e816a2bdf606",
+      "result": "WIN",
+      "opponent": "Amo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "16 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-f9618956-89a6-41e5-be7d-e816a2bdf606",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4a71e3db-aa39-4868-a418-deacb7aefe06",
+      "result": "WIN",
+      "opponent": "Rcave",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4a71e3db-aa39-4868-a418-deacb7aefe06",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-11407dd8-20b3-466c-84e2-eee603c50e1e",
+      "result": "LOSS",
+      "opponent": "aAa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-11407dd8-20b3-466c-84e2-eee603c50e1e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c64c22f2-8014-494e-9584-7a183d716056",
+      "result": "LOSS",
+      "opponent": "Amo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c64c22f2-8014-494e-9584-7a183d716056",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "aeternum": [
@@ -4239,6 +11156,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-e9b27ddb-7ea7-4be6-8ef4-9ca5023bb081",
       "result": "LOSS",
+      "opponent": "ENCE Prospects",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4263,6 +11181,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-464c93ba-c2a5-499e-bfe7-9d40146b4e11",
       "result": "LOSS",
+      "opponent": "Vitality Academy",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4287,6 +11206,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-ea0ac19f-8e1d-40c3-9d4f-d8c44fc91530",
       "result": "LOSS",
+      "opponent": "KasaZaza",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4304,6 +11224,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-84848baa-4f52-42ab-811a-7e6d627e5935",
       "result": "WIN",
+      "opponent": null,
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4321,6 +11242,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-d21ff7b6-192b-4b6b-940e-55a9d0c83a59",
       "result": "WIN",
+      "opponent": "ENCE Prospects",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4332,6 +11254,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c8f7b907-2d68-4ba1-b52c-c695fd6730fe",
+      "result": "LOSS",
+      "opponent": "Team Lynx",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c8f7b907-2d68-4ba1-b52c-c695fd6730fe",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4a5016c3-0b75-48bd-8dfb-6b9a575359fa",
+      "result": "LOSS",
+      "opponent": "Vitality Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4a5016c3-0b75-48bd-8dfb-6b9a575359fa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-af0d5352-a9d3-4214-8938-8a2d67ec71e4",
+      "result": "LOSS",
+      "opponent": "TSA Green",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-af0d5352-a9d3-4214-8938-8a2d67ec71e4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-26c92b26-f0e6-49c8-a0da-e794ed548850",
+      "result": "WIN",
+      "opponent": "Rcave",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-26c92b26-f0e6-49c8-a0da-e794ed548850",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-747fd0de-4a40-4770-9210-9be2dfe58506",
+      "result": "LOSS",
+      "opponent": "CTRL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "20 / 22",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-747fd0de-4a40-4770-9210-9be2dfe58506",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-5300d8b2-4b4b-4d7a-b277-04076cc9f160",
+      "result": "LOSS",
+      "opponent": "FC Synti",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "14 / 16",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-5300d8b2-4b4b-4d7a-b277-04076cc9f160",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-58fe4ce6-6041-4792-832d-7cb97f3477ed",
+      "result": "WIN",
+      "opponent": "Melilla Titans",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-58fe4ce6-6041-4792-832d-7cb97f3477ed",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-f4f064ff-1e04-415c-a193-0e9f524e0f07",
+      "result": "WIN",
+      "opponent": "Delta FIRE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-f4f064ff-1e04-415c-a193-0e9f524e0f07",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "godbless": [
@@ -4340,6 +11406,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-24679392-81a5-4f30-9801-1f83be5f5efd",
       "result": "LOSS",
+      "opponent": "GamersLab Esports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4357,6 +11424,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-90beb15d-7f44-4c2a-953b-31a686f0b6b3",
       "result": "LOSS",
+      "opponent": "Xcity",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4374,6 +11442,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-4dc1a9ec-1be5-493e-b353-2b820330b7e3",
       "result": "LOSS",
+      "opponent": "VasterasEsport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4391,6 +11460,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-ab4d55c7-eb20-4601-b230-7036c3e5d706",
       "result": "WIN",
+      "opponent": "Strael-Bora",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4408,6 +11478,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-19b17216-e2db-440d-8ace-4ce58c6a8808",
       "result": "LOSS",
+      "opponent": "Nemesis Academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4419,6 +11490,114 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-8994f307-5bbb-44db-8128-0a1380cc31d7",
+      "result": "LOSS",
+      "opponent": "Young TigeRES",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-8994f307-5bbb-44db-8128-0a1380cc31d7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-52636432-da06-492f-aa07-16050a110730",
+      "result": "WIN",
+      "opponent": "SUNFALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-26",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-52636432-da06-492f-aa07-16050a110730",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-119d0007-d9f5-46ec-b550-affdb2234f80",
+      "result": "LOSS",
+      "opponent": "mellren",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "13 / 4",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-119d0007-d9f5-46ec-b550-affdb2234f80",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-2b259308-288c-45f4-bca0-e4731a984ef3",
+      "result": "LOSS",
+      "opponent": "Sicarios",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "14 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-2b259308-288c-45f4-bca0-e4731a984ef3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-2e1e70cd-0627-427a-ae98-159dbfb670d0",
+      "result": "WIN",
+      "opponent": "ZennoX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "19 / 16",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-2e1e70cd-0627-427a-ae98-159dbfb670d0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-fd33e4f0-e5c5-49a5-bb9b-7f77ec2fac3f",
+      "result": "WIN",
+      "opponent": "DEEZ NUTS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-fd33e4f0-e5c5-49a5-bb9b-7f77ec2fac3f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "aokigahara": [
@@ -4427,6 +11606,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-f013c174-6d07-4a75-91f7-fd236b7c04c0",
       "result": "LOSS",
+      "opponent": "Team Juvi",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -4458,6 +11638,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-e3a91ffa-58d9-49d3-a718-cfd27308cd1d",
       "result": "LOSS",
+      "opponent": "WAVE Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4478,10 +11659,29 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-24",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-9f755007-6a8e-4111-93b4-3536ce21ae90",
+      "result": "WIN",
+      "opponent": "Ancoris Esports Tide",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-24",
+          "score": "6 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-9f755007-6a8e-4111-93b4-3536ce21ae90",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-05-21",
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-72f9faf1-b013-4241-a9ba-d5a6baa96dd4",
       "result": "WIN",
+      "opponent": "Scuttle Gap",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4499,6 +11699,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-58dd90bc-b65a-4459-a05e-2b021eca9ded",
       "result": "WIN",
+      "opponent": "mXm",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4516,6 +11717,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-79acdb01-d36a-41f5-a919-0d5351fa9607",
       "result": "LOSS",
+      "opponent": "FC Synti",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4527,6 +11729,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0defbb86-c434-47d1-b024-ae5d3055f16d",
+      "result": "LOSS",
+      "opponent": "5mix",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "16 / 12",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0defbb86-c434-47d1-b024-ae5d3055f16d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-2a329445-d675-4db6-9105-871063f8d896",
+      "result": "WIN",
+      "opponent": "TRUPPEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-2a329445-d675-4db6-9105-871063f8d896",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-841a08c3-f870-415e-9c01-75b96504e910",
+      "result": "LOSS",
+      "opponent": "EK CSKeisari",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-841a08c3-f870-415e-9c01-75b96504e910",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-2e7b8529-c71a-4e32-94ab-d92e13a78f81",
+      "result": "LOSS",
+      "opponent": "Get Going",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "7 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-2e7b8529-c71a-4e32-94ab-d92e13a78f81",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-76631fbc-e5b8-433a-9c44-ea67657537a2",
+      "result": "WIN",
+      "opponent": "PICKLES",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-76631fbc-e5b8-433a-9c44-ea67657537a2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-33851883-ac92-4443-a85f-7771f285d515",
+      "result": "WIN",
+      "opponent": "i2K Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-33851883-ac92-4443-a85f-7771f285d515",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4134cfd6-fbfa-4047-acf3-5c8d2c0d0594",
+      "result": "LOSS",
+      "opponent": "Insiders Esport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "3 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4134cfd6-fbfa-4047-acf3-5c8d2c0d0594",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0a0eb496-87c6-49c5-b437-55592db93f09",
+      "result": "LOSS",
+      "opponent": "ROC Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0a0eb496-87c6-49c5-b437-55592db93f09",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "m33": [
@@ -4535,6 +11881,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-8dfc760c-3c6e-4694-88be-f0454b0316e5",
       "result": "LOSS",
+      "opponent": "Split ESC",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4552,6 +11899,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-6d8ea04c-f7a4-480e-972a-d11d2d82241f",
       "result": "LOSS",
+      "opponent": "Melilla Titans",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4569,6 +11917,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-c319d57d-4016-4176-9c39-dd20c75a4eb2",
       "result": "LOSS",
+      "opponent": "EK CSKeisari",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4586,6 +11935,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-e12b45cb-d731-4756-9cb1-c494903ee0d5",
       "result": "LOSS",
+      "opponent": "ENCE Prospects",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4603,6 +11953,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-ca5c6ff1-4df0-470b-93ac-4fd0faaac644",
       "result": "LOSS",
+      "opponent": "M33 x AvanMarket",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -4614,6 +11965,132 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ae508bd1-ede2-423d-bc04-0dd2dca79261",
+      "result": "LOSS",
+      "opponent": "No0RG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "16 / 12",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ae508bd1-ede2-423d-bc04-0dd2dca79261",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e65c953b-5d9b-4376-bb22-e2183208ed4f",
+      "result": "WIN",
+      "opponent": "5mix",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e65c953b-5d9b-4376-bb22-e2183208ed4f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-a4460c26-9855-4c9d-95d0-df14394daff3",
+      "result": "WIN",
+      "opponent": "CPLAY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "8 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-a4460c26-9855-4c9d-95d0-df14394daff3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-ed1d2ff4-085f-4c4f-bd89-befc7277ce7f",
+      "result": "WIN",
+      "opponent": "M33 x AvanMarket",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-ed1d2ff4-085f-4c4f-bd89-befc7277ce7f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-2e548350-3e24-419c-8b71-5ab3b6d7cc4e",
+      "result": "WIN",
+      "opponent": "M33 x AvanMarket",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-2e548350-3e24-419c-8b71-5ab3b6d7cc4e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-1fa559ea-0121-4f11-ab3d-bc956ee20e8c",
+      "result": "LOSS",
+      "opponent": "Guttaene",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 4",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-1fa559ea-0121-4f11-ab3d-bc956ee20e8c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-0aa3723e-d1d4-4680-b72e-16834ad99c44",
+      "result": "LOSS",
+      "opponent": "FC Synti",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-0aa3723e-d1d4-4680-b72e-16834ad99c44",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "graf-monte-cristo": [
@@ -4622,6 +12099,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-daf1f92b-2751-4ca8-bf5d-837011501f1c",
       "result": "WIN",
+      "opponent": "Ghostwalkers",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4646,6 +12124,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-79c9ad54-80b3-4557-a894-f4b87fc5b922",
       "result": "WIN",
+      "opponent": "Balaurii",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4670,6 +12149,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-5809383d-6278-4493-b768-d797a96088c2",
       "result": "LOSS",
+      "opponent": "AFK",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4694,6 +12174,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-c2f78755-1ca1-43b0-b0c3-6fd831734f68",
       "result": "WIN",
+      "opponent": "Donatrix",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4711,6 +12192,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-db6fdf1e-82fa-4530-a4cd-c6dbec768344",
       "result": "WIN",
+      "opponent": "Meta4Pro",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4722,6 +12204,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-3ab7e7a8-10b0-41a3-aa44-120c9797f32c",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 1",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-3ab7e7a8-10b0-41a3-aa44-120c9797f32c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a823b74d-2b83-4485-97d9-8bf94796a188",
+      "result": "WIN",
+      "opponent": "Force Syndicate",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a823b74d-2b83-4485-97d9-8bf94796a188",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-471c49c2-ed61-40db-9394-53a7a88e9c1b",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-471c49c2-ed61-40db-9394-53a7a88e9c1b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-6c10ddfd-7dd5-48a3-9785-65d2e328c396",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-6c10ddfd-7dd5-48a3-9785-65d2e328c396",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-3c8e81f8-ff70-473a-bc69-2877b66707c7",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-3c8e81f8-ff70-473a-bc69-2877b66707c7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-04c0d90f-8a2c-4088-8748-d6fc324ef110",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 3",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-04c0d90f-8a2c-4088-8748-d6fc324ef110",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-bbe382aa-9fd0-4bd0-ac29-c656b87dcfdc",
+      "result": "WIN",
+      "opponent": "Magic Fairies",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-bbe382aa-9fd0-4bd0-ac29-c656b87dcfdc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-8f4cdd87-2690-48c3-9a86-e5b96f1eaf12",
+      "result": "WIN",
+      "opponent": "CRITICAL ELITE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-8f4cdd87-2690-48c3-9a86-e5b96f1eaf12",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-96856808-2e30-46e1-8f0f-4b95880296f5",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-96856808-2e30-46e1-8f0f-4b95880296f5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-607064e7-db77-4652-b486-a8cb923eaa52",
+      "result": "WIN",
+      "opponent": "GIETA PRO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "0 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-607064e7-db77-4652-b486-a8cb923eaa52",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-7ca1b174-ea47-46aa-a215-0b889eb674f9",
+      "result": "WIN",
+      "opponent": "Meta4Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-7ca1b174-ea47-46aa-a215-0b889eb674f9",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "aogiri": [
@@ -4730,6 +12410,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-d87387fa-5c34-4efe-ba70-7d28eefdd2ac",
       "result": "LOSS",
+      "opponent": "3DMAX ACA",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -4754,6 +12435,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-7251cb23-962a-4992-a56e-c59d87d5ded4",
       "result": "WIN",
+      "opponent": "CarritoSpain",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -4785,6 +12467,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-374560b1-0b5e-48f9-b389-7c7ac4334fa0",
       "result": "WIN",
+      "opponent": "Feel Force",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4809,6 +12492,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-7caea2df-388b-4d86-be05-c4b6dc9589bd",
       "result": "WIN",
+      "opponent": "Team CATx",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -4840,6 +12524,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-a4d521da-c052-4f80-8be4-8c687737a62a",
       "result": "WIN",
+      "opponent": "VAPE AUF 5",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4851,6 +12536,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-7f40b061-8d61-4f72-bf9a-5ec3682663d1",
+      "result": "WIN",
+      "opponent": "PoraNaPrzygode",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-7f40b061-8d61-4f72-bf9a-5ec3682663d1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-5bb1ba24-ab24-4864-b255-fc6568aa87a7",
+      "result": "WIN",
+      "opponent": "AMOG",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-5bb1ba24-ab24-4864-b255-fc6568aa87a7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-b116c90b-f03e-47b6-b15a-828568896045",
+      "result": "LOSS",
+      "opponent": "3DMAX ACA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-b116c90b-f03e-47b6-b15a-828568896045",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-79ecad67-cddd-47b6-8be9-99289e2754cf",
+      "result": "WIN",
+      "opponent": "lqnely",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-79ecad67-cddd-47b6-8be9-99289e2754cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-d5fc9dc7-f459-46db-9313-054e3b6c9db8",
+      "result": "WIN",
+      "opponent": "Alpha Dominion Nation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-d5fc9dc7-f459-46db-9313-054e3b6c9db8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-38608f81-2339-498a-b7e2-9f2e1cd611d2",
+      "result": "WIN",
+      "opponent": "Team ASD",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-38608f81-2339-498a-b7e2-9f2e1cd611d2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-cfaaf6ec-809d-4c10-be64-4d85ed09a6a2",
+      "result": "WIN",
+      "opponent": "Banda chuya",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "16 / 14",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-cfaaf6ec-809d-4c10-be64-4d85ed09a6a2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4da405d8-add2-415c-bf40-8781b4764402",
+      "result": "WIN",
+      "opponent": "SAQA OMUK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4da405d8-add2-415c-bf40-8781b4764402",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-5cabff2e-046a-458f-a2ad-9bfa69cd23fc",
+      "result": "WIN",
+      "opponent": "GENESIUM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-5cabff2e-046a-458f-a2ad-9bfa69cd23fc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-7cab1196-df98-40a6-9175-f317743bd4ce",
+      "result": "WIN",
+      "opponent": "NoNames",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-7cab1196-df98-40a6-9175-f317743bd4ce",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-6e969853-6305-4c8c-b922-d8bcc90982e0",
+      "result": "WIN",
+      "opponent": "Yelets Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-6e969853-6305-4c8c-b922-d8bcc90982e0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-30ec3936-7774-4b61-b5ae-5b10032083d0",
+      "result": "WIN",
+      "opponent": "Aurora Talents",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-30ec3936-7774-4b61-b5ae-5b10032083d0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-3c9ff1f7-801a-4f0a-86f8-7cb71a986f6f",
+      "result": "WIN",
+      "opponent": "Haters Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-3c9ff1f7-801a-4f0a-86f8-7cb71a986f6f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "saqa-omuk": [
@@ -4859,6 +12778,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-753c31c7-30ed-4d9e-b1e2-a46675921b8b",
       "result": "LOSS",
+      "opponent": "Banda chuya",
       "boScore": "1-1",
       "mapsPlayed": 2,
       "maps": [
@@ -4883,6 +12803,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-eba3064c-9e35-4a94-a421-3cae8380f2f2",
       "result": "WIN",
+      "opponent": "GENESIUM",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4907,6 +12828,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-0cb5d312-b32f-49fa-bb6e-f67ecf012319",
       "result": "WIN",
+      "opponent": "Yelets Esports",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4931,6 +12853,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-c61475bb-ae4c-4c34-8798-22d507b85449",
       "result": "WIN",
+      "opponent": "Pesujakuivaus60",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -4955,6 +12878,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-fe63732d-a38f-4f84-aeca-f9d0185e292d",
       "result": "WIN",
+      "opponent": "VAPE AUF 5",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -4966,14 +12890,220 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-86aa9ed9-a67a-4d86-93eb-00d84b1b1216",
+      "result": "LOSS",
+      "opponent": "3DMAX ACA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-86aa9ed9-a67a-4d86-93eb-00d84b1b1216",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-8f7d8664-f42e-4301-bc2d-12702c4811c3",
+      "result": "WIN",
+      "opponent": "AMOG",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-8f7d8664-f42e-4301-bc2d-12702c4811c3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-acb01b7b-f93f-4f34-9cff-1503834129b8",
+      "result": "WIN",
+      "opponent": "Alpha Dominion Nation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-acb01b7b-f93f-4f34-9cff-1503834129b8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-61737690-2ca6-479c-83b7-b79b281554bc",
+      "result": "WIN",
+      "opponent": "Team ASD",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-61737690-2ca6-479c-83b7-b79b281554bc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-561bbb45-8037-43d8-be73-962ea73aadda",
+      "result": "WIN",
+      "opponent": "LEISURE Rebels",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-561bbb45-8037-43d8-be73-962ea73aadda",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-5b4ff70a-803c-446b-9db1-bd1ac25843fe",
+      "result": "WIN",
+      "opponent": "maybewin",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-5b4ff70a-803c-446b-9db1-bd1ac25843fe",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4da405d8-add2-415c-bf40-8781b4764402",
+      "result": "LOSS",
+      "opponent": "Aogiri",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4da405d8-add2-415c-bf40-8781b4764402",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-84d37682-c47d-487f-976e-fe3867c243e2",
+      "result": "WIN",
+      "opponent": "Team Otej",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-84d37682-c47d-487f-976e-fe3867c243e2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4ed49f41-c4ca-4b96-a09c-88e6b291e957",
+      "result": "WIN",
+      "opponent": "W glowie",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4ed49f41-c4ca-4b96-a09c-88e6b291e957",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-0d1fe863-a181-4b11-bacc-bf94a1e7fe15",
+      "result": "WIN",
+      "opponent": "team_ne1l",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-0d1fe863-a181-4b11-bacc-bf94a1e7fe15",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "donatrix": [
+    {
+      "date": "2026-06-05",
+      "season": "S57 EU Intermediate B - Playoffs",
+      "matchId": "1-8d701db7-92e4-4a70-bb67-eb1f3d82c598",
+      "result": "LOSS",
+      "opponent": "Prem3aDPOTbl",
+      "boScore": "0-2",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-06-05",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Playoffs",
+          "matchId": "1-8d701db7-92e4-4a70-bb67-eb1f3d82c598",
+          "result": "LOSS"
+        },
+        {
+          "date": "2026-06-05",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate B - Playoffs",
+          "matchId": "1-8d701db7-92e4-4a70-bb67-eb1f3d82c598",
+          "result": "LOSS"
+        }
+      ]
+    },
     {
       "date": "2026-06-03",
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-3472e31e-521b-47ce-899d-ff4adf9287c0",
       "result": "WIN",
+      "opponent": "Force Syndicate",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5005,6 +13135,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-ae06616a-538e-4187-a79f-b932e5f4c5be",
       "result": "LOSS",
+      "opponent": "Evo Novo",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -5036,6 +13167,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-dd6aaf01-e318-4c8c-9cd4-531500d8aa04",
       "result": "WIN",
+      "opponent": "Magic Fairies",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -5060,6 +13192,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-63972bde-440f-4b7e-92ce-ac64df8b86a5",
       "result": "WIN",
+      "opponent": "Prem3aDPOTbl",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5077,6 +13210,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-c2f78755-1ca1-43b0-b0c3-6fd831734f68",
       "result": "LOSS",
+      "opponent": "Graf Monte-Cristo",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5088,6 +13222,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-4898e31f-22bd-4ea9-b72f-73f5a599a835",
+      "result": "WIN",
+      "opponent": "Force Syndicate",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-4898e31f-22bd-4ea9-b72f-73f5a599a835",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-66b8b40c-25c7-4034-a367-e8fa83e98e20",
+      "result": "WIN",
+      "opponent": "Ghostwalkers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-66b8b40c-25c7-4034-a367-e8fa83e98e20",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-9febac13-7b30-43b9-8ac5-5a4cc5671b06",
+      "result": "WIN",
+      "opponent": "DimoniX Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-9febac13-7b30-43b9-8ac5-5a4cc5671b06",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-9c95d9fc-626e-4995-b29d-041c671893e4",
+      "result": "LOSS",
+      "opponent": "PENSIONERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-9c95d9fc-626e-4995-b29d-041c671893e4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e6a09c5a-9ff7-4705-a2eb-2f28031ca1b5",
+      "result": "WIN",
+      "opponent": "Spirit Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "1 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e6a09c5a-9ff7-4705-a2eb-2f28031ca1b5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f1d9916b-ac41-4887-b707-f0c77163aa02",
+      "result": "WIN",
+      "opponent": "Magic Fairies",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f1d9916b-ac41-4887-b707-f0c77163aa02",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-d10c1e1a-db34-46eb-a30d-240e9a163229",
+      "result": "WIN",
+      "opponent": "NOTHING TO SEE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-d10c1e1a-db34-46eb-a30d-240e9a163229",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-8101e25c-882e-43e4-bb36-e46404059e44",
+      "result": "WIN",
+      "opponent": "Pepsihax",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-8101e25c-882e-43e4-bb36-e46404059e44",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a1ab5e1e-548e-4f59-959d-d8c6a1e99a3c",
+      "result": "WIN",
+      "opponent": "PRYCHIPGG",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a1ab5e1e-548e-4f59-959d-d8c6a1e99a3c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-850cd13e-54b1-4767-a463-bab977169f9a",
+      "result": "WIN",
+      "opponent": "prisoners of the void",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-850cd13e-54b1-4767-a463-bab977169f9a",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "sakura": [
@@ -5096,6 +13410,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-bc5eb8ea-6f3b-418c-98c8-447cfbf5aaea",
       "result": "LOSS",
+      "opponent": "Prilyot",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -5120,6 +13435,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-1decbbea-4191-4465-8343-7e7fb8befe1a",
       "result": "WIN",
+      "opponent": "NOTHING TO SEE",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5151,6 +13467,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-97042ba6-05ad-4fe3-8ef5-d64e1b8c1189",
       "result": "WIN",
+      "opponent": "Amphis Gaming",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5182,6 +13499,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-43101155-1899-4592-8647-72adc53f6a01",
       "result": "WIN",
+      "opponent": "EMERITOS BANDITOS",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5213,6 +13531,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-e2fb8e62-4069-48e5-a1a5-26071597148d",
       "result": "WIN",
+      "opponent": "Spirit Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5224,6 +13543,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-30b52d09-da3e-4d0e-aca3-30331c7716b4",
+      "result": "WIN",
+      "opponent": "PENSIONERS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-30b52d09-da3e-4d0e-aca3-30331c7716b4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-7a1c9c5a-91e0-44f6-bb4a-4812ed72bf97",
+      "result": "WIN",
+      "opponent": "Evo Novo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-7a1c9c5a-91e0-44f6-bb4a-4812ed72bf97",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-1e03d3ab-dbf0-4add-9d4a-d8b1a6188e5e",
+      "result": "WIN",
+      "opponent": "ClickBate",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-1e03d3ab-dbf0-4add-9d4a-d8b1a6188e5e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-24a0099b-0c19-4bdf-8fb7-bd0527683caa",
+      "result": "WIN",
+      "opponent": "Prilyot",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-24a0099b-0c19-4bdf-8fb7-bd0527683caa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-8fd08e69-530b-430f-8ba3-6fd24a144ccd",
+      "result": "LOSS",
+      "opponent": "SakuraMEOW",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-8fd08e69-530b-430f-8ba3-6fd24a144ccd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-b1f5945c-6288-4503-9aa2-2c78612304cd",
+      "result": "WIN",
+      "opponent": "Maaskantje Prime",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-b1f5945c-6288-4503-9aa2-2c78612304cd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e53529fe-bd45-42f1-aa7f-2de948c45aec",
+      "result": "WIN",
+      "opponent": "TAGCS  LFO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e53529fe-bd45-42f1-aa7f-2de948c45aec",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-99f58265-1e69-4fba-bd5e-3e45c1097a62",
+      "result": "LOSS",
+      "opponent": "SakuraMEOW",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-99f58265-1e69-4fba-bd5e-3e45c1097a62",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e815b5a9-05b7-40ff-909b-7d1b098d58f3",
+      "result": "LOSS",
+      "opponent": "Prem3aDPOTbl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e815b5a9-05b7-40ff-909b-7d1b098d58f3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-495d1a4a-663e-4e86-96e7-a134490ab467",
+      "result": "WIN",
+      "opponent": "Lumos",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-495d1a4a-663e-4e86-96e7-a134490ab467",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-159eec32-7a6e-417d-a9f7-af535a3e41bd",
+      "result": "WIN",
+      "opponent": "UNEX - AFK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-159eec32-7a6e-417d-a9f7-af535a3e41bd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-92a52d36-a07a-4a87-843c-e193ca9b22c3",
+      "result": "WIN",
+      "opponent": "SakuraMEOW",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-92a52d36-a07a-4a87-843c-e193ca9b22c3",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "allinners": [
@@ -5232,6 +13767,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-954ad5a8-9b0e-4a42-b6b4-4b608af825f7",
       "result": "LOSS",
+      "opponent": "Darwin Team",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -5263,6 +13799,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-612fd0f0-883e-41a4-aead-8f572d60ccf4",
       "result": "WIN",
+      "opponent": "printer",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -5287,6 +13824,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-8f0183bf-3bf1-4b7d-8a79-b3c3020e95df",
       "result": "WIN",
+      "opponent": "Los Martas",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5318,6 +13856,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-2672efaa-8213-4bf8-82e1-a66708e4b040",
       "result": "WIN",
+      "opponent": "Sera Esports DK",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5335,6 +13874,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-2ba6f1f2-e1f1-4da9-bf9d-b5682d92b7af",
       "result": "WIN",
+      "opponent": "Platzhalter",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5346,6 +13886,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-3eaae19d-26d6-450c-90e3-0186da677c9e",
+      "result": "LOSS",
+      "opponent": "Sangal 1XALTERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-3eaae19d-26d6-450c-90e3-0186da677c9e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-9462c131-8de9-4923-a802-3d882af75634",
+      "result": "LOSS",
+      "opponent": "Nordic Valor",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-9462c131-8de9-4923-a802-3d882af75634",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-964e2fa6-8c25-429a-9b38-d737b53930d8",
+      "result": "WIN",
+      "opponent": "3Nation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-964e2fa6-8c25-429a-9b38-d737b53930d8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-e9cd7510-9faa-4c44-af03-4a678c2475ad",
+      "result": "WIN",
+      "opponent": "DarkAces",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-e9cd7510-9faa-4c44-af03-4a678c2475ad",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
+      "result": "WIN",
+      "opponent": "POWERANGERS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-ea167cb7-9217-4759-afe6-15e04aff97f7",
+      "result": "LOSS",
+      "opponent": "Darwin Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-ea167cb7-9217-4759-afe6-15e04aff97f7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-395cc93f-bbe1-4685-81e8-5a40064b6227",
+      "result": "WIN",
+      "opponent": "printer",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-395cc93f-bbe1-4685-81e8-5a40064b6227",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-0f357cad-5794-4375-8bc1-0651590b1e50",
+      "result": "WIN",
+      "opponent": "STEPPE NXT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-0f357cad-5794-4375-8bc1-0651590b1e50",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-33b693ef-b6ae-413d-aa12-669f37b9f8b9",
+      "result": "WIN",
+      "opponent": "Retro-Tapes",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-33b693ef-b6ae-413d-aa12-669f37b9f8b9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-1e783cdb-2e26-4a03-a18e-7ef0c7227528",
+      "result": "WIN",
+      "opponent": "STEPPE NXT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-1e783cdb-2e26-4a03-a18e-7ef0c7227528",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-572f755c-7129-4b4e-8ef9-87d81ca073d7",
+      "result": "WIN",
+      "opponent": "Sopgubbarna",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-572f755c-7129-4b4e-8ef9-87d81ca073d7",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "prem3adpotbi": [
@@ -5354,6 +14092,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-8d701db7-92e4-4a70-bb67-eb1f3d82c598",
       "result": "WIN",
+      "opponent": "Donatrix",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -5378,6 +14117,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-d0951f32-ff6d-4dd7-a484-c90cc8ebbdfb",
       "result": "WIN",
+      "opponent": "Nerwisn",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5409,6 +14149,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-9115e282-bcaf-469a-9955-91eb19cba34d",
       "result": "LOSS",
+      "opponent": "QCK Gaming",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -5440,6 +14181,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-f4b6a3d6-46d4-45e1-8a7f-a20059b2b8d6",
       "result": "WIN",
+      "opponent": "NOTHING TO SEE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5457,6 +14199,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-63972bde-440f-4b7e-92ce-ac64df8b86a5",
       "result": "LOSS",
+      "opponent": "Donatrix",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5468,6 +14211,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-db6fdf1e-82fa-4530-a4cd-c6dbec768344",
+      "result": "LOSS",
+      "opponent": "Meta4Pro",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-db6fdf1e-82fa-4530-a4cd-c6dbec768344",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f961f725-06ac-4ad7-b8d6-32adc83ba7e5",
+      "result": "WIN",
+      "opponent": "Force Syndicate",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f961f725-06ac-4ad7-b8d6-32adc83ba7e5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a9e6e20f-31ca-4f5a-a979-f477d2bbe02d",
+      "result": "WIN",
+      "opponent": "IMAPROBLEM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a9e6e20f-31ca-4f5a-a979-f477d2bbe02d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-7bb86649-10e3-4102-94dc-6c918dc9b459",
+      "result": "WIN",
+      "opponent": "PENSIONERS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-7bb86649-10e3-4102-94dc-6c918dc9b459",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-85dfc72d-51d0-4705-b938-df2a9662d3d9",
+      "result": "WIN",
+      "opponent": "18S",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-85dfc72d-51d0-4705-b938-df2a9662d3d9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-9160d469-c17c-4d7d-9e82-96cbefa1bf98",
+      "result": "WIN",
+      "opponent": "Univelka United",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-9160d469-c17c-4d7d-9e82-96cbefa1bf98",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-c77caaed-ec11-4e51-b089-8c5031355045",
+      "result": "LOSS",
+      "opponent": "Spirit Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-c77caaed-ec11-4e51-b089-8c5031355045",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e815b5a9-05b7-40ff-909b-7d1b098d58f3",
+      "result": "WIN",
+      "opponent": "SakuraMEOW",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e815b5a9-05b7-40ff-909b-7d1b098d58f3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-fdf4140e-b270-4aff-a351-0de6843f1f0a",
+      "result": "LOSS",
+      "opponent": "DimoniX Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-fdf4140e-b270-4aff-a351-0de6843f1f0a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e7b4ff5c-00fe-4c40-9608-84696b5268df",
+      "result": "WIN",
+      "opponent": "FUNGUS eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 3",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e7b4ff5c-00fe-4c40-9608-84696b5268df",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-ce5fde3f-34e2-43a3-b240-7015c60f91b6",
+      "result": "WIN",
+      "opponent": "euphoria",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-ce5fde3f-34e2-43a3-b240-7015c60f91b6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a96cf685-0b84-4f77-b0ec-b50bca14b4ea",
+      "result": "WIN",
+      "opponent": "GoldenV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a96cf685-0b84-4f77-b0ec-b50bca14b4ea",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "team-ka6anbi": [
@@ -5476,6 +14435,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-71fb0ecc-9484-4506-adbd-90e7ae88de3a",
       "result": "LOSS",
+      "opponent": "iWonderChild",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -5496,10 +14456,36 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-30",
+      "season": "S57 EU Intermediate C - Playoffs",
+      "matchId": "1-6000c32c-3b9b-478e-86bb-edfc06ce0ef5",
+      "result": "LOSS",
+      "opponent": "Darwin Team",
+      "boScore": "0-2",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-30",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate C - Playoffs",
+          "matchId": "1-6000c32c-3b9b-478e-86bb-edfc06ce0ef5",
+          "result": "LOSS"
+        },
+        {
+          "date": "2026-05-30",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate C - Playoffs",
+          "matchId": "1-6000c32c-3b9b-478e-86bb-edfc06ce0ef5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
       "date": "2026-05-28",
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-0ef75909-4ce8-4c71-aeb5-90dfdb3777db",
       "result": "WIN",
+      "opponent": "YUYIETTE",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5531,6 +14517,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-dc6fc5eb-ac7d-43e0-bfa0-0b47f7f10123",
       "result": "WIN",
+      "opponent": "DarkAces",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5548,6 +14535,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-783a484e-e4fd-42e5-bd9b-10efb73eb9e9",
       "result": "WIN",
+      "opponent": "YUYIETTE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5565,6 +14553,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-2e7c78ed-2c2a-4170-99f8-f15b7ca34bb4",
       "result": "WIN",
+      "opponent": "The Thatchers",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5576,6 +14565,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-89d5d9fe-ed04-4ea5-a35d-0b76871fa5d0",
+      "result": "WIN",
+      "opponent": "Visionary",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-89d5d9fe-ed04-4ea5-a35d-0b76871fa5d0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-b913c949-8bbd-44b6-b1f8-15a141583958",
+      "result": "LOSS",
+      "opponent": "WaPa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-b913c949-8bbd-44b6-b1f8-15a141583958",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-b3182a00-28b3-47af-966c-7e4226895a9c",
+      "result": "LOSS",
+      "opponent": "Platzhalter",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-b3182a00-28b3-47af-966c-7e4226895a9c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-c8a459fc-02bc-498c-b7db-c471259bb95a",
+      "result": "LOSS",
+      "opponent": "SELFMADE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "15 / 19",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-c8a459fc-02bc-498c-b7db-c471259bb95a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-c391bc5e-85a3-4d17-80c8-0ced9bb903fc",
+      "result": "WIN",
+      "opponent": "teamorkzsebesgoblin",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-c391bc5e-85a3-4d17-80c8-0ced9bb903fc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-d9b6c083-ea18-420f-bcc1-5dc8a759fc0d",
+      "result": "WIN",
+      "opponent": "CTAK_SOBAK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-d9b6c083-ea18-420f-bcc1-5dc8a759fc0d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-54fde9eb-eff6-434b-98d1-627f25fa3c8c",
+      "result": "WIN",
+      "opponent": "WeClear Junior",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-54fde9eb-eff6-434b-98d1-627f25fa3c8c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-0ae73e24-39a3-43d9-b08f-05c0498dfe27",
+      "result": "LOSS",
+      "opponent": "ProjectVapourGG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-0ae73e24-39a3-43d9-b08f-05c0498dfe27",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
+      "result": "WIN",
+      "opponent": "QUAZAR SCHOOL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-31bcc597-7fa0-4c04-8626-22adb9733d61",
+      "result": "WIN",
+      "opponent": "Black Bears",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-31bcc597-7fa0-4c04-8626-22adb9733d61",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "wapa": [
@@ -5584,6 +14753,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-85257a8f-b8ff-4302-a74d-002f210ab51c",
       "result": "LOSS",
+      "opponent": "Nordic Valor",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -5608,6 +14778,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-d18c7ea8-971e-442b-81bf-1c3ff6326133",
       "result": "WIN",
+      "opponent": "Cillerian",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5639,6 +14810,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-dd01be86-a9b0-4c38-80eb-5190e2da3cca",
       "result": "WIN",
+      "opponent": "iWonderChild",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -5663,6 +14835,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-b63c4781-2ebb-4492-9094-1b9b82eff3f4",
       "result": "WIN",
+      "opponent": "YUYIETTE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5680,6 +14853,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-64dda0d9-3dce-4d61-bdb3-2563bd4aaf41",
       "result": "WIN",
+      "opponent": "Twins",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5691,6 +14865,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-fe64254a-3800-49ed-944d-a8c75ab576b8",
+      "result": "WIN",
+      "opponent": "Vesteria",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-fe64254a-3800-49ed-944d-a8c75ab576b8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-535704d8-039c-44bc-bd37-ff3a59b3bb10",
+      "result": "WIN",
+      "opponent": "The Thatchers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "1 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-535704d8-039c-44bc-bd37-ff3a59b3bb10",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-b913c949-8bbd-44b6-b1f8-15a141583958",
+      "result": "WIN",
+      "opponent": "TEAM KA6ANbl",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-b913c949-8bbd-44b6-b1f8-15a141583958",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-cda55d2b-bf63-481c-b41f-e1458d14b170",
+      "result": "LOSS",
+      "opponent": "dj uNt FRiENDS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-cda55d2b-bf63-481c-b41f-e1458d14b170",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-ba532a59-19af-463e-9be9-0b4e2d00b800",
+      "result": "LOSS",
+      "opponent": "Sera Esports DK",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-02",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-ba532a59-19af-463e-9be9-0b4e2d00b800",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-5f1dfbcf-abf1-42f2-8ad7-956621743446",
+      "result": "LOSS",
+      "opponent": "DarkAces",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-5f1dfbcf-abf1-42f2-8ad7-956621743446",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-94b13193-1516-4d2e-abdf-696abb16b5a9",
+      "result": "WIN",
+      "opponent": "JYNKKA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-94b13193-1516-4d2e-abdf-696abb16b5a9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-74924f20-7bb6-43a5-9523-3ac9528dcb39",
+      "result": "WIN",
+      "opponent": "CTAK_SOBAK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-74924f20-7bb6-43a5-9523-3ac9528dcb39",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-d33e1849-b197-4cbf-805b-ffb729ac88ed",
+      "result": "WIN",
+      "opponent": "gotards",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "14 / 16",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-d33e1849-b197-4cbf-805b-ffb729ac88ed",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-db2495a4-ae43-423b-ad50-982858286d04",
+      "result": "WIN",
+      "opponent": "Sopgubbarna",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-12",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-db2495a4-ae43-423b-ad50-982858286d04",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-210809eb-fc37-4983-b80d-1b4931e692ef",
+      "result": "WIN",
+      "opponent": "c0b0r",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-210809eb-fc37-4983-b80d-1b4931e692ef",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-b5cbf635-9716-4707-aa24-fecf3b4bc7cc",
+      "result": "LOSS",
+      "opponent": "Ephemeral Erora",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-b5cbf635-9716-4707-aa24-fecf3b4bc7cc",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "infernals": [
@@ -5699,6 +15089,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-45d2cbea-b546-42ae-b236-bc55f66c4cb5",
       "result": "LOSS",
+      "opponent": "Doxa Gaming",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5716,6 +15107,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-d782ebae-913e-4feb-97c8-6a84ef1366d5",
       "result": "LOSS",
+      "opponent": "dzungarz",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5733,6 +15125,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-b7d23567-fa30-4d28-8a78-a31929e1a42f",
       "result": "WIN",
+      "opponent": "Brest Esport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5750,6 +15143,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-807ee649-bb75-4a3b-8f35-5616354aabfd",
       "result": "WIN",
+      "opponent": "ABlaze Team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5767,6 +15161,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-be3dee6e-1077-4458-985d-ae5a5892511d",
       "result": "WIN",
+      "opponent": "SUNFALL",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5778,6 +15173,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ba158838-2439-4ae5-bf57-584d5baf5404",
+      "result": "LOSS",
+      "opponent": "M1Z",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ba158838-2439-4ae5-bf57-584d5baf5404",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-c328d753-8649-4a3e-8bf2-10b36eee2ae5",
+      "result": "LOSS",
+      "opponent": "Project conquerors",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "11 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-c328d753-8649-4a3e-8bf2-10b36eee2ae5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-fdcb110e-b1ed-4457-949e-ab060e35bbcc",
+      "result": "LOSS",
+      "opponent": "EWAVE ESPORTS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-fdcb110e-b1ed-4457-949e-ab060e35bbcc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-bea58fc7-a920-480a-aa46-50dd68c66260",
+      "result": "LOSS",
+      "opponent": "MOLO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "7 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-bea58fc7-a920-480a-aa46-50dd68c66260",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0ea3e4c4-4ef5-461a-9de8-b172f21dff25",
+      "result": "LOSS",
+      "opponent": "Fortress Esport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "6 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0ea3e4c4-4ef5-461a-9de8-b172f21dff25",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-0db7aa15-d6bd-44ea-bdd7-a51141ebb6ac",
+      "result": "LOSS",
+      "opponent": "ORGLESS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-0db7aa15-d6bd-44ea-bdd7-a51141ebb6ac",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-e7c26bc3-06b8-474f-80e9-6d5380297866",
+      "result": "LOSS",
+      "opponent": "Inner Circle Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "3 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-e7c26bc3-06b8-474f-80e9-6d5380297866",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-3b83d2a9-3dba-4a0a-87db-68903315bf28",
+      "result": "WIN",
+      "opponent": "iNFERNALES CIS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 1",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-3b83d2a9-3dba-4a0a-87db-68903315bf28",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "dzungarz": [
@@ -5786,6 +15325,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-d782ebae-913e-4feb-97c8-6a84ef1366d5",
       "result": "WIN",
+      "opponent": "iNFERNALES",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5803,6 +15343,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-526478ae-da54-40d6-970c-fd23311778ae",
       "result": "LOSS",
+      "opponent": "PELIA",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5820,6 +15361,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-28996675-6955-45fe-8a74-5536c6e72f05",
       "result": "LOSS",
+      "opponent": "JuJiin",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5837,6 +15379,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-ee1181a6-7aee-4acc-ae51-86a06432419a",
       "result": "LOSS",
+      "opponent": "SSPCS2",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -5854,6 +15397,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-5b076136-138a-474d-9459-6955febd548c",
       "result": "WIN",
+      "opponent": "B_LINE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5865,6 +15409,132 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-6d08d9b6-a7ad-496f-987b-26517ac01465",
+      "result": "LOSS",
+      "opponent": "Way In Future",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 7",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-6d08d9b6-a7ad-496f-987b-26517ac01465",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ba5dfd9e-7a39-4e19-824b-8f77ec319e03",
+      "result": "LOSS",
+      "opponent": "Kip Ketjap Kruiden",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "11 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ba5dfd9e-7a39-4e19-824b-8f77ec319e03",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-52837ad6-e40f-43ae-a121-0a020551c43b",
+      "result": "WIN",
+      "opponent": "Brest Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 4",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-52837ad6-e40f-43ae-a121-0a020551c43b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-c65b04b7-fbd1-4bba-85fc-9579a51d62db",
+      "result": "LOSS",
+      "opponent": "FROX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "8 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-c65b04b7-fbd1-4bba-85fc-9579a51d62db",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-4e93cd69-fc7a-451c-b496-91a88eeba9cb",
+      "result": "WIN",
+      "opponent": "Ira Draconis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 6",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-4e93cd69-fc7a-451c-b496-91a88eeba9cb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-31e84dd4-e38d-458b-9501-f4ee89a2929f",
+      "result": "LOSS",
+      "opponent": "EWAVE ESPORTS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-31e84dd4-e38d-458b-9501-f4ee89a2929f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-5cc0a0d3-60ce-465e-a967-b9b8955d1352",
+      "result": "WIN",
+      "opponent": "BoolshetByLisco",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "19 / 17",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-5cc0a0d3-60ce-465e-a967-b9b8955d1352",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "sunthraw": [
@@ -5873,6 +15543,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-85146201-4a98-41b6-95f5-6912c8f69bcf",
       "result": "LOSS",
+      "opponent": "fullTNT",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -5904,6 +15575,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-7f4aaab8-06cc-4a3c-88ae-b81f6d0698ff",
       "result": "WIN",
+      "opponent": "Deorum",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -5928,6 +15600,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-aa9a1ff6-1b0b-42bc-bd6f-644e1a20d47b",
       "result": "WIN",
+      "opponent": "Reveal TACTX",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -5959,6 +15632,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-4b6a2bcb-7148-467e-8735-4a02452b87f3",
       "result": "LOSS",
+      "opponent": "teamorkzsebesgoblin",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -5983,6 +15657,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-70976835-12dc-48e5-9751-01c4191f20ff",
       "result": "WIN",
+      "opponent": "Visionary",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -5994,6 +15669,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-4fab477b-4a47-4adb-b79b-9eb7fdbafec7",
+      "result": "LOSS",
+      "opponent": "Nordic Valor",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-4fab477b-4a47-4adb-b79b-9eb7fdbafec7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-2953469d-f624-4a51-91b1-f5cb6b05ac67",
+      "result": "LOSS",
+      "opponent": "3Nation",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-2953469d-f624-4a51-91b1-f5cb6b05ac67",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-338c3ad1-d76f-427c-b142-b183cce14430",
+      "result": "LOSS",
+      "opponent": "Platzhalter",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-338c3ad1-d76f-427c-b142-b183cce14430",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-58fbcbed-b6d6-4ae7-86d2-e72c5f7e7c9b",
+      "result": "WIN",
+      "opponent": "Los Martas",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-58fbcbed-b6d6-4ae7-86d2-e72c5f7e7c9b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-b6317385-5e78-4566-8d6e-6cef20722f56",
+      "result": "WIN",
+      "opponent": "Darwin Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-b6317385-5e78-4566-8d6e-6cef20722f56",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-252d7278-87f5-442e-a695-58326925d237",
+      "result": "WIN",
+      "opponent": "WeClear Junior",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-252d7278-87f5-442e-a695-58326925d237",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
+      "result": "LOSS",
+      "opponent": "POWERANGERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-e758d7cc-e5ad-4726-9374-40c3c816e4a9",
+      "result": "WIN",
+      "opponent": "Sera Esports DK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-e758d7cc-e5ad-4726-9374-40c3c816e4a9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-57596ec8-bff8-4914-988a-349d47fe4b06",
+      "result": "LOSS",
+      "opponent": "SELFMADE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-57596ec8-bff8-4914-988a-349d47fe4b06",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-715328fa-bb1f-480c-8216-2e3ba4499e9b",
+      "result": "WIN",
+      "opponent": "Team Exceed",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-715328fa-bb1f-480c-8216-2e3ba4499e9b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-441d4a8a-553f-4f89-b1d6-220b11c1ff0b",
+      "result": "WIN",
+      "opponent": "JYNKKA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "16 / 12",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-441d4a8a-553f-4f89-b1d6-220b11c1ff0b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-65098a23-83a1-448a-b459-9f1be1c09c38",
+      "result": "WIN",
+      "opponent": "Sopgubbarna",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-65098a23-83a1-448a-b459-9f1be1c09c38",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-40fdfd7f-e050-41d3-b99a-78432d0a0312",
+      "result": "WIN",
+      "opponent": "4A1C",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 1",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-40fdfd7f-e050-41d3-b99a-78432d0a0312",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "3nation": [
@@ -6002,6 +15911,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-db6c9a07-0d7f-4700-a34a-dc18978827a5",
       "result": "LOSS",
+      "opponent": "QueenConso",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6026,6 +15936,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-94aaef4f-bf34-4132-be95-2dc530bbeacf",
       "result": "WIN",
+      "opponent": "ProjectVapourGG",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6057,6 +15968,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-0d32811d-5775-4925-828b-49c1b9d44072",
       "result": "LOSS",
+      "opponent": "Platzhalter",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6088,6 +16000,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-e9cdf47b-b280-481a-a8cf-cbddb8b73e55",
       "result": "WIN",
+      "opponent": "picburgLV",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6112,6 +16025,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-bc948f46-5747-43b9-85e7-e9d1f2356abf",
       "result": "LOSS",
+      "opponent": "QueenConso",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6123,6 +16037,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-22",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-ee111216-017e-4aa9-b34e-e29d0b144fcc",
+      "result": "WIN",
+      "opponent": "Visionary",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-22",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-ee111216-017e-4aa9-b34e-e29d0b144fcc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-2953469d-f624-4a51-91b1-f5cb6b05ac67",
+      "result": "WIN",
+      "opponent": "SUNTHRAW",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-2953469d-f624-4a51-91b1-f5cb6b05ac67",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-0f8757b3-950e-46b5-b19f-f95c0dd770b5",
+      "result": "LOSS",
+      "opponent": "CTAK_SOBAK",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "14 / 16",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-0f8757b3-950e-46b5-b19f-f95c0dd770b5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-7c215ba0-adab-4dfb-a658-8aba27e8b741",
+      "result": "WIN",
+      "opponent": "DarkAces",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-7c215ba0-adab-4dfb-a658-8aba27e8b741",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-964e2fa6-8c25-429a-9b38-d737b53930d8",
+      "result": "LOSS",
+      "opponent": "ALLINNERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-964e2fa6-8c25-429a-9b38-d737b53930d8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-91dc23db-4259-43a3-b6ff-d6cbe2f3f5f9",
+      "result": "WIN",
+      "opponent": "VoFoxen",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-91dc23db-4259-43a3-b6ff-d6cbe2f3f5f9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-23ee986d-8129-4aae-95d9-ff8be42ab398",
+      "result": "LOSS",
+      "opponent": "Platzhalter",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-23ee986d-8129-4aae-95d9-ff8be42ab398",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-02559721-cfb2-4527-884a-83c4a49a60c8",
+      "result": "WIN",
+      "opponent": "Zearless",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-02559721-cfb2-4527-884a-83c4a49a60c8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-12ba53ab-f19e-4a6c-acd9-f4fd9808b0ee",
+      "result": "WIN",
+      "opponent": "zNation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-12ba53ab-f19e-4a6c-acd9-f4fd9808b0ee",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-991ffdf0-136a-4720-9328-66aa13284805",
+      "result": "WIN",
+      "opponent": "picburgLV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-991ffdf0-136a-4720-9328-66aa13284805",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-541c0638-bfb1-43b8-b6ab-3b79fec10720",
+      "result": "WIN",
+      "opponent": "zNation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-541c0638-bfb1-43b8-b6ab-3b79fec10720",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-3faaada7-0ea6-41c0-8322-f20fc6b706be",
+      "result": "WIN",
+      "opponent": "GADDAR ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-3faaada7-0ea6-41c0-8322-f20fc6b706be",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "yelets-esports": [
@@ -6131,6 +16261,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-7e574df9-113b-4720-b74c-7a92a20e4375",
       "result": "LOSS",
+      "opponent": "Alpha Dominion Nation",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6162,6 +16293,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-0cb5d312-b32f-49fa-bb6e-f67ecf012319",
       "result": "LOSS",
+      "opponent": "SAQA OMUK",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6186,6 +16318,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-ddd50ebd-e3a6-4d54-b628-e76d0a7a4570",
       "result": "WIN",
+      "opponent": "TURTLES",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6210,6 +16343,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-e8d48b00-8c56-4c04-9c70-79261371aa87",
       "result": "WIN",
+      "opponent": "lqnely",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -6227,6 +16361,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-88e42fac-ede6-4612-9615-a04d022ffa92",
       "result": "LOSS",
+      "opponent": "GENESIUM",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6238,6 +16373,204 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-a8738c82-0d22-4f48-bbcb-84ae154197e7",
+      "result": "WIN",
+      "opponent": "maybewin",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-a8738c82-0d22-4f48-bbcb-84ae154197e7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-284b2182-24a7-4d5a-bf3e-8a26875ad39f",
+      "result": "WIN",
+      "opponent": "Team Solis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-284b2182-24a7-4d5a-bf3e-8a26875ad39f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-bed154f9-173a-4217-a568-ec3c2f6f1fbe",
+      "result": "WIN",
+      "opponent": "Eon",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-bed154f9-173a-4217-a568-ec3c2f6f1fbe",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4e6dc222-90b7-4183-bb96-6c5cff5c82c7",
+      "result": "WIN",
+      "opponent": "Tropix",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4e6dc222-90b7-4183-bb96-6c5cff5c82c7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-81070f7a-0e6a-4b20-aade-a975c4d339f7",
+      "result": "WIN",
+      "opponent": "GG ARENA Kaunas",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-81070f7a-0e6a-4b20-aade-a975c4d339f7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-77d9e10e-ff47-4339-9740-92d2dd42d28f",
+      "result": "LOSS",
+      "opponent": "1337",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-77d9e10e-ff47-4339-9740-92d2dd42d28f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-6ccbeb16-6210-449c-8949-6c68e95ee42f",
+      "result": "LOSS",
+      "opponent": "3DMAX ACA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-6ccbeb16-6210-449c-8949-6c68e95ee42f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-59160030-77b9-4874-8340-cfe0f1d522de",
+      "result": "LOSS",
+      "opponent": "Team Otej",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-59160030-77b9-4874-8340-cfe0f1d522de",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-6e969853-6305-4c8c-b922-d8bcc90982e0",
+      "result": "LOSS",
+      "opponent": "Aogiri",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-6e969853-6305-4c8c-b922-d8bcc90982e0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-18699928-d1e0-4b3e-ad29-6c083b8f6073",
+      "result": "WIN",
+      "opponent": "Haters Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-18699928-d1e0-4b3e-ad29-6c083b8f6073",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-65a9257f-6647-48ec-8783-8f0cc239ee37",
+      "result": "WIN",
+      "opponent": "Aurora Talents",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-65a9257f-6647-48ec-8783-8f0cc239ee37",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "turtles": [
@@ -6246,6 +16579,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-14e6cace-26d6-45ae-8bef-e77e7843ba1b",
       "result": "LOSS",
+      "opponent": "MISTERYA",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6270,6 +16604,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-aa8a5756-b6fe-4667-950d-8fad2ea4295c",
       "result": "WIN",
+      "opponent": "FromOne",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6301,6 +16636,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-b839001a-07a5-4642-8800-50d758a33ec5",
       "result": "WIN",
+      "opponent": "Pesujakuivaus60",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6325,6 +16661,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-02fa63c9-2360-43d7-bf21-5d0652f0c0d4",
       "result": "WIN",
+      "opponent": "Tropix",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6356,6 +16693,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-ddd50ebd-e3a6-4d54-b628-e76d0a7a4570",
       "result": "LOSS",
+      "opponent": "Yelets Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6374,6 +16712,247 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-26",
+      "season": "S57 EU Intermediate A - Playoffs",
+      "matchId": "1-0ebb6aaf-56fd-483b-aca3-e47607e2c6a3",
+      "result": "WIN",
+      "opponent": "Vultures",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-26",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Playoffs",
+          "matchId": "1-0ebb6aaf-56fd-483b-aca3-e47607e2c6a3",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-05-26",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate A - Playoffs",
+          "matchId": "1-0ebb6aaf-56fd-483b-aca3-e47607e2c6a3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-9f5fcdb2-2fbd-44fb-83ca-d29ab0eac471",
+      "result": "WIN",
+      "opponent": "Lentavat Lehmat",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-9f5fcdb2-2fbd-44fb-83ca-d29ab0eac471",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-c9d5e503-dca4-4a5d-bd32-c2c064be3dde",
+      "result": "LOSS",
+      "opponent": "Team Otej",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-c9d5e503-dca4-4a5d-bd32-c2c064be3dde",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-79498dce-c2d0-4460-b305-90138aec2502",
+      "result": "WIN",
+      "opponent": "Zero Tolerance",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-79498dce-c2d0-4460-b305-90138aec2502",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-14e97184-a67e-4545-8d3d-a60a1757c2fb",
+      "result": "WIN",
+      "opponent": "Remont4da",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-14e97184-a67e-4545-8d3d-a60a1757c2fb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-ee172a8c-cfa3-4d16-bd54-36d5abf4e462",
+      "result": "WIN",
+      "opponent": "-ArcticLions-",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 3",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-ee172a8c-cfa3-4d16-bd54-36d5abf4e462",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-75166f03-84c5-4185-bd50-9c4bb3538828",
+      "result": "WIN",
+      "opponent": "Aviator",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-75166f03-84c5-4185-bd50-9c4bb3538828",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-166a4620-80b9-4d17-8efd-bd364fdf4263",
+      "result": "WIN",
+      "opponent": "1337",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-166a4620-80b9-4d17-8efd-bd364fdf4263",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-c99c3885-e239-4f95-9ba1-ee51feadc8b5",
+      "result": "LOSS",
+      "opponent": "Wrestlers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-c99c3885-e239-4f95-9ba1-ee51feadc8b5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-920f07eb-cdcf-485c-ad48-a89a7a3a65d2",
+      "result": "LOSS",
+      "opponent": "Royal Legion Reign",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-920f07eb-cdcf-485c-ad48-a89a7a3a65d2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4eb681db-c988-4d42-ad67-44ea4f624d43",
+      "result": "WIN",
+      "opponent": "FromOne",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4eb681db-c988-4d42-ad67-44ea4f624d43",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-2852bb6e-312a-459d-b267-fc0ee7dfb454",
+      "result": "LOSS",
+      "opponent": "Ja v Recku",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-2852bb6e-312a-459d-b267-fc0ee7dfb454",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4be1a183-fffc-4c8c-8488-24ca662b1987",
+      "result": "WIN",
+      "opponent": "ex-Feel Force",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4be1a183-fffc-4c8c-8488-24ca662b1987",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "teamworkers": [
@@ -6382,6 +16961,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-6c0605c1-ac03-49a5-8bb5-6ee350ffbce1",
       "result": "LOSS",
+      "opponent": "1337",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6406,6 +16986,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-d977b7ee-d7c5-4d0c-8a18-6df2fd46e121",
       "result": "WIN",
+      "opponent": "Chaos Enforcers",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6437,6 +17018,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Regular Season",
       "matchId": "1-5f885b2b-4618-4f5b-ad89-25526285d351",
       "result": "WIN",
+      "opponent": "B0B2R",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -6454,6 +17036,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Regular Season",
       "matchId": "1-55f74587-1ab0-4a50-886f-7e6de3296f20",
       "result": "WIN",
+      "opponent": "Flamehard",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -6471,6 +17054,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Regular Season",
       "matchId": "1-b90fda54-fa27-4322-b376-0f091ddd2273",
       "result": "WIN",
+      "opponent": "Exalis",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -6482,6 +17066,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-bcc60782-9a5e-444b-9b87-bd928ce2d5e2",
+      "result": "LOSS",
+      "opponent": "HungryHippos",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-bcc60782-9a5e-444b-9b87-bd928ce2d5e2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-bb980735-1e69-44b4-91c6-e393bbb5feb4",
+      "result": "WIN",
+      "opponent": "Tani eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-bb980735-1e69-44b4-91c6-e393bbb5feb4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-3c2c90b1-dddf-4b7b-b910-fe2a1db17552",
+      "result": "WIN",
+      "opponent": "MGB TV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-3c2c90b1-dddf-4b7b-b910-fe2a1db17552",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-6dae3f81-84a1-410c-9a4e-95a2c67a00a7",
+      "result": "LOSS",
+      "opponent": "KHOLODTSI",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-6dae3f81-84a1-410c-9a4e-95a2c67a00a7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-ee5dda6f-f4c0-4007-a290-a8c3759cce10",
+      "result": "LOSS",
+      "opponent": "Aviceda Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-ee5dda6f-f4c0-4007-a290-a8c3759cce10",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-e77db142-1632-4dd1-a919-5a12bbfb9073",
+      "result": "LOSS",
+      "opponent": "Aviceda Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-e77db142-1632-4dd1-a919-5a12bbfb9073",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-40674ed4-226a-4455-964d-71073cf215cf",
+      "result": "WIN",
+      "opponent": "Incoach",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-40674ed4-226a-4455-964d-71073cf215cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-14708599-7e21-42c0-80eb-7e077c6a7ef7",
+      "result": "WIN",
+      "opponent": "Fury Finesse",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "15 / 19",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-14708599-7e21-42c0-80eb-7e077c6a7ef7",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "ablaze-team": [
@@ -6490,6 +17218,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-d0daa6c2-ea72-44eb-b413-39efcdf14f84",
       "result": "WIN",
+      "opponent": "Brest Esport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -6507,6 +17236,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-61a6db08-e3e8-4f14-84a3-1d2c8d06b201",
       "result": "LOSS",
+      "opponent": "PELIA",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6524,6 +17254,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-807ee649-bb75-4a3b-8f35-5616354aabfd",
       "result": "LOSS",
+      "opponent": "iNFERNALES",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6541,6 +17272,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-61c3d267-58dc-4155-9094-171b2b5eb6ac",
       "result": "LOSS",
+      "opponent": "KISLYAKK",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6558,6 +17290,7 @@ const matches = {
       "season": "S57 EU Main A - Regular Season",
       "matchId": "1-c55a2dab-9585-427a-9a3a-401bd5491001",
       "result": "LOSS",
+      "opponent": "Project conquerors",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6569,6 +17302,114 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-74d65ed1-a66c-411d-b3a3-854f2d5fc479",
+      "result": "LOSS",
+      "opponent": "M1Z",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-74d65ed1-a66c-411d-b3a3-854f2d5fc479",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-b3dcade0-6dd0-4beb-856c-0d39a5fc6323",
+      "result": "LOSS",
+      "opponent": "VasterasEsport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 9",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-b3dcade0-6dd0-4beb-856c-0d39a5fc6323",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-bb20947f-0bf8-4176-98dc-82ef7c5f1cd1",
+      "result": "WIN",
+      "opponent": "B_LINE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "2 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-bb20947f-0bf8-4176-98dc-82ef7c5f1cd1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-63f18272-e33f-4a75-877f-ffa08c413b58",
+      "result": "LOSS",
+      "opponent": "BoolshetByLisco",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 10",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-63f18272-e33f-4a75-877f-ffa08c413b58",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-1dd44e5e-d77f-4a06-afbd-a0d3eff4ec46",
+      "result": "LOSS",
+      "opponent": "SSPCS2",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 3",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-1dd44e5e-d77f-4a06-afbd-a0d3eff4ec46",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Main A - Regular Season",
+      "matchId": "1-ef044205-72db-4f5d-ada1-5182fe8089c9",
+      "result": "LOSS",
+      "opponent": "Dire",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "4 / 13",
+          "season": "S57 EU Main A - Regular Season",
+          "matchId": "1-ef044205-72db-4f5d-ada1-5182fe8089c9",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "drags": [
@@ -6577,6 +17418,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-1eb143bb-cdf1-4a33-a59a-abdd79c74488",
       "result": "LOSS",
+      "opponent": "EXEN",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6594,6 +17436,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-68b3fc5a-69a5-4001-b4cd-43d445d4b000",
       "result": "LOSS",
+      "opponent": "SCAFAZZATI CLUB",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6611,6 +17454,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-67203f6c-6f89-4648-a1af-64e5d0b02fee",
       "result": "LOSS",
+      "opponent": "Moose sports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6628,6 +17472,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-776d2a65-a44e-4c12-a23b-00ec8c5ea50e",
       "result": "LOSS",
+      "opponent": "Split ESC",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6645,6 +17490,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-8e9d439b-477b-49a2-b584-17284d557231",
       "result": "LOSS",
+      "opponent": "ConstrictGaming",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6656,6 +17502,114 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-77215369-3c74-41b0-9ced-56488d47c2ed",
+      "result": "WIN",
+      "opponent": "TOOMUCHVIDEOGAMES",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-77215369-3c74-41b0-9ced-56488d47c2ed",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-dab67d7b-1c15-4259-b375-947ffaaba66b",
+      "result": "LOSS",
+      "opponent": "mXm-S",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 2",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-dab67d7b-1c15-4259-b375-947ffaaba66b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c497c9b9-dac4-445f-aa5f-025d20a199a0",
+      "result": "LOSS",
+      "opponent": "TSA Green",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c497c9b9-dac4-445f-aa5f-025d20a199a0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-f6fc2617-5578-4afa-8f17-f715387302b0",
+      "result": "LOSS",
+      "opponent": "EK CSKeisari",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "10 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-f6fc2617-5578-4afa-8f17-f715387302b0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-e064ab9d-88e0-4b92-a459-24418bcf5589",
+      "result": "WIN",
+      "opponent": "DZIADGI",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "17 / 19",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-e064ab9d-88e0-4b92-a459-24418bcf5589",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-c3d14f34-313d-4ecd-bfeb-32c1d6c93051",
+      "result": "LOSS",
+      "opponent": "DTL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-c3d14f34-313d-4ecd-bfeb-32c1d6c93051",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "force-syndicate": [
@@ -6664,6 +17618,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-3472e31e-521b-47ce-899d-ff4adf9287c0",
       "result": "LOSS",
+      "opponent": "Donatrix",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6695,6 +17650,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-07a6d060-eb98-4622-8a4f-0210ee19b7ff",
       "result": "WIN",
+      "opponent": "EMERITOS BANDITOS",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6726,6 +17682,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-692ecfd4-a827-4a36-9fba-16f1a06b9d4a",
       "result": "WIN",
+      "opponent": "Kavala",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6750,6 +17707,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-516a1c90-bc15-4ed1-8328-a3c2175d9c88",
       "result": "LOSS",
+      "opponent": "Amphis Gaming",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -6774,6 +17732,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-bc6e43b6-9e08-4e41-ad75-2bc3e3b6a2f6",
       "result": "WIN",
+      "opponent": "team miaou67",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -6799,6 +17758,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-24a655c6-60c0-4cea-9463-fbabc915d721",
+      "result": "WIN",
+      "opponent": "FUNGUS eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "16 / 12",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-24a655c6-60c0-4cea-9463-fbabc915d721",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-987c5acb-45dc-4f04-9e81-f77605408dbd",
+      "result": "WIN",
+      "opponent": "Nerwisn",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-987c5acb-45dc-4f04-9e81-f77605408dbd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-4898e31f-22bd-4ea9-b72f-73f5a599a835",
+      "result": "LOSS",
+      "opponent": "Donatrix",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-4898e31f-22bd-4ea9-b72f-73f5a599a835",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-58e9839a-ddfc-44f5-bfd4-2c6b339ea90f",
+      "result": "LOSS",
+      "opponent": "NOTHING TO SEE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-58e9839a-ddfc-44f5-bfd4-2c6b339ea90f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f961f725-06ac-4ad7-b8d6-32adc83ba7e5",
+      "result": "LOSS",
+      "opponent": "Prem3aDPOTbl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f961f725-06ac-4ad7-b8d6-32adc83ba7e5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-d89c84c8-6e80-4ac9-b4cb-d0f7bcb08d12",
+      "result": "LOSS",
+      "opponent": "PENSIONERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-d89c84c8-6e80-4ac9-b4cb-d0f7bcb08d12",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a823b74d-2b83-4485-97d9-8bf94796a188",
+      "result": "LOSS",
+      "opponent": "Meta4Pro",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a823b74d-2b83-4485-97d9-8bf94796a188",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-fc9da01e-1014-40f1-bf41-da83fc4ec72e",
+      "result": "LOSS",
+      "opponent": "IMAPROBLEM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-fc9da01e-1014-40f1-bf41-da83fc4ec72e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-428503a1-f9e5-49f2-b412-e0c62eaf830c",
+      "result": "WIN",
+      "opponent": "Evo Novo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-428503a1-f9e5-49f2-b412-e0c62eaf830c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-af2d8244-5b4e-4798-9523-c3edbb815c30",
+      "result": "WIN",
+      "opponent": "Ghostwalkers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-af2d8244-5b4e-4798-9523-c3edbb815c30",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-c0aa8939-424c-430b-b730-de5e31af16cf",
+      "result": "WIN",
+      "opponent": "Univelka United",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-c0aa8939-424c-430b-b730-de5e31af16cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-9aac691a-2dcb-4749-9af7-5ac11546adeb",
+      "result": "WIN",
+      "opponent": "DimoniX Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-9aac691a-2dcb-4749-9af7-5ac11546adeb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-fa6ac05f-a4db-445c-8413-a5f179c95543",
+      "result": "WIN",
+      "opponent": "Krypteia",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 1",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-fa6ac05f-a4db-445c-8413-a5f179c95543",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "all-eyes-on-me": [
@@ -6807,6 +18000,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-d1dcfcb6-6f48-42de-b34f-a06df46bec48",
       "result": "LOSS",
+      "opponent": "Pagrabs",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6838,6 +18032,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-ff603beb-d094-4e0e-9623-fba9837521f9",
       "result": "WIN",
+      "opponent": "Churrrros",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6862,6 +18057,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-afe4216b-4445-4e59-a3b5-202b41ddb784",
       "result": "LOSS",
+      "opponent": "JakeBube",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6893,6 +18089,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-93f2dc5a-cd4c-4610-bbe7-0eb8347163d5",
       "result": "WIN",
+      "opponent": "Sissi State Punks",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6917,6 +18114,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Regular Season",
       "matchId": "1-c9136e59-df2b-4e6e-805e-f86ed235d89e",
       "result": "LOSS",
+      "opponent": "JakeBube",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -6928,6 +18126,240 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-71824e86-f501-4a85-9449-1f5b5ac1544e",
+      "result": "WIN",
+      "opponent": "NotTooOld",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-71824e86-f501-4a85-9449-1f5b5ac1544e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-cbf43ed0-6fca-49ac-91e9-938c6ed9951a",
+      "result": "WIN",
+      "opponent": "VillainArc",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-cbf43ed0-6fca-49ac-91e9-938c6ed9951a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-c47baf57-3362-4270-9571-89e647c74e41",
+      "result": "LOSS",
+      "opponent": "B0B2R",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-c47baf57-3362-4270-9571-89e647c74e41",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-f4d3e116-172f-48c3-b073-597e94b46d2f",
+      "result": "WIN",
+      "opponent": "Team Phoenix",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-f4d3e116-172f-48c3-b073-597e94b46d2f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-f123ab6a-bdbe-444a-9dfa-bf2076efb556",
+      "result": "LOSS",
+      "opponent": "Flamehard",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-f123ab6a-bdbe-444a-9dfa-bf2076efb556",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-0541d7ad-9651-401c-9fbd-564a6758bfb4",
+      "result": "LOSS",
+      "opponent": "ECV esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-0541d7ad-9651-401c-9fbd-564a6758bfb4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-6f7c1c59-20f5-4081-b194-2b86a90b4d8e",
+      "result": "WIN",
+      "opponent": "Churrrros",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-6f7c1c59-20f5-4081-b194-2b86a90b4d8e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-2011bc0b-0745-46cd-b1d1-3619f2bffe70",
+      "result": "LOSS",
+      "opponent": "Elitemilijoet",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-2011bc0b-0745-46cd-b1d1-3619f2bffe70",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-f03b997e-4d99-418e-8f52-faa2e258ad6b",
+      "result": "LOSS",
+      "opponent": "Bangs",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-f03b997e-4d99-418e-8f52-faa2e258ad6b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-53dd1cca-9fc0-47df-8fe7-b03d1a06224b",
+      "result": "WIN",
+      "opponent": "Cartel Clan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-53dd1cca-9fc0-47df-8fe7-b03d1a06224b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-0e2bf56e-3564-44c1-84be-293c6f363244",
+      "result": "WIN",
+      "opponent": "Aesports LFO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 3",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-0e2bf56e-3564-44c1-84be-293c6f363244",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-9cbb5ace-dd10-4440-9d0c-aa1398bebcd7",
+      "result": "WIN",
+      "opponent": "Sissi State Punks",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-9cbb5ace-dd10-4440-9d0c-aa1398bebcd7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-f8c86bef-1017-4aa5-85ae-f8d3c7e9d1a2",
+      "result": "WIN",
+      "opponent": "fricis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "1 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-f8c86bef-1017-4aa5-85ae-f8d3c7e9d1a2",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "lqnely": [
@@ -6936,6 +18368,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-db74b943-9bad-4dd5-b85d-5b800783d501",
       "result": "LOSS",
+      "opponent": "Ja v Recku",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -6967,6 +18400,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-99fbee6d-fd50-4d82-996a-a4d7b4689c91",
       "result": "WIN",
+      "opponent": "-ArcticLions-",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -6991,6 +18425,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-e8d48b00-8c56-4c04-9c70-79261371aa87",
       "result": "LOSS",
+      "opponent": "Yelets Esports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7008,6 +18443,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-12e22ec4-5b81-403c-9981-bd60d11ce87c",
       "result": "LOSS",
+      "opponent": "maybewin",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7025,6 +18461,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-7fa5c93f-745e-43fa-9118-9fd0fa0e3380",
       "result": "LOSS",
+      "opponent": "GENESIUM",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7036,6 +18473,168 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-f67e37ba-588c-43df-827b-b902f56767f9",
+      "result": "LOSS",
+      "opponent": "Banda chuya",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-f67e37ba-588c-43df-827b-b902f56767f9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-79ecad67-cddd-47b6-8be9-99289e2754cf",
+      "result": "LOSS",
+      "opponent": "Aogiri",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-79ecad67-cddd-47b6-8be9-99289e2754cf",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-739bd9d0-2f0c-4e0e-b307-6b177aa26fa3",
+      "result": "WIN",
+      "opponent": "warriorPATH",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-739bd9d0-2f0c-4e0e-b307-6b177aa26fa3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-2addea1c-782b-4694-88a5-ef0633864cfc",
+      "result": "WIN",
+      "opponent": "PoraNaPrzygode",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-2addea1c-782b-4694-88a5-ef0633864cfc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-c9125ca8-3945-482b-94c3-4b53d63c67f4",
+      "result": "WIN",
+      "opponent": "Pandaric CE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-c9125ca8-3945-482b-94c3-4b53d63c67f4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-68dddf44-f73d-45bb-bd01-9eb1d80b4af4",
+      "result": "WIN",
+      "opponent": "Special Boys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-68dddf44-f73d-45bb-bd01-9eb1d80b4af4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-d1b7b950-c0bf-4b0b-9786-449ba7e33ec9",
+      "result": "WIN",
+      "opponent": "NuToriousEu",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-d1b7b950-c0bf-4b0b-9786-449ba7e33ec9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-3fc2e207-d90f-46e3-999a-72062c71ea6f",
+      "result": "WIN",
+      "opponent": "Lentavat Lehmat",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-3fc2e207-d90f-46e3-999a-72062c71ea6f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-03ddb452-9a47-4f5a-99f6-78aa16adf93b",
+      "result": "LOSS",
+      "opponent": "Venus eDeportes",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 1",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-03ddb452-9a47-4f5a-99f6-78aa16adf93b",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "eon": [
@@ -7044,6 +18643,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-a0a6412b-94f1-401b-a035-490707591f80",
       "result": "LOSS",
+      "opponent": "Alpha Dominion Nation",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7068,6 +18668,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-6c16bc31-f972-4b23-ba1a-12d6a82c22bb",
       "result": "LOSS",
+      "opponent": "Zero Tolerance",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7092,6 +18693,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-4b351ff8-4198-4626-a73d-90e83e7da757",
       "result": "WIN",
+      "opponent": "Team CATx",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7109,6 +18711,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-8e4ba15a-5a31-4b24-9d6f-9e0e29306234",
       "result": "WIN",
+      "opponent": "MISTERYA",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7126,6 +18729,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-8e5d4ee7-bfd5-4a6f-ad2f-2f3906aedcd7",
       "result": "WIN",
+      "opponent": "-ArcticLions-",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7137,6 +18741,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-bed154f9-173a-4217-a568-ec3c2f6f1fbe",
+      "result": "LOSS",
+      "opponent": "Yelets Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-bed154f9-173a-4217-a568-ec3c2f6f1fbe",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-f995f92e-959c-4c7a-8ea8-9a26684e6864",
+      "result": "WIN",
+      "opponent": "6United Players",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-f995f92e-959c-4c7a-8ea8-9a26684e6864",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-e3fb20b2-65af-492d-bae6-5d2d7345fc0d",
+      "result": "LOSS",
+      "opponent": "Remont4da",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-e3fb20b2-65af-492d-bae6-5d2d7345fc0d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-54afbb8c-0489-4648-8183-c64fd453f16a",
+      "result": "LOSS",
+      "opponent": "Lentavat Lehmat",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-54afbb8c-0489-4648-8183-c64fd453f16a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-2fe8178d-8c20-4353-8f21-fc91f641e40b",
+      "result": "WIN",
+      "opponent": "Shadow Circuit",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-2fe8178d-8c20-4353-8f21-fc91f641e40b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-8907eea9-4c12-4535-94b7-bb5a6ecb967d",
+      "result": "WIN",
+      "opponent": "ex-Feel Force",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-8907eea9-4c12-4535-94b7-bb5a6ecb967d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-9088dcd5-42af-45ce-8e2e-b0400b83d0ba",
+      "result": "LOSS",
+      "opponent": "Alpha Dominion Nation",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-9088dcd5-42af-45ce-8e2e-b0400b83d0ba",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-08f03687-a00d-4031-87e7-4219351b827e",
+      "result": "WIN",
+      "opponent": "Vultures",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-08f03687-a00d-4031-87e7-4219351b827e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-eaeed516-6875-4217-8c96-4f8f3631da5a",
+      "result": "WIN",
+      "opponent": "Royal Legion Reign",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-eaeed516-6875-4217-8c96-4f8f3631da5a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-c5552b58-9d10-45d8-8d68-cd13a4947159",
+      "result": "LOSS",
+      "opponent": "Team ASD",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-c5552b58-9d10-45d8-8d68-cd13a4947159",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "clickbate": [
@@ -7145,6 +18929,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-695b1832-2076-41a9-b6d7-3fe5d172107a",
       "result": "LOSS",
+      "opponent": "Nerwisn",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7169,6 +18954,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-5545af90-fb50-4ea3-8188-ce996d4459a6",
       "result": "LOSS",
+      "opponent": "NOTHING TO SEE",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7193,6 +18979,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-82f68a42-4da4-415c-898a-45d19fdb35be",
       "result": "WIN",
+      "opponent": "HIJACK",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7217,6 +19004,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-9361760c-7bc1-4806-8749-ad8513eaeed3",
       "result": "LOSS",
+      "opponent": "Maaskantje Prime",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7234,6 +19022,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-4a7692a3-6402-46ff-b5fc-8da6046aaadb",
       "result": "WIN",
+      "opponent": "YouTH4eZ",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7245,6 +19034,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-1e03d3ab-dbf0-4add-9d4a-d8b1a6188e5e",
+      "result": "LOSS",
+      "opponent": "SakuraMEOW",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-1e03d3ab-dbf0-4add-9d4a-d8b1a6188e5e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-24b283b7-fabf-4212-8819-2c8118230e19",
+      "result": "LOSS",
+      "opponent": "RedPack Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-24b283b7-fabf-4212-8819-2c8118230e19",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-b75eedf0-0998-4b7b-b392-ff811b8cf805",
+      "result": "WIN",
+      "opponent": "DAWN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-b75eedf0-0998-4b7b-b392-ff811b8cf805",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e54b2c5c-4e52-4d56-95fd-b809a227d93b",
+      "result": "WIN",
+      "opponent": "Wapiti",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "14 / 16",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e54b2c5c-4e52-4d56-95fd-b809a227d93b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-b7f36860-fe93-4028-bea3-a8ee7eb6fc56",
+      "result": "WIN",
+      "opponent": "Innominatus",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-b7f36860-fe93-4028-bea3-a8ee7eb6fc56",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-978d9044-3f15-4f0a-bc46-1632e2190d90",
+      "result": "WIN",
+      "opponent": "Balaurii",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-978d9044-3f15-4f0a-bc46-1632e2190d90",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e6dcad4b-38dc-4bed-a984-b7669a2092f6",
+      "result": "LOSS",
+      "opponent": "Connector One",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e6dcad4b-38dc-4bed-a984-b7669a2092f6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-2dbdc046-3a4e-4d01-b3fb-ee4df4914213",
+      "result": "LOSS",
+      "opponent": "Zeus e-Sports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-2dbdc046-3a4e-4d01-b3fb-ee4df4914213",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f9d8fab1-74ea-4538-8741-5170898355bd",
+      "result": "LOSS",
+      "opponent": "NE PRIEHALI",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f9d8fab1-74ea-4538-8741-5170898355bd",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "ne-priehali": [
@@ -7253,6 +19204,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-83d409dc-f1e0-42f3-990b-47c4df727082",
       "result": "LOSS",
+      "opponent": "Univelka United",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -7284,6 +19236,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-8fd115b9-5ad9-4914-834c-0119e8df96ac",
       "result": "LOSS",
+      "opponent": "EMERITOS BANDITOS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7308,6 +19261,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-aeb81a7a-e790-44c9-93a1-30a1083894cf",
       "result": "LOSS",
+      "opponent": "Atmosferka",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7325,6 +19279,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-185358c0-4b24-4adb-9297-7692dd15fd1f",
       "result": "LOSS",
+      "opponent": "Evo Novo",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7342,6 +19297,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-25475d03-1379-46e0-aa1b-823abe8e8c27",
       "result": "LOSS",
+      "opponent": "QCK Gaming",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7353,6 +19309,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-38402867-f51d-4b4e-b9ca-303efc49b013",
+      "result": "WIN",
+      "opponent": "Amphis Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-38402867-f51d-4b4e-b9ca-303efc49b013",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a9d9b530-d691-4e87-bffc-6f835e5e8df5",
+      "result": "WIN",
+      "opponent": "18S",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a9d9b530-d691-4e87-bffc-6f835e5e8df5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-8bf9c9e4-daa5-40e5-a27e-8e3bef3c0297",
+      "result": "LOSS",
+      "opponent": "DimoniX Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-8bf9c9e4-daa5-40e5-a27e-8e3bef3c0297",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-1373f40d-9aa0-4cd5-ac5e-03fb2449ba71",
+      "result": "LOSS",
+      "opponent": "sRGB",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-1373f40d-9aa0-4cd5-ac5e-03fb2449ba71",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-99830c56-1738-4e84-b6ed-66df278773a2",
+      "result": "LOSS",
+      "opponent": "IMAPROBLEM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-99830c56-1738-4e84-b6ed-66df278773a2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-bd938997-909b-4ea3-b3bf-9fd6ba29d131",
+      "result": "LOSS",
+      "opponent": "PENSIONERS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-bd938997-909b-4ea3-b3bf-9fd6ba29d131",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-2dd39531-a834-44d2-a3f0-6eb76fb60b69",
+      "result": "WIN",
+      "opponent": "EMERITOS BANDITOS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-2dd39531-a834-44d2-a3f0-6eb76fb60b69",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-6f2f24b0-5935-4195-ad97-f2a24b29c10b",
+      "result": "WIN",
+      "opponent": "Univelka United",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-6f2f24b0-5935-4195-ad97-f2a24b29c10b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-00fb4416-33c9-4611-93d7-ac61d182b56e",
+      "result": "WIN",
+      "opponent": "Stoned Goats",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-00fb4416-33c9-4611-93d7-ac61d182b56e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f9d8fab1-74ea-4538-8741-5170898355bd",
+      "result": "WIN",
+      "opponent": "ClickBate",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 7",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f9d8fab1-74ea-4538-8741-5170898355bd",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "magic-fairies": [
@@ -7361,6 +19497,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-e4a1fd7a-b98e-43fa-84a1-0bd529dd666c",
       "result": "LOSS",
+      "opponent": "Spirit Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7385,6 +19522,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-04ef23f5-9480-4cd4-96d1-7cf16cbaf9a0",
       "result": "WIN",
+      "opponent": "Les Frerots",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7409,6 +19547,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-dd6aaf01-e318-4c8c-9cd4-531500d8aa04",
       "result": "LOSS",
+      "opponent": "Donatrix",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7433,6 +19572,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-6473ff04-f2dc-4a07-9b3a-995ef95fce72",
       "result": "WIN",
+      "opponent": "IZZOTRADES",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7457,6 +19597,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-7251511f-b6a8-4fca-95e3-c747214d44e0",
       "result": "WIN",
+      "opponent": "Stoned Goats",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7468,6 +19609,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-da4a1268-2ef7-4af6-b194-569e9e2df6dd",
+      "result": "LOSS",
+      "opponent": "Ghostwalkers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-da4a1268-2ef7-4af6-b194-569e9e2df6dd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-1a2cc711-15d5-44e2-979c-f30d34653eca",
+      "result": "LOSS",
+      "opponent": "Amphis Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "17 / 19",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-1a2cc711-15d5-44e2-979c-f30d34653eca",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-5f45cd7d-85c7-4bae-93ef-85686250da07",
+      "result": "WIN",
+      "opponent": "Maaskantje Prime",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-5f45cd7d-85c7-4bae-93ef-85686250da07",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-63bf43bb-85bb-42f6-add4-2e27a55be2e1",
+      "result": "WIN",
+      "opponent": "Les Frerots",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-63bf43bb-85bb-42f6-add4-2e27a55be2e1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-8f683266-f9ae-4e93-a2a6-d0c9514c6e5a",
+      "result": "LOSS",
+      "opponent": "Prilyot",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-8f683266-f9ae-4e93-a2a6-d0c9514c6e5a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-f1d9916b-ac41-4887-b707-f0c77163aa02",
+      "result": "LOSS",
+      "opponent": "Donatrix",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-f1d9916b-ac41-4887-b707-f0c77163aa02",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-bbe382aa-9fd0-4bd0-ac29-c656b87dcfdc",
+      "result": "LOSS",
+      "opponent": "Meta4Pro",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-bbe382aa-9fd0-4bd0-ac29-c656b87dcfdc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-a37f1137-94ce-46be-b018-b857684a05c5",
+      "result": "WIN",
+      "opponent": "Turtles Clan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-a37f1137-94ce-46be-b018-b857684a05c5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-fc47668c-e5cd-4547-af58-8a5c0472f033",
+      "result": "WIN",
+      "opponent": "Wapiti",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-fc47668c-e5cd-4547-af58-8a5c0472f033",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "youth4ez": [
@@ -7476,6 +19779,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-afd10194-594d-432e-bd31-8e29ae334af1",
       "result": "LOSS",
+      "opponent": "Nerwisn",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7500,6 +19804,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-85899037-403a-495c-bf65-75365be23ceb",
       "result": "LOSS",
+      "opponent": "DimoniX Esports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7517,6 +19822,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-4a7692a3-6402-46ff-b5fc-8da6046aaadb",
       "result": "LOSS",
+      "opponent": "ClickBate",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7534,6 +19840,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-425f8c05-9a5d-4e35-b25d-20a9ad13dc66",
       "result": "WIN",
+      "opponent": "Ronins",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7551,6 +19858,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-3891bfed-c205-4fce-885c-cfc088ce7b03",
       "result": "WIN",
+      "opponent": "FUNGUS eSports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7562,6 +19870,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-86950677-6cb9-4ef1-b7b1-41803e88cdcc",
+      "result": "WIN",
+      "opponent": "ZeroOneClan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-86950677-6cb9-4ef1-b7b1-41803e88cdcc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-57879a9a-4185-4aaf-ae5a-8f98b661cc30",
+      "result": "WIN",
+      "opponent": "GoldenV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-57879a9a-4185-4aaf-ae5a-8f98b661cc30",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-03c9300a-cd4c-4762-b410-0f6d642359cb",
+      "result": "LOSS",
+      "opponent": "Amphis Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "25 / 23",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-03c9300a-cd4c-4762-b410-0f6d642359cb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e621e2d0-2716-4800-9c2b-5e02db5aae37",
+      "result": "LOSS",
+      "opponent": "Atmosferka",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "2 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e621e2d0-2716-4800-9c2b-5e02db5aae37",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-487dc5cb-44e5-4773-abbe-68b881fc4b78",
+      "result": "LOSS",
+      "opponent": "IMAPROBLEM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-487dc5cb-44e5-4773-abbe-68b881fc4b78",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-20f59322-5ffe-49ae-b492-c76e4891dbef",
+      "result": "LOSS",
+      "opponent": "Nerwisn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-20f59322-5ffe-49ae-b492-c76e4891dbef",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-e34457c7-bf1c-4267-8f4a-cf095052fa4c",
+      "result": "WIN",
+      "opponent": "DAWN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-e34457c7-bf1c-4267-8f4a-cf095052fa4c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-78f80ef4-bac0-44d0-8552-147c51b28d1e",
+      "result": "WIN",
+      "opponent": "Deranged eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-78f80ef4-bac0-44d0-8552-147c51b28d1e",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "ronins": [
@@ -7570,6 +20022,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Playoffs",
       "matchId": "1-40587345-6308-4765-ae1b-a7a39dfbfa47",
       "result": "WIN",
+      "opponent": "saleet",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7594,6 +20047,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-9e704208-e9e1-4980-859c-2edb2f0a5b89",
       "result": "LOSS",
+      "opponent": "Turtles Clan",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7611,6 +20065,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-425f8c05-9a5d-4e35-b25d-20a9ad13dc66",
       "result": "LOSS",
+      "opponent": "YouTH4eZ",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7628,6 +20083,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-6732e35e-7f77-4477-8c94-513937c93808",
       "result": "WIN",
+      "opponent": "Les Frerots",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7645,6 +20101,7 @@ const matches = {
       "season": "S57 EU Intermediate B - Regular Season",
       "matchId": "1-6f844b5e-d7b6-45fe-8c86-a66960d349f6",
       "result": "WIN",
+      "opponent": "CRITICAL ELITE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7656,6 +20113,114 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-39bd1183-f686-45c5-83be-81bb0abb7025",
+      "result": "LOSS",
+      "opponent": "Evo Novo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-39bd1183-f686-45c5-83be-81bb0abb7025",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-ba57e97b-1a05-49f2-9750-84681e74cd16",
+      "result": "LOSS",
+      "opponent": "EMERITOS BANDITOS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-ba57e97b-1a05-49f2-9750-84681e74cd16",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-28f11dba-286b-4647-b087-aef875343516",
+      "result": "LOSS",
+      "opponent": "TAGCS  LFO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-28f11dba-286b-4647-b087-aef875343516",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-b642a56c-bdf8-405c-97b4-f8b77ee00641",
+      "result": "WIN",
+      "opponent": "Balaurii",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "14 / 16",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-b642a56c-bdf8-405c-97b4-f8b77ee00641",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-872346c9-35bc-4ae3-ab4f-57915c78a140",
+      "result": "WIN",
+      "opponent": "AJS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-872346c9-35bc-4ae3-ab4f-57915c78a140",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate B - Regular Season",
+      "matchId": "1-54743f93-d664-491d-ab9b-60bf81cbca9d",
+      "result": "LOSS",
+      "opponent": "AJS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate B - Regular Season",
+          "matchId": "1-54743f93-d664-491d-ab9b-60bf81cbca9d",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "donstu-youngsters": [
@@ -7664,6 +20229,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-b0cba3a0-3f78-4480-8c1a-d27dde26e4ea",
       "result": "LOSS",
+      "opponent": "minkens finest",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7688,6 +20254,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-e5fe161e-d50a-4300-a86e-b46359b5a9bb",
       "result": "WIN",
+      "opponent": "OSEVEN",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7712,6 +20279,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-0d7eb597-fc6b-4179-a290-fd8172e10f82",
       "result": "WIN",
+      "opponent": "Chaos Enforcers",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7736,6 +20304,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-a210ea6f-efa8-4dae-b813-82c6e5f512b1",
       "result": "LOSS",
+      "opponent": "TheChampionGG",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -7767,6 +20336,7 @@ const matches = {
       "season": "S57 EU Intermediate D - Playoffs",
       "matchId": "1-c909d134-7d73-4397-85c8-dd730e179e75",
       "result": "WIN",
+      "opponent": "CAMALEAO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7785,6 +20355,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-5cef3e54-b1cb-461c-a74b-a12c6144338d",
+      "result": "LOSS",
+      "opponent": "Italian MIX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-5cef3e54-b1cb-461c-a74b-a12c6144338d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-a73e756f-3960-4577-9aea-fb1dfdde05e0",
+      "result": "WIN",
+      "opponent": "Sissi State Punks",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-a73e756f-3960-4577-9aea-fb1dfdde05e0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-c0c3b28b-3b07-4738-848b-0433702d9776",
+      "result": "WIN",
+      "opponent": "HungryHippos",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-c0c3b28b-3b07-4738-848b-0433702d9776",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-da2e5f34-c705-47e2-8ff8-cc0fef1d4c1e",
+      "result": "LOSS",
+      "opponent": "PlayIT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-da2e5f34-c705-47e2-8ff8-cc0fef1d4c1e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-94e15c9c-4878-4169-8720-8096e9f985e5",
+      "result": "WIN",
+      "opponent": "fricis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-94e15c9c-4878-4169-8720-8096e9f985e5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-7446ca08-b1a7-4da3-880b-4f26643cf6ab",
+      "result": "WIN",
+      "opponent": "HKH",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "18 / 22",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-7446ca08-b1a7-4da3-880b-4f26643cf6ab",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-49ef852d-6f91-40a2-b27d-1b42038ef353",
+      "result": "LOSS",
+      "opponent": "EXOTIC PIXEL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 4",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-49ef852d-6f91-40a2-b27d-1b42038ef353",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-59d3181f-e2c0-46b2-a6c9-44be5165432f",
+      "result": "LOSS",
+      "opponent": "KHOLODTSI",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-59d3181f-e2c0-46b2-a6c9-44be5165432f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-7702bf92-6c4e-49fa-9948-1b2c4b855a8f",
+      "result": "WIN",
+      "opponent": "GetFrags",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-7702bf92-6c4e-49fa-9948-1b2c4b855a8f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-570367c6-6a72-41fe-8ced-c83052350467",
+      "result": "LOSS",
+      "opponent": "SNITKO Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "13 / 3",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-570367c6-6a72-41fe-8ced-c83052350467",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-46a825f9-9fdd-42c6-a5d5-4408e4ad34a9",
+      "result": "LOSS",
+      "opponent": "JakeBube",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-46a825f9-9fdd-42c6-a5d5-4408e4ad34a9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate D - Regular Season",
+      "matchId": "1-828c2932-b23d-478b-86fe-87bfbd7c437f",
+      "result": "WIN",
+      "opponent": "Suerte Quantica",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate D - Regular Season",
+          "matchId": "1-828c2932-b23d-478b-86fe-87bfbd7c437f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "quazar-school": [
@@ -7793,6 +20579,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-ddb0f82f-9578-4513-8a7b-78f663fa14a7",
       "result": "WIN",
+      "opponent": "Project EVERSIO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7817,6 +20604,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-494ddf44-bd44-479c-9752-1fa6bc3a3b03",
       "result": "LOSS",
+      "opponent": "FatePredict",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -7841,6 +20629,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-25d48ba8-f943-4cc7-90ae-cfe9a632d4db",
       "result": "WIN",
+      "opponent": "Team Exceed",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7858,6 +20647,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-b1123ef2-a496-4ce0-aa19-4adaa95089bf",
       "result": "LOSS",
+      "opponent": "picburgLV",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -7875,6 +20665,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-0da51e95-d4a4-4f2d-9bfd-2aac6ddcc5c4",
       "result": "WIN",
+      "opponent": "GADDAR ESPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -7886,6 +20677,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-f5dfc0b8-8f57-4da4-9300-9458dd87b7b4",
+      "result": "WIN",
+      "opponent": "gotards",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-f5dfc0b8-8f57-4da4-9300-9458dd87b7b4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-ca1000bd-fdfb-4bd0-b44a-0be74760e365",
+      "result": "LOSS",
+      "opponent": "4A1C",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "9 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-ca1000bd-fdfb-4bd0-b44a-0be74760e365",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-310b07a9-e8d0-46f5-b073-c87afb7a44fb",
+      "result": "LOSS",
+      "opponent": "MINI SAUCISSE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-310b07a9-e8d0-46f5-b073-c87afb7a44fb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-265be3ba-5137-4e42-9821-7d73c8de2c65",
+      "result": "WIN",
+      "opponent": "Fyro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-265be3ba-5137-4e42-9821-7d73c8de2c65",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
+      "result": "WIN",
+      "opponent": "c0b0r",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-cc081f1c-33b3-4001-a76c-4bc96c7dd804",
+      "result": "LOSS",
+      "opponent": "Vesteria",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-cc081f1c-33b3-4001-a76c-4bc96c7dd804",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-49b6c3ad-2ea0-4a53-9b28-e70e1bae591c",
+      "result": "LOSS",
+      "opponent": "4ztankuamiley",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "1 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-49b6c3ad-2ea0-4a53-9b28-e70e1bae591c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
+      "result": "LOSS",
+      "opponent": "TEAM KA6ANbl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-917d1fbe-ea0a-460e-a8b8-f513522ce2f7",
+      "result": "LOSS",
+      "opponent": "ProjectVapourGG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-917d1fbe-ea0a-460e-a8b8-f513522ce2f7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-bdf8381f-9083-4eb6-a6e2-1ef18ad74d26",
+      "result": "WIN",
+      "opponent": "FlamingoZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-bdf8381f-9083-4eb6-a6e2-1ef18ad74d26",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "gsq": [
@@ -7894,6 +20865,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-1707abd3-32ef-4cbc-a61b-d165290f85eb",
       "result": "LOSS",
+      "opponent": "Banda chuya",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -7925,6 +20897,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-6b016dd5-3d57-44a7-b655-80e5d438a77e",
       "result": "WIN",
+      "opponent": "AMOG",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7949,6 +20922,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-bc514cb4-f728-446c-a163-fc338977f389",
       "result": "WIN",
+      "opponent": "VAPE AUF 5",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7973,6 +20947,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Playoffs",
       "matchId": "1-c62e21dc-0b3d-4a4f-a406-ae8160d402ca",
       "result": "WIN",
+      "opponent": "Aviator",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -7997,6 +20972,7 @@ const matches = {
       "season": "S57 EU Intermediate A - Regular Season",
       "matchId": "1-eb903fc5-655c-441f-992c-9f873921b09b",
       "result": "WIN",
+      "opponent": "GSQ Sponsored by Rob1n",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8008,6 +20984,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-77f7787f-5881-44f4-9a43-da3b01ad31ee",
+      "result": "LOSS",
+      "opponent": "GSQ Sponsored by Rob1n",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-77f7787f-5881-44f4-9a43-da3b01ad31ee",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-146daf53-2ded-4260-b73b-df2dbe494fe5",
+      "result": "WIN",
+      "opponent": "Aurora Talents",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-146daf53-2ded-4260-b73b-df2dbe494fe5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-763c44dd-5835-4209-9d51-8006f6936c8a",
+      "result": "LOSS",
+      "opponent": "GSQ Sponsored by Rob1n",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "11 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-763c44dd-5835-4209-9d51-8006f6936c8a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-d552f93a-3e8d-4b18-9c65-8c92f750a0c0",
+      "result": "WIN",
+      "opponent": "Klub Sztanga",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-d552f93a-3e8d-4b18-9c65-8c92f750a0c0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-76f7e481-b565-4198-8b18-06aeb769f2d6",
+      "result": "LOSS",
+      "opponent": "Team CATx",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-76f7e481-b565-4198-8b18-06aeb769f2d6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-99ac452f-ac23-4d22-958b-36a054ecb374",
+      "result": "LOSS",
+      "opponent": "3DMAX ACA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-99ac452f-ac23-4d22-958b-36a054ecb374",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-ee773c8b-46bb-4471-b44f-4bce37adde89",
+      "result": "LOSS",
+      "opponent": "Pandaric CE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 8",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-ee773c8b-46bb-4471-b44f-4bce37adde89",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-ef26120a-eacc-4078-a010-13873c14b95b",
+      "result": "LOSS",
+      "opponent": "GSQ Sponsored by Rob1n",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-ef26120a-eacc-4078-a010-13873c14b95b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-c3bbe91b-0d9a-4fbb-a831-ce27e20dbe64",
+      "result": "LOSS",
+      "opponent": "maybewin",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-c3bbe91b-0d9a-4fbb-a831-ce27e20dbe64",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-4b20e64e-abbc-4fcb-9eac-d3fc464966d3",
+      "result": "WIN",
+      "opponent": "GSQ Sponsored by Rob1n",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-4b20e64e-abbc-4fcb-9eac-d3fc464966d3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate A - Regular Season",
+      "matchId": "1-8e95da49-a884-4627-93cd-5c3849a23e64",
+      "result": "WIN",
+      "opponent": "GSQ Sponsored by Rob1n",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 6",
+          "season": "S57 EU Intermediate A - Regular Season",
+          "matchId": "1-8e95da49-a884-4627-93cd-5c3849a23e64",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "c0b0r": [
@@ -8016,6 +21190,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-4c3d81b5-fc0f-4f67-8eaa-cfaddb2e7b05",
       "result": "LOSS",
+      "opponent": "VoFoxen",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8040,6 +21215,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-8aa084e6-04f2-4981-be36-1e3f20068202",
       "result": "LOSS",
+      "opponent": "printer",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -8057,6 +21233,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-5527579b-0f4b-4ce0-a8d0-39fc604cf69f",
       "result": "LOSS",
+      "opponent": "Time 2 Esport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -8074,6 +21251,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-809f614f-2ffa-4f19-807f-2baeea9c0248",
       "result": "WIN",
+      "opponent": "GADDAR ESPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8091,6 +21269,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-5f4286df-7e33-43b9-a538-ec2c6463eaac",
       "result": "WIN",
+      "opponent": "Doom squirrel",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8102,6 +21281,114 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-01ff8098-22cd-4300-9a4d-a561fdee6284",
+      "result": "LOSS",
+      "opponent": "Quadrivium",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 5",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-01ff8098-22cd-4300-9a4d-a561fdee6284",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
+      "result": "LOSS",
+      "opponent": "QUAZAR SCHOOL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 9",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-76f26a1c-9939-47db-a2ae-e45294a78cc5",
+      "result": "LOSS",
+      "opponent": "YUYIETTE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-76f26a1c-9939-47db-a2ae-e45294a78cc5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-c4cb2f69-96f0-4220-af75-d53d8d0aba41",
+      "result": "LOSS",
+      "opponent": "Sera Esports DK",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 2",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-c4cb2f69-96f0-4220-af75-d53d8d0aba41",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-0193065e-b652-479d-a8e7-9a93401e7edf",
+      "result": "LOSS",
+      "opponent": "MUSCLE5",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "4 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-0193065e-b652-479d-a8e7-9a93401e7edf",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-210809eb-fc37-4983-b80d-1b4931e692ef",
+      "result": "LOSS",
+      "opponent": "WaPa",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-210809eb-fc37-4983-b80d-1b4931e692ef",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "baks-esports": [
@@ -8110,6 +21397,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-64e9216f-8f20-4010-8438-f106de5cbca6",
       "result": "LOSS",
+      "opponent": "Agramonte",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -8141,6 +21429,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-e9cda184-10ac-43f4-b0f7-546af9fb3300",
       "result": "WIN",
+      "opponent": "egveitekki",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8165,6 +21454,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-e427083e-d389-4212-8e89-a1b03fe6fb7b",
       "result": "WIN",
+      "opponent": "Ichnusa non filtrata",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8189,6 +21479,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-f4c0ea79-4068-423f-95d5-24e95ed22779",
       "result": "WIN",
+      "opponent": "Elo Hunters",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8213,6 +21504,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-a56f1906-55eb-4e30-9a3f-87a6ebd6c82b",
       "result": "WIN",
+      "opponent": "Locura Gatos",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8224,6 +21516,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-306c02eb-0c21-4e9e-b794-ae994cbd9cc7",
+      "result": "WIN",
+      "opponent": "TrafficPills Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-306c02eb-0c21-4e9e-b794-ae994cbd9cc7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-16",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8bfd9650-f668-42aa-aea3-de718d312eb7",
+      "result": "WIN",
+      "opponent": "KlAnashe",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-16",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8bfd9650-f668-42aa-aea3-de718d312eb7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-b9f0dde3-e0af-47fa-ae26-00bdcc9d600f",
+      "result": "WIN",
+      "opponent": "robus tu sinqn",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-b9f0dde3-e0af-47fa-ae26-00bdcc9d600f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-b259d0a9-4212-4bc6-b8ad-0648a650cc66",
+      "result": "WIN",
+      "opponent": "Agramonte",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-b259d0a9-4212-4bc6-b8ad-0648a650cc66",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-7f2cbfe4-126c-485b-9403-303a157005c2",
+      "result": "WIN",
+      "opponent": "etoebaniygoat LFO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-7f2cbfe4-126c-485b-9403-303a157005c2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-c6d3f386-03c2-47f2-8297-bae9494f006c",
+      "result": "WIN",
+      "opponent": "IETT AKBIL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-c6d3f386-03c2-47f2-8297-bae9494f006c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-117e4718-be82-477b-b942-fc13051df41a",
+      "result": "WIN",
+      "opponent": "The Witchers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "11 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-117e4718-be82-477b-b942-fc13051df41a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-2e122c2d-478a-4e66-a7c2-9619bdd47644",
+      "result": "WIN",
+      "opponent": "shkerebert",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 3",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-2e122c2d-478a-4e66-a7c2-9619bdd47644",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-27c49a26-09bd-433d-8409-f16c7b9dcb9c",
+      "result": "WIN",
+      "opponent": "GrBrTusovka",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 1",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-27c49a26-09bd-433d-8409-f16c7b9dcb9c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-fc249468-17b1-4683-8980-3b51490f6e5e",
+      "result": "WIN",
+      "opponent": "Elo Hunters",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 3",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-fc249468-17b1-4683-8980-3b51490f6e5e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-179c2bba-2dfb-48f7-a18d-0cce84bdfb78",
+      "result": "WIN",
+      "opponent": "noChance",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-179c2bba-2dfb-48f7-a18d-0cce84bdfb78",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "iuhop": [
@@ -8232,6 +21722,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-d251d445-529f-45b8-a7f0-d196ff880941",
       "result": "LOSS",
+      "opponent": "Clutch Studio Agency",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -8263,6 +21754,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-b92934b5-b4fd-4237-a031-121c057f23e1",
       "result": "WIN",
+      "opponent": "Gatorian",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8287,6 +21779,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-12353280-dbb1-418d-b6b0-888db26d202e",
       "result": "WIN",
+      "opponent": "KLG",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -8318,6 +21811,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a8747b16-c0a8-4c1e-982a-a7e2c2d79648",
       "result": "WIN",
+      "opponent": "Kulbowicze",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8342,6 +21836,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-28392dee-d735-462d-9a03-7b7371cd41c8",
       "result": "WIN",
+      "opponent": "sg-prospect",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8353,6 +21848,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-5d815b07-a95d-4ff9-9134-352982864061",
+      "result": "WIN",
+      "opponent": "tuskem",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-5d815b07-a95d-4ff9-9134-352982864061",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f06f7cbc-8297-46fe-ba19-3befc5f3060a",
+      "result": "WIN",
+      "opponent": "narcs",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f06f7cbc-8297-46fe-ba19-3befc5f3060a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-0d43c1a2-5b07-4156-af39-462edfbc927e",
+      "result": "WIN",
+      "opponent": "depreso reborn",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-0d43c1a2-5b07-4156-af39-462edfbc927e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e15302af-e419-4d4c-8f1d-217c122e616b",
+      "result": "WIN",
+      "opponent": "GO5Y",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e15302af-e419-4d4c-8f1d-217c122e616b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-11691d15-6df7-41b6-b243-fb26ad364aa8",
+      "result": "LOSS",
+      "opponent": "WROTBERRY",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 4",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-11691d15-6df7-41b6-b243-fb26ad364aa8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ac5c1299-e7b4-4e0f-865c-fe47c9bff24f",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ac5c1299-e7b4-4e0f-865c-fe47c9bff24f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-cb5643e0-0b22-43ef-99e2-77c726564cc9",
+      "result": "WIN",
+      "opponent": "5Pillars",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-cb5643e0-0b22-43ef-99e2-77c726564cc9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d294da26-4455-49f2-8c33-08b328f25b05",
+      "result": "WIN",
+      "opponent": "GunRunners",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 4",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d294da26-4455-49f2-8c33-08b328f25b05",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-18c983c2-66c4-4d9a-acee-c13ffcddbc3e",
+      "result": "LOSS",
+      "opponent": "Gatorian",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "17 / 19",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-18c983c2-66c4-4d9a-acee-c13ffcddbc3e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-991ffdf0-136a-4720-9328-66aa13284805",
+      "result": "WIN",
+      "opponent": "picburgLV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-991ffdf0-136a-4720-9328-66aa13284805",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-541c0638-bfb1-43b8-b6ab-3b79fec10720",
+      "result": "WIN",
+      "opponent": "zNation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-541c0638-bfb1-43b8-b6ab-3b79fec10720",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-3faaada7-0ea6-41c0-8322-f20fc6b706be",
+      "result": "WIN",
+      "opponent": "GADDAR ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "5 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-3faaada7-0ea6-41c0-8322-f20fc6b706be",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fartflow": [
@@ -8361,6 +22072,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-7bcfc845-8a20-44f8-a8c7-451182ea94c3",
       "result": "LOSS",
+      "opponent": "KiNgZ",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8385,6 +22097,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-d60c396b-b4a4-4c68-b931-55258772fce5",
       "result": "LOSS",
+      "opponent": "Str1ve eSports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -8416,6 +22129,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-76bb2f78-c773-4873-aa2a-a6db0c26e76b",
       "result": "WIN",
+      "opponent": "Shells of Victory",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8440,6 +22154,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-e09732a3-99b6-42bb-9ad7-811c52c192e1",
       "result": "WIN",
+      "opponent": "FAMILYTHERAPY",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8457,6 +22172,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-5987cb76-3485-4818-ad91-f56aaa84f638",
       "result": "WIN",
+      "opponent": "Capybara eSports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8468,6 +22184,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-903463d2-16b3-40f1-bab2-841e9742489d",
+      "result": "WIN",
+      "opponent": "starmixers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-903463d2-16b3-40f1-bab2-841e9742489d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2295b222-e3fa-42d9-9952-d731c51a070f",
+      "result": "LOSS",
+      "opponent": "IC Prospect",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2295b222-e3fa-42d9-9952-d731c51a070f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-089df027-9478-42cb-aaa8-d4c34ac017ce",
+      "result": "LOSS",
+      "opponent": "LYNX x ROC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-089df027-9478-42cb-aaa8-d4c34ac017ce",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-d1a810e9-905a-41e6-affe-d2342b0de1d0",
+      "result": "WIN",
+      "opponent": "MAYAK ARENA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-d1a810e9-905a-41e6-affe-d2342b0de1d0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2b08031b-5ae9-448c-b198-a05a2527301c",
+      "result": "WIN",
+      "opponent": "S1WKA Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2b08031b-5ae9-448c-b198-a05a2527301c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1e2cc233-3743-4714-b4c7-7ea75dfc80f5",
+      "result": "WIN",
+      "opponent": "horvex",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1e2cc233-3743-4714-b4c7-7ea75dfc80f5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-34e00445-8014-4d58-b10f-ea7c2ad67003",
+      "result": "WIN",
+      "opponent": "Spryzen Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-34e00445-8014-4d58-b10f-ea7c2ad67003",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4ba3a22c-4518-4f06-82a4-759926a56053",
+      "result": "WIN",
+      "opponent": "UK RIPPER",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4ba3a22c-4518-4f06-82a4-759926a56053",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2eb84040-f1f3-4b14-a635-6bb8dad60235",
+      "result": "WIN",
+      "opponent": "MASAKRACJA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "1 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2eb84040-f1f3-4b14-a635-6bb8dad60235",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7025cef2-8d20-4e72-8691-67c39cd0faec",
+      "result": "WIN",
+      "opponent": "1MILLION USCADOS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7025cef2-8d20-4e72-8691-67c39cd0faec",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-69ff399f-dd58-40ed-a044-856467525173",
+      "result": "WIN",
+      "opponent": "Old Folks",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-69ff399f-dd58-40ed-a044-856467525173",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "bhemanha": [
@@ -8476,6 +22390,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-d1eb34f1-cead-4d7d-a449-515db440ccc3",
       "result": "LOSS",
+      "opponent": "Locura Gatos",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8500,6 +22415,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-2f020b42-467d-4183-b640-4284c38021e8",
       "result": "WIN",
+      "opponent": "etoebaniygoat LFO",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8517,6 +22433,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-f4d8a218-7af9-4895-8a40-f1b83d4d6653",
       "result": "WIN",
+      "opponent": "homo_sapiens",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8541,6 +22458,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-4520a6b6-14d1-4d6a-8d33-5efbf07e811a",
       "result": "WIN",
+      "opponent": "Imprerial Law",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8565,6 +22483,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-f0cf8ea8-f7fd-403b-976e-f68ab547c368",
       "result": "WIN",
+      "opponent": "Only The Family",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8583,6 +22502,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-a6eadc16-d587-45df-b612-ec36edaa54f0",
+      "result": "WIN",
+      "opponent": "SmokinSexxyStyle",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-a6eadc16-d587-45df-b612-ec36edaa54f0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-b7377915-7e64-4cc3-b264-415dd922753c",
+      "result": "WIN",
+      "opponent": "Agramonte",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-b7377915-7e64-4cc3-b264-415dd922753c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-fb0c4462-562a-45ef-9a12-111125f68807",
+      "result": "WIN",
+      "opponent": "homo_sapiens",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-fb0c4462-562a-45ef-9a12-111125f68807",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-91b3870c-d7be-42b4-a85e-37bcaffbfc08",
+      "result": "WIN",
+      "opponent": "Unnamed",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-91b3870c-d7be-42b4-a85e-37bcaffbfc08",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-292ed5db-6e51-42db-bf98-f2fc3d673760",
+      "result": "WIN",
+      "opponent": "Uncrowned Kings",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "19 / 15",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-292ed5db-6e51-42db-bf98-f2fc3d673760",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-cc132869-496d-452f-9032-18ea1413c263",
+      "result": "WIN",
+      "opponent": "Basileus",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "5 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-cc132869-496d-452f-9032-18ea1413c263",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-fce07d91-796c-4e1e-8793-d58454e6b221",
+      "result": "WIN",
+      "opponent": "HellMark",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-fce07d91-796c-4e1e-8793-d58454e6b221",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-5db1af50-9f67-4cbe-b747-79f427ac73fd",
+      "result": "WIN",
+      "opponent": "jinX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-5db1af50-9f67-4cbe-b747-79f427ac73fd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-2a280e4b-a28a-4726-835f-2864623b4115",
+      "result": "WIN",
+      "opponent": "Beyond The Norm",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-2a280e4b-a28a-4726-835f-2864623b4115",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-98facfb9-c2d0-4587-881e-ed06f5941a9b",
+      "result": "LOSS",
+      "opponent": "KVN",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "11 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-98facfb9-c2d0-4587-881e-ed06f5941a9b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-98373199-c0d3-4303-bc4b-163bf31a2282",
+      "result": "LOSS",
+      "opponent": "FG united",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 7",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-98373199-c0d3-4303-bc4b-163bf31a2282",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-00a5b29e-3fdf-450e-8823-5f6b48255410",
+      "result": "WIN",
+      "opponent": "MUTANT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-00a5b29e-3fdf-450e-8823-5f6b48255410",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-cda58972-0954-4ab1-b02f-47889dd45f77",
+      "result": "WIN",
+      "opponent": "GUSAROV",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-cda58972-0954-4ab1-b02f-47889dd45f77",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "lynx": [
@@ -8591,6 +22744,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-a8c0a45e-f597-44ea-b6ac-b66e1d533c7c",
       "result": "LOSS",
+      "opponent": "LYNX x ROC",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8615,6 +22769,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-03f89599-c154-4f58-9f37-fcee571fb758",
       "result": "WIN",
+      "opponent": "starmixers",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8639,6 +22794,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-60fc4b39-6cd0-413a-9069-126bc9fc5807",
       "result": "WIN",
+      "opponent": "LYNX x ROC",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8663,6 +22819,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-f322004c-3eeb-4db1-9539-380edc059a06",
       "result": "WIN",
+      "opponent": "LYNX x ROC",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8687,6 +22844,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-34c2ec64-84c7-4961-a077-08f4f16eaa40",
       "result": "WIN",
+      "opponent": "LYNX x ROC",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -8698,6 +22856,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-233b403b-bcad-4456-b8da-dc77cb240261",
+      "result": "LOSS",
+      "opponent": "LYNX x ROC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-233b403b-bcad-4456-b8da-dc77cb240261",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-f3be8c77-578a-44b4-9925-c3a99762d0d6",
+      "result": "LOSS",
+      "opponent": "LYNX x ROC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-f3be8c77-578a-44b4-9925-c3a99762d0d6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-089df027-9478-42cb-aaa8-d4c34ac017ce",
+      "result": "WIN",
+      "opponent": "FartFlow",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-089df027-9478-42cb-aaa8-d4c34ac017ce",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-30929c8e-44b0-4c80-b7be-bd54eef0c06a",
+      "result": "LOSS",
+      "opponent": "LYNX x ROC",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-30929c8e-44b0-4c80-b7be-bd54eef0c06a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-0ce8d70c-e1f6-414d-bb3e-a454442583cf",
+      "result": "WIN",
+      "opponent": "LYNX x ROC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-0ce8d70c-e1f6-414d-bb3e-a454442583cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-48896050-acc6-4d51-aff8-477ccdc4878b",
+      "result": "WIN",
+      "opponent": "OneTabTeam",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-48896050-acc6-4d51-aff8-477ccdc4878b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-012e9bc3-546d-4034-ac06-6f8f5464449e",
+      "result": "WIN",
+      "opponent": "PowerSurge",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-012e9bc3-546d-4034-ac06-6f8f5464449e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2f4e1189-78cd-470f-b2bd-28366481e906",
+      "result": "WIN",
+      "opponent": "LYNX x ROC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2f4e1189-78cd-470f-b2bd-28366481e906",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8411a21d-f00e-4f8c-ba57-df743ae02245",
+      "result": "WIN",
+      "opponent": "LYNX x ROC",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8411a21d-f00e-4f8c-ba57-df743ae02245",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-09636d82-ddd0-4db0-837d-6211390cc86e",
+      "result": "WIN",
+      "opponent": "CMT Prems",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-09636d82-ddd0-4db0-837d-6211390cc86e",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "trafficpills-esports": [
@@ -8706,6 +23044,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-9a8fa9af-ec85-43a3-9243-36ba23f67d7e",
       "result": "LOSS",
+      "opponent": "Agramonte",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8730,6 +23069,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-225a3916-6ccc-4a11-959a-6df4bd5ac6fa",
       "result": "WIN",
+      "opponent": "KlAnashe",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8754,6 +23094,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-8416003c-59f8-4629-9e1a-78f786db1845",
       "result": "WIN",
+      "opponent": "GoodJob",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8778,6 +23119,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-6d847bc3-db47-420e-98b7-a413ceb47ffc",
       "result": "WIN",
+      "opponent": "JANO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8802,6 +23144,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-e4c0b3a2-dab2-4e21-b7e1-3e24e98789e6",
       "result": "WIN",
+      "opponent": "ONYX",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8820,6 +23163,258 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-ca1a7f6f-2ffd-45f3-ba21-943f5ab99a33",
+      "result": "WIN",
+      "opponent": "etoebaniygoat LFO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-ca1a7f6f-2ffd-45f3-ba21-943f5ab99a33",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-306c02eb-0c21-4e9e-b794-ae994cbd9cc7",
+      "result": "LOSS",
+      "opponent": "BAKS Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-306c02eb-0c21-4e9e-b794-ae994cbd9cc7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4fe71b06-3198-4eb2-8012-95bdb8455a04",
+      "result": "LOSS",
+      "opponent": "Passion Academy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "10 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4fe71b06-3198-4eb2-8012-95bdb8455a04",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-18159b5f-11c0-4240-83fe-a4311a700ce7",
+      "result": "WIN",
+      "opponent": "Agramonte",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "10 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-18159b5f-11c0-4240-83fe-a4311a700ce7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-9481d417-1d94-41cc-b4d1-61816812339f",
+      "result": "WIN",
+      "opponent": "KlAnashe",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "13 / 11",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-9481d417-1d94-41cc-b4d1-61816812339f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-07ff83ef-f487-4163-bd19-ac9cd8e9c411",
+      "result": "WIN",
+      "opponent": "Flaming North",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "6 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-07ff83ef-f487-4163-bd19-ac9cd8e9c411",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-a9931353-9c54-456c-9fdc-a0421d44d513",
+      "result": "WIN",
+      "opponent": "SHADOWSTEP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-a9931353-9c54-456c-9fdc-a0421d44d513",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-01ea5fae-05ea-4042-ac82-31bc061fddcb",
+      "result": "WIN",
+      "opponent": "PUSRP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-26",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-01ea5fae-05ea-4042-ac82-31bc061fddcb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-3da45c9b-4e5c-42a3-b9a5-7bf6bf0871e1",
+      "result": "LOSS",
+      "opponent": "robus tu sinqn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 11",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-3da45c9b-4e5c-42a3-b9a5-7bf6bf0871e1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-cdd5375e-fcbf-497e-90cd-f31a9d4b345c",
+      "result": "WIN",
+      "opponent": "Gramy dla Adama",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "6 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-cdd5375e-fcbf-497e-90cd-f31a9d4b345c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8c769d01-dc14-4735-8e18-8e29f74afd06",
+      "result": "WIN",
+      "opponent": "DON KONDONS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8c769d01-dc14-4735-8e18-8e29f74afd06",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-63a75ab0-411a-4922-b4d4-c86e663c1f07",
+      "result": "WIN",
+      "opponent": "MACIVITY",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-63a75ab0-411a-4922-b4d4-c86e663c1f07",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-a83fd55b-7355-460e-b698-ab2203e33475",
+      "result": "WIN",
+      "opponent": "Astralis Nexus",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-a83fd55b-7355-460e-b698-ab2203e33475",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-be926592-f70d-445f-9faa-ce01a56c2ee7",
+      "result": "WIN",
+      "opponent": "112AQUA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "0 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-be926592-f70d-445f-9faa-ce01a56c2ee7",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "kda-team": [
@@ -8828,6 +23423,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-4cdade84-cb91-47f7-a6ca-3c29fc12aff3",
       "result": "WIN",
+      "opponent": "Monolith eSports",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8852,6 +23448,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-ccc510db-b5e0-4772-bd2c-4f338b1d5c1e",
       "result": "WIN",
+      "opponent": "UraT",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8876,6 +23473,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-e0481533-95e3-4470-9a9d-52aa525a3a42",
       "result": "LOSS",
+      "opponent": "tuskem",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -8907,6 +23505,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-224f9447-97be-4efd-93e7-392c64fe0ac8",
       "result": "WIN",
+      "opponent": "Tomadec",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8931,6 +23530,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a5da8c81-3312-4b49-be2c-03943f8d1849",
       "result": "WIN",
+      "opponent": "WMYRD9K-CIS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -8949,6 +23549,240 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7602eb51-d061-4efd-8315-7d2f2a43f553",
+      "result": "WIN",
+      "opponent": "Outsiders",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7602eb51-d061-4efd-8315-7d2f2a43f553",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b390643c-869a-4045-aaf2-30b88101010b",
+      "result": "WIN",
+      "opponent": "RONIN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b390643c-869a-4045-aaf2-30b88101010b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fc0ce334-e7c5-4ab2-8b52-fbfa0b1c400e",
+      "result": "WIN",
+      "opponent": "GLAZE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "0 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fc0ce334-e7c5-4ab2-8b52-fbfa0b1c400e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4f9f71f6-e559-40f6-93e2-dcfe540b5866",
+      "result": "LOSS",
+      "opponent": "CISfpl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4f9f71f6-e559-40f6-93e2-dcfe540b5866",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-49a169df-464e-47e8-9de4-baa8a33844f9",
+      "result": "WIN",
+      "opponent": "Galactik Rebels 501st",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-49a169df-464e-47e8-9de4-baa8a33844f9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e1c2df98-52d9-4040-b1d0-79d1c8b53d70",
+      "result": "LOSS",
+      "opponent": "Tomadec",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e1c2df98-52d9-4040-b1d0-79d1c8b53d70",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-30926b6a-def5-4ee8-acde-a3dce5d9a8bc",
+      "result": "LOSS",
+      "opponent": "Czokapiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-30926b6a-def5-4ee8-acde-a3dce5d9a8bc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-58c9eb2f-c055-4955-a780-c39074f4e488",
+      "result": "WIN",
+      "opponent": "sg-prospect",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-58c9eb2f-c055-4955-a780-c39074f4e488",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-709896bf-d64f-43e6-a404-32581ac28357",
+      "result": "WIN",
+      "opponent": "Kynetic",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-709896bf-d64f-43e6-a404-32581ac28357",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-07007f93-5970-45a0-9097-dcf4fbbf635a",
+      "result": "WIN",
+      "opponent": "Dreamteam",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-07007f93-5970-45a0-9097-dcf4fbbf635a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b228b2b3-f4a7-4edc-b02e-1c63ea4ef165",
+      "result": "WIN",
+      "opponent": "99p",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b228b2b3-f4a7-4edc-b02e-1c63ea4ef165",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d417400b-a52b-4304-ac65-6a9decf1f8da",
+      "result": "WIN",
+      "opponent": "KCIUKI ALIEGO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d417400b-a52b-4304-ac65-6a9decf1f8da",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4225edee-caa8-47af-8c9e-f836534ccb9a",
+      "result": "WIN",
+      "opponent": "Nightmare Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4225edee-caa8-47af-8c9e-f836534ccb9a",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fortis": [
@@ -8957,6 +23791,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-fe9334cd-680e-42a1-b61e-e49a61123b22",
       "result": "LOSS",
+      "opponent": "PAPS eSport",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -8981,6 +23816,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-362d69fb-c22e-4bdc-97fa-7dd8eba5044f",
       "result": "LOSS",
+      "opponent": "WeClear",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9012,6 +23848,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-ef8a4c91-6b07-48e5-a80a-70be8493f5ac",
       "result": "WIN",
+      "opponent": "mamagla1na",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9036,6 +23873,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-0bec227a-4d27-487e-8d44-14681892eb4f",
       "result": "WIN",
+      "opponent": "HellWave",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9053,6 +23891,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-4b919032-390b-4a4f-a3f0-800cde89645e",
       "result": "WIN",
+      "opponent": "Galaxy Gaming",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9064,6 +23903,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-c4baf477-0080-4a31-afe6-9eaad303eb3e",
+      "result": "WIN",
+      "opponent": "ZBK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "6 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-c4baf477-0080-4a31-afe6-9eaad303eb3e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-018efe98-f8a3-4ad4-8694-d04170ba4f5d",
+      "result": "LOSS",
+      "opponent": "Vexar",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "16 / 14",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-018efe98-f8a3-4ad4-8694-d04170ba4f5d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-0882c264-5984-4dd0-b300-e62b040e9681",
+      "result": "WIN",
+      "opponent": "Iskallt",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-0882c264-5984-4dd0-b300-e62b040e9681",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-d8a1085f-4b83-402d-b247-594454c682bd",
+      "result": "WIN",
+      "opponent": "Importants",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-d8a1085f-4b83-402d-b247-594454c682bd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2ff9bf81-999d-450a-aee5-1930ce0ab323",
+      "result": "LOSS",
+      "opponent": "WTG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2ff9bf81-999d-450a-aee5-1930ce0ab323",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-3df2cb49-77f6-4b2c-b897-42364d3c54f5",
+      "result": "WIN",
+      "opponent": "666clan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "4 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-3df2cb49-77f6-4b2c-b897-42364d3c54f5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-ca673525-d997-4a84-86c8-72dfe4c49f40",
+      "result": "WIN",
+      "opponent": "VORTEX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 2",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-ca673525-d997-4a84-86c8-72dfe4c49f40",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4e9f46ab-def1-45d6-a301-32142d9d5d97",
+      "result": "WIN",
+      "opponent": "TeamSkeet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 7",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4e9f46ab-def1-45d6-a301-32142d9d5d97",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-b0551ee7-ca03-401b-9a94-b56c7970d293",
+      "result": "WIN",
+      "opponent": "Karolinerna Red",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 3",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-b0551ee7-ca03-401b-9a94-b56c7970d293",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "mayak-arena": [
@@ -9072,6 +24073,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-57896171-b9e6-4e36-a341-26456cae4b89",
       "result": "LOSS",
+      "opponent": "unknowns",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9103,6 +24105,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-697991b4-6ba5-4780-b82a-281e088da2b2",
       "result": "WIN",
+      "opponent": "Critical",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -9134,6 +24137,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-3f5d69da-768e-4e0a-ac68-53ffc6718e13",
       "result": "WIN",
+      "opponent": "THEKOMYAKZ",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9158,6 +24162,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-787a1048-5bc3-41d6-8cfe-3f022f4a2c48",
       "result": "WIN",
+      "opponent": "Neds",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9182,6 +24187,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-9fc3a209-3eec-411f-b9db-5c324bb31e57",
       "result": "LOSS",
+      "opponent": "LAN1T",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9193,6 +24199,204 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-30fe4313-a387-4a64-8742-1ab5eebc1c14",
+      "result": "WIN",
+      "opponent": "GLIPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-30fe4313-a387-4a64-8742-1ab5eebc1c14",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5512c365-c231-4d8e-863d-3be96d766242",
+      "result": "LOSS",
+      "opponent": "horvex",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5512c365-c231-4d8e-863d-3be96d766242",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-d1a810e9-905a-41e6-affe-d2342b0de1d0",
+      "result": "LOSS",
+      "opponent": "FartFlow",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-d1a810e9-905a-41e6-affe-d2342b0de1d0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-03",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-a1a90469-1b94-4dbd-a311-c8e497118e61",
+      "result": "WIN",
+      "opponent": "Evolution",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-03",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-a1a90469-1b94-4dbd-a311-c8e497118e61",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-15fc1307-caa0-482d-9662-adfda4723380",
+      "result": "LOSS",
+      "opponent": "Prius",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-15fc1307-caa0-482d-9662-adfda4723380",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-933c90e1-f8f6-47e3-801a-22817df34201",
+      "result": "WIN",
+      "opponent": "Puissant",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-933c90e1-f8f6-47e3-801a-22817df34201",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b6576d76-cee9-4eb4-b674-4a63bd23e562",
+      "result": "WIN",
+      "opponent": "MANA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b6576d76-cee9-4eb4-b674-4a63bd23e562",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ec877618-44a1-4281-a61b-80a84996f594",
+      "result": "WIN",
+      "opponent": "Neds",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ec877618-44a1-4281-a61b-80a84996f594",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-18",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2a4c2199-fb8f-4c6d-8cb1-47d2f3656600",
+      "result": "WIN",
+      "opponent": "PowerSurge",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-18",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2a4c2199-fb8f-4c6d-8cb1-47d2f3656600",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-a9e17032-93eb-4128-8385-bb227d5c1eb6",
+      "result": "WIN",
+      "opponent": "holzkopf",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-a9e17032-93eb-4128-8385-bb227d5c1eb6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-368c6589-ccdc-4d91-812a-65eea4f7f922",
+      "result": "WIN",
+      "opponent": "trupini",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-368c6589-ccdc-4d91-812a-65eea4f7f922",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "lan1t": [
@@ -9201,6 +24405,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-6c84eb87-a8a6-44b8-b6fe-9439c1273866",
       "result": "WIN",
+      "opponent": "IC Prospect",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -9232,6 +24437,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-bfbd5b40-9731-4b8e-8647-6e7dcb3e0f79",
       "result": "WIN",
+      "opponent": "AERIS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9256,6 +24462,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-2bbebb2e-a407-494e-a466-de8dd0479997",
       "result": "LOSS",
+      "opponent": "FAMILYTHERAPY",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9283,10 +24490,36 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-28",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-0e3c609b-5ec9-495f-ab0b-5391296a0444",
+      "result": "WIN",
+      "opponent": "Spryzen Team",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-28",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-0e3c609b-5ec9-495f-ab0b-5391296a0444",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-05-28",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-0e3c609b-5ec9-495f-ab0b-5391296a0444",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-05-26",
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-af4034ef-3864-4fdb-b14e-8f433b82d7b5",
       "result": "WIN",
+      "opponent": "gok amok flokken",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9311,6 +24544,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-9fc3a209-3eec-411f-b9db-5c324bb31e57",
       "result": "WIN",
+      "opponent": "MAYAK ARENA",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9322,6 +24556,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-11deb0ef-0a34-4eae-8775-94429ecbbc2a",
+      "result": "LOSS",
+      "opponent": "Prius",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-11deb0ef-0a34-4eae-8775-94429ecbbc2a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ffb9e257-3651-4027-a74d-8d326cc47904",
+      "result": "WIN",
+      "opponent": "NEW PROJECT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ffb9e257-3651-4027-a74d-8d326cc47904",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-01429d5c-1ee4-4f9f-b24e-9d637cffb676",
+      "result": "WIN",
+      "opponent": "eternal",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-01429d5c-1ee4-4f9f-b24e-9d637cffb676",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4d812ade-670c-4430-b883-433bc0952e8b",
+      "result": "LOSS",
+      "opponent": "Raido",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4d812ade-670c-4430-b883-433bc0952e8b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-34670b11-a7f6-4ee6-aa84-d0de053417be",
+      "result": "WIN",
+      "opponent": "UBITEAM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-34670b11-a7f6-4ee6-aa84-d0de053417be",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-bacf432c-62a0-4037-b62f-d55365ddb09a",
+      "result": "WIN",
+      "opponent": "Varanos",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-bacf432c-62a0-4037-b62f-d55365ddb09a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1c38c84d-5daa-42ea-a9e4-a2c51c3eaa4c",
+      "result": "WIN",
+      "opponent": "UK RIPPER",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1c38c84d-5daa-42ea-a9e4-a2c51c3eaa4c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5dfbf162-7161-4baa-9fb9-727cfc3454b5",
+      "result": "LOSS",
+      "opponent": "strbrothers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5dfbf162-7161-4baa-9fb9-727cfc3454b5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1b155c11-fa58-476f-a90d-77e60798163b",
+      "result": "WIN",
+      "opponent": "GeorgeDroyd",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1b155c11-fa58-476f-a90d-77e60798163b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-3177126b-339b-4a3c-8129-d8be2ac33a9a",
+      "result": "WIN",
+      "opponent": "DOMTHIEM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-3177126b-339b-4a3c-8129-d8be2ac33a9a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-62f76c85-79d7-451b-aa4d-4981d8ade66e",
+      "result": "WIN",
+      "opponent": "Aviceda",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-62f76c85-79d7-451b-aa4d-4981d8ade66e",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "vexar": [
@@ -9330,6 +24762,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-15a2d182-5cb1-4692-a37b-82d19251e76c",
       "result": "WIN",
+      "opponent": "VirtualCasino",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9354,6 +24787,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-f5679798-a07a-4cca-abe1-3e55d3ebf977",
       "result": "LOSS",
+      "opponent": "leijonat",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9371,6 +24805,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-be645396-775f-45d1-9b2a-b5157e67813d",
       "result": "WIN",
+      "opponent": "ZYNX",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9388,6 +24823,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-ce765223-0fa8-4326-a0c3-a91202fa6645",
       "result": "LOSS",
+      "opponent": "MyHUD",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9405,6 +24841,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-9d79a4f7-208e-4eed-b21f-8474d714e610",
       "result": "LOSS",
+      "opponent": "0chance_ua",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9416,6 +24853,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-018efe98-f8a3-4ad4-8694-d04170ba4f5d",
+      "result": "WIN",
+      "opponent": "FORTIS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "16 / 14",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-018efe98-f8a3-4ad4-8694-d04170ba4f5d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-23e4cb09-6b46-4b85-b46e-06ba1d06ac7c",
+      "result": "LOSS",
+      "opponent": "Galaxy Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "12 / 16",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-23e4cb09-6b46-4b85-b46e-06ba1d06ac7c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-bc408836-47f8-4bb5-b926-77277472b2b5",
+      "result": "WIN",
+      "opponent": "Stubborn Boys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-bc408836-47f8-4bb5-b926-77277472b2b5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-1615d2a2-8d72-4875-8176-4b9b9b2b6613",
+      "result": "WIN",
+      "opponent": "POSLE ZAVODA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 7",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-1615d2a2-8d72-4875-8176-4b9b9b2b6613",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-c65fba38-1571-410b-9a02-5c5d4bf11b87",
+      "result": "WIN",
+      "opponent": "Sputnik V2",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 8",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-c65fba38-1571-410b-9a02-5c5d4bf11b87",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-8097ff34-796b-4224-9ec3-737551d45970",
+      "result": "WIN",
+      "opponent": "Jonixal",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-8097ff34-796b-4224-9ec3-737551d45970",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-12a3f6d8-8fbc-4f15-badd-ecd4ec4d25c7",
+      "result": "WIN",
+      "opponent": "VOID5",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-12a3f6d8-8fbc-4f15-badd-ecd4ec4d25c7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-3137afed-bf30-49d1-b7ef-9476c7100c6b",
+      "result": "WIN",
+      "opponent": "Red Rebels",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-3137afed-bf30-49d1-b7ef-9476c7100c6b",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "prius": [
@@ -9424,6 +25005,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-9219c31b-5bf9-4ba7-8166-a710883301be",
       "result": "LOSS",
+      "opponent": "White tigers",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -9448,6 +25030,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-dd1d9a22-d8da-4a66-9b4d-4842a4604f09",
       "result": "LOSS",
+      "opponent": "thrownation",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9479,6 +25062,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-258c808f-0714-46fc-8cb6-6476f526de01",
       "result": "WIN",
+      "opponent": "thrownation",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9496,6 +25080,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-11deb0ef-0a34-4eae-8775-94429ecbbc2a",
       "result": "WIN",
+      "opponent": "LAN1T",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9513,6 +25098,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-29615ea7-8b7f-4907-aa04-a6528a8fc282",
       "result": "LOSS",
+      "opponent": "MANA",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9524,6 +25110,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-86043d38-d6c6-420e-b325-8a1b10d25849",
+      "result": "WIN",
+      "opponent": "KiNgZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "19 / 16",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-86043d38-d6c6-420e-b325-8a1b10d25849",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-89e134ae-b667-408f-83ca-baadee9d2eb7",
+      "result": "LOSS",
+      "opponent": "FAMILYTHERAPY",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-89e134ae-b667-408f-83ca-baadee9d2eb7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8a6cdb37-8e06-4817-806b-72cc02c6b0ec",
+      "result": "LOSS",
+      "opponent": "horvex",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8a6cdb37-8e06-4817-806b-72cc02c6b0ec",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-15fc1307-caa0-482d-9662-adfda4723380",
+      "result": "WIN",
+      "opponent": "MAYAK ARENA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-15fc1307-caa0-482d-9662-adfda4723380",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6e9fc2dd-a36c-40bc-a94d-94b6a5780ea5",
+      "result": "LOSS",
+      "opponent": "S1WKA Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6e9fc2dd-a36c-40bc-a94d-94b6a5780ea5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-95e421d1-2caa-42b0-9ff4-e930a680331b",
+      "result": "WIN",
+      "opponent": "Lunacy Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-95e421d1-2caa-42b0-9ff4-e930a680331b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-d0c79ef3-c783-45a6-821e-c838fd378aab",
+      "result": "WIN",
+      "opponent": "Str1ve eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "1 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-d0c79ef3-c783-45a6-821e-c838fd378aab",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-c49ea6c7-89b0-4a61-beeb-5a6dd14409c8",
+      "result": "WIN",
+      "opponent": "Hellforge",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-c49ea6c7-89b0-4a61-beeb-5a6dd14409c8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7eddadf0-e1a6-4ed2-9ca5-6a3bdd33b5fe",
+      "result": "WIN",
+      "opponent": "MASAKRACJA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7eddadf0-e1a6-4ed2-9ca5-6a3bdd33b5fe",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7cd33f7c-47f3-4538-ab5e-1a8177daf655",
+      "result": "WIN",
+      "opponent": "FlensburgUnited",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7cd33f7c-47f3-4538-ab5e-1a8177daf655",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "goodjob": [
@@ -9532,6 +25298,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-55537d7c-dbda-455c-8572-94db785c7f1f",
       "result": "LOSS",
+      "opponent": "Vael",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9563,6 +25330,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-8416003c-59f8-4629-9e1a-78f786db1845",
       "result": "LOSS",
+      "opponent": "TrafficPills Esports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -9587,6 +25355,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-d1089d56-6198-4fdf-ba5f-95479aa1ee9d",
       "result": "WIN",
+      "opponent": "Beyond The Norm",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -9618,6 +25387,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-db90d510-b2db-492d-9bc3-3065ae4673eb",
       "result": "LOSS",
+      "opponent": "robus tu sinqn",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -9635,6 +25405,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-5dc02537-b623-4671-b5f9-664eb83979a9",
       "result": "WIN",
+      "opponent": "CYBERCOM",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9646,6 +25417,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-70650694-16bd-4355-b616-1284aac5fe62",
+      "result": "WIN",
+      "opponent": "Duel Monsters",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 11",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-70650694-16bd-4355-b616-1284aac5fe62",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-2dcd2f34-6d6c-4050-aebe-73592c293ead",
+      "result": "LOSS",
+      "opponent": "KlAnashe",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "14 / 16",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-2dcd2f34-6d6c-4050-aebe-73592c293ead",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-ebfe4dd4-ce44-43f3-b9ef-d574c912e3d6",
+      "result": "LOSS",
+      "opponent": "DevL33T",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "16 / 14",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-ebfe4dd4-ce44-43f3-b9ef-d574c912e3d6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-026843de-e6e4-495c-b163-9623c0c5217b",
+      "result": "WIN",
+      "opponent": "Gramy dla Adama",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-026843de-e6e4-495c-b163-9623c0c5217b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-726a07bb-cd77-4dba-a8cd-9ffd0983f984",
+      "result": "WIN",
+      "opponent": "FC Famalicao NextGen",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-726a07bb-cd77-4dba-a8cd-9ffd0983f984",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-eae43703-8080-451d-bfea-274c4c503723",
+      "result": "WIN",
+      "opponent": "birmington 5",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 3",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-eae43703-8080-451d-bfea-274c4c503723",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-fb22b721-2193-49a2-a096-5fc873cbffb9",
+      "result": "WIN",
+      "opponent": "FurySense",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 10",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-fb22b721-2193-49a2-a096-5fc873cbffb9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-d8cce467-3e46-4328-afed-3ef10026ed56",
+      "result": "LOSS",
+      "opponent": "DON KONDONS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "6 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-d8cce467-3e46-4328-afed-3ef10026ed56",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4746e89d-f1f8-4ee7-87e2-beed8917d2ca",
+      "result": "WIN",
+      "opponent": "ProTigr",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "3 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4746e89d-f1f8-4ee7-87e2-beed8917d2ca",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8451a207-bc0d-4a92-af97-ba5793e5903f",
+      "result": "WIN",
+      "opponent": "Zeste Esport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "6 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8451a207-bc0d-4a92-af97-ba5793e5903f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "lanklan": [
@@ -9654,6 +25605,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-3f469ad7-3d83-49f5-af7f-f270bb396196",
       "result": "LOSS",
+      "opponent": "LanKlan",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9685,6 +25637,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-59019ef3-010c-435e-803b-0ece9ebeca99",
       "result": "LOSS",
+      "opponent": "WROTBERRY",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -9709,6 +25662,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a09f4eb7-53f3-4e96-886a-9c6fba9271fc",
       "result": "WIN",
+      "opponent": "LanKlan",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -9740,6 +25694,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-d94efff0-30e7-43b1-b342-a9e5c871d8c6",
       "result": "WIN",
+      "opponent": "LanKlan",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9764,6 +25719,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-cb79f598-6b66-4f5e-bacb-722fcec2457d",
       "result": "WIN",
+      "opponent": "FUSION",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -9775,6 +25731,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-cc9daed6-61e8-4449-8b43-b4b5f98ccf01",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-cc9daed6-61e8-4449-8b43-b4b5f98ccf01",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-5d5a4e3c-1684-442f-8c4d-55fea335d54c",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-5d5a4e3c-1684-442f-8c4d-55fea335d54c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e5a3c353-6fa5-42c9-a8bb-7b5a0ff01f66",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e5a3c353-6fa5-42c9-a8bb-7b5a0ff01f66",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-a53d5f13-36ba-46ac-9a04-e6bd8384b28c",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 0",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-a53d5f13-36ba-46ac-9a04-e6bd8384b28c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ac5c1299-e7b4-4e0f-865c-fe47c9bff24f",
+      "result": "LOSS",
+      "opponent": "iuhop",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ac5c1299-e7b4-4e0f-865c-fe47c9bff24f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-8abb471d-f4b3-4dd0-8213-2b0fcec8dcae",
+      "result": "LOSS",
+      "opponent": "CISfpl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-8abb471d-f4b3-4dd0-8213-2b0fcec8dcae",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-9aeaa24a-7ac3-4040-91c6-8e234aa759bf",
+      "result": "LOSS",
+      "opponent": "NoTime",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-9aeaa24a-7ac3-4040-91c6-8e234aa759bf",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-aa2538b1-286e-43ec-9577-c1742423d647",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-aa2538b1-286e-43ec-9577-c1742423d647",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e0e05cfd-7657-4b6e-a255-4c292c6ef489",
+      "result": "WIN",
+      "opponent": "MNE ZHARKO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e0e05cfd-7657-4b6e-a255-4c292c6ef489",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-5d6a85c3-e594-43df-8d1f-0337a797ee30",
+      "result": "LOSS",
+      "opponent": "1",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-5d6a85c3-e594-43df-8d1f-0337a797ee30",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-5e03e110-af58-4bd1-abcc-ec4c3e85616c",
+      "result": "WIN",
+      "opponent": "LanKlan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-5e03e110-af58-4bd1-abcc-ec4c3e85616c",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fate": [
@@ -9783,6 +25937,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-7434f3cb-c8b5-4a27-b9e9-71d0b7fa4541",
       "result": "WIN",
+      "opponent": "Hakkapeliitat",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -9814,6 +25969,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-348ca36e-ab6c-482f-93c8-7a5d4e2508cf",
       "result": "WIN",
+      "opponent": "farsh",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9838,6 +25994,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-998c2f7f-e635-4fa8-862b-eff10dffdda7",
       "result": "LOSS",
+      "opponent": "Nyxon",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -9862,6 +26019,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-ae205f9d-1dc5-41e5-a690-722918ee8051",
       "result": "WIN",
+      "opponent": "sg-prospect",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9886,6 +26044,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-26e07acc-be42-4f88-b370-af5e0a62e870",
       "result": "WIN",
+      "opponent": "KageN",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -9904,6 +26063,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-695bfb6d-6448-4995-af47-55820ee376d7",
+      "result": "WIN",
+      "opponent": "6ix7even",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-695bfb6d-6448-4995-af47-55820ee376d7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f21b3305-d79c-41f3-8f90-84f83453a6c1",
+      "result": "LOSS",
+      "opponent": "Pehotinec Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f21b3305-d79c-41f3-8f90-84f83453a6c1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c187c682-a62c-4b6f-980c-8a8bdabeb0d0",
+      "result": "WIN",
+      "opponent": "Galactik Rebels 501st",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-17",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c187c682-a62c-4b6f-980c-8a8bdabeb0d0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-44b6ee3d-b2ac-4a6f-a4da-57339d6f2298",
+      "result": "LOSS",
+      "opponent": "Pehotinec Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-44b6ee3d-b2ac-4a6f-a4da-57339d6f2298",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-041201f2-074b-4e4e-84b3-7c81e0abb58a",
+      "result": "WIN",
+      "opponent": "Pehotinec Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-041201f2-074b-4e4e-84b3-7c81e0abb58a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-eed2d54d-999a-4882-a327-dff584a7efa0",
+      "result": "LOSS",
+      "opponent": "depreso reborn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-02",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-eed2d54d-999a-4882-a327-dff584a7efa0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-2ce4e85d-5e4b-4a02-a228-647cb6658c6b",
+      "result": "WIN",
+      "opponent": "Pehotinec Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-2ce4e85d-5e4b-4a02-a228-647cb6658c6b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-aa2538b1-286e-43ec-9577-c1742423d647",
+      "result": "LOSS",
+      "opponent": "LanKlan",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-aa2538b1-286e-43ec-9577-c1742423d647",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7681f948-7b0b-4294-941b-397b38a6436a",
+      "result": "WIN",
+      "opponent": "Kynetic",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7681f948-7b0b-4294-941b-397b38a6436a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-29b38ab5-9cdf-4289-b082-b4b61488223e",
+      "result": "WIN",
+      "opponent": "Pehotinec Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-29b38ab5-9cdf-4289-b082-b4b61488223e",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "aeris": [
@@ -9912,6 +26251,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-bfbd5b40-9731-4b8e-8647-6e7dcb3e0f79",
       "result": "LOSS",
+      "opponent": "LAN1T",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -9932,16 +26272,49 @@ const matches = {
       ]
     },
     {
+      "date": "2026-06-01",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-0bbc444e-6a77-4416-93a6-6a43da083ff5",
+      "result": "WIN",
+      "opponent": "Lunacy Gaming",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-06-01",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-0bbc444e-6a77-4416-93a6-6a43da083ff5",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-06-01",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-0bbc444e-6a77-4416-93a6-6a43da083ff5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-05-30",
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-a29fac44-fea0-46c1-8311-0d6a103abff3",
       "result": "WIN",
-      "boScore": "1-0",
-      "mapsPlayed": 1,
+      "opponent": "THEKOMYAKZ",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
       "maps": [
         {
           "date": "2026-05-30",
           "score": "16 / 12",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-a29fac44-fea0-46c1-8311-0d6a103abff3",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-05-30",
+          "score": "13 / 8",
           "season": "S57 EU Entry D - Playoffs",
           "matchId": "1-a29fac44-fea0-46c1-8311-0d6a103abff3",
           "result": "WIN"
@@ -9953,6 +26326,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-f0f81797-6ff6-4e91-9ca1-15cc5ad098e4",
       "result": "LOSS",
+      "opponent": "Noctiq",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -9984,6 +26358,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-34c2ec64-84c7-4961-a077-08f4f16eaa40",
       "result": "LOSS",
+      "opponent": "LYNX x ROC",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10001,6 +26376,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-43b294c7-c185-411f-93ee-91c9d1f8a2e3",
       "result": "LOSS",
+      "opponent": "IC Prospect",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10012,6 +26388,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-0c545fea-4a88-4029-ac12-dc4bb7496950",
+      "result": "LOSS",
+      "opponent": "Ira Draconis",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "19 / 22",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-0c545fea-4a88-4029-ac12-dc4bb7496950",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b1ab5aae-4055-4ad3-b6b6-6f07b1264176",
+      "result": "WIN",
+      "opponent": "sema mentality",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b1ab5aae-4055-4ad3-b6b6-6f07b1264176",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-256e87fd-f63a-4e46-be34-31d6926c489c",
+      "result": "WIN",
+      "opponent": "Fak1E Lab",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-256e87fd-f63a-4e46-be34-31d6926c489c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-a64a53b6-ee8a-49a8-82f9-9c64baf759db",
+      "result": "WIN",
+      "opponent": "Noctiq",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-a64a53b6-ee8a-49a8-82f9-9c64baf759db",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-a89bef2b-e003-4c92-b09d-21d8b1269535",
+      "result": "LOSS",
+      "opponent": "Rejected By ALL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-a89bef2b-e003-4c92-b09d-21d8b1269535",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
+      "result": "LOSS",
+      "opponent": "Rejected By ALL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-9f5fb075-6165-468a-9e34-a31a97a9bc7b",
+      "result": "LOSS",
+      "opponent": "greens",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-9f5fb075-6165-468a-9e34-a31a97a9bc7b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-438f7f37-28d3-424f-9f60-60c4cefea7a4",
+      "result": "WIN",
+      "opponent": "WTG",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "3 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-438f7f37-28d3-424f-9f60-60c4cefea7a4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-111fb463-d325-4b64-8861-102afe2a7a04",
+      "result": "WIN",
+      "opponent": "Rejected By ALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 11",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-111fb463-d325-4b64-8861-102afe2a7a04",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-da77c03a-03a5-4a9d-b4e6-8853f92005e5",
+      "result": "WIN",
+      "opponent": "Rejected By ALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-da77c03a-03a5-4a9d-b4e6-8853f92005e5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-52ea1074-01cd-462c-87dd-ec0aeb6fde77",
+      "result": "WIN",
+      "opponent": "Gelato Kush",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-52ea1074-01cd-462c-87dd-ec0aeb6fde77",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-56af1720-2ff4-4d76-a917-e6d63973185a",
+      "result": "WIN",
+      "opponent": "Chivapsiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "1 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-56af1720-2ff4-4d76-a917-e6d63973185a",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "dnk": [
@@ -10020,6 +26612,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-c2b28d41-85ec-4b8a-928c-2b19b54f6449",
       "result": "LOSS",
+      "opponent": "ELENTIS",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -10051,6 +26644,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-4dcd4d50-2e0a-452c-9385-bf0314578e90",
       "result": "WIN",
+      "opponent": "egveitekki",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10082,6 +26676,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-6d2489f7-2608-4379-bf15-04addb9f3822",
       "result": "WIN",
+      "opponent": "Imprerial Law",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10113,6 +26708,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-9e620ee1-ea8c-4814-9f98-e14e3d9f7315",
       "result": "LOSS",
+      "opponent": "homo_sapiens",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10137,6 +26733,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-66e21889-e2ba-46a8-b1e1-ac7b0f5000b8",
       "result": "WIN",
+      "opponent": "Sabre Gaming",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10155,6 +26752,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-67b1b1d6-fc12-4c02-8d99-b9b89e7cbd82",
+      "result": "LOSS",
+      "opponent": "ELENTIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "13 / 10",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-67b1b1d6-fc12-4c02-8d99-b9b89e7cbd82",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-d79058fd-8ddf-4fef-a922-05522f0ab41b",
+      "result": "WIN",
+      "opponent": "Uncrowned Kings",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "13 / 7",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-d79058fd-8ddf-4fef-a922-05522f0ab41b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-09ee42a6-0cd2-4654-a2a4-96f572fc07e8",
+      "result": "WIN",
+      "opponent": "JANO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "14 / 16",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-09ee42a6-0cd2-4654-a2a4-96f572fc07e8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-c5462437-8414-4e86-b156-df1cac92c842",
+      "result": "WIN",
+      "opponent": "notHuman",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-c5462437-8414-4e86-b156-df1cac92c842",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-d08c044b-9f96-42b4-b323-10367d63b146",
+      "result": "WIN",
+      "opponent": "Sviczi i koledzy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 9",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-d08c044b-9f96-42b4-b323-10367d63b146",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-63b6f8e6-b3d4-4271-b1ce-e004efe8058e",
+      "result": "WIN",
+      "opponent": "BornToLose",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "5 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-63b6f8e6-b3d4-4271-b1ce-e004efe8058e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-103a5cce-64af-464c-931d-92d62a3bb594",
+      "result": "LOSS",
+      "opponent": "Beyond The Norm",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "16 / 19",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-103a5cce-64af-464c-931d-92d62a3bb594",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e1ba0663-04ce-4d5d-b025-bfced73fc8ef",
+      "result": "WIN",
+      "opponent": "BRBTP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "16 / 14",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e1ba0663-04ce-4d5d-b025-bfced73fc8ef",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4135dbce-f2c1-45d1-ac2b-9739159d963e",
+      "result": "WIN",
+      "opponent": "shkerebert",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4135dbce-f2c1-45d1-ac2b-9739159d963e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-06b478b9-de53-49f7-b61d-f82668cb0727",
+      "result": "WIN",
+      "opponent": "FiregioN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-06b478b9-de53-49f7-b61d-f82668cb0727",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4f0dfbf9-9f95-412d-85bc-03920b517aee",
+      "result": "WIN",
+      "opponent": "dont listen to him",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4f0dfbf9-9f95-412d-85bc-03920b517aee",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-118e974b-617d-4fb4-aef6-304133ae9249",
+      "result": "WIN",
+      "opponent": "A-holdet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-118e974b-617d-4fb4-aef6-304133ae9249",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "homo-sapiens": [
@@ -10163,6 +26976,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-dde8df10-62ae-49ef-ac7a-912bdd5cb8db",
       "result": "LOSS",
+      "opponent": "Passion Academy",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -10194,6 +27008,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-7cc425d2-1401-47cb-890a-e79fef26c7e2",
       "result": "WIN",
+      "opponent": "Empire",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10221,10 +27036,36 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-30",
+      "season": "S57 EU Entry B - Playoffs",
+      "matchId": "1-f4d8a218-7af9-4895-8a40-f1b83d4d6653",
+      "result": "LOSS",
+      "opponent": "BHemanha",
+      "boScore": "0-2",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-30",
+          "score": "13 / 1",
+          "season": "S57 EU Entry B - Playoffs",
+          "matchId": "1-f4d8a218-7af9-4895-8a40-f1b83d4d6653",
+          "result": "LOSS"
+        },
+        {
+          "date": "2026-05-30",
+          "score": "13 / 9",
+          "season": "S57 EU Entry B - Playoffs",
+          "matchId": "1-f4d8a218-7af9-4895-8a40-f1b83d4d6653",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
       "date": "2026-05-29",
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-9e620ee1-ea8c-4814-9f98-e14e3d9f7315",
       "result": "WIN",
+      "opponent": "DNK",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10249,6 +27090,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-8748096e-1e4d-4e3f-90f0-7795451ca8cf",
       "result": "WIN",
+      "opponent": "inputlag enjoyers",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10273,6 +27115,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-83cee55f-ecc0-47d5-bb8f-fd350bfc1c04",
       "result": "WIN",
+      "opponent": "FC Famalicao NextGen",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10284,6 +27127,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-fb0c4462-562a-45ef-9a12-111125f68807",
+      "result": "LOSS",
+      "opponent": "BHemanha",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-15",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-fb0c4462-562a-45ef-9a12-111125f68807",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-c1da4363-bf70-4b4d-9280-82ad6b6d25c8",
+      "result": "LOSS",
+      "opponent": "ELENTIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 10",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-c1da4363-bf70-4b4d-9280-82ad6b6d25c8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e4148688-fb0c-4d2f-94cd-0f3dee14424f",
+      "result": "WIN",
+      "opponent": "KlAnashe",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "11 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e4148688-fb0c-4d2f-94cd-0f3dee14424f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8b93e466-db24-402a-bb5d-16fe74f57d19",
+      "result": "WIN",
+      "opponent": "BornToLose",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8b93e466-db24-402a-bb5d-16fe74f57d19",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-7e616879-7568-41f2-9728-d08a982b1fdd",
+      "result": "WIN",
+      "opponent": "IETT AKBIL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-7e616879-7568-41f2-9728-d08a982b1fdd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-f99a7daa-e26c-4e1a-af18-5143cf93867b",
+      "result": "WIN",
+      "opponent": "OLD 5",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-f99a7daa-e26c-4e1a-af18-5143cf93867b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-6999dbfe-fbf9-4578-90ab-3ed9d72c135d",
+      "result": "WIN",
+      "opponent": "FG united",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 9",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-6999dbfe-fbf9-4578-90ab-3ed9d72c135d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-beb954c1-72b2-48cc-9541-81923bde04e6",
+      "result": "WIN",
+      "opponent": "MEPHI",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-beb954c1-72b2-48cc-9541-81923bde04e6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-c71aa634-4dbd-4132-98ea-2ca30c315d31",
+      "result": "WIN",
+      "opponent": "ORGLEZZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "1 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-c71aa634-4dbd-4132-98ea-2ca30c315d31",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-80cea3ee-3095-4ca4-8d39-a4535a09a345",
+      "result": "WIN",
+      "opponent": "Azimuth",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 1",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-80cea3ee-3095-4ca4-8d39-a4535a09a345",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "cerberus": [
@@ -10292,6 +27315,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-dc1fd3de-944e-425e-9935-c967f7e3e3a4",
       "result": "LOSS",
+      "opponent": "pivstar",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10316,6 +27340,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-2c02ffe6-09cb-4e5a-9fbd-683d46069eba",
       "result": "LOSS",
+      "opponent": "LeetCase",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10340,6 +27365,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-cf272cd8-d7c2-468e-8e81-44738869f455",
       "result": "WIN",
+      "opponent": "bestAIMMERS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10364,6 +27390,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-7759a890-385b-44dc-9b34-7b9b2f6f823c",
       "result": "WIN",
+      "opponent": "DYMACZE",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10381,6 +27408,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-576f32b2-ef67-4f76-9c07-d614bc01683c",
       "result": "WIN",
+      "opponent": "pivstar",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10392,6 +27420,276 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7040795d-d030-4a9a-88c3-b8f9a0b0fad7",
+      "result": "WIN",
+      "opponent": "PEST E-SPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7040795d-d030-4a9a-88c3-b8f9a0b0fad7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-61787885-863e-4db6-918f-5b14f65dc30e",
+      "result": "WIN",
+      "opponent": "WMYRD9K-CIS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-61787885-863e-4db6-918f-5b14f65dc30e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-03db4c42-01f2-4eb5-bd7e-fea280ba67e5",
+      "result": "WIN",
+      "opponent": "eXORA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-03db4c42-01f2-4eb5-bd7e-fea280ba67e5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d752be19-8c8d-47a0-85fc-47d2ef3147fb",
+      "result": "WIN",
+      "opponent": "PanHilaryNosiOkulary",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d752be19-8c8d-47a0-85fc-47d2ef3147fb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-42f13424-59a3-4b7a-84cc-251313ce8240",
+      "result": "LOSS",
+      "opponent": "FUSION",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-42f13424-59a3-4b7a-84cc-251313ce8240",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e375c478-49ad-4ceb-aaf9-6d26788e9ac8",
+      "result": "LOSS",
+      "opponent": "Eclipse eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e375c478-49ad-4ceb-aaf9-6d26788e9ac8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-9ec93d6b-f7ac-47c4-af7c-0037f5ba0d2b",
+      "result": "LOSS",
+      "opponent": "tuskem",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-9ec93d6b-f7ac-47c4-af7c-0037f5ba0d2b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-406b352d-6f42-4ce4-baa4-9dee64874cb8",
+      "result": "LOSS",
+      "opponent": "WROTBERRY",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-406b352d-6f42-4ce4-baa4-9dee64874cb8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c9448890-d157-4420-b284-f7a9c6f57c74",
+      "result": "WIN",
+      "opponent": "Tilters",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c9448890-d157-4420-b284-f7a9c6f57c74",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ec596082-3824-43cf-a1f7-fc9f9dc7b0c8",
+      "result": "WIN",
+      "opponent": "Kanteiky Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ec596082-3824-43cf-a1f7-fc9f9dc7b0c8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b86c4d8b-4e57-4358-9538-415eae2a1fc1",
+      "result": "WIN",
+      "opponent": "Team Pulse",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b86c4d8b-4e57-4358-9538-415eae2a1fc1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-4692296f-f52e-4684-8819-7dbf99c7ecaa",
+      "result": "LOSS",
+      "opponent": "CERBERUSxZEUS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "7 / 13",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-4692296f-f52e-4684-8819-7dbf99c7ecaa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-da078ca4-0727-4e98-8b23-6acac0934dd1",
+      "result": "WIN",
+      "opponent": "CERBERUSxZEUS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 3",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-da078ca4-0727-4e98-8b23-6acac0934dd1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-3fcd1184-05a6-4b22-a6cc-9d1c01cfc1b1",
+      "result": "WIN",
+      "opponent": "CERBERUSxZEUS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 0",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-3fcd1184-05a6-4b22-a6cc-9d1c01cfc1b1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-8dd2ce6c-7f4c-4b6e-ad6d-7be0b4b93794",
+      "result": "WIN",
+      "opponent": "CERBERUSxZEUS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 1",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-8dd2ce6c-7f4c-4b6e-ad6d-7be0b4b93794",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fak1e-lab": [
@@ -10400,6 +27698,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-49425738-050b-464f-aad2-bca02966c876",
       "result": "WIN",
+      "opponent": "FNbet",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10424,6 +27723,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-501db800-1744-4f05-84c2-4e9ce4694941",
       "result": "WIN",
+      "opponent": "KiNgZ",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10448,6 +27748,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-57fcf246-edb6-43b9-bf20-6022daa2f872",
       "result": "LOSS",
+      "opponent": "starmixers",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10472,6 +27773,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-9f042559-e5c0-4b92-bf2d-9c64290fda8f",
       "result": "WIN",
+      "opponent": "SMARAGDOVE NEBO",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10496,6 +27798,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-02eb1e5a-3e4d-4363-887f-0b72225b8cc4",
       "result": "WIN",
+      "opponent": "Foif Frags",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10514,6 +27817,222 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-79faf03b-b119-4e8d-9e27-70d76a9ddb5a",
+      "result": "WIN",
+      "opponent": "XCLAN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-79faf03b-b119-4e8d-9e27-70d76a9ddb5a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6f2077f8-4198-4c74-b107-bde0e5136fda",
+      "result": "WIN",
+      "opponent": "AUREX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6f2077f8-4198-4c74-b107-bde0e5136fda",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-c28a49d7-834c-43e9-a1b7-8934905b949b",
+      "result": "LOSS",
+      "opponent": "Hellforge",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-c28a49d7-834c-43e9-a1b7-8934905b949b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4025d853-0e54-4749-842d-19eb603d1d61",
+      "result": "WIN",
+      "opponent": "Evolution",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4025d853-0e54-4749-842d-19eb603d1d61",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5f457264-7845-4ff3-8a63-f6695fbef648",
+      "result": "WIN",
+      "opponent": "MANA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "14 / 16",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5f457264-7845-4ff3-8a63-f6695fbef648",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-256e87fd-f63a-4e46-be34-31d6926c489c",
+      "result": "LOSS",
+      "opponent": "AERIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-256e87fd-f63a-4e46-be34-31d6926c489c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-34b6278b-6b10-486e-a6fb-d336e459f526",
+      "result": "LOSS",
+      "opponent": "IC Prospects",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-34b6278b-6b10-486e-a6fb-d336e459f526",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-de29d887-fbc0-483b-aa1d-ac2cd71d9c87",
+      "result": "LOSS",
+      "opponent": "starmixers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-de29d887-fbc0-483b-aa1d-ac2cd71d9c87",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-db6473e4-38c3-4a8e-b114-e173abefccf3",
+      "result": "WIN",
+      "opponent": "FNbet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-db6473e4-38c3-4a8e-b114-e173abefccf3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-93b88410-e42d-42eb-ae83-f3b22aae8012",
+      "result": "WIN",
+      "opponent": "Foif Frags",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-93b88410-e42d-42eb-ae83-f3b22aae8012",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-46eb560b-8ee7-4ae7-857b-2238cffd2b3f",
+      "result": "WIN",
+      "opponent": "387beer",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-10",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-46eb560b-8ee7-4ae7-857b-2238cffd2b3f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-05",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-87ad107a-775a-4ef3-a8df-5722a73f9fa0",
+      "result": "WIN",
+      "opponent": "NEW ERA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-05",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-87ad107a-775a-4ef3-a8df-5722a73f9fa0",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "mana": [
@@ -10522,6 +28041,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-517d67a7-91f5-44b3-a650-dd2d5841fc5e",
       "result": "WIN",
+      "opponent": "Spryzen Team",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10546,6 +28066,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-2f800980-3cb3-48e2-94d4-3afb686c6760",
       "result": "WIN",
+      "opponent": "NEW PROJECT",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10577,6 +28098,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-7c2c02d3-c219-4f98-9a02-7c2e011f452c",
       "result": "WIN",
+      "opponent": "DOMTHIEM",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10608,6 +28130,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-6385dd0d-123b-4093-9242-851f4d65f7f8",
       "result": "LOSS",
+      "opponent": "thrownation",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10632,6 +28155,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-85eed18b-5cf5-4232-aa37-15833215cabe",
       "result": "LOSS",
+      "opponent": "Tempest eSport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10643,6 +28167,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-026dbc61-b753-4507-889e-bbb3457158b4",
+      "result": "LOSS",
+      "opponent": "unknowns",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "16 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-026dbc61-b753-4507-889e-bbb3457158b4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-29615ea7-8b7f-4907-aa04-a6528a8fc282",
+      "result": "WIN",
+      "opponent": "Prius",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-29615ea7-8b7f-4907-aa04-a6528a8fc282",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5f457264-7845-4ff3-8a63-f6695fbef648",
+      "result": "LOSS",
+      "opponent": "Fak1E Lab",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "14 / 16",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5f457264-7845-4ff3-8a63-f6695fbef648",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5caadce5-bfd9-422a-ba15-7c63bf91edc6",
+      "result": "WIN",
+      "opponent": "FNbet",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5caadce5-bfd9-422a-ba15-7c63bf91edc6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8be8a0f0-c70f-41ac-9cdc-8274b64136f3",
+      "result": "WIN",
+      "opponent": "Half_HP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8be8a0f0-c70f-41ac-9cdc-8274b64136f3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b6576d76-cee9-4eb4-b674-4a63bd23e562",
+      "result": "LOSS",
+      "opponent": "MAYAK ARENA",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b6576d76-cee9-4eb4-b674-4a63bd23e562",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e82ae623-2d88-42a1-924d-9b17dac2026c",
+      "result": "WIN",
+      "opponent": "newtestroster",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e82ae623-2d88-42a1-924d-9b17dac2026c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-86f9183c-c2a2-40eb-8e55-87b86a00973e",
+      "result": "WIN",
+      "opponent": "Str1ve eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-86f9183c-c2a2-40eb-8e55-87b86a00973e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6eae7b5b-3c76-4b1e-b75a-846be097b3c5",
+      "result": "WIN",
+      "opponent": "Meziis Angels",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "16 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6eae7b5b-3c76-4b1e-b75a-846be097b3c5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-dd50747d-ec09-4060-82cc-96a8e741d31b",
+      "result": "WIN",
+      "opponent": "EGOIST",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "2 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-dd50747d-ec09-4060-82cc-96a8e741d31b",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "smokinsexxystyle": [
@@ -10651,6 +28355,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-cbc8b6e7-9fca-4d93-8a8d-dbe2e582b2df",
       "result": "WIN",
+      "opponent": "Gramy dla Adama",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10675,6 +28380,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-a6eadc16-d587-45df-b612-ec36edaa54f0",
       "result": "LOSS",
+      "opponent": "BHemanha",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10692,6 +28398,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-ab327ea3-74a9-4e74-99cf-ac3cc53ae080",
       "result": "LOSS",
+      "opponent": "ELENTIS",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10709,6 +28416,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-eba3b445-7db8-4c3e-b89e-b69a28042b1c",
       "result": "WIN",
+      "opponent": "PIGleenS",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10726,6 +28434,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-9a98575b-6f9f-4c28-9250-eebcae87766d",
       "result": "LOSS",
+      "opponent": "Uncrowned Kings",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10737,6 +28446,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4a3f1354-8bc7-4685-b0aa-121fe7666aa4",
+      "result": "WIN",
+      "opponent": "Unnamed",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4a3f1354-8bc7-4685-b0aa-121fe7666aa4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4916d70f-b525-4155-ba3a-5c7f0d9ffaa2",
+      "result": "WIN",
+      "opponent": "PEKU",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4916d70f-b525-4155-ba3a-5c7f0d9ffaa2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-047afa64-7bf5-4785-ac21-558086c1132c",
+      "result": "LOSS",
+      "opponent": "robus tu sinqn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-047afa64-7bf5-4785-ac21-558086c1132c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-6c7401a0-a5bd-4085-a029-a145672dd228",
+      "result": "LOSS",
+      "opponent": "Flaming North",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-6c7401a0-a5bd-4085-a029-a145672dd228",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-115a6c85-80bb-429d-b945-3ad32d60adec",
+      "result": "WIN",
+      "opponent": "5Access",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 9",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-115a6c85-80bb-429d-b945-3ad32d60adec",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-2722ceb3-2cca-440c-87a6-9872d0115ad6",
+      "result": "WIN",
+      "opponent": "FC Famalicao NextGen",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-2722ceb3-2cca-440c-87a6-9872d0115ad6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-0cc1f219-63bf-43b9-a321-5a79cb6fbd22",
+      "result": "WIN",
+      "opponent": "Senemi",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 0",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-0cc1f219-63bf-43b9-a321-5a79cb6fbd22",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-850f762f-d88f-452a-8a1a-ce78b6de432d",
+      "result": "WIN",
+      "opponent": "Black Bears 2",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 4",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-850f762f-d88f-452a-8a1a-ce78b6de432d",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "eternal": [
@@ -10745,6 +28598,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-54c2fc92-ba62-4670-81fb-13790dc628d0",
       "result": "LOSS",
+      "opponent": "UBITEAM",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10769,6 +28623,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-8460a59e-2043-4c47-98b5-1951c63c9ca6",
       "result": "WIN",
+      "opponent": "Ha ncuxoTPonHblx",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -10793,6 +28648,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-2d87a423-8bf3-453d-b222-1282c6c957e8",
       "result": "LOSS",
+      "opponent": "White tigers",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10810,6 +28666,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-59e87aab-0b76-4e44-93c8-61f4541c5429",
       "result": "WIN",
+      "opponent": "FNbet",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10827,6 +28684,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-01429d5c-1ee4-4f9f-b24e-9d637cffb676",
       "result": "LOSS",
+      "opponent": "LAN1T",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10838,6 +28696,114 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6d173446-d18a-4d3b-b506-07fab3952002",
+      "result": "WIN",
+      "opponent": "Team Rocket",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6d173446-d18a-4d3b-b506-07fab3952002",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ccd4c4ce-5d77-448e-bfbd-275c228fc4a1",
+      "result": "LOSS",
+      "opponent": "Lunacy Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ccd4c4ce-5d77-448e-bfbd-275c228fc4a1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1912b73c-9157-49e7-a2c1-6180e4812af3",
+      "result": "WIN",
+      "opponent": "THEKOMYAKZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1912b73c-9157-49e7-a2c1-6180e4812af3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-64e95b72-81fc-4d4a-81e0-f5474215f87a",
+      "result": "WIN",
+      "opponent": "Noctiq",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-64e95b72-81fc-4d4a-81e0-f5474215f87a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-26d3bd65-e6dd-491b-95ca-b087485e93a8",
+      "result": "WIN",
+      "opponent": "UK RIPPER",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-26d3bd65-e6dd-491b-95ca-b087485e93a8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7940b587-163a-44ab-a1e0-48564902a7ab",
+      "result": "WIN",
+      "opponent": "ArcMonkey",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 0",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7940b587-163a-44ab-a1e0-48564902a7ab",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fusion": [
@@ -10846,6 +28812,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-e2f44f0a-88f4-47a5-b13c-16225015e947",
       "result": "LOSS",
+      "opponent": "AZURA",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -10870,6 +28837,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a09f4eb7-53f3-4e96-886a-9c6fba9271fc",
       "result": "LOSS",
+      "opponent": "LanKlan",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -10901,6 +28869,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-9865a4bc-b031-4f08-93de-f02b288f541d",
       "result": "WIN",
+      "opponent": "MVPs",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -10932,6 +28901,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-cb79f598-6b66-4f5e-bacb-722fcec2457d",
       "result": "LOSS",
+      "opponent": "LanKlan",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -10949,6 +28919,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-abb6205e-cfea-4e36-a64e-faf44b9f0cde",
       "result": "WIN",
+      "opponent": "RONIN",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -10960,6 +28931,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-2d4783f9-55c8-4888-a7e2-281e7082ef26",
+      "result": "LOSS",
+      "opponent": "LeetCase",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 6",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-2d4783f9-55c8-4888-a7e2-281e7082ef26",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-aa87f3b2-9590-4e55-b5f4-2bda7e547b72",
+      "result": "WIN",
+      "opponent": "Tomadec",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-aa87f3b2-9590-4e55-b5f4-2bda7e547b72",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e67d0803-cb72-495e-8c8e-79ceb554c0f4",
+      "result": "WIN",
+      "opponent": "Aura Diff",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e67d0803-cb72-495e-8c8e-79ceb554c0f4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d029c40e-9ddf-4908-b187-af9b07715bf8",
+      "result": "WIN",
+      "opponent": "parise46",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d029c40e-9ddf-4908-b187-af9b07715bf8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-42f13424-59a3-4b7a-84cc-251313ce8240",
+      "result": "WIN",
+      "opponent": "CERBERUS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-42f13424-59a3-4b7a-84cc-251313ce8240",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-07063052-8d1a-40b9-8779-2064dbb40bd2",
+      "result": "LOSS",
+      "opponent": "UraT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-07063052-8d1a-40b9-8779-2064dbb40bd2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-8efd3903-9c5d-4f70-876a-14bf4a1a649d",
+      "result": "WIN",
+      "opponent": "The Relics",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-8efd3903-9c5d-4f70-876a-14bf4a1a649d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d6d4c5bd-067b-43f0-9fb7-4ba808dc8ca8",
+      "result": "WIN",
+      "opponent": "Natus Lords",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d6d4c5bd-067b-43f0-9fb7-4ba808dc8ca8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-3529588a-631c-4f52-b020-18dbb925b754",
+      "result": "LOSS",
+      "opponent": "Umarell",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-12",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-3529588a-631c-4f52-b020-18dbb925b754",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f6a8fd0c-5838-4802-86db-11b3f9e4da04",
+      "result": "LOSS",
+      "opponent": "Dreamteam",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f6a8fd0c-5838-4802-86db-11b3f9e4da04",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "posle-zavoda": [
@@ -10968,6 +29119,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-d50ea5fe-2406-4796-a241-fe93d724975d",
       "result": "LOSS",
+      "opponent": "back2back",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -10999,6 +29151,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-fb038c6a-1165-40c0-88d3-5aa0849a5e13",
       "result": "LOSS",
+      "opponent": "ZYNX",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -11030,6 +29183,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-c33a6c7c-09b5-4e95-bac1-caa4e5a628c9",
       "result": "LOSS",
+      "opponent": "s_chilla academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11043,10 +29197,29 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-721b882e-de67-48b4-bf5b-1ac3a4427794",
+      "result": "WIN",
+      "opponent": "VirtualCasino",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-721b882e-de67-48b4-bf5b-1ac3a4427794",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-05-10",
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-a45a1c64-362c-40d7-9954-f7b97584835c",
       "result": "WIN",
+      "opponent": "FLIPPYFLOPPY",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11064,6 +29237,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-ed0b4f52-9166-4ebc-832e-e142ec4fd53b",
       "result": "WIN",
+      "opponent": "Random Lavuklar",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11075,6 +29249,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-d04fced1-d090-467f-98cd-63ee448a21c4",
+      "result": "LOSS",
+      "opponent": "PAPS eSport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "16 / 12",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-d04fced1-d090-467f-98cd-63ee448a21c4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-a89bef2b-e003-4c92-b09d-21d8b1269535",
+      "result": "WIN",
+      "opponent": "Rejected By ALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-a89bef2b-e003-4c92-b09d-21d8b1269535",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-edd819e5-b57e-4474-9f52-0eced8fa03bd",
+      "result": "LOSS",
+      "opponent": "Drama eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "6 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-edd819e5-b57e-4474-9f52-0eced8fa03bd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-6335165b-ccb6-4757-8bae-fa1cee796db0",
+      "result": "LOSS",
+      "opponent": "Anteiku",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "9 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-6335165b-ccb6-4757-8bae-fa1cee796db0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-1615d2a2-8d72-4875-8176-4b9b9b2b6613",
+      "result": "LOSS",
+      "opponent": "Vexar",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 7",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-1615d2a2-8d72-4875-8176-4b9b9b2b6613",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-bf38f34d-1915-46fe-84d9-3de511bc90c9",
+      "result": "WIN",
+      "opponent": "FROSTBITE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 6",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-bf38f34d-1915-46fe-84d9-3de511bc90c9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-8fec2e57-6572-477c-93d3-1865dc194b3a",
+      "result": "WIN",
+      "opponent": "Iskallt",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 6",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-8fec2e57-6572-477c-93d3-1865dc194b3a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-d6ea6002-383d-4f1e-86d4-e9958974be70",
+      "result": "WIN",
+      "opponent": "LES ZINZINS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 5",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-d6ea6002-383d-4f1e-86d4-e9958974be70",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-05",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-f1830e33-968b-4d89-bf27-50c44f33ceec",
+      "result": "WIN",
+      "opponent": "Miami Metro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-05",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-f1830e33-968b-4d89-bf27-50c44f33ceec",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "thekomyakz": [
@@ -11083,6 +29419,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-a29fac44-fea0-46c1-8311-0d6a103abff3",
       "result": "LOSS",
+      "opponent": "AERIS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11107,6 +29444,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-3f5d69da-768e-4e0a-ac68-53ffc6718e13",
       "result": "LOSS",
+      "opponent": "MAYAK ARENA",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11131,6 +29469,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-2cb6aa44-5adf-4b6f-b722-49e3fc91e9cc",
       "result": "WIN",
+      "opponent": "KiNgZ",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11162,6 +29501,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-e9bc224e-c9d8-43ec-8fbd-ce8349c5334e",
       "result": "WIN",
+      "opponent": "VISION E-SPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11179,6 +29519,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-22d5d5fb-b53a-4660-b659-0f276a471183",
       "result": "WIN",
+      "opponent": "Varanos",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11190,6 +29531,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-aa41c263-bd0e-46af-9d2c-237bf25ed7cc",
+      "result": "WIN",
+      "opponent": "Shells of Victory",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-aa41c263-bd0e-46af-9d2c-237bf25ed7cc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-639dbc91-b782-4d06-b574-a14a46dc369f",
+      "result": "WIN",
+      "opponent": "Bloody Claw",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-639dbc91-b782-4d06-b574-a14a46dc369f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-30e2ae91-7224-4529-8bed-c7b9c5207905",
+      "result": "LOSS",
+      "opponent": "kalambur",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-30e2ae91-7224-4529-8bed-c7b9c5207905",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-72de8e56-862a-4d86-a6e4-95122ebe7afe",
+      "result": "LOSS",
+      "opponent": "FNbet",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-72de8e56-862a-4d86-a6e4-95122ebe7afe",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-d17b04d3-1586-416e-9c53-d97f9b066da4",
+      "result": "LOSS",
+      "opponent": "UBITEAM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-d17b04d3-1586-416e-9c53-d97f9b066da4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1912b73c-9157-49e7-a2c1-6180e4812af3",
+      "result": "LOSS",
+      "opponent": "eternal",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1912b73c-9157-49e7-a2c1-6180e4812af3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-f9c03471-8beb-4b5a-bef1-d87f9d42f7d6",
+      "result": "WIN",
+      "opponent": "AmberCore",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-f9c03471-8beb-4b5a-bef1-d87f9d42f7d6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-18",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1b713c5c-cffd-467d-89a6-8cbb54626062",
+      "result": "WIN",
+      "opponent": "Foif Frags",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-18",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1b713c5c-cffd-467d-89a6-8cbb54626062",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-05db7ada-9e83-465a-b758-75f3e2266921",
+      "result": "WIN",
+      "opponent": "O M N I",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-05db7ada-9e83-465a-b758-75f3e2266921",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e8d9b84b-446c-4d37-9571-718ea1a5fb76",
+      "result": "WIN",
+      "opponent": "387beer",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-12",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e8d9b84b-446c-4d37-9571-718ea1a5fb76",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-da1c2156-c8e9-42b1-be2a-1cf440de1af2",
+      "result": "WIN",
+      "opponent": "KiNgZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "0 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-da1c2156-c8e9-42b1-be2a-1cf440de1af2",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "nightmare-esports": [
@@ -11198,6 +29737,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a25b9ca9-bc3a-4d0a-a39c-6133376d50ae",
       "result": "WIN",
+      "opponent": "Kulbowicze",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11229,6 +29769,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-83041ab1-4d85-4c90-9bab-3b6fd67d116c",
       "result": "WIN",
+      "opponent": "pivstar",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11260,6 +29801,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-d8292aee-8859-426c-84a5-ce8825950eca",
       "result": "WIN",
+      "opponent": "vodkaGHOULS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11284,6 +29826,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-3526966f-5a1f-44b0-9ef1-e766e527c300",
       "result": "WIN",
+      "opponent": "Full Dobro",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11315,6 +29858,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-aff3f33a-7617-48c5-aa6d-914321a6d679",
       "result": "LOSS",
+      "opponent": "1Minute",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11333,6 +29877,258 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-3f50da43-41b6-4653-92d1-f431ab5f6b80",
+      "result": "LOSS",
+      "opponent": "depreso reborn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-3f50da43-41b6-4653-92d1-f431ab5f6b80",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ff5e307f-89e3-4f85-a62c-e64f203910a3",
+      "result": "LOSS",
+      "opponent": "Cobra Kai",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ff5e307f-89e3-4f85-a62c-e64f203910a3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-6efb95f0-40b3-4aeb-bd7e-c547b3e6d46c",
+      "result": "LOSS",
+      "opponent": "Gatorian",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-6efb95f0-40b3-4aeb-bd7e-c547b3e6d46c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c2253979-d8cf-4bf7-9fed-670c29288f1a",
+      "result": "WIN",
+      "opponent": "Eclipse eSports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c2253979-d8cf-4bf7-9fed-670c29288f1a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-045f96a9-8b10-40d8-b29c-f37814089c13",
+      "result": "WIN",
+      "opponent": "JustTag",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 4",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-045f96a9-8b10-40d8-b29c-f37814089c13",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d41d6685-d582-4c38-8533-34d9e6bd8e86",
+      "result": "WIN",
+      "opponent": "WMYRD9K-CIS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d41d6685-d582-4c38-8533-34d9e6bd8e86",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-0de3b572-af0d-459f-bd4d-683a845517b8",
+      "result": "WIN",
+      "opponent": "NoName Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-0de3b572-af0d-459f-bd4d-683a845517b8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-dd7849d8-3dca-4b6b-8846-145427495a88",
+      "result": "LOSS",
+      "opponent": "Thunder Bachkory",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-dd7849d8-3dca-4b6b-8846-145427495a88",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f409c2ec-1035-497b-9221-974c1617ffdb",
+      "result": "WIN",
+      "opponent": "Kanteiky Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f409c2ec-1035-497b-9221-974c1617ffdb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-1fd8dcee-5aab-4162-9691-995d735d25d7",
+      "result": "WIN",
+      "opponent": "Team PLATINA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-1fd8dcee-5aab-4162-9691-995d735d25d7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fb562cd2-8a8f-4969-9dd2-1ad096fe78fd",
+      "result": "WIN",
+      "opponent": "The Relics",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fb562cd2-8a8f-4969-9dd2-1ad096fe78fd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4225edee-caa8-47af-8c9e-f836534ccb9a",
+      "result": "LOSS",
+      "opponent": "KDA Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4225edee-caa8-47af-8c9e-f836534ccb9a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-bb78316a-232c-43e9-9b56-3ee26d38b5c6",
+      "result": "LOSS",
+      "opponent": "Qcolds",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 9",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-bb78316a-232c-43e9-9b56-3ee26d38b5c6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-cace0f1c-1238-45d8-be1e-4776d561cd8a",
+      "result": "WIN",
+      "opponent": "Nightmare Reborn",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 5",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-cace0f1c-1238-45d8-be1e-4776d561cd8a",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "s1wka-team": [
@@ -11341,6 +30137,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-2e412901-7443-413b-951f-df2a832349ba",
       "result": "LOSS",
+      "opponent": "Spryzen Team",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -11372,6 +30169,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-21295031-0370-40c7-8313-f887e4a13b3c",
       "result": "WIN",
+      "opponent": "Foif Frags",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11396,6 +30194,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-99ff452d-2d8c-4664-a219-6faa9cd3aff4",
       "result": "LOSS",
+      "opponent": "FAMILYTHERAPY",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11420,6 +30219,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-1de0ff92-e5ab-4dfe-a711-cd5c7f3bf973",
       "result": "WIN",
+      "opponent": "Hellforge",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11451,6 +30251,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-2a8b374e-390b-4a1a-b3f9-0c08134ae436",
       "result": "WIN",
+      "opponent": "Adversa Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11462,6 +30263,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-10",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1fdf9888-489b-4ce6-992c-d9264cbbcb3a",
+      "result": "WIN",
+      "opponent": "Imbicile",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-10",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1fdf9888-489b-4ce6-992c-d9264cbbcb3a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-099b4335-5a27-4c1e-8060-4f4ff7a60e0a",
+      "result": "LOSS",
+      "opponent": "newtestroster",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-099b4335-5a27-4c1e-8060-4f4ff7a60e0a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2b08031b-5ae9-448c-b198-a05a2527301c",
+      "result": "LOSS",
+      "opponent": "FartFlow",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2b08031b-5ae9-448c-b198-a05a2527301c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6e9fc2dd-a36c-40bc-a94d-94b6a5780ea5",
+      "result": "WIN",
+      "opponent": "Prius",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6e9fc2dd-a36c-40bc-a94d-94b6a5780ea5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6f9faef0-d5a4-4db3-997a-a7bc73357506",
+      "result": "LOSS",
+      "opponent": "UBITEAM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "22 / 20",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6f9faef0-d5a4-4db3-997a-a7bc73357506",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b66a8918-0947-4fe1-895a-0ed8f26acfc3",
+      "result": "WIN",
+      "opponent": "Evolution",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "13 / 16",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b66a8918-0947-4fe1-895a-0ed8f26acfc3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-a139ee1d-e0f2-49de-800c-20f25cedc026",
+      "result": "WIN",
+      "opponent": "thrownation",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "16 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-a139ee1d-e0f2-49de-800c-20f25cedc026",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7f6deb34-89fb-440f-af7c-2cf2620c29e6",
+      "result": "WIN",
+      "opponent": "No7eam",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7f6deb34-89fb-440f-af7c-2cf2620c29e6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-474da290-e976-44a6-b851-5da511406c37",
+      "result": "WIN",
+      "opponent": "ASTRO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-474da290-e976-44a6-b851-5da511406c37",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-51dc8fe8-9455-415b-aea2-0e004f761854",
+      "result": "WIN",
+      "opponent": "TAJFUN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-51dc8fe8-9455-415b-aea2-0e004f761854",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "eca-esports": [
@@ -11470,6 +30451,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-6b8eb19b-edad-4dc0-a5f2-2a087b561a21",
       "result": "WIN",
+      "opponent": "be first",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11494,6 +30476,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-4d97fe16-9960-4538-8ad8-02bc50776658",
       "result": "LOSS",
+      "opponent": "Anteiku",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11518,6 +30501,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-8d79eb99-6ead-4b7a-ba57-f973478e6bb6",
       "result": "WIN",
+      "opponent": "Royal Foxes Beta",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11549,6 +30533,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-19ca55c8-dc9e-431f-b74b-f8674b0ad18e",
       "result": "WIN",
+      "opponent": "Red Rebels",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11566,6 +30551,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-1d915e8a-f001-4bfd-bde8-f56479185ff9",
       "result": "LOSS",
+      "opponent": "PAPS eSport",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11577,6 +30563,132 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-9d6e3d53-8b52-45b0-bd00-c08f3012bb56",
+      "result": "LOSS",
+      "opponent": "MyHUD",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-9d6e3d53-8b52-45b0-bd00-c08f3012bb56",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-5fcacf11-02c2-4d53-b495-e5b324290f1c",
+      "result": "WIN",
+      "opponent": "0chance_ua",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-5fcacf11-02c2-4d53-b495-e5b324290f1c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-55bc9d3d-f033-478c-96a3-3e7294a42fcc",
+      "result": "LOSS",
+      "opponent": "foxgaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 6",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-55bc9d3d-f033-478c-96a3-3e7294a42fcc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-ef0dcfda-638f-472a-affa-68b2852db104",
+      "result": "WIN",
+      "opponent": "InfinityInsight",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-ef0dcfda-638f-472a-affa-68b2852db104",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2a3f81d7-2bd7-4163-ac28-4762c4f281d2",
+      "result": "WIN",
+      "opponent": "ABRAKADABRA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2a3f81d7-2bd7-4163-ac28-4762c4f281d2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-47a83985-4c9e-422c-b52a-f4e75525b672",
+      "result": "LOSS",
+      "opponent": "ZYNX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 9",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-47a83985-4c9e-422c-b52a-f4e75525b672",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-edfa9cb0-cfc2-4124-af7e-1d7529ec1862",
+      "result": "LOSS",
+      "opponent": "SWMDM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 9",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-edfa9cb0-cfc2-4124-af7e-1d7529ec1862",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "pivstar": [
@@ -11585,6 +30697,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-83041ab1-4d85-4c90-9bab-3b6fd67d116c",
       "result": "LOSS",
+      "opponent": "Nightmare Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -11616,6 +30729,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-dc1fd3de-944e-425e-9935-c967f7e3e3a4",
       "result": "WIN",
+      "opponent": "CERBERUS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11640,6 +30754,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-f0534f28-6270-445f-8b4b-f1d92aebdbe8",
       "result": "WIN",
+      "opponent": "WMYRD9K-CIS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11664,6 +30779,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-725b9e35-f917-45bf-bb2b-07350d437f88",
       "result": "LOSS",
+      "opponent": "Tomadec",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11688,6 +30804,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-576f32b2-ef67-4f76-9c07-d614bc01683c",
       "result": "LOSS",
+      "opponent": "CERBERUS",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11699,6 +30816,204 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4cd72d02-234a-49be-be69-113dab821878",
+      "result": "WIN",
+      "opponent": "The Relics",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4cd72d02-234a-49be-be69-113dab821878",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-428b00c3-0832-4927-af4f-6f06fa21b2c2",
+      "result": "WIN",
+      "opponent": "LeetCase",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-428b00c3-0832-4927-af4f-6f06fa21b2c2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-33e7bc42-bb01-42c2-b844-77d363a4ee3e",
+      "result": "LOSS",
+      "opponent": "WMYRD9K-CIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "14 / 16",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-33e7bc42-bb01-42c2-b844-77d363a4ee3e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-9cda6fc4-4856-4014-9be0-f4a69fe611d2",
+      "result": "WIN",
+      "opponent": "KCIUKI ALIEGO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "10 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-9cda6fc4-4856-4014-9be0-f4a69fe611d2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-019b81bd-94a8-4d9b-b065-bdb8893781c1",
+      "result": "LOSS",
+      "opponent": "6ix7even",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-019b81bd-94a8-4d9b-b065-bdb8893781c1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d03d66a3-2110-410f-853b-412db020a58d",
+      "result": "LOSS",
+      "opponent": "WROTBERRY",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d03d66a3-2110-410f-853b-412db020a58d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7e564a87-34eb-4234-9d50-6116c5fea63d",
+      "result": "LOSS",
+      "opponent": "depreso reborn",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7e564a87-34eb-4234-9d50-6116c5fea63d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-a1937bbf-13de-4e47-a3fa-b2c8874aebe9",
+      "result": "WIN",
+      "opponent": "Czokapiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-a1937bbf-13de-4e47-a3fa-b2c8874aebe9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-3d8607f0-0a56-4845-a28b-754540f974be",
+      "result": "WIN",
+      "opponent": "parise46",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-3d8607f0-0a56-4845-a28b-754540f974be",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7df6c495-6c29-41e7-899c-5832e5804957",
+      "result": "WIN",
+      "opponent": "Le Prodigies",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7df6c495-6c29-41e7-899c-5832e5804957",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c434c856-83ed-4e36-89bc-ad4350b2f10e",
+      "result": "WIN",
+      "opponent": "Full Dobro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "20 / 22",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c434c856-83ed-4e36-89bc-ad4350b2f10e",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "fnbet": [
@@ -11707,6 +31022,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-49425738-050b-464f-aad2-bca02966c876",
       "result": "LOSS",
+      "opponent": "Fak1E Lab",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11731,6 +31047,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-f39ddf13-bc10-4932-bc35-6298c4f2ebfa",
       "result": "WIN",
+      "opponent": "thrownation",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11755,6 +31072,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-09543d79-1a8b-4d44-bdfe-963d44ae495f",
       "result": "WIN",
+      "opponent": "dodg3rs",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11782,10 +31100,61 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-30",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-4d29bdd0-2c88-436c-87ce-64ad7aed5391",
+      "result": "WIN",
+      "opponent": "NUDA-----",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-30",
+          "score": "7 / 13",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-4d29bdd0-2c88-436c-87ce-64ad7aed5391",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-05-30",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-4d29bdd0-2c88-436c-87ce-64ad7aed5391",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-9633e2c4-a94f-4efd-b572-e479065a16fe",
+      "result": "LOSS",
+      "opponent": "Ira Draconis",
+      "boScore": "0-2",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-28",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-9633e2c4-a94f-4efd-b572-e479065a16fe",
+          "result": "LOSS"
+        },
+        {
+          "date": "2026-05-28",
+          "score": "16 / 14",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-9633e2c4-a94f-4efd-b572-e479065a16fe",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
       "date": "2026-05-20",
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-3470fe40-83ae-42e7-875c-be7c99e7b2ce",
       "result": "LOSS",
+      "opponent": "Lunacy Gaming",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11799,10 +31168,47 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ec482287-b3e9-4ae0-8a23-f0428290368c",
+      "result": "WIN",
+      "opponent": "North2South",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ec482287-b3e9-4ae0-8a23-f0428290368c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-59e87aab-0b76-4e44-93c8-61f4541c5429",
+      "result": "LOSS",
+      "opponent": "eternal",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-59e87aab-0b76-4e44-93c8-61f4541c5429",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
       "date": "2026-05-06",
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-5caadce5-bfd9-422a-ba15-7c63bf91edc6",
       "result": "LOSS",
+      "opponent": "MANA",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11814,6 +31220,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-72de8e56-862a-4d86-a6e4-95122ebe7afe",
+      "result": "WIN",
+      "opponent": "THEKOMYAKZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-72de8e56-862a-4d86-a6e4-95122ebe7afe",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b2cb23c8-e9b1-41e4-a411-9da34337f0a8",
+      "result": "WIN",
+      "opponent": "Bloody Claw",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "1 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b2cb23c8-e9b1-41e4-a411-9da34337f0a8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6e95de19-1867-4069-a7e7-45a580bf1e73",
+      "result": "WIN",
+      "opponent": "Varanos",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6e95de19-1867-4069-a7e7-45a580bf1e73",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ac061908-22ef-4799-98ed-890dca52892e",
+      "result": "WIN",
+      "opponent": "NUDA-----",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ac061908-22ef-4799-98ed-890dca52892e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-db6473e4-38c3-4a8e-b114-e173abefccf3",
+      "result": "LOSS",
+      "opponent": "Fak1E Lab",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-db6473e4-38c3-4a8e-b114-e173abefccf3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-df990e98-3e5c-40a2-b121-76dc714e33cc",
+      "result": "LOSS",
+      "opponent": "OneTabTeam",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-df990e98-3e5c-40a2-b121-76dc714e33cc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-a440adfe-11a3-484e-98ba-ef83915e5eae",
+      "result": "WIN",
+      "opponent": "KiNgZ",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-a440adfe-11a3-484e-98ba-ef83915e5eae",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-9889822d-3ca7-4043-8dcc-8fda0bcbf8ca",
+      "result": "WIN",
+      "opponent": "Terminal",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-9889822d-3ca7-4043-8dcc-8fda0bcbf8ca",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "urat": [
@@ -11822,6 +31372,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-ccc510db-b5e0-4772-bd2c-4f338b1d5c1e",
       "result": "LOSS",
+      "opponent": "KDA Team",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11846,6 +31397,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-19f2ca1a-1dad-464b-8846-7a5ab6740856",
       "result": "WIN",
+      "opponent": "AZURA",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -11877,6 +31429,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-5c89c5aa-6d14-4a06-8b0b-13985aa3957d",
       "result": "LOSS",
+      "opponent": "WROTBERRY",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -11901,6 +31454,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-da9ef08b-66fa-43fe-9c69-8fb9a7915cbd",
       "result": "LOSS",
+      "opponent": "KLG",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -11918,6 +31472,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-6ff73974-cf46-43f9-aeee-40d88b5c82da",
       "result": "WIN",
+      "opponent": "NoName Team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -11929,6 +31484,114 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f2c72792-6550-464d-bd1d-37932e5a1616",
+      "result": "WIN",
+      "opponent": "1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f2c72792-6550-464d-bd1d-37932e5a1616",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-07063052-8d1a-40b9-8779-2064dbb40bd2",
+      "result": "WIN",
+      "opponent": "FUSION",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-07063052-8d1a-40b9-8779-2064dbb40bd2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b306946c-9bf3-48bd-b9e8-68ddd2be9bf1",
+      "result": "WIN",
+      "opponent": "Full Dobro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b306946c-9bf3-48bd-b9e8-68ddd2be9bf1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d370ad80-b788-48dd-9936-b51836d9efaa",
+      "result": "LOSS",
+      "opponent": "kaksoispisteDEE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d370ad80-b788-48dd-9936-b51836d9efaa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-a44d1eb7-9f77-4b9c-8959-9ec6d431cc40",
+      "result": "LOSS",
+      "opponent": "okura",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "16 / 14",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-a44d1eb7-9f77-4b9c-8959-9ec6d431cc40",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-690a8a12-eb1a-49d3-8cfa-3e0f8961f449",
+      "result": "WIN",
+      "opponent": "Larionov Pro",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-690a8a12-eb1a-49d3-8cfa-3e0f8961f449",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "unknowns": [
@@ -11937,6 +31600,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-6ec4acd8-a92f-46bc-a17d-90e93ec341d1",
       "result": "WIN",
+      "opponent": "Str1ve eSports",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11961,6 +31625,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-a8c0a45e-f597-44ea-b6ac-b66e1d533c7c",
       "result": "WIN",
+      "opponent": "LYNX x ROC",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -11985,6 +31650,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-57896171-b9e6-4e36-a341-26456cae4b89",
       "result": "WIN",
+      "opponent": "MAYAK ARENA",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -12016,6 +31682,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-a32ecad4-b6ae-4854-86d4-3a3cab11fe75",
       "result": "WIN",
+      "opponent": "shqcore",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12040,6 +31707,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-5221df3f-d9ce-4c60-9009-1857d13367fe",
       "result": "WIN",
+      "opponent": "IC Prospect",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12058,6 +31726,247 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-26",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-c113a2da-ea8e-4b2c-b137-5ada9b9fc60e",
+      "result": "WIN",
+      "opponent": "dodg3rs",
+      "boScore": "2-0",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-26",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-c113a2da-ea8e-4b2c-b137-5ada9b9fc60e",
+          "result": "WIN"
+        },
+        {
+          "date": "2026-05-26",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-c113a2da-ea8e-4b2c-b137-5ada9b9fc60e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-0cb29a39-d68e-4ba0-8a5f-3a6409171fc1",
+      "result": "LOSS",
+      "opponent": "GLIPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-20",
+          "score": "16 / 14",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-0cb29a39-d68e-4ba0-8a5f-3a6409171fc1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-026dbc61-b753-4507-889e-bbb3457158b4",
+      "result": "WIN",
+      "opponent": "MANA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-19",
+          "score": "16 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-026dbc61-b753-4507-889e-bbb3457158b4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5e0a755a-5f55-47f0-a97a-f024140df774",
+      "result": "WIN",
+      "opponent": "AUREX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5e0a755a-5f55-47f0-a97a-f024140df774",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5519cb88-4c1f-4edb-9533-8eff4a162cc2",
+      "result": "WIN",
+      "opponent": "Adversa Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5519cb88-4c1f-4edb-9533-8eff4a162cc2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8741bf56-2b74-4853-a096-249b4503beee",
+      "result": "WIN",
+      "opponent": "XCLAN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8741bf56-2b74-4853-a096-249b4503beee",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8b4b2403-02f6-4ac5-95cf-526a0bc68fc2",
+      "result": "LOSS",
+      "opponent": "Capybara eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8b4b2403-02f6-4ac5-95cf-526a0bc68fc2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6b23f812-3277-4f70-b7ef-a02d8ff9cb7c",
+      "result": "LOSS",
+      "opponent": "SMARAGDOVE NEBO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6b23f812-3277-4f70-b7ef-a02d8ff9cb7c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2821a772-e05d-472e-86d5-664a5dce1c95",
+      "result": "LOSS",
+      "opponent": "strbrothers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2821a772-e05d-472e-86d5-664a5dce1c95",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b72752f5-bcf8-44de-bb5d-c6e547d80f25",
+      "result": "WIN",
+      "opponent": "Kozmosis",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b72752f5-bcf8-44de-bb5d-c6e547d80f25",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6beb3a66-e612-477e-bfcb-70160c79e029",
+      "result": "WIN",
+      "opponent": "Shells of Victory",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6beb3a66-e612-477e-bfcb-70160c79e029",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4d946b1b-4240-44b8-b212-3375be188ec0",
+      "result": "WIN",
+      "opponent": "1MILLION USCADOS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4d946b1b-4240-44b8-b212-3375be188ec0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6851078c-96b5-43d1-94b8-ac6334ef1e39",
+      "result": "WIN",
+      "opponent": "SHADOW RAPTORS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6851078c-96b5-43d1-94b8-ac6334ef1e39",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "dodg3rs": [
@@ -12066,6 +31975,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-09543d79-1a8b-4d44-bdfe-963d44ae495f",
       "result": "LOSS",
+      "opponent": "FNbet",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -12097,6 +32007,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-c113a2da-ea8e-4b2c-b137-5ada9b9fc60e",
       "result": "LOSS",
+      "opponent": "unknowns",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12121,6 +32032,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-c982bf85-4fb5-4347-8fed-7759c3a8f856",
       "result": "WIN",
+      "opponent": "not good humans",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12138,6 +32050,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-82d38ae2-afa3-4500-8a90-13e21a059025",
       "result": "WIN",
+      "opponent": "Kozmosis",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12155,6 +32068,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-268033a6-5984-420e-b025-9bce434f58d4",
       "result": "LOSS",
+      "opponent": "AUREX",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12166,6 +32080,168 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-3f33f542-ad29-4ca8-b375-fa103562f8aa",
+      "result": "WIN",
+      "opponent": "NUDA-----",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-3f33f542-ad29-4ca8-b375-fa103562f8aa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-151e3661-6344-4a1c-a067-eb5a4b113dde",
+      "result": "WIN",
+      "opponent": "eSport Team GAZE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-151e3661-6344-4a1c-a067-eb5a4b113dde",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-1d89eff2-d493-438b-a144-2d92ecf0437d",
+      "result": "WIN",
+      "opponent": "JanPawel2BylCzarny",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-1d89eff2-d493-438b-a144-2d92ecf0437d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-27058306-b4fd-43e3-86b3-533b509e5169",
+      "result": "LOSS",
+      "opponent": "Adversa Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-26",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-27058306-b4fd-43e3-86b3-533b509e5169",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-96042425-e1f8-4543-ad6a-4f604003c3da",
+      "result": "LOSS",
+      "opponent": "Team FR4G",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-96042425-e1f8-4543-ad6a-4f604003c3da",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-70035eb6-2658-4691-827e-b3c902b9c72f",
+      "result": "WIN",
+      "opponent": "NoNamers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-19",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-70035eb6-2658-4691-827e-b3c902b9c72f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ba923469-2960-4f3a-8358-6ba3f22290ac",
+      "result": "LOSS",
+      "opponent": "Capybara eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "9 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ba923469-2960-4f3a-8358-6ba3f22290ac",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-30f3a272-f395-48b3-8f39-f5f62ee4f77f",
+      "result": "WIN",
+      "opponent": "North2South",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-30f3a272-f395-48b3-8f39-f5f62ee4f77f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-d8ade483-a870-49cc-9d2f-78d382d1b60c",
+      "result": "LOSS",
+      "opponent": "Prisma",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-11",
+          "score": "16 / 12",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-d8ade483-a870-49cc-9d2f-78d382d1b60c",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "sixseven": [
@@ -12174,6 +32250,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-2ec1f8cb-cff9-4392-b602-3c1291fdda1a",
       "result": "LOSS",
+      "opponent": "JANO",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12198,6 +32275,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-f1f326b0-1e0a-415f-a60b-f3ac93197ecb",
       "result": "WIN",
+      "opponent": "Beyond The Norm",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12222,6 +32300,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-83a47713-a59f-40a1-8fe1-4f51c1e322e3",
       "result": "WIN",
+      "opponent": "Only The Family",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -12253,6 +32332,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-a5d12197-e936-480b-b1f4-6bf5d528b644",
       "result": "LOSS",
+      "opponent": "notHuman",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -12284,6 +32364,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-6118276d-2a03-4655-892b-8668fd2c1296",
       "result": "WIN",
+      "opponent": "Only The Family",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12295,6 +32376,204 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-ab998700-7271-4852-9e17-23bd72dcc4b0",
+      "result": "WIN",
+      "opponent": "KGU",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-ab998700-7271-4852-9e17-23bd72dcc4b0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-87138b74-14ee-4cd4-8a56-ed47c327a61e",
+      "result": "WIN",
+      "opponent": "Team Esinol",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-87138b74-14ee-4cd4-8a56-ed47c327a61e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-88d11b1e-1fa5-4f5c-9e97-8bc54f1b24ef",
+      "result": "WIN",
+      "opponent": "FG united",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-88d11b1e-1fa5-4f5c-9e97-8bc54f1b24ef",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e01edfa7-a153-4856-8bbe-905fc5fd3ac4",
+      "result": "LOSS",
+      "opponent": "GrupaZawodnicza",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "19 / 17",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e01edfa7-a153-4856-8bbe-905fc5fd3ac4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-3183da11-be7e-42ab-9150-e1c1942f18c9",
+      "result": "WIN",
+      "opponent": "shkerebert",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "2 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-3183da11-be7e-42ab-9150-e1c1942f18c9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-d55d91ec-178a-479f-8f0f-ed24837aa1a2",
+      "result": "WIN",
+      "opponent": "BRBTP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-d55d91ec-178a-479f-8f0f-ed24837aa1a2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4b013b7f-7350-4ab6-8d66-42a0945b6e4b",
+      "result": "LOSS",
+      "opponent": "Sviczi i koledzy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4b013b7f-7350-4ab6-8d66-42a0945b6e4b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-10f71604-7822-4fed-b156-3c3c48bce302",
+      "result": "WIN",
+      "opponent": "TheChampionForce",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "10 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-10f71604-7822-4fed-b156-3c3c48bce302",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-17",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-9758cd11-6f3f-4283-a58f-0c68d52b8f37",
+      "result": "WIN",
+      "opponent": "Azimuth",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-17",
+          "score": "13 / 1",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-9758cd11-6f3f-4283-a58f-0c68d52b8f37",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-ba85e7b0-35f8-4584-9302-319459b3614b",
+      "result": "LOSS",
+      "opponent": "elysium",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "16 / 12",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-ba85e7b0-35f8-4584-9302-319459b3614b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-0c1cdfa9-8eb5-492e-8e5a-2d89a1a3b9a6",
+      "result": "LOSS",
+      "opponent": "Flaming North",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-0c1cdfa9-8eb5-492e-8e5a-2d89a1a3b9a6",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "stubborn-boys": [
@@ -12303,6 +32582,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-b8bcd547-8521-493b-9c0c-a3e167a413c4",
       "result": "LOSS",
+      "opponent": "EPOKA OLDBOYS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12327,6 +32607,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-47f63b3d-6c22-42ce-8609-4421074c77b0",
       "result": "WIN",
+      "opponent": "OGOR0AD",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12351,6 +32632,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-2602a224-cb46-483a-9495-b21885ffae94",
       "result": "LOSS",
+      "opponent": "Restore Britain UK",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -12382,6 +32664,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-e2a3e7b3-de2f-46d0-940b-bef13dbf9fda",
       "result": "LOSS",
+      "opponent": "AVANTI",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12399,6 +32682,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-8c8bc3e8-51bc-47d4-8d19-d374bbf89421",
       "result": "LOSS",
+      "opponent": "s_chilla academy",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12410,6 +32694,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2f3caddb-8435-4146-8654-18bbf5bcdc7f",
+      "result": "WIN",
+      "opponent": "Iskallt",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2f3caddb-8435-4146-8654-18bbf5bcdc7f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-789eafd1-9dcc-45c0-bf2f-ed19de047894",
+      "result": "WIN",
+      "opponent": "3 Geeza 2 Visa",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-789eafd1-9dcc-45c0-bf2f-ed19de047894",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e0982abb-d66f-4428-9d33-4a5d2970a014",
+      "result": "WIN",
+      "opponent": "Impact",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e0982abb-d66f-4428-9d33-4a5d2970a014",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-581a57f1-facc-4757-89db-7d781e44541f",
+      "result": "LOSS",
+      "opponent": "PIXEN ESPORT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-581a57f1-facc-4757-89db-7d781e44541f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-bc408836-47f8-4bb5-b926-77277472b2b5",
+      "result": "LOSS",
+      "opponent": "Vexar",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-bc408836-47f8-4bb5-b926-77277472b2b5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-7bf61e95-c9b6-49f5-8849-07014b075432",
+      "result": "LOSS",
+      "opponent": "CTO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-7bf61e95-c9b6-49f5-8849-07014b075432",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-551110cb-cc5a-472f-b5dc-6b0b8c47176c",
+      "result": "LOSS",
+      "opponent": "Galaxy Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 5",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-551110cb-cc5a-472f-b5dc-6b0b8c47176c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-db94cf66-6b38-4a34-8fb9-c474452deab7",
+      "result": "WIN",
+      "opponent": "Razor",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-db94cf66-6b38-4a34-8fb9-c474452deab7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-62cbd5fc-9595-4013-82ad-838de3de9b29",
+      "result": "WIN",
+      "opponent": "Novaya Riga",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "22 / 25",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-62cbd5fc-9595-4013-82ad-838de3de9b29",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "season": "Road to ESEA S57 - FACEIT Community Tournament",
+      "matchId": "1-da078ca4-0727-4e98-8b23-6acac0934dd1",
+      "result": "LOSS",
+      "opponent": "CERBERUSxZEUS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-03-29",
+          "score": "13 / 3",
+          "season": "Road to ESEA S57 - FACEIT Community Tournament",
+          "matchId": "1-da078ca4-0727-4e98-8b23-6acac0934dd1",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "critical": [
@@ -12418,6 +32882,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-697991b4-6ba5-4780-b82a-281e088da2b2",
       "result": "LOSS",
+      "opponent": "MAYAK ARENA",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -12449,6 +32914,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-3e555aa8-90f9-4056-806e-3680cefe281b",
       "result": "WIN",
+      "opponent": "Lunacy Gaming",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -12480,6 +32946,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-c5acf02c-d108-465a-8801-33a049b47d3e",
       "result": "WIN",
+      "opponent": "Half_HP",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12497,6 +32964,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-ae183bf1-be5c-44ee-84de-2399d0775f04",
       "result": "WIN",
+      "opponent": "Half_HP",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12514,6 +32982,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-96132524-0a25-4d7e-8e38-8332b74a3cd0",
       "result": "LOSS",
+      "opponent": "Half_HP",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12525,6 +32994,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5077b623-6754-4e19-a580-26d9a50298de",
+      "result": "WIN",
+      "opponent": "AEON x WHYNOTGAME",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5077b623-6754-4e19-a580-26d9a50298de",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ea9f8aa7-4ac8-4b38-9569-abdf1478141e",
+      "result": "LOSS",
+      "opponent": "Evolution",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ea9f8aa7-4ac8-4b38-9569-abdf1478141e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-b7e6dd7b-8837-407f-8de1-599455f2ecb5",
+      "result": "LOSS",
+      "opponent": "XCLAN",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "16 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-b7e6dd7b-8837-407f-8de1-599455f2ecb5",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-cd12956a-0f08-46f0-94b6-b8fcb1081729",
+      "result": "LOSS",
+      "opponent": "starmixers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-02",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-cd12956a-0f08-46f0-94b6-b8fcb1081729",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-0e44d56e-1737-4bc8-b7af-17d112afbde1",
+      "result": "LOSS",
+      "opponent": "Half_HP",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-0e44d56e-1737-4bc8-b7af-17d112afbde1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-8be8a0f0-c70f-41ac-9cdc-8274b64136f3",
+      "result": "LOSS",
+      "opponent": "Half_HP",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-8be8a0f0-c70f-41ac-9cdc-8274b64136f3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-7d088dd4-37eb-4ce5-91bb-68bd62b47d92",
+      "result": "WIN",
+      "opponent": "GLIPS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "5 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-7d088dd4-37eb-4ce5-91bb-68bd62b47d92",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-f40441e2-d992-4b28-a1d1-78230449fb0a",
+      "result": "WIN",
+      "opponent": "Half_HP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-f40441e2-d992-4b28-a1d1-78230449fb0a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e8deb00a-f4f2-4ef3-8933-253802711667",
+      "result": "WIN",
+      "opponent": "ex-Team Elais",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e8deb00a-f4f2-4ef3-8933-253802711667",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-561fdd18-8686-4e44-8ecc-02f371a15c40",
+      "result": "WIN",
+      "opponent": "JanPawel2BylCzarny",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-561fdd18-8686-4e44-8ecc-02f371a15c40",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "mephi": [
@@ -12533,6 +33182,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-3e2f6efa-8ea9-45cc-84ba-b79fce4c61ab",
       "result": "LOSS",
+      "opponent": "FC Famalicao NextGen",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12557,6 +33207,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-ee82e71d-b59d-4602-925b-f6580bffcc90",
       "result": "WIN",
+      "opponent": "m0nkeys",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12581,6 +33232,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-4c5fcc84-a8ac-4b79-b277-3a71ea1c2a0e",
       "result": "LOSS",
+      "opponent": "Passion Academy",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12605,6 +33257,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-7076742b-8b18-45ba-8352-30326139c3a9",
       "result": "WIN",
+      "opponent": "PEKU",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12622,6 +33275,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-41abb913-7abc-498c-bcee-19d05fc15a2e",
       "result": "LOSS",
+      "opponent": "SHADOWSTEP",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12633,6 +33287,204 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-05d8709f-7ac2-4ccf-ac34-d83acbf70e41",
+      "result": "LOSS",
+      "opponent": "egveitekki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-05d8709f-7ac2-4ccf-ac34-d83acbf70e41",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-9fba225e-de0d-4740-b229-cd5cb3ed1b45",
+      "result": "WIN",
+      "opponent": "Ichnusa non filtrata",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "14 / 16",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-9fba225e-de0d-4740-b229-cd5cb3ed1b45",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-ea7463e6-ea1b-4cb9-9e59-77e36ce7965e",
+      "result": "WIN",
+      "opponent": "elysium",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "14 / 16",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-ea7463e6-ea1b-4cb9-9e59-77e36ce7965e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-b56a0e46-118a-4592-8340-f3c85d0a9698",
+      "result": "WIN",
+      "opponent": "KGU",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "3 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-b56a0e46-118a-4592-8340-f3c85d0a9698",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-9b142ff6-4d3d-4e3d-9e27-0483b7257288",
+      "result": "LOSS",
+      "opponent": "Momentum Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-9b142ff6-4d3d-4e3d-9e27-0483b7257288",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4d8f0d53-4113-48b9-94bd-5017b8678546",
+      "result": "WIN",
+      "opponent": "Astralis Nexus",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4d8f0d53-4113-48b9-94bd-5017b8678546",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-961b23cc-3a7a-47c5-907b-690b097ca7ae",
+      "result": "WIN",
+      "opponent": "Rising Radiance",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "11 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-961b23cc-3a7a-47c5-907b-690b097ca7ae",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-7decefd0-0c92-4b88-887c-ed4bfe8783a4",
+      "result": "LOSS",
+      "opponent": "Black Divison",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-7decefd0-0c92-4b88-887c-ed4bfe8783a4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-beb954c1-72b2-48cc-9541-81923bde04e6",
+      "result": "LOSS",
+      "opponent": "homo_sapiens",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-beb954c1-72b2-48cc-9541-81923bde04e6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-4313ab31-9200-4eb2-b3a4-1a9e05991dd8",
+      "result": "WIN",
+      "opponent": "Absurd",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 11",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-4313ab31-9200-4eb2-b3a4-1a9e05991dd8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-6a2ca986-4ccc-48cd-8fc3-30041135051d",
+      "result": "WIN",
+      "opponent": "Team Esinol",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-6a2ca986-4ccc-48cd-8fc3-30041135051d",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "zbk": [
@@ -12641,6 +33493,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-d1543c35-cb87-41d0-aa4b-47946b5ce172",
       "result": "LOSS",
+      "opponent": "Mix salat",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12658,6 +33511,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-3c6d7db2-6146-48d4-8cff-5363369d8e55",
       "result": "LOSS",
+      "opponent": "WTG",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12675,6 +33529,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-aa3d7aa8-d550-403d-8734-05dd71e24c41",
       "result": "LOSS",
+      "opponent": "FROSTBITE",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12692,6 +33547,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-1c6c73ae-8e02-4dfa-863d-e42233627bb0",
       "result": "WIN",
+      "opponent": "HollyhoPartaci",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12709,6 +33565,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-c4baf477-0080-4a31-afe6-9eaad303eb3e",
       "result": "LOSS",
+      "opponent": "FORTIS",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12720,6 +33577,96 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-282cb753-368e-43b1-b5ee-9c7498e960dd",
+      "result": "WIN",
+      "opponent": "greens",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "9 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-282cb753-368e-43b1-b5ee-9c7498e960dd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4e850822-e378-421a-9279-29197505d097",
+      "result": "WIN",
+      "opponent": "Viseria",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4e850822-e378-421a-9279-29197505d097",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6068703f-37ae-4518-8ac2-771189a105b6",
+      "result": "WIN",
+      "opponent": "SHADOW RAPTORS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6068703f-37ae-4518-8ac2-771189a105b6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-78aec2d5-6824-4260-bab6-43467fc95ca6",
+      "result": "WIN",
+      "opponent": "EP2",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 1",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-78aec2d5-6824-4260-bab6-43467fc95ca6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-070f0c8a-f5a6-4174-9c87-948dc1c2340f",
+      "result": "WIN",
+      "opponent": "EP2",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-070f0c8a-f5a6-4174-9c87-948dc1c2340f",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "ha-ncuxotponhbix": [
@@ -12728,6 +33675,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-e268da98-55b6-455c-816d-53d13bce36a9",
       "result": "LOSS",
+      "opponent": "AUREX",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -12759,6 +33707,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-8460a59e-2043-4c47-98b5-1951c63c9ca6",
       "result": "LOSS",
+      "opponent": "eternal",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12783,6 +33732,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-6aafee2a-8712-4d85-8158-e235250c1d40",
       "result": "LOSS",
+      "opponent": "SMARAGDOVE NEBO",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12800,6 +33750,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-f58a8286-0563-4ac9-8e2c-ff4802afeeba",
       "result": "LOSS",
+      "opponent": "NUDA-----",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12817,6 +33768,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-c19d80cf-123b-40fd-886f-4eb1e123df0c",
       "result": "WIN",
+      "opponent": "Jinx ac",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12828,6 +33780,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5d38b311-b7ca-4d9b-bf9e-925f531c4b06",
+      "result": "LOSS",
+      "opponent": "GLIPS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5d38b311-b7ca-4d9b-bf9e-925f531c4b06",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5892c321-23ab-43b2-9f2d-7de85311cfe8",
+      "result": "WIN",
+      "opponent": "Imbicile",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5892c321-23ab-43b2-9f2d-7de85311cfe8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-39b18c1c-507f-4585-9984-eb7064304f7c",
+      "result": "WIN",
+      "opponent": "W1NKS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-39b18c1c-507f-4585-9984-eb7064304f7c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-c72b25c0-74cc-4d51-a374-7d4efb84ece6",
+      "result": "LOSS",
+      "opponent": "KiNgZ",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-c72b25c0-74cc-4d51-a374-7d4efb84ece6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-232aa707-108f-4a2c-a076-d8d2aa571563",
+      "result": "WIN",
+      "opponent": "gok amok flokken",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-232aa707-108f-4a2c-a076-d8d2aa571563",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-6ad0cb50-6db9-43b5-96fb-0f84acbda4be",
+      "result": "WIN",
+      "opponent": "1MILLION USCADOS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 3",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-6ad0cb50-6db9-43b5-96fb-0f84acbda4be",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-152a6794-79f4-4f03-91f0-978c3f98417b",
+      "result": "LOSS",
+      "opponent": "Kozmosis",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-152a6794-79f4-4f03-91f0-978c3f98417b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-255d9d54-4645-4310-8645-6d42d15c2ded",
+      "result": "LOSS",
+      "opponent": "strbrothers",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-255d9d54-4645-4310-8645-6d42d15c2ded",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4c0d79f6-1c05-4353-9ba1-390b7b05f597",
+      "result": "WIN",
+      "opponent": "O M N I",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "0 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4c0d79f6-1c05-4353-9ba1-390b7b05f597",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "kynetic": [
@@ -12836,6 +33950,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-b18c5828-63de-4897-941f-e29c14b9f852",
       "result": "LOSS",
+      "opponent": "IY Team",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12860,6 +33975,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-f97d37dd-4459-47a1-8d22-873a337068f0",
       "result": "LOSS",
+      "opponent": "GO5Y",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12884,6 +34000,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-3dd29258-f25b-4dac-a21b-2afacb6e7fae",
       "result": "WIN",
+      "opponent": "narcs",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -12908,6 +34025,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-bd76fe55-9363-4f7b-be47-ee3213322903",
       "result": "WIN",
+      "opponent": "qStyle",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -12925,6 +34043,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-f2679ce0-15b4-4836-8fe2-3ffef2415842",
       "result": "LOSS",
+      "opponent": "Monolith eSports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -12936,6 +34055,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-eeb716b8-992f-479b-9be3-ad3d5682f651",
+      "result": "LOSS",
+      "opponent": "Hakkapeliitat",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-eeb716b8-992f-479b-9be3-ad3d5682f651",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c001538e-f340-4fb1-9fa5-b33caecbaa07",
+      "result": "WIN",
+      "opponent": "PEST E-SPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c001538e-f340-4fb1-9fa5-b33caecbaa07",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-25dcd612-1758-4d25-b0c7-acbfeb47c3b4",
+      "result": "WIN",
+      "opponent": "1",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-25dcd612-1758-4d25-b0c7-acbfeb47c3b4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ab748314-0b2b-43be-a715-e9a15c8605ee",
+      "result": "LOSS",
+      "opponent": "one By one",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-02",
+          "score": "17 / 19",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ab748314-0b2b-43be-a715-e9a15c8605ee",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-cd204e72-aabe-4b92-b628-858be621c363",
+      "result": "LOSS",
+      "opponent": "CISfpl",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-cd204e72-aabe-4b92-b628-858be621c363",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7681f948-7b0b-4294-941b-397b38a6436a",
+      "result": "LOSS",
+      "opponent": "Pehotinec Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7681f948-7b0b-4294-941b-397b38a6436a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-709896bf-d64f-43e6-a404-32581ac28357",
+      "result": "LOSS",
+      "opponent": "KDA Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "2 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-709896bf-d64f-43e6-a404-32581ac28357",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b4041045-67f7-4a06-8932-e226db186945",
+      "result": "WIN",
+      "opponent": "Magnolia",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b4041045-67f7-4a06-8932-e226db186945",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-f300bc1f-b17a-42d8-938d-53194dc7cb74",
+      "result": "WIN",
+      "opponent": "TEAM ASCEND",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-f300bc1f-b17a-42d8-938d-53194dc7cb74",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-23718be1-96c7-4968-96ce-16a7c877ed94",
+      "result": "WIN",
+      "opponent": "Ostrovia Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-23718be1-96c7-4968-96ce-16a7c877ed94",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "outsiders": [
@@ -12944,6 +34243,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-74e3fd73-9682-4506-8c57-c15ef2b50f8c",
       "result": "LOSS",
+      "opponent": "RONIN",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12968,6 +34268,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-074b1949-ee05-4c5a-b1fc-f6461a30d464",
       "result": "LOSS",
+      "opponent": "6ix7even",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -12992,6 +34293,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-937e8c9e-91af-4f31-b167-1c29e36657bd",
       "result": "WIN",
+      "opponent": "aeterna reload",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13009,6 +34311,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-7602eb51-d061-4efd-8315-7d2f2a43f553",
       "result": "LOSS",
+      "opponent": "KDA Team",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13026,6 +34329,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-f531656c-16a7-4b43-94ec-6ff0420cbd1f",
       "result": "LOSS",
+      "opponent": "Hakkapeliitat",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13037,6 +34341,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-753abd61-37c0-49cc-ad2c-4e4110d401eb",
+      "result": "WIN",
+      "opponent": "Woo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "12 / 16",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-753abd61-37c0-49cc-ad2c-4e4110d401eb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fd399c0a-9838-4239-9e0e-45a0a32070e3",
+      "result": "LOSS",
+      "opponent": "IY Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fd399c0a-9838-4239-9e0e-45a0a32070e3",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-70b81523-fc15-43ce-a606-3b7250a8584b",
+      "result": "WIN",
+      "opponent": "eXORA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-70b81523-fc15-43ce-a606-3b7250a8584b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c575eb23-13aa-4b32-ac25-ada916daf6e6",
+      "result": "WIN",
+      "opponent": "VLUZAN TEAM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c575eb23-13aa-4b32-ac25-ada916daf6e6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-3e121dd5-ff05-40cd-b10c-93e56bb354b1",
+      "result": "WIN",
+      "opponent": "OldGuard",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-3e121dd5-ff05-40cd-b10c-93e56bb354b1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fa5c02fb-a0e2-496b-8d28-b0a01867fd5c",
+      "result": "WIN",
+      "opponent": "Le Prodigies",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fa5c02fb-a0e2-496b-8d28-b0a01867fd5c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-39a828aa-f6c1-4723-8e60-463f38c9c6c1",
+      "result": "WIN",
+      "opponent": "Timeless Dominance",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 6",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-39a828aa-f6c1-4723-8e60-463f38c9c6c1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-647618ac-49ac-4cde-899f-0b042af694d5",
+      "result": "LOSS",
+      "opponent": "GunRunners",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-647618ac-49ac-4cde-899f-0b042af694d5",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "m0nkeys": [
@@ -13045,6 +34493,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-ee82e71d-b59d-4602-925b-f6580bffcc90",
       "result": "LOSS",
+      "opponent": "MEPHI",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13069,6 +34518,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-598eba5f-12cd-4288-b5e0-d5c6e7a304d9",
       "result": "LOSS",
+      "opponent": "bezslez",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -13100,6 +34550,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-1720ab3b-d016-498b-ab2e-469676a8e423",
       "result": "LOSS",
+      "opponent": "egveitekki",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13117,6 +34568,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-a8bccdd9-e887-40db-9672-1783dd47ba7f",
       "result": "WIN",
+      "opponent": "5Access",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13134,6 +34586,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-bff5f4ae-6de2-46c5-bdb8-d641bdbc5768",
       "result": "WIN",
+      "opponent": "HooK Esport",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13145,6 +34598,168 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-475da735-8efb-4752-9bfc-f0b73b78b095",
+      "result": "LOSS",
+      "opponent": "IETT AKBIL",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-475da735-8efb-4752-9bfc-f0b73b78b095",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-3da702c5-c664-4fc8-b2bf-07eec4c21ffc",
+      "result": "LOSS",
+      "opponent": "ONYX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-3da702c5-c664-4fc8-b2bf-07eec4c21ffc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e7fdb495-d6e9-4ba2-b96e-0a385998f889",
+      "result": "WIN",
+      "opponent": "ANGRY BIRDS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "25 / 22",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e7fdb495-d6e9-4ba2-b96e-0a385998f889",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-582e1e5a-068d-4634-a72a-b27c31f7c251",
+      "result": "WIN",
+      "opponent": "jinX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "11 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-582e1e5a-068d-4634-a72a-b27c31f7c251",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e853b2cb-5501-492b-9609-3988f1dd6013",
+      "result": "LOSS",
+      "opponent": "4 pancerni i rudy",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e853b2cb-5501-492b-9609-3988f1dd6013",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-834dd2f5-e7e6-4a15-af59-d0ca873fad72",
+      "result": "WIN",
+      "opponent": "MUTANT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-834dd2f5-e7e6-4a15-af59-d0ca873fad72",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-54e6c552-6556-46f4-b6d8-cde10c7c62a9",
+      "result": "WIN",
+      "opponent": "SHADOWSTEP",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 8",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-54e6c552-6556-46f4-b6d8-cde10c7c62a9",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-77e5cbfa-c8e4-4b8d-b43d-8913a0fa5509",
+      "result": "LOSS",
+      "opponent": "jesudou",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-77e5cbfa-c8e4-4b8d-b43d-8913a0fa5509",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-94f21537-68ec-4ed0-a759-f2eea74e8976",
+      "result": "WIN",
+      "opponent": "Basileus",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "5 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-94f21537-68ec-4ed0-a759-f2eea74e8976",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "1minute": [
@@ -13153,6 +34768,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-0e8ba882-ae9c-43d4-96ae-149115c809db",
       "result": "LOSS",
+      "opponent": "Hakkapeliitat",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13177,6 +34793,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-f0d24044-c8c2-455a-830f-88011a8b766b",
       "result": "LOSS",
+      "opponent": "tuskem",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13201,6 +34818,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-aff3f33a-7617-48c5-aa6d-914321a6d679",
       "result": "WIN",
+      "opponent": "Nightmare Esports",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -13225,6 +34843,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-2f5c4226-c021-4d9d-af2b-a11ef8ca9fa5",
       "result": "LOSS",
+      "opponent": "Hakkapeliitat",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13242,6 +34861,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-18f247f7-3222-4d76-b917-a993a8640151",
       "result": "LOSS",
+      "opponent": "Kulbowicze",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13253,6 +34873,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-193d8634-5e8c-4489-ae54-17d1f62e48b2",
+      "result": "WIN",
+      "opponent": "DYMACZE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-193d8634-5e8c-4489-ae54-17d1f62e48b2",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d13cbad0-193b-4eb9-8d8a-865020972154",
+      "result": "LOSS",
+      "opponent": "Monolith eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d13cbad0-193b-4eb9-8d8a-865020972154",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fc96db9f-4d59-4ddf-8834-7e6a815ccb4c",
+      "result": "WIN",
+      "opponent": "Woo",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fc96db9f-4d59-4ddf-8834-7e6a815ccb4c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-95089f99-55f8-43d7-a9af-af5fc9eb00cf",
+      "result": "WIN",
+      "opponent": "5Pillars",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-95089f99-55f8-43d7-a9af-af5fc9eb00cf",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-45a916a5-f266-4d08-9651-3a85263389b8",
+      "result": "LOSS",
+      "opponent": "Nyxon",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "0 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-45a916a5-f266-4d08-9651-3a85263389b8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e77df112-d432-4491-9591-b5981a4f4bfb",
+      "result": "LOSS",
+      "opponent": "oldbutgold",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "19 / 22",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e77df112-d432-4491-9591-b5981a4f4bfb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7d14fc79-6c43-47df-9bc0-e506bfe27b5c",
+      "result": "WIN",
+      "opponent": "NOW ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7d14fc79-6c43-47df-9bc0-e506bfe27b5c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-9d166a46-83b8-4a79-8436-222905b0eb29",
+      "result": "WIN",
+      "opponent": "Yokai",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-9d166a46-83b8-4a79-8436-222905b0eb29",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-049cef24-e8a2-456d-a5f7-37263bebe37c",
+      "result": "WIN",
+      "opponent": "Gg Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-049cef24-e8a2-456d-a5f7-37263bebe37c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fb94a699-2964-4810-b598-16e56993eb20",
+      "result": "WIN",
+      "opponent": "OldGuard",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fb94a699-2964-4810-b598-16e56993eb20",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-d64af581-db70-461b-be47-08aa97aaa910",
+      "result": "WIN",
+      "opponent": "Ananaski",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "13 / 16",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-d64af581-db70-461b-be47-08aa97aaa910",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4684d619-1084-4d70-99be-3523f40b054d",
+      "result": "LOSS",
+      "opponent": "_NOVA_",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4684d619-1084-4d70-99be-3523f40b054d",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "only-gamers": [
@@ -13261,6 +35097,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-e7e12ced-5767-4639-8010-7f762b1877e9",
       "result": "LOSS",
+      "opponent": "NEW PROJECT",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13285,6 +35122,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-720834b0-40f4-4d83-a7d4-d4c42114a6b3",
       "result": "LOSS",
+      "opponent": "GLIPS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13309,6 +35147,7 @@ const matches = {
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-9a2cd8bc-b88d-459b-a633-bf3f2229eae2",
       "result": "WIN",
+      "opponent": "Tempest eSport",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -13333,6 +35172,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-a273cd99-ab51-48b1-a334-57b815fa1944",
       "result": "LOSS",
+      "opponent": "AUREX",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13350,6 +35190,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-a5c7cd95-5668-418c-942f-aff46d573695",
       "result": "WIN",
+      "opponent": "Hellforge",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13361,6 +35202,150 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-2ddb912a-0afe-4aaa-aee1-7593da6cf1f8",
+      "result": "LOSS",
+      "opponent": "Imbicile",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "2 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-2ddb912a-0afe-4aaa-aee1-7593da6cf1f8",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5800e437-19a0-4fea-92bf-dc6aa94c1e11",
+      "result": "WIN",
+      "opponent": "Potential CS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 8",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5800e437-19a0-4fea-92bf-dc6aa94c1e11",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5a1a2838-fb5d-4b3f-89c7-ac03d5370921",
+      "result": "WIN",
+      "opponent": "S0Ses EGORses",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5a1a2838-fb5d-4b3f-89c7-ac03d5370921",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-5c5cf1f9-f847-4a5b-96a2-70bedb699684",
+      "result": "LOSS",
+      "opponent": "Bloody Claw",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 10",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-5c5cf1f9-f847-4a5b-96a2-70bedb699684",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-04f3b600-0de4-4c8d-8fa5-419efed27959",
+      "result": "WIN",
+      "opponent": "gok amok flokken",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "8 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-04f3b600-0de4-4c8d-8fa5-419efed27959",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-4e646067-d144-40f0-8a60-ccdde6e27123",
+      "result": "WIN",
+      "opponent": "GiantJuicyPeach",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "12 / 16",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-4e646067-d144-40f0-8a60-ccdde6e27123",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e1fc9078-d23e-41ac-a952-c4fa0a6c3443",
+      "result": "LOSS",
+      "opponent": "UJNT Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 9",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e1fc9078-d23e-41ac-a952-c4fa0a6c3443",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-65ec45c0-7aab-4c0e-9200-5d4c896fdd02",
+      "result": "WIN",
+      "opponent": "ROTATE",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 7",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-65ec45c0-7aab-4c0e-9200-5d4c896fdd02",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "inputlag-enjoyers": [
@@ -13369,6 +35354,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-2e85cc52-bbbc-43b0-9f17-5e7369d66f11",
       "result": "LOSS",
+      "opponent": "JANO",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13393,6 +35379,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-4e43d3b7-0ae4-41ae-9c58-1053cd81ebb8",
       "result": "WIN",
+      "opponent": "Sabre Gaming",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -13424,6 +35411,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-8748096e-1e4d-4e3f-90f0-7795451ca8cf",
       "result": "LOSS",
+      "opponent": "homo_sapiens",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13448,6 +35436,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-bef00918-e7d1-40fd-acb0-e8746bcead98",
       "result": "WIN",
+      "opponent": "Cinder Legion",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13465,6 +35454,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-c645e7ad-878f-4b55-9c3e-f027dc6e15c4",
       "result": "LOSS",
+      "opponent": "Superskunk",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13476,6 +35466,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e83a1db3-7cf8-4a73-afd5-8476b4782d5c",
+      "result": "LOSS",
+      "opponent": "FC Famalicao NextGen",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "8 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e83a1db3-7cf8-4a73-afd5-8476b4782d5c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8718d6a5-5b5a-491a-959f-49444dc868d1",
+      "result": "LOSS",
+      "opponent": "jinX",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "1 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8718d6a5-5b5a-491a-959f-49444dc868d1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-c45068a5-6310-4ca8-8653-746c22f2d14e",
+      "result": "WIN",
+      "opponent": "Sviczi i koledzy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 2",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-c45068a5-6310-4ca8-8653-746c22f2d14e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-37bd71ac-3f3d-4b09-9918-329da7ce489c",
+      "result": "WIN",
+      "opponent": "4 pancerni i rudy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-37bd71ac-3f3d-4b09-9918-329da7ce489c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-a730e86b-b0b2-4908-bed0-b2ceb89dc132",
+      "result": "WIN",
+      "opponent": "Ikea Assembly Squad",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-a730e86b-b0b2-4908-bed0-b2ceb89dc132",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8b5900d1-d00e-4e26-b668-88a719f60189",
+      "result": "LOSS",
+      "opponent": "SHADOWSTEP",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "6 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8b5900d1-d00e-4e26-b668-88a719f60189",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-1f286c5b-95d0-4514-93ae-3e561b78f285",
+      "result": "LOSS",
+      "opponent": "CYBERCOM",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 7",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-1f286c5b-95d0-4514-93ae-3e561b78f285",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-6d58e811-7325-4723-9d83-c884ddee12d8",
+      "result": "WIN",
+      "opponent": "FurySense",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-6d58e811-7325-4723-9d83-c884ddee12d8",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-e3c40ea4-4f8b-4043-8692-b73ab613471d",
+      "result": "WIN",
+      "opponent": "CoverBack",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "10 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-e3c40ea4-4f8b-4043-8692-b73ab613471d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-1cb49076-6e1c-4030-9519-b5aed854c970",
+      "result": "WIN",
+      "opponent": "FiNKi",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "4 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-1cb49076-6e1c-4030-9519-b5aed854c970",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "justtag": [
@@ -13484,6 +35654,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-7cb30410-3be2-4e5a-a248-a7118d421fb8",
       "result": "LOSS",
+      "opponent": "kaksoispisteDEE",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13508,6 +35679,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a0829271-f9a5-4ab6-939f-770728038ae1",
       "result": "WIN",
+      "opponent": "KageN",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -13539,6 +35711,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-9f4c2c2c-0a85-4d84-8f38-b3ebf47e9abb",
       "result": "LOSS",
+      "opponent": "sg-prospect",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13563,6 +35736,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-99dc926e-4444-4321-b478-0b6200cb2f1b",
       "result": "WIN",
+      "opponent": "aeterna reload",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13580,6 +35754,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-aa7898d9-7452-448c-bbdd-244b1bd4216d",
       "result": "LOSS",
+      "opponent": "IY Team",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13591,6 +35766,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-2272c3dd-032c-4071-9757-52d1ea762112",
+      "result": "WIN",
+      "opponent": "PEST E-SPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "16 / 14",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-2272c3dd-032c-4071-9757-52d1ea762112",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-91d2c2a1-f731-466c-8ab6-5ecb31b4b063",
+      "result": "WIN",
+      "opponent": "JUNCK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-91d2c2a1-f731-466c-8ab6-5ecb31b4b063",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e7661164-61cd-46f8-8599-5ed4157253d7",
+      "result": "WIN",
+      "opponent": "Unity Eclipse",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e7661164-61cd-46f8-8599-5ed4157253d7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-045f96a9-8b10-40d8-b29c-f37814089c13",
+      "result": "LOSS",
+      "opponent": "Nightmare Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 4",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-045f96a9-8b10-40d8-b29c-f37814089c13",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e8f0d815-91f5-41e0-8889-a423f34fbdfb",
+      "result": "LOSS",
+      "opponent": "narcs",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e8f0d815-91f5-41e0-8889-a423f34fbdfb",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-8d8b4237-73a0-4d45-9b34-8b661e0ae03f",
+      "result": "WIN",
+      "opponent": "MNE ZHARKO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-24",
+          "score": "19 / 17",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-8d8b4237-73a0-4d45-9b34-8b661e0ae03f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b64c67a6-efe9-4d3c-8557-d0544a90f661",
+      "result": "LOSS",
+      "opponent": "one By one",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b64c67a6-efe9-4d3c-8557-d0544a90f661",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-23af3e95-f6a5-4560-94a9-a8f00617fb64",
+      "result": "LOSS",
+      "opponent": "NoTime",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-23af3e95-f6a5-4560-94a9-a8f00617fb64",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-39c113f1-c32d-4a00-ae26-1d113ff68194",
+      "result": "WIN",
+      "opponent": "Friends Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "14 / 16",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-39c113f1-c32d-4a00-ae26-1d113ff68194",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-406efe9a-05f8-40f8-a7d3-9e66d2724cc1",
+      "result": "WIN",
+      "opponent": "Hopealuoti",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "10 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-406efe9a-05f8-40f8-a7d3-9e66d2724cc1",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "leetcase": [
@@ -13599,6 +35954,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-78d06247-b4d5-4778-85bb-0ea6eb04a5f8",
       "result": "LOSS",
+      "opponent": "GO5Y",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13623,6 +35979,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-593b8312-ab8c-4dfc-9a99-856ee95f23d9",
       "result": "WIN",
+      "opponent": "CISfpl",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -13647,6 +36004,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-2c02ffe6-09cb-4e5a-9fbd-683d46069eba",
       "result": "WIN",
+      "opponent": "CERBERUS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -13671,6 +36029,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-6edf7db6-99be-4425-84e8-c45eda288008",
       "result": "WIN",
+      "opponent": "Hakkapeliitat",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -13702,6 +36061,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-dc7cd40c-0d09-4bf6-b472-dd63de25c58a",
       "result": "LOSS",
+      "opponent": "Monolith eSports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13713,14 +36073,220 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-2d4783f9-55c8-4888-a7e2-281e7082ef26",
+      "result": "WIN",
+      "opponent": "FUSION",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 6",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-2d4783f9-55c8-4888-a7e2-281e7082ef26",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-428b00c3-0832-4927-af4f-6f06fa21b2c2",
+      "result": "LOSS",
+      "opponent": "pivstar",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-428b00c3-0832-4927-af4f-6f06fa21b2c2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-25afead4-e219-458f-8d6e-5071a2a5420c",
+      "result": "WIN",
+      "opponent": "one By one",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-25afead4-e219-458f-8d6e-5071a2a5420c",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ac535843-dba9-47a3-9f9d-209381fb03a3",
+      "result": "WIN",
+      "opponent": "WMYRD9K-CIS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ac535843-dba9-47a3-9f9d-209381fb03a3",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-38411ef8-cdb9-4db8-bb15-996835b44940",
+      "result": "WIN",
+      "opponent": "5Pillars",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-38411ef8-cdb9-4db8-bb15-996835b44940",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c1cc69d0-edf1-4451-9757-debb0cad2b9c",
+      "result": "LOSS",
+      "opponent": "Equinox",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c1cc69d0-edf1-4451-9757-debb0cad2b9c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-74b72ce3-e037-41af-a547-af2e82a4b744",
+      "result": "LOSS",
+      "opponent": "NoTime",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-74b72ce3-e037-41af-a547-af2e82a4b744",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c45e01d3-0462-4c23-ab74-89175ce7be23",
+      "result": "WIN",
+      "opponent": "GameGend",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c45e01d3-0462-4c23-ab74-89175ce7be23",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e88cdb22-703d-4168-b7c2-1f85bdccd3fc",
+      "result": "WIN",
+      "opponent": "Outsiders",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e88cdb22-703d-4168-b7c2-1f85bdccd3fc",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-396f16fb-70ba-4ec2-9421-acd1332c50d8",
+      "result": "WIN",
+      "opponent": "Team LEGION",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-396f16fb-70ba-4ec2-9421-acd1332c50d8",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "w1nks": [
+    {
+      "date": "2026-05-28",
+      "season": "S57 EU Entry D - Playoffs",
+      "matchId": "1-fbcc5ca7-d902-4d5f-8232-522354181b75",
+      "result": "LOSS",
+      "opponent": "NUDA-----",
+      "boScore": "0-2",
+      "mapsPlayed": 2,
+      "maps": [
+        {
+          "date": "2026-05-28",
+          "score": "13 / 11",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-fbcc5ca7-d902-4d5f-8232-522354181b75",
+          "result": "LOSS"
+        },
+        {
+          "date": "2026-05-28",
+          "score": "13 / 6",
+          "season": "S57 EU Entry D - Playoffs",
+          "matchId": "1-fbcc5ca7-d902-4d5f-8232-522354181b75",
+          "result": "LOSS"
+        }
+      ]
+    },
     {
       "date": "2026-05-26",
       "season": "S57 EU Entry D - Playoffs",
       "matchId": "1-2be4e741-fc0e-44ed-b788-a292149caae6",
       "result": "LOSS",
+      "opponent": "shqcore",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13745,6 +36311,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-29e6665d-584b-4eab-9e4d-03ae44ea6b90",
       "result": "WIN",
+      "opponent": "MUWFIX",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13762,6 +36329,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-cf160ae6-1580-4868-8d09-808f6a94bfaa",
       "result": "WIN",
+      "opponent": "VISION E-SPORT",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13779,6 +36347,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-230d312b-c263-48a7-85d6-df5c17454433",
       "result": "LOSS",
+      "opponent": "Spryzen Team",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13796,6 +36365,7 @@ const matches = {
       "season": "S57 EU Entry D - Regular Season",
       "matchId": "1-6397dc2d-0f0d-47e2-9899-1d14320d2cb5",
       "result": "WIN",
+      "opponent": "Terreno Gioco",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13807,6 +36377,186 @@ const matches = {
           "result": "WIN"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-39b18c1c-507f-4585-9984-eb7064304f7c",
+      "result": "LOSS",
+      "opponent": "Ha ncuxoTPonHblx",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "3 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-39b18c1c-507f-4585-9984-eb7064304f7c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-817efa0e-27ce-4f77-9ca8-4fbd68251ea6",
+      "result": "LOSS",
+      "opponent": "Wandenreich",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 4",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-817efa0e-27ce-4f77-9ca8-4fbd68251ea6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-89490970-605a-4ee3-a82e-d19afd8bad91",
+      "result": "WIN",
+      "opponent": "Ivor CS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-89490970-605a-4ee3-a82e-d19afd8bad91",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-03cac2ac-f79b-40e9-a8c3-cc6c3efcb803",
+      "result": "WIN",
+      "opponent": "Organization Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-03cac2ac-f79b-40e9-a8c3-cc6c3efcb803",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-59e77320-a26f-4ecc-ac8d-3c1c34866af7",
+      "result": "WIN",
+      "opponent": "ArcMonkey",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "4 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-59e77320-a26f-4ecc-ac8d-3c1c34866af7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e53c0fcc-782b-485d-91df-77b0928c2b52",
+      "result": "WIN",
+      "opponent": "CMT Prems",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 5",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e53c0fcc-782b-485d-91df-77b0928c2b52",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-46fa5449-3cc0-455b-b830-307d0e5c4cb6",
+      "result": "LOSS",
+      "opponent": "NUDA-----",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "10 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-46fa5449-3cc0-455b-b830-307d0e5c4cb6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-fe0a311a-37b1-4ac0-9db7-8b88b9f2016e",
+      "result": "LOSS",
+      "opponent": "Team Rocket",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "19 / 15",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-fe0a311a-37b1-4ac0-9db7-8b88b9f2016e",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-e90d8c79-f01d-4c6d-9ad3-e6330d81edc6",
+      "result": "LOSS",
+      "opponent": "Neds",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "6 / 13",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-e90d8c79-f01d-4c6d-9ad3-e6330d81edc6",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry D - Regular Season",
+      "matchId": "1-ced81007-9f43-44c7-a3a9-36ce463bee31",
+      "result": "WIN",
+      "opponent": "NEW PROJECT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "16 / 14",
+          "season": "S57 EU Entry D - Regular Season",
+          "matchId": "1-ced81007-9f43-44c7-a3a9-36ce463bee31",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "bestaimmers": [
@@ -13815,6 +36565,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a162f409-5ef6-47bd-a272-217deba3b87c",
       "result": "LOSS",
+      "opponent": "Hakkapeliitat",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13839,6 +36590,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-cf272cd8-d7c2-468e-8e81-44738869f455",
       "result": "LOSS",
+      "opponent": "CERBERUS",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -13863,6 +36615,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-b2aa8de6-475f-42be-9cb5-2a4f45e6d257",
       "result": "WIN",
+      "opponent": "KANNGU RED",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13880,6 +36633,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-20e413c8-e457-4658-b62a-0986833bb084",
       "result": "WIN",
+      "opponent": "Le Prodigies",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -13897,6 +36651,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-a2c5fa51-f928-4b83-b7c5-8af4cd1cad02",
       "result": "LOSS",
+      "opponent": "GLAZE",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13908,6 +36663,132 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e81e88c4-cb32-4c6f-9e3a-064b69eaa4ba",
+      "result": "LOSS",
+      "opponent": "The Relics",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e81e88c4-cb32-4c6f-9e3a-064b69eaa4ba",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ed1b0e27-afaa-4394-afa6-e5ed41c73836",
+      "result": "WIN",
+      "opponent": "99p",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ed1b0e27-afaa-4394-afa6-e5ed41c73836",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-6c1a495f-3314-4484-aa87-588035ef4505",
+      "result": "LOSS",
+      "opponent": "CFS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-6c1a495f-3314-4484-aa87-588035ef4505",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ec06c1ec-d1f5-4567-b991-6ec14eb658af",
+      "result": "WIN",
+      "opponent": "100PingGods",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ec06c1ec-d1f5-4567-b991-6ec14eb658af",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7705d066-9fa8-43d8-860e-bc346f26d34f",
+      "result": "WIN",
+      "opponent": "Tilters",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7705d066-9fa8-43d8-860e-bc346f26d34f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e9fc31a8-86bd-43ef-8a14-cbf3790328cd",
+      "result": "LOSS",
+      "opponent": "Czokapiki",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e9fc31a8-86bd-43ef-8a14-cbf3790328cd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-9187d102-a998-40b1-9901-f7ed0c698998",
+      "result": "LOSS",
+      "opponent": "WMYRD9K-CIS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-9187d102-a998-40b1-9901-f7ed0c698998",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "the-relics": [
@@ -13916,6 +36797,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-156050bd-c12f-4c6c-81ac-37e1ceafff8e",
       "result": "WIN",
+      "opponent": "Woo",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -13947,6 +36829,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-5f6fb89f-a002-4805-b6ec-7c89b6965477",
       "result": "LOSS",
+      "opponent": "Kulbowicze",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -13978,6 +36861,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-2b0bdbbf-9b77-4b99-8f3d-d3294d7f1c2a",
       "result": "LOSS",
+      "opponent": "Eclipse eSports",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -13995,6 +36879,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-c0f02a4d-494c-4350-8f65-f39f05a25c71",
       "result": "WIN",
+      "opponent": "Team Pulsar",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14012,6 +36897,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-4cd72d02-234a-49be-be69-113dab821878",
       "result": "LOSS",
+      "opponent": "pivstar",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14023,6 +36909,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b1f7bcf6-fa3d-4ee4-bfb5-65a993567b0d",
+      "result": "WIN",
+      "opponent": "Magnolia",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b1f7bcf6-fa3d-4ee4-bfb5-65a993567b0d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-7748b4c9-17b2-445d-955c-317353050968",
+      "result": "WIN",
+      "opponent": "Le Prodigies",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-7748b4c9-17b2-445d-955c-317353050968",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e81e88c4-cb32-4c6f-9e3a-064b69eaa4ba",
+      "result": "WIN",
+      "opponent": "bestAIMMERS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e81e88c4-cb32-4c6f-9e3a-064b69eaa4ba",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-ed2d2109-2435-4c41-8f0a-f290f434d061",
+      "result": "LOSS",
+      "opponent": "100PingGods",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-ed2d2109-2435-4c41-8f0a-f290f434d061",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-acced4ca-b488-4a60-8b42-24f04c659779",
+      "result": "WIN",
+      "opponent": "OPIT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "6 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-acced4ca-b488-4a60-8b42-24f04c659779",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-8efd3903-9c5d-4f70-876a-14bf4a1a649d",
+      "result": "LOSS",
+      "opponent": "FUSION",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-8efd3903-9c5d-4f70-876a-14bf4a1a649d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-2b6d7bb7-9c22-44ef-b5c7-7c6291cca3e6",
+      "result": "WIN",
+      "opponent": "Team LEGION",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "5 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-2b6d7bb7-9c22-44ef-b5c7-7c6291cca3e6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-64b2011c-8a35-4b77-ba51-e0dc654087b7",
+      "result": "WIN",
+      "opponent": "MVPs",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-64b2011c-8a35-4b77-ba51-e0dc654087b7",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-fb562cd2-8a8f-4969-9dd2-1ad096fe78fd",
+      "result": "LOSS",
+      "opponent": "Nightmare Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-fb562cd2-8a8f-4969-9dd2-1ad096fe78fd",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-58b95496-c61c-4bfb-95e9-5717a01bb6ec",
+      "result": "LOSS",
+      "opponent": "KCIUKI ALIEGO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "10 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-58b95496-c61c-4bfb-95e9-5717a01bb6ec",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "kagen": [
@@ -14031,6 +37097,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-a0829271-f9a5-4ab6-939f-770728038ae1",
       "result": "LOSS",
+      "opponent": "JustTag",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14062,6 +37129,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-26e07acc-be42-4f88-b370-af5e0a62e870",
       "result": "LOSS",
+      "opponent": "FATE",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -14086,6 +37154,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-45a7b4bf-485a-48c3-beff-55d3c6a87914",
       "result": "WIN",
+      "opponent": "Gg Esports",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14103,6 +37172,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-6f3f1aa8-1b7d-4fc9-8c4c-82b12117ce27",
       "result": "LOSS",
+      "opponent": "100PingGods",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14120,6 +37190,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-04c8f226-969b-429f-8ee6-134c788c2967",
       "result": "LOSS",
+      "opponent": "top5forbes",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14131,6 +37202,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4245e96c-5278-4047-a631-4b3ffd04df8a",
+      "result": "WIN",
+      "opponent": "La Puentes Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4245e96c-5278-4047-a631-4b3ffd04df8a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-a8f41dd6-274f-4e1e-bbb0-af668508a6ce",
+      "result": "WIN",
+      "opponent": "NOW ESPORT",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-a8f41dd6-274f-4e1e-bbb0-af668508a6ce",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-afc6174d-4002-4130-8639-0d1fc66d3579",
+      "result": "WIN",
+      "opponent": "Klan Na Drzewie",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "7 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-afc6174d-4002-4130-8639-0d1fc66d3579",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-6c0f49cf-1b78-4449-b551-d902f50c776d",
+      "result": "WIN",
+      "opponent": "MGL Esports",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-6c0f49cf-1b78-4449-b551-d902f50c776d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c4aeb25f-6f17-403d-bcac-5b4d682ea6e0",
+      "result": "WIN",
+      "opponent": "_NOVA_",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 5",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c4aeb25f-6f17-403d-bcac-5b4d682ea6e0",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-cf20bbfb-476f-40bf-ae78-7c92d8d937aa",
+      "result": "LOSS",
+      "opponent": "MVPs",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-cf20bbfb-476f-40bf-ae78-7c92d8d937aa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-030cd33a-48f3-42ef-8e81-a1501faddd7b",
+      "result": "LOSS",
+      "opponent": "mamma mia",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 16",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-030cd33a-48f3-42ef-8e81-a1501faddd7b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-65bd5987-9fbb-48b7-ab08-e79a498f2982",
+      "result": "LOSS",
+      "opponent": "DYMACZE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "3 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-65bd5987-9fbb-48b7-ab08-e79a498f2982",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-de1fa32d-abb9-4033-bd37-5bbd342c185d",
+      "result": "LOSS",
+      "opponent": "MNE ZHARKO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-de1fa32d-abb9-4033-bd37-5bbd342c185d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-bc813821-fbf9-439e-bc59-3b1d8513e618",
+      "result": "WIN",
+      "opponent": "eXORA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-bc813821-fbf9-439e-bc59-3b1d8513e618",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "back2back": [
@@ -14139,6 +37390,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-91c6b866-a0fa-4e94-ac8e-b02b03c9a110",
       "result": "LOSS",
+      "opponent": "Polskie Bagno",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14170,6 +37422,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-d50ea5fe-2406-4796-a241-fe93d724975d",
       "result": "WIN",
+      "opponent": "POSLE ZAVODA",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -14201,6 +37454,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-93a3a5fb-3859-482a-b617-c383afae0f52",
       "result": "LOSS",
+      "opponent": "FROSTBITE",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14232,6 +37486,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-28585d59-fa48-4fe6-a381-99544f99acb4",
       "result": "WIN",
+      "opponent": "PAPS eSport",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -14263,6 +37518,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-43d577cf-d330-41c2-a6b2-2e0137142678",
       "result": "LOSS",
+      "opponent": "LUDOMANI",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14274,6 +37530,186 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e58fb2ed-0791-4d9b-a13e-f11894da46ca",
+      "result": "WIN",
+      "opponent": "avg80kg",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e58fb2ed-0791-4d9b-a13e-f11894da46ca",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4e6236ba-71d5-4dca-a428-2c93bb90c805",
+      "result": "WIN",
+      "opponent": "ugounderme",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "2 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4e6236ba-71d5-4dca-a428-2c93bb90c805",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-59531361-f690-432f-9090-10de48176d6b",
+      "result": "WIN",
+      "opponent": "NVMEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 5",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-59531361-f690-432f-9090-10de48176d6b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-443de8fd-4a45-43af-857e-ff7a6d0aa45d",
+      "result": "WIN",
+      "opponent": "Razor",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "16 / 12",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-443de8fd-4a45-43af-857e-ff7a6d0aa45d",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-3061ec29-8a48-4ce0-ac86-f93c8f67dbfa",
+      "result": "WIN",
+      "opponent": "AXEN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "3 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-3061ec29-8a48-4ce0-ac86-f93c8f67dbfa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4a580848-a2fb-40c5-ac99-e1d45cf7852b",
+      "result": "LOSS",
+      "opponent": "Collapse Gaming",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "4 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4a580848-a2fb-40c5-ac99-e1d45cf7852b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-d340c086-fa2d-492d-8593-1a14801a6e28",
+      "result": "LOSS",
+      "opponent": "Viseria",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-d340c086-fa2d-492d-8593-1a14801a6e28",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-90364f2f-8dd7-4207-9151-3c4f143b2958",
+      "result": "WIN",
+      "opponent": "Red Rebels",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 8",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-90364f2f-8dd7-4207-9151-3c4f143b2958",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-c3d677fc-c726-49e1-8297-fa1b4e8918a4",
+      "result": "WIN",
+      "opponent": "Chivapsiki",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 8",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-c3d677fc-c726-49e1-8297-fa1b4e8918a4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-dbde143c-9d6a-45e3-a816-056f1ca711db",
+      "result": "LOSS",
+      "opponent": "666clan",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-dbde143c-9d6a-45e3-a816-056f1ca711db",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "full-dobro": [
@@ -14282,6 +37718,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-3526966f-5a1f-44b0-9ef1-e766e527c300",
       "result": "LOSS",
+      "opponent": "Nightmare Esports",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14313,6 +37750,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-8dbb50df-63b3-42f5-879e-7b0c0901ff13",
       "result": "LOSS",
+      "opponent": "tuskem",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -14337,6 +37775,7 @@ const matches = {
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-634d3d15-f695-472b-9c79-c5438e2b508d",
       "result": "WIN",
+      "opponent": "VLUZAN TEAM",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14350,10 +37789,29 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-60e47022-c744-4a33-89f4-9ec04c6f0ffd",
+      "result": "WIN",
+      "opponent": "Wolves Hill",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-60e47022-c744-4a33-89f4-9ec04c6f0ffd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-05-11",
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-83ef69ad-7281-4202-84d4-97bb535593dd",
       "result": "WIN",
+      "opponent": "Friends Team",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14367,10 +37825,65 @@ const matches = {
       ]
     },
     {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-64351376-71a0-4c35-b392-58d8521326da",
+      "result": "LOSS",
+      "opponent": "Woo",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-64351376-71a0-4c35-b392-58d8521326da",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-6d5689c4-01db-4550-9f68-eb6ece59de0d",
+      "result": "LOSS",
+      "opponent": "parise46",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-01",
+          "score": "13 / 8",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-6d5689c4-01db-4550-9f68-eb6ece59de0d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-bd01be93-ea30-4089-ae42-24d8cdbb23af",
+      "result": "WIN",
+      "opponent": "Team Pulse",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 6",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-bd01be93-ea30-4089-ae42-24d8cdbb23af",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
       "date": "2026-04-15",
       "season": "S57 EU Entry A - Regular Season",
       "matchId": "1-b306946c-9bf3-48bd-b9e8-68ddd2be9bf1",
       "result": "LOSS",
+      "opponent": "UraT",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14382,6 +37895,42 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-4ec9b0ba-1205-46b9-8e2c-b97ef4955ab4",
+      "result": "LOSS",
+      "opponent": "OPIT",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "10 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-4ec9b0ba-1205-46b9-8e2c-b97ef4955ab4",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c434c856-83ed-4e36-89bc-ad4350b2f10e",
+      "result": "LOSS",
+      "opponent": "pivstar",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "20 / 22",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c434c856-83ed-4e36-89bc-ad4350b2f10e",
+          "result": "LOSS"
+        }
+      ]
     }
   ],
   "ronin": [
@@ -14390,6 +37939,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-18dd1dd5-61d2-42dc-96eb-23d40fa25efb",
       "result": "LOSS",
+      "opponent": "Monolith eSports",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -14414,6 +37964,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-62d354da-ed70-46ea-8c94-2c6efbfa311a",
       "result": "WIN",
+      "opponent": "sg-prospect",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14438,6 +37989,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-08d6b5ab-9d11-4119-bcc1-089a03cb769a",
       "result": "WIN",
+      "opponent": "Echo Unit",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14462,6 +38014,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-74e3fd73-9682-4506-8c57-c15ef2b50f8c",
       "result": "WIN",
+      "opponent": "Outsiders",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14486,6 +38039,7 @@ const matches = {
       "season": "S57 EU Entry A - Playoffs",
       "matchId": "1-0014521f-bf92-4a8d-a589-aec807b83fc6",
       "result": "LOSS",
+      "opponent": "depreso reborn",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -14504,6 +38058,240 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-21",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-15b9f5f1-dd98-44c6-949b-dda59093acbc",
+      "result": "LOSS",
+      "opponent": "MVPs",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-21",
+          "score": "13 / 7",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-15b9f5f1-dd98-44c6-949b-dda59093acbc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-abb6205e-cfea-4e36-a64e-faf44b9f0cde",
+      "result": "LOSS",
+      "opponent": "FUSION",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "4 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-abb6205e-cfea-4e36-a64e-faf44b9f0cde",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-b390643c-869a-4045-aaf2-30b88101010b",
+      "result": "LOSS",
+      "opponent": "KDA Team",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 2",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-b390643c-869a-4045-aaf2-30b88101010b",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-dd2eb906-516c-4c65-a6df-fffada3425bc",
+      "result": "LOSS",
+      "opponent": "WROTBERRY",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "16 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-dd2eb906-516c-4c65-a6df-fffada3425bc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-04b13544-b4c9-4149-b671-47f2139888f4",
+      "result": "WIN",
+      "opponent": "TN1GHT Clan",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "9 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-04b13544-b4c9-4149-b671-47f2139888f4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-5aa9fcad-c2e3-49c3-af23-9e3a2eb8a1dd",
+      "result": "WIN",
+      "opponent": "Equinox",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-5aa9fcad-c2e3-49c3-af23-9e3a2eb8a1dd",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-63f21f7c-9006-4c16-926a-913bc7f64809",
+      "result": "LOSS",
+      "opponent": "DYMACZE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "11 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-63f21f7c-9006-4c16-926a-913bc7f64809",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-70fc7826-cb93-44ca-8417-6096c7305307",
+      "result": "WIN",
+      "opponent": "Hakkapeliitat",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 3",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-70fc7826-cb93-44ca-8417-6096c7305307",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-60374c9a-4c43-4302-b23a-9ff7418aefac",
+      "result": "LOSS",
+      "opponent": "KLG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-60374c9a-4c43-4302-b23a-9ff7418aefac",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-8e5b59d2-d35c-4c3f-9a8d-c3acf60de704",
+      "result": "WIN",
+      "opponent": "Klan Na Drzewie",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "13 / 9",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-8e5b59d2-d35c-4c3f-9a8d-c3acf60de704",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-0801916e-9db2-4d2f-9ec2-8a3fb90eb98b",
+      "result": "WIN",
+      "opponent": "IY Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 11",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-0801916e-9db2-4d2f-9ec2-8a3fb90eb98b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-e986c2e1-31e7-4eef-bd43-ae82f776e608",
+      "result": "LOSS",
+      "opponent": "Unity Eclipse",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-e986c2e1-31e7-4eef-bd43-ae82f776e608",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry A - Regular Season",
+      "matchId": "1-c9ca2f2d-a930-43f6-b1a6-7cab427db829",
+      "result": "WIN",
+      "opponent": "Friends Team",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "8 / 13",
+          "season": "S57 EU Entry A - Regular Season",
+          "matchId": "1-c9ca2f2d-a930-43f6-b1a6-7cab427db829",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "emlight": [
@@ -14512,6 +38300,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-f558fc0a-9453-40dd-8b30-d771d5b01fb9",
       "result": "LOSS",
+      "opponent": "s_chilla academy",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14543,6 +38332,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-c086eff8-f09a-43db-ada2-83c5d587c998",
       "result": "LOSS",
+      "opponent": "PitStopCrew",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14574,6 +38364,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-ce0aafaf-1fda-4f21-819f-23c8f1543ba9",
       "result": "WIN",
+      "opponent": "RAG3",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14591,6 +38382,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-172ed51d-2c42-4642-a57b-3f6e4a23887b",
       "result": "LOSS",
+      "opponent": "Do Chrzanu",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14608,6 +38400,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-4ee266db-9153-4784-924b-9a1176de9ea3",
       "result": "LOSS",
+      "opponent": "NINJA-PJATK",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14619,6 +38412,150 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-d6b67cb1-2b33-40b7-a8c1-629b27db80a9",
+      "result": "LOSS",
+      "opponent": "AVANTI",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 5",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-d6b67cb1-2b33-40b7-a8c1-629b27db80a9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4471a38c-934a-418a-be6a-0dac91d4979a",
+      "result": "LOSS",
+      "opponent": "Iskallt",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 7",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4471a38c-934a-418a-be6a-0dac91d4979a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e2804bfa-669a-4bd8-baa7-2b6a8c6512d1",
+      "result": "WIN",
+      "opponent": "Final Rise",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e2804bfa-669a-4bd8-baa7-2b6a8c6512d1",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-a8eea611-6de8-479d-9dde-b5dbe07c693c",
+      "result": "LOSS",
+      "opponent": "LES ZINZINS",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "16 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-a8eea611-6de8-479d-9dde-b5dbe07c693c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-684bff5c-c9f9-48f9-9a98-262b4b0b5c74",
+      "result": "WIN",
+      "opponent": "s_chilla academy",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 9",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-684bff5c-c9f9-48f9-9a98-262b4b0b5c74",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-84c97c25-d4e5-47e1-8228-a4b406420521",
+      "result": "LOSS",
+      "opponent": "PitStopCrew",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-84c97c25-d4e5-47e1-8228-a4b406420521",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-956949dd-d509-464d-b0e9-dcb1fc2c78c1",
+      "result": "LOSS",
+      "opponent": "PAPS eSport",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-13",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-956949dd-d509-464d-b0e9-dcb1fc2c78c1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-5961f91e-2726-41a2-8b12-2b6ebe19d4ee",
+      "result": "WIN",
+      "opponent": "Barraco",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "9 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-5961f91e-2726-41a2-8b12-2b6ebe19d4ee",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "hodes": [
@@ -14627,6 +38564,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-d36c76ca-d200-4386-bf3f-545ac19960d7",
       "result": "LOSS",
+      "opponent": "MyHUD",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14658,6 +38596,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-0d4aff27-d69a-4ce1-a95f-0f46d0911647",
       "result": "LOSS",
+      "opponent": "PitStopCrew",
       "boScore": "1-1",
       "mapsPlayed": 2,
       "maps": [
@@ -14682,6 +38621,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-e2fa31f9-3ff6-4479-a886-e4c133602d10",
       "result": "WIN",
+      "opponent": "NINJA-PJATK",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14706,6 +38646,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-00e7cd0d-e4b1-4c5e-8315-1783fc4a8fa3",
       "result": "WIN",
+      "opponent": "SLY",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14730,6 +38671,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-9fa9022e-0780-42ef-a7d8-274f6d28fedc",
       "result": "LOSS",
+      "opponent": "Loodnica",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14741,6 +38683,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-b5474004-3fff-4888-99f3-93a853b30169",
+      "result": "WIN",
+      "opponent": "PAPS eSport",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "13 / 11",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-b5474004-3fff-4888-99f3-93a853b30169",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-00d82bb4-a30b-4db2-9085-2321c64a30f5",
+      "result": "WIN",
+      "opponent": "ZYNX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "2 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-00d82bb4-a30b-4db2-9085-2321c64a30f5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-a3da1a15-b99e-4e10-8cd5-9508665de2c1",
+      "result": "LOSS",
+      "opponent": "Drama eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-06",
+          "score": "13 / 3",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-a3da1a15-b99e-4e10-8cd5-9508665de2c1",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
+      "result": "LOSS",
+      "opponent": "WeClear",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 1",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
+      "result": "WIN",
+      "opponent": "Rejected By ALL",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-bac4d834-ab5d-42c6-a0e1-f2ebbd7723ce",
+      "result": "WIN",
+      "opponent": "SNUS LVL 10",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "8 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-bac4d834-ab5d-42c6-a0e1-f2ebbd7723ce",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-9f5a0d36-914b-4cdd-9a9b-fcadf50a432f",
+      "result": "WIN",
+      "opponent": "Importants",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-9f5a0d36-914b-4cdd-9a9b-fcadf50a432f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-7bf61e95-c9b6-49f5-8849-07014b075432",
+      "result": "WIN",
+      "opponent": "Stubborn Boys",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "10 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-7bf61e95-c9b6-49f5-8849-07014b075432",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-44155baa-b547-4ec0-b320-0baa829cf8aa",
+      "result": "WIN",
+      "opponent": "Collapse Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-44155baa-b547-4ec0-b320-0baa829cf8aa",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e1382ee8-a53e-4234-9c82-43d5a7212252",
+      "result": "WIN",
+      "opponent": "NINJA-PJATK",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "4 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e1382ee8-a53e-4234-9c82-43d5a7212252",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-a2cfe1b7-eff8-4dca-9a92-f1d57befac93",
+      "result": "WIN",
+      "opponent": "BiNGAME",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "3 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-a2cfe1b7-eff8-4dca-9a92-f1d57befac93",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-49995ee4-f76e-4323-a89a-6b96ce265c4b",
+      "result": "WIN",
+      "opponent": "CTO",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-49995ee4-f76e-4323-a89a-6b96ce265c4b",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "flame-guardians": [
@@ -14749,6 +38907,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-a15bfe7f-a58a-4d86-8a5b-547fc3a385c2",
       "result": "LOSS",
+      "opponent": "printer",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -14780,6 +38939,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-8ecafb0b-351a-4efa-8cd4-38c859aa9d74",
       "result": "LOSS",
+      "opponent": "Nordic Valor",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -14804,6 +38964,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Playoffs",
       "matchId": "1-be80878d-5584-44f8-b135-1cd82abe61e2",
       "result": "WIN",
+      "opponent": "Twins",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -14835,6 +38996,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-7222af66-85cd-45cb-9405-8ef5181a69a5",
       "result": "WIN",
+      "opponent": "FatePredict",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -14852,6 +39014,7 @@ const matches = {
       "season": "S57 EU Intermediate C - Regular Season",
       "matchId": "1-fc6d0b07-e7fd-4d11-b224-752304d3922c",
       "result": "LOSS",
+      "opponent": "picburgLV",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14863,6 +39026,222 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-87f875f4-866b-43b6-b681-62bc1175c831",
+      "result": "WIN",
+      "opponent": "4A1C",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-14",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-87f875f4-866b-43b6-b681-62bc1175c831",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-7df50068-36b4-4ad1-9a8e-34d1c4ddf4fc",
+      "result": "LOSS",
+      "opponent": "Twins",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-12",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-7df50068-36b4-4ad1-9a8e-34d1c4ddf4fc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-a0d2a3f3-0627-4789-a29c-7aa8a337962c",
+      "result": "LOSS",
+      "opponent": "4ztankuamiley",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-07",
+          "score": "16 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-a0d2a3f3-0627-4789-a29c-7aa8a337962c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-d5fe994c-732e-4f8d-ae6b-b06c8a00d482",
+      "result": "WIN",
+      "opponent": "Bad Beavers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-d5fe994c-732e-4f8d-ae6b-b06c8a00d482",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-87cf5784-08f2-4c31-9371-ac1033a2c1d2",
+      "result": "LOSS",
+      "opponent": "ProjectVapourGG",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "10 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-87cf5784-08f2-4c31-9371-ac1033a2c1d2",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-80a8d1b4-c584-4064-8c0e-c8abbac8410d",
+      "result": "LOSS",
+      "opponent": "SELFMADE",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-28",
+          "score": "13 / 16",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-80a8d1b4-c584-4064-8c0e-c8abbac8410d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-324f6677-1b29-45f4-b6ce-336ba720c67c",
+      "result": "LOSS",
+      "opponent": "DarkAces",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "6 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-324f6677-1b29-45f4-b6ce-336ba720c67c",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-72ce206b-8bad-4728-9d32-4c2ec42ea969",
+      "result": "WIN",
+      "opponent": "JYNKKA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "3 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-72ce206b-8bad-4728-9d32-4c2ec42ea969",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-cb1b7e35-d7d4-43c5-a516-752830bad2f5",
+      "result": "WIN",
+      "opponent": "Deorum",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "13 / 10",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-cb1b7e35-d7d4-43c5-a516-752830bad2f5",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-61c8654b-7b60-4ec8-99a7-dee8c74c8430",
+      "result": "WIN",
+      "opponent": "Quadrivium",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "7 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-61c8654b-7b60-4ec8-99a7-dee8c74c8430",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-d232d1c7-b46b-4af6-a198-6e11d74fdb3f",
+      "result": "LOSS",
+      "opponent": "CTAK_SOBAK",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 11",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-d232d1c7-b46b-4af6-a198-6e11d74fdb3f",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Intermediate C - Regular Season",
+      "matchId": "1-0e9fa918-14ad-4b5e-964a-6d27cb9ffb03",
+      "result": "WIN",
+      "opponent": "aliengambit",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "8 / 13",
+          "season": "S57 EU Intermediate C - Regular Season",
+          "matchId": "1-0e9fa918-14ad-4b5e-964a-6d27cb9ffb03",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "weclear": [
@@ -14871,6 +39250,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-1d6730d0-be2f-4c50-9569-c0c31b64b48a",
       "result": "WIN",
+      "opponent": "MyHUD",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14895,6 +39275,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-18ce35be-929a-4707-adef-b090294c162c",
       "result": "WIN",
+      "opponent": "HellWave",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14919,6 +39300,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-362d69fb-c22e-4bdc-97fa-7dd8eba5044f",
       "result": "WIN",
+      "opponent": "FORTIS",
       "boScore": "2-1",
       "mapsPlayed": 3,
       "maps": [
@@ -14950,6 +39332,7 @@ const matches = {
       "season": "S57 EU Entry C - Playoffs",
       "matchId": "1-90663704-5a3c-4b17-97d1-8b4f6873cf8f",
       "result": "WIN",
+      "opponent": "EPOKA OLDBOYS",
       "boScore": "2-0",
       "mapsPlayed": 2,
       "maps": [
@@ -14974,6 +39357,7 @@ const matches = {
       "season": "S57 EU Entry C - Regular Season",
       "matchId": "1-669894d0-d4f5-4624-9d0a-3624481376a2",
       "result": "LOSS",
+      "opponent": "MyHUD",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -14985,6 +39369,240 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-18",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-9e682797-eb3c-4fee-9690-6fce4fa40fb9",
+      "result": "LOSS",
+      "opponent": "leijonat",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-18",
+          "score": "14 / 16",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-9e682797-eb3c-4fee-9690-6fce4fa40fb9",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2547550d-41dc-43d3-beca-07fd0ac0d5b0",
+      "result": "LOSS",
+      "opponent": "Loodnica",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "13 / 6",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2547550d-41dc-43d3-beca-07fd0ac0d5b0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e2ae8812-3c05-4376-8273-4634445ce621",
+      "result": "LOSS",
+      "opponent": "Drama eSports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e2ae8812-3c05-4376-8273-4634445ce621",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-5e7ad934-8389-44af-bce7-004bba922d95",
+      "result": "WIN",
+      "opponent": "Galaxy Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-08",
+          "score": "11 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-5e7ad934-8389-44af-bce7-004bba922d95",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
+      "result": "WIN",
+      "opponent": "HODES",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "13 / 1",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-7e0ac0ea-7288-4f6f-a987-48f91b29e73b",
+      "result": "WIN",
+      "opponent": "Importants",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "5 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-7e0ac0ea-7288-4f6f-a987-48f91b29e73b",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-b26a348d-8118-472d-8983-6c35cbe7b92a",
+      "result": "WIN",
+      "opponent": "EPOKA OLDBOYS",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-27",
+          "score": "6 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-b26a348d-8118-472d-8983-6c35cbe7b92a",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-4488ecc1-f576-4fe3-8c96-62d40d6ceafb",
+      "result": "WIN",
+      "opponent": "VIRApp ROCEAN",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 10",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-4488ecc1-f576-4fe3-8c96-62d40d6ceafb",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-01e6104c-54a1-4d55-b124-9e90ae7bb4c6",
+      "result": "WIN",
+      "opponent": "SWMDM",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "13 / 7",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-01e6104c-54a1-4d55-b124-9e90ae7bb4c6",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-7b2e3908-7f73-4cb2-82d6-904d7374cb62",
+      "result": "WIN",
+      "opponent": "Fossils",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 3",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-7b2e3908-7f73-4cb2-82d6-904d7374cb62",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-e8c87425-4cfa-48af-93f2-8564195b866f",
+      "result": "WIN",
+      "opponent": "ABRAKADABRA",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "1 / 13",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-e8c87425-4cfa-48af-93f2-8564195b866f",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-7bd276b1-a45d-4249-9039-0aed95d44f4e",
+      "result": "WIN",
+      "opponent": "Ravenous Gaming",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "13 / 4",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-7bd276b1-a45d-4249-9039-0aed95d44f4e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "season": "S57 EU Entry C - Regular Season",
+      "matchId": "1-02c41cb5-b44b-40db-821a-878f0d78fb70",
+      "result": "WIN",
+      "opponent": "TalisCREW",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-06",
+          "score": "13 / 0",
+          "season": "S57 EU Entry C - Regular Season",
+          "matchId": "1-02c41cb5-b44b-40db-821a-878f0d78fb70",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "cybercom": [
@@ -14993,6 +39611,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-9f45caee-a53c-48f0-a0a1-abb1a06b361a",
       "result": "LOSS",
+      "opponent": "FC Famalicao NextGen",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -15017,6 +39636,7 @@ const matches = {
       "season": "S57 EU Entry B - Playoffs",
       "matchId": "1-92ab2cff-4b78-4bf7-9392-719dc17c1252",
       "result": "LOSS",
+      "opponent": "robus tu sinqn",
       "boScore": "1-2",
       "mapsPlayed": 3,
       "maps": [
@@ -15048,6 +39668,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-12c224ff-f1a2-42ac-94ac-0e9bf4acf15a",
       "result": "LOSS",
+      "opponent": "DIVINE DIETIES",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -15065,6 +39686,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-c0545ea7-7cd7-4ec8-8177-286cb6684c48",
       "result": "LOSS",
+      "opponent": "bezslez",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -15082,6 +39704,7 @@ const matches = {
       "season": "S57 EU Entry B - Regular Season",
       "matchId": "1-5dc02537-b623-4671-b5f9-664eb83979a9",
       "result": "LOSS",
+      "opponent": "GoodJob",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -15093,6 +39716,168 @@ const matches = {
           "result": "LOSS"
         }
       ]
+    },
+    {
+      "date": "2026-05-13",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-3a87d098-8efc-43a0-99dd-f7dea5f11fba",
+      "result": "LOSS",
+      "opponent": "FC Famalicao NextGen",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-13",
+          "score": "16 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-3a87d098-8efc-43a0-99dd-f7dea5f11fba",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-9439627b-17b6-48b5-bc42-76a0efdbceb4",
+      "result": "WIN",
+      "opponent": "ONYX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-11",
+          "score": "13 / 9",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-9439627b-17b6-48b5-bc42-76a0efdbceb4",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-58c26f90-037b-4c3e-a2b0-940b0431dca7",
+      "result": "LOSS",
+      "opponent": "JANO",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-04",
+          "score": "7 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-58c26f90-037b-4c3e-a2b0-940b0431dca7",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-8b6a8428-53a6-4893-800e-6aa6b59c1854",
+      "result": "WIN",
+      "opponent": "notHuman",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-29",
+          "score": "13 / 6",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-8b6a8428-53a6-4893-800e-6aa6b59c1854",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-61bbf23b-aacf-44fe-b960-623b4432afe0",
+      "result": "LOSS",
+      "opponent": "premghouIs",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-22",
+          "score": "13 / 5",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-61bbf23b-aacf-44fe-b960-623b4432afe0",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-acdc39b1-8ef4-407a-bda5-626624aeee43",
+      "result": "WIN",
+      "opponent": "jesudou",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-20",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-acdc39b1-8ef4-407a-bda5-626624aeee43",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-1f286c5b-95d0-4514-93ae-3e561b78f285",
+      "result": "WIN",
+      "opponent": "inputlag enjoyers",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-15",
+          "score": "13 / 7",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-1f286c5b-95d0-4514-93ae-3e561b78f285",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-14092401-f0d2-46ad-9e79-23fab09948ec",
+      "result": "WIN",
+      "opponent": "CoverBack",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "9 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-14092401-f0d2-46ad-9e79-23fab09948ec",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "season": "S57 EU Entry B - Regular Season",
+      "matchId": "1-311562b0-9458-46a9-b6cf-903725ca0f20",
+      "result": "WIN",
+      "opponent": "FiNKi",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-08",
+          "score": "5 / 13",
+          "season": "S57 EU Entry B - Regular Season",
+          "matchId": "1-311562b0-9458-46a9-b6cf-903725ca0f20",
+          "result": "WIN"
+        }
+      ]
     }
   ],
   "kittadiena": [
@@ -15101,6 +39886,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-74baa6ef-70a1-4a43-8011-c2549b8ecbfc",
       "result": "LOSS",
+      "opponent": "CTRL",
       "boScore": "0-2",
       "mapsPlayed": 2,
       "maps": [
@@ -15125,6 +39911,7 @@ const matches = {
       "season": "S57 EU Main B - Playoffs",
       "matchId": "1-495e399c-0016-48c8-9207-5058c0c28c68",
       "result": "LOSS",
+      "opponent": "ROC Team",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -15142,6 +39929,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-4ae93f38-49ab-438c-85f1-f01736af1050",
       "result": "WIN",
+      "opponent": "Split ESC",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -15159,6 +39947,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-e6ce3af8-9daf-4850-b802-96fd2620171b",
       "result": "WIN",
+      "opponent": "INCEPTOR",
       "boScore": "1-0",
       "mapsPlayed": 1,
       "maps": [
@@ -15176,6 +39965,7 @@ const matches = {
       "season": "S57 EU Main B - Regular Season",
       "matchId": "1-c902f6bd-7644-423f-be8a-b688f1b4bb12",
       "result": "LOSS",
+      "opponent": "Melilla Titans",
       "boScore": "0-1",
       "mapsPlayed": 1,
       "maps": [
@@ -15184,6 +39974,150 @@ const matches = {
           "score": "11 / 13",
           "season": "S57 EU Main B - Regular Season",
           "matchId": "1-c902f6bd-7644-423f-be8a-b688f1b4bb12",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-3b213349-af3d-4843-94eb-38a680d15712",
+      "result": "WIN",
+      "opponent": "TOOMUCHVIDEOGAMES",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-05-05",
+          "score": "13 / 10",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-3b213349-af3d-4843-94eb-38a680d15712",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-faa1edc2-fa44-439f-9c16-3d24fe4329fc",
+      "result": "LOSS",
+      "opponent": "Moose sports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-30",
+          "score": "13 / 9",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-faa1edc2-fa44-439f-9c16-3d24fe4329fc",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-2cd46bf0-f56d-44b8-ac5d-5ec8565abd6d",
+      "result": "LOSS",
+      "opponent": "ARROW",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-23",
+          "score": "4 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-2cd46bf0-f56d-44b8-ac5d-5ec8565abd6d",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-4501f5ad-2a36-4771-b04d-ef61464f9e21",
+      "result": "LOSS",
+      "opponent": "Rcave",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-21",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-4501f5ad-2a36-4771-b04d-ef61464f9e21",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-782901ac-ee12-4ce5-b19d-d279e132368e",
+      "result": "WIN",
+      "opponent": "SPIRIX",
+      "boScore": "1-0",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-16",
+          "score": "9 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-782901ac-ee12-4ce5-b19d-d279e132368e",
+          "result": "WIN"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-dec2bdaf-fe98-4c0a-8966-47db76569dfa",
+      "result": "LOSS",
+      "opponent": "5mix",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-14",
+          "score": "13 / 6",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-dec2bdaf-fe98-4c0a-8966-47db76569dfa",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-8e494dd6-e44f-4f61-8df5-92ffb232241a",
+      "result": "LOSS",
+      "opponent": "Armitra Esports",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-09",
+          "score": "13 / 5",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-8e494dd6-e44f-4f61-8df5-92ffb232241a",
+          "result": "LOSS"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "season": "S57 EU Main B - Regular Season",
+      "matchId": "1-cdd12b63-b6de-428b-bfff-dd61f6465399",
+      "result": "LOSS",
+      "opponent": "GamersLab",
+      "boScore": "0-1",
+      "mapsPlayed": 1,
+      "maps": [
+        {
+          "date": "2026-04-07",
+          "score": "0 / 13",
+          "season": "S57 EU Main B - Regular Season",
+          "matchId": "1-cdd12b63-b6de-428b-bfff-dd61f6465399",
           "result": "LOSS"
         }
       ]

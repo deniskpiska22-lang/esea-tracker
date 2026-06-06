@@ -48,6 +48,7 @@ console.log(teams.map(t => t.slug))
 
   const winrate = total ? Math.round((wins / total) * 100) : 0
   const teamMatches = matchesData?.[slug] ?? []
+  const recentForm = teamMatches.slice(0, 5);
   const teamPlayersStats = playersData?.[slug] ?? []
 
   return (
@@ -98,18 +99,59 @@ console.log(teams.map(t => t.slug))
               </span>
             </p>
 
+
+
             {/* HLTV VALUES */}
-            <div className="flex gap-3 mt-5 flex-wrap justify-center md:justify-start">
+            <div className="flex gap-12 mt-5 flex-wrap items-center justify-center md:justify-start">
 
-              <span className="px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-400 font-semibold">
-                {currentRating} Rating
-              </span>
+  <div className="flex gap-3">
 
-              <span className="px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 font-semibold">
-                {winrate}% WR
-              </span>
+    <span className="px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-400 font-semibold">
+      {currentRating} Rating
+    </span>
 
-            </div>
+    <span className="px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 font-semibold">
+      {winrate}% WR
+    </span>
+
+  </div>
+
+  <div className="-mt-5">
+
+    <div className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-2">
+      Last 5
+    </div>
+
+    <div className="flex gap-2">
+
+      {recentForm.map((match, index) => (
+        <div
+          key={index}
+          className={`
+            w-9
+            h-9
+            rounded-lg
+            flex
+            items-center
+            justify-center
+            font-black
+            text-sm
+            ${
+              match.result === "WIN"
+                ? "bg-green-500/15 text-green-400 border border-green-500/30"
+                : "bg-red-500/15 text-red-400 border border-red-500/30"
+            }
+          `}
+        >
+          {match.result === "WIN" ? "W" : "L"}
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</div>
           </div>
         </div>
 
@@ -147,6 +189,43 @@ console.log(teams.map(t => t.slug))
         </div>
       </div>
     </div>
+
+{/* NAVIGATION */}
+<div className="max-w-6xl mx-auto mt-8 mb-4">
+
+  <div className="flex gap-2 border-b border-[#263041] pb-3">
+
+    <Link
+      to={`/team/${slug}`}
+      className="
+        px-5
+        py-2
+        rounded-xl
+        bg-orange-500/10
+        text-orange-400
+        font-semibold
+      "
+    >
+      Overview
+    </Link>
+
+    <Link
+      to={`/team/${slug}/matches`}
+      className="
+        px-5
+        py-2
+        rounded-xl
+        text-gray-300
+        hover:bg-[#141d2a]
+        transition
+      "
+    >
+      Matches
+    </Link>
+
+  </div>
+
+</div>
 
 {/* 🧑 PLAYERS */}
 
@@ -296,151 +375,7 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
           No history yet
         </div>
       )}
-    </div>
-
-    {/* 🕹 RECENT MATCHES */}
-<div className="max-w-6xl mx-auto mt-10 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
-
-  <h2 className="text-2xl font-bold mb-6">
-    Recent Matches
-  </h2>
-
-  {teamMatches.length ? (
-  <div className="space-y-4">
-  {teamMatches.slice(0, 5).map((match, index) => {
-
-  const seriesType =
-    match.mapsPlayed <= 1
-      ? "BO1"
-      : match.mapsPlayed <= 3
-      ? "BO3"
-      : "BO5";
-
-  const displayScore =
-    match.mapsPlayed > 1
-      ? match.boScore
-      : match.maps?.[0]?.score?.replace("/", ":");
-
-  return (
-    <a
-      key={`${match.matchId}-${index}`}
-      href={`https://www.faceit.com/en/cs2/room/${match.matchId}`}
-      target="_blank"
-      rel="noreferrer"
-      className="
-        block
-        bg-gradient-to-r
-        from-[#141d2a]
-        to-[#101722]
-        border
-        border-[#243041]
-        rounded-2xl
-        p-5
-        transition-all
-        duration-300
-        hover:border-orange-500/50
-        hover:translate-x-1
-        hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]
-      "
-    >
-      <div className="flex items-center justify-between">
-
-        {/* LEFT */}
-        <div>
-
-          <div className="flex items-center gap-3">
-           <span
-  className={`px-2 py-1 rounded-lg text-xs font-bold border ${
-    match.result === "WIN"
-      ? "bg-green-500/10 text-green-400 border-green-500/20"
-      : "bg-red-500/10 text-red-400 border-red-500/20"
-  }`}
->
-  {match.result}
-</span>
-
-            <span className="
-              text-xs
-              uppercase
-              tracking-[0.2em]
-              text-gray-500
-            ">
-              {match.date}
-            </span>
-
-            <span className="
-              px-2
-              py-1
-              rounded-lg
-              text-xs
-              font-semibold
-              bg-orange-500/10
-              text-orange-400
-              border
-              border-orange-500/20
-            ">
-              ESEA
-            </span>
-
-          </div>
-
-          <div className="
-            text-white
-            font-bold
-            text-lg
-            mt-2
-          ">
-            {match.season}
-          </div>
-
-          <div className="
-            text-gray-500
-            text-sm
-            mt-1
-          ">
-            Click to open FACEIT match
-          </div>
-
-        </div>
-
-        {/* RIGHT */}
-        <div className="text-right">
-
-          <div
-  className="
-    text-4xl
-    font-black
-    text-white
-    leading-none
-  "
->
-  {displayScore}
-</div>
-
-          <div
-  className={`text-xs uppercase tracking-[0.2em] mt-2 font-bold ${
-    match.result === "WIN"
-      ? "text-green-400"
-      : "text-red-400"
-  }`}
->
-  {seriesType}
-</div>
-
-        </div>
-
-      </div>
-    </a>
-  )
-})}
-</div>
-) : (
-  <div className="text-gray-500">
-    No matches found
-  </div>
-)}
-
-</div>   
+    </div>  
 
 </div>   
 

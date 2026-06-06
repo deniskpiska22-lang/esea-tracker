@@ -9,16 +9,41 @@ async function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function getTeamMatches(nickname) {
+async function getOpponent(matchId, teamName) {
   try {
-    const MAX_PAGES = 5;
-    const TARGET_MATCHES = 5;
+    const { data: html } = await axios.get(
+      `https://faceitanalyser.com/matchanalyser/${matchId}/1`,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+        },
+      }
+    );
+
+    const $ = cheerio.load(html);
+
+    const teams = $(".name")
+      .map((_, el) => $(el).text().trim())
+      .get();
+
+    return teams.find(
+      (name) =>
+        name.toLowerCase() !== teamName.toLowerCase()
+    );
+  } catch {
+    return null;
+  }
+}
+
+async function getTeamMatches(nickname, teamName) {
+  try {
+    const MAX_PAGES = 10;
 
     let page = 1;
     const allMatches = [];
     const uniqueMatchIds = new Set();
 
-    while (page <= MAX_PAGES && uniqueMatchIds.size < TARGET_MATCHES) {
+    while (page <= MAX_PAGES) {
       const url =
         page === 1
           ? `https://faceitanalyser.com/matches/${encodeURIComponent(nickname)}/cs2`
@@ -112,7 +137,10 @@ for (const match of allMatches) {
   grouped[match.matchId].maps.push(match);
 }
 
-const mergedMatches = Object.values(grouped).map((series) => {
+const mergedMatches = [];
+
+for (const series of Object.values(grouped)) {
+
   let wins = 0;
   let losses = 0;
 
@@ -121,16 +149,22 @@ const mergedMatches = Object.values(grouped).map((series) => {
     else losses++;
   }
 
-  return {
+  const opponent = await getOpponent(
+    series.matchId,
+    teamName
+  );
+
+  mergedMatches.push({
     date: series.date,
     season: series.season,
     matchId: series.matchId,
     result: wins > losses ? "WIN" : "LOSS",
+    opponent,
     boScore: `${wins}-${losses}`,
     mapsPlayed: series.maps.length,
     maps: series.maps,
-  };
-});
+  });
+}
 
 return mergedMatches;
 
@@ -152,7 +186,11 @@ async function main() {
     for (const nickname of team.players) {
       console.log(`Checking ${nickname}...`);
 
-      const matches = await getTeamMatches(nickname);
+      let matches = await getTeamMatches(
+  nickname,
+  team.name
+);
+      
 
       console.log(
         `${nickname}: ${matches.length} S57 matches`
@@ -170,7 +208,7 @@ async function main() {
       `✅ Selected: ${bestPlayer} (${bestMatches.length} matches)`
     );
 
-    output[team.slug] = bestMatches.slice(0, 5);
+    output[team.slug] = bestMatches;
   }
 
   const fileContent = `const matches = ${JSON.stringify(
@@ -189,6 +227,28 @@ export default matches;
   );
 
   console.log("\n✅ matches.js updated");
+}
+
+async function testMatch() {
+  const matchId =
+    "1-f082f1eb-3b10-493d-9464-d42d767a7557";
+
+  const { data: html } = await axios.get(
+    `https://faceitanalyser.com/matchanalyser/${matchId}/1`,
+    {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+      },
+    }
+  );
+
+  const $ = cheerio.load(html);
+
+  const teams = $(".name")
+    .map((_, el) => $(el).text().trim())
+    .get();
+
+  console.log(teams);
 }
 
 main();

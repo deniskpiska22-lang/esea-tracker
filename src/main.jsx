@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from "@vercel/analytics/react"
+import MatchesPage from "./pages/MatchesPage";
 
 import {
   BrowserRouter,
@@ -45,6 +46,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           path="/media"
           element={<MediaPage />}
         />
+
+        {/* Matches */}
+        <Route
+  path="/team/:slug/matches"
+  element={<MatchesPage />}
+/>
+
+<Route
+  path="/team/:slug"
+  element={<TeamPage />}
+/>
 
       </Routes>
 
