@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Analytics } from "@vercel/analytics/react"
 import MatchesPage from "./pages/MatchesPage";
 import ScrollToTop from "./components/ScrollToTop";
+import MapsPage from "./pages/MapsPage";
 
 import {
   BrowserRouter,
@@ -54,6 +55,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route
   path="/team/:slug/matches"
   element={<MatchesPage />}
+/>
+
+{/* Maps */}
+<Route
+  path="/team/:slug/maps"
+  element={<MapsPage />}
 />
 
 <Route

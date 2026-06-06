@@ -91,9 +91,7 @@ function MatchesPage() {
                         {match.date}
                       </span>
 
-                      <span className="text-white">
-                        vs {match.opponent}
-                      </span>
+                      
 
                     </div>
 

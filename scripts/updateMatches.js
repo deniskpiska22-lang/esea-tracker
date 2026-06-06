@@ -83,6 +83,7 @@ async function getTeamMatches(nickname, teamName) {
           .text()
           .trim()
           .replace(/\s+/g, " ");
+          
           const scoreCell = $(row).find(".col-score");
 
 const result = scoreCell.hasClass("positive")
