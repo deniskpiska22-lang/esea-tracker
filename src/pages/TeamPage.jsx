@@ -307,7 +307,21 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
 
   {teamMatches.length ? (
   <div className="space-y-4">
-  {teamMatches.slice(0, 5).map((match, index) => (
+  {teamMatches.slice(0, 5).map((match, index) => {
+
+  const seriesType =
+    match.mapsPlayed <= 1
+      ? "BO1"
+      : match.mapsPlayed <= 3
+      ? "BO3"
+      : "BO5";
+
+  const displayScore =
+    match.mapsPlayed > 1
+      ? match.boScore
+      : match.maps?.[0]?.score?.replace("/", ":");
+
+  return (
     <a
       key={`${match.matchId}-${index}`}
       href={`https://www.faceit.com/en/cs2/room/${match.matchId}`}
@@ -335,18 +349,14 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
         <div>
 
           <div className="flex items-center gap-3">
-            <span className="
-  px-2
-  py-1
-  rounded-lg
-  text-xs
-  font-bold
-  bg-orange-500/10
-  text-orange-400
-  border
-  border-orange-500/20
-">
-  MATCH
+           <span
+  className={`px-2 py-1 rounded-lg text-xs font-bold border ${
+    match.result === "WIN"
+      ? "bg-green-500/10 text-green-400 border-green-500/20"
+      : "bg-red-500/10 text-red-400 border-red-500/20"
+  }`}
+>
+  {match.result}
 </span>
 
             <span className="
@@ -396,30 +406,33 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
         {/* RIGHT */}
         <div className="text-right">
 
-          <div className="
-            text-4xl
-            font-black
-            text-white
-            leading-none
-          ">
-            {match.score.replace("/", "-")}
-          </div>
+          <div
+  className="
+    text-4xl
+    font-black
+    text-white
+    leading-none
+  "
+>
+  {displayScore}
+</div>
 
-          <div className="
-            text-xs
-            uppercase
-            tracking-[0.2em]
-            text-gray-500
-            mt-2
-          ">
-            Result
-          </div>
+          <div
+  className={`text-xs uppercase tracking-[0.2em] mt-2 font-bold ${
+    match.result === "WIN"
+      ? "text-green-400"
+      : "text-red-400"
+  }`}
+>
+  {seriesType}
+</div>
 
         </div>
 
       </div>
     </a>
-  ))}
+  )
+})}
 </div>
 ) : (
   <div className="text-gray-500">

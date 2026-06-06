@@ -11,18 +11,18 @@ async function sleep(ms) {
 
 async function getTeamMatches(nickname) {
   try {
+    const MAX_PAGES = 5;
+    const TARGET_MATCHES = 5;
+
     let page = 1;
     const allMatches = [];
+    const uniqueMatchIds = new Set();
 
-    while (page <= 20) {
+    while (page <= MAX_PAGES && uniqueMatchIds.size < TARGET_MATCHES) {
       const url =
         page === 1
-          ? `https://faceitanalyser.com/matches/${encodeURIComponent(
-              nickname
-            )}/cs2`
-          : `https://faceitanalyser.com/matches/${encodeURIComponent(
-              nickname
-            )}/cs2?page=${page}`;
+          ? `https://faceitanalyser.com/matches/${encodeURIComponent(nickname)}/cs2`
+          : `https://faceitanalyser.com/matches/${encodeURIComponent(nickname)}/cs2?page=${page}`;
 
       console.log(`   Page ${page}`);
 
@@ -33,7 +33,6 @@ async function getTeamMatches(nickname) {
       });
 
       const $ = cheerio.load(html);
-
       const rows = $("tr.maps_tr");
 
       if (rows.length === 0) {
@@ -59,6 +58,13 @@ async function getTeamMatches(nickname) {
           .text()
           .trim()
           .replace(/\s+/g, " ");
+          const scoreCell = $(row).find(".col-score");
+
+const result = scoreCell.hasClass("positive")
+  ? "WIN"
+  : scoreCell.hasClass("negative")
+  ? "LOSS"
+  : "UNKNOWN";
 
         const matchLink = $(row)
           .find(".col-match a")
@@ -73,12 +79,17 @@ async function getTeamMatches(nickname) {
           }
         }
 
+        if (!matchId) return;
+
         allMatches.push({
-          date,
-          score,
-          season,
-          matchId,
-        });
+  date,
+  score,
+  season,
+  matchId,
+  result,
+});
+
+        uniqueMatchIds.add(matchId);
       });
 
       page++;
@@ -86,25 +97,43 @@ async function getTeamMatches(nickname) {
       await sleep(200);
     }
 
-    const uniqueMatches = new Map();
+    const grouped = {};
 
-    for (const match of allMatches) {
-      if (!match.matchId) continue;
+for (const match of allMatches) {
+  if (!grouped[match.matchId]) {
+    grouped[match.matchId] = {
+      date: match.date,
+      season: match.season,
+      matchId: match.matchId,
+      maps: [],
+    };
+  }
 
-      if (!uniqueMatches.has(match.matchId)) {
-        uniqueMatches.set(match.matchId, match);
-      }
-    }
+  grouped[match.matchId].maps.push(match);
+}
 
-    const result = Array.from(uniqueMatches.values());
+const mergedMatches = Object.values(grouped).map((series) => {
+  let wins = 0;
+  let losses = 0;
 
-    result.sort(
-      (a, b) =>
-        new Date(b.date).getTime() -
-        new Date(a.date).getTime()
-    );
+  for (const map of series.maps) {
+    if (map.result === "WIN") wins++;
+    else losses++;
+  }
 
-    return result;
+  return {
+    date: series.date,
+    season: series.season,
+    matchId: series.matchId,
+    result: wins > losses ? "WIN" : "LOSS",
+    boScore: `${wins}-${losses}`,
+    mapsPlayed: series.maps.length,
+    maps: series.maps,
+  };
+});
+
+return mergedMatches;
+
   } catch (err) {
     console.log(`❌ ${nickname}: ${err.message}`);
     return [];
