@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-
+import ScrollToTop from "./components/ScrollToTop";
 
 const teams = [
   {

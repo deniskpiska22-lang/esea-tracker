@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from "@vercel/analytics/react"
 import MatchesPage from "./pages/MatchesPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 import {
   BrowserRouter,
@@ -20,6 +21,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
 
     <BrowserRouter>
+
+    <ScrollToTop />
 
       <Routes>
 
