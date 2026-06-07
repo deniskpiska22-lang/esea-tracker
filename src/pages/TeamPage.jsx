@@ -56,6 +56,33 @@ console.log(teams.map(t => t.slug))
   );
 
 const recentForm = teamMatches.slice(0, 5);
+
+const mapStats = Object.values(
+  teamMatches.reduce((acc, match) => {
+    match.mapScores?.forEach((map) => {
+      if (!map.map || map.map === "unknown") return;
+
+      if (!acc[map.map]) {
+        acc[map.map] = {
+          name: map.map,
+          played: 0,
+          wins: 0,
+        };
+      }
+
+      acc[map.map].played += 1;
+      if (map.won) acc[map.map].wins += 1;
+    });
+
+    return acc;
+  }, {})
+)
+  .map((map) => ({
+    ...map,
+    winrate: Math.round((map.wins / map.played) * 100),
+  }))
+  .sort((a, b) => b.winrate - a.winrate);
+
   const teamPlayersStats = playersData?.[slug] ?? []
 
   return (
@@ -229,11 +256,27 @@ const recentForm = teamMatches.slice(0, 5);
     >
       Matches
     </Link>
+
+    <Link
+  to={`/team/${slug}/stats`}
+  className="
+    px-5
+    py-2
+    rounded-xl
+    text-gray-300
+    hover:bg-[#141d2a]
+    transition
+  "
+>
+  Stats
+</Link>
     
 
   </div>
 
 </div>
+
+
 
 {/* 🧑 PLAYERS */}
 
