@@ -48,8 +48,14 @@ console.log(teams.map(t => t.slug))
   const total = wins + losses
 
   const winrate = total ? Math.round((wins / total) * 100) : 0
-  const teamMatches = matchesData?.[slug] ?? []
-  const recentForm = teamMatches.slice(0, 5);
+  const teamMatches = matchesData
+  .filter(match => match.teamSlug === slug)
+  .sort(
+    (a, b) =>
+      new Date(b.date) - new Date(a.date)
+  );
+
+const recentForm = teamMatches.slice(0, 5);
   const teamPlayersStats = playersData?.[slug] ?? []
 
   return (
