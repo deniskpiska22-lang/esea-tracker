@@ -951,8 +951,8 @@ const teams = [
     matches: [],
   },
                                 {
-    slug: "iuhop",
-    name: "iuhop",
+    slug: "clutch-studio-agency",
+    name: "Clutch Studio Agency",
     logo: "IUH",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1667,8 +1667,8 @@ const teams = [
     matches: [],
   },
                                                               {
-    slug: "hodes",
-    name: "HODES",
+    slug: "goldrushers",
+    name: "GoldRushers",
     logo: "/logos/hodes.png",
     flag: "/flags/bel.svg",
     division: "Entry",
