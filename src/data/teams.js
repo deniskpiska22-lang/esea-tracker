@@ -2,6 +2,7 @@ const teams = [
   {
     slug: "cybershoke-prospects",
     name: "CYBERSHOKE Prospects",
+faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
     logo: "/logos/cybershoke.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -15,6 +16,7 @@ const teams = [
   {
     slug: "eternal-premium",
     name: "eternal premium",
+    faceitTeamId: "273e5af7-767e-42da-9b1b-cc501b780bd0",
     logo: "/logos/ep.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -28,6 +30,7 @@ const teams = [
   {
     slug: "new-vision",
     name: "NEW VISION",
+    faceitTeamId: "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
     logo: "/logos/newwision.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -41,6 +44,7 @@ const teams = [
     {
     slug: "donstu-esports",
     name: "DONSTU ESPORTS",
+    faceitTeamId: "2cc2029e-67ad-44cc-a1eb-0d7889fd7fb8",
     flag: "/flags/russia.svg",
     logo: "/logos/donstu.png",
     division: "Advanced",
@@ -54,6 +58,7 @@ const teams = [
     {
     slug: "quazar",
     name: "QUAZAR",
+    faceitTeamId: "27eab7ad-4684-44b5-aa87-0c680d8c21d9",
     logo: "/logos/quazar.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -67,6 +72,7 @@ const teams = [
     {
     slug: "bankapepsi",
     name: "bankaPEPSI",
+    faceitTeamId: "0bc946ec-99e3-4399-b34b-5aa93a3130e1",
     logo: "/logos/pepsi.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -80,6 +86,7 @@ const teams = [
     {
     slug: "enjoy",
     name: "Enjoy",
+    faceitTeamId: "f7bf8f6e-9e1e-4ffc-8c82-82fd850aec9e",
     logo: "/logos/enjoy.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -93,6 +100,7 @@ const teams = [
     {
     slug: "jumbo-team",
     name: "Jumbo team",
+    faceitTeamId: "934a2bd0-fa66-4c02-ac92-00f742e7ec55",
     logo: "/logos/jumbo.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -106,6 +114,7 @@ const teams = [
     {
     slug: "aurora-young-blud",
     name: "Aurora Young Blud",
+    faceitTeamId: "0c06fb32-9c32-4a48-8967-943baf52ab6a",
     logo: "/logos/aurora.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -119,6 +128,7 @@ const teams = [
     {
     slug: "young-tigeres",
     name: "Young TigeRES",
+    faceitTeamId: "ed8fcd14-5094-41e2-995a-c51b48c8504a",
     logo: "/logos/youngtigeres.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -132,6 +142,7 @@ const teams = [
     {
     slug: "vpprodigy",
     name: "VPProdigy",
+    faceitTeamId: "91416841-429d-405c-af9d-35e2ce855e5d",
     logo: "/logos/vpp.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -145,6 +156,7 @@ const teams = [
     {
     slug: "arch",
     name: "Arch",
+    faceitTeamId: "3cb28ef5-ae7b-4e67-897d-0f7067810cc4",
     logo: "/logos/arch.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -158,6 +170,7 @@ const teams = [
     {
     slug: "lfo-corh9k",
     name: "LFO_COPH9K",
+    faceitTeamId: "0b63e766-8c51-4e70-bef7-aa4ed030c9b3",
     logo: "/logos/sornyak.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -169,8 +182,9 @@ const teams = [
     matches: [],
   },
     {
-    slug: "wingmanlfo",
-    name: "WingmanLFO",
+    slug: "uust",
+    name: "UUST_Esports",
+    faceitTeamId: "6900b332-c81b-46cc-b841-067f02cd00b3",
     logo: "/logos/wingman.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -184,6 +198,7 @@ const teams = [
       {
     slug: "ex-peep",
     name: "ex-PeeP",
+    faceitTeamId: "33255748-269c-4731-bfab-dffeaca491f2",
     logo: "/logos/peep.png",
     flag: "/flags/russia.svg",
     division: "Advanced",
@@ -196,7 +211,8 @@ const teams = [
   },
       {
     slug: "golovastiki",
-    name: "VPF2",
+    name: "golovastiki",
+    faceitTeamId: "1791f69f-0ab1-4089-89a4-828c33667cfc",
     logo: "/logos/vpf2.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -210,6 +226,7 @@ const teams = [
       {
     slug: "gamesport",
     name: "GAMESPORT",
+    faceitTeamId: "970ac3bd-3b9c-483b-9c9c-fd4ff7137a4b",
     logo: "/logos/gamesport.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -223,6 +240,7 @@ const teams = [
       {
     slug: "xcity",
     name: "Xcity",
+    faceitTeamId: "7d4d681f-969f-4b94-bb7e-c242c6b8bedb",
     logo: "/logos/xcity.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -236,6 +254,7 @@ const teams = [
       {
     slug: "tsa-green",
     name: "TSA Green",
+    faceitTeamId: "a9a2a7e0-5b29-4ba3-af56-e8056bb9ca23",
     logo: "/logos/tsagreen.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -249,6 +268,7 @@ const teams = [
       {
     slug: "mellren",
     name: "mellren",
+    faceitTeamId: "b38c3bb9-8cef-4158-b0c6-5b5deefddd56",
     logo: "/logos/mellren.png",
     flag: "/flags/bel.svg",
     division: "Main",
@@ -262,6 +282,7 @@ const teams = [
       {
     slug: "nemesis-academy",
     name: "Nemesis Academy",
+    faceitTeamId: "5ab6e36a-2edf-4ff3-bd06-f4712c07a0b0",
     logo: "/logos/nemesis.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -275,6 +296,7 @@ const teams = [
       {
     slug: "duggedup",
     name: "Duggedup",
+    faceitTeamId: "97499070-1926-4345-a88f-029c22430764",
     logo: "/logos/duggedup.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -288,6 +310,7 @@ const teams = [
       {
     slug: "roc-team",
     name: "ROC Team",
+    faceitTeamId: "0f7aea0c-a930-48b9-90a7-f4995b83a962",
     logo: "/logos/rocteam.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -301,6 +324,7 @@ const teams = [
       {
     slug: "partizan",
     name: "PARTIZAN",
+     faceitTeamId: "d73ef5c5-95da-45b2-b452-541c9540de36",
     logo: "/logos/partizan.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -314,6 +338,7 @@ const teams = [
       {
     slug: "csgopositive",
     name: "CSGOPOSITIVE",
+    faceitTeamId: "0de78326-dbc5-41a2-a1db-053eac9c8594",
     logo: "/logos/csgopositive.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -328,6 +353,7 @@ const teams = [
       {
     slug: "platoon-beta",
     name: "PLATOON BETA",
+    faceitTeamId: "cbc39a69-61af-4670-b402-d3015d633910",
     logo: "/logos/platoon.png",
     flag: "/flags/bel.svg",
     division: "Main",
@@ -342,6 +368,7 @@ const teams = [
       {
     slug: "wnt",
     name: "wnT",
+    faceitTeamId: "df862c73-6fc9-4f84-8160-22dd06293fd3",
     logo: "/logos/wnt.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -355,6 +382,7 @@ const teams = [
       {
     slug: "playfire",
     name: "playfire",
+    faceitTeamId: "a1e1a5d7-f587-4f98-99f5-159030f4eeb2",
     logo: "/logos/playfire.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -368,6 +396,7 @@ const teams = [
       {
     slug: "olympia",
     name: "OLYMPIA",
+    faceitTeamId: "dca5a2db-10c4-43a0-a90c-29b48562cf6f",
     logo: "/logos/olympia.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -381,6 +410,7 @@ const teams = [
       {
     slug: "way-In-future",
     name: "Way In Future",
+    faceitTeamId: "3147b7dc-daab-4f3c-968c-97549f4b7300",
     logo: "/logos/way.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -394,6 +424,7 @@ const teams = [
       {
     slug: "redtigersgaming",
     name: "RedTigersGaming",
+    faceitTeamId: "3a4fe5c6-1e33-46ef-bd25-9a6b45a815ed",
     logo: "/logos/red.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -407,6 +438,7 @@ const teams = [
       {
     slug: "kislyakk",
     name: "KISLYAKK",
+    faceitTeamId: "50a2d7a0-26a5-4d13-8650-9d331440837a",
     logo: "/logos/kislyak.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -420,6 +452,7 @@ const teams = [
       {
     slug: "wobuzhidao",
     name: "Wobuzhidao",
+    faceitTeamId: "215cb73d-7750-4955-80e3-930cc9720f92",
     logo: "/logos/wobuzhidao.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -433,6 +466,7 @@ const teams = [
       {
      slug: "p7ay3r5",
     name: "P7AY3R5",
+    faceitTeamId: "bc0caca5-0312-45c8-bf70-e9a148d98536",
     logo: "/logos/p7.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -446,6 +480,7 @@ const teams = [
       {
     slug: "dire",
     name: "Dire",
+    faceitTeamId: "c4188a08-05ca-4fe4-812f-6c9e883ba20e",
     logo: "/logos/dire.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -459,6 +494,7 @@ const teams = [
       {
     slug: "z17",
     name: "Z17",
+    faceitTeamId: "115c0893-5339-45fe-82fc-7cf535237fee",
     logo: "/logos/z17.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -472,6 +508,7 @@ const teams = [
       {
     slug: "aeternum",
     name: "AETERNUM",
+    faceitTeamId: "bcc338c2-7600-4c69-8e6b-c2a9ead6c2b3",
     logo: "/logos/aeternum.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -485,6 +522,7 @@ const teams = [
       {
     slug: "godbless",
     name: "Godbless",
+    faceitTeamId: "f871c675-61e9-4359-a207-4242fd571265",
     logo: "/logos/godbles.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -498,6 +536,7 @@ const teams = [
       {
     slug: "aokigahara",
     name: "aokigahara",
+    faceitTeamId: "e159ad02-4ca5-4d09-affb-ce08ca08578a",
     logo: "/logos/aokigahara.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -511,6 +550,7 @@ const teams = [
         {
     slug: "m33",
     name: "M33",
+    faceitTeamId: "806d00b3-684a-4826-905b-77d18b140faf",
     logo: "/logos/m33.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -524,6 +564,7 @@ const teams = [
         {
     slug: "graf-monte-cristo",
     name: "Graf Monte-Cristo",
+    faceitTeamId: "a2b2f167-6dd3-49dd-979b-9bb669350162",
     logo: "/logos/graf.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -537,6 +578,7 @@ const teams = [
         {
     slug: "aogiri",
     name: "Aogiri",
+    faceitTeamId: "aaf396c0-ff67-4f7b-b31b-137546e5b0bf",
     logo: "/logos/aogiri.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -550,6 +592,7 @@ const teams = [
         {
     slug: "saqa-omuk",
     name: "SAQA OMUK",
+    faceitTeamId: "52113b03-6faf-4a4f-8393-5c1352c71776",
     logo: "/logos/saqa.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -563,6 +606,7 @@ const teams = [
         {
     slug: "donatrix",
     name: "Donatrix",
+    faceitTeamId: "f2b5ed83-1686-4195-a217-c412eb53da32",
     logo: "/logos/donatrix.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -576,6 +620,7 @@ const teams = [
         {
     slug: "sakura",
     name: "Sakura",
+    faceitTeamId: "660691db-b2f1-41e7-b75c-d841937d64bc",
     logo: "/logos/sakura.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -589,6 +634,7 @@ const teams = [
         {
     slug: "allinners",
     name: "ALLINNERS",
+    faceitTeamId: "9ea4aa37-c624-4ddb-87ce-43ee8411ddad",
     logo: "/logos/allinners.png",
     flag: "/flags/kaz.svg",
     division: "Intermediate",
@@ -602,6 +648,7 @@ const teams = [
         {
     slug: "prem3adpotbi",
     name: "Prem3aDPOTbl",
+    faceitTeamId: "08924813-9381-4060-938b-9096a1daa624",
     logo: "/logos/prem.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -615,6 +662,7 @@ const teams = [
         {
     slug: "team-ka6anbi",
     name: "TEAM KA6ANbl",
+    faceitTeamId: "c55b7815-3739-4199-b1b7-d55eade7e489",
     logo: "/logos/kabani.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -628,6 +676,7 @@ const teams = [
           {
     slug: "wapa",
     name: "WaPa",
+    faceitTeamId: "e241982c-ad12-4e8a-b3e6-a39b4e977eae",
     logo: "/logos/wapa.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -641,6 +690,7 @@ const teams = [
           {
     slug: "infernals",
     name: "iNFERNALES",
+    faceitTeamId: "b424eab5-cca1-404a-a6a1-96d052ea9114",
     logo: "iNFR",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -654,6 +704,7 @@ const teams = [
           {
     slug: "dzungarz",
     name: "dzungarz",
+    faceitTeamId: "75adfce4-cac8-4954-91e3-b6438ffdd4cb",
     logo: "dzg",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -667,6 +718,7 @@ const teams = [
           {
     slug: "sunthraw",
     name: "SUNTHRAW",
+    faceitTeamId: "ffa6fd7c-d1b7-4401-9f05-bf3aa136f28d",
     logo: "/logos/sunthraw.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -680,6 +732,7 @@ const teams = [
           {
     slug: "3nation",
     name: "3Nation",
+    faceitTeamId: "650c3b23-9dfe-463f-962f-4053a5c318e9",
     logo: "3NAT",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -693,6 +746,7 @@ const teams = [
           {
     slug: "yelets-esports",
     name: "Yelets Esports",
+    faceitTeamId: "1ca93e1d-fb20-4b15-ac0e-dc65ca4ba9e9",
     logo: "/logos/yelets.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -706,6 +760,7 @@ const teams = [
             {
     slug: "1337",
     name: "1337",
+    faceitTeamId: "72bef55c-301d-43bd-9e11-61cd2d118dac",
     logo: "1337",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -719,6 +774,7 @@ const teams = [
             {
     slug: "turtles",
     name: "TURTLES",
+    faceitTeamId: "c71ef4df-7e24-4d22-8d60-949893b37e54",
     logo: "/logos/turtles.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -732,6 +788,7 @@ const teams = [
             {
     slug: "teamworkers",
     name: "TEAMWORKERS",
+     faceitTeamId: "05287e46-6b30-46b2-afb5-7106254f442f",
     logo: "/logos/teamwork.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -745,6 +802,7 @@ const teams = [
               {
     slug: "ablaze-team",
     name: "ABlaze Team",
+    faceitTeamId: "ca780d58-2065-449c-a16a-2a6768946052",
     logo: "/logos/ablaze.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -758,6 +816,7 @@ const teams = [
               {
     slug: "drags",
     name: "dragS",
+    faceitTeamId: "52c7740f-ff84-4be8-9cb5-391d32a0a8c0",
     logo: "/logos/drags.png",
     flag: "/flags/russia.svg",
     division: "Main",
@@ -771,6 +830,7 @@ const teams = [
                 {
     slug: "force-syndicate",
     name: "Force Syndicate",
+    faceitTeamId: "bdc870bc-c386-4488-9084-6df1ff584794",
     logo: "/logos/force.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -784,6 +844,7 @@ const teams = [
                 {
     slug: "all-eyes-on-me",
     name: "all eyes on me",
+    faceitTeamId: "8a4a3a90-d4d3-4d76-a06f-78b99d0c9e63",
     logo: "/logos/alleyes.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -797,6 +858,7 @@ const teams = [
                 {
     slug: "lqnely",
     name: "lqnely",
+    faceitTeamId: "c117fe07-c325-4fad-9017-f6c4b804bfdc",
     logo: "/logos/iqneli.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -810,6 +872,7 @@ const teams = [
                 {
     slug: "eon",
     name: "Eon",
+    faceitTeamId: "25dfdbf3-df11-4693-ad23-a44924a2e2bf",
     logo: "/logos/eon.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -823,6 +886,7 @@ const teams = [
                 {
     slug: "clickbate",
     name: "ClickBate",
+    faceitTeamId: "9807d7e1-0ef7-445a-8d25-4bff46b2d2df",
     logo: "/logos/clickbate.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -836,6 +900,7 @@ const teams = [
                   {
     slug: "ne-priehali",
     name: "NE PRIEHALI",
+    faceitTeamId: "ff47b2ea-2f12-47b8-b984-cb75b7c54d38",
     logo: "/logos/nepriehali.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -849,6 +914,7 @@ const teams = [
                     {
     slug: "magic-fairies",
     name: "Magic Fairies",
+    faceitTeamId: "961b5026-c4d9-4bb1-ad9f-5f3d11e13146",
     logo: "/logos/magic.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -862,6 +928,7 @@ const teams = [
                       {
     slug: "youth4ez",
     name: "YouTH4eZ",
+    faceitTeamId: "684b9203-04b5-42ca-8087-e963755d5e78",
     logo: "/logos/you.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -875,6 +942,7 @@ const teams = [
                         {
     slug: "ronins",
     name: "Ronins",
+    faceitTeamId: "5761cd42-3fe6-477f-ae17-8f5efeac0bb5",
     logo: "RON",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -888,6 +956,7 @@ const teams = [
                           {
     slug: "donstu-youngsters",
     name: "DONSTU YOUNGSTERS",
+    faceitTeamId: "ca1daf32-4f32-4e6c-8a52-8e568c7be285",
     logo: "/logos/donstuyoung.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -901,6 +970,7 @@ const teams = [
                           {
     slug: "quazar-school",
     name: "QUAZAR SCHOOL",
+    faceitTeamId: "4a4ca8b9-9173-48af-b17a-df0b5cf6b8b2",
     logo: "/logos/quazarschool.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -914,6 +984,7 @@ const teams = [
                           {
     slug: "gsq",
     name: "GSQ",
+    faceitTeamId: "f8d23a5e-a165-4a04-a603-01731623b5eb",
     logo: "/logos/gsq.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -927,6 +998,7 @@ const teams = [
                             {
     slug: "c0b0r",
     name: "c0b0r",
+    faceitTeamId: "633630ac-973b-4291-a3c2-228f26399b64",
     logo: "CBR",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -940,6 +1012,7 @@ const teams = [
                               {
     slug: "baks-esports",
     name: "BAKS Esports",
+    faceitTeamId: "3afba5b9-9b6c-4197-b894-bc98b0b90875",
     logo: "/logos/baks.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -953,6 +1026,7 @@ const teams = [
                                 {
     slug: "clutch-studio-agency",
     name: "Clutch Studio Agency",
+    faceitTeamId: "70f87000-3bd3-4cee-ac6c-cc20d1163cc1",
     logo: "IUH",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -966,6 +1040,7 @@ const teams = [
                                 {
     slug: "fartflow",
     name: "FartFlow",
+    faceitTeamId: "350b5ad2-b2e2-421f-9359-61a375db42bc",
     logo: "/logos/fartflow.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -979,6 +1054,7 @@ const teams = [
                                 {
     slug: "bhemanha",
     name: "BHemanha",
+    faceitTeamId: "f5da733f-abe1-4dcb-bf0a-8ed9db9b99f4",
     logo: "BHN",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -992,6 +1068,7 @@ const teams = [
                                   {
     slug: "lynx",
     name: "LYNX",
+    faceitTeamId: "a245219a-410c-4117-802f-ddcb32682b57",
     logo: "/logos/lynx.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1005,6 +1082,7 @@ const teams = [
                                   {
     slug: "trafficpills-esports",
     name: "TrafficPills Esports",
+    faceitTeamId: "2f4aa01a-078b-4586-94f8-59161dd0b590",
     logo: "TPE",
     flag: "/flags/bel.svg",
     division: "Entry",
@@ -1018,6 +1096,7 @@ const teams = [
                                   {
     slug: "kda-team",
     name: "KDA Team",
+    faceitTeamId: "e3a351ac-7726-4410-a364-f5037a7ca753",
     logo: "/logos/kda.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1031,6 +1110,7 @@ const teams = [
                                   {
     slug: "fortis",
     name: "FORTIS",
+    faceitTeamId: "fcbd3200-a4d6-4e9a-8990-4cdd8f92333e",
     logo: "/logos/fortis.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1044,6 +1124,7 @@ const teams = [
                                     {
     slug: "mayak-arena",
     name: "MAYAK ARENA",
+    faceitTeamId: "e5b56915-a829-45f7-b237-83f5163db7b6",
     logo: "/logos/mayakarena.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1057,6 +1138,7 @@ const teams = [
                                     {
     slug: "lan1t",
     name: "LAN1T",
+    faceitTeamId: "4fd946f9-2652-4290-95d4-9cd1eb67cc19",
     logo: "/logos/lan1t.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1070,6 +1152,7 @@ const teams = [
                                     {
     slug: "vexar",
     name: "Vexar",
+    faceitTeamId: "f98abfb9-7f86-460c-9646-af019de1b713",
     logo: "/logos/vexar.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1083,6 +1166,7 @@ const teams = [
                                       {
     slug: "prius",
     name: "Prius",
+    faceitTeamId: "4c7481eb-8cf0-4f78-9b81-cc9a9faa99e3",
     logo: "/logos/prius.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1096,6 +1180,7 @@ const teams = [
                                       {
     slug: "goodjob",
     name: "GoodJob",
+    faceitTeamId: "b74f9230-c8ab-4586-a9f6-779b0ee5f72d",
     logo: "/logos/good.png",
     flag: "/flags/bel.svg",
     division: "Entry",
@@ -1108,8 +1193,9 @@ const teams = [
   },
                                       {
     slug: "lanklan",
-    name: "LANK",
-    logo: "VPF",
+    name: "LanKlan",
+    faceitTeamId: "f514f39c-d540-4cce-b8f9-3294b9683d82",
+    logo: "LanKlan",
     flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
@@ -1122,6 +1208,7 @@ const teams = [
                                       {
     slug: "fate",
     name: "FATE",
+    faceitTeamId: "5705f012-7cd6-4508-83b4-0ab9eb0fce17",
     logo: "/logos/fate.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1135,6 +1222,7 @@ const teams = [
                                         {
     slug: "aeris",
     name: "AERIS",
+    faceitTeamId: "5af99ee0-afb6-465e-bad7-d6e327629958",
     logo: "/logos/aeris.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1148,6 +1236,7 @@ const teams = [
                                         {
     slug: "dnk",
     name: "DNK",
+    faceitTeamId: "3c170b46-04a8-443a-9605-cfd3e03cd020",
     logo: "/logos/dnk.png",
     flag: "/flags/kaz.svg",
     division: "Entry",
@@ -1161,6 +1250,7 @@ const teams = [
                                         {
     slug: "homo-sapiens",
     name: "homo_sapiens",
+    faceitTeamId: "92d57ce8-d83e-4c86-afb8-520fda7ac385",
     logo: "HS",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1174,6 +1264,7 @@ const teams = [
                                         {
     slug: "cerberus",
     name: "CERBERUS",
+    faceitTeamId: "f75c2fef-efb0-4e58-b289-044fbdcc84ed",
     logo: "/logos/cerberus.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1187,6 +1278,7 @@ const teams = [
                                           {
     slug: "fak1e-lab",
     name: "Fak1E Lab",
+    faceitTeamId: "f8b78dde-8afe-484e-b4ef-2ce9bd51eaa5",
     logo: "/logos/fakie.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1200,6 +1292,7 @@ const teams = [
                                           {
     slug: "mana",
     name: "MANA",
+    faceitTeamId: "d1c66779-707b-43b4-a3e3-29f8b0f79a44",
     logo: "MANA",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1213,6 +1306,7 @@ const teams = [
                                           {
     slug: "smokinsexxystyle",
     name: "SmokinSexxyStyle",
+    faceitTeamId: "cd10d589-6a71-4f38-bbd9-e6ca44591baf",
     logo: "/logos/smoki.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1226,6 +1320,7 @@ const teams = [
                                           {
     slug: "eternal",
     name: "eternal",
+    faceitTeamId: "776e55ca-6565-458e-921f-3500a57eb737",
     logo: "/logos/eternal.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1239,6 +1334,7 @@ const teams = [
                                           {
     slug: "fusion",
     name: "FUSION",
+    faceitTeamId: "4569b790-dc83-4b4d-8464-88680c325a5c",
     logo: "/logos/fusion.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1252,6 +1348,7 @@ const teams = [
                                             {
     slug: "posle-zavoda",
     name: "POSLE ZAVODA",
+    faceitTeamId: "4166c0fb-bdbe-4d18-8028-562f4e58c6ae",
     logo: "PZ",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1265,6 +1362,7 @@ const teams = [
                                             {
     slug: "thekomyakz",
     name: "THEKOMYAKZ",
+    faceitTeamId: "a1cd8c64-1275-4edf-b8e0-211a7e37b4ed",
     logo: "/logos/thekom.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1278,6 +1376,7 @@ const teams = [
                                             {
     slug: "nightmare-esports",
     name: "Nightmare Esports",
+    faceitTeamId: "02677263-e33c-4cc5-bbfd-98578ac28929",
     logo: "/logos/nightmare.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1291,6 +1390,7 @@ const teams = [
                                             {
     slug: "s1wka-team",
     name: "S1WKA Team",
+    faceitTeamId: "fa69c07a-1265-456e-a79f-40dc392b36c2",
     logo: "/logos/siwka.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1304,6 +1404,7 @@ const teams = [
                                               {
     slug: "eca-esports",
     name: "ECA Esports",
+    faceitTeamId: "5e7554d4-0ac3-45b7-ac2e-cf9daebfd065",
     logo: "/logos/eca.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1317,6 +1418,7 @@ const teams = [
                                               {
     slug: "pivstar",
     name: "pivstar",
+    faceitTeamId: "28a685ee-1966-4732-86c7-816261554301",
     logo: "PS",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1330,6 +1432,7 @@ const teams = [
                                               {
     slug: "fnbet",
     name: "FNbet",
+    faceitTeamId: "2084fcdf-7cf9-4812-a7d8-4730a9397eaf",
     logo: "/logos/fnb.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1343,6 +1446,7 @@ const teams = [
                                               {
     slug: "urat",
     name: "UraT",
+    faceitTeamId: "610dc286-9ecd-4eba-bda7-922499e45555",
     logo: "URAT",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1356,6 +1460,7 @@ const teams = [
                                                 {
     slug: "unknowns",
     name: "unknowns",
+    faceitTeamId: "15cf1709-7109-4cd1-93f5-54b552e4476c",
     logo: "/logos/unknow.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1369,6 +1474,7 @@ const teams = [
                                                 {
     slug: "dodg3rs",
     name: "dodg3rs",
+    faceitTeamId: "a6ae77ba-ea4c-4841-9837-bd865224bee1",
     logo: "/logos/dodg.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1382,6 +1488,7 @@ const teams = [
                                                 {
     slug: "sixseven",
     name: "SixSeven",
+    faceitTeamId: "7fe741d5-d2ef-47ae-b67e-9395fb71b784",
     logo: "/logos/sixseven.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1395,8 +1502,9 @@ const teams = [
                                                   {
     slug: "stubborn-boys",
     name: "Stubborn Boys",
+    faceitTeamId: "df5c7b48-0452-4fd5-afca-bf142337292e",
     logo: "STB",
-    flag: "/flags/russia.svg",
+    flag: "/flags/bel.svg",
     division: "Entry",
     stats: {
       wins: 8,
@@ -1408,6 +1516,7 @@ const teams = [
                                                   {
     slug: "critical",
     name: "Critical",
+    faceitTeamId: "73bc0074-fdfc-4a62-a555-e0267608e5ea",
     logo: "/logos/critical.png",
     flag: "/flags/bel.svg",
     division: "Entry",
@@ -1421,6 +1530,7 @@ const teams = [
                                                   {
     slug: "mephi",
     name: "MEPHI",
+    faceitTeamId: "8bbbf1af-eb3e-46d6-8a6a-0973ea6180e1",
     logo: "/logos/mephi.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1434,6 +1544,7 @@ const teams = [
                                                   {
     slug: "zbk",
     name: "ZBK",
+    faceitTeamId: "67e0b31d-7fa8-47b9-846b-550c71c71857",
     logo: "/logos/zbk.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1447,6 +1558,7 @@ const teams = [
                                                     {
     slug: "ha-ncuxotponhbix",
     name: "Ha ncuxoTPonHblx",
+    faceitTeamId: "2df3a22c-9b65-43f7-94cb-df440fc52853",
     logo: "/logos/ha.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1460,6 +1572,7 @@ const teams = [
                                                     {
     slug: "kynetic",
     name: "Kynetic",
+    faceitTeamId: "b4be4d72-f409-4ec7-8c94-bb091ab255fb",
     logo: "/logos/kynetic.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1473,6 +1586,7 @@ const teams = [
                                                     {
     slug: "outsiders",
     name: "Outsiders",
+    faceitTeamId: "27dbbd38-5854-4b65-9ed7-ac8d365e6389",
     logo: "/logos/out.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1486,6 +1600,7 @@ const teams = [
                                                     {
     slug: "m0nkeys",
     name: "m0nkeys",
+    faceitTeamId: "696e7812-4cef-4346-9032-73936ae56b11",
     logo: "/logos/monkeys.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1499,6 +1614,7 @@ const teams = [
                                                       {
     slug: "1minute",
     name: "1Minute",
+    faceitTeamId: "32c6b263-f1c4-48e2-b737-8e4301353328",
     logo: "/logos/1min.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1512,6 +1628,7 @@ const teams = [
                                                       {
     slug: "only-gamers",
     name: "ONLY GAMERS",
+    faceitTeamId: "61be9f3c-018b-47bc-9eb2-f2dd068145ea",
     logo: "/logos/only.png",
     flag: "/flags/uzb.svg",
     division: "Entry",
@@ -1525,6 +1642,7 @@ const teams = [
                                                       {
     slug: "inputlag-enjoyers",
     name: "inputlag enjoyers",
+    faceitTeamId: "6b7020c3-38f8-4bee-97db-61ffd92703d6",
     logo: "/logos/input.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1538,6 +1656,7 @@ const teams = [
                                                       {
     slug: "justtag",
     name: "JustTag",
+    faceitTeamId: "ec693f73-cbb4-4ab5-9caf-ede8cda3bd97",
     logo: "JT",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1551,6 +1670,7 @@ const teams = [
                                                         {
     slug: "leetcase",
     name: "LeetCase",
+    faceitTeamId: "99335c5c-c93a-487b-ac8d-a852338cf979",
     logo: "/logos/leet.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1564,6 +1684,7 @@ const teams = [
                                                         {
     slug: "w1nks",
     name: "W1NKS",
+    faceitTeamId: "0d31cf43-39fd-401c-9fef-1466e7515522",
     logo: "/logos/winks.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1577,6 +1698,7 @@ const teams = [
                                                         {
     slug: "bestaimmers",
     name: "bestAIMMERS",
+    faceitTeamId: "740d7890-b848-4e56-ab74-730ccb385aa6",
     logo: "/logos/best.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1590,6 +1712,7 @@ const teams = [
                                                         {
     slug: "the-relics",
     name: "The Relics",
+    faceitTeamId: "3815dedc-a3e1-441a-a5f7-9ba5dcb347d1",
     logo: "/logos/relics.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1603,6 +1726,7 @@ const teams = [
                                                           {
     slug: "kagen",
     name: "KageN",
+    faceitTeamId: "246fd901-e1c0-44ad-94ab-bb954eb5ac1d",
     logo: "/logos/kagen.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1616,6 +1740,7 @@ const teams = [
                                                           {
     slug: "back2back",
     name: "back2back",
+    faceitTeamId: "4a4ef292-6d53-4426-b60d-f8107092fb82",
     logo: "b2b",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1629,6 +1754,7 @@ const teams = [
                                                           {
     slug: "full-dobro",
     name: "Full Dobro",
+    faceitTeamId: "ed7c43cb-de36-40fc-ba07-ce80968570ad",
     logo: "/logos/full.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1642,6 +1768,7 @@ const teams = [
                                                             {
     slug: "ronin",
     name: "RONIN",
+    faceitTeamId: "4ca811de-4993-4e8e-a028-9e557a96a8fa",
     logo: "/logos/ronin.png",
     flag: "/flags/kaz.svg",
     division: "Entry",
@@ -1656,6 +1783,7 @@ const teams = [
                                                             {
     slug: "emlight",
     name: "Emlight",
+    faceitTeamId: "91974fa2-24f8-430a-8410-b3f52c5d5a1c",
     logo: "/logos/eml.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1669,6 +1797,7 @@ const teams = [
                                                               {
     slug: "goldrushers",
     name: "GoldRushers",
+    faceitTeamId: "fd7422ac-2bdb-45d7-b4b0-7f5206f15f63",
     logo: "/logos/hodes.png",
     flag: "/flags/bel.svg",
     division: "Entry",
@@ -1682,6 +1811,7 @@ const teams = [
                                                                 {
     slug: "flame-guardians",
     name: "Flame Guardians",
+    faceitTeamId: "b784c41d-6c40-4774-bb55-ed51f1927117",
     logo: "/logos/flameguardians.png",
     flag: "/flags/russia.svg",
     division: "Intermediate",
@@ -1695,6 +1825,7 @@ const teams = [
                                                                   {
     slug: "weclear",
     name: "WeClear",
+    faceitTeamId: "3c0c71e3-bd80-4d2d-9900-1ef1251667a4",
     logo: "/logos/weclear.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1708,6 +1839,7 @@ const teams = [
                                                                     {
     slug: "cybercom",
     name: "CYBERCOM",
+    faceitTeamId: "9366d981-4555-4674-868a-0351b5a1e246",
     logo: "/logos/cybercom.png",
     flag: "/flags/russia.svg",
     division: "Entry",
@@ -1721,6 +1853,7 @@ const teams = [
      {
     slug: "kittadiena",
     name: "KittaDiena",
+    faceitTeamId: "49286233-7650-492c-b78d-4f0b23da52d9",
     logo: "/logos/kitta.png",
     flag: "/flags/russia.svg",
     division: "Main",
