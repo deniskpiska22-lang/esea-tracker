@@ -37,7 +37,15 @@ const opponentTeam = teams.find(
 const opponentLogo =
   opponentTeam?.logo || null;
 
-    
+  const opponentPage = teams.find(
+  (t) =>
+    t.name
+      ?.replace(/\s+/g, "")
+      .toLowerCase() ===
+    match.opponentName
+      ?.replace(/\s+/g, "")
+      .toLowerCase()
+);
 
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white p-8">
@@ -103,9 +111,17 @@ const opponentLogo =
     </div>
   )}
 
-  <div className="text-4xl font-black">
-    {match.teamName}
-  </div>
+  <Link
+  to={`/team/${slug}`}
+  className="
+    text-4xl
+    font-black
+    hover:text-orange-400
+    transition-colors
+  "
+>
+  {match.teamName}
+</Link>
 
 </div>
 
@@ -145,9 +161,23 @@ const opponentLogo =
 
 <div className="flex items-center justify-end gap-5">
 
+  {opponentPage ? (
+  <Link
+    to={`/team/${opponentPage.slug}`}
+    className="
+      text-4xl
+      font-black
+      hover:text-orange-400
+      transition-colors
+    "
+  >
+    {match.opponentName}
+  </Link>
+) : (
   <div className="text-4xl font-black">
     {match.opponentName}
   </div>
+)}
 
   {opponentLogo ? (
     <img
