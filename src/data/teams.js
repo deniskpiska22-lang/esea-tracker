@@ -169,7 +169,7 @@ faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
   },
     {
     slug: "lfo-corh9k",
-    name: "LFO_COPH9K",
+    name: "COPH9K_LFO",
     faceitTeamId: "0b63e766-8c51-4e70-bef7-aa4ed030c9b3",
     logo: "/logos/sornyak.png",
     flag: "/flags/russia.svg",

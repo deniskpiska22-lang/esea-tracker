@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
 
@@ -9,7 +10,26 @@ function MatchPage() {
   (m) => m.teamSlug === slug && m.matchId === matchId
 );
 
+const [stats, setStats] = useState(null);
+
+useEffect(() => {
+  if (!match) return;
+
+  fetch(
+    `https://www.faceit.com/api/stats/v3/matches/${match.matchId}`
+  )
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("FACEIT STATS", data);
+      setStats(data);
+    })
+    .catch(console.error);
+}, [match]);
+
 if (!match) {
+
+
+
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white p-8">
       Match not found
@@ -46,6 +66,89 @@ const opponentLogo =
       ?.replace(/\s+/g, "")
       .toLowerCase()
 );
+
+const recentTeamMatches = matchesData
+  .filter((m) => m.teamSlug === slug && m.matchId !== match.matchId)
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
+  .slice(0, 8);
+
+  const threeMonthsAgo = new Date();
+threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+
+const currentTeamMatches = matchesData
+  .filter(
+    (m) =>
+      m.teamSlug === slug &&
+      new Date(m.date) >= threeMonthsAgo
+  )
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const opponentMatches = opponentTeam
+  ? matchesData
+      .filter(
+        (m) =>
+          m.teamSlug === opponentTeam.slug &&
+          new Date(m.date) >= threeMonthsAgo
+      )
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+  : [];
+
+const h2hMatches = opponentTeam
+  ? matchesData.filter((m) => {
+      return (
+        (m.teamSlug === slug &&
+          m.opponentName === opponentTeam.name) ||
+        (m.teamSlug === opponentTeam.slug &&
+          m.opponentName === match.teamName)
+      );
+    })
+  : [];
+
+  const uniqueH2HMatches = [
+  ...new Map(
+    h2hMatches.map((m) => [
+      m.matchId,
+      m
+    ])
+  ).values()
+];
+
+let teamWins = 0;
+let opponentWins = 0;
+
+uniqueH2HMatches.forEach((m) => {
+
+  const [left, right] =
+    m.boScore.split(":").map(Number);
+
+  if (m.teamSlug === slug) {
+
+    if (left > right)
+      teamWins++;
+    else
+      opponentWins++;
+
+  } else {
+
+    if (left > right)
+      opponentWins++;
+    else
+      teamWins++;
+
+  }
+
+});
+  
+const formatH2HScore = (item) => {
+  if (item.teamSlug === slug) {
+    return item.boScore;
+  }
+
+  const [left, right] =
+    item.boScore.split(":");
+
+  return `${right}:${left}`;
+};
 
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white p-8">
@@ -299,6 +402,485 @@ const opponentLogo =
           </div>
 
         </div>
+
+{/* PLAYER STATS */}
+
+{stats && (
+  <div className="mt-10">
+
+    <h2 className="text-2xl font-black mb-4">
+      Player Statistics
+    </h2>
+
+    <div className="grid lg:grid-cols-2 gap-6">
+
+      {stats[0]?.teams?.map((team, teamIndex) => (
+
+        <div
+          key={teamIndex}
+          className="
+            bg-[#111823]
+            border
+            border-[#243041]
+            rounded-2xl
+            overflow-hidden
+          "
+        >
+
+          <div className="px-5 py-4 border-b border-[#243041]">
+
+            <div className="text-xl font-black">
+              {team.teamName}
+            </div>
+
+          </div>
+
+          <table className="w-full">
+
+            <thead>
+              <tr className="text-gray-500 text-sm">
+
+                <th className="text-left p-3">
+                  Player
+                </th>
+
+                <th>K</th>
+                <th>D</th>
+                <th>ADR</th>
+                <th>HS%</th>
+                <th>K/D</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {[...team.players]
+                .sort((a, b) => b.kd - a.kd)
+                .map((player) => (
+
+                  <tr
+                    key={player.playerId}
+                    className="
+                      border-t
+                      border-[#1d2634]
+                      hover:bg-[#151e2b]
+                    "
+                  >
+
+                    <td className="p-3 font-semibold">
+                      {player.nickname}
+                    </td>
+
+                    <td className="text-center">
+                      {player.kills}
+                    </td>
+
+                    <td className="text-center">
+                      {player.deaths}
+                    </td>
+
+                    <td className="text-center">
+                      {player.adr?.toFixed(1)}
+                    </td>
+
+                    <td className="text-center">
+                      {player.hsRate}%
+                    </td>
+
+                    <td
+                      className={`
+                        text-center
+                        font-bold
+                        ${
+                          player.kd >= 1
+                            ? "text-green-400"
+                            : "text-red-400"
+                        }
+                      `}
+                    >
+                      {player.kd?.toFixed(2)}
+                    </td>
+
+                  </tr>
+
+                ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+)}
+
+{/* RECENT MATCHES */}
+
+<div className="mt-10">
+
+  <h2 className="text-2xl font-black mb-4">
+    Recent Matches (Past 3 Months)
+  </h2>
+
+  <div className="grid md:grid-cols-2 gap-6">
+
+    {/* OUR TEAM */}
+
+    <div
+      className="
+        bg-[#111823]
+        border
+        border-[#243041]
+        rounded-2xl
+        overflow-hidden
+        flex
+        flex-col
+      "
+    >
+
+      <div className="px-5 py-4 border-b border-[#243041]">
+
+        <div className="font-black text-lg">
+          {match.teamName}
+        </div>
+
+      </div>
+
+      <div
+        className="
+          max-h-[340px]
+          overflow-y-auto
+        "
+      >
+
+        {currentTeamMatches.map((item) => (
+
+          <Link
+            key={item.matchId}
+            to={`/team/${slug}/matches/${item.matchId}`}
+            className="
+              flex
+              justify-between
+              items-center
+              px-5
+              py-3
+              border-b
+              border-[#1d2634]
+              last:border-b-0
+              hover:bg-[#151e2b]
+              transition-colors
+            "
+          >
+
+            <div>
+
+              <div className="font-medium">
+                {item.opponentName}
+              </div>
+
+              <div className="text-xs text-gray-500">
+                {item.date}
+              </div>
+
+            </div>
+
+            <div
+              className={`
+                font-black
+                ${
+                  item.won
+                    ? "text-green-400"
+                    : "text-red-400"
+                }
+              `}
+            >
+              {item.teamSlug === slug
+  ? item.boScore
+  : item.boScore.split(":").reverse().join(":")
+}
+            </div>
+
+          </Link>
+
+        ))}
+
+      </div>
+
+    </div>
+
+    {/* OPPONENT */}
+
+    <div
+      className="
+        bg-[#111823]
+        border
+        border-[#243041]
+        rounded-2xl
+        overflow-hidden
+        flex
+        flex-col
+      "
+    >
+
+      <div className="px-5 py-4 border-b border-[#243041]">
+
+        <div className="font-black text-lg">
+          {match.opponentName}
+        </div>
+
+      </div>
+
+      {opponentTeam ? (
+
+        <div
+          className="
+            max-h-[340px]
+            overflow-y-auto
+          "
+        >
+
+          {opponentMatches.map((item) => (
+
+            <Link
+              key={item.matchId}
+              to={`/team/${item.teamSlug}/matches/${item.matchId}`}
+              className="
+                flex
+                justify-between
+                items-center
+                px-5
+                py-3
+                border-b
+                border-[#1d2634]
+                last:border-b-0
+                hover:bg-[#151e2b]
+                transition-colors
+              "
+            >
+
+              <div>
+
+                <div className="font-medium">
+                  {item.opponentName}
+                </div>
+
+                <div className="text-xs text-gray-500">
+                  {item.date}
+                </div>
+
+              </div>
+
+              <div
+  className="
+    w-1/3
+    text-right
+    font-black
+    text-orange-400
+  "
+>
+  {item.teamSlug === slug
+    ? item.boScore
+    : item.boScore
+        .split(":")
+        .reverse()
+        .join(":")
+  }
+</div>
+
+            </Link>
+
+          ))}
+
+        </div>
+
+      ) : (
+
+        <div className="p-6 text-gray-500">
+          Team is not in CIS Rankings
+        </div>
+
+      )}
+
+    </div>
+
+  </div>
+
+</div>
+
+{/* HEAD TO HEAD */}
+
+{opponentTeam && uniqueH2HMatches.length > 0 && (
+
+<div className="mt-10">
+
+  <h2 className="text-2xl font-black mb-4">
+    Head to Head
+  </h2>
+
+  <div
+    className="
+      bg-[#111823]
+      border
+      border-[#243041]
+      rounded-2xl
+      overflow-hidden
+    "
+  >
+
+    {/* SCORE */}
+
+    <div
+      className="
+        grid
+        grid-cols-3
+        items-center
+        text-center
+        border-b
+        border-[#243041]
+        p-6
+      "
+    >
+
+      <div className="flex flex-col items-center">
+
+  {teamLogo && (
+    <img
+      src={teamLogo}
+      alt={match.teamName}
+      className="
+        w-12
+        h-12
+        object-contain
+        mb-2
+      "
+    />
+  )}
+
+  <div className="text-lg text-gray-400">
+    {match.teamName}
+  </div>
+
+  <div className="text-5xl font-black text-green-400">
+    {teamWins}
+  </div>
+
+</div>
+
+      <div>
+
+        <div className="text-gray-500 text-sm">
+          H2H Record
+        </div>
+
+        <div className="text-xl font-bold">
+          Matches: {uniqueH2HMatches.length}
+        </div>
+
+      </div>
+
+<div className="flex flex-col items-center">
+
+  {opponentLogo && (
+    <img
+      src={opponentLogo}
+      alt={match.opponentName}
+      className="
+        w-12
+        h-12
+        object-contain
+        mb-2
+      "
+    />
+  )}
+
+  <div className="text-lg text-gray-400">
+    {match.opponentName}
+  </div>
+
+  <div className="text-5xl font-black text-red-400">
+    {opponentWins}
+  </div>
+
+</div>
+
+    </div>
+
+    {/* MATCH LIST */}
+
+    {uniqueH2HMatches.map((item) => (
+
+      <Link
+  key={`${item.matchId}-${item.teamSlug}`}
+  to={`/team/${slug}/matches/${item.matchId}`}
+  className="
+  relative
+    flex
+    justify-between
+    items-center
+    px-5
+    py-4
+    border-b
+    border-[#1d2634]
+    last:border-b-0
+    hover:bg-[#151e2b]
+    transition-colors
+  "
+>
+
+  <div className="font-medium">
+
+  {item.teamSlug === slug
+    ? `${item.teamName} vs ${item.opponentName}`
+    : `${item.opponentName} vs ${item.teamName}`
+  }
+
+</div>
+
+ <div
+  className="
+    absolute
+    left-1/2
+    -translate-x-1/2
+    text-center
+    px-4
+  "
+>
+
+  <div className="text-gray-300 text-sm font-medium truncate">
+    {item.season}
+  </div>
+
+  <div className="text-xs text-gray-500 mt-1">
+    {item.date}
+  </div>
+
+</div>
+
+  <div
+  className="
+    w-1/3
+    text-right
+    font-black
+    text-orange-400
+  "
+>
+  {formatH2HScore(item)}
+</div>
+
+</Link>
+
+    ))}
+
+  </div>
+
+</div>
+
+)}
 
         {/* MATCH INFO */}
 
