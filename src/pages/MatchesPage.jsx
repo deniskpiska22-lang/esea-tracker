@@ -45,11 +45,9 @@ function MatchesPage() {
 
             <div className="space-y-3">
               {matches.map((match, index) => (
-                <a
-                  key={`${match.matchId}-${index}`}
-                  href={match.faceitUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+  key={`${match.matchId}-${index}`}
+  to={`/team/${slug}/matches/${match.matchId}`}
                   className="
                     flex
                     items-center
@@ -109,7 +107,7 @@ function MatchesPage() {
                       ↗
                     </span>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

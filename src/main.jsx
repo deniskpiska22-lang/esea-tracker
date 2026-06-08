@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import MatchesPage from "./pages/MatchesPage";
 import ScrollToTop from "./components/ScrollToTop";
 import StatsPage from "./pages/StatsPage";
+import MatchPage from "./pages/MatchPage";
 
 import {
   BrowserRouter,
@@ -61,6 +62,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <Route
   path="/team/:slug/stats"
   element={<StatsPage />}
+/>
+
+<Route
+  path="/team/:slug/matches/:matchId"
+  element={<MatchPage />}
 />
 
 <Route
