@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
-import matchStats from "../data/matchStats.json";
+import matchStatsV3 from "../data/matchStatsV3.json";
 
 function MatchPage() {
   const { slug, matchId } = useParams();
@@ -11,7 +11,8 @@ function MatchPage() {
   (m) => m.teamSlug === slug && m.matchId === matchId
 );
 
-const stats = matchStats[matchId];
+const stats = matchStatsV3[matchId]?.[0];
+console.log("MATCH V3", stats);
 
 if (!match) {
 
@@ -392,7 +393,7 @@ const formatH2HScore = (item) => {
 
 {/* PLAYER STATS */}
 
-{stats?.cs2?.teams && (
+{stats?.teams && (
   <div className="mt-10">
 
     <h2 className="text-2xl font-black mb-4">
@@ -401,7 +402,7 @@ const formatH2HScore = (item) => {
 
     <div className="grid lg:grid-cols-2 gap-6">
 
-      {stats.cs2.teams.map((team, teamIndex) => (
+      {stats.teams.map((team, teamIndex) => (
 
         <div
           key={teamIndex}
@@ -417,7 +418,7 @@ const formatH2HScore = (item) => {
           <div className="px-5 py-4 border-b border-[#243041]">
 
             <div className="text-xl font-black">
-              {team.nickname || team.teamName || "Unknown Team"}
+              {team.teamName}
             </div>
 
           </div>
@@ -445,8 +446,8 @@ const formatH2HScore = (item) => {
               {[...(team.players || [])]
                 .sort(
                   (a, b) =>
-                    (b.stats?.kd || 0) -
-                    (a.stats?.kd || 0)
+                    (b.kd || 0) -
+                    (a.kd || 0)
                 )
                 .map((player) => (
 
@@ -464,24 +465,22 @@ const formatH2HScore = (item) => {
                     </td>
 
                     <td className="text-center">
-                      {player.stats?.kills ?? 0}
+                      {player.kills ?? 0}
                     </td>
 
                     <td className="text-center">
-                      {player.stats?.deaths ?? 0}
+                      {player.deaths ?? 0}
                     </td>
 
                     <td className="text-center">
-                      {player.stats?.adr
-                        ? player.stats.adr.toFixed(1)
+                      {player.adr
+                        ? player.adr.toFixed(1)
                         : "0.0"}
                     </td>
 
                     <td className="text-center">
-                      {player.stats?.hsRate
-                        ? (
-                            player.stats.hsRate * 100
-                          ).toFixed(0)
+                      {player.hsRate
+                        ? player.hsRate.toFixed(0)
                         : 0}
                       %
                     </td>
@@ -491,14 +490,14 @@ const formatH2HScore = (item) => {
                         text-center
                         font-bold
                         ${
-                          (player.stats?.kd || 0) >= 1
+                          (player.kd || 0) >= 1
                             ? "text-green-400"
                             : "text-red-400"
                         }
                       `}
                     >
-                      {player.stats?.kd
-                        ? player.stats.kd.toFixed(2)
+                      {player.kd
+                        ? player.kd.toFixed(2)
                         : "0.00"}
                     </td>
 
