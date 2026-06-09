@@ -34,7 +34,7 @@ const posts = [
     team: "Esea Tracker",
     logo: "/logos/logo.png",
     image: "/posts/page.png",
-    text: "Если у вас нет вашей странички, значит вы меняли ник, напишите мне (https://t.me/LisssTzz1) и я быстренько это исправлю".
+    text: "Для каждого игрока теперь есть личная страничка. Если у вас нет вашей странички, значит вы меняли ник, напишите мне (https://t.me/LisssTzz1) и я быстренько это исправлю".
 link: "https://t.me/LisssTzz1",
   },
 ]
