@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
+import matchStats from "../data/matchStats.json";
 
 function MatchPage() {
   const { slug, matchId } = useParams();
@@ -10,21 +11,7 @@ function MatchPage() {
   (m) => m.teamSlug === slug && m.matchId === matchId
 );
 
-const [stats, setStats] = useState(null);
-
-useEffect(() => {
-  if (!match) return;
-
-  fetch(
-    `https://www.faceit.com/api/stats/v3/matches/${match.matchId}`
-  )
-    .then((r) => r.json())
-    .then((data) => {
-      console.log("FACEIT STATS", data);
-      setStats(data);
-    })
-    .catch(console.error);
-}, [match]);
+const stats = matchStats[matchId];
 
 if (!match) {
 
@@ -405,7 +392,7 @@ const formatH2HScore = (item) => {
 
 {/* PLAYER STATS */}
 
-{stats && (
+{stats?.cs2?.teams && (
   <div className="mt-10">
 
     <h2 className="text-2xl font-black mb-4">
@@ -414,7 +401,7 @@ const formatH2HScore = (item) => {
 
     <div className="grid lg:grid-cols-2 gap-6">
 
-      {stats[0]?.teams?.map((team, teamIndex) => (
+      {stats.cs2.teams.map((team, teamIndex) => (
 
         <div
           key={teamIndex}
@@ -430,7 +417,7 @@ const formatH2HScore = (item) => {
           <div className="px-5 py-4 border-b border-[#243041]">
 
             <div className="text-xl font-black">
-              {team.teamName}
+              {team.nickname || team.teamName || "Unknown Team"}
             </div>
 
           </div>
@@ -455,8 +442,12 @@ const formatH2HScore = (item) => {
 
             <tbody>
 
-              {[...team.players]
-                .sort((a, b) => b.kd - a.kd)
+              {[...(team.players || [])]
+                .sort(
+                  (a, b) =>
+                    (b.stats?.kd || 0) -
+                    (a.stats?.kd || 0)
+                )
                 .map((player) => (
 
                   <tr
@@ -473,19 +464,26 @@ const formatH2HScore = (item) => {
                     </td>
 
                     <td className="text-center">
-                      {player.kills}
+                      {player.stats?.kills ?? 0}
                     </td>
 
                     <td className="text-center">
-                      {player.deaths}
+                      {player.stats?.deaths ?? 0}
                     </td>
 
                     <td className="text-center">
-                      {player.adr?.toFixed(1)}
+                      {player.stats?.adr
+                        ? player.stats.adr.toFixed(1)
+                        : "0.0"}
                     </td>
 
                     <td className="text-center">
-                      {player.hsRate}%
+                      {player.stats?.hsRate
+                        ? (
+                            player.stats.hsRate * 100
+                          ).toFixed(0)
+                        : 0}
+                      %
                     </td>
 
                     <td
@@ -493,13 +491,15 @@ const formatH2HScore = (item) => {
                         text-center
                         font-bold
                         ${
-                          player.kd >= 1
+                          (player.stats?.kd || 0) >= 1
                             ? "text-green-400"
                             : "text-red-400"
                         }
                       `}
                     >
-                      {player.kd?.toFixed(2)}
+                      {player.stats?.kd
+                        ? player.stats.kd.toFixed(2)
+                        : "0.00"}
                     </td>
 
                   </tr>
@@ -518,6 +518,7 @@ const formatH2HScore = (item) => {
 
   </div>
 )}
+
 
 {/* RECENT MATCHES */}
 
