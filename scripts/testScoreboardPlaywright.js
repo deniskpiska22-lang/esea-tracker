@@ -1,45 +1,40 @@
 import { chromium } from "playwright";
 
-const MATCH_ID =
+const matchId =
   "1-97b0e519-10e9-4370-b371-69aa0e6b7439";
 
-const MATCH_URL =
-  `https://www.faceit.com/en/cs2/room/${MATCH_ID}/scoreboard`;
+const context =
+  await chromium.launchPersistentContext(
+    "C:/Users/denis/AppData/Local/Microsoft/Edge/User Data",
+    {
+      headless: false,
+      channel: "msedge",
+    }
+  );
 
-const browser = await chromium.launch({
-  headless: false,
-});
+const page = await context.newPage();
 
-const page = await browser.newPage();
+await page.goto(
+  `https://www.faceit.com/en/cs2/room/${matchId}`
+);
 
-page.on("response", async (response) => {
-  const url = response.url();
+await page.waitForTimeout(5000);
 
-  if (
-    url.includes("scoreboard") ||
-    url.includes("statistics") ||
-    url.includes("stats")
-  ) {
-    console.log("\n====================");
-    console.log(url);
-    console.log(response.status());
+const data = await page.evaluate(
+  async (id) => {
+    const res = await fetch(
+      `https://www.faceit.com/api/statistics/v1/cs2/matches/${id}/scoreboard-summary?statsType=2`
+    );
 
-    try {
-      const text = await response.text();
+    return {
+      status: res.status,
+      text: await res.text(),
+    };
+  },
+  matchId
+);
 
-      console.log(
-        text.slice(0, 1000)
-      );
-    } catch {}
-  }
-});
-
-await page.goto(MATCH_URL, {
-  waitUntil: "networkidle",
-});
-
-console.log("Page loaded");
-
-await page.waitForTimeout(15000);
+console.log(data.status);
+console.log(data.text.slice(0, 500));
 
 await browser.close();
