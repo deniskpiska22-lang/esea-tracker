@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
-import matchStatsV3 from "../data/matchStatsV3.json";
+import matchStatsCompact from "../data/matchStatsCompact.json";
 
 function MatchPage() {
   const { slug, matchId } = useParams();
@@ -11,8 +11,8 @@ function MatchPage() {
   (m) => m.teamSlug === slug && m.matchId === matchId
 );
 
-const stats = matchStatsV3[matchId]?.[0];
-console.log("MATCH V3", stats);
+const stats = matchStatsCompact[matchId];
+
 
 if (!match) {
 
