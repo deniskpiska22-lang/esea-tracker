@@ -31,6 +31,24 @@ console.log(
   Object.keys(savedStats).length
 );
 
+const existingIds = new Set(
+  Object.keys(savedStats)
+);
+
+const newMatchIds = uniqueMatchIds.filter(
+  (id) => !existingIds.has(id)
+);
+
+console.log(
+  "New matches:",
+  newMatchIds.length
+);
+
+if (newMatchIds.length === 0) {
+  console.log("No new matches");
+  process.exit(0);
+}
+
 const browser = await chromium.connectOverCDP(
   "http://127.0.0.1:9222"
 );
@@ -47,12 +65,8 @@ if (!page) {
   );
 }
 
-for (const matchId of uniqueMatchIds) {
-  if (savedStats[matchId]) {
-    console.log("SKIP", matchId);
-    continue;
-  }
-
+for (const matchId of newMatchIds) {
+  
   try {
     const result = await page.evaluate(
       async (id) => {

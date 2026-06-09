@@ -283,29 +283,29 @@ const mapStats = Object.values(
 <div className="max-w-6xl mx-auto mt-8 flex gap-4 flex-wrap">
 
 {teamPlayersStats.map((player, index) => (
-<a
-key={`${player.nickname}-${index}`}
-href={`https://www.faceit.com/en/players/${player.nickname}`}
-target="_blank"
-rel="noreferrer"
-className="
-flex-1
-min-w-[190px]
-bg-gradient-to-b
-from-[#182230]
-to-[#0f141c]
-border
-border-[#2a3547]
-rounded-3xl
-p-6
-relative
-overflow-hidden
-transition-all
-duration-300
-hover:-translate-y-2
-hover:border-orange-500/50
-hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
-"
+<Link
+  key={`${player.nickname}-${index}`}
+  to={`/players/${encodeURIComponent(player.nickname)}`}
+  className="
+    flex-1
+    min-w-[190px]
+    bg-gradient-to-b
+    from-[#182230]
+    to-[#0f141c]
+    border
+    border-[#2a3547]
+    rounded-3xl
+    p-6
+    relative
+    overflow-hidden
+    transition-all
+    duration-300
+    hover:-translate-y-2
+    hover:border-orange-500/50
+    hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
+    block
+    cursor-pointer
+  "
 >
   {/* TOP COLOR BAR */}
   <div
@@ -345,9 +345,12 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
     </div>
 
     {/* NICKNAME */}
-    <h3 className="font-bold text-white text-lg">
-      {player.nickname}
-    </h3>
+    <Link
+  to={`/players/${encodeURIComponent(player.nickname)}`}
+  className="hover:text-orange-400 transition-colors"
+>
+  {player.nickname}
+</Link>
 
     {/* RATING */}
     <div className="mt-5">
@@ -385,7 +388,7 @@ hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
 
   </div>
 
-</a>
+</Link>
 ))}
 
 </div>

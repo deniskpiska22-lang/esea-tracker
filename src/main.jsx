@@ -5,6 +5,7 @@ import MatchesPage from "./pages/MatchesPage";
 import ScrollToTop from "./components/ScrollToTop";
 import StatsPage from "./pages/StatsPage";
 import MatchPage from "./pages/MatchPage";
+import PlayerPage from "./pages/PlayerPage.jsx";
 
 import {
   BrowserRouter,
@@ -73,6 +74,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   path="/team/:slug"
   element={<TeamPage />}
 />
+
+<Route path="/players/:nickname"
+ element={<PlayerPage />} />
 
       </Routes>
 
