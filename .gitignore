@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+src/data/matchStats.json
+src/data/matchStatsV3.json
