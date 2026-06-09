@@ -29,6 +29,14 @@ const posts = [
     text: "У каждого игрока теперь показан рейтинг (Взято взвешенное среднее из игр регулярки и Плей-Офф)!",
     link: "https://t.me/LisssTzz/364",
   },
+  {
+    id: 3,
+    team: "Esea Tracker",
+    logo: "/logos/logo.png",
+    image: "/posts/page.png",
+    text: "Если у вас нет вашей странички, значит вы меняли ник, напишите мне (https://t.me/LisssTzz1) и я быстренько это исправлю".
+link: "https://t.me/LisssTzz1",
+  },
 ]
 
 export default posts
