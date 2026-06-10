@@ -3419,7 +3419,7 @@ const players = {
       "rating": 0.98
     }
   ],
-  "hodes": [
+  "goldrushers": [
     {
       "nickname": "fxrgxt10",
       "elo": 2824,
