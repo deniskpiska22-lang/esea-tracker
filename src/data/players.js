@@ -371,7 +371,7 @@ const players = {
       "rating": 1.05
     }
   ],
-  "wingmanlfo": [
+  "uust": [
     {
       "nickname": "-mowel",
       "elo": 3532,
@@ -1962,7 +1962,7 @@ const players = {
       "rating": 1.3
     }
   ],
-  "iuhop": [
+  "clutch-studio-agency": [
     {
       "nickname": "MrTrelog",
       "elo": 3156,

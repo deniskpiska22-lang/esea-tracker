@@ -1027,7 +1027,7 @@ faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
     slug: "clutch-studio-agency",
     name: "Clutch Studio Agency",
     faceitTeamId: "70f87000-3bd3-4cee-ac6c-cc20d1163cc1",
-    logo: "IUH",
+    logo: "clutch-studio-agency.png",
     flag: "/flags/russia.svg",
     division: "Entry",
     stats: {
