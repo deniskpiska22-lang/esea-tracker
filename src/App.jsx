@@ -1872,6 +1872,30 @@ const filteredTeams =
         </div>
       )}
 
+{/* FEEDBACK BUTTON */}
+<a
+  href="https://t.me/LisssTzz1" // <- замени на свой Telegram
+  target="_blank"
+  rel="noopener noreferrer"
+  className="
+    fixed
+    bottom-4
+    right-4
+    bg-orange-500
+    hover:bg-orange-600
+    text-white
+    font-bold
+    px-4
+    py-3
+    rounded-full
+    shadow-lg
+    transition-colors
+    z-50
+  "
+>
+  💬 Feedback
+</a>
+
     </div>
   )
 }
