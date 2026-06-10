@@ -7,6 +7,37 @@ const FACEIT_API_KEY = "1f7e7c47-0d9b-403e-9007-acd463de617b";
 
 const teams = (await import("../src/data/teams.js")).default;
 
+const TRANSFERS_FILE =
+  "./src/data/playerTransfers.json";
+
+const PLAYER_TEAMS_FILE =
+  "./src/data/playerTeams.json";
+
+let transferHistory = {};
+let previousTeams = {};
+
+if (fs.existsSync(TRANSFERS_FILE)) {
+  const raw = fs.readFileSync(
+    TRANSFERS_FILE,
+    "utf8"
+  );
+
+  if (raw.trim()) {
+    transferHistory = JSON.parse(raw);
+  }
+}
+
+if (fs.existsSync(PLAYER_TEAMS_FILE)) {
+  const raw = fs.readFileSync(
+    PLAYER_TEAMS_FILE,
+    "utf8"
+  );
+
+  if (raw.trim()) {
+    previousTeams = JSON.parse(raw);
+  }
+}
+
 async function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
@@ -103,6 +134,7 @@ if (isPlayoff && matches > playoffMatches) {
 
 async function main() {
   const output = {};
+  const currentTeams = {};
 
   for (const team of teams) {
     console.log(`\n=== ${team.name} ===`);
@@ -110,6 +142,7 @@ async function main() {
 
     for (const nickname of team.players) {
       console.log(`→ ${nickname}`);
+      currentTeams[nickname] = team.name;
 
       const player = await getFaceitPlayer(nickname);
       let elo = player?.games?.cs2?.faceit_elo;
@@ -131,6 +164,53 @@ async function main() {
       await sleep(500);
     }
   }
+
+for (const nickname in currentTeams) {
+  const currentTeam =
+    currentTeams[nickname];
+
+  const previousTeam =
+    previousTeams[nickname];
+
+  if (
+    previousTeam &&
+    previousTeam !== currentTeam
+  ) {
+    if (!transferHistory[nickname]) {
+      transferHistory[nickname] = [];
+    }
+
+    transferHistory[nickname].push({
+      from: previousTeam,
+      to: currentTeam,
+      date: new Date()
+        .toISOString()
+        .split("T")[0],
+    });
+
+    console.log(
+      `TRANSFER: ${nickname} | ${previousTeam} -> ${currentTeam}`
+    );
+  }
+}
+
+fs.writeFileSync(
+  TRANSFERS_FILE,
+  JSON.stringify(
+    transferHistory,
+    null,
+    2
+  )
+);
+
+fs.writeFileSync(
+  PLAYER_TEAMS_FILE,
+  JSON.stringify(
+    currentTeams,
+    null,
+    2
+  )
+);
 
   const fileContent = `const players = ${JSON.stringify(output, null, 2)}
 

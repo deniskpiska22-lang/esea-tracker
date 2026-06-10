@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
 import matchStatsCompact from "../data/matchStatsCompact.json";
+import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 
 function MatchPage() {
   const { slug, matchId } = useParams();
@@ -28,6 +29,30 @@ if (!match) {
 const currentTeam = teams.find(
   (t) => t.slug === slug
 );
+
+const orderedTeams = [...(stats?.teams || [])];
+
+orderedTeams.sort((a, b) => {
+
+  const normalize = (str) =>
+    str
+      ?.replace(/\s+/g, "")
+      .toLowerCase();
+
+  const current =
+    normalize(currentTeam?.name);
+
+  const aName =
+    normalize(a.teamName);
+
+  const bName =
+    normalize(b.teamName);
+
+  if (aName === current) return -1;
+  if (bName === current) return 1;
+
+  return 0;
+});
 
 const teamLogo =
   currentTeam?.logo || null;
@@ -137,6 +162,8 @@ const formatH2HScore = (item) => {
 
   return `${right}:${left}`;
 };
+
+
 
   return (
     <div className="bg-[#0b0f14] min-h-screen text-white p-8">
@@ -402,7 +429,7 @@ const formatH2HScore = (item) => {
 
     <div className="grid lg:grid-cols-2 gap-6">
 
-      {stats.teams.map((team, teamIndex) => (
+      {orderedTeams.map((team, teamIndex) => (
 
         <div
           key={teamIndex}
@@ -432,6 +459,7 @@ const formatH2HScore = (item) => {
                   Player
                 </th>
 
+                <th>R</th>
                 <th>K</th>
                 <th>D</th>
                 <th>ADR</th>
@@ -444,66 +472,108 @@ const formatH2HScore = (item) => {
             <tbody>
 
               {[...(team.players || [])]
-                .sort(
-                  (a, b) =>
-                    (b.kd || 0) -
-                    (a.kd || 0)
-                )
-                .map((player) => (
+                .sort((a, b) => {
 
-                  <tr
-                    key={player.playerId}
-                    className="
-                      border-t
-                      border-[#1d2634]
-                      hover:bg-[#151e2b]
-                    "
-                  >
+  const aRating =
+    calculatePlayerMatchRating(a);
 
-                    <td className="p-3 font-semibold">
-                      {player.nickname}
-                    </td>
+  const bRating =
+    calculatePlayerMatchRating(b);
 
-                    <td className="text-center">
-                      {player.kills ?? 0}
-                    </td>
+  return bRating - aRating;
 
-                    <td className="text-center">
-                      {player.deaths ?? 0}
-                    </td>
+})
+                .map((player) => {
 
-                    <td className="text-center">
-                      {player.adr
-                        ? player.adr.toFixed(1)
-                        : "0.0"}
-                    </td>
+                  const opponent =
+                    stats.teams.find(
+                      (t) => t.teamId !== team.teamId
+                    );
 
-                    <td className="text-center">
-                      {player.hsRate
-                        ? player.hsRate.toFixed(0)
-                        : 0}
-                      %
-                    </td>
+                  const rating =
+                    calculatePlayerMatchRating(
+                      player,
+                      team.score,
+                      opponent?.score || 0
+                    );
 
-                    <td
-                      className={`
-                        text-center
-                        font-bold
-                        ${
-                          (player.kd || 0) >= 1
-                            ? "text-green-400"
-                            : "text-red-400"
-                        }
-                      `}
+                  return (
+
+                    <tr
+                      key={player.playerId}
+                      className="
+                        border-t
+                        border-[#1d2634]
+                        hover:bg-[#151e2b]
+                      "
                     >
-                      {player.kd
-                        ? player.kd.toFixed(2)
-                        : "0.00"}
-                    </td>
 
-                  </tr>
+                      <td className="p-3 font-semibold">
+  <Link
+    to={`/players/${encodeURIComponent(player.nickname)}`}
+    className="hover:text-orange-400 transition-colors"
+  >
+    {player.nickname}
+  </Link>
+</td>
 
-                ))}
+                      <td
+                        className={`
+                          text-center
+                          font-black
+                          ${
+                            rating >= 1.15
+                              ? "text-green-400"
+                              : rating < 0.95
+                              ? "text-red-400"
+                              : "text-orange-400"
+                          }
+                        `}
+                      >
+                        {rating.toFixed(2)}
+                      </td>
+
+                      <td className="text-center">
+                        {player.kills ?? 0}
+                      </td>
+
+                      <td className="text-center">
+                        {player.deaths ?? 0}
+                      </td>
+
+                      <td className="text-center">
+                        {player.adr
+                          ? player.adr.toFixed(1)
+                          : "0.0"}
+                      </td>
+
+                      <td className="text-center">
+                        {player.hsRate
+                          ? player.hsRate.toFixed(0)
+                          : 0}
+                        %
+                      </td>
+
+                      <td
+                        className={`
+                          text-center
+                          font-bold
+                          ${
+                            (player.kd || 0) >= 1
+                              ? "text-green-400"
+                              : "text-red-400"
+                          }
+                        `}
+                      >
+                        {player.kd
+                          ? player.kd.toFixed(2)
+                          : "0.00"}
+                      </td>
+
+                    </tr>
+
+                  );
+                })}
 
             </tbody>
 

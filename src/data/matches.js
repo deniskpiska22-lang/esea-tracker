@@ -1,5 +1,756 @@
 const matches = [
   {
+    "id": "1-71e1ad1d-468b-41a1-8720-314f1188456c",
+    "matchId": "1-71e1ad1d-468b-41a1-8720-314f1188456c",
+    "teamSlug": "weclear",
+    "teamName": "WeClear",
+    "opponentName": "Anteiku",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "S57 EU Entry C - Playoffs",
+    "date": "2026-06-09",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "56253486-2d88-4512-9649-6296f50a38b9",
+    "maps": [
+      "Dust2",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-71e1ad1d-468b-41a1-8720-314f1188456c"
+  },
+  {
+    "id": "1-2e6a0976-de0f-4d9e-8521-1647669aae2f",
+    "matchId": "1-2e6a0976-de0f-4d9e-8521-1647669aae2f",
+    "teamSlug": "eternal-premium",
+    "teamName": "eternal premium",
+    "opponentName": "Misa",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "S57 EU Advanced Central - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+    "maps": [
+      "Nuke",
+      "Inferno",
+      "Overpass"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      },
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2e6a0976-de0f-4d9e-8521-1647669aae2f"
+  },
+  {
+    "id": "1-3435a5bf-5d4e-4600-9695-b48fabecdda2",
+    "matchId": "1-3435a5bf-5d4e-4600-9695-b48fabecdda2",
+    "teamSlug": "donstu-esports",
+    "teamName": "DONSTU ESPORTS",
+    "opponentName": "banger gang",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Advanced Central - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+    "maps": [
+      "Dust2",
+      "Anubis",
+      "Overpass"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      },
+      {
+        "map": "Anubis",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3435a5bf-5d4e-4600-9695-b48fabecdda2"
+  },
+  {
+    "id": "1-784b5ae5-72ff-4c90-a717-a9be364d8e57",
+    "matchId": "1-784b5ae5-72ff-4c90-a717-a9be364d8e57",
+    "teamSlug": "young-tigeres",
+    "teamName": "Young TigeRES",
+    "opponentName": "Phantom Esports Academy",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Main A - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "3889301e-0a67-4fa2-bed7-4a6ffb6de3fa",
+    "maps": [
+      "Dust2",
+      "Nuke",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-784b5ae5-72ff-4c90-a717-a9be364d8e57"
+  },
+  {
+    "id": "1-9e765076-6ca2-48d4-8667-df19b243f7f4",
+    "matchId": "1-9e765076-6ca2-48d4-8667-df19b243f7f4",
+    "teamSlug": "golovastiki",
+    "teamName": "golovastiki",
+    "opponentName": "Infinity",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Main B - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+    "maps": [
+      "Nuke",
+      "Dust2",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9e765076-6ca2-48d4-8667-df19b243f7f4"
+  },
+  {
+    "id": "1-79cd9be5-feff-42c4-ad75-2df52b1f7a0d",
+    "matchId": "1-79cd9be5-feff-42c4-ad75-2df52b1f7a0d",
+    "teamSlug": "gamesport",
+    "teamName": "GAMESPORT",
+    "opponentName": "Al Ahli Esports",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Main B - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+    "maps": [
+      "Anubis",
+      "Dust2",
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79cd9be5-feff-42c4-ad75-2df52b1f7a0d"
+  },
+  {
+    "id": "1-5ba18453-192d-425d-af0a-882b48bcd9f5",
+    "matchId": "1-5ba18453-192d-425d-af0a-882b48bcd9f5",
+    "teamSlug": "tsa-green",
+    "teamName": "TSA Green",
+    "opponentName": "WAVE Esports",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "S57 EU Main B - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+    "maps": [
+      "Ancient",
+      "Nuke",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5ba18453-192d-425d-af0a-882b48bcd9f5"
+  },
+  {
+    "id": "1-07f92a76-ae2d-4e78-a971-700a9c83f4c1",
+    "matchId": "1-07f92a76-ae2d-4e78-a971-700a9c83f4c1",
+    "teamSlug": "partizan",
+    "teamName": "PARTIZAN",
+    "opponentName": "NAVI Junior",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Main B - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+    "maps": [
+      "Dust2",
+      "Mirage",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-07f92a76-ae2d-4e78-a971-700a9c83f4c1"
+  },
+  {
+    "id": "1-65c67f5d-d023-4f50-ab3e-11ccb0864fd0",
+    "matchId": "1-65c67f5d-d023-4f50-ab3e-11ccb0864fd0",
+    "teamSlug": "graf-monte-cristo",
+    "teamName": "Graf Monte-Cristo",
+    "opponentName": "NOTHING TO SEE",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Intermediate B - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "717e14e8-5da6-4d21-ac8a-3df742e8c855",
+    "maps": [
+      "Overpass",
+      "Mirage",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-65c67f5d-d023-4f50-ab3e-11ccb0864fd0"
+  },
+  {
+    "id": "1-7c2b6cd3-1fb0-4708-9abb-16d8b70862bd",
+    "matchId": "1-7c2b6cd3-1fb0-4708-9abb-16d8b70862bd",
+    "teamSlug": "allinners",
+    "teamName": "ALLINNERS",
+    "opponentName": "QueenConso",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Intermediate C - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "7dfdafbe-2898-43e4-ba19-68d3a0e6c64e",
+    "maps": [
+      "Nuke",
+      "Mirage",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7c2b6cd3-1fb0-4708-9abb-16d8b70862bd"
+  },
+  {
+    "id": "1-b267873d-9b7a-44c5-a93d-53ac9f0f0e17",
+    "matchId": "1-b267873d-9b7a-44c5-a93d-53ac9f0f0e17",
+    "teamSlug": "wapa",
+    "teamName": "WaPa",
+    "opponentName": "fullTNT",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Intermediate C - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "7dfdafbe-2898-43e4-ba19-68d3a0e6c64e",
+    "maps": [
+      "Mirage",
+      "Dust2",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b267873d-9b7a-44c5-a93d-53ac9f0f0e17"
+  },
+  {
+    "id": "1-6e3f665d-e56c-40b0-957a-f92259aa7b98",
+    "matchId": "1-6e3f665d-e56c-40b0-957a-f92259aa7b98",
+    "teamSlug": "kda-team",
+    "teamName": "KDA Team",
+    "opponentName": "LeetCase",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "S57 EU Entry A - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "51706dfb-c98b-4471-8aed-c406f1b99970",
+    "maps": [
+      "Dust2",
+      "Overpass",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6e3f665d-e56c-40b0-957a-f92259aa7b98"
+  },
+  {
+    "id": "1-eb3d21db-dbeb-4c77-9437-09c195b42311",
+    "matchId": "1-eb3d21db-dbeb-4c77-9437-09c195b42311",
+    "teamSlug": "mayak-arena",
+    "teamName": "MAYAK ARENA",
+    "opponentName": "UBITEAM",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Entry D - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+    "maps": [
+      "Nuke",
+      "Ancient",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-eb3d21db-dbeb-4c77-9437-09c195b42311"
+  },
+  {
+    "id": "1-27fe104d-6b13-4ce0-a6c5-78ee9bf6ebe8",
+    "matchId": "1-27fe104d-6b13-4ce0-a6c5-78ee9bf6ebe8",
+    "teamSlug": "lan1t",
+    "teamName": "LAN1T",
+    "opponentName": "starmixers",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Entry D - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+    "maps": [
+      "Dust2",
+      "Nuke",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-27fe104d-6b13-4ce0-a6c5-78ee9bf6ebe8"
+  },
+  {
+    "id": "1-25f96e44-ecea-41cd-8661-f98483b4fcb9",
+    "matchId": "1-25f96e44-ecea-41cd-8661-f98483b4fcb9",
+    "teamSlug": "fate",
+    "teamName": "FATE",
+    "opponentName": "KLG",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Entry A - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "51706dfb-c98b-4471-8aed-c406f1b99970",
+    "maps": [
+      "Overpass",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25f96e44-ecea-41cd-8661-f98483b4fcb9"
+  },
+  {
+    "id": "1-d0fcf8b9-c964-46d9-8b7b-8ca6faf22862",
+    "matchId": "1-d0fcf8b9-c964-46d9-8b7b-8ca6faf22862",
+    "teamSlug": "fak1e-lab",
+    "teamName": "Fak1E Lab",
+    "opponentName": "GLIPS",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Entry D - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+    "maps": [
+      "Dust2",
+      "Inferno",
+      "Overpass"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      },
+      {
+        "map": "Inferno",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d0fcf8b9-c964-46d9-8b7b-8ca6faf22862"
+  },
+  {
+    "id": "1-2e86a602-c97e-4c01-992e-529970b7da49",
+    "matchId": "1-2e86a602-c97e-4c01-992e-529970b7da49",
+    "teamSlug": "mana",
+    "teamName": "MANA",
+    "opponentName": "Ira Draconis",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Entry D - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+    "maps": [
+      "Mirage",
+      "Dust2",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2e86a602-c97e-4c01-992e-529970b7da49"
+  },
+  {
+    "id": "1-67a575ad-73ca-417a-be2d-adae25328f85",
+    "matchId": "1-67a575ad-73ca-417a-be2d-adae25328f85",
+    "teamSlug": "nightmare-esports",
+    "teamName": "Nightmare Esports",
+    "opponentName": "Nyxon",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Entry A - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "51706dfb-c98b-4471-8aed-c406f1b99970",
+    "maps": [
+      "Overpass",
+      "Inferno",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      },
+      {
+        "map": "Inferno",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-67a575ad-73ca-417a-be2d-adae25328f85"
+  },
+  {
+    "id": "1-6e3f665d-e56c-40b0-957a-f92259aa7b98",
+    "matchId": "1-6e3f665d-e56c-40b0-957a-f92259aa7b98",
+    "teamSlug": "leetcase",
+    "teamName": "LeetCase",
+    "opponentName": "KDA Team",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "S57 EU Entry A - Playoffs",
+    "date": "2026-06-08",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "51706dfb-c98b-4471-8aed-c406f1b99970",
+    "maps": [
+      "Dust2",
+      "Overpass",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6e3f665d-e56c-40b0-957a-f92259aa7b98"
+  },
+  {
     "id": "1-97b0e519-10e9-4370-b371-69aa0e6b7439",
     "matchId": "1-97b0e519-10e9-4370-b371-69aa0e6b7439",
     "teamSlug": "eternal-premium",
@@ -243,7 +994,7 @@ const matches = [
     "id": "1-34d86d96-3493-4cbf-95cc-8f2a2296229a",
     "matchId": "1-34d86d96-3493-4cbf-95cc-8f2a2296229a",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "DONSTU ESPORTS",
     "teamScore": 0,
     "opponentScore": 2,
@@ -1406,7 +2157,7 @@ const matches = [
     "id": "1-a512d671-15e4-4500-b5a5-08048fdf4c36",
     "matchId": "1-a512d671-15e4-4500-b5a5-08048fdf4c36",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "ex-Peep",
     "teamScore": 2,
     "opponentScore": 0,
@@ -5727,7 +6478,7 @@ const matches = [
     "id": "1-f93b8301-b834-40dd-812d-6ef7551870b0",
     "matchId": "1-f93b8301-b834-40dd-812d-6ef7551870b0",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "eternal premium",
     "teamScore": 0,
     "opponentScore": 2,
@@ -17002,7 +17753,7 @@ const matches = [
     "id": "1-c13d5950-bcf9-4a16-8e11-87de099d9d46",
     "matchId": "1-c13d5950-bcf9-4a16-8e11-87de099d9d46",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "Glitchtech",
     "teamScore": 13,
     "opponentScore": 9,
@@ -20714,7 +21465,7 @@ const matches = [
     "id": "1-37e2af7d-8dbc-4c09-b43d-6117d1e0d94a",
     "matchId": "1-37e2af7d-8dbc-4c09-b43d-6117d1e0d94a",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "Nerve of Cow",
     "teamScore": 13,
     "opponentScore": 8,
@@ -24136,7 +24887,7 @@ const matches = [
     "id": "1-85ca5f1c-d36c-4e80-aea5-63ec094233a3",
     "matchId": "1-85ca5f1c-d36c-4e80-aea5-63ec094233a3",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "tincan",
     "teamScore": 13,
     "opponentScore": 4,
@@ -25586,7 +26337,7 @@ const matches = [
     "id": "1-00aec397-b391-453c-8de7-a2afa0b82deb",
     "matchId": "1-00aec397-b391-453c-8de7-a2afa0b82deb",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "OldBoys",
     "teamScore": 3,
     "opponentScore": 13,
@@ -28660,7 +29411,7 @@ const matches = [
     "id": "1-26962161-b54a-4eeb-956a-07468e6abece",
     "matchId": "1-26962161-b54a-4eeb-956a-07468e6abece",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "SINQU",
     "teamScore": 13,
     "opponentScore": 1,
@@ -30226,7 +30977,7 @@ const matches = [
     "id": "1-0dd95c1c-0dc4-4dbb-b255-55846122a2ff",
     "matchId": "1-0dd95c1c-0dc4-4dbb-b255-55846122a2ff",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "Rounds",
     "teamScore": 9,
     "opponentScore": 13,
@@ -35127,7 +35878,7 @@ const matches = [
     "id": "1-9ccbbfbe-3cf7-49a8-b573-a1c73e804f9d",
     "matchId": "1-9ccbbfbe-3cf7-49a8-b573-a1c73e804f9d",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "Misa",
     "teamScore": 10,
     "opponentScore": 13,
@@ -35359,7 +36110,7 @@ const matches = [
     "id": "1-26a9663d-c3c8-4aaa-8465-adfa48c6402f",
     "matchId": "1-26a9663d-c3c8-4aaa-8465-adfa48c6402f",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "Oldboys",
     "teamScore": 7,
     "opponentScore": 13,
@@ -36722,7 +37473,7 @@ const matches = [
     "id": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
     "matchId": "1-c350baf9-c618-4f1b-bf38-7d2a22dc73a2",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "QUAZAR",
     "teamScore": 6,
     "opponentScore": 13,
@@ -40057,7 +40808,7 @@ const matches = [
     "id": "1-2b1f58bb-737c-4705-bbd4-7b6113be2c64",
     "matchId": "1-2b1f58bb-737c-4705-bbd4-7b6113be2c64",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "ENRAGE",
     "teamScore": 13,
     "opponentScore": 6,
@@ -41362,7 +42113,7 @@ const matches = [
     "id": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
     "matchId": "1-3a660ae4-aa2f-45b3-8fbc-29131623185b",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "BRAWLSTARS",
     "teamScore": 13,
     "opponentScore": 10,
@@ -47568,7 +48319,7 @@ const matches = [
     "id": "1-3808d3ea-efaa-4e7c-87ef-af18ffcc0a52",
     "matchId": "1-3808d3ea-efaa-4e7c-87ef-af18ffcc0a52",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "OlyBet",
     "teamScore": 9,
     "opponentScore": 13,
@@ -50816,7 +51567,7 @@ const matches = [
     "id": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
     "matchId": "1-383b7c29-a4fa-4f62-86a9-7287f5c13cb6",
     "teamSlug": "lfo-corh9k",
-    "teamName": "LFO_COPH9K",
+    "teamName": "COPH9K_LFO",
     "opponentName": "CYBERSHOKE Prospects",
     "teamScore": 13,
     "opponentScore": 9,

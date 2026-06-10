@@ -2,11 +2,15 @@ import { useParams, Link } from "react-router-dom";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 import teams from "../data/teams";
 import players from "../data/players";
+import playerTransfers from "../data/playerTransfers.json";
+import playerAverageRatings from "../data/playerAverageRatings.json";
 
 function PlayerPage() {
   const { nickname } = useParams();
 
 const decodedNickname = decodeURIComponent(nickname);
+const averageRating =
+  playerAverageRatings[decodedNickname] || 0;
 const avatarPath = `/players/${decodedNickname}.png`;
 
 const playerTeam = teams.find((team) =>
@@ -23,6 +27,9 @@ const playerInfo = Object.values(players)
       p.nickname?.toLowerCase() ===
       decodedNickname.toLowerCase()
   );
+
+  const transfers =
+  playerTransfers[decodedNickname] || [];
 
 const playerMatches = Object.values(matchStatsCompact)
   .flatMap((match) =>
@@ -277,15 +284,15 @@ const avgHs = avg("hsRate");
       className={`
         text-4xl font-black mt-2
         ${
-          (playerInfo?.rating || 0) >= 1.1
+          averageRating >= 1.1
             ? "text-green-400"
-            : (playerInfo?.rating || 0) >= 1
+            : averageRating >= 1
             ? "text-yellow-400"
             : "text-red-400"
         }
       `}
     >
-      {playerInfo?.rating?.toFixed(2) || "-"}
+      {averageRating ? averageRating.toFixed(2) : "-"}
     </div>
   </div>
 
@@ -443,6 +450,70 @@ const avgHs = avg("hsRate");
     </div>
   </div>
 );
+
+{/* Team History */}
+
+{transfers.length > 0 && (
+  <div
+    className="
+      mt-8
+      bg-[#111823]
+      border
+      border-[#243041]
+      rounded-3xl
+      p-6
+    "
+  >
+    <h2 className="text-2xl font-black mb-6">
+      Team History
+    </h2>
+
+    <div className="space-y-4">
+
+      {transfers
+        .slice()
+        .reverse()
+        .map((transfer, index) => (
+
+          <div
+            key={index}
+            className="
+              flex
+              items-center
+              justify-between
+              border-b
+              border-[#243041]
+              pb-4
+            "
+          >
+
+            <div>
+
+              <div className="font-bold text-white">
+                {transfer.from}
+                {" → "}
+                {transfer.to}
+              </div>
+
+              <div className="text-sm text-gray-500 mt-1">
+                Transfer
+              </div>
+
+            </div>
+
+            <div className="text-gray-400 text-sm">
+              {transfer.date}
+            </div>
+
+          </div>
+
+      ))}
+
+    </div>
+
+  </div>
+)}
+
 }
 
 export default PlayerPage;

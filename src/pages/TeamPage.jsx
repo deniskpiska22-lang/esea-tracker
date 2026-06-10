@@ -3,6 +3,7 @@ import teams from "../data/teams"
 import history from "../data/teamHistory.json"
 import playersData from "../data/players"
 import matchesData from "../data/matches"
+import playerAverageRatings from "../data/playerAverageRatings.json";
 
 
 import {
@@ -282,7 +283,11 @@ const mapStats = Object.values(
 
 <div className="max-w-6xl mx-auto mt-8 flex gap-4 flex-wrap">
 
-{teamPlayersStats.map((player, index) => (
+{teamPlayersStats.map((player, index) => {
+  const rating =
+    playerAverageRatings[player.nickname] || 0;
+
+  return (
 <Link
   key={`${player.nickname}-${index}`}
   to={`/players/${encodeURIComponent(player.nickname)}`}
@@ -310,9 +315,9 @@ const mapStats = Object.values(
   {/* TOP COLOR BAR */}
   <div
     className={`absolute top-0 left-0 w-full h-1 ${
-      player.rating >= 1.1
+      rating >= 1.1
         ? "bg-green-500"
-        : player.rating < 0.95
+        : rating < 0.95
         ? "bg-red-500"
         : "bg-orange-500"
     }`}
@@ -357,14 +362,14 @@ const mapStats = Object.values(
 
       <div
         className={`text-4xl font-black leading-none ${
-          player.rating >= 1.1
+          rating >= 1.1
             ? "text-green-400"
-            : player.rating < 0.95
+            : rating < 0.95
             ? "text-red-400"
             : "text-orange-400"
         }`}
       >
-        {player.rating ?? "-"}
+        {playerAverageRatings[player.nickname]?.toFixed(2) ?? "-"}
       </div>
 
       <div className="text-[11px] uppercase tracking-[0.2em] text-gray-500 mt-1">
@@ -389,7 +394,8 @@ const mapStats = Object.values(
   </div>
 
 </Link>
-))}
+  );
+})}
 
 </div>
 
