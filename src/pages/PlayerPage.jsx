@@ -4,13 +4,14 @@ import teams from "../data/teams";
 import players from "../data/players";
 import playerTransfers from "../data/playerTransfers.json";
 import playerAverageRatings from "../data/playerAverageRatings.json";
+import { normalizeNickname } from "../utils/normalizeNickname";
 
 function PlayerPage() {
   const { nickname } = useParams();
 
-const decodedNickname = decodeURIComponent(nickname);
+const decodedNickname = normalizeNickname(decodeURIComponent(nickname));
 const averageRating =
-  playerAverageRatings[decodedNickname] || 0;
+  playerAverageRatings[normalizeNickname(decodedNickname)] || 0;
 const avatarPath = `/players/${decodedNickname}.png`;
 
 const playerTeam = teams.find((team) =>
@@ -23,9 +24,7 @@ const playerTeam = teams.find((team) =>
 const playerInfo = Object.values(players)
   .flat()
   .find(
-    (p) =>
-      p.nickname?.toLowerCase() ===
-      decodedNickname.toLowerCase()
+    (p) => normalizeNickname(p.nickname) === decodedNickname
   );
 
   const transfers =
@@ -37,8 +36,7 @@ const playerMatches = Object.values(matchStatsCompact)
       (team.players || [])
         .filter(
           (player) =>
-            player.nickname?.toLowerCase() ===
-            decodedNickname.toLowerCase()
+            normalizeNickname(player.nickname) === decodedNickname
         )
         .map((player) => ({
           ...player,
@@ -401,14 +399,20 @@ const avgHs = avg("hsRate");
       .slice(0, 10)
       .map((match, index) => (
 
-        <div
-          key={index}
-          className="
-            flex justify-between items-center
-            border-b border-[#243041]
-            py-3
-          "
-        >
+        <Link
+  key={index}
+  to={`/matches/${match.matchId}`}
+  className="
+    flex justify-between items-center
+    border-b border-[#243041]
+    py-3
+    hover:bg-[#151e2b]
+    transition
+    px-2
+    rounded-lg
+    cursor-pointer
+  "
+>
 
           <div>
 
@@ -440,7 +444,7 @@ const avgHs = avg("hsRate");
 
           </div>
 
-        </div>
+        </Link>
 
       ))}
   </div>

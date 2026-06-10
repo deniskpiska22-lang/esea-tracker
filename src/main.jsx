@@ -78,6 +78,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <Route path="/players/:nickname"
  element={<PlayerPage />} />
 
+ <Route path="/matches/:matchId" 
+ element={<MatchPage />} />
+
       </Routes>
 
       <Analytics />

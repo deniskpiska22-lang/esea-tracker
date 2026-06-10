@@ -1,5 +1,6 @@
 import fs from "fs";
 import { calculatePlayerMatchRating } from "../src/utils/calculatePlayerRating.js";
+import { normalizeNickname } from "../src/utils/normalizeNickname.js";
 
 const matchStats = JSON.parse(
   fs.readFileSync("./src/data/matchStatsCompact.json", "utf8")
@@ -13,7 +14,7 @@ for (const match of Object.values(matchStats)) {
 
     for (const player of team.players || []) {
 
-      const nickname = player.nickname;
+      const nickname = normalizeNickname(player.nickname);
 
       const rating =
         calculatePlayerMatchRating(player);
