@@ -5,6 +5,7 @@ import players from "../data/players";
 import playerTransfers from "../data/playerTransfers.json";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import { normalizeNickname } from "../utils/normalizeNickname";
+import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 
 function PlayerPage() {
   const { nickname } = useParams();
@@ -47,6 +48,7 @@ const playerMatches = Object.values(matchStatsCompact)
           opponent: match.teams?.find(
             (t) => t.teamId !== team.teamId
           ),
+          rating: calculatePlayerMatchRating(player),
         }))
     )
   );
@@ -380,74 +382,56 @@ const avgHs = avg("hsRate");
     ))}
   </div>
 
-  {/* RECENT MATCHES */}
-
-  <div
-    className="
-      bg-[#111823]
-      border border-[#243041]
-      rounded-3xl
-      p-6
-    "
-  >
-    <h2 className="text-2xl font-black mb-6">
-      Recent Matches
-    </h2>
-
-    {[...playerMatches]
-      .reverse()
-      .slice(0, 10)
-      .map((match, index) => (
-
-        <Link
-  key={index}
-  to={`/matches/${match.matchId}`}
+ {/* RECENT MATCHES */}
+<div
   className="
-    flex justify-between items-center
-    border-b border-[#243041]
-    py-3
-    hover:bg-[#151e2b]
-    transition
-    px-2
-    rounded-lg
-    cursor-pointer
+    bg-[#111823]
+    border border-[#243041]
+    rounded-3xl
+    p-6
   "
 >
+  <h2 className="text-2xl font-black mb-6">
+    Recent Matches
+  </h2>
 
-          <div>
+  {[...playerMatches].reverse().slice(0, 10).map((match, index) => (
+    <div
+      key={index}
+      className="
+        flex
+        justify-between
+        items-center
+        border-b
+        border-[#243041]
+        py-3
+        px-2
+      "
+    >
+      <div>
+        <div className="font-medium">
+          {match.opponent?.teamName || "Unknown"}
+        </div>
 
-            <div className="font-semibold">
-              {match.map}
-            </div>
+        <div className="text-sm text-gray-400">
+          {match.map}
+        </div>
+      </div>
 
-            <div className="text-sm text-gray-400">
-              vs {match.opponent?.teamName || "Unknown"}
-            </div>
-
-          </div>
-
-          <div className="text-right">
-
-            <div className="font-bold">
-              {match.kills}/{match.deaths}
-            </div>
-
-            <div
-              className={`text-sm ${
-                match.kd >= 1
-                  ? "text-green-400"
-                  : "text-red-400"
-              }`}
-            >
-              K/D {match.kd?.toFixed(2)}
-            </div>
-
-          </div>
-
-        </Link>
-
-      ))}
-  </div>
+      <div
+        className={`font-bold ${
+          match.rating >= 1.15
+            ? "text-green-400"
+            : match.rating < 0.95
+            ? "text-red-400"
+            : "text-orange-400"
+        }`}
+      >
+        {match.rating?.toFixed(2) || "-"}
+      </div>
+    </div>
+  ))}
+</div>
 
 </div>
 
