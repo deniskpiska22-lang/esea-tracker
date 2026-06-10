@@ -4,6 +4,7 @@ import history from "../data/teamHistory.json"
 import playersData from "../data/players"
 import matchesData from "../data/matches"
 import playerAverageRatings from "../data/playerAverageRatings.json";
+import { normalizeNickname } from "../utils/normalizeNickname";
 
 
 import {
@@ -287,6 +288,9 @@ const mapStats = Object.values(
   const rating =
     playerAverageRatings[player.nickname] || 0;
 
+  const avatarNickname = normalizeNickname(player.nickname);
+  const avatarPath = `/players/${avatarNickname}.png`;
+
   return (
 <Link
   key={`${player.nickname}-${index}`}
@@ -325,37 +329,71 @@ const mapStats = Object.values(
 
   <div className="flex flex-col items-center text-center">
 
-    {/* PLAYER ICON */}
-    <div
+    {/* PLAYER AVATAR */}
+<div
+  className="
+    relative
+    w-32
+    h-32
+    rounded-2xl
+    bg-[#111823]
+    border
+    border-[#243041]
+    overflow-hidden
+    mb-4
+    mt-2
+  "
+>
+  {team.logo && (
+    <img
+      src={team.logo}
+      alt={team.name}
       className="
-      w-16
-      h-16
-      rounded-full
-      bg-gradient-to-br
-      from-orange-500/20
-      to-orange-700/10
-      border
-      border-orange-500/20
-      flex
-      items-center
-      justify-center
-      text-xl
-      font-black
-      text-orange-300
-      mb-4
-      mt-2
+        absolute
+        inset-0
+        w-full
+        h-full
+        object-contain
+        opacity-20
+        scale-125
       "
-    >
-      {player.nickname[0].toUpperCase()}
-    </div>
+    />
+  )}
+
+  <div
+    className="
+      absolute
+      inset-0
+      bg-gradient-to-t
+      from-[#111823]
+      via-transparent
+      to-transparent
+      z-10
+    "
+  />
+
+  <img
+    src={avatarPath}
+    alt={player.nickname}
+    onError={(e) => {
+      e.currentTarget.src = "/player-silhouette.png";
+    }}
+    className="
+      absolute
+      bottom-0
+      left-1/2
+      -translate-x-1/2
+      h-[110%]
+      object-contain
+      z-20
+    "
+  />
+</div>
 
     {/* NICKNAME */}
-    <Link
-  to={`/players/${encodeURIComponent(player.nickname)}`}
-  className="hover:text-orange-400 transition-colors"
->
+    <div className="font-semibold hover:text-orange-400 transition-colors">
   {player.nickname}
-</Link>
+</div>
 
     {/* RATING */}
     <div className="mt-5">
