@@ -6,6 +6,7 @@ import playerTransfers from "../data/playerTransfers.json";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import { normalizeNickname } from "../utils/normalizeNickname";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
+import matchesData from "../data/matches.js";
 
 function PlayerPage() {
   const { nickname } = useParams();
@@ -31,6 +32,9 @@ const playerInfo = Object.values(players)
   const transfers =
   playerTransfers[decodedNickname] || [];
 
+const normalizeTeamName = (name) =>
+  name?.replace(/\s+/g, "").toLowerCase();
+
 const playerMatches = Object.values(matchStatsCompact)
   .flatMap((match) =>
     (match.teams || []).flatMap((team) =>
@@ -39,17 +43,27 @@ const playerMatches = Object.values(matchStatsCompact)
           (player) =>
             normalizeNickname(player.nickname) === decodedNickname
         )
-        .map((player) => ({
-          ...player,
-          matchId: match.matchId,
-          map: match.map,
-          teamName: team.teamName,
-          teamScore: team.score,
-          opponent: match.teams?.find(
-            (t) => t.teamId !== team.teamId
-          ),
-          rating: calculatePlayerMatchRating(player),
-        }))
+        .map((player) => {
+          const siteMatch = matchesData.find(
+            (m) =>
+              m.matchId === match.matchId &&
+              normalizeTeamName(m.teamName) ===
+                normalizeTeamName(team.teamName)
+          );
+
+          return {
+            ...player,
+            matchId: match.matchId,
+            teamSlug: siteMatch?.teamSlug, // <-- добавляем здесь
+            map: match.map,
+            teamName: team.teamName,
+            teamScore: team.score,
+            opponent: match.teams?.find(
+              (t) => t.teamId !== team.teamId
+            ),
+            rating: calculatePlayerMatchRating(player),
+          };
+        })
     )
   );
 
@@ -395,9 +409,13 @@ const avgHs = avg("hsRate");
     Recent Matches
   </h2>
 
-  {[...playerMatches].reverse().slice(0, 10).map((match, index) => (
-    <div
-      key={index}
+  {[...playerMatches]
+  .sort((a, b) => new Date(b.date) - new Date(a.date)) // новая сверху
+  .slice(0, 10)
+  .map((match, index) => (
+    <Link
+      key={`${match.matchId}-${index}`}
+      to={`/team/${match.teamSlug}/matches/${match.matchId}`} // Faceit ID
       className="
         flex
         justify-between
@@ -406,13 +424,15 @@ const avgHs = avg("hsRate");
         border-[#243041]
         py-3
         px-2
+        rounded
+        hover:bg-[#151e2b]
+        transition-colors
       "
     >
       <div>
         <div className="font-medium">
           {match.opponent?.teamName || "Unknown"}
         </div>
-
         <div className="text-sm text-gray-400">
           {match.map}
         </div>
@@ -429,7 +449,7 @@ const avgHs = avg("hsRate");
       >
         {match.rating?.toFixed(2) || "-"}
       </div>
-    </div>
+    </Link>
   ))}
 </div>
 
