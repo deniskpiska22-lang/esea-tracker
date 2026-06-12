@@ -3553,6 +3553,33 @@ const players = {
       "elo": 2977,
       "rating": 1.06
     }
+  ],
+    "riset": [
+    {
+      "nickname": "lifelifonova",
+      "elo": 2009,
+      
+    },
+    {
+      "nickname": "-FAKEID",
+      "elo": 3048,
+      
+    },
+    {
+      "nickname": "Nee0N",
+      "elo": 2927,
+      
+    },
+    {
+      "nickname": "WKEY_EBLAN",
+      "elo": 2654,
+      
+    },
+    {
+      "nickname": "RenzXIX",
+      "elo": 2874,
+      
+    }
   ]
 }
 

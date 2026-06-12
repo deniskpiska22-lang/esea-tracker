@@ -1863,6 +1863,20 @@ faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
     },
     players: ["GogovskY", "Gr4zzy", "skoroprime21", "AYr-0", "wakenbaker"],
     matches: [],
+  },
+  {
+    slug: "riset",
+    name: "Riset",
+    faceitTeamId: "bb0901d0-21f4-4ce1-9d1f-5c53d8cb0bc1",
+    logo: "/logos/riset.png",
+    flag: "/flags/russia.svg",
+    division: "Entry",
+    stats: {
+      wins: 0,
+      losses: 0,
+    },
+    players: ["lifelifonova", "-FAKEID", "Nee0N", "WKEY_EBLAN", "RenzXIX"],
+    matches: [],
   }
 ]
 

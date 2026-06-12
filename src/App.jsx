@@ -1441,6 +1441,16 @@ const teams = [
     points: 262,
     record: "7-7",
     division: "Main",
+  },
+  {
+    rank: 133,
+     slug: "riset",
+     logo: "/logos/riset.png",
+    name: "Riset",
+    flag: "/flags/russia.svg",
+    points: 100,
+    record: "0-0",
+    division: "Entry",
   }
 ]
 
