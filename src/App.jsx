@@ -371,7 +371,7 @@ const teams = [
     slug: "clutch-studio-agency",
     name: "Clutch Studio Agency",
     flag: "/flags/russia.svg",
-    logo: "/logos/clutch-studio-agency.png",
+    logo: "/logos/clutch-studio-agensy.png",
     points: 321,
     
     record: "12-2",
