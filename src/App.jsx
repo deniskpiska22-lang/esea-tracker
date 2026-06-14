@@ -436,6 +436,7 @@ const teams = [
     slug: "trafficpills-esports",
     name: "TrafficPills Esports",
     flag: "/flags/bel.svg",
+    logo: "/logos/traffic.png",
     points: 306,
     change: +5,
     record: "11-3",
@@ -693,6 +694,7 @@ const teams = [
     slug: "1337",
     name: "1337",
     flag: "/flags/russia.svg",
+    logo: "/logos/1337.png",
     points: 254,
     change: -5,
     record: "9-5",
@@ -1198,6 +1200,7 @@ const teams = [
     slug: "stubborn-boys",
     name: "Stubborn Boys",
     flag: "/flags/bel.svg",
+    logo: "/logos/stubb.png",
     points: 144,
     
     record: "8-6",
@@ -1318,6 +1321,7 @@ const teams = [
     slug: "justtag",
     name: "JustTag",
     flag: "/flags/russia.svg",
+    logo: "/logos/just.png",
     points: 113,
     
     record: "8-6",
@@ -1383,6 +1387,7 @@ const teams = [
     slug: "back2back",
     name: "back2back",
     flag: "/flags/russia.svg",
+    logo: "/logos/b2b.png",
     points: 117,
     
     record: "8-6",
