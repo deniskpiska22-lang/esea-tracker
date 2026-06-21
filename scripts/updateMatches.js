@@ -2,7 +2,11 @@ import fs from "fs/promises";
 import teams from "../src/data/teams.js";
 
 const CHAMPIONSHIP_IDS = [
-  // Advanced Playoffs
+
+// Esea Finals
+"cb6bfac6-dc14-4995-a170-909392cec298",
+  
+// Advanced Playoffs
   "f6d5875a-af46-45f3-9db2-343e3aa974ec",
   // Advanced Regular
   "c44e1453-8043-41fe-8b4e-d9f9ac132f40",

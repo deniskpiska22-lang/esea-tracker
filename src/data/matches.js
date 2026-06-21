@@ -1,5 +1,721 @@
 const matches = [
   {
+    "id": "1-44450f67-201e-45a7-9a57-3f140c769997",
+    "matchId": "1-44450f67-201e-45a7-9a57-3f140c769997",
+    "teamSlug": "quazar",
+    "teamName": "QUAZAR",
+    "opponentName": "ReThink",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-20",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Dust2",
+      "Anubis",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      },
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-44450f67-201e-45a7-9a57-3f140c769997"
+  },
+  {
+    "id": "1-deafb932-b02f-4449-b81b-ab0c5b7a043d",
+    "matchId": "1-deafb932-b02f-4449-b81b-ab0c5b7a043d",
+    "teamSlug": "arch",
+    "teamName": "Arch",
+    "opponentName": "WBT Academy",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "Season 57",
+    "date": "2026-06-19",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Overpass",
+      "Mirage",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-deafb932-b02f-4449-b81b-ab0c5b7a043d"
+  },
+  {
+    "id": "1-73bbeda0-6442-4a89-b35e-3e652800a046",
+    "matchId": "1-73bbeda0-6442-4a89-b35e-3e652800a046",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "ReThink",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "Season 57",
+    "date": "2026-06-19",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Overpass",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 26,
+        "opponentScore": 28,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-73bbeda0-6442-4a89-b35e-3e652800a046"
+  },
+  {
+    "id": "1-8ba7539e-94fe-4019-86c4-9b28aba09882",
+    "matchId": "1-8ba7539e-94fe-4019-86c4-9b28aba09882",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "IC Academy",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-18",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Dust2",
+      "Overpass",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8ba7539e-94fe-4019-86c4-9b28aba09882"
+  },
+  {
+    "id": "1-418df5cf-289b-4352-b33e-602493a4b136",
+    "matchId": "1-418df5cf-289b-4352-b33e-602493a4b136",
+    "teamSlug": "weclear",
+    "teamName": "WeClear",
+    "opponentName": "NAVI Junior",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "Season 57",
+    "date": "2026-06-18",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Mirage",
+      "Nuke",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 15,
+        "opponentScore": 19,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-418df5cf-289b-4352-b33e-602493a4b136"
+  },
+  {
+    "id": "1-d836be43-9a41-4cc5-a57c-6a1fcb0bf611",
+    "matchId": "1-d836be43-9a41-4cc5-a57c-6a1fcb0bf611",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "PENSIONERS",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-17",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Dust2",
+      "Overpass",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d836be43-9a41-4cc5-a57c-6a1fcb0bf611"
+  },
+  {
+    "id": "1-25413bd2-042d-428a-89c4-0483400980c2",
+    "matchId": "1-25413bd2-042d-428a-89c4-0483400980c2",
+    "teamSlug": "unknowns",
+    "teamName": "unknowns",
+    "opponentName": "SNITKO Esports",
+    "teamScore": 0,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 2",
+    "season": "Season 57",
+    "date": "2026-06-17",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Dust2",
+      "Inferno",
+      "Overpass"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25413bd2-042d-428a-89c4-0483400980c2"
+  },
+  {
+    "id": "1-b1dc5f65-2e5c-4e72-9270-11572693cbdb",
+    "matchId": "1-b1dc5f65-2e5c-4e72-9270-11572693cbdb",
+    "teamSlug": "weclear",
+    "teamName": "WeClear",
+    "opponentName": "Banda chuya",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "Season 57",
+    "date": "2026-06-17",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Mirage",
+      "Nuke",
+      "Overpass"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Overpass",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b1dc5f65-2e5c-4e72-9270-11572693cbdb"
+  },
+  {
+    "id": "1-303ede98-8f28-439d-9d9e-71449ba5ab4f",
+    "matchId": "1-303ede98-8f28-439d-9d9e-71449ba5ab4f",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "Diamonds",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-16",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Dust2",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-303ede98-8f28-439d-9d9e-71449ba5ab4f"
+  },
+  {
+    "id": "1-66ec6f73-a9fd-4650-a339-8afbc016e964",
+    "matchId": "1-66ec6f73-a9fd-4650-a339-8afbc016e964",
+    "teamSlug": "unknowns",
+    "teamName": "unknowns",
+    "opponentName": "Arthrose Peek",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-16",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Overpass",
+      "Dust2",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-66ec6f73-a9fd-4650-a339-8afbc016e964"
+  },
+  {
+    "id": "1-ab43bc52-838d-4863-9a6b-2a046e905aab",
+    "matchId": "1-ab43bc52-838d-4863-9a6b-2a046e905aab",
+    "teamSlug": "weclear",
+    "teamName": "WeClear",
+    "opponentName": "de verdwaalde honden",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "Season 57",
+    "date": "2026-06-16",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "maps": [
+      "Anubis",
+      "Dust2",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ab43bc52-838d-4863-9a6b-2a046e905aab"
+  },
+  {
+    "id": "1-658291b7-9a6b-43bf-887e-08d6f04bf055",
+    "matchId": "1-658291b7-9a6b-43bf-887e-08d6f04bf055",
+    "teamSlug": "uust",
+    "teamName": "UUST_Esports",
+    "opponentName": "ReThink",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Advanced Central - Playoffs",
+    "date": "2026-06-15",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+    "maps": [
+      "Dust2",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-658291b7-9a6b-43bf-887e-08d6f04bf055"
+  },
+  {
+    "id": "1-c039191c-621d-4d9d-8a00-260949895b8b",
+    "matchId": "1-c039191c-621d-4d9d-8a00-260949895b8b",
+    "teamSlug": "arch",
+    "teamName": "Arch",
+    "opponentName": "OLDBOYS PL",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Advanced Central - Playoffs",
+    "date": "2026-06-14",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+    "maps": [
+      "Anubis",
+      "Mirage",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c039191c-621d-4d9d-8a00-260949895b8b"
+  },
+  {
+    "id": "1-f03c177e-59e3-4c61-af8c-2558a9e9deb8",
+    "matchId": "1-f03c177e-59e3-4c61-af8c-2558a9e9deb8",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "Agramonte",
+    "teamScore": 3,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "3 : 0",
+    "season": "S57 EU Entry B - Playoffs",
+    "date": "2026-06-14",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 5,
+    "championshipId": "b3d1f519-1524-45ca-a7d8-fd83f3419202",
+    "maps": [
+      "Dust2",
+      "Inferno",
+      "Ancient",
+      "Mirage",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      },
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f03c177e-59e3-4c61-af8c-2558a9e9deb8"
+  },
+  {
+    "id": "1-f14fab96-dfad-4ffb-986d-b9140003b111",
+    "matchId": "1-f14fab96-dfad-4ffb-986d-b9140003b111",
+    "teamSlug": "clutch-studio-agency",
+    "teamName": "Clutch Studio Agency",
+    "opponentName": "KLG",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Entry A - Playoffs",
+    "date": "2026-06-14",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "51706dfb-c98b-4471-8aed-c406f1b99970",
+    "maps": [
+      "Dust2",
+      "Ancient",
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f14fab96-dfad-4ffb-986d-b9140003b111"
+  },
+  {
+    "id": "1-2416d226-459a-43ae-aa54-638a4c9b56e1",
+    "matchId": "1-2416d226-459a-43ae-aa54-638a4c9b56e1",
+    "teamSlug": "tsa-green",
+    "teamName": "TSA Green",
+    "opponentName": "NAVI Junior",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Main B - Playoffs",
+    "date": "2026-06-13",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+    "maps": [
+      "Dust2",
+      "Anubis",
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      },
+      {
+        "map": "Anubis",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2416d226-459a-43ae-aa54-638a4c9b56e1"
+  },
+  {
+    "id": "1-922ec206-96e4-4757-9734-cb93a6e0a682",
+    "matchId": "1-922ec206-96e4-4757-9734-cb93a6e0a682",
+    "teamSlug": "baks-esports",
+    "teamName": "BAKS Esports",
+    "opponentName": "Locura Gatos",
+    "teamScore": 2,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 0",
+    "season": "S57 EU Entry B - Playoffs",
+    "date": "2026-06-13",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "b3d1f519-1524-45ca-a7d8-fd83f3419202",
+    "maps": [
+      "Mirage",
+      "Nuke",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      },
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-922ec206-96e4-4757-9734-cb93a6e0a682"
+  },
+  {
+    "id": "1-6b422663-d5a7-4ef5-95ae-c7600fa5fe45",
+    "matchId": "1-6b422663-d5a7-4ef5-95ae-c7600fa5fe45",
+    "teamSlug": "donstu-esports",
+    "teamName": "DONSTU ESPORTS",
+    "opponentName": "OLDBOYS PL",
+    "teamScore": 1,
+    "opponentScore": 2,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 2",
+    "season": "S57 EU Advanced Central - Playoffs",
+    "date": "2026-06-12",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+    "maps": [
+      "Nuke",
+      "Anubis",
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 12,
+        "opponentScore": 16,
+        "won": false
+      },
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6b422663-d5a7-4ef5-95ae-c7600fa5fe45"
+  },
+  {
     "id": "1-98fae976-3095-41ca-a4ae-4f2523b23d2a",
     "matchId": "1-98fae976-3095-41ca-a4ae-4f2523b23d2a",
     "teamSlug": "z17",
@@ -121,6 +837,49 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79d66e8e-d288-444d-bf60-6beea424c4b6"
+  },
+  {
+    "id": "1-e08db3a8-29d0-49e8-9cc4-527669d08e92",
+    "matchId": "1-e08db3a8-29d0-49e8-9cc4-527669d08e92",
+    "teamSlug": "lynx",
+    "teamName": "LYNX",
+    "opponentName": "UBITEAM",
+    "teamScore": 2,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "2 : 1",
+    "season": "S57 EU Entry D - Playoffs",
+    "date": "2026-06-12",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 3,
+    "championshipId": "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+    "maps": [
+      "Overpass",
+      "Ancient",
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Overpass",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      },
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      },
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e08db3a8-29d0-49e8-9cc4-527669d08e92"
   },
   {
     "id": "1-79d66e8e-d288-444d-bf60-6beea424c4b6",
@@ -6803,8 +7562,8 @@ const matches = [
   {
     "id": "1-d36c76ca-d200-4386-bf3f-545ac19960d7",
     "matchId": "1-d36c76ca-d200-4386-bf3f-545ac19960d7",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "MyHUD",
     "teamScore": 1,
     "opponentScore": 2,
@@ -13626,8 +14385,8 @@ const matches = [
   {
     "id": "1-e2fa31f9-3ff6-4479-a886-e4c133602d10",
     "matchId": "1-e2fa31f9-3ff6-4479-a886-e4c133602d10",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "NINJA-PJATK",
     "teamScore": 2,
     "opponentScore": 0,
@@ -16521,8 +17280,8 @@ const matches = [
   {
     "id": "1-00e7cd0d-e4b1-4c5e-8315-1783fc4a8fa3",
     "matchId": "1-00e7cd0d-e4b1-4c5e-8315-1783fc4a8fa3",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "SLY",
     "teamScore": 2,
     "opponentScore": 0,
@@ -18298,8 +19057,8 @@ const matches = [
   {
     "id": "1-9fa9022e-0780-42ef-a7d8-274f6d28fedc",
     "matchId": "1-9fa9022e-0780-42ef-a7d8-274f6d28fedc",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "Loodnica",
     "teamScore": 10,
     "opponentScore": 13,
@@ -23721,8 +24480,8 @@ const matches = [
   {
     "id": "1-b5474004-3fff-4888-99f3-93a853b30169",
     "matchId": "1-b5474004-3fff-4888-99f3-93a853b30169",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "PAPS eSport",
     "teamScore": 13,
     "opponentScore": 11,
@@ -26998,8 +27757,8 @@ const matches = [
   {
     "id": "1-00d82bb4-a30b-4db2-9085-2321c64a30f5",
     "matchId": "1-00d82bb4-a30b-4db2-9085-2321c64a30f5",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "ZYNX",
     "teamScore": 13,
     "opponentScore": 2,
@@ -33349,8 +34108,8 @@ const matches = [
   {
     "id": "1-a3da1a15-b99e-4e10-8cd5-9508665de2c1",
     "matchId": "1-a3da1a15-b99e-4e10-8cd5-9508665de2c1",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "Drama eSports",
     "teamScore": 3,
     "opponentScore": 13,
@@ -36510,8 +37269,8 @@ const matches = [
   {
     "id": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
     "matchId": "1-2bf94f75-aa30-4833-a269-4f20feb39997",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "WeClear",
     "teamScore": 1,
     "opponentScore": 13,
@@ -38192,8 +38951,8 @@ const matches = [
   {
     "id": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
     "matchId": "1-00da4b43-8fcb-420f-884a-7d4f91077d64",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "Rejected By ALL",
     "teamScore": 13,
     "opponentScore": 8,
@@ -39787,8 +40546,8 @@ const matches = [
   {
     "id": "1-bac4d834-ab5d-42c6-a0e1-f2ebbd7723ce",
     "matchId": "1-bac4d834-ab5d-42c6-a0e1-f2ebbd7723ce",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "SNUS LVL 10",
     "teamScore": 13,
     "opponentScore": 8,
@@ -41527,8 +42286,8 @@ const matches = [
   {
     "id": "1-9f5a0d36-914b-4cdd-9a9b-fcadf50a432f",
     "matchId": "1-9f5a0d36-914b-4cdd-9a9b-fcadf50a432f",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "Importants",
     "teamScore": 13,
     "opponentScore": 11,
@@ -50720,8 +51479,8 @@ const matches = [
   {
     "id": "1-44155baa-b547-4ec0-b320-0baa829cf8aa",
     "matchId": "1-44155baa-b547-4ec0-b320-0baa829cf8aa",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "Collapse Gaming",
     "teamScore": 13,
     "opponentScore": 11,
@@ -52315,8 +53074,8 @@ const matches = [
   {
     "id": "1-e1382ee8-a53e-4234-9c82-43d5a7212252",
     "matchId": "1-e1382ee8-a53e-4234-9c82-43d5a7212252",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "NINJA-PJATK",
     "teamScore": 13,
     "opponentScore": 4,
@@ -57767,8 +58526,8 @@ const matches = [
   {
     "id": "1-49995ee4-f76e-4323-a89a-6b96ce265c4b",
     "matchId": "1-49995ee4-f76e-4323-a89a-6b96ce265c4b",
-    "teamSlug": "goldrushers",
-    "teamName": "GoldRushers",
+    "teamSlug": "goldrashers",
+    "teamName": "GoldRashers",
     "opponentName": "unique or special",
     "teamScore": 13,
     "opponentScore": 4,
