@@ -21,7 +21,7 @@ const teams = [
     name: "eternal premium",
     flag: "/flags/russia.svg",
     points: 377,
-    change: +7,
+    
     record: "9-5",
     division: "Advanced",
   },
@@ -32,7 +32,7 @@ const teams = [
     flag: "/flags/russia.svg",
     name: "NEW VISION",
     points: 373,
-    change: -4,
+    
     record: "10-4",
     division: "Advanced",
   },
@@ -43,7 +43,7 @@ const teams = [
     flag: "/flags/russia.svg",
     name: "DONSTU ESPORTS",
     points: 398,
-    change: +13,
+    
     record: "12-2",
     division: "Advanced",
   },
@@ -53,8 +53,8 @@ const teams = [
     logo: "/logos/quazar.png",
     flag: "/flags/russia.svg",
     name: "QUAZAR",
-    points: 389,
-    
+    points: 408,
+    change: +19,
     record: "10-4",
     division: "Advanced",
   },
@@ -109,7 +109,7 @@ const teams = [
     name: "Young TigeRES",
     flag: "/flags/russia.svg",
     points: 357,
-    change: -4,
+    
     record: "10-4",
     division: "Main",
   },
@@ -152,8 +152,8 @@ const teams = [
     logo: "/logos/wingman.png",
     name: "UUST_Esports",
     flag: "/flags/russia.svg",
-    points: 376,
-    change: +20,
+    points: 373,
+    change: -3,
     record: "7-7",
     division: "Advanced",
   },
@@ -175,7 +175,7 @@ const teams = [
     name: "golovastiki",
     flag: "/flags/russia.svg",
     points: 331,
-    change: -5,
+    
     record: "12-2",
     division: "Main",
   },
@@ -186,7 +186,7 @@ const teams = [
     name: "GAMESPORT",
     flag: "/flags/russia.svg",
     points: 340,
-    change: -4,
+    
     record: "10-4",
     division: "Main",
   },
@@ -208,7 +208,7 @@ const teams = [
     name: "TSA Green",
     flag: "/flags/russia.svg",
     points: 359,
-    change: +23,
+    
     record: "10-4",
     division: "Main",
   },
@@ -219,7 +219,7 @@ const teams = [
     name: "mellren",
     flag: "/flags/bel.svg",
     points: 341,
-    change: -3,
+    
     record: "9-5",
     division: "Main",
   },
@@ -262,7 +262,7 @@ const teams = [
     name: "PARTIZAN",
     flag: "/flags/russia.svg",
     points: 344,
-    change: -3,
+    
     record: "9-5",
     division: "Main",
   },
@@ -284,7 +284,7 @@ const teams = [
     name: "Graf Monte-Cristo",
     flag: "/flags/russia.svg",
     points: 344,
-    change: +19,
+    
     record: "14-0",
     division: "Intermediate",
   },
@@ -295,7 +295,7 @@ const teams = [
     name: "SAQA OMUK",
     flag: "/flags/russia.svg",
     points: 326,
-    change: -5,
+    
     record: "12-2",
     division: "Intermediate",
   },
@@ -305,8 +305,8 @@ const teams = [
     logo: "/logos/baks.png",
     name: "BAKS Esports",
     flag: "/flags/russia.svg",
-    points: 393,
-    change: +23,
+    points: 410,
+    change: +17,
     record: "13-1",
     division: "Entry",
   },
@@ -317,7 +317,7 @@ const teams = [
     name: "Aogiri",
     flag: "/flags/russia.svg",
     points: 317,
-    change: +1,
+    
     record: "13-1",
     division: "Intermediate",
   },
@@ -394,7 +394,7 @@ const teams = [
     name: "BHemanha",
     flag: "/flags/russia.svg",
     points: 306,
-    change: -2,
+    
     record: "12-2",
     division: "Entry",
   },
@@ -416,7 +416,7 @@ const teams = [
     name: "GoldRashers",
     flag: "/flags/bel.svg",
     points: 298,
-    change: -4,
+    
     record: "11-3",
     division: "Entry",
       },
@@ -426,8 +426,8 @@ const teams = [
     logo: "/logos/lynx.png",
     name: "LYNX",
     flag: "/flags/russia.svg",
-    points: 324,
-    change: +20,
+    points: 321,
+    change: -3,
     record: "11-3",
     division: "Entry",
       },
@@ -438,7 +438,7 @@ const teams = [
     flag: "/flags/bel.svg",
     logo: "/logos/traffic.png",
     points: 306,
-    change: +5,
+    
     record: "11-3",
     division: "Entry",
       },
@@ -449,7 +449,7 @@ const teams = [
     name: "KDA Team",
     flag: "/flags/russia.svg",
     points: 314,
-    change: +16,
+    
     record: "11-3",
     division: "Entry",
       },
@@ -526,7 +526,7 @@ const teams = [
     name: "Z17",
     flag: "/flags/russia.svg",
     points: 311,
-    change: -2,
+    
     record: "7-7",
     division: "Main",
   },
@@ -559,7 +559,7 @@ const teams = [
     name: "Sakura",
     flag: "/flags/russia.svg",
     points: 281,
-    change: +3,
+    
     record: "11-3",
     division: "Intermediate",
   },
@@ -570,7 +570,7 @@ const teams = [
     name: "ALLINNERS",
     flag: "/flags/kaz.svg",
     points: 262,
-    change: -5,
+    
     record: "11-3",
     division: "Intermediate",
   },
@@ -613,7 +613,7 @@ const teams = [
     name: "Prem3aDPOTbl",
     flag: "/flags/russia.svg",
     points: 263,
-    change: -4,
+    
     record: "10-4",
     division: "Intermediate",
   },
@@ -635,7 +635,7 @@ const teams = [
     name: "WaPa",
     flag: "/flags/russia.svg",
     points: 254,
-    change: -4,
+    
     record: "10-4",
     division: "Intermediate",
   },
@@ -696,7 +696,7 @@ const teams = [
     flag: "/flags/russia.svg",
     logo: "/logos/1337.png",
     points: 254,
-    change: -5,
+    
     record: "9-5",
     division: "Intermediate",
   },
@@ -728,8 +728,8 @@ const teams = [
     logo: "/logos/weclear.png",
     name: "WeClear",
     flag: "/flags/russia.svg",
-    points: 272,
-    change: +7,
+    points: 287,
+    change: +15,
     record: "10-4",
     division: "Entry",
   },
@@ -751,7 +751,7 @@ const teams = [
     name: "LAN1T",
     flag: "/flags/russia.svg",
     points: 256,
-    change: +3,
+    
     record: "10-4",
     division: "Entry",
   },
@@ -805,7 +805,7 @@ const teams = [
     name: "FATE",
     flag: "/flags/russia.svg",
     points: 226,
-    change: -4,
+    
     record: "10-4",
     division: "Entry",
   },
@@ -933,7 +933,7 @@ const teams = [
     name: "Fak1E Lab",
     flag: "/flags/russia.svg",
     points: 216,
-    change: -4,
+    
     record: "9-5",
     division: "Entry",
   },
@@ -943,7 +943,7 @@ const teams = [
     name: "MANA",
     flag: "/flags/russia.svg",
     points: 220,
-    change: -3,
+    
     record: "9-5",
     division: "Entry",
   },
@@ -1008,7 +1008,7 @@ const teams = [
     name: "Nightmare Esports",
     flag: "/flags/russia.svg",
     points: 210,
-    change: -3,
+    
     record: "9-5",
     division: "Entry",
   },
@@ -1334,7 +1334,7 @@ const teams = [
     name: "LeetCase",
     flag: "/flags/russia.svg",
     points: 143,
-    change: -3,
+    
     record: "8-6",
     division: "Entry",
   },
