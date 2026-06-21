@@ -1,0 +1,1098 @@
+{
+  "payload":  {
+    "id":  "a4ec16e0-348c-455c-aaf3-96711737c397",
+    "name":  "Season 57",
+    "number":  57,
+    "league_id":  "a14b8616-45b9-4581-8637-4dfd0b5f6af8",
+    "league_name":  "ESEA League",
+    "organizer_id":  "08b06cfc-74d0-454b-9a51-feda4b6b18da",
+    "forfeits_max_allowed":  2,
+    "published_at":  "2026-02-02T09:00:00Z",
+    "regions":  [
+      {
+        "id":  "46554a87-e666-4c3d-a0fb-36b34cec13ff",
+        "name":  "Europe",
+        "code":  "EU",
+        "server_code":  "EU",
+        "divisions":  [
+          {
+            "id":  "9b867789-2ed4-4ef5-8ab5-9b0e09d4e32f",
+            "name":  "Advanced",
+            "order":  10,
+            "ranked":  true,
+            "verification_requirements":  {
+              "min_verification_level":  2,
+              "enforced_verification_game_tags":  [
+                "idv_req"
+              ]
+            },
+            "stages":  [
+              {
+                "id":  "61c98c0f-0e54-428e-bb85-2afede9cf4c6",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "a89db989-0574-4858-9c95-4714ccb8c833",
+                    "name":  "Central",
+                    "championship_id":  "c44e1453-8043-41fe-8b4e-d9f9ac132f40",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T16:32:53.073673Z",
+                    "ended_at":  "2026-05-25T02:15:42.373Z"
+                  }
+                ]
+              },
+              {
+                "id":  "74db9cb8-4c2b-4145-a10a-74650b705b3e",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "9352f23f-fda9-41d2-a8c1-ee5a40c12d06",
+                    "name":  "Central",
+                    "championship_id":  "f6d5875a-af46-45f3-9db2-343e3aa974ec",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T16:16:35.456136Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "0c1466a0-2b92-413b-ac90-e0eb71a7b05c",
+            "name":  "Main",
+            "order":  20,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "4ff92086-0669-40cf-b218-dffbc73a7061",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "71dc5bec-511a-4acf-9f5a-91f283b4c4c7",
+                    "name":  "A",
+                    "championship_id":  "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T16:42:40.595858Z",
+                    "ended_at":  "2026-05-24T18:16:58.456Z"
+                  },
+                  {
+                    "id":  "749a2bf5-dafe-486d-93bc-8436def0af11",
+                    "name":  "B",
+                    "championship_id":  "93ab0270-1ee0-42bc-b3df-32ec40d74078",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T16:52:51.709370Z",
+                    "ended_at":  "2026-05-24T19:47:44.480Z"
+                  }
+                ]
+              },
+              {
+                "id":  "cc429bf6-151e-4add-ab40-bfe0ce1d93c8",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "3cf390a6-cbc7-4be9-b6a9-2636c77fa918",
+                    "name":  "A",
+                    "championship_id":  "3889301e-0a67-4fa2-bed7-4a6ffb6de3fa",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:38:49.024009Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "90611c42-4240-492e-a6f6-53a0e0e2f6ea",
+                    "name":  "B",
+                    "championship_id":  "2a658dac-a1fa-4adb-bff0-f4fb9d9f2f74",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:48:07.228205Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "83f5519f-1cc1-4f0f-9aa0-ec73bfdc5870",
+            "name":  "Intermediate",
+            "order":  30,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "a79afb84-74db-4b9a-a2a5-06d21f5a758e",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "678feb30-1522-470a-bf20-f03c7f673ffd",
+                    "name":  "A",
+                    "championship_id":  "106062e2-b895-4485-9eba-0fc33964928e",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T17:04:14.346989Z",
+                    "ended_at":  "2026-05-21T20:30:25.826Z"
+                  },
+                  {
+                    "id":  "5aaa8e76-bf0b-440e-8a64-f66c4f201044",
+                    "name":  "B",
+                    "championship_id":  "a96a8895-6f83-4d47-8877-c036d83be418",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T17:32:53.841808Z",
+                    "ended_at":  "2026-05-26T13:38:11.563Z"
+                  },
+                  {
+                    "id":  "2f4bcb9d-0fce-4bbd-b001-f3c3f0e274ce",
+                    "name":  "C",
+                    "championship_id":  "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T17:37:04.390377Z",
+                    "ended_at":  "2026-05-26T13:38:49.776Z"
+                  },
+                  {
+                    "id":  "b91126a0-fe54-4e73-b8be-ddd05d5e9ea0",
+                    "name":  "D",
+                    "championship_id":  "88e1f562-e95b-4e80-b196-111aabbbf7cc",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T17:45:45.423097Z",
+                    "ended_at":  "2026-05-24T15:46:33.250Z"
+                  }
+                ]
+              },
+              {
+                "id":  "d0342b40-0855-4e83-95af-b895656d65b5",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "e3ede1c6-52c5-4fc9-9aed-c88ae3c8f244",
+                    "name":  "A",
+                    "championship_id":  "af4ebc04-acf2-4785-b98d-47ec1e37706e",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:06:36.352066Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "88007b1f-8101-418e-9d19-8d4793489f85",
+                    "name":  "B",
+                    "championship_id":  "717e14e8-5da6-4d21-ac8a-3df742e8c855",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:14:31.438036Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "96f6da74-fa97-4b38-89c7-e2099d652c3e",
+                    "name":  "C",
+                    "championship_id":  "7dfdafbe-2898-43e4-ba19-68d3a0e6c64e",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:21:36.036009Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "a706b1f2-3afb-4895-8a1e-558613479a13",
+                    "name":  "D",
+                    "championship_id":  "9523d8b6-4173-48be-9407-76d587b9d8d4",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:26:19.134189Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "269c4aaa-eb86-4d3d-bd89-ef766c789c1a",
+            "name":  "Entry",
+            "order":  40,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "bfadb4d4-4b74-4787-a2d4-bc86e4afb7c4",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT"
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  2500
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "952ff5c9-58e8-4069-bfa3-cdb632b1b29f",
+                    "name":  "A",
+                    "championship_id":  "62990daa-bd22-4e2c-be51-df8a117d8ab7",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T17:22:30.976434Z",
+                    "ended_at":  "2026-05-22T14:57:04.574Z"
+                  },
+                  {
+                    "id":  "84f611bf-0769-4c54-880f-47dd968bde4f",
+                    "name":  "B",
+                    "championship_id":  "966da0d9-7d3c-4238-b0da-82e37ba3c105",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:01:54.221791Z",
+                    "ended_at":  "2026-05-23T18:45:06.344Z"
+                  },
+                  {
+                    "id":  "9d0a9b81-17e7-4436-89bc-ab3c6cc4ac4d",
+                    "name":  "C",
+                    "championship_id":  "045a2e2a-394d-4d2b-8ff3-4deab0227bd4",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:05:23.918025Z",
+                    "ended_at":  "2026-05-24T18:59:37.978Z"
+                  },
+                  {
+                    "id":  "4c6cf0f4-c8d7-4665-a0e7-437ddefe9fad",
+                    "name":  "D",
+                    "championship_id":  "6f84ee24-dc39-4c9a-b303-e765f1153f20",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:10:05.697106Z",
+                    "ended_at":  "2026-05-24T19:16:21.768Z"
+                  }
+                ]
+              },
+              {
+                "id":  "85e0efdc-e63e-49fd-bf36-26aade82fad9",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "59d2987e-240c-4cb4-9dec-3903a332d306",
+                    "name":  "A",
+                    "championship_id":  "51706dfb-c98b-4471-8aed-c406f1b99970",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T17:48:10.202238Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "b082d443-6cdc-4abd-9892-9b52bc46892f",
+                    "name":  "B",
+                    "championship_id":  "b3d1f519-1524-45ca-a7d8-fd83f3419202",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T19:41:25.324289Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "1c9fab66-af10-4b45-914a-d31d3079ea39",
+                    "name":  "C",
+                    "championship_id":  "56253486-2d88-4512-9649-6296f50a38b9",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T19:49:36.860129Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "66f0f2d0-408b-4aa5-b996-d5d08656ba0a",
+                    "name":  "D",
+                    "championship_id":  "86555399-fcc9-4094-9b67-8e8d9c2405b5",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T19:56:21.736144Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "5869b723-92a5-4685-a1d4-4d7348e22c0c",
+            "name":  "Open10",
+            "order":  50,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "6287df1e-a217-4e17-8dde-ddb53385cafc",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT",
+                    "value":  2500
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  2001
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "c10aa18e-3f87-4d8a-af10-64034c1602fe",
+                    "name":  "A",
+                    "championship_id":  "c4bbd801-de28-4ae8-8ab0-e88b189b8d84",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:15:04.081977Z",
+                    "ended_at":  "2026-05-21T21:20:52.162Z"
+                  },
+                  {
+                    "id":  "e1e728e5-dcf6-4d88-b40f-63e61c11cf6e",
+                    "name":  "B",
+                    "championship_id":  "17538cf8-628d-4f81-8d68-bc0cb4fbc6b2",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:18:10.847632Z",
+                    "ended_at":  "2026-05-22T19:04:35.199Z"
+                  },
+                  {
+                    "id":  "c4ebf033-732f-48f6-8ac7-5df7c4bfb2ac",
+                    "name":  "C",
+                    "championship_id":  "1814cfe3-f69b-4e33-8158-e94a6ec519dd",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:23:15.604394Z",
+                    "ended_at":  "2026-05-22T18:12:24.522Z"
+                  },
+                  {
+                    "id":  "dc4356a7-a9a7-458e-b34d-89e3d88b6e2a",
+                    "name":  "D",
+                    "championship_id":  "04a342d3-a08f-494c-aae4-3d5e213016cf",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:25:50.589078Z",
+                    "ended_at":  "2026-05-21T20:02:41.853Z"
+                  }
+                ]
+              },
+              {
+                "id":  "810e4563-312c-4189-a395-af868097b5ca",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "a3deb617-3c28-4d48-80fb-9796597d77e8",
+                    "name":  "A",
+                    "championship_id":  "2ccfeb7d-c0d9-4edb-ab33-53355fef0260",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T17:27:26.831349Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "c253355f-0dac-4ead-b0d3-44084e01506f",
+                    "name":  "B",
+                    "championship_id":  "0d87834d-025f-45e6-803e-0894b5a97738",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T18:32:33.618636Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "3ad9cb66-9846-4c6c-bdef-c9f01b0b5543",
+                    "name":  "C",
+                    "championship_id":  "8bb83b94-288c-4722-83ce-90497973bd3e",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T18:35:02.505130Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  },
+                  {
+                    "id":  "e30db067-e99f-47b1-887c-badc86c244c1",
+                    "name":  "D",
+                    "championship_id":  "97b3e9f0-4039-4064-a4a9-e00c6a8f4666",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T18:57:29.102167Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "0b43b146-a17a-4fdd-b58d-b999e16b9066",
+            "name":  "Open9",
+            "order":  60,
+            "ranked":  false,
+            "stages":  [
+              {
+                "id":  "c77b26c8-cbb0-45bf-9ccc-f9e55f55b535",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT",
+                    "value":  2001
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  1751
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "84e7b555-57eb-4b0a-b225-c9ffef55a2dc",
+                    "name":  "Central",
+                    "championship_id":  "b7aaf095-2a87-4a76-82d7-b7dc669ad390",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:29:03.134798Z",
+                    "ended_at":  "2026-05-21T19:29:49.793Z"
+                  }
+                ]
+              },
+              {
+                "id":  "86c4625c-d774-4807-a324-485d9eaeb4ba",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "f1c7a8e0-c02c-47a3-a94a-47713013d5aa",
+                    "name":  "Central",
+                    "championship_id":  "190d8890-f204-48d7-aeea-41a676e395f6",
+                    "bracket_style":  "bracket",
+                    "started_at":  "2026-05-25T16:47:25.408264Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "5b74a37d-3dc3-4f8b-b3a8-7f43819cf8d1",
+            "name":  "Open1-8",
+            "order":  70,
+            "ranked":  false,
+            "stages":  [
+              {
+                "id":  "052b882f-7c5e-4ab0-be52-d065dc2c6f72",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT",
+                    "value":  1750
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  0
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "29e63210-b3b5-4c0c-ae19-4a06dbcb758f",
+                    "name":  "Central",
+                    "championship_id":  "5649a9d9-76e4-4bad-a5fe-f668da5ab5fd",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T18:33:38.960866Z",
+                    "ended_at":  "2026-05-21T20:37:54.105Z"
+                  }
+                ]
+              },
+              {
+                "id":  "c1a02c07-7aa1-4bfd-90c2-34780ac98da8",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "faf4d216-18d2-4733-b258-0cebc0f18343",
+                    "name":  "Central",
+                    "championship_id":  "a4947dbc-05d9-4340-9fe9-769a0aa3663a",
+                    "bracket_style":  "bracket",
+                    "started_at":  "2026-05-25T16:40:01.965968Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id":  "143605c5-0e53-473b-b871-4636dd8e195c",
+        "name":  "North America",
+        "code":  "NA",
+        "server_code":  "NA",
+        "divisions":  [
+          {
+            "id":  "d4eea303-5aa5-46d6-a6a3-63f2dba6a446",
+            "name":  "Advanced",
+            "order":  10,
+            "ranked":  true,
+            "verification_requirements":  {
+              "min_verification_level":  2,
+              "enforced_verification_game_tags":  [
+                "idv_req"
+              ]
+            },
+            "stages":  [
+              {
+                "id":  "fe51549d-5cf8-41c5-8882-328bd8da5946",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "2825d126-0b6c-4121-b11d-e45c5af84721",
+                    "name":  "Central",
+                    "championship_id":  "5a03dd5a-cd26-412c-a9c4-1100b2ddc6f7",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T15:06:54.051285Z",
+                    "ended_at":  "2026-05-25T02:17:37.096Z"
+                  }
+                ]
+              },
+              {
+                "id":  "17ebabb2-685a-4dc8-b1af-2fca770dcbdc",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "6aa20988-aa8a-4504-ac4d-f2d4d14a75f3",
+                    "name":  "Central",
+                    "championship_id":  "bc4e581a-9c49-4146-9ab9-3cd21edc190d",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T16:26:26.624087Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "7e845eff-21bf-4217-8d9e-d36fe3231459",
+            "name":  "Main",
+            "order":  20,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "71da3244-f296-404c-bd23-e2d08b7d6213",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "3adbcb31-b289-4554-b615-792f464ddbe5",
+                    "name":  "Central",
+                    "championship_id":  "840b4960-f24c-4d79-8fad-3fe551683034",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T15:14:02.691048Z",
+                    "ended_at":  "2026-05-23T02:38:06.997Z"
+                  }
+                ]
+              },
+              {
+                "id":  "90daa3b6-48c7-4a68-a438-08851896a2ab",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "663bb197-b444-44e0-9c66-f4dbcf984164",
+                    "name":  "Central",
+                    "championship_id":  "12f2f5a3-9160-446d-a1bd-1678aecdab8f",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T20:57:35.488792Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "10d215c3-6c93-43bb-86e1-9e4d0d7809c4",
+            "name":  "Intermediate",
+            "order":  30,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "c3a3891a-00db-490e-9119-8cd14296af55",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "a86e735c-62a8-4dcd-8457-f60d7a51b07b",
+                    "name":  "Central",
+                    "championship_id":  "f5ca7f33-5d61-4dad-bf5b-338a37823fb3",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T15:40:55.936455Z",
+                    "ended_at":  "2026-05-23T02:48:20.186Z"
+                  }
+                ]
+              },
+              {
+                "id":  "ae6e97b6-f304-4c9e-889a-55aa8dc89947",
+                "name":  "Playoffs B",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "55f7dc50-c618-40eb-8264-7ee9b38f4d58",
+                    "name":  "Central",
+                    "championship_id":  "41d8abb4-96f4-4dae-a54f-b808e529c5b3",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T21:08:42.770973Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              },
+              {
+                "id":  "7472500b-3fa7-4075-8784-ddb034249a19",
+                "name":  "Playoffs A",
+                "phase":  3,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "e94c6c11-6fe0-4777-99aa-a15db28dbdcd",
+                    "name":  "Central",
+                    "championship_id":  "96559088-dbdb-4fdd-991c-5afc81371d39",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T21:02:35.843367Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "35ad2083-68e5-4bf5-a421-8553977ebc7c",
+            "name":  "Open9-10",
+            "order":  50,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "6c913ce2-df57-4d83-bf9f-8a3124e9de14",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT"
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  1750
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "e851a481-7641-4441-a14a-f0dc1b7bc08e",
+                    "name":  "East",
+                    "championship_id":  "e8f7dbd0-e336-4456-8fd8-723154d7453a",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T15:56:10.769239Z",
+                    "ended_at":  "2026-05-23T09:00:33.276Z"
+                  },
+                  {
+                    "id":  "6907cee7-d82a-4bce-9575-a530bf79f297",
+                    "name":  "West",
+                    "championship_id":  "7c817122-bedd-4c64-af07-4d6adbc3d0b0",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T15:56:21.977893Z",
+                    "ended_at":  "2026-05-22T03:22:12.248Z"
+                  }
+                ]
+              },
+              {
+                "id":  "b2dd6484-3fc7-4658-9f6f-f464c5ad487f",
+                "name":  "Playoffs B",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "b48896a1-5c3f-4a82-adaa-dccad1035030",
+                    "name":  "Central",
+                    "championship_id":  "c1758a8e-32bd-4bab-9a33-7b3df2f3da5b",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T21:20:42.443384Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              },
+              {
+                "id":  "ba9f99b6-319a-4a2e-8219-033903f5bceb",
+                "name":  "Playoffs A",
+                "phase":  3,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "f5122977-fa51-4974-8049-d6494171bd33",
+                    "name":  "Central",
+                    "championship_id":  "ea2d56e7-47ba-4768-901a-13c57015be2b",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T21:14:18.747268Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id":  "c59ec99c-769b-4884-9f5f-b71e01be5cf6",
+            "name":  "Open1-8",
+            "order":  70,
+            "ranked":  false,
+            "stages":  [
+              {
+                "id":  "ac28822c-2159-445e-94f8-6bf34a90018c",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "elo_range":  {
+                  "upper":  {
+                    "operator":  "CRITERIA_OPERATOR_LT",
+                    "value":  1750
+                  },
+                  "lower":  {
+                    "operator":  "CRITERIA_OPERATOR_GTE",
+                    "value":  0
+                  }
+                },
+                "conferences":  [
+                  {
+                    "id":  "d9bab1fa-4dbb-4973-a269-92b517b8049b",
+                    "name":  "East",
+                    "championship_id":  "5149702e-69b7-4c97-80ca-688a3e47d169",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T16:01:02.855682Z",
+                    "ended_at":  "2026-05-25T00:13:09.331Z"
+                  },
+                  {
+                    "id":  "babddd5b-d8e3-4aef-8eec-f29c4908dc30",
+                    "name":  "West",
+                    "championship_id":  "b6b9b577-625c-4ce5-bd4b-ba046fa34e04",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T16:03:58.717470Z",
+                    "ended_at":  "2026-05-22T03:10:18.369Z"
+                  }
+                ]
+              },
+              {
+                "id":  "9b53c1b8-6fcc-417e-b09f-9dab8a1da6b1",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "71af8309-9bc8-466e-bae8-f97fc652d178",
+                    "name":  "Central",
+                    "championship_id":  "31a9c4df-e194-4550-912e-d5f008706f68",
+                    "bracket_style":  "bracket",
+                    "started_at":  "2026-05-25T21:25:59.152561Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id":  "ca0e3efd-207d-4e4c-ba1c-d2843fb7f9b8",
+        "name":  "South America",
+        "code":  "SA",
+        "server_code":  "SA",
+        "divisions":  [
+          {
+            "id":  "99d235fe-b939-498d-a302-e03e4c07dc0d",
+            "name":  "Open",
+            "order":  70,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "756669ef-26d9-49be-ac98-7e13555fdb08",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "76140270-d238-4dac-aa44-f59386f2d3fe",
+                    "name":  "Central",
+                    "championship_id":  "c8fd12b8-671d-4bd8-ae95-4bbbed415665",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T14:21:13.364669Z",
+                    "ended_at":  "2026-05-23T00:15:54.438Z"
+                  }
+                ]
+              },
+              {
+                "id":  "7b3577ed-3af1-4ef5-94ec-2814e0327824",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "b78b1d68-5e69-44eb-a699-ea34bc908324",
+                    "name":  "Central",
+                    "championship_id":  "f9deba0a-4565-44d6-920b-14bce1ea876b",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T15:54:40.886296Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id":  "e235fc83-4c53-4f33-9855-c1241ad98877",
+        "name":  "Oceania",
+        "code":  "OCE",
+        "server_code":  "OCE",
+        "divisions":  [
+          {
+            "id":  "7121e483-de5b-49c2-b50b-8692fb9af900",
+            "name":  "Open",
+            "order":  70,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "0cb81efd-a7c8-4041-aaeb-9e0cf3401926",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "6f8349b4-91f6-4b47-a5ee-9ca92f603b92",
+                    "name":  "Central",
+                    "championship_id":  "5b234f93-72a9-4117-835c-49afba5cea6a",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T13:59:10.835654Z",
+                    "ended_at":  "2026-05-24T11:39:31.063Z"
+                  }
+                ]
+              },
+              {
+                "id":  "6b4e0d50-ecb4-4103-a5bc-c74ffaf4b99b",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "cad94fb0-b5a5-41c8-82ec-b6e334012b7e",
+                    "name":  "Central",
+                    "championship_id":  "18a7a4c3-2386-4a14-9429-c65a33a0adad",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T19:27:48.365111Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id":  "986274fb-08d1-4e71-9f77-ee2585f6b9cd",
+        "name":  "Asia",
+        "code":  "SEA",
+        "server_code":  "SEA",
+        "divisions":  [
+          {
+            "id":  "65235f33-1c02-436b-9d82-c1a0781e2e5d",
+            "name":  "Open",
+            "order":  70,
+            "ranked":  true,
+            "stages":  [
+              {
+                "id":  "d3567386-a9f8-4ac6-9598-dd63cf5da87d",
+                "name":  "Regular Season",
+                "phase":  1,
+                "registration_mode":  "public",
+                "registration_opened_at":  "2026-02-02T09:00:00Z",
+                "registration_closed_at":  "2026-04-03T12:00:00Z",
+                "started_at":  "2026-04-05T22:00:00Z",
+                "ended_at":  "2026-05-25T08:00:00Z",
+                "forfeits_max_allowed":  2,
+                "conferences":  [
+                  {
+                    "id":  "039bd8b3-b048-455f-b5fb-a9193eefd3f1",
+                    "name":  "Central",
+                    "championship_id":  "04a8ce88-d100-4b0d-8ab2-ffcb0a1feb97",
+                    "bracket_style":  "swiss",
+                    "started_at":  "2026-04-03T14:39:05.827807Z",
+                    "ended_at":  "2026-05-21T14:34:24.996Z"
+                  }
+                ]
+              },
+              {
+                "id":  "b396f627-b0eb-463c-8c0a-3169decabcb2",
+                "name":  "Playoffs",
+                "phase":  2,
+                "registration_mode":  "internal",
+                "registration_opened_at":  "2026-05-25T00:55:00Z",
+                "registration_closed_at":  "2026-05-26T00:55:00Z",
+                "started_at":  "2026-05-26T01:00:00Z",
+                "ended_at":  "2026-06-22T08:00:00Z",
+                "forfeits_max_allowed":  -1,
+                "conferences":  [
+                  {
+                    "id":  "a94e978d-b0e2-4e4a-b89d-c2c679eea3ee",
+                    "name":  "Central",
+                    "championship_id":  "f8496f35-c805-4610-b89e-686e576666c2",
+                    "bracket_style":  "doubleElimination",
+                    "started_at":  "2026-05-25T15:47:53.667009Z",
+                    "ended_at":  "2026-06-22T08:00:00Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "verification_requirements":  {
+      "min_verification_level":  0,
+      "enforced_verification_game_tags":  [
+        "idv_req"
+      ]
+    }
+  }
+}
