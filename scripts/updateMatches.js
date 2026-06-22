@@ -3,7 +3,7 @@ import teams from "../src/data/teams.js";
 
 const CHAMPIONSHIP_IDS = [
 
-// Esea Finals
+// Esea Finals S57
 "cb6bfac6-dc14-4995-a170-909392cec298",
   
 // Advanced Playoffs
