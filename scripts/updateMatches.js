@@ -67,6 +67,10 @@ function buildUrl(teamId, offset = 0, limit = 40) {
 }
 
 const CHAMPIONSHIP_NAMES = {
+
+   "cb6bfac6-dc14-4995-a170-909392cec298":
+    "ESEA Finals",
+    
   // Advanced
   "c44e1453-8043-41fe-8b4e-d9f9ac132f40":
     "S57 EU Advanced Central - Regular Season",
