@@ -13,12 +13,37 @@ function MediaPage() {
 
         {/* HEADER */}
         <div className="mb-10">
-          <Link
-            to="/"
-            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
-          >
-            Esea Tracker
-          </Link>
+          <div className="flex gap-6 text-sm mt-6 border-b border-[#243041] pb-4">
+
+  <Link
+    to="/"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Rankings
+  </Link>
+
+  <Link
+    to="/players"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Players
+  </Link>
+
+  <Link
+    to="/Media"
+    className="text-white border-b border-orange-500 pb-1"
+  >
+    Media
+  </Link>
+
+  <Link
+    to="/about"
+    className="text-gray-400 hover:text-white transition"
+  >
+    About
+  </Link>
+
+</div>
 
           <h1 className="text-4xl md:text-5xl font-bold mt-6">
             Media

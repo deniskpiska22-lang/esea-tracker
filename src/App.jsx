@@ -1784,7 +1784,7 @@ const filteredTeams =
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={handleSearchKey}
-                placeholder="Search teams..."
+                placeholder="Search..."
                 className="w-full p-3 bg-[#0f131a] text-white outline-none rounded-lg"
               />
             </div>

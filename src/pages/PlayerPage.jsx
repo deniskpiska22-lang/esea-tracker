@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 import teams from "../data/teams";
 import players from "../data/players";
@@ -10,6 +10,15 @@ import matchesData from "../data/matches.js";
 
 function PlayerPage() {
   const { nickname } = useParams();
+  const location = useLocation();
+
+const backLink =
+  location.state?.from ||
+  `/teams/${playerTeam?.slug}`;
+
+const backLabel =
+  location.state?.label ||
+  `← Back to ${playerTeam?.name}`;
 
 const decodedNickname = normalizeNickname(decodeURIComponent(nickname));
 const averageRating =
@@ -106,10 +115,10 @@ const avgHs = avg("hsRate");
     <div className="max-w-7xl mx-auto px-6 py-8">
 
       <Link
-  to={`/teams/${playerTeam?.slug}`}
+  to={backLink}
   className="text-gray-400 hover:text-orange-400 transition"
 >
-  ← Back to {playerTeam?.name}
+  {backLabel}
 </Link>
 
       <div

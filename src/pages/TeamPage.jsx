@@ -295,6 +295,10 @@ const mapStats = Object.values(
 <Link
   key={`${player.nickname}-${index}`}
   to={`/players/${encodeURIComponent(player.nickname)}`}
+state={{
+  from: `/teams/${slug}`,
+  label: `← Back to ${team.name}`
+}}
   className="
     flex-1
     min-w-[190px]

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import teams from "../data/teams";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import matchStatsCompact from "../data/matchStatsCompact.json";
@@ -6,6 +7,7 @@ import { normalizeNickname } from "../utils/normalizeNickname";
 
 
 function TopPlayersPage() {
+  const [visiblePlayers, setVisiblePlayers] = useState(100);
  const players = Object.entries(playerAverageRatings)
   .map(([nickname, rating]) => {
     const teamInfo = teams.find(
@@ -42,11 +44,19 @@ function TopPlayersPage() {
     };
   })
   .filter(Boolean)
-  .sort(
-  (a, b) =>
-    b.rating * Math.min(b.matches / 10, 1) -
-    a.rating * Math.min(a.matches / 10, 1)
-);
+  .sort((a, b) => {
+  const ratingA =
+    a.rating * Math.min(a.matches / 10, 1);
+
+  const ratingB =
+    b.rating * Math.min(b.matches / 10, 1);
+
+  if (ratingB !== ratingA) {
+    return ratingB - ratingA;
+  }
+
+  return b.matches - a.matches;
+});
 
 const top3 = players.slice(0, 3);
 
@@ -56,9 +66,43 @@ const top3 = players.slice(0, 3);
     <div className="bg-[#0b0f14] min-h-screen text-white p-8">
       <div className="max-w-7xl mx-auto">
 
+<div className="flex gap-6 text-sm mb-8 border-b border-[#243041] pb-4">
+
+  <Link
+    to="/"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Rankings
+  </Link>
+
+  <Link
+    to="/players"
+    className="text-white border-b border-orange-500 pb-1"
+  >
+    Players
+  </Link>
+
+  <Link
+    to="/Media"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Media
+  </Link>
+
+  <Link
+    to="/about"
+    className="text-gray-400 hover:text-white transition"
+  >
+    About
+  </Link>
+
+</div>
+
         <h1 className="text-5xl font-black mb-10">
           Top Players
         </h1>
+
+      
 
         {/* TOP 3 */}
 
@@ -68,6 +112,10 @@ const top3 = players.slice(0, 3);
             <Link
               key={player.nickname}
               to={`/players/${player.nickname}`}
+state={{
+  from: "/players",
+  label: "← Back to Top Players"
+}}
               className="
                 bg-[#111823]
                 border border-[#243041]
@@ -139,10 +187,14 @@ const top3 = players.slice(0, 3);
 
           </div>
 
-          {players.map((player, index) => (
+          {players.slice(0, visiblePlayers).map((player, index) => (
             <Link
               key={player.nickname}
               to={`/players/${player.nickname}`}
+state={{
+  from: "/players",
+  label: "← Back to Top Players"
+}}
               className="
                 grid
                 grid-cols-[80px_1fr_1fr_120px_120px]
@@ -201,6 +253,26 @@ const top3 = players.slice(0, 3);
         </div>
 
       </div>
+      {visiblePlayers < players.length && (
+  <div className="flex justify-center mt-8">
+    <button
+      onClick={() => setVisiblePlayers((v) => v + 100)}
+      className="
+        px-6
+        py-3
+        bg-[#111823]
+        border border-[#243041]
+        rounded-xl
+        text-white
+        hover:border-orange-500
+        hover:text-orange-400
+        transition
+      "
+    >
+      Load More Players
+    </button>
+  </div>
+)}
     </div>
   );
 }

@@ -13,12 +13,37 @@ function About() {
         {/* HEADER */}
         <div className="flex items-center justify-between mb-10">
 
-          <Link
-            to="/"
-            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
-          >
-            Esea Tracker
-          </Link>
+          <div className="flex gap-6 text-sm mt-8 border-b border-[#243041] pb-4">
+
+  <Link
+    to="/"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Rankings
+  </Link>
+
+  <Link
+    to="/players"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Players
+  </Link>
+
+  <Link
+    to="/Media"
+    className="text-gray-400 hover:text-white transition"
+  >
+    Media
+  </Link>
+
+  <Link
+    to="/about"
+    className="text-white border-b border-orange-500 pb-1"
+  >
+    About
+  </Link>
+
+</div>
 
           <div className="text-sm text-gray-500">
             About Project

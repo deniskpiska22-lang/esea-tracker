@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
@@ -6,6 +6,7 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 
 function MatchPage() {
+  const location = useLocation();
   const { slug, matchId } = useParams();
 
   const match = matchesData.find(
@@ -510,9 +511,13 @@ const formatH2HScore = (item) => {
 
                       <td className="p-3 font-semibold">
   <Link
-    to={`/players/${encodeURIComponent(player.nickname)}`}
-    className="hover:text-orange-400 transition-colors"
-  >
+  to={`/players/${encodeURIComponent(player.nickname)}`}
+  state={{
+    from: location.pathname,
+    label: "← Back to Match"
+  }}
+  className="hover:text-orange-400 transition-colors"
+>
     {player.nickname}
   </Link>
 </td>
