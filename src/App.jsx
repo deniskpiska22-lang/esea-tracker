@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect, useRef } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import ScrollToTop from "./components/ScrollToTop";
+import playerTeams from "./data/playerTeams.json";
+import playerAverageRatings from "./data/playerAverageRatings.json";
 
 const teams = [
   {
@@ -1480,10 +1482,36 @@ function App() {
 
   const isActive = (path) => location.pathname === path
 
-  const sortedTeams = useMemo(
-    () => [...teams].sort((a, b) => b.points - a.points),
-    []
+// СНАЧАЛА команды
+const sortedTeams = useMemo(
+  () => [...teams].sort((a, b) => b.points - a.points),
+  []
+)
+
+// ПОТОМ игроки
+const searchablePlayers = useMemo(() => {
+  return Object.keys(playerTeams).map((nickname) => ({
+    nickname,
+    team: playerTeams[nickname],
+    rating: playerAverageRatings[nickname] ?? null,
+    avatar: `/players/${nickname}.png`,
+  }))
+}, [])
+
+// ПОТОМ поиск команд
+const filteredSearchTeams = sortedTeams
+  .filter((t) =>
+    t.name.toLowerCase().includes(search.toLowerCase())
   )
+  .slice(0, 5)
+
+// ПОТОМ поиск игроков
+const filteredPlayers = searchablePlayers
+  .filter((p) =>
+    p.nickname.toLowerCase().includes(search.toLowerCase())
+  )
+  .slice(0, 5)
+
 const divisions = [
   "All",
   "Advanced",
@@ -1502,34 +1530,6 @@ const filteredTeams =
     : sortedTeams.filter(
         (team) => team.division === selectedDivision
       )
-
-  const submitTeam = async () => {
-    try {
-      const response = await fetch("/api/submit-team", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          teamName,
-          faceitLink,
-          contact,
-          note,
-        }),
-      })
-
-      await response.json()
-
-      alert("Application sent ✅")
-      setShowModal(false)
-
-      setTeamName("")
-      setFaceitLink("")
-      setContact("")
-      setNote("")
-    } catch (error) {
-      console.error(error)
-      alert("Something went wrong ❌")
-    }
-  }
 
   // ENTER + ESC
   const handleSearchKey = (e) => {
@@ -1788,55 +1788,132 @@ const filteredTeams =
             {/* RESULTS */}
             <div className="max-h-[400px] overflow-y-auto">
 
-              {sortedTeams
-                .filter((t) =>
-                  t.name.toLowerCase().includes(search.toLowerCase())
-                )
-                .slice(0, 8)
-                .map((team) => (
-                  <div
-                    key={team.slug}
-                    onClick={() => {
-                      navigate(`/teams/${team.slug}`)
-                      setShowSearch(false)
-                      setSearch("")
-                    }}
-                    className="
-                      flex items-center gap-3 p-3
-                      hover:bg-[#121a25]
-                      cursor-pointer
-                      transition
-                      border-b border-white/5
-                    "
-                  >
+              {filteredSearchTeams.length > 0 && (
+  <>
+    <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">
+      Teams
+    </div>
 
-                    <img src={team.flag} className="w-5 h-5" />
-                    <img src={team.logo} className="w-8 h-8" />
+    {filteredSearchTeams.map((team) => (
+      <div
+        key={team.slug}
+        onClick={() => {
+          navigate(`/teams/${team.slug}`)
+          setShowSearch(false)
+          setSearch("")
+        }}
+        className="flex items-center gap-3 p-3 hover:bg-[#121a25] cursor-pointer transition border-b border-white/5"
+      >
+        <img src={team.flag} className="w-5 h-5" />
+        <img src={team.logo} className="w-8 h-8" />
 
-                    <div className="flex flex-col">
-                      <span className="text-white font-medium">
-                        {team.name}
-                      </span>
-                      <span className="text-xs text-gray-400">
-                        {team.division} • {team.points} pts
-                      </span>
-                    </div>
+        <div className="flex flex-col">
+          <span className="text-white font-medium">
+            {team.name}
+          </span>
 
-                  </div>
-                ))}
+          <span className="text-xs text-gray-400">
+            {team.division} • {team.points} pts
+          </span>
+        </div>
+      </div>
+    ))}
+  </>
+)}
 
-              {search && sortedTeams.filter((t) =>
-                t.name.toLowerCase().includes(search.toLowerCase())
-              ).length === 0 && (
-                <div className="p-6 text-center text-gray-500">
-                  No teams found
-                </div>
-              )}
+{filteredPlayers.length > 0 && (
+  <>
+    <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">
+      Players
+    </div>
+
+    {filteredPlayers.map((player) => (
+      <div
+        key={player.nickname}
+        onClick={() => {
+          navigate(`/players/${player.nickname}`)
+          setShowSearch(false)
+          setSearch("")
+        }}
+        className="flex items-center justify-between p-3 hover:bg-[#121a25] cursor-pointer transition border-b border-white/5"
+      >
+        <div className="flex items-center gap-3 relative">
+
+  {/* Background Team Logo */}
+  <div className="relative w-12 h-12 flex items-center justify-center overflow-hidden rounded-lg">
+
+    <img
+      src={
+        teams.find(
+          (t) => t.name === player.team || t.slug === player.team
+        )?.logo
+      }
+      alt=""
+      className="
+        absolute
+        inset-0
+        w-full
+        h-full
+        object-contain
+        opacity-20
+        scale-125
+      "
+    />
+
+    {/* Player Avatar */}
+    <img
+      src={`/players/${player.nickname}.png`}
+      alt={player.nickname}
+      onError={(e) => {
+        e.currentTarget.src = "/player-silhouette.png";
+      }}
+      className="
+        relative
+        z-10
+        w-12
+        h-12
+        object-cover
+      "
+    />
+
+  </div>
+
+  <div className="flex flex-col">
+    <span className="text-white font-medium">
+      {player.nickname}
+    </span>
+
+    <span className="text-xs text-gray-400">
+      {player.team}
+    </span>
+  </div>
+
+</div>
+
+{player.rating && (
+  <span className="text-sm text-green-400 font-medium">
+    {player.rating.toFixed(2)}
+  </span>
+)}
+      </div>
+    ))}
+  </>
+)}
+
+              {search &&
+ filteredTeams.length === 0 &&
+ filteredPlayers.length === 0 && (
+  <div className="p-6 text-center text-gray-500">
+    No results found
+  </div>
+)}
 
             </div>
           </div>
         </div>
       )}
+
+      
 
       {/* MODAL (UNCHANGED) */}
       {showModal && (
