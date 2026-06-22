@@ -1591,22 +1591,26 @@ const filteredTeams =
           </Link>
 
           <div className="flex gap-6 text-sm">
-            {["/", "/Media", "/about"].map((path) => (
-              <Link
-                key={path}
-                to={path}
-                className={`transition ${
-                  isActive(path)
-                    ? "text-white border-b border-orange-500"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {path === "/"
-                  ? "Rankings"
-                  : path.replace("/", "").replace("Media", "Media").replace("about", "About")}
-              </Link>
-            ))}
-          </div>
+  {["/", "/players", "/Media", "/about"].map((path) => (
+    <Link
+      key={path}
+      to={path}
+      className={`transition ${
+        isActive(path)
+          ? "text-white border-b border-orange-500"
+          : "text-gray-400 hover:text-white"
+      }`}
+    >
+      {path === "/"
+        ? "Rankings"
+        : path === "/players"
+        ? "Players"
+        : path === "/Media"
+        ? "Media"
+        : "About"}
+    </Link>
+  ))}
+</div>
 
           <div className="flex items-center gap-2">
 

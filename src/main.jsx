@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import StatsPage from "./pages/StatsPage";
 import MatchPage from "./pages/MatchPage";
 import PlayerPage from "./pages/PlayerPage.jsx";
+import TopPlayersPage from "./pages/TopPlayersPage";
 
 import {
   BrowserRouter,
@@ -80,6 +81,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
  <Route path="/matches/:matchId" 
  element={<MatchPage />} />
+
+ <Route path="/players" element={<TopPlayersPage />} />
 
       </Routes>
 
