@@ -119,18 +119,20 @@ const mapStats = Object.values(
           const imageName = map.name.toLowerCase();
 
           return (
-            <div
-              key={map.name}
-              className="
-                overflow-hidden
-                rounded-2xl
-                border
-                border-[#243041]
-                bg-[#111823]
-                hover:border-orange-500/40
-                transition-all
-              "
-            >
+            <Link
+  key={map.name}
+  to={`/team/${slug}/matches?map=${encodeURIComponent(map.name)}`}
+  className="
+    block
+    overflow-hidden
+    rounded-2xl
+    border
+    border-[#243041]
+    bg-[#111823]
+    hover:border-orange-500/40
+    transition-all
+  "
+>
 
               <div
                 className="relative h-28 bg-cover bg-center"
@@ -216,7 +218,7 @@ const mapStats = Object.values(
 
               </div>
 
-            </div>
+            </Link>
           );
         })}
 

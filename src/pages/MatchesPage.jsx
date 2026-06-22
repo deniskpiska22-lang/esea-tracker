@@ -1,15 +1,27 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import teams from "../data/teams";
 import matchesData from "../data/matches";
 
 function MatchesPage() {
   const { slug } = useParams();
+  const location = useLocation();
+
+const mapFilter =
+  new URLSearchParams(location.search).get("map");
 
   const team = teams.find((t) => t.slug === slug);
 
-  const teamMatches = matchesData.filter(
-    (match) => match.teamSlug === slug
+  const teamMatches = matchesData.filter((match) => {
+  if (match.teamSlug !== slug) return false;
+
+  if (!mapFilter) return true;
+
+  return match.mapScores?.some(
+    (m) =>
+      m.map?.toLowerCase() ===
+      mapFilter.toLowerCase()
   );
+});
 
   const groupedMatches = teamMatches.reduce((acc, match) => {
     if (!acc[match.season]) {
@@ -34,6 +46,21 @@ function MatchesPage() {
         <h1 className="text-4xl font-black mt-4 mb-8">
           {team?.name} Matches
         </h1>
+
+{mapFilter && (
+  <div className="mb-6 flex items-center gap-3">
+    <span className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400">
+      {mapFilter}
+    </span>
+
+    <Link
+      to={`/team/${slug}/matches`}
+      className="text-gray-400 hover:text-white"
+    >
+      Clear Filter
+    </Link>
+  </div>
+)}
 
         {Object.entries(groupedMatches).map(([season, matches]) => (
           <div key={season} className="mb-10">
