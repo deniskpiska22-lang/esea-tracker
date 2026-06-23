@@ -16,7 +16,8 @@ const players = {
       "rating": 1.18
     },
     {
-      "nickname": "deactivated"
+      "nickname": "deactivated",
+      "elo": 3108,
     },
     {
       "nickname": "Iazarus",
@@ -1043,8 +1044,8 @@ const players = {
       "rating": 1.06
     },
     {
-      "nickname": "flAndEmAdZ",
-      "elo": 2894,
+      "nickname": "kgrax",
+      "elo": 2980,
       "rating": 0.98
     }
   ],
@@ -1066,7 +1067,7 @@ const players = {
     },
     {
       "nickname": "nukleos143",
-      "elo": 3258,
+      "elo": 3476,
       "rating": 1.02
     },
     {
@@ -1704,6 +1705,7 @@ const players = {
     },
     {
       "nickname": "-wARTHUNDER",
+      "elo": 3083,
       "rating": 1.25
     },
     {
@@ -2284,8 +2286,8 @@ const players = {
       "rating": 0.88
     },
     {
-      "nickname": "NikiToS_2009",
-      "elo": 3178,
+      "nickname": "skipp-_-",
+      "elo": 2974,
       "rating": 1.12
     }
   ],
@@ -2473,6 +2475,7 @@ const players = {
     },
     {
       "nickname": "yoogin_",
+      "elo": 3226,
       "rating": 1.08
     }
   ],
@@ -2545,7 +2548,8 @@ const players = {
       "nickname": "4AJIbTyXu"
     },
     {
-      "nickname": "qgar-_-"
+      "nickname": "qgar-_-",
+      "elo": 2808,
     },
     {
       "nickname": "anemie",
@@ -2722,7 +2726,8 @@ const players = {
       "rating": 0.84
     },
     {
-      "nickname": "n3d1s-"
+      "nickname": "n3d1s",
+      "elo": 2551,
     },
     {
       "nickname": "F4NAT_MARVEL"
