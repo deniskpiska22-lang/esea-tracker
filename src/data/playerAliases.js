@@ -296,6 +296,45 @@ const playerAliases = {
     "w1se666_",
     "Mizuyoo_",
     "h1tori7"
+    ],
+    "Ujaueu": [
+    "Ujaueu",
+    "S9Q6P4l2M8",
+    "sugardaddy1-",
+    "morfewR",
+    "MandDANCE",
+    "apexGOAT"
+    ],
+    "k10tje": [
+    "k10tje",
+    "sxdklll0tje",
+    "kLOTJ3",
+    "-kl07tj3",
+    "kl0tje666",
+    "xk107j3"
+    ],
+    "lazerboss": [
+    "lazerboss",
+    "ELOBOSSUS",
+    "lazersacred",
+    "sacredinho",
+    "IRLtroll"
+    ],
+    "f0lkfan111": [
+    "f0lkfan111",
+    "TYXL0DbIPKA",
+    "quokfan111",
+    "Deavoidd",
+    "6y6aKYIII",
+    "Deavoid52"
+    ],
+    "hate_system": [
+    "hate_system",
+    "M3GA_MYXA",
+    "DZAKinh0o",
+    "Nissan_Juke",
+    "magnscarls3n",
+    "DZAKinho"
     ]
 };
 
