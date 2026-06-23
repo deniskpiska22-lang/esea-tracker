@@ -12,65 +12,90 @@ function PlayerPage() {
   const { nickname } = useParams();
   const location = useLocation();
 
-const backLink =
-  location.state?.from ||
-  `/teams/${playerTeam?.slug}`;
-
-const backLabel =
-  location.state?.label ||
-  `← Back to ${playerTeam?.name}`;
-
-const decodedNickname = normalizeNickname(decodeURIComponent(nickname));
-const averageRating =
-  playerAverageRatings[normalizeNickname(decodedNickname)] || 0;
-const avatarPath = `/players/${decodedNickname}.png`;
-
-const playerTeam = teams.find((team) =>
-  team.players?.some(
-    (player) =>
-      player.toLowerCase() === decodedNickname.toLowerCase()
+  const decodedNickname = String(
+  normalizeNickname(
+    decodeURIComponent(nickname)
   )
 );
 
-const playerInfo = Object.values(players)
-  .flat()
-  .find(
-    (p) => normalizeNickname(p.nickname) === decodedNickname
+  const playerTeam = teams.find((team) =>
+    team.players?.some(
+      (player) =>
+        player.toLowerCase() ===
+        decodedNickname.toLowerCase()
+    )
   );
 
+  const backLink =
+    location.state?.from ||
+    `/teams/${playerTeam?.slug}`;
+
+  const backLabel =
+    location.state?.label ||
+    `← Back to ${playerTeam?.name}`;
+
+  const averageRating =
+    playerAverageRatings[decodedNickname] || 0;
+
+  const avatarPath =
+    `/players/${decodedNickname}.png`;
+
+  const playerInfo = Object.values(players)
+    .flat()
+    .find(
+      (p) =>
+        normalizeNickname(p.nickname) ===
+        decodedNickname
+    );
+
   const transfers =
-  playerTransfers[decodedNickname] || [];
+    playerTransfers[decodedNickname] || [];
 
-const normalizeTeamName = (name) =>
-  name?.replace(/\s+/g, "").toLowerCase();
+  const normalizeTeamName = (name) =>
+    name?.replace(/\s+/g, "").toLowerCase();
 
-const playerMatches = Object.values(matchStatsCompact)
-  .flatMap((match) =>
+  const playerMatches = Object.values(
+    matchStatsCompact
+  ).flatMap((match) =>
     (match.teams || []).flatMap((team) =>
       (team.players || [])
         .filter(
           (player) =>
-            normalizeNickname(player.nickname) === decodedNickname
+            normalizeNickname(
+              player.nickname
+            ) === decodedNickname
         )
         .map((player) => {
-          const siteMatch = matchesData.find(
-            (m) =>
-              m.matchId === match.matchId &&
-              normalizeTeamName(m.teamName) ===
-                normalizeTeamName(team.teamName)
-          );
+          const siteMatch =
+            matchesData.find(
+              (m) =>
+                m.matchId ===
+                  match.matchId &&
+                normalizeTeamName(
+                  m.teamName
+                ) ===
+                  normalizeTeamName(
+                    team.teamName
+                  )
+            );
 
           return {
             ...player,
             matchId: match.matchId,
-            teamSlug: siteMatch?.teamSlug, // <-- добавляем здесь
+            teamSlug:
+              siteMatch?.teamSlug,
             map: match.map,
             teamName: team.teamName,
             teamScore: team.score,
-            opponent: match.teams?.find(
-              (t) => t.teamId !== team.teamId
-            ),
-            rating: calculatePlayerMatchRating(player),
+            opponent:
+              match.teams?.find(
+                (t) =>
+                  t.teamId !== team.teamId
+              ),
+            rating:
+              calculatePlayerMatchRating(
+                player
+              ),
           };
         })
     )

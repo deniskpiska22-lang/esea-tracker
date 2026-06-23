@@ -1,6 +1,7 @@
 import fs from "fs";
 import { calculatePlayerMatchRating } from "../src/utils/calculatePlayerRating.js";
 import { normalizeNickname } from "../src/utils/normalizeNickname.js";
+import playerAliases from "../src/data/playerAliases.js";
 
 const matchStats = JSON.parse(
   fs.readFileSync("./src/data/matchStatsCompact.json", "utf8")
@@ -15,15 +16,30 @@ for (const match of Object.values(matchStats)) {
     for (const player of team.players || []) {
 
       const nickname = normalizeNickname(player.nickname);
+      let finalNickname = nickname;
+
+for (const [mainNick, aliases] of Object.entries(playerAliases)) {
+  const aliasList = Array.isArray(aliases)
+    ? aliases
+    : [aliases];
+
+  if (
+    mainNick === nickname ||
+    aliasList.includes(nickname)
+  ) {
+    finalNickname = mainNick;
+    break;
+  }
+}
 
       const rating =
         calculatePlayerMatchRating(player);
 
-      if (!playerRatings[nickname]) {
-        playerRatings[nickname] = [];
-      }
+      if (!playerRatings[finalNickname]) {
+  playerRatings[finalNickname] = [];
+}
 
-      playerRatings[nickname].push(rating);
+playerRatings[finalNickname].push(rating);
 
     }
 

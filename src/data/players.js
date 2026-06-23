@@ -363,7 +363,9 @@ const players = {
       "rating": 1.02
     },
     {
-      "nickname": "nottoday"
+      "nickname": "nottoday-",
+      "elo": 3094,
+      "rating": 0.90
     },
     {
       "nickname": "Renw1e",
@@ -1112,7 +1114,8 @@ const players = {
       "rating": 1.35
     },
     {
-      "nickname": "BOSSPREMA",
+      "nickname": "darktriad61",
+      "elo": 3330,
       "rating": 1.31
     },
     {
@@ -1166,7 +1169,7 @@ const players = {
     },
     {
       "nickname": "FlaRip111",
-      "elo": 2936,
+      "elo": 3008,
       "rating": 0.91
     },
     {
@@ -2114,8 +2117,8 @@ const players = {
       "rating": 1.09
     },
     {
-      "nickname": "JohnnyCag3",
-      "elo": 3579,
+      "nickname": "AI-3oM6u_NPC",
+      "elo": 3661,
       "rating": 1.4
     },
     {
@@ -3419,7 +3422,7 @@ const players = {
       "rating": 0.98
     }
   ],
-  "goldrushers": [
+  "goldrashers": [
     {
       "nickname": "fxrgxt10",
       "elo": 2824,
