@@ -1576,6 +1576,42 @@ const filteredTeams =
     }
   }, [])
 
+const submitTeam = async () => {
+  try {
+    const res = await fetch("/api/submit-team", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teamName,
+        faceitLink,
+        contact,
+        note,
+      }),
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      alert(data.error || "Failed to send")
+      return
+    }
+
+    alert("Team submitted successfully!")
+
+    setTeamName("")
+    setFaceitLink("")
+    setContact("")
+    setNote("")
+    setShowModal(false)
+
+  } catch (error) {
+    console.error(error)
+    alert("Server error")
+  }
+}
+  
   return (
     <div className="min-h-screen text-white bg-[#05070a]">
 
