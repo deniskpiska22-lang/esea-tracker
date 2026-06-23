@@ -43,16 +43,11 @@ function TopPlayersPage() {
       division: teamInfo.division,
     };
   })
-  .filter(Boolean)
-  .sort((a, b) => {
-  const ratingA =
-    a.rating * Math.min(a.matches / 10, 1);
-
-  const ratingB =
-    b.rating * Math.min(b.matches / 10, 1);
-
-  if (ratingB !== ratingA) {
-    return ratingB - ratingA;
+.filter(Boolean)
+.filter(player => player.matches >= 5)
+.sort((a, b) => {
+  if (b.rating !== a.rating) {
+    return b.rating - a.rating;
   }
 
   return b.matches - a.matches;
