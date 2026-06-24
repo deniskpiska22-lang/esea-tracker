@@ -157,73 +157,113 @@ const avgHs = avg("hsRate");
       >
         <div className="grid lg:grid-cols-[220px_1fr_220px] gap-8">
 
-          {/* Avatar */}
+          {/* Avatar + Social Links */}
 
-<div
-  className="
-    relative
-    w-[220px]
-    h-[220px]
-    rounded-3xl
-    bg-[#111823]
-    border border-[#243041]
-    overflow-hidden
-  "
->
+<div className="w-[220px] flex flex-col gap-4">
 
-  {/* Team Logo */}
-
-  {playerTeam?.logo && (
-    <img
-      src={playerTeam.logo}
-      alt={playerTeam.name}
-      className="
-        absolute
-        inset-0
-        w-full
-        h-full
-        object-contain
-        opacity-20
-        scale-125
-      "
-    />
-  )}
-
-  {/* Dark Overlay */}
+  {/* Avatar */}
 
   <div
     className="
-      absolute
-      inset-0
-      bg-gradient-to-t
-      from-[#111823]
-      via-transparent
-      to-transparent
-      z-10
+      relative
+      w-[220px]
+      h-[220px]
+      rounded-3xl
+      bg-[#111823]
+      border border-[#243041]
+      overflow-hidden
     "
-  />
+  >
 
-  {/* Player Silhouette */}
+    {/* Team Logo */}
 
-  <img
-  src={avatarPath}
-  alt={decodedNickname}
-  onError={(e) => {
-    e.currentTarget.src = "/player-silhouette.png";
-  }}
-  className="
-    absolute
-    bottom-0
-    left-1/2
-    -translate-x-1/2
-    h-[110%]
-    object-contain
-    z-20
-  "
-/>
+    {playerTeam?.logo && (
+      <img
+        src={playerTeam.logo}
+        alt={playerTeam.name}
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-contain
+          opacity-20
+          scale-125
+        "
+      />
+    )}
+
+    {/* Dark Overlay */}
+
+    <div
+      className="
+        absolute
+        inset-0
+        bg-gradient-to-t
+        from-[#111823]
+        via-transparent
+        to-transparent
+        z-10
+      "
+    />
+
+    {/* Player Silhouette */}
+
+    <img
+      src={avatarPath}
+      alt={decodedNickname}
+      onError={(e) => {
+        e.currentTarget.src = "/player-silhouette.png";
+      }}
+      className="
+        absolute
+        bottom-0
+        left-1/2
+        -translate-x-1/2
+        h-[110%]
+        object-contain
+        z-20
+      "
+    />
+
+  </div>
+
+  {/* Social Links */}
+
+  <div className="flex flex-wrap gap-3 justify-center">
+
+    <a
+      href={`https://www.faceit.com/en/players/${decodedNickname}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      title="FACEIT"
+      className="
+        w-14
+        h-14
+        rounded-xl
+        bg-[#0f1623]
+        border border-[#243041]
+        flex
+        items-center
+        justify-center
+        hover:scale-105
+        hover:border-orange-500/50
+        hover:bg-[#151e2b]
+        transition-all
+        duration-200
+      "
+    >
+      <img
+        src="/logos/faceit-logo.png"
+        alt="FACEIT"
+        className="w-8 h-8 object-contain"
+      />
+    </a>
+
+  </div>
+
 
 </div>
-
 
           {/* Main Info */}
 
