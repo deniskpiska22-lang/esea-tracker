@@ -56,7 +56,7 @@ const teams = [
     flag: "/flags/russia.svg",
     name: "QUAZAR",
     points: 420,
-    change: +31,
+    
     record: "10-4",
     division: "Advanced",
   },
@@ -155,7 +155,7 @@ const teams = [
     name: "UUST_Esports",
     flag: "/flags/russia.svg",
     points: 373,
-    change: -3,
+    
     record: "7-7",
     division: "Advanced",
   },
@@ -308,7 +308,7 @@ const teams = [
     name: "BAKS Esports",
     flag: "/flags/russia.svg",
     points: 410,
-    change: +17,
+    
     record: "13-1",
     division: "Entry",
   },
@@ -429,7 +429,7 @@ const teams = [
     name: "LYNX",
     flag: "/flags/russia.svg",
     points: 321,
-    change: -3,
+    
     record: "11-3",
     division: "Entry",
       },
@@ -731,7 +731,7 @@ const teams = [
     name: "WeClear",
     flag: "/flags/russia.svg",
     points: 287,
-    change: +15,
+    
     record: "10-4",
     division: "Entry",
   },
