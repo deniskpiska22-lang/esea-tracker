@@ -3,6 +3,9 @@ import teams from "../src/data/teams.js";
 
 const CHAMPIONSHIP_IDS = [
 
+  // EU ECL S52 Cup 1 - Playoffs
+  "6c713b0c-dd31-4bd8-9571-484f84a5272d",
+
   // Advanced Regular S58
   "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
 
@@ -86,6 +89,10 @@ function buildUrl(teamId, offset = 0, limit = 40) {
 }
 
 const CHAMPIONSHIP_NAMES = {
+
+  // EU ECL S52 (Esea S58))
+  "6c713b0c-dd31-4bd8-9571-484f84a5272d":
+    "EU ECL S52 Cup 1 - Playoffs",
 
   // Advanced S58
   "f404458c-3ff0-4b6a-abdf-89a6b13694ca":
