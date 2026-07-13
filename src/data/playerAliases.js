@@ -805,6 +805,10 @@ const playerAliases = {
     "yuta777",
     "YutaAura"
     ],
+    "y9wonky": [
+    "y9wonky",
+    "shiz0phr3nia",
+    ],
     
 };
 

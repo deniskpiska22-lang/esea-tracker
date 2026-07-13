@@ -13,7 +13,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 374,
     
-    record: "9-5",
+    record: "0-0",
     division: "Advanced",
   },
   {
@@ -24,7 +24,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 377,
     
-    record: "9-5",
+    record: "0-0",
     division: "Advanced",
   },
   {
@@ -35,7 +35,7 @@ const teams = [
     name: "NEW VISION",
     points: 373,
     
-    record: "10-4",
+    record: "0-0",
     division: "Advanced",
   },
   {
@@ -46,7 +46,7 @@ const teams = [
     name: "DONSTU ESPORTS",
     points: 398,
     
-    record: "12-2",
+    record: "0-0",
     division: "Advanced",
   },
    {
@@ -57,7 +57,7 @@ const teams = [
     name: "QUAZAR",
     points: 420,
     
-    record: "10-4",
+    record: "0-0",
     division: "Advanced",
   },
     {
@@ -68,7 +68,7 @@ const teams = [
     name: "bankaPEPSI",
     points: 349,
     
-    record: "8-6",
+    record: "0-0",
     division: "Advanced",
   },
     {
@@ -79,7 +79,7 @@ const teams = [
     name: "Enjoy",
     points: 364,
     
-    record: "10-4",
+    record: "0-0",
     division: "Advanced",
   },
     {
@@ -90,7 +90,7 @@ const teams = [
     name: "Jumbo team",
     points: 349,
     
-    record: "8-6",
+    record: "0-0",
     division: "Advanced",
   },
       {
@@ -99,10 +99,10 @@ const teams = [
     logo: "/logos/aurora.png",
     name: "Aurora Young Blud",
     flag: "/flags/russia.svg",
-    points: 342,
+    points: 100,
     
-    record: "9-5",
-    division: "Advanced",
+    record: "0-0",
+    division: "Entry",
   },
        {
     rank: 10,
@@ -112,7 +112,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 357,
     
-    record: "10-4",
+    record: "0-0",
     division: "Main",
   },
          {
@@ -123,7 +123,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 342,
     
-    record: "9-5",
+    record: "0-0",
     division: "Advanced",
   },
            {
@@ -134,7 +134,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 359,
     
-    record: "10-3",
+    record: "0-0",
     division: "Advanced",
   },
             {
@@ -145,7 +145,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 339,
     
-    record: "8-6",
+    record: "0-0",
     division: "Advanced",
   },
               {
@@ -156,7 +156,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 373,
     
-    record: "7-7",
+    record: "0-0",
     division: "Advanced",
   },
                {
@@ -167,7 +167,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 325,
     
-    record: "8-6",
+    record: "0-0",
     division: "Advanced",
   },
                  {
@@ -178,7 +178,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 331,
     
-    record: "12-2",
+    record: "0-0",
     division: "Main",
   },
                    {
@@ -189,7 +189,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 340,
     
-    record: "10-4",
+    record: "0-0",
     division: "Main",
   },
                      {
@@ -200,7 +200,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 330,
     
-    record: "10-4",
+    record: "0-0",
     division: "Main",
   },
                        {
@@ -211,8 +211,8 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 359,
     
-    record: "10-4",
-    division: "Main",
+    record: "0-0",
+    division: "Advanced",
   },
                          {
     rank: 20,
@@ -222,8 +222,8 @@ const teams = [
     flag: "/flags/bel.svg",
     points: 341,
     
-    record: "9-5",
-    division: "Main",
+    record: "0-0",
+    division: "Advanced",
   },
                            {
     rank: 21,
@@ -233,7 +233,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 329,
     
-    record: "9-5",
+    record: "0-0",
     division: "Main",
   },
                            {
@@ -244,7 +244,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 327,
     
-    record: "9-5",
+    record: "0-0",
     division: "Main",
   },
                             {
@@ -254,7 +254,7 @@ const teams = [
     name: "ROC Team",
     flag: "/flags/russia.svg",
     points: 314,
-    record: "9-5",
+    record: "0-0",
     division: "Main",
   },
                             {
@@ -265,7 +265,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 344,
     
-    record: "9-5",
+    record: "0-0",
     division: "Main",
   },
                             {
@@ -276,7 +276,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 338,
     
-    record: "11-3",
+    record: "0-0",
     division: "Main",
   },
                               {
@@ -287,7 +287,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 344,
     
-    record: "14-0",
+    record: "0-0",
     division: "Intermediate",
   },
                                       {
@@ -298,7 +298,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 326,
     
-    record: "12-2",
+    record: "0-0",
     division: "Intermediate",
   },
                                     {
@@ -309,7 +309,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 410,
     
-    record: "13-1",
+    record: "0-0",
     division: "Entry",
   },
                                 {
@@ -320,19 +320,19 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 317,
     
-    record: "13-1",
+    record: "0-0",
     division: "Intermediate",
   },
   
                               {
     rank: 30,
-    slug: "platoon-beta",
+    slug: "375",
     logo: "/logos/platoon.png",
-    name: "PLATOON BETA",
+    name: "375",
     flag: "/flags/bel.svg",
     points: 312,
     
-    record: "8-6",
+    record: "0-0",
     division: "Main",
   },
                               {
@@ -343,7 +343,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 311,
     
-    record: "8-6",
+    record: "0-0",
     division: "Main",
   },
                                 {
@@ -354,7 +354,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 287,
     
-    record: "8-6",
+    record: "0-0",
     division: "Main",
   },
                                   {
@@ -365,7 +365,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 306,
     
-    record: "8-6",
+    record: "0-0",
     division: "Main",
       },
                                   {
@@ -376,7 +376,7 @@ const teams = [
     logo: "/logos/clutch-studio-agensy.png",
     points: 321,
     
-    record: "12-2",
+    record: "0-0",
     division: "Entry",
       },
                                   {
@@ -387,7 +387,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 290,
     
-    record: "12-2",
+    record: "0-0",
     division: "Entry",
       },
                                   {
@@ -397,7 +397,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 306,
     
-    record: "12-2",
+    record: "0-0",
     division: "Entry",
   },
                                       {
@@ -408,7 +408,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 316,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
       },
                                             {
@@ -419,7 +419,7 @@ const teams = [
     flag: "/flags/bel.svg",
     points: 298,
     
-    record: "11-3",
+    record: "0-0",
     division: "Entry",
       },
                                       {
@@ -430,7 +430,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 321,
     
-    record: "11-3",
+    record: "0-0",
     division: "Entry",
       },
                                       {
@@ -441,7 +441,7 @@ const teams = [
     logo: "/logos/traffic.png",
     points: 306,
     
-    record: "11-3",
+    record: "0-0",
     division: "Entry",
       },
                                       {
@@ -452,7 +452,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 314,
     
-    record: "11-3",
+    record: "0-0",
     division: "Entry",
       },
                                       {
@@ -463,7 +463,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 281,
     
-    record: "11-3",
+    record: "0-0",
     division: "Entry",
   },
                                       {
@@ -474,7 +474,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 298,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                       {
@@ -485,7 +485,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 276,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                        {
@@ -496,7 +496,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 264,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                        {
@@ -507,7 +507,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 273,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                          {
@@ -518,7 +518,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 261,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                          {
@@ -529,7 +529,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 311,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                           {
@@ -540,7 +540,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 255,
     
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
                                             {
@@ -551,7 +551,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 267,
     
-    record: "11-3",
+    record: "0-0",
     division: "Intermediate",
   },
                                             {
@@ -562,7 +562,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 281,
     
-    record: "11-3",
+    record: "0-0",
     division: "Intermediate",
   },
                                             {
@@ -573,7 +573,7 @@ const teams = [
     flag: "/flags/kaz.svg",
     points: 262,
     
-    record: "11-3",
+    record: "0-0",
     division: "Intermediate",
   },
   
@@ -584,7 +584,7 @@ const teams = [
     name: "Godbless",
     flag: "/flags/russia.svg",
     points: 254,
-    record: "6-8",
+    record: "0-0",
     division: "Main",
   },
                                           {
@@ -595,7 +595,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 247,
   
-    record: "6-8",
+    record: "0-0",
     division: "Main",
   },
                                             {
@@ -605,7 +605,7 @@ const teams = [
     name: "M33",
     flag: "/flags/russia.svg",
     points: 250,
-    record: "6-8",
+    record: "0-0",
     division: "Main",
   },
                                               {
@@ -616,7 +616,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 263,
     
-    record: "10-4",
+    record: "0-0",
     division: "Intermediate",
   },
                                                 {
@@ -627,7 +627,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 247,
     
-    record: "10-4",
+    record: "0-0",
     division: "Intermediate",
   },
                                                 {
@@ -638,7 +638,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 254,
     
-    record: "10-4",
+    record: "0-0",
     division: "Intermediate",
   },
                                                   {
@@ -647,7 +647,7 @@ const teams = [
     name: "iNFERNALES",
     flag: "/flags/russia.svg",
     points: 242,
-    record: "5-9",
+    record: "0-0",
     division: "Main",
   },
                                                   {
@@ -656,7 +656,7 @@ const teams = [
     name: "dzungarz",
     flag: "/flags/russia.svg",
     points: 240,
-    record: "5-9",
+    record: "0-0",
     division: "Main",
   },
                                                     {
@@ -667,7 +667,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 253,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                     {
@@ -677,7 +677,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 246,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                       {
@@ -688,7 +688,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 238,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                       {
@@ -699,7 +699,7 @@ const teams = [
     logo: "/logos/1337.png",
     points: 254,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                       {
@@ -710,7 +710,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 245,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                       {
@@ -721,7 +721,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 221,
     
-    record: "9-5",
+    record: "0-0",
     division: "Intermediate",
   },
                                                         {
@@ -732,7 +732,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 287,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                         {
@@ -743,7 +743,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 242,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                         {
@@ -754,7 +754,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 256,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                         {
@@ -765,7 +765,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 227,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                           {
@@ -776,7 +776,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 221,
    
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                           {
@@ -787,7 +787,7 @@ const teams = [
     flag: "/flags/bel.svg",
     points: 225,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                           {
@@ -797,7 +797,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 225,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                           {
@@ -808,7 +808,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 226,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                             {
@@ -819,7 +819,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 229,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                             {
@@ -830,7 +830,7 @@ const teams = [
     flag: "/flags/kaz.svg",
     points: 234,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                             {
@@ -840,7 +840,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 225,
     
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                             {
@@ -850,7 +850,7 @@ const teams = [
     name: "CERBERUS",
     flag: "/flags/russia.svg",
     points: 206,
-    record: "10-4",
+    record: "0-0",
     division: "Entry",
   },
                                                         {
@@ -860,7 +860,7 @@ const teams = [
     name: "ABlaze Team",
     flag: "/flags/russia.svg",
     points: 204,
-    record: "4-10",
+    record: "0-0",
     division: "Main",
   },
                                                           {
@@ -870,7 +870,7 @@ const teams = [
     name: "dragS",
     flag: "/flags/russia.svg",
     points: 202,
-    record: "3-11",
+    record: "0-0",
     division: "Main",
   },
                                                             {
@@ -881,7 +881,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 217,
     
-    record: "8-6",
+    record: "0-0",
     division: "Intermediate",
   },
                                                             {
@@ -892,7 +892,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 227,
     
-    record: "8-6",
+    record: "0-0",
     division: "Intermediate",
   },
                                                             {
@@ -903,7 +903,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 198,
    
-    record: "8-6",
+    record: "0-0",
     division: "Intermediate",
   },
                                                             {
@@ -914,7 +914,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 185,
     
-    record: "8-6",
+    record: "0-0",
     division: "Intermediate",
   },
                                                             {
@@ -925,7 +925,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 201,
     
-    record: "8-6",
+    record: "0-0",
     division: "Intermediate",
   },
                                                               {
@@ -936,7 +936,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 216,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                               {
@@ -946,7 +946,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 220,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                               {
@@ -957,7 +957,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 189,
    
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                               {
@@ -968,7 +968,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 187,
    
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                               {
@@ -979,7 +979,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 185,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                 {
@@ -989,7 +989,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 184,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                 {
@@ -1000,7 +1000,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 181,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                 {
@@ -1011,7 +1011,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 210,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                 {
@@ -1022,7 +1022,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 184,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                   {
@@ -1033,7 +1033,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 196,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                               {
@@ -1044,7 +1044,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 165,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1055,7 +1055,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 183,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1066,7 +1066,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 162,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1076,7 +1076,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 178,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1087,7 +1087,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 186,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1098,7 +1098,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 165,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                 {
@@ -1109,7 +1109,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 189,
     
-    record: "7-7",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                   {
@@ -1119,7 +1119,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 163,
     
-    record: "6-8",
+    record: "0-0",
     division: "Intermediate",
   },
                                                                   {
@@ -1130,7 +1130,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 165,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                   {
@@ -1140,7 +1140,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 164,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                   {
@@ -1151,7 +1151,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 177,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                   {
@@ -1161,7 +1161,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 169,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                     {
@@ -1172,7 +1172,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 199,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                     {
@@ -1183,7 +1183,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 144,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                     {
@@ -1194,7 +1194,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 153,
     
-    record: "9-5",
+    record: "0-0",
     division: "Entry",
   },
                                                                       {
@@ -1205,7 +1205,7 @@ const teams = [
     logo: "/logos/stubb.png",
     points: 144,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                         {
@@ -1216,7 +1216,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 152,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                         {
@@ -1227,7 +1227,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 149,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                         {
@@ -1238,7 +1238,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 131,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                           {
@@ -1249,7 +1249,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 127,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                           {
@@ -1260,7 +1260,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 133,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                           {
@@ -1271,7 +1271,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 123,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                           {
@@ -1282,7 +1282,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 129,
    
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                           {
@@ -1293,7 +1293,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 135,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                             {
@@ -1304,7 +1304,7 @@ const teams = [
     flag: "/flags/uzb.svg",
     points: 126,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                             {
@@ -1315,7 +1315,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 123,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                             {
@@ -1326,7 +1326,7 @@ const teams = [
     logo: "/logos/just.png",
     points: 113,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                               {
@@ -1337,7 +1337,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 143,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                               {
@@ -1348,7 +1348,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 110,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                               {
@@ -1359,7 +1359,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 108,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                               {
@@ -1370,7 +1370,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 113,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                                 {
@@ -1381,7 +1381,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 103,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                                 {
@@ -1392,7 +1392,7 @@ const teams = [
     logo: "/logos/b2b.png",
     points: 117,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                                 {
@@ -1403,7 +1403,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 100,
     
-    record: "8-6",
+    record: "0-0",
     division: "Entry",
   },
                                                                                   {
@@ -1414,7 +1414,7 @@ const teams = [
     flag: "/flags/kaz.svg",
     points: 121,
     
-    record: "7-7",
+    record: "0-0",
     division: "Entry",
   },
 
@@ -1426,7 +1426,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 97,
     
-    record: "7-7",
+    record: "0-0",
     division: "Entry",
   },
                                                                                     {
@@ -1437,7 +1437,7 @@ const teams = [
     flag: "/flags/russia.svg",
     points: 96,
     
-    record: "7-7",
+    record: "0-0",
     division: "Entry",
   },
     {
@@ -1447,7 +1447,7 @@ const teams = [
     name: "KittaDiena",
     flag: "/flags/russia.svg",
     points: 262,
-    record: "7-7",
+    record: "0-0",
     division: "Main",
   },
   {
@@ -1459,7 +1459,18 @@ const teams = [
     points: 100,
     record: "0-0",
     division: "Entry",
+  },
+  {
+    rank: 134,
+     slug: "chikiryau",
+     logo: "/logos/Chikiryau.png",
+    name: "Chikiryau",
+    flag: "/flags/russia.svg",
+    points: 100,
+    record: "0-0",
+    division: "Entry",
   }
+  
 ]
 
 function App() {

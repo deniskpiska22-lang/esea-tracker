@@ -3,6 +3,23 @@ import teams from "../src/data/teams.js";
 
 const CHAMPIONSHIP_IDS = [
 
+  // Advanced Regular
+  "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+
+  // Main Regular
+  "54f32bd1-55d3-4353-8818-79f57ef7a65b", // Main A reg
+  "8961a4f3-2860-4545-87db-1ce1e32c7e13", // Main B reg
+
+  // Intermediate Regular
+  "de368982-42fc-428e-9d2e-cfdbaa7d6363", // Intermediate A reg
+  "b453b0b9-f5e5-4f08-964d-d127691243d0", // Intermediate B reg
+
+  // Entry Regular S58
+  "df648492-2f7f-44ac-abbe-1d179a38d7c3", // Entry A reg
+  "c1641aae-0e63-4564-a571-927091687b5b", // Entry B reg
+  "4cc00188-c9af-472d-b2cc-d60091f9834e", // Entry C reg
+  "dde840d0-cb47-49c9-9ac4-a51a11991c42", // Entry D reg
+
 // Esea Finals S57
 "cb6bfac6-dc14-4995-a170-909392cec298",
   
@@ -69,6 +86,32 @@ function buildUrl(teamId, offset = 0, limit = 40) {
 }
 
 const CHAMPIONSHIP_NAMES = {
+
+  // Advanced S58
+  "f404458c-3ff0-4b6a-abdf-89a6b13694ca":
+    "S58 EU Advanced Central - Regular Season",
+
+  // Main S58
+  "54f32bd1-55d3-4353-8818-79f57ef7a65b":
+    "S58 EU Main A - Regular Season",
+  "8961a4f3-2860-4545-87db-1ce1e32c7e13":
+    "S58 EU Main B - Regular Season",
+
+  // Intermediate S58
+  "de368982-42fc-428e-9d2e-cfdbaa7d6363":
+    "S58 EU Intermediate A - Regular Season",
+  "b453b0b9-f5e5-4f08-964d-d127691243d0":
+    "S58 EU Intermediate B - Regular Season",
+
+   // Entry S58
+  "df648492-2f7f-44ac-abbe-1d179a38d7c3":
+    "S58 EU Entry A - Regular Season",
+  "c1641aae-0e63-4564-a571-927091687b5b":
+    "S58 EU Entry B - Regular Season",
+  "4cc00188-c9af-472d-b2cc-d60091f9834e":
+    "S58 EU Entry C - Regular Season",
+  "dde840d0-cb47-49c9-9ac4-a51a11991c42":
+    "S58 EU Entry D - Regular Season",
 
    "cb6bfac6-dc14-4995-a170-909392cec298":
     "ESEA Finals S57",
