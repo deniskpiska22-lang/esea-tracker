@@ -3,14 +3,14 @@ import teams from "../src/data/teams.js";
 
 const CHAMPIONSHIP_IDS = [
 
-  // Advanced Regular
+  // Advanced Regular S58
   "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
 
-  // Main Regular
+  // Main Regular S58
   "54f32bd1-55d3-4353-8818-79f57ef7a65b", // Main A reg
   "8961a4f3-2860-4545-87db-1ce1e32c7e13", // Main B reg
 
-  // Intermediate Regular
+  // Intermediate Regular S58
   "de368982-42fc-428e-9d2e-cfdbaa7d6363", // Intermediate A reg
   "b453b0b9-f5e5-4f08-964d-d127691243d0", // Intermediate B reg
 
