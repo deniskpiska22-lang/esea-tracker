@@ -21,56 +21,84 @@ import StatsPage from "./pages/StatsPage";
 import MatchPage from "./pages/MatchPage";
 import PlayerPage from "./pages/PlayerPage";
 import TopPlayersPage from "./pages/TopPlayersPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
+import { AuthProvider } from "./context/AuthContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ScrollToTop />
+      <AuthProvider>
+        <ScrollToTop />
 
-      <Routes>
-        <Route element={<App />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/rankings" element={<RankingsPage />} />
+        <Routes>
+          <Route element={<App />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/rankings"
+              element={<RankingsPage />}
+            />
 
-          <Route path="/teams/:slug" element={<TeamPage />} />
-<Route path="/team/:slug" element={<TeamPage />} />
+            <Route
+              path="/teams/:slug"
+              element={<TeamPage />}
+            />
 
-<Route path="/about" element={<About />} />
-<Route path="/media" element={<MediaPage />} />
+            <Route
+              path="/team/:slug"
+              element={<TeamPage />}
+            />
 
-          <Route
-            path="/team/:slug/matches"
-            element={<MatchesPage />}
-          />
+            <Route
+              path="/about"
+              element={<About />}
+            />
 
-          <Route
-            path="/team/:slug/stats"
-            element={<StatsPage />}
-          />
+            <Route
+              path="/media"
+              element={<MediaPage />}
+            />
 
-          <Route
-            path="/team/:slug/matches/:matchId"
-            element={<MatchPage />}
-          />
+            <Route
+              path="/team/:slug/matches"
+              element={<MatchesPage />}
+            />
 
-          <Route
-            path="/players/:nickname"
-            element={<PlayerPage />}
-          />
+            <Route
+              path="/team/:slug/stats"
+              element={<StatsPage />}
+            />
 
-          <Route
-            path="/matches/:matchId"
-            element={<MatchPage />}
-          />
+            <Route
+              path="/team/:slug/matches/:matchId"
+              element={<MatchPage />}
+            />
 
-          <Route
-            path="/players"
-            element={<TopPlayersPage />}
-          />
-        </Route>
-      </Routes>
+            <Route
+              path="/players/:nickname"
+              element={<PlayerPage />}
+            />
 
-      <Analytics />
+            <Route
+              path="/matches/:matchId"
+              element={<MatchPage />}
+            />
+
+            <Route
+              path="/players"
+              element={<TopPlayersPage />}
+            />
+          </Route>
+        </Routes>
+
+        <Analytics />
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
