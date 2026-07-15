@@ -42,6 +42,7 @@ function normalizeTeam(team) {
       name: "TBD",
       slug: null,
       logo: null,
+      points: 0,
     };
   }
 
@@ -62,6 +63,10 @@ function normalizeTeam(team) {
       localTeam?.logo ||
       team.logo ||
       null,
+    points:
+      localTeam?.points ??
+      team.points ??
+      0,
   };
 }
 
@@ -105,6 +110,109 @@ function isToday(value) {
     date.getFullYear() === today.getFullYear() &&
     date.getMonth() === today.getMonth() &&
     date.getDate() === today.getDate()
+  );
+}
+
+
+function getLeaguePriority(season = "") {
+  const value = season.toLowerCase();
+
+  if (
+    value.includes("ecl") ||
+    value.includes("finals")
+  ) {
+    return 600;
+  }
+
+  if (
+    value.includes("advanced") &&
+    value.includes("playoff")
+  ) {
+    return 550;
+  }
+
+  if (value.includes("advanced")) {
+    return 500;
+  }
+
+  if (
+    value.includes("main") &&
+    value.includes("playoff")
+  ) {
+    return 450;
+  }
+
+  if (value.includes("main")) {
+    return 400;
+  }
+
+  if (
+    value.includes("intermediate") &&
+    value.includes("playoff")
+  ) {
+    return 350;
+  }
+
+  if (value.includes("intermediate")) {
+    return 300;
+  }
+
+  if (
+    value.includes("entry") &&
+    value.includes("playoff")
+  ) {
+    return 250;
+  }
+
+  if (value.includes("entry")) {
+    return 200;
+  }
+
+  if (value.includes("playoff")) {
+    return 150;
+  }
+
+  return 100;
+}
+
+function getMatchImportance(match) {
+  const league =
+    match.season ||
+    match.championshipName ||
+    "";
+
+  const leagueScore =
+    getLeaguePriority(league) * 100000;
+
+  const teamStrength =
+    Number(match.team1?.points || 0) +
+    Number(match.team2?.points || 0);
+
+  const scheduledTime =
+    new Date(match.scheduledAt).getTime();
+
+  const timeTieBreaker =
+    Number.isNaN(scheduledTime)
+      ? 0
+      : Math.max(
+          0,
+          10000000000000 - scheduledTime
+        ) / 10000000000000;
+
+  return (
+    leagueScore +
+    teamStrength +
+    timeTieBreaker
+  );
+}
+
+function selectFeaturedMatch(matches) {
+  return (
+    [...matches].sort(
+      (first, second) =>
+        getMatchImportance(second) -
+        getMatchImportance(first)
+    )[0] || null
   );
 }
 
@@ -516,138 +624,91 @@ function RankingItem({ team, index }) {
   );
 }
 
-function FeaturedPanel({
-  match,
-  result,
-}) {
+function FeaturedPanel({ match }) {
   return (
     <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
       <SectionHeader
         title="Featured"
-        subtitle="Главный матч и последний результат"
+        subtitle="Главный матч дня"
       />
 
-      <div className="grid gap-px bg-white/5 md:grid-cols-2">
-        <div className="bg-[#0d1218] p-5">
-          <div className="mb-4 flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-[0.12em] text-orange-400">
-              Next match
-            </span>
-
-            {match && (
-              <span className="text-xs text-gray-600">
-                {formatDate(match.scheduledAt)}
-              </span>
-            )}
-          </div>
-
-          {match ? (
-            <Link
-              to={`/matches/${match.matchId || match.id}`}
-              className="group block"
-            >
-              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-                <div className="flex flex-col items-center">
-                  <Logo team={match.team1} size="lg" />
-
-                  <TeamLink
-                    team={match.team1}
-                    className="mt-2 max-w-full text-center text-sm font-bold"
-                  />
+      <div className="bg-[#0d1218] p-6 md:p-8">
+        {match ? (
+          <Link
+            to={`/matches/${match.matchId || match.id}`}
+            state={{
+              from: "/",
+              label: "← Back to Home",
+            }}
+            className="group block"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-orange-400">
+                  Main match
                 </div>
 
-                <div className="text-center">
-                  <div className="text-3xl font-black">
-                    {formatTime(match.scheduledAt)}
-                  </div>
-
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-gray-600">
-                    BO{match.bestOf || "?"}
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center">
-                  <Logo team={match.team2} size="lg" />
-
-                  <TeamLink
-                    team={match.team2}
-                    className="mt-2 max-w-full text-center text-sm font-bold"
-                  />
+                <div className="mt-1 text-xs text-gray-600">
+                  {match.season ||
+                    match.championshipName ||
+                    "ESEA League"}
                 </div>
               </div>
 
-              <div className="mt-5 border-t border-white/5 pt-4 text-center text-xs font-bold text-orange-400 transition group-hover:text-orange-300">
-                Open match room →
+              <div className="text-right">
+                <div className="text-sm font-black text-white">
+                  {formatTime(match.scheduledAt)}
+                </div>
+
+                <div className="mt-0.5 text-[10px] uppercase tracking-wide text-gray-600">
+                  {formatDate(match.scheduledAt)}
+                </div>
               </div>
-            </Link>
-          ) : (
-            <div className="py-8 text-center text-sm text-gray-600">
-              No upcoming match
             </div>
-          )}
-        </div>
 
-        <div className="bg-[#0d1218] p-5">
-          <div className="mb-4 flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-[0.12em] text-green-400">
-              Latest result
-            </span>
+            <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-5 md:gap-10">
+              <div className="flex min-w-0 flex-col items-center">
+                <Logo team={match.team1} size="lg" />
 
-            {result && (
-              <span className="text-xs text-gray-600">
-                {formatDate(result.date)}
-              </span>
-            )}
-          </div>
+                <TeamLink
+                  team={match.team1}
+                  className="mt-3 max-w-full text-center text-base font-black md:text-xl"
+                />
+              </div>
 
-          {result ? (
-            <Link
-              to={`/matches/${result.id}`}
-              className="group block"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Logo team={result.team1} />
-
-                  <TeamLink
-                    team={result.team1}
-                    className="flex-1 text-sm font-bold"
-                  />
-
-                  <span className="text-xl font-black">
-                    {result.team1.score}
-                  </span>
+              <div className="text-center">
+                <div className="text-4xl font-black text-white md:text-6xl">
+                  {formatTime(match.scheduledAt)}
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Logo team={result.team2} />
-
-                  <TeamLink
-                    team={result.team2}
-                    className="flex-1 text-sm font-bold"
-                  />
-
-                  <span className="text-xl font-black">
-                    {result.team2.score}
-                  </span>
+                <div className="mt-2 inline-flex rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-xs font-bold text-orange-400">
+                  BO{match.bestOf || "?"}
                 </div>
               </div>
 
-              <div className="mt-5 border-t border-white/5 pt-4 text-center text-xs font-bold text-green-400 transition group-hover:text-green-300">
-                Open result →
+              <div className="flex min-w-0 flex-col items-center">
+                <Logo team={match.team2} size="lg" />
+
+                <TeamLink
+                  team={match.team2}
+                  className="mt-3 max-w-full text-center text-base font-black md:text-xl"
+                />
               </div>
-            </Link>
-          ) : (
-            <div className="py-8 text-center text-sm text-gray-600">
-              No recent result
             </div>
-          )}
-        </div>
+
+            <div className="mt-8 flex items-center justify-center border-t border-white/5 pt-5 text-sm font-bold text-orange-400 transition group-hover:text-orange-300">
+              Open match room →
+            </div>
+          </Link>
+        ) : (
+          <div className="py-12 text-center text-sm text-gray-600">
+            No upcoming match
+          </div>
+        )}
       </div>
     </section>
   );
 }
-
 function Home() {
   const upcoming = useMemo(
     () => getUpcoming(),
@@ -678,13 +739,9 @@ function Home() {
   );
 
   const featuredMatch =
-    liveMatches[0] ||
-    nonLiveMatches[0] ||
-    null;
-
-  const featuredResult =
-    results[0] ||
-    null;
+    liveMatches.length > 0
+      ? selectFeaturedMatch(liveMatches)
+      : selectFeaturedMatch(nonLiveMatches);
 
   return (
     <main className="min-h-screen bg-[#080b10] text-white">
@@ -721,7 +778,7 @@ function Home() {
 
         <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)_320px]">
           <aside className="order-2 space-y-4 xl:order-1">
-            <section className="flex h-[620px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
+            <section className="flex h-[520px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Upcoming"
                 subtitle="Ближайшие матчи"
@@ -752,7 +809,6 @@ function Home() {
           <div className="order-1 space-y-4 xl:order-2">
             <FeaturedPanel
               match={featuredMatch}
-              result={featuredResult}
             />
 
             <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
@@ -778,7 +834,11 @@ function Home() {
                     Новости лиги появятся здесь
                   </h3>
 
-                  
+                  <p className="mt-2 text-sm leading-6 text-gray-600">
+                    Подключим posts.js или отдельный
+                    парсер новостей и сделаем полноценную
+                    ленту.
+                  </p>
                 </article>
 
                 <div className="bg-[#0d1218]">
@@ -813,7 +873,7 @@ function Home() {
           </div>
 
           <aside className="order-3 space-y-4">
-            <section className="flex h-[620px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
+            <section className="flex h-[520px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Recent results"
                 subtitle="Последние завершённые игры"
