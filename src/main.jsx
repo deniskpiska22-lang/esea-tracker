@@ -63,7 +63,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={<MatchPage />}
           />
 
-          
+          <Route
+            path="/players"
+            element={<TopPlayersPage />}
+          />
         </Route>
       </Routes>
 

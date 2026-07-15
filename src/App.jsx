@@ -14,7 +14,7 @@ function App() {
   const navigation = [
     { path: "/", label: "Home" },
     { path: "/rankings", label: "Rankings" },
-    { path: "/players", label: "Players" },
+    // { name: "Players", to: "/players" },
     { path: "/media", label: "Media" },
     { path: "/about", label: "About" },
   ];

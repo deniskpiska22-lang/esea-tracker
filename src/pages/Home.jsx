@@ -995,12 +995,7 @@ function Home() {
               Rankings
             </Link>
 
-            <Link
-              to="/players"
-              className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-bold text-gray-300 transition hover:bg-white/[0.06] hover:text-white"
-            >
-              Players
-            </Link>
+           
           </div>
         </div>
 
