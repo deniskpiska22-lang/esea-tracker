@@ -32,3 +32,8 @@ npm run build
 ```
 
 `SUPABASE_SECRET_KEY` и `FACEIT_API_KEY` нельзя добавлять в переменные с префиксом `VITE_`.
+
+
+## FACEIT HTTP 400 for READY / ONGOING
+
+The internal `team-leagues/v2/matches` endpoint does not accept `MATCH_STATUS_READY` or `MATCH_STATUS_ONGOING`. Discovery therefore requests `MATCH_STATUS_SCHEDULED` and recent `MATCH_STATUS_FINISHED` matches only. Already discovered matches are moved to READY/ONGOING/FINISHED and receive score updates through `open.faceit.com/data/v4/matches/{match_id}`.

@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "sync:matches": "node --env-file=.env.local scripts/syncMatchesToSupabase.js",
     "refresh:matches": "node scripts/updateUpcomingMatches.js && node scripts/updateMatches.js && node --env-file=.env.local scripts/syncMatchesToSupabase.js",
-    "sync:auto": "node scripts/autoSyncMatches.js"
+    "sync:auto": "node scripts/autoSyncMatches.js",
+    "sync:live": "node scripts/autoSyncMatches.js --live"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",

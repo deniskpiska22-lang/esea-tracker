@@ -12,6 +12,24 @@ const LIVE_STATUSES = new Set([
   "MATCH_STATUS_ONGOING",
 ]);
 
+const UPCOMING_WINDOW_HOURS = 24;
+
+function isWithinUpcomingWindow(value) {
+  if (!value) return false;
+
+  const scheduledTime = new Date(value).getTime();
+
+  if (Number.isNaN(scheduledTime)) {
+    return false;
+  }
+
+  const now = Date.now();
+  const windowEnd =
+    now + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000;
+
+  return scheduledTime >= now && scheduledTime <= windowEnd;
+}
+
 function normalizeName(value = "") {
   return value.replace(/\s+/g, "").toLowerCase();
 }
@@ -791,21 +809,70 @@ function Home() {
         return;
       }
 
-      const { data, error } = await supabase
-        .from("matches")
-        .select("*")
-        .order("scheduled_at", {
-          ascending: true,
-        })
-        .limit(250);
+      // В базе уже несколько тысяч матчей. Старый запрос сортировал
+      // все записи от самых ранних и брал только первые 250, поэтому
+      // будущие матчи вообще не доходили до фронтенда.
+      const [activeResponse, finishedResponse] =
+        await Promise.all([
+          supabase
+            .from("matches")
+            .select("*")
+            .in("status", [
+              "SCHEDULED",
+              "READY",
+              "ONGOING",
+              "LIVE",
+              "MATCH_STATUS_SCHEDULED",
+              "MATCH_STATUS_READY",
+              "MATCH_STATUS_ONGOING",
+            ])
+            .gte(
+              "scheduled_at",
+              new Date().toISOString()
+            )
+            .lte(
+              "scheduled_at",
+              new Date(
+                Date.now() +
+                  UPCOMING_WINDOW_HOURS *
+                    60 *
+                    60 *
+                    1000
+              ).toISOString()
+            )
+            .order("scheduled_at", {
+              ascending: true,
+            })
+            .limit(250),
+
+          supabase
+            .from("matches")
+            .select("*")
+            .in("status", [
+              "FINISHED",
+              "MATCH_STATUS_FINISHED",
+            ])
+            .order("finished_at", {
+              ascending: false,
+              nullsFirst: false,
+            })
+            .limit(20),
+        ]);
 
       if (cancelled) return;
+
+      const error =
+        activeResponse.error ||
+        finishedResponse.error;
 
       if (error) {
         console.error("Home matches error:", error);
         setDatabaseError(error.message);
       } else {
-        setDatabaseRows(data || []);
+        setDatabaseRows([
+          ...(activeResponse.data || []),
+          ...(finishedResponse.data || []),
+        ]);
         setDatabaseError("");
       }
 
@@ -814,14 +881,34 @@ function Home() {
 
     loadMatches();
 
+    // Fallback-обновление: даже если realtime временно недоступен,
+    // данные перечитываются каждые 30 секунд.
     const intervalId = window.setInterval(
       loadMatches,
       30000
     );
 
+    // Мгновенное обновление при INSERT / UPDATE / DELETE в таблице matches.
+    // GitHub Actions обновляет Supabase, а фронтенд сразу перечитывает данные.
+    const matchesChannel = supabase
+      .channel("home-matches-live")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "matches",
+        },
+        () => {
+          loadMatches();
+        }
+      )
+      .subscribe();
+
     return () => {
       cancelled = true;
       window.clearInterval(intervalId);
+      supabase.removeChannel(matchesChannel);
     };
   }, []);
 
@@ -831,7 +918,14 @@ function Home() {
     }
 
     return databaseRows
-      .filter((row) => !isFinishedStatus(row.status))
+      .filter(
+        (row) =>
+          !isFinishedStatus(row.status) &&
+          (LIVE_STATUSES.has(
+            row.status?.toUpperCase() || ""
+          ) ||
+            isWithinUpcomingWindow(row.scheduled_at))
+      )
       .map(dbRowToMatch)
       .sort(
         (first, second) =>
