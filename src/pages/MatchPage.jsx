@@ -336,6 +336,423 @@ function RecentMatchesCard({
   );
 }
 
+
+const MAP_ORDER = [
+  "Mirage",
+  "Inferno",
+  "Nuke",
+  "Ancient",
+  "Anubis",
+  "Dust2",
+  "Train",
+  "Overpass",
+  "Vertigo",
+];
+
+function getTeamMapStatistics(team) {
+  if (!team?.slug) {
+    return new Map();
+  }
+
+  const statsByMap = new Map();
+
+  matchesData
+    .filter((item) => item.teamSlug === team.slug)
+    .forEach((item) => {
+      const maps = Array.isArray(item.mapScores)
+        ? item.mapScores
+        : [];
+
+      maps.forEach((map) => {
+        const mapName = formatMapName(map.map);
+        const current = statsByMap.get(mapName) || {
+          wins: 0,
+          losses: 0,
+        };
+
+        const teamScore = toNumber(map.teamScore);
+        const opponentScore = toNumber(map.opponentScore);
+        const won =
+          typeof map.won === "boolean"
+            ? map.won
+            : teamScore > opponentScore;
+
+        if (won) {
+          current.wins += 1;
+        } else {
+          current.losses += 1;
+        }
+
+        statsByMap.set(mapName, current);
+      });
+    });
+
+  return statsByMap;
+}
+
+function getMapWinrate(record) {
+  const played = record.wins + record.losses;
+
+  return played > 0
+    ? Math.round((record.wins / played) * 100)
+    : 0;
+}
+
+function MapStatisticsCard({
+  leftTeam,
+  rightTeam,
+  leftLocalTeam,
+  rightLocalTeam,
+}) {
+  const leftStats = useMemo(
+    () => getTeamMapStatistics(leftLocalTeam),
+    [leftLocalTeam]
+  );
+
+  const rightStats = useMemo(
+    () => getTeamMapStatistics(rightLocalTeam),
+    [rightLocalTeam]
+  );
+
+  const maps = useMemo(() => {
+    const availableMaps = new Set([
+      ...leftStats.keys(),
+      ...rightStats.keys(),
+    ]);
+
+    return [...availableMaps]
+      .sort((first, second) => {
+        const firstIndex = MAP_ORDER.indexOf(first);
+        const secondIndex = MAP_ORDER.indexOf(second);
+
+        if (firstIndex === -1 && secondIndex === -1) {
+          return first.localeCompare(second);
+        }
+
+        if (firstIndex === -1) return 1;
+        if (secondIndex === -1) return -1;
+
+        return firstIndex - secondIndex;
+      })
+      .slice(0, 7);
+  }, [leftStats, rightStats]);
+
+  return (
+    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+      <div className="border-b border-[#243041] px-5 py-4">
+        <h2 className="text-xl font-black">Map Statistics</h2>
+        <p className="mt-1 text-xs text-gray-500">
+          Historical results from tracked matches
+        </p>
+      </div>
+
+      <div className="grid grid-cols-[minmax(0,1fr)_72px_72px] gap-2 border-b border-[#243041] px-5 py-3 text-xs text-gray-500">
+        <div>Map</div>
+        <div className="truncate text-center">{leftTeam.name}</div>
+        <div className="truncate text-center">{rightTeam.name}</div>
+      </div>
+
+      {maps.length === 0 ? (
+        <div className="p-6 text-sm text-gray-500">
+          Map statistics are not available yet.
+        </div>
+      ) : (
+        <div>
+          {maps.map((mapName) => {
+            const left = leftStats.get(mapName) || {
+              wins: 0,
+              losses: 0,
+            };
+            const right = rightStats.get(mapName) || {
+              wins: 0,
+              losses: 0,
+            };
+
+            return (
+              <div
+                key={mapName}
+                className="grid grid-cols-[minmax(0,1fr)_72px_72px] items-center gap-2 border-b border-[#1d2634] px-5 py-3 last:border-b-0"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <img
+                    src={`/maps/${mapName.toLowerCase()}.png`}
+                    alt=""
+                    className="h-10 w-14 rounded-md bg-[#0b0f14] object-cover"
+                    onError={(event) => {
+                      event.currentTarget.style.display = "none";
+                    }}
+                  />
+
+                  <div className="truncate font-bold">{mapName}</div>
+                </div>
+
+                {[left, right].map((record, index) => (
+                  <div
+                    key={`${mapName}-${index}`}
+                    className="text-center"
+                  >
+                    <div className="text-sm font-black">
+                      <span className="text-green-400">{record.wins}W</span>
+                      <span className="text-gray-600"> - </span>
+                      <span className="text-red-400">{record.losses}L</span>
+                    </div>
+                    <div className="mt-1 text-xs text-gray-500">
+                      {getMapWinrate(record)}%
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function VoteCard({ matchId, team1, team2 }) {
+  const [user, setUser] = useState(null);
+  const [votes, setVotes] = useState([]);
+  const [selectedTeamId, setSelectedTeamId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const team1VoteId = String(team1.id || team1.slug || team1.name);
+  const team2VoteId = String(team2.id || team2.slug || team2.name);
+
+  const loadVotes = useCallback(async () => {
+    if (!supabase || !matchId) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const [{ data: authData }, { data, error: votesError }] =
+        await Promise.all([
+          supabase.auth.getUser(),
+          supabase
+            .from("match_votes")
+            .select("team_id,user_id")
+            .eq("match_id", matchId),
+        ]);
+
+      if (votesError) throw votesError;
+
+      const currentUser = authData?.user || null;
+      const loadedVotes = Array.isArray(data) ? data : [];
+
+      setUser(currentUser);
+      setVotes(loadedVotes);
+
+      const ownVote = currentUser
+        ? loadedVotes.find((vote) => vote.user_id === currentUser.id)
+        : null;
+
+      setSelectedTeamId(ownVote?.team_id ? String(ownVote.team_id) : null);
+      setError("");
+    } catch (loadError) {
+      console.error("Failed to load match votes:", loadError);
+      setError("Voting is temporarily unavailable.");
+    } finally {
+      setLoading(false);
+    }
+  }, [matchId]);
+
+  useEffect(() => {
+    loadVotes();
+  }, [loadVotes]);
+
+  const voteFor = async (teamId) => {
+    if (!user || selectedTeamId || submitting) return;
+
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const { error: insertError } = await supabase
+        .from("match_votes")
+        .insert({
+          match_id: matchId,
+          user_id: user.id,
+          team_id: teamId,
+        });
+
+      if (insertError) throw insertError;
+
+      setSelectedTeamId(teamId);
+      setVotes((current) => [
+        ...current,
+        { team_id: teamId, user_id: user.id },
+      ]);
+    } catch (voteError) {
+      console.error("Failed to submit vote:", voteError);
+      setError("Could not save your vote. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const team1Votes = votes.filter(
+    (vote) => String(vote.team_id) === team1VoteId
+  ).length;
+  const team2Votes = votes.filter(
+    (vote) => String(vote.team_id) === team2VoteId
+  ).length;
+  const totalVotes = team1Votes + team2Votes;
+  const team1Percent = totalVotes
+    ? Math.round((team1Votes / totalVotes) * 100)
+    : 50;
+  const team2Percent = 100 - team1Percent;
+  const hasVoted = Boolean(selectedTeamId);
+
+  return (
+    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+      <div className="border-b border-[#243041] px-5 py-4">
+        <h2 className="text-xl font-black">Vote for Winner</h2>
+        <p className="mt-1 text-xs text-gray-500">
+          Community prediction
+        </p>
+      </div>
+
+      <div className="p-5">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
+          {[team1, team2].map((team, index) => (
+            <div key={String(team.id || team.name)} className={index ? "col-start-3" : ""}>
+              {team.logo ? (
+                <img
+                  src={team.logo}
+                  alt={team.name}
+                  className="mx-auto h-16 w-16 rounded-lg bg-[#0b0f14] object-contain p-2"
+                />
+              ) : (
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-[#0b0f14] text-xl font-black text-gray-500">
+                  ?
+                </div>
+              )}
+              <div className="mt-2 truncate font-bold">{team.name}</div>
+            </div>
+          ))}
+          <div className="col-start-2 row-start-1 font-black text-gray-400">VS</div>
+        </div>
+
+        {loading ? (
+          <div className="mt-7 text-center text-sm text-gray-500">
+            Loading votes...
+          </div>
+        ) : (
+          <>
+            {!hasVoted && user && !error && (
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  disabled={submitting}
+                  onClick={() => voteFor(team1VoteId)}
+                  className="rounded-xl border border-orange-500/40 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-400 transition hover:bg-orange-500 hover:text-white disabled:cursor-wait disabled:opacity-50"
+                >
+                  Vote {team1.name}
+                </button>
+                <button
+                  type="button"
+                  disabled={submitting}
+                  onClick={() => voteFor(team2VoteId)}
+                  className="rounded-xl border border-orange-500/40 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-400 transition hover:bg-orange-500 hover:text-white disabled:cursor-wait disabled:opacity-50"
+                >
+                  Vote {team2.name}
+                </button>
+              </div>
+            )}
+
+            <div className="mt-6 overflow-hidden rounded-xl bg-[#202938]">
+              <div className="flex h-12 font-black">
+                <div
+                  className="flex items-center bg-orange-500 px-4 text-white transition-all"
+                  style={{ width: `${team1Percent}%` }}
+                >
+                  {team1Percent}%
+                </div>
+                <div
+                  className="flex items-center justify-end px-4 text-white transition-all"
+                  style={{ width: `${team2Percent}%` }}
+                >
+                  {team2Percent}%
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 text-center text-sm text-gray-400">
+              {totalVotes.toLocaleString("ru-RU")} votes
+            </div>
+
+            {!user && !error && (
+              <div className="mt-5 rounded-xl border border-[#243041] bg-[#0b0f14] p-3 text-center text-sm text-gray-400">
+                Log in to vote
+              </div>
+            )}
+
+            {hasVoted && (
+              <div className="mt-5 text-center text-sm font-semibold text-green-400">
+                ✓ Thanks for voting
+              </div>
+            )}
+
+            {error && (
+              <div className="mt-5 text-center text-sm text-yellow-400">
+                {error}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function MatchInformationCard({
+  team1,
+  team2,
+  season,
+  date,
+  bestOf,
+  faceitUrl,
+}) {
+  return (
+    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+      <div className="border-b border-[#243041] px-5 py-4">
+        <h2 className="text-xl font-black">Match Information</h2>
+      </div>
+
+      <div className="space-y-5 p-5">
+        <div>
+          <div className="text-sm text-gray-500">Teams</div>
+          <div className="font-bold">{team1.name} vs {team2.name}</div>
+        </div>
+        <div>
+          <div className="text-sm text-gray-500">League</div>
+          <div className="font-bold">{season}</div>
+        </div>
+        <div>
+          <div className="text-sm text-gray-500">Match Date</div>
+          <div className="font-bold">{formatDateTime(date)}</div>
+        </div>
+        <div>
+          <div className="text-sm text-gray-500">Format</div>
+          <div className="font-bold">BO{bestOf}</div>
+        </div>
+
+        <a
+          href={faceitUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="flex w-full items-center justify-center rounded-xl bg-orange-500 px-5 py-3 font-bold transition hover:bg-orange-600"
+        >
+          Open FACEIT Match Room →
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function MatchPage() {
   const location = useLocation();
 
@@ -910,6 +1327,32 @@ function MatchPage() {
           </div>
         </div>
 
+        {!showFinishedSections && !isLive && (
+          <div className="mt-8 grid gap-4 lg:grid-cols-[1.05fr_1.05fr_1fr]">
+            <MapStatisticsCard
+              leftTeam={displayTeam1}
+              rightTeam={displayTeam2}
+              leftLocalTeam={leftLocalTeam}
+              rightLocalTeam={rightLocalTeam}
+            />
+
+            <VoteCard
+              matchId={matchId}
+              team1={displayTeam1}
+              team2={displayTeam2}
+            />
+
+            <MatchInformationCard
+              team1={displayTeam1}
+              team2={displayTeam2}
+              season={displaySeason}
+              date={displayDate}
+              bestOf={displayBestOf}
+              faceitUrl={displayFaceitUrl}
+            />
+          </div>
+        )}
+
         {/* MAPS */}
 
         {showFinishedSections &&
@@ -1365,6 +1808,7 @@ function MatchPage() {
 
         {/* MATCH INFORMATION */}
 
+        {(showFinishedSections || isLive) && (
         <div className="mt-10">
           <h2 className="mb-4 text-2xl font-black">
             Match Information
@@ -1433,6 +1877,7 @@ function MatchPage() {
             )}
           </div>
         </div>
+        )}
       </div>
     </div>
   );
