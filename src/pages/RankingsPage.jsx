@@ -822,7 +822,7 @@ const teams = [
     points: 234,
     
     record: "0-0",
-    division: "Entry",
+    division: "Advanced",
   },
                                                             {
     rank: 77,

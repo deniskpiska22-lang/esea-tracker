@@ -1239,7 +1239,7 @@ faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
     faceitTeamId: "3c170b46-04a8-443a-9605-cfd3e03cd020",
     logo: "/logos/dnk.png",
     flag: "/flags/kaz.svg",
-    division: "Entry",
+    division: "Advanced",
     stats: {
       wins: 0,
       losses: 0,
