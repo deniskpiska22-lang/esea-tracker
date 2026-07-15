@@ -3,12 +3,15 @@ import teams from "../src/data/teams.js";
 import { CHAMPIONSHIPS } from "./matchSyncConfig.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+const supabaseSecretKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
 const faceitApiKey = process.env.FACEIT_API_KEY;
 const mode = process.argv.includes("--live") ? "live" : "full";
 
 if (!supabaseUrl || !supabaseSecretKey) {
-  throw new Error("SUPABASE_URL and SUPABASE_SECRET_KEY are required");
+  throw new Error(
+    "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY) are required"
+  );
 }
 if (!faceitApiKey) {
   throw new Error("FACEIT_API_KEY is required");
@@ -46,6 +49,72 @@ const FINISHED_DAYS_BACK = Number(process.env.FINISHED_DAYS_BACK || 7);
 const LIVE_LOOKBACK_HOURS = Number(process.env.LIVE_LOOKBACK_HOURS || 8);
 const LIVE_LOOKAHEAD_HOURS = Number(process.env.LIVE_LOOKAHEAD_HOURS || 24);
 const concurrency = Number(process.env.MATCH_SYNC_CONCURRENCY || 5);
+
+const MAP_STATS_BATCH_SIZE = Number(process.env.MAP_STATS_BATCH_SIZE || 50);
+
+function cleanMapName(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  return raw
+    .replace(/^de_/i, "")
+    .split(/[_\s-]+/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1).toLowerCase())
+    .join("");
+}
+
+function statValue(stats, keys, fallback = 0) {
+  for (const key of keys) {
+    const value = stats?.[key];
+    if (value !== undefined && value !== null && value !== "") return Number(value);
+  }
+  return fallback;
+}
+
+function normalizeOfficialMatchStats(payload) {
+  const rounds = Array.isArray(payload) ? payload : Array.isArray(payload?.rounds) ? payload.rounds : [];
+  return rounds.map((round, index) => {
+    const roundStats = round?.round_stats || round?.roundStats || round || {};
+    const teamsRaw = Array.isArray(round?.teams) ? round.teams : [];
+    const teamsNormalized = teamsRaw.map((team) => {
+      const teamStats = team?.team_stats || team?.teamStats || team || {};
+      return {
+        teamId: team?.team_id || team?.teamId || teamStats?.TeamId || teamStats?.team_id || null,
+        teamName: team?.team_name || team?.teamName || teamStats?.Team || teamStats?.team_name || null,
+        score: statValue(teamStats, ["Final Score", "Score", "score", "final_score"]),
+      };
+    });
+    const map = cleanMapName(
+      roundStats?.Map || roundStats?.map || roundStats?.MapName || round?.map
+    );
+    if (!map || teamsNormalized.length < 2) return null;
+    return {
+      map,
+      order: Number(roundStats?.Round || roundStats?.round || index + 1),
+      teams: teamsNormalized.slice(0, 2),
+    };
+  }).filter(Boolean);
+}
+
+function mapsForMatch(mapRounds, match) {
+  return mapRounds.map((round) => {
+    const first = round.teams.find((team) => team.teamId === match.team1_id) || round.teams[0];
+    const second = round.teams.find((team) => team.teamId === match.team2_id) || round.teams.find((team) => team !== first) || round.teams[1];
+    const team1Score = Number(first?.score || 0);
+    const team2Score = Number(second?.score || 0);
+    return {
+      map: round.map,
+      order: round.order,
+      team1_id: first?.teamId || match.team1_id,
+      team1_name: first?.teamName || match.team1_name,
+      team1_score: team1Score,
+      team2_id: second?.teamId || match.team2_id,
+      team2_name: second?.teamName || match.team2_name,
+      team2_score: team2Score,
+      winner_id: team1Score > team2Score ? (first?.teamId || match.team1_id) : team2Score > team1Score ? (second?.teamId || match.team2_id) : null,
+    };
+  });
+}
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const normalizeName = (value = "") => value.replace(/\s+/g, "").toLowerCase();
@@ -408,6 +477,46 @@ async function refreshActive() {
   };
 }
 
+
+async function syncFinishedMapStats() {
+  const { data: matches, error } = await supabase
+    .from("matches")
+    .select("id,team1_id,team1_name,team2_id,team2_name")
+    .in("status", ["FINISHED", "MATCH_STATUS_FINISHED"])
+    .eq("stats_synced", false)
+    .order("finished_at", { ascending: true, nullsFirst: false })
+    .limit(MAP_STATS_BATCH_SIZE);
+  if (error) throw error;
+
+  let synced = 0;
+  let empty = 0;
+  let failed = 0;
+  await runPool(matches || [], async (match) => {
+    try {
+      const payload = await fetchJson(
+        `https://open.faceit.com/data/v4/matches/${encodeURIComponent(match.id)}/stats`,
+        { headers: { Authorization: `Bearer ${faceitApiKey}`, Accept: "application/json" } }
+      );
+      const mapScores = mapsForMatch(normalizeOfficialMatchStats(payload), match);
+      const patch = {
+        map_scores: mapScores,
+        maps: mapScores.map((item) => item.map),
+        stats_synced: mapScores.length > 0,
+        stats_synced_at: mapScores.length > 0 ? new Date().toISOString() : null,
+        updated_at: new Date().toISOString(),
+      };
+      const { error: updateError } = await supabase.from("matches").update(patch).eq("id", match.id);
+      if (updateError) throw updateError;
+      if (mapScores.length) synced += 1;
+      else empty += 1;
+    } catch (syncError) {
+      failed += 1;
+      console.warn(`Map stats failed ${match.id}: ${syncError.message}`);
+    }
+  });
+  return { candidates: (matches || []).length, synced, empty, failed };
+}
+
 async function main() {
   const started = Date.now();
   let discovery = null;
@@ -421,12 +530,14 @@ async function main() {
   }
 
   const refresh = await refreshActive();
+  const mapStats = await syncFinishedMapStats();
   console.log(
     JSON.stringify({
       ok: true,
       mode,
       discovery,
       refresh,
+      mapStats,
       durationMs: Date.now() - started,
     })
   );

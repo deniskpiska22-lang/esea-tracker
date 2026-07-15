@@ -1,56 +1,31 @@
 import { Link, useParams } from "react-router-dom";
 import teams from "../data/teams";
 import matchesData from "../data/matches";
+import { useTeamStats } from "../hooks/useTeamStats";
 
 function StatsPage() {
   const { slug } = useParams();
 
   const team = teams.find((t) => t.slug === slug);
 
-  const teamMatches = matchesData.filter(
-  (match) => match.teamSlug === slug
-);
+  const fallbackMatches = matchesData.filter((match) => match.teamSlug === slug);
+  const { matches: teamMatches, maps: liveMapStats } = useTeamStats(slug, fallbackMatches);
 
-const mapStats = Object.values(
+const mapStats = liveMapStats ?? Object.values(
   teamMatches.reduce((acc, match) => {
     match.mapScores?.forEach((map) => {
       if (!map.map) return;
-
-      if (!acc[map.map]) {
-        acc[map.map] = {
-          name: map.map,
-          played: 0,
-          wins: 0,
-        };
-      }
-
+      if (!acc[map.map]) acc[map.map] = { name: map.map, played: 0, wins: 0 };
       acc[map.map].played += 1;
-
-      if (map.won) {
-        acc[map.map].wins += 1;
-      }
+      if (map.won) acc[map.map].wins += 1;
     });
-
     return acc;
   }, {})
-)
-  .map((map) => ({
-    ...map,
-    losses: map.played - map.wins,
-    winrate: Math.round(
-      (map.wins / map.played) * 100
-    ),
-  }))
-  .sort((a, b) => {
-    // Сначала по винрейту
-    if (b.winrate !== a.winrate) {
-      return b.winrate - a.winrate;
-    }
-
-    // Если винрейт одинаковый — больше сыгранных карт выше
-    return b.played - a.played;
-  });
-  
+).map((map) => ({
+  ...map,
+  losses: map.played - map.wins,
+  winrate: Math.round((map.wins / map.played) * 100),
+})).sort((a, b) => b.winrate - a.winrate || b.played - a.played);  
 
   return (
   <div className="bg-[#0b0f14] min-h-screen text-white p-8">

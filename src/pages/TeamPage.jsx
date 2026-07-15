@@ -5,6 +5,7 @@ import playersData from "../data/players"
 import matchesData from "../data/matches"
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import { normalizeNickname } from "../utils/normalizeNickname";
+import { useTeamStats } from "../hooks/useTeamStats";
 
 
 import {
@@ -45,9 +46,11 @@ console.log(teams.map(t => t.slug))
       : team.points ?? 0
 
   // 🧠 STATS SAFE
- const teamMatches = matchesData
+ const fallbackMatches = matchesData
   .filter((match) => match.teamSlug === slug)
   .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const { matches: teamMatches, maps: liveMapStats } = useTeamStats(slug, fallbackMatches);
 
 const wins = teamMatches.filter(
   (match) => match.won === true || match.result === "WIN"
@@ -66,30 +69,17 @@ const recentForm = teamMatches.slice(0, 5);
 
 
 
-const mapStats = Object.values(
+const mapStats = liveMapStats ?? Object.values(
   teamMatches.reduce((acc, match) => {
     match.mapScores?.forEach((map) => {
       if (!map.map || map.map === "unknown") return;
-
-      if (!acc[map.map]) {
-        acc[map.map] = {
-          name: map.map,
-          played: 0,
-          wins: 0,
-        };
-      }
-
+      if (!acc[map.map]) acc[map.map] = { name: map.map, played: 0, wins: 0 };
       acc[map.map].played += 1;
       if (map.won) acc[map.map].wins += 1;
     });
-
     return acc;
   }, {})
-)
-  .map((map) => ({
-    ...map,
-    winrate: Math.round((map.wins / map.played) * 100),
-  }))
+).map((map) => ({ ...map, winrate: Math.round((map.wins / map.played) * 100) }))
   .sort((a, b) => b.winrate - a.winrate);
 
   const teamPlayersStats = playersData?.[slug] ?? []
