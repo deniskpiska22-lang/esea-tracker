@@ -311,7 +311,7 @@ const teams = [
     points: 410,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
   },
                                 {
     rank: 29,
@@ -322,7 +322,7 @@ const teams = [
     points: 317,
     
     record: "0-0",
-    division: "Intermediate",
+    division: "Main",
   },
   
                               {
@@ -399,7 +399,7 @@ const teams = [
     points: 306,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                       {
     rank: 37,
@@ -432,7 +432,7 @@ const teams = [
     points: 321,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
       },
                                       {
     rank: 40,
@@ -443,7 +443,7 @@ const teams = [
     points: 306,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
       },
                                       {
     rank: 41,
@@ -454,7 +454,7 @@ const teams = [
     points: 314,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
       },
                                       {
     rank: 42,
@@ -524,14 +524,14 @@ const teams = [
   },
                                          {
     rank: 48,
-    slug: "z17",
+    slug: "goldrashers",
     logo: "/logos/z17.png",
-    name: "Z17",
+    name: "GoldRashers",
     flag: "/flags/russia.svg",
     points: 311,
     
     record: "0-0",
-    division: "Main",
+    division: "Advanced",
   },
                                           {
     rank: 49,
@@ -564,7 +564,7 @@ const teams = [
     points: 281,
     
     record: "0-0",
-    division: "Intermediate",
+    division: "Main",
   },
                                             {
     rank: 52,
@@ -701,7 +701,7 @@ const teams = [
     points: 254,
     
     record: "0-0",
-    division: "Intermediate",
+    division: "Main",
   },
                                                       {
     rank: 65,
@@ -734,7 +734,7 @@ const teams = [
     points: 287,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
   },
                                                         {
     rank: 68,
@@ -745,7 +745,7 @@ const teams = [
     points: 242,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                         {
     rank: 69,
@@ -810,7 +810,7 @@ const teams = [
     points: 226,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                             {
     rank: 75,
@@ -938,7 +938,7 @@ const teams = [
     points: 216,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                               {
     rank: 87,
@@ -948,7 +948,7 @@ const teams = [
     points: 220,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                               {
     rank: 88,
@@ -1013,7 +1013,7 @@ const teams = [
     points: 210,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                                 {
     rank: 94,
@@ -1153,7 +1153,7 @@ const teams = [
     points: 177,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                                   {
     rank: 107,
@@ -1174,7 +1174,7 @@ const teams = [
     points: 199,
     
     record: "0-0",
-    division: "Entry",
+    division: "Main",
   },
                                                                     {
     rank: 109,
@@ -1339,7 +1339,7 @@ const teams = [
     points: 143,
     
     record: "0-0",
-    division: "Entry",
+    division: "Intermediate",
   },
                                                                               {
     rank: 124,
