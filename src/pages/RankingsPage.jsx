@@ -412,17 +412,7 @@ const teams = [
     record: "0-0",
     division: "Main",
       },
-                                            {
-    rank: 38,
-    slug: "goldrashers",
-    logo: "/logos/hodes.png",
-    name: "GoldRashers",
-    flag: "/flags/bel.svg",
-    points: 298,
-    
-    record: "0-0",
-    division: "Entry",
-      },
+
                                       {
     rank: 39,
     slug: "lynx",
