@@ -1,10 +1,21 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+import {
+  Link,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 
 import matchesData from "../data/matches";
 import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";
 import matchStatsCompact from "../data/matchStatsCompact.json";
+
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { supabase } from "../lib/supabaseClient";
 
@@ -20,142 +31,147 @@ const FINISHED_STATUSES = new Set([
 ]);
 
 function normalizeName(value = "") {
-  return value.replace(/\s+/g, "").toLowerCase();
+  return String(value || "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function toNumber(value, fallback = 0) {
+  const number = Number(value);
+
+  return Number.isFinite(number)
+    ? number
+    : fallback;
+}
+
+function parseJsonValue(value, fallback) {
+  if (value === null || value === undefined) {
+    return fallback;
+  }
+
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  try {
+    return JSON.parse(value);
+  } catch {
+    return fallback;
+  }
 }
 
 function findLocalTeam(faceitTeamId, fallbackName) {
-  return teams.find((team) => {
-    if (
-      faceitTeamId &&
-      team.faceitTeamId === faceitTeamId
-    ) {
-      return true;
-    }
-
-    return (
-      fallbackName &&
-      normalizeName(team.name) === normalizeName(fallbackName)
-    );
-  });
-}
-
-function normalizeFaceitTeam(team = {}) {
-  const faceitTeamId =
-    team.faction_id ||
-    team.team_id ||
-    team.premade_team_id ||
-    null;
-
-  const fallbackName =
-    team.name ||
-    team.nickname ||
-    "TBD";
-
-  const localTeam = findLocalTeam(
-    faceitTeamId,
-    fallbackName
+  return (
+    teams.find(
+      (team) =>
+        faceitTeamId &&
+        team.faceitTeamId === faceitTeamId
+    ) ||
+    teams.find(
+      (team) =>
+        fallbackName &&
+        normalizeName(team.name) ===
+          normalizeName(fallbackName)
+    ) ||
+    null
   );
-
-  return {
-    id: faceitTeamId,
-    name: localTeam?.name || fallbackName,
-    slug: localTeam?.slug || null,
-    logo:
-      localTeam?.logo ||
-      team.avatar ||
-      team.logo ||
-      null,
-  };
-}
-
-function toIsoDate(value) {
-  if (!value) {
-    return null;
-  }
-
-  if (typeof value === "number") {
-    return new Date(value * 1000).toISOString();
-  }
-
-  const parsed = new Date(value);
-
-  return Number.isNaN(parsed.getTime())
-    ? null
-    : parsed.toISOString();
-}
-
-function normalizeFaceitMatch(data) {
-  const teamEntries = Object.entries(data?.teams || {});
-  const firstEntry = teamEntries[0] || [];
-  const secondEntry = teamEntries[1] || [];
-
-  const firstKey = firstEntry[0];
-  const secondKey = secondEntry[0];
-
-  const firstTeam = firstEntry[1] || {};
-  const secondTeam = secondEntry[1] || {};
-
-  return {
-    id: data.match_id || data.id,
-    matchId: data.match_id || data.id,
-    status: data.status || "UNKNOWN",
-    bestOf: data.best_of ?? null,
-    season:
-      data.competition_name ||
-      data.competition?.name ||
-      "ESEA League",
-    scheduledAt:
-      toIsoDate(data.scheduled_at) ||
-      toIsoDate(data.scheduled_time),
-    startedAt:
-      toIsoDate(data.started_at) ||
-      toIsoDate(data.started_time),
-    finishedAt:
-      toIsoDate(data.finished_at) ||
-      toIsoDate(data.finished_time),
-    team1: normalizeFaceitTeam(firstTeam),
-    team2: normalizeFaceitTeam(secondTeam),
-    team1Score:
-      data.results?.score?.[firstKey] ??
-      firstTeam.score ??
-      0,
-    team2Score:
-      data.results?.score?.[secondKey] ??
-      secondTeam.score ??
-      0,
-    faceitUrl:
-      data.faceit_url ||
-      `https://www.faceit.com/en/cs2/room/${
-        data.match_id || data.id
-      }`,
-  };
 }
 
 function normalizeDatabaseMatch(row) {
+  const rawMapScores = parseJsonValue(
+    row.map_scores,
+    []
+  );
+
+  const rawPlayerStats = parseJsonValue(
+    row.player_stats,
+    null
+  );
+
   return {
     id: row.id,
     matchId: row.id,
-    status: row.status || "UNKNOWN",
-    bestOf: row.best_of ?? null,
+
+    status:
+      row.status ||
+      "UNKNOWN",
+
+    bestOf:
+      row.best_of ??
+      null,
+
     season:
-      row.competition_name || "ESEA League",
-    scheduledAt: row.scheduled_at || null,
-    startedAt: row.started_at || null,
-    finishedAt: row.finished_at || null,
+      row.competition_name ||
+      "ESEA League",
+
+    scheduledAt:
+      row.scheduled_at ||
+      null,
+
+    startedAt:
+      row.started_at ||
+      null,
+
+    finishedAt:
+      row.finished_at ||
+      null,
+
     team1: {
-      id: row.team1_id || null,
-      name: row.team1_name || "TBD",
-      slug: row.team1_slug || null,
-      logo: row.team1_logo || null,
+      id:
+        row.team1_id ||
+        null,
+
+      name:
+        row.team1_name ||
+        "TBD",
+
+      slug:
+        row.team1_slug ||
+        null,
+
+      logo:
+        row.team1_logo ||
+        null,
     },
+
     team2: {
-      id: row.team2_id || null,
-      name: row.team2_name || "TBD",
-      slug: row.team2_slug || null,
-      logo: row.team2_logo || null,
+      id:
+        row.team2_id ||
+        null,
+
+      name:
+        row.team2_name ||
+        "TBD",
+
+      slug:
+        row.team2_slug ||
+        null,
+
+      logo:
+        row.team2_logo ||
+        null,
     },
-    team1Score: row.team1_score ?? 0,
-    team2Score: row.team2_score ?? 0,
+
+    team1Score:
+      toNumber(row.team1_score),
+
+    team2Score:
+      toNumber(row.team2_score),
+
+    mapScores:
+      Array.isArray(rawMapScores)
+        ? rawMapScores
+        : [],
+
+    playerStats:
+      rawPlayerStats &&
+      typeof rawPlayerStats === "object"
+        ? rawPlayerStats
+        : null,
+
+    statsSynced:
+      Boolean(row.stats_synced),
+
     faceitUrl:
       row.faceit_url ||
       `https://www.faceit.com/en/cs2/room/${row.id}`,
@@ -173,18 +189,69 @@ function formatDateTime(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(parsed);
+  return new Intl.DateTimeFormat(
+    "ru-RU",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }
+  ).format(parsed);
 }
 
-function TeamHero({ team, align = "left" }) {
-  const content = (
-    <>
+function formatMapName(value) {
+  const rawName = String(
+    value || "Unknown"
+  ).replace(/^de_/i, "");
+
+  if (!rawName) {
+    return "Unknown";
+  }
+
+  return (
+    rawName.charAt(0).toUpperCase() +
+    rawName.slice(1)
+  );
+}
+
+function getRecentMatchesForTeam(team) {
+  if (!team?.slug) {
+    return [];
+  }
+
+  const threeMonthsAgo = new Date();
+
+  threeMonthsAgo.setMonth(
+    threeMonthsAgo.getMonth() - 3
+  );
+
+  return matchesData
+    .filter(
+      (item) =>
+        item.teamSlug === team.slug &&
+        new Date(item.date) >= threeMonthsAgo
+    )
+    .sort(
+      (first, second) =>
+        new Date(second.date) -
+        new Date(first.date)
+    );
+}
+
+function TeamHero({
+  team,
+  align = "left",
+}) {
+  return (
+    <div
+      className={`flex flex-col items-center gap-4 ${
+        align === "right"
+          ? "md:flex-row-reverse md:justify-start"
+          : "md:flex-row"
+      }`}
+    >
       {team.logo ? (
         <img
           src={team.logo}
@@ -209,25 +276,73 @@ function TeamHero({ team, align = "left" }) {
           {team.name}
         </div>
       )}
-    </>
+    </div>
   );
+}
 
+function RecentMatchesCard({
+  displayTeam,
+  localTeam,
+  matches,
+}) {
   return (
-    <div
-      className={`flex flex-col items-center gap-4 ${
-        align === "right"
-          ? "md:flex-row-reverse md:justify-start"
-          : "md:flex-row"
-      }`}
-    >
-      {content}
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+      <div className="border-b border-[#243041] px-5 py-4">
+        <div className="text-lg font-black">
+          {displayTeam.name}
+        </div>
+      </div>
+
+      {!localTeam ? (
+        <div className="p-6 text-gray-500">
+          Team is not in CIS Rankings
+        </div>
+      ) : matches.length === 0 ? (
+        <div className="p-6 text-gray-500">
+          No recent matches
+        </div>
+      ) : (
+        <div className="max-h-[340px] overflow-y-auto">
+          {matches.map((item) => (
+            <Link
+              key={`${item.matchId}-${item.teamSlug}`}
+              to={`/matches/${item.matchId}`}
+              className="flex items-center justify-between border-b border-[#1d2634] px-5 py-3 transition-colors last:border-b-0 hover:bg-[#151e2b]"
+            >
+              <div>
+                <div className="font-medium">
+                  {item.opponentName}
+                </div>
+
+                <div className="text-xs text-gray-500">
+                  {item.date}
+                </div>
+              </div>
+
+              <div
+                className={`font-black ${
+                  item.won
+                    ? "text-green-400"
+                    : "text-red-400"
+                }`}
+              >
+                {item.boScore}
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 function MatchPage() {
   const location = useLocation();
-  const { slug: routeSlug, matchId } = useParams();
+
+  const {
+    slug: routeSlug,
+    matchId,
+  } = useParams();
 
   const finishedMatch = useMemo(
     () =>
@@ -249,39 +364,59 @@ function MatchPage() {
     [matchId]
   );
 
-  const [liveData, setLiveData] = useState(null);
-  const [loadingLive, setLoadingLive] = useState(true);
-  const [liveError, setLiveError] = useState("");
+  const [liveData, setLiveData] =
+    useState(null);
 
-  const loadLiveMatch = useCallback(async () => {
-    try {
-      if (!supabase) {
-        throw new Error(
-          "Supabase client is not configured"
+  const [loadingLive, setLoadingLive] =
+    useState(true);
+
+  const [liveError, setLiveError] =
+    useState("");
+
+  const loadLiveMatch = useCallback(
+    async () => {
+      try {
+        if (!supabase) {
+          throw new Error(
+            "Supabase client is not configured"
+          );
+        }
+
+        const {
+          data,
+          error,
+        } = await supabase
+          .from("matches")
+          .select("*")
+          .eq("id", matchId)
+          .maybeSingle();
+
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setLiveData(
+            normalizeDatabaseMatch(data)
+          );
+
+          setLiveError("");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to load match:",
+          error
         );
-      }
 
-      const { data, error } = await supabase
-        .from("matches")
-        .select("*")
-        .eq("id", matchId)
-        .maybeSingle();
-
-      if (error) {
-        throw error;
+        setLiveError(
+          "Failed to update match"
+        );
+      } finally {
+        setLoadingLive(false);
       }
-
-      if (data) {
-        setLiveData(normalizeDatabaseMatch(data));
-        setLiveError("");
-      }
-    } catch (error) {
-      console.error(error);
-      setLiveError("Failed to update match");
-    } finally {
-      setLoadingLive(false);
-    }
-  }, [matchId]);
+    },
+    [matchId]
+  );
 
   useEffect(() => {
     setLoadingLive(true);
@@ -289,21 +424,32 @@ function MatchPage() {
   }, [loadLiveMatch]);
 
   const normalizedStatus =
-    liveData?.status?.toUpperCase() || "";
+    liveData?.status?.toUpperCase() ||
+    "";
 
-  const isLive = LIVE_STATUSES.has(normalizedStatus);
-
-  const apiSaysFinished =
-    FINISHED_STATUSES.has(normalizedStatus);
-
-  useEffect(() => {
-    const intervalId = window.setInterval(
-      loadLiveMatch,
-      isLive ? 15000 : 30000
+  const isLive =
+    LIVE_STATUSES.has(
+      normalizedStatus
     );
 
+  const apiSaysFinished =
+    FINISHED_STATUSES.has(
+      normalizedStatus
+    );
+
+  useEffect(() => {
+    const intervalId =
+      window.setInterval(
+        loadLiveMatch,
+        isLive
+          ? 15000
+          : 30000
+      );
+
     return () => {
-      window.clearInterval(intervalId);
+      window.clearInterval(
+        intervalId
+      );
     };
   }, [isLive, loadLiveMatch]);
 
@@ -320,7 +466,11 @@ function MatchPage() {
     );
   }
 
-  if (!finishedMatch && !upcomingMatch && !liveData) {
+  if (
+    !finishedMatch &&
+    !upcomingMatch &&
+    !liveData
+  ) {
     return (
       <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
         <div className="text-xl font-bold">
@@ -337,43 +487,94 @@ function MatchPage() {
   }
 
   const finishedTeam = teams.find(
-    (team) => team.slug === finishedMatch?.teamSlug
+    (team) =>
+      team.slug ===
+      finishedMatch?.teamSlug
   );
 
-  const finishedOpponent = teams.find(
-    (team) =>
-      normalizeName(team.name) ===
-      normalizeName(finishedMatch?.opponentName)
-  );
+  const finishedOpponent =
+    teams.find(
+      (team) =>
+        normalizeName(team.name) ===
+        normalizeName(
+          finishedMatch?.opponentName
+        )
+    );
 
   const displayTeam1 =
     liveData?.team1 ||
     upcomingMatch?.team1 || {
+      id:
+        finishedTeam?.faceitTeamId ||
+        null,
+
       name:
         finishedTeam?.name ||
         finishedMatch?.teamName ||
         "TBD",
+
       slug:
         finishedTeam?.slug ||
         finishedMatch?.teamSlug ||
         null,
-      logo: finishedTeam?.logo || null,
+
+      logo:
+        finishedTeam?.logo ||
+        null,
     };
 
   const displayTeam2 =
     liveData?.team2 ||
     upcomingMatch?.team2 || {
+      id:
+        finishedOpponent?.faceitTeamId ||
+        null,
+
       name:
         finishedOpponent?.name ||
         finishedMatch?.opponentName ||
         "TBD",
-      slug: finishedOpponent?.slug || null,
-      logo: finishedOpponent?.logo || null,
+
+      slug:
+        finishedOpponent?.slug ||
+        null,
+
+      logo:
+        finishedOpponent?.logo ||
+        null,
     };
+
+  /*
+   * Определяем рейтинговые команды независимо
+   * для левой и правой стороны.
+   *
+   * Поэтому список всегда остаётся под той
+   * командой, которая расположена в шапке.
+   */
+  const leftLocalTeam = findLocalTeam(
+    displayTeam1.id,
+    displayTeam1.name
+  );
+
+  const rightLocalTeam = findLocalTeam(
+    displayTeam2.id,
+    displayTeam2.name
+  );
+
+  const leftRecentMatches =
+    getRecentMatchesForTeam(
+      leftLocalTeam
+    );
+
+  const rightRecentMatches =
+    getRecentMatchesForTeam(
+      rightLocalTeam
+    );
 
   const displayScore = liveData
     ? `${liveData.team1Score} : ${liveData.team2Score}`
-    : finishedMatch?.boScore || "- : -";
+    : finishedMatch?.boScore ||
+      "- : -";
 
   const displaySeason =
     liveData?.season ||
@@ -400,136 +601,254 @@ function MatchPage() {
     finishedMatch?.faceitUrl ||
     "#";
 
-  const slug =
+  /*
+   * Для кнопки Back приоритет имеет routeSlug.
+   * Затем берём slug фактической рейтинговой команды.
+   */
+  const navigationSlug =
     routeSlug ||
+    leftLocalTeam?.slug ||
+    rightLocalTeam?.slug ||
     finishedMatch?.teamSlug ||
-    displayTeam1.slug ||
-    displayTeam2.slug ||
     null;
 
-  const stats = matchStatsCompact[matchId];
-  const currentTeam = teams.find(
-    (team) => team.slug === slug
-  );
+  const stats =
+    liveData?.playerStats ||
+    matchStatsCompact[matchId] ||
+    null;
 
-  const orderedTeams = [...(stats?.teams || [])].sort(
+  const databaseMapScores =
+    Array.isArray(
+      liveData?.mapScores
+    )
+      ? liveData.mapScores.map(
+          (map) => {
+            const displayedTeamId =
+              liveData?.team1?.id;
+
+            const displayedTeamName =
+              liveData?.team1?.name;
+
+            const mapFirstIsDisplayedTeam =
+              Boolean(
+                displayedTeamId &&
+                map.team1_id ===
+                  displayedTeamId
+              ) ||
+              Boolean(
+                displayedTeamName &&
+                normalizeName(
+                  map.team1_name
+                ) ===
+                  normalizeName(
+                    displayedTeamName
+                  )
+              );
+
+            const teamScore =
+              toNumber(
+                mapFirstIsDisplayedTeam
+                  ? map.team1_score
+                  : map.team2_score
+              );
+
+            const opponentScore =
+              toNumber(
+                mapFirstIsDisplayedTeam
+                  ? map.team2_score
+                  : map.team1_score
+              );
+
+            return {
+              map:
+                map.map ||
+                "Unknown",
+
+              teamScore,
+
+              opponentScore,
+
+              won:
+                teamScore >
+                opponentScore,
+            };
+          }
+        )
+      : [];
+
+  const displayedMapScores =
+    databaseMapScores.length > 0
+      ? databaseMapScores
+      : finishedMatch?.mapScores ||
+        [];
+
+  const orderedTeams = [
+    ...(Array.isArray(stats?.teams)
+      ? stats.teams
+      : []),
+  ].sort(
     (first, second) => {
-      const currentName = normalizeName(currentTeam?.name);
-      const firstName = normalizeName(first.teamName);
-      const secondName = normalizeName(second.teamName);
+      const displayedTeamId =
+        displayTeam1.id ||
+        null;
 
-      if (firstName === currentName) return -1;
-      if (secondName === currentName) return 1;
+      const displayedTeamName =
+        displayTeam1.name ||
+        "";
+
+      const firstMatches =
+        Boolean(
+          displayedTeamId &&
+          first.teamId ===
+            displayedTeamId
+        ) ||
+        normalizeName(
+          first.teamName
+        ) ===
+          normalizeName(
+            displayedTeamName
+          );
+
+      const secondMatches =
+        Boolean(
+          displayedTeamId &&
+          second.teamId ===
+            displayedTeamId
+        ) ||
+        normalizeName(
+          second.teamName
+        ) ===
+          normalizeName(
+            displayedTeamName
+          );
+
+      if (firstMatches) {
+        return -1;
+      }
+
+      if (secondMatches) {
+        return 1;
+      }
+
       return 0;
     }
   );
 
-  const opponentTeam = finishedOpponent || null;
-  const teamLogo =
-    finishedTeam?.logo ||
-    currentTeam?.logo ||
-    displayTeam1.logo ||
-    null;
-  const opponentLogo =
-    opponentTeam?.logo ||
-    displayTeam2.logo ||
-    null;
-
-  const threeMonthsAgo = new Date();
-  threeMonthsAgo.setMonth(
-    threeMonthsAgo.getMonth() - 3
-  );
-
-  const currentTeamMatches = finishedMatch
-    ? matchesData
-        .filter(
-          (item) =>
-            item.teamSlug === slug &&
-            new Date(item.date) >= threeMonthsAgo
-        )
-        .sort(
-          (first, second) =>
-            new Date(second.date) -
-            new Date(first.date)
-        )
-    : [];
-
-  const opponentMatches =
-    finishedMatch && opponentTeam
-      ? matchesData
-          .filter(
-            (item) =>
-              item.teamSlug === opponentTeam.slug &&
-              new Date(item.date) >= threeMonthsAgo
-          )
-          .sort(
-            (first, second) =>
-              new Date(second.date) -
-              new Date(first.date)
-          )
-      : [];
-
+  /*
+   * H2H пока оставляем на старых matchesData.
+   * Он строится только если обе команды есть
+   * в локальном рейтинге.
+   */
   const h2hMatches =
-    finishedMatch && opponentTeam
-      ? matchesData.filter((item) => {
-          return (
-            (item.teamSlug === slug &&
-              normalizeName(item.opponentName) ===
-                normalizeName(opponentTeam.name)) ||
-            (item.teamSlug === opponentTeam.slug &&
-              normalizeName(item.opponentName) ===
-                normalizeName(finishedMatch.teamName))
-          );
-        })
+    leftLocalTeam &&
+    rightLocalTeam
+      ? matchesData.filter(
+          (item) => {
+            const directMatch =
+              item.teamSlug ===
+                leftLocalTeam.slug &&
+              normalizeName(
+                item.opponentName
+              ) ===
+                normalizeName(
+                  rightLocalTeam.name
+                );
+
+            const reverseMatch =
+              item.teamSlug ===
+                rightLocalTeam.slug &&
+              normalizeName(
+                item.opponentName
+              ) ===
+                normalizeName(
+                  leftLocalTeam.name
+                );
+
+            return (
+              directMatch ||
+              reverseMatch
+            );
+          }
+        )
       : [];
 
   const uniqueH2HMatches = [
     ...new Map(
-      h2hMatches.map((item) => [
-        item.matchId,
-        item,
-      ])
+      h2hMatches.map(
+        (item) => [
+          item.matchId,
+          item,
+        ]
+      )
     ).values(),
   ];
 
-  let teamWins = 0;
-  let opponentWins = 0;
+  let leftTeamWins = 0;
+  let rightTeamWins = 0;
 
-  uniqueH2HMatches.forEach((item) => {
-    const [left, right] = String(item.boScore)
-      .split(":")
-      .map(Number);
+  uniqueH2HMatches.forEach(
+    (item) => {
+      const [teamScore, opponentScore] =
+        String(item.boScore)
+          .split(":")
+          .map(Number);
 
-    if (item.teamSlug === slug) {
-      if (left > right) teamWins += 1;
-      else opponentWins += 1;
-    } else if (left > right) {
-      opponentWins += 1;
-    } else {
-      teamWins += 1;
+      const itemIsLeftTeam =
+        item.teamSlug ===
+        leftLocalTeam?.slug;
+
+      if (itemIsLeftTeam) {
+        if (
+          teamScore >
+          opponentScore
+        ) {
+          leftTeamWins += 1;
+        } else {
+          rightTeamWins += 1;
+        }
+      } else if (
+        teamScore >
+        opponentScore
+      ) {
+        rightTeamWins += 1;
+      } else {
+        leftTeamWins += 1;
+      }
     }
-  });
+  );
 
-  const formatH2HScore = (item) => {
-    if (item.teamSlug === slug) {
+  const formatH2HScore = (
+    item
+  ) => {
+    if (
+      item.teamSlug ===
+      leftLocalTeam?.slug
+    ) {
       return item.boScore;
     }
 
-    return String(item.boScore)
+    return String(
+      item.boScore
+    )
       .split(":")
       .reverse()
       .join(":");
   };
 
   const showFinishedSections =
-    Boolean(finishedMatch) || apiSaysFinished;
+    Boolean(finishedMatch) ||
+    apiSaysFinished;
 
   return (
     <div className="min-h-screen bg-[#0b0f14] p-4 text-white md:p-8">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between gap-4">
           <Link
-            to={slug ? `/team/${slug}/matches` : "/"}
+            to={
+              navigationSlug
+                ? `/team/${navigationSlug}/matches`
+                : "/"
+            }
             className="text-orange-400 hover:text-orange-300"
           >
             ← Back to Matches
@@ -545,7 +864,9 @@ function MatchPage() {
         <div className="mt-6 overflow-hidden rounded-3xl border border-[#243041] bg-[#111823]">
           <div className="p-6 md:p-10">
             <div className="grid gap-8 md:grid-cols-[1fr_auto_1fr] md:items-center">
-              <TeamHero team={displayTeam1} />
+              <TeamHero
+                team={displayTeam1}
+              />
 
               <div className="text-center">
                 <div className="mb-4 inline-flex rounded-full border border-orange-500/30 bg-orange-500/15 px-4 py-1 text-sm font-bold text-orange-400">
@@ -561,20 +882,24 @@ function MatchPage() {
                 </div>
 
                 <div className="mt-1 text-sm text-gray-500">
-                  {formatDateTime(displayDate)}
+                  {formatDateTime(
+                    displayDate
+                  )}
                 </div>
 
-                {!isLive && !showFinishedSections && (
-                  <div className="mt-3 text-sm font-semibold text-orange-400">
-                    Upcoming match
-                  </div>
-                )}
+                {!isLive &&
+                  !showFinishedSections && (
+                    <div className="mt-3 text-sm font-semibold text-orange-400">
+                      Upcoming match
+                    </div>
+                  )}
 
-                {showFinishedSections && !isLive && (
-                  <div className="mt-3 text-sm text-gray-500">
-                    Final result
-                  </div>
-                )}
+                {showFinishedSections &&
+                  !isLive && (
+                    <div className="mt-3 text-sm text-gray-500">
+                      Final result
+                    </div>
+                  )}
               </div>
 
               <TeamHero
@@ -585,296 +910,350 @@ function MatchPage() {
           </div>
         </div>
 
-        {finishedMatch && (
-          <div className="mt-8">
-            <h2 className="mb-4 text-2xl font-black">
-              Maps
-            </h2>
+        {/* MAPS */}
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {finishedMatch.mapScores?.map(
-                (map, index) => {
-                  const imageName =
-                    map.map?.toLowerCase();
+        {showFinishedSections &&
+          displayedMapScores.length >
+            0 && (
+            <div className="mt-8">
+              <h2 className="mb-4 text-2xl font-black">
+                Maps
+              </h2>
 
-                  return (
-                    <div
-                      key={`${map.map}-${index}`}
-                      className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
-                    >
+              <div className="grid gap-4 md:grid-cols-3">
+                {displayedMapScores.map(
+                  (map, index) => {
+                    const formattedName =
+                      formatMapName(
+                        map.map
+                      );
+
+                    const imageName =
+                      formattedName.toLowerCase();
+
+                    return (
                       <div
-                        className="relative h-28 bg-cover bg-center"
-                        style={{
-                          backgroundImage: `url(/maps/${imageName}.png)`,
-                        }}
+                        key={`${map.map}-${index}`}
+                        className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
                       >
-                        <div className="absolute inset-0 bg-black/60" />
+                        <div
+                          className="relative h-28 bg-cover bg-center"
+                          style={{
+                            backgroundImage:
+                              `url(/maps/${imageName}.png)`,
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-black/60" />
 
-                        <div className="relative z-10 flex h-full items-end p-4">
-                          <div className="text-2xl font-black">
-                            {map.map}
+                          <div className="relative z-10 flex h-full items-end p-4">
+                            <div className="text-2xl font-black">
+                              {
+                                formattedName
+                              }
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400">
+                              Map Score
+                            </span>
+
+                            <span
+                              className={`text-xl font-black ${
+                                map.won
+                                  ? "text-green-400"
+                                  : "text-red-400"
+                              }`}
+                            >
+                              {toNumber(
+                                map.teamScore
+                              )}{" "}
+                              :{" "}
+                              {toNumber(
+                                map.opponentScore
+                              )}
+                            </span>
                           </div>
                         </div>
                       </div>
+                    );
+                  }
+                )}
+              </div>
+            </div>
+          )}
 
-                      <div className="p-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-400">
-                            Map Score
-                          </span>
+        {/* PLAYER STATISTICS */}
 
-                          <span
-                            className={`text-xl font-black ${
-                              map.won
-                                ? "text-green-400"
-                                : "text-red-400"
-                            }`}
-                          >
-                            {map.teamScore} :{" "}
-                            {map.opponentScore}
-                          </span>
+        {showFinishedSections &&
+          Array.isArray(
+            stats?.teams
+          ) &&
+          stats.teams.length > 0 && (
+            <div className="mt-10">
+              <h2 className="mb-4 text-2xl font-black">
+                Player Statistics
+              </h2>
+
+              <div className="grid gap-6 lg:grid-cols-2">
+                {orderedTeams.map(
+                  (
+                    team,
+                    teamIndex
+                  ) => {
+                    const players =
+                      Array.isArray(
+                        team.players
+                      )
+                        ? team.players
+                        : [];
+
+                    const opponent =
+                      stats.teams.find(
+                        (item) =>
+                          item.teamId !==
+                          team.teamId
+                      );
+
+                    return (
+                      <div
+                        key={`${
+                          team.teamId ||
+                          team.teamName
+                        }-${teamIndex}`}
+                        className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
+                      >
+                        <div className="border-b border-[#243041] px-5 py-4">
+                          <div className="text-xl font-black">
+                            {
+                              team.teamName
+                            }
+                          </div>
+                        </div>
+
+                        <div className="overflow-x-auto">
+                          <table className="w-full min-w-[520px]">
+                            <thead>
+                              <tr className="text-sm text-gray-500">
+                                <th className="p-3 text-left">
+                                  Player
+                                </th>
+
+                                <th>R</th>
+                                <th>K</th>
+                                <th>D</th>
+                                <th>ADR</th>
+                                <th>HS%</th>
+                                <th>K/D</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {[...players]
+                                .sort(
+                                  (
+                                    first,
+                                    second
+                                  ) =>
+                                    calculatePlayerMatchRating(
+                                      second
+                                    ) -
+                                    calculatePlayerMatchRating(
+                                      first
+                                    )
+                                )
+                                .map(
+                                  (
+                                    player,
+                                    playerIndex
+                                  ) => {
+                                    const normalizedPlayer =
+                                      {
+                                        ...player,
+
+                                        kills:
+                                          toNumber(
+                                            player.kills
+                                          ),
+
+                                        deaths:
+                                          toNumber(
+                                            player.deaths
+                                          ),
+
+                                        assists:
+                                          toNumber(
+                                            player.assists
+                                          ),
+
+                                        adr:
+                                          toNumber(
+                                            player.adr
+                                          ),
+
+                                        hsRate:
+                                          toNumber(
+                                            player.hsRate
+                                          ),
+
+                                        kd:
+                                          toNumber(
+                                            player.kd
+                                          ),
+
+                                        kast:
+                                          toNumber(
+                                            player.kast
+                                          ),
+
+                                        mvps:
+                                          toNumber(
+                                            player.mvps
+                                          ),
+                                      };
+
+                                    const rating =
+                                      calculatePlayerMatchRating(
+                                        normalizedPlayer,
+                                        toNumber(
+                                          team.score
+                                        ),
+                                        toNumber(
+                                          opponent?.score
+                                        )
+                                      );
+
+                                    return (
+                                      <tr
+                                        key={
+                                          player.playerId ||
+                                          `${player.nickname}-${playerIndex}`
+                                        }
+                                        className="border-t border-[#1d2634] hover:bg-[#151e2b]"
+                                      >
+                                        <td className="p-3 font-semibold">
+                                          <Link
+                                            to={`/players/${encodeURIComponent(
+                                              player.nickname ||
+                                                "Unknown"
+                                            )}`}
+                                            state={{
+                                              from:
+                                                location.pathname,
+
+                                              label:
+                                                "← Back to Match",
+                                            }}
+                                            className="transition-colors hover:text-orange-400"
+                                          >
+                                            {player.nickname ||
+                                              "Unknown"}
+                                          </Link>
+                                        </td>
+
+                                        <td
+                                          className={`text-center font-black ${
+                                            rating >=
+                                            1.15
+                                              ? "text-green-400"
+                                              : rating <
+                                                  0.95
+                                                ? "text-red-400"
+                                                : "text-orange-400"
+                                          }`}
+                                        >
+                                          {toNumber(
+                                            rating
+                                          ).toFixed(
+                                            2
+                                          )}
+                                        </td>
+
+                                        <td className="text-center">
+                                          {
+                                            normalizedPlayer.kills
+                                          }
+                                        </td>
+
+                                        <td className="text-center">
+                                          {
+                                            normalizedPlayer.deaths
+                                          }
+                                        </td>
+
+                                        <td className="text-center">
+                                          {normalizedPlayer.adr.toFixed(
+                                            1
+                                          )}
+                                        </td>
+
+                                        <td className="text-center">
+                                          {normalizedPlayer.hsRate.toFixed(
+                                            0
+                                          )}
+                                          %
+                                        </td>
+
+                                        <td
+                                          className={`text-center font-bold ${
+                                            normalizedPlayer.kd >=
+                                            1
+                                              ? "text-green-400"
+                                              : "text-red-400"
+                                          }`}
+                                        >
+                                          {normalizedPlayer.kd.toFixed(
+                                            2
+                                          )}
+                                        </td>
+                                      </tr>
+                                    );
+                                  }
+                                )}
+                            </tbody>
+                          </table>
                         </div>
                       </div>
-                    </div>
-                  );
-                }
-              )}
+                    );
+                  }
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {finishedMatch && stats?.teams && (
-          <div className="mt-10">
-            <h2 className="mb-4 text-2xl font-black">
-              Player Statistics
-            </h2>
+        {/* RECENT MATCHES */}
 
-            <div className="grid gap-6 lg:grid-cols-2">
-              {orderedTeams.map((team, teamIndex) => (
-                <div
-                  key={`${team.teamId}-${teamIndex}`}
-                  className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
-                >
-                  <div className="border-b border-[#243041] px-5 py-4">
-                    <div className="text-xl font-black">
-                      {team.teamName}
-                    </div>
-                  </div>
-
-                  <div className="overflow-x-auto">
-                    <table className="w-full min-w-[520px]">
-                      <thead>
-                        <tr className="text-sm text-gray-500">
-                          <th className="p-3 text-left">
-                            Player
-                          </th>
-                          <th>R</th>
-                          <th>K</th>
-                          <th>D</th>
-                          <th>ADR</th>
-                          <th>HS%</th>
-                          <th>K/D</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {[...(team.players || [])]
-                          .sort(
-                            (first, second) =>
-                              calculatePlayerMatchRating(
-                                second
-                              ) -
-                              calculatePlayerMatchRating(
-                                first
-                              )
-                          )
-                          .map((player) => {
-                            const opponent =
-                              stats.teams.find(
-                                (item) =>
-                                  item.teamId !==
-                                  team.teamId
-                              );
-
-                            const rating =
-                              calculatePlayerMatchRating(
-                                player,
-                                team.score,
-                                opponent?.score || 0
-                              );
-
-                            return (
-                              <tr
-                                key={player.playerId}
-                                className="border-t border-[#1d2634] hover:bg-[#151e2b]"
-                              >
-                                <td className="p-3 font-semibold">
-                                  <Link
-                                    to={`/players/${encodeURIComponent(
-                                      player.nickname
-                                    )}`}
-                                    state={{
-                                      from:
-                                        location.pathname,
-                                      label:
-                                        "← Back to Match",
-                                    }}
-                                    className="transition-colors hover:text-orange-400"
-                                  >
-                                    {player.nickname}
-                                  </Link>
-                                </td>
-
-                                <td
-                                  className={`text-center font-black ${
-                                    rating >= 1.15
-                                      ? "text-green-400"
-                                      : rating < 0.95
-                                      ? "text-red-400"
-                                      : "text-orange-400"
-                                  }`}
-                                >
-                                  {rating.toFixed(2)}
-                                </td>
-
-                                <td className="text-center">
-                                  {player.kills ?? 0}
-                                </td>
-
-                                <td className="text-center">
-                                  {player.deaths ?? 0}
-                                </td>
-
-                                <td className="text-center">
-                                  {player.adr
-                                    ? player.adr.toFixed(1)
-                                    : "0.0"}
-                                </td>
-
-                                <td className="text-center">
-                                  {player.hsRate
-                                    ? player.hsRate.toFixed(0)
-                                    : 0}
-                                  %
-                                </td>
-
-                                <td
-                                  className={`text-center font-bold ${
-                                    (player.kd || 0) >= 1
-                                      ? "text-green-400"
-                                      : "text-red-400"
-                                  }`}
-                                >
-                                  {player.kd
-                                    ? player.kd.toFixed(2)
-                                    : "0.00"}
-                                </td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {finishedMatch && (
+        {showFinishedSections && (
           <div className="mt-10">
             <h2 className="mb-4 text-2xl font-black">
               Recent Matches (Past 3 Months)
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <div className="flex flex-col overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
-                <div className="border-b border-[#243041] px-5 py-4">
-                  <div className="text-lg font-black">
-                    {displayTeam1.name}
-                  </div>
-                </div>
+              <RecentMatchesCard
+                displayTeam={displayTeam1}
+                localTeam={leftLocalTeam}
+                matches={leftRecentMatches}
+              />
 
-                <div className="max-h-[340px] overflow-y-auto">
-                  {currentTeamMatches.map((item) => (
-                    <Link
-                      key={`${item.matchId}-${item.teamSlug}`}
-                      to={`/matches/${item.matchId}`}
-                      className="flex items-center justify-between border-b border-[#1d2634] px-5 py-3 transition-colors last:border-b-0 hover:bg-[#151e2b]"
-                    >
-                      <div>
-                        <div className="font-medium">
-                          {item.opponentName}
-                        </div>
-
-                        <div className="text-xs text-gray-500">
-                          {item.date}
-                        </div>
-                      </div>
-
-                      <div
-                        className={`font-black ${
-                          item.won
-                            ? "text-green-400"
-                            : "text-red-400"
-                        }`}
-                      >
-                        {item.teamSlug === slug
-                          ? item.boScore
-                          : String(item.boScore)
-                              .split(":")
-                              .reverse()
-                              .join(":")}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
-                <div className="border-b border-[#243041] px-5 py-4">
-                  <div className="text-lg font-black">
-                    {displayTeam2.name}
-                  </div>
-                </div>
-
-                {opponentTeam ? (
-                  <div className="max-h-[340px] overflow-y-auto">
-                    {opponentMatches.map((item) => (
-                      <Link
-                        key={`${item.matchId}-${item.teamSlug}`}
-                        to={`/matches/${item.matchId}`}
-                        className="flex items-center justify-between border-b border-[#1d2634] px-5 py-3 transition-colors last:border-b-0 hover:bg-[#151e2b]"
-                      >
-                        <div>
-                          <div className="font-medium">
-                            {item.opponentName}
-                          </div>
-
-                          <div className="text-xs text-gray-500">
-                            {item.date}
-                          </div>
-                        </div>
-
-                        <div className="font-black text-orange-400">
-                          {item.boScore}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="p-6 text-gray-500">
-                    Team is not in CIS Rankings
-                  </div>
-                )}
-              </div>
+              <RecentMatchesCard
+                displayTeam={displayTeam2}
+                localTeam={rightLocalTeam}
+                matches={rightRecentMatches}
+              />
             </div>
           </div>
         )}
 
-        {finishedMatch &&
-          opponentTeam &&
-          uniqueH2HMatches.length > 0 && (
+        {/* H2H */}
+
+        {showFinishedSections &&
+          leftLocalTeam &&
+          rightLocalTeam &&
+          uniqueH2HMatches.length >
+            0 && (
             <div className="mt-10">
               <h2 className="mb-4 text-2xl font-black">
                 Head to Head
@@ -883,20 +1262,26 @@ function MatchPage() {
               <div className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
                 <div className="grid grid-cols-3 items-center border-b border-[#243041] p-6 text-center">
                   <div className="flex flex-col items-center">
-                    {teamLogo && (
+                    {displayTeam1.logo && (
                       <img
-                        src={teamLogo}
-                        alt={displayTeam1.name}
+                        src={
+                          displayTeam1.logo
+                        }
+                        alt={
+                          displayTeam1.name
+                        }
                         className="mb-2 h-12 w-12 object-contain"
                       />
                     )}
 
                     <div className="text-lg text-gray-400">
-                      {displayTeam1.name}
+                      {
+                        displayTeam1.name
+                      }
                     </div>
 
                     <div className="text-5xl font-black text-green-400">
-                      {teamWins}
+                      {leftTeamWins}
                     </div>
                   </div>
 
@@ -907,59 +1292,78 @@ function MatchPage() {
 
                     <div className="text-xl font-bold">
                       Matches:{" "}
-                      {uniqueH2HMatches.length}
+                      {
+                        uniqueH2HMatches.length
+                      }
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center">
-                    {opponentLogo && (
+                    {displayTeam2.logo && (
                       <img
-                        src={opponentLogo}
-                        alt={displayTeam2.name}
+                        src={
+                          displayTeam2.logo
+                        }
+                        alt={
+                          displayTeam2.name
+                        }
                         className="mb-2 h-12 w-12 object-contain"
                       />
                     )}
 
                     <div className="text-lg text-gray-400">
-                      {displayTeam2.name}
+                      {
+                        displayTeam2.name
+                      }
                     </div>
 
                     <div className="text-5xl font-black text-red-400">
-                      {opponentWins}
+                      {rightTeamWins}
                     </div>
                   </div>
                 </div>
 
-                {uniqueH2HMatches.map((item) => (
-                  <Link
-                    key={`${item.matchId}-${item.teamSlug}`}
-                    to={`/matches/${item.matchId}`}
-                    className="relative flex items-center justify-between border-b border-[#1d2634] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#151e2b]"
-                  >
-                    <div className="font-medium">
-                      {item.teamSlug === slug
-                        ? `${item.teamName} vs ${item.opponentName}`
-                        : `${item.opponentName} vs ${item.teamName}`}
-                    </div>
-
-                    <div className="hidden text-center md:block">
-                      <div className="text-sm font-medium text-gray-300">
-                        {item.season}
+                {uniqueH2HMatches.map(
+                  (item) => (
+                    <Link
+                      key={`${item.matchId}-${item.teamSlug}`}
+                      to={`/matches/${item.matchId}`}
+                      className="relative flex items-center justify-between border-b border-[#1d2634] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#151e2b]"
+                    >
+                      <div className="font-medium">
+                        {item.teamSlug ===
+                        leftLocalTeam.slug
+                          ? `${item.teamName} vs ${item.opponentName}`
+                          : `${item.opponentName} vs ${item.teamName}`}
                       </div>
 
-                      <div className="mt-1 text-xs text-gray-500">
-                        {item.date}
-                      </div>
-                    </div>
+                      <div className="hidden text-center md:block">
+                        <div className="text-sm font-medium text-gray-300">
+                          {
+                            item.season
+                          }
+                        </div>
 
-                    <div className="font-black text-orange-400">
-                      {formatH2HScore(item)}
-                    </div>
-                  </Link>
-                ))}
+                        <div className="mt-1 text-xs text-gray-500">
+                          {
+                            item.date
+                          }
+                        </div>
+                      </div>
+
+                      <div className="font-black text-orange-400">
+                        {formatH2HScore(
+                          item
+                        )}
+                      </div>
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           )}
+
+        {/* MATCH INFORMATION */}
 
         <div className="mt-10">
           <h2 className="mb-4 text-2xl font-black">
@@ -995,7 +1399,9 @@ function MatchPage() {
                 </div>
 
                 <div className="text-lg font-bold">
-                  {formatDateTime(displayDate)}
+                  {formatDateTime(
+                    displayDate
+                  )}
                 </div>
               </div>
 
@@ -1021,7 +1427,8 @@ function MatchPage() {
 
             {liveError && (
               <div className="mt-3 text-sm text-yellow-400">
-                Live update unavailable. Static match data is shown.
+                Live update unavailable.
+                Static match data is shown.
               </div>
             )}
           </div>
