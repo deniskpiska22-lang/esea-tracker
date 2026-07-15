@@ -184,16 +184,16 @@ const upcomingMatches = [
     "season": "S58 EU Main B - Regular Season",
     "scheduledAt": "2026-07-15T18:30:00.000Z",
     "team1": {
-      "id": "d189ca64-7084-4b2d-839b-162d297c66cf",
-      "name": "TBD",
-      "slug": null,
-      "logo": null
-    },
-    "team2": {
       "id": "aaf396c0-ff67-4f7b-b31b-137546e5b0bf",
       "name": "Aogiri",
       "slug": "aogiri",
       "logo": "/logos/aogiri.png"
+    },
+    "team2": {
+      "id": "d189ca64-7084-4b2d-839b-162d297c66cf",
+      "name": "TBD",
+      "slug": null,
+      "logo": null
     },
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e9449f6a-6bf5-44fe-bbd2-76e69112d75e"
   },

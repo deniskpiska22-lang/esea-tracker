@@ -6,6 +6,7 @@ import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
+import { supabase } from "../lib/supabaseClient";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -130,6 +131,37 @@ function normalizeFaceitMatch(data) {
   };
 }
 
+function normalizeDatabaseMatch(row) {
+  return {
+    id: row.id,
+    matchId: row.id,
+    status: row.status || "UNKNOWN",
+    bestOf: row.best_of ?? null,
+    season:
+      row.competition_name || "ESEA League",
+    scheduledAt: row.scheduled_at || null,
+    startedAt: row.started_at || null,
+    finishedAt: row.finished_at || null,
+    team1: {
+      id: row.team1_id || null,
+      name: row.team1_name || "TBD",
+      slug: row.team1_slug || null,
+      logo: row.team1_logo || null,
+    },
+    team2: {
+      id: row.team2_id || null,
+      name: row.team2_name || "TBD",
+      slug: row.team2_slug || null,
+      logo: row.team2_logo || null,
+    },
+    team1Score: row.team1_score ?? 0,
+    team2Score: row.team2_score ?? 0,
+    faceitUrl:
+      row.faceit_url ||
+      `https://www.faceit.com/en/cs2/room/${row.id}`,
+  };
+}
+
 function formatDateTime(value) {
   if (!value) {
     return "Date TBD";
@@ -223,23 +255,26 @@ function MatchPage() {
 
   const loadLiveMatch = useCallback(async () => {
     try {
-      const response = await fetch(
-        `/api/match?matchId=${encodeURIComponent(matchId)}`,
-        {
-          cache: "no-store",
-        }
-      );
-
-      if (!response.ok) {
+      if (!supabase) {
         throw new Error(
-          `Match request failed: ${response.status}`
+          "Supabase client is not configured"
         );
       }
 
-      const data = await response.json();
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .eq("id", matchId)
+        .maybeSingle();
 
-      setLiveData(normalizeFaceitMatch(data));
-      setLiveError("");
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        setLiveData(normalizeDatabaseMatch(data));
+        setLiveError("");
+      }
     } catch (error) {
       console.error(error);
       setLiveError("Failed to update match");
@@ -262,13 +297,9 @@ function MatchPage() {
     FINISHED_STATUSES.has(normalizedStatus);
 
   useEffect(() => {
-    if (!isLive) {
-      return undefined;
-    }
-
     const intervalId = window.setInterval(
       loadLiveMatch,
-      15000
+      isLive ? 15000 : 30000
     );
 
     return () => {

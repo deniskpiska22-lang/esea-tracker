@@ -1,9 +1,10 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import upcomingMatches from "../data/upcomingMatches";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
+import { supabase } from "../lib/supabaseClient";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -68,6 +69,68 @@ function normalizeTeam(team) {
       team.points ??
       0,
   };
+}
+
+function dbRowToMatch(row) {
+  return {
+    id: row.id,
+    matchId: row.id,
+    status: row.status,
+    bestOf: row.best_of,
+    season: row.competition_name || "ESEA League",
+    scheduledAt: row.scheduled_at,
+    startedAt: row.started_at,
+    finishedAt: row.finished_at,
+    team1: normalizeTeam({
+      id: row.team1_id,
+      name: row.team1_name,
+      slug: row.team1_slug,
+      logo: row.team1_logo,
+    }),
+    team2: normalizeTeam({
+      id: row.team2_id,
+      name: row.team2_name,
+      slug: row.team2_slug,
+      logo: row.team2_logo,
+    }),
+    team1Score: row.team1_score,
+    team2Score: row.team2_score,
+    faceitUrl: row.faceit_url,
+  };
+}
+
+function dbRowToResult(row) {
+  return {
+    id: row.id,
+    date: row.finished_at || row.scheduled_at,
+    season: row.competition_name || "ESEA League",
+    bestOf: row.best_of,
+    team1: {
+      ...normalizeTeam({
+        id: row.team1_id,
+        name: row.team1_name,
+        slug: row.team1_slug,
+        logo: row.team1_logo,
+      }),
+      score: row.team1_score ?? "-",
+    },
+    team2: {
+      ...normalizeTeam({
+        id: row.team2_id,
+        name: row.team2_name,
+        slug: row.team2_slug,
+        logo: row.team2_logo,
+      }),
+      score: row.team2_score ?? "-",
+    },
+  };
+}
+
+function isFinishedStatus(status = "") {
+  return [
+    "FINISHED",
+    "MATCH_STATUS_FINISHED",
+  ].includes(status.toUpperCase());
 }
 
 function formatTime(value) {
@@ -710,15 +773,88 @@ function FeaturedPanel({ match }) {
   );
 }
 function Home() {
-  const upcoming = useMemo(
-    () => getUpcoming(),
-    []
-  );
+  const [databaseRows, setDatabaseRows] = useState([]);
+  const [databaseReady, setDatabaseReady] = useState(false);
+  const [databaseError, setDatabaseError] = useState("");
 
-  const results = useMemo(
-    () => getResults(),
-    []
-  );
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadMatches = async () => {
+      if (!supabase) {
+        if (!cancelled) {
+          setDatabaseError(
+            "Supabase client is not configured"
+          );
+          setDatabaseReady(true);
+        }
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("matches")
+        .select("*")
+        .order("scheduled_at", {
+          ascending: true,
+        })
+        .limit(250);
+
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Home matches error:", error);
+        setDatabaseError(error.message);
+      } else {
+        setDatabaseRows(data || []);
+        setDatabaseError("");
+      }
+
+      setDatabaseReady(true);
+    };
+
+    loadMatches();
+
+    const intervalId = window.setInterval(
+      loadMatches,
+      30000
+    );
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
+  const upcoming = useMemo(() => {
+    if (!databaseReady || databaseRows.length === 0) {
+      return getUpcoming();
+    }
+
+    return databaseRows
+      .filter((row) => !isFinishedStatus(row.status))
+      .map(dbRowToMatch)
+      .sort(
+        (first, second) =>
+          new Date(first.scheduledAt) -
+          new Date(second.scheduledAt)
+      );
+  }, [databaseReady, databaseRows]);
+
+  const results = useMemo(() => {
+    if (!databaseReady || databaseRows.length === 0) {
+      return getResults();
+    }
+
+    return databaseRows
+      .filter((row) => isFinishedStatus(row.status))
+      .map(dbRowToResult)
+      .sort(
+        (first, second) =>
+          new Date(second.date) -
+          new Date(first.date)
+      )
+      .slice(0, 20);
+  }, [databaseReady, databaseRows]);
 
   const topTeams = useMemo(
     () => getTopTeams(),
@@ -773,6 +909,12 @@ function Home() {
             </Link>
           </div>
         </div>
+
+        {databaseError && (
+          <div className="mb-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5 px-4 py-3 text-xs text-yellow-400">
+            Supabase temporarily unavailable. Static data is shown.
+          </div>
+        )}
 
         <LiveStrip matches={liveMatches} />
 
