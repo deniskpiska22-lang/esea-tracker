@@ -300,7 +300,7 @@ const teams = [
     points: 326,
     
     record: "0-0",
-    division: "Intermediate",
+    division: "Main",
   },
                                     {
     rank: 28,
