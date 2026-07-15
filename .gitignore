@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 src/data/matchStats.json
 src/data/matchStatsV3.json
+.env.local

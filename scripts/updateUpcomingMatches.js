@@ -64,7 +64,7 @@ const CHAMPIONSHIP_IDS = [
   "86555399-fcc9-4094-9b67-8e8d9c2405b5", // Entry D playoff
 ];
 
-const OUTPUT_PATH = "src/data/matches.js";
+const OUTPUT_PATH = "src/data/upcomingMatches.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -81,7 +81,7 @@ function buildUrl(teamId, offset = 0, limit = 40) {
 
   params.set("entityId", teamId);
   params.set("entityType", "PREMADE_TEAM");
-  params.set("status", "MATCH_STATUS_FINISHED");
+  params.set("status", "MATCH_STATUS_SCHEDULED");
   params.set("offset", String(offset));
   params.set("limit", String(limit));
 
@@ -179,90 +179,87 @@ const CHAMPIONSHIP_NAMES = {
     "S57 EU Entry D - Playoffs",
 };
 
-function normalizeMatch(match, team) {
-  const myFaction = match.factions?.find(
-    (f) => f.premade_team_id === team.faceitTeamId
+function findLocalTeam(faceitTeamId) {
+  return teams.find(
+    (team) => team.faceitTeamId === faceitTeamId
+  );
+}
+
+function normalizeFaction(faction) {
+  const localTeam = findLocalTeam(
+    faction?.premade_team_id
   );
 
-  const enemyFaction = match.factions?.find(
-    (f) => f.premade_team_id !== team.faceitTeamId
-  );
+  return {
+    id:
+      faction?.premade_team_id ||
+      faction?.id ||
+      null,
 
-  const date =
-    match.finished_time ||
-    match.started_time ||
-    match.scheduled_time;
+    name:
+      localTeam?.name ||
+      faction?.name ||
+      faction?.nickname ||
+      "TBD",
 
-  const rawMapScores =
-    myFaction?.map_scores?.map((map, index) => ({
-      map: map.map_name,
-      teamScore: map.score,
-      opponentScore:
-        enemyFaction?.map_scores?.[index]?.score ?? null,
-      won: map.won,
-    })) || [];
+    slug:
+      localTeam?.slug ||
+      null,
 
-  // Фильтр техлузов / техвинов
-  const isTechnicalMatch =
-    rawMapScores.length === 0 ||
-    rawMapScores.some((m) => m.map === "unknown") ||
-    rawMapScores.some(
-      (m) =>
-        (m.teamScore === 1 && m.opponentScore === 0) ||
-        (m.teamScore === 0 && m.opponentScore === 1)
-    );
+    logo:
+      localTeam?.logo ||
+      faction?.avatar ||
+      faction?.logo ||
+      null,
+  };
+}
 
-  if (isTechnicalMatch) {
+function normalizeMatch(match) {
+  const factions = match.factions || [];
+
+  if (factions.length < 2) {
     return null;
   }
 
-  let boScore = "0 : 0";
+  const firstFaction = factions[0];
+  const secondFaction = factions[1];
 
-  if (match.best_of === 1) {
-    const firstMap = rawMapScores[0];
 
-    if (firstMap) {
-      boScore = `${firstMap.teamScore} : ${firstMap.opponentScore}`;
-    }
-  } else {
-    boScore = `${myFaction?.match_score ?? 0} : ${
-      enemyFaction?.match_score ?? 0
-    }`;
+
+  const rawDate =
+    match.scheduled_time ||
+    match.started_time;
+
+  if (!rawDate) {
+    return null;
+  }
+
+  const scheduledAt = new Date(rawDate);
+
+  if (Number.isNaN(scheduledAt.getTime())) {
+    return null;
   }
 
   return {
     id: match.id,
     matchId: match.id,
 
-    teamSlug: team.slug,
-    teamName: team.name,
-    opponentName: enemyFaction?.name || "Unknown",
-
-    teamScore: myFaction?.match_score ?? null,
-    opponentScore: enemyFaction?.match_score ?? null,
-
-    won: myFaction?.won ?? false,
-
-    result: myFaction?.won ? "WIN" : "LOSS",
-
-    boScore,
-
-    season:
-      CHAMPIONSHIP_NAMES[match.championship_id] ||
-      "Season 57",
-
-    date: new Date(date).toISOString().slice(0, 10),
-
     status: match.status,
-    bestOf: match.best_of,
+    bestOf: match.best_of ?? null,
 
     championshipId: match.championship_id,
 
-    maps: match.maps_picked?.map((m) => m.name) || [],
+    season:
+      CHAMPIONSHIP_NAMES[match.championship_id] ||
+      "ESEA League",
 
-    mapScores: rawMapScores,
+    scheduledAt: scheduledAt.toISOString(),
 
-    faceitUrl: `https://www.faceit.com/en/cs2/room/${match.id}`,
+team1: normalizeFaction(firstFaction),
+team2: normalizeFaction(secondFaction),
+
+    faceitUrl:
+      `https://www.faceit.com/en/cs2/room/${match.id}`,
   };
 }
 
@@ -272,58 +269,34 @@ async function fetchTeamMatches(team) {
     return [];
   }
 
-  const limit = 40;
-  let offset = 0;
-  const allPayload = [];
+  const url = buildUrl(team.faceitTeamId);
 
   try {
-    while (true) {
-      const url = buildUrl(team.faceitTeamId, offset, limit);
+    const response = await fetch(url, {
+      headers: {
+        accept: "application/json",
+        "user-agent": "Mozilla/5.0",
+      },
+    });
 
-      const res = await fetch(url, {
-        headers: {
-          accept: "application/json",
-          "user-agent": "Mozilla/5.0",
-        },
-      });
-
-      if (!res.ok) {
-        console.log(
-          `ERROR ${team.name}: ${res.status}, offset ${offset}`
-        );
-        break;
-      }
-
-      const data = await res.json();
-      const payload = Array.isArray(data.payload)
-        ? data.payload
-        : [];
-
-      allPayload.push(...payload);
-
-      console.log(
-        `${team.name}: received ${payload.length}, total ${allPayload.length}`
-      );
-
-      if (payload.length < limit) {
-        break;
-      }
-
-      offset += limit;
-      await sleep(150);
+    if (!response.ok) {
+      console.log(`ERROR ${team.name}: ${response.status}`);
+      return [];
     }
 
-    const matches = allPayload
-      .map((match) => normalizeMatch(match, team))
-      .filter(Boolean);
+    const data = await response.json();
+    const payload = data.payload || [];
 
     console.log(
-      `${team.name}: saved ${matches.length} of ${allPayload.length}`
+      `${team.name}: ${payload.length} upcoming matches`
     );
 
-    return matches;
-  } catch (err) {
-    console.log(`FAILED ${team.name}: ${err.message}`);
+    return payload;
+  } catch (error) {
+    console.log(
+      `FAILED ${team.name}: ${error.message}`
+    );
+
     return [];
   }
 }
@@ -333,29 +306,65 @@ async function main() {
 
   for (const team of teams) {
     const matches = await fetchTeamMatches(team);
+
     allMatches.push(...matches);
 
     await sleep(250);
   }
 
-  const unique = new Map();
+  const uniqueMatches = new Map();
 
   for (const match of allMatches) {
-    unique.set(`${match.id}-${match.teamSlug}`, match);
+    if (!match?.id) {
+      continue;
+    }
+
+    uniqueMatches.set(match.id, match);
   }
 
-  const result = [...unique.values()].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+  const now = Date.now();
+  const next24Hours =
+    now + 24 * 60 * 60 * 1000;
 
-  const file = `const matches = ${JSON.stringify(result, null, 2)};
+  const result = [...uniqueMatches.values()]
+    .map(normalizeMatch)
+    .filter(Boolean)
+    .filter((match) => {
+      const matchTime =
+        new Date(match.scheduledAt).getTime();
 
-export default matches;
+      return (
+        matchTime >= now &&
+        matchTime <= next24Hours
+      );
+    })
+    .sort(
+      (firstMatch, secondMatch) =>
+        new Date(firstMatch.scheduledAt) -
+        new Date(secondMatch.scheduledAt)
+    );
+
+  const file = `const upcomingMatches = ${JSON.stringify(
+    result,
+    null,
+    2
+  )};
+
+export default upcomingMatches;
 `;
 
-  await fs.writeFile(OUTPUT_PATH, file, "utf8");
+  await fs.writeFile(
+    OUTPUT_PATH,
+    file,
+    "utf8"
+  );
 
-  console.log(`Saved ${result.length} matches to ${OUTPUT_PATH}`);
+  console.log(
+    `Saved ${result.length} matches to ${OUTPUT_PATH}`
+  );
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

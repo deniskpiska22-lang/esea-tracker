@@ -1,9 +1,10 @@
-import { useState, useMemo, useEffect, useRef } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import ScrollToTop from "./components/ScrollToTop";
-import playerTeams from "./data/playerTeams.json";
-import playerAverageRatings from "./data/playerAverageRatings.json";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+import playerTeams from "../data/playerTeams.json";
+import playerAverageRatings from "../data/playerAverageRatings.json";
+
+// Добавь сюда свои команды.
 const teams = [
   {
     rank: 1,
@@ -1471,259 +1472,221 @@ const teams = [
     division: "Entry",
   }
   
-]
+];
 
-function App() {
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  const [selectedDivision, setSelectedDivision] = useState("All")
-  const [showModal, setShowModal] = useState(false)
-
-  const [teamName, setTeamName] = useState("")
-  const [faceitLink, setFaceitLink] = useState("")
-  const [contact, setContact] = useState("")
-  const [note, setNote] = useState("")
-
-  const [search, setSearch] = useState("")
-  const [showSearch, setShowSearch] = useState(false)
-  const [divisionSearch, setDivisionSearch] = useState("")
-
-  const searchRef = useRef(null)
-
-  const isActive = (path) => location.pathname === path
-
-// СНАЧАЛА команды
-const sortedTeams = useMemo(
-  () => [...teams].sort((a, b) => b.points - a.points),
-  []
-)
-
-// ПОТОМ игроки
-const searchablePlayers = useMemo(() => {
-  return Object.keys(playerTeams).map((nickname) => ({
-    nickname,
-    team: playerTeams[nickname],
-    rating: playerAverageRatings[nickname] ?? null,
-    avatar: `/players/${nickname}.png`,
-  }))
-}, [])
-
-// ПОТОМ поиск команд
-const filteredSearchTeams = sortedTeams
-  .filter((t) =>
-    t.name.toLowerCase().includes(search.toLowerCase())
-  )
-  .slice(0, 5)
-
-// ПОТОМ поиск игроков
-const filteredPlayers = searchablePlayers
-  .filter((p) =>
-    p.nickname.toLowerCase().includes(search.toLowerCase())
-  )
-  .slice(0, 5)
-
-const divisions = [
+const DIVISIONS = [
   "All",
   "Advanced",
   "Main",
   "Intermediate",
-  "Entry"
-]
+  "Entry",
+];
 
-const filteredDivisions = divisions.filter((division) =>
-  division.toLowerCase().includes(divisionSearch.toLowerCase())
-)
+function RankingsPage() {
+  const navigate = useNavigate();
+  const searchRef = useRef(null);
 
-const filteredTeams =
-  selectedDivision === "All"
-    ? sortedTeams
-    : sortedTeams.filter(
-        (team) => team.division === selectedDivision
+  const [selectedDivision, setSelectedDivision] = useState("All");
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [teamName, setTeamName] = useState("");
+  const [faceitLink, setFaceitLink] = useState("");
+  const [contact, setContact] = useState("");
+  const [note, setNote] = useState("");
+
+  const sortedTeams = useMemo(
+    () => [...teams].sort((a, b) => b.points - a.points),
+    []
+  );
+
+  const searchablePlayers = useMemo(() => {
+    return Object.keys(playerTeams).map((nickname) => ({
+      nickname,
+      team: playerTeams[nickname],
+      rating: playerAverageRatings[nickname] ?? null,
+    }));
+  }, []);
+
+  const normalizedSearch = search.trim().toLowerCase();
+
+  const filteredSearchTeams = useMemo(() => {
+    if (!normalizedSearch) return [];
+
+    return sortedTeams
+      .filter((team) =>
+        team.name.toLowerCase().includes(normalizedSearch)
       )
+      .slice(0, 5);
+  }, [normalizedSearch, sortedTeams]);
 
-  // ENTER + ESC
-  const handleSearchKey = (e) => {
-    if (e.key === "Enter" && search.trim()) {
-      const found = sortedTeams.find((t) =>
-        t.name.toLowerCase().includes(search.toLowerCase())
+  const filteredPlayers = useMemo(() => {
+    if (!normalizedSearch) return [];
+
+    return searchablePlayers
+      .filter((player) =>
+        player.nickname.toLowerCase().includes(normalizedSearch)
       )
+      .slice(0, 5);
+  }, [normalizedSearch, searchablePlayers]);
 
-      if (found) {
-        navigate(`/teams/${found.slug}`)
-        setShowSearch(false)
-        setSearch("")
-      }
+  const filteredTeams = useMemo(() => {
+    if (selectedDivision === "All") return sortedTeams;
+
+    return sortedTeams.filter(
+      (team) => team.division === selectedDivision
+    );
+  }, [selectedDivision, sortedTeams]);
+
+  const closeSearch = () => {
+    setShowSearch(false);
+    setSearch("");
+  };
+
+  const openTeam = (team) => {
+    navigate(`/teams/${team.slug}`);
+    closeSearch();
+  };
+
+  const openPlayer = (player) => {
+    navigate(`/players/${encodeURIComponent(player.nickname)}`);
+    closeSearch();
+  };
+
+  const handleSearchKey = (event) => {
+    if (event.key === "Escape") {
+      closeSearch();
+      return;
     }
 
-    if (e.key === "Escape") {
-      setShowSearch(false)
-      setSearch("")
-    }
-  }
+    if (event.key !== "Enter" || !normalizedSearch) return;
 
-  // OUTSIDE CLICK + ESC
+    if (filteredSearchTeams.length > 0) {
+      openTeam(filteredSearchTeams[0]);
+      return;
+    }
+
+    if (filteredPlayers.length > 0) {
+      openPlayer(filteredPlayers[0]);
+    }
+  };
+
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape") {
-        setShowSearch(false)
-        setSearch("")
-      }
-    }
+    if (!showSearch) return undefined;
 
-    const handleClick = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setShowSearch(false)
-        setSearch("")
-      }
-    }
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") closeSearch();
+    };
 
-    window.addEventListener("keydown", handleKey)
-    window.addEventListener("mousedown", handleClick)
+    const handleMouseDown = (event) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        closeSearch();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("mousedown", handleMouseDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKey)
-      window.removeEventListener("mousedown", handleClick)
-    }
-  }, [])
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, [showSearch]);
 
-const submitTeam = async () => {
-  try {
-    const res = await fetch("/api/submit-team", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        teamName,
-        faceitLink,
-        contact,
-        note,
-      }),
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      alert(data.error || "Failed to send")
-      return
+  const submitTeam = async () => {
+    if (!teamName.trim() || !faceitLink.trim() || !contact.trim()) {
+      alert("Fill in Team Name, Faceit Link and Contact");
+      return;
     }
 
-    alert("Team submitted successfully!")
+    try {
+      const response = await fetch("/api/submit-team", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          teamName: teamName.trim(),
+          faceitLink: faceitLink.trim(),
+          contact: contact.trim(),
+          note: note.trim(),
+        }),
+      });
 
-    setTeamName("")
-    setFaceitLink("")
-    setContact("")
-    setNote("")
-    setShowModal(false)
+      const data = await response.json();
 
-  } catch (error) {
-    console.error(error)
-    alert("Server error")
-  }
-}
-  
+      if (!response.ok) {
+        alert(data.error || "Failed to send");
+        return;
+      }
+
+      alert("Team submitted successfully!");
+      setTeamName("");
+      setFaceitLink("");
+      setContact("");
+      setNote("");
+      setShowModal(false);
+    } catch (error) {
+      console.error(error);
+      alert("Server error");
+    }
+  };
+
   return (
-    <div className="min-h-screen text-white bg-[#05070a]">
+    <div className="min-h-screen bg-[#05070a] text-white">
+      <div className="mx-auto max-w-7xl px-4 pt-6 md:px-8">
+        <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Team Rankings</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              ESEA team ranking by points
+            </p>
+          </div>
 
-      {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 bg-[#0b0f14]/60 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-
-          <Link
-            to="/"
-            className="text-xl md:text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
-          >
-            Esea Tracker
-          </Link>
-
-          <div className="flex gap-6 text-sm">
-  {["/", "/players", "/Media", "/about"].map((path) => (
-    <Link
-      key={path}
-      to={path}
-      className={`transition ${
-        isActive(path)
-          ? "text-white border-b border-orange-500"
-          : "text-gray-400 hover:text-white"
-      }`}
-    >
-      {path === "/"
-        ? "Rankings"
-        : path === "/players"
-        ? "Players"
-        : path === "/Media"
-        ? "Media"
-        : "About"}
-    </Link>
-  ))}
-</div>
-
-          <div className="flex items-center gap-2">
-
-            {/* SEARCH BUTTON */}
+          <div className="flex gap-2">
             <button
+              type="button"
               onClick={() => setShowSearch(true)}
-              className="p-2 rounded-lg bg-[#0f131a] border border-white/5 text-gray-400 hover:text-white hover:bg-[#121a25] transition"
+              className="flex items-center gap-2 rounded-lg border border-white/5 bg-[#0f131a] px-4 py-2 text-sm text-gray-300 transition hover:bg-[#121a25] hover:text-white"
             >
-              🔍
+              <span aria-hidden="true">🔍</span>
+              Search
             </button>
 
             <button
+              type="button"
               onClick={() => setShowModal(true)}
-              className="bg-[#0f131a] border border-white/5 text-gray-300 px-4 py-2 rounded-lg text-sm hover:bg-[#121a25] hover:text-white transition"
+              className="rounded-lg border border-white/5 bg-[#0f131a] px-4 py-2 text-sm text-gray-300 transition hover:bg-[#121a25] hover:text-white"
             >
               Submit Team
             </button>
-
           </div>
         </div>
-      </nav>
 
-<div className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
-  <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
+          {DIVISIONS.map((division) => (
+            <button
+              type="button"
+              key={division}
+              onClick={() => setSelectedDivision(division)}
+              className={`rounded-lg px-4 py-2 text-sm transition ${
+                selectedDivision === division
+                  ? "bg-orange-500 text-white"
+                  : "border border-white/5 bg-[#0f131a] text-gray-300 hover:bg-[#121a25]"
+              }`}
+            >
+              {division}
+            </button>
+          ))}
+        </div>
+      </div>
 
-    <button
-      onClick={() => setSelectedDivision("All")}
-      className={`px-4 py-2 rounded-lg text-sm transition ${
-        selectedDivision === "All"
-          ? "bg-orange-500 text-white"
-          : "bg-[#0f131a] border border-white/5 text-gray-300 hover:bg-[#121a25]"
-      }`}
-    >
-      All
-    </button>
-
-    {divisions
-      .filter((d) =>
-        d.toLowerCase().includes(divisionSearch.toLowerCase())
-      )
-      .filter((d) => d !== "All")
-      .map((division) => (
-        <button
-          key={division}
-          onClick={() => setSelectedDivision(division)}
-          className={`px-4 py-2 rounded-lg text-sm transition ${
-            selectedDivision === division
-              ? "bg-orange-500 text-white"
-              : "bg-[#0f131a] border border-white/5 text-gray-300 hover:bg-[#121a25]"
-          }`}
-        >
-          {division}
-        </button>
-      ))}
-
-  </div>
-
-
-</div>
-
-      {/* TABLE (UNCHANGED) */}
-      <div className="max-w-7xl mx-auto p-4 md:p-8">
+      <div className="mx-auto max-w-7xl p-4 md:p-8">
         <div className="overflow-x-auto">
           <div className="min-w-[1000px]">
-
-            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] bg-[#0f141a] p-4 text-gray-400 text-sm font-semibold rounded-xl border border-white/5">
+            <div className="grid grid-cols-[80px_2fr_170px_120px_140px] rounded-xl border border-white/5 bg-[#0f141a] p-4 text-sm font-semibold text-gray-400">
               <div>Rank</div>
               <div>Team</div>
               <div>Points</div>
@@ -1731,317 +1694,283 @@ const submitTeam = async () => {
               <div>Division</div>
             </div>
 
-            <div className="space-y-2 mt-3">
-              {filteredTeams.map((team, index) => {
+            <div className="mt-3 space-y-2">
+              {filteredTeams.length === 0 ? (
+                <div className="rounded-xl border border-white/5 bg-[#0c1016] p-8 text-center text-gray-500">
+                  No teams added
+                </div>
+              ) : (
+                filteredTeams.map((team, index) => {
+                  const change = team.change ?? 0;
 
-                const change = team.change ?? 0
+                  let indicator = (
+                    <span className="ml-2 text-xs text-gray-500">•</span>
+                  );
 
-                let indicator = (
-                  <span className="ml-2 text-gray-500 text-xs">•</span>
-                )
-
-                if (change > 0) {
-                  indicator = (
-                    <span className="ml-2 text-green-400 text-xs">
-                      ▲ +{change}
-                    </span>
-                  )
-                } else if (change < 0) {
-                  indicator = (
-                    <span className="ml-2 text-red-400 text-xs">
-                      ▼ {change}
-                    </span>
-                  )
-                }
-
-                return (
-                  <Link
-                    key={team.slug}
-                    to={`/teams/${team.slug}`}
-                    className="
-                      group grid grid-cols-[80px_2fr_170px_120px_140px]
-                      items-center
-                      p-4
-                      bg-[#0c1016]
-                      border border-white/5
-                      rounded-xl
-                      relative overflow-hidden
-                      transition-all duration-300
-                      hover:-translate-y-[3px]
-                      hover:bg-[#121a25]
-                      hover:border-orange-500/20
-                      hover:shadow-[0_18px_45px_rgba(0,0,0,0.75)]
-                      hover:z-10
-                    "
-                  >
-
-                    <div className="text-orange-400 font-bold">
-                      #{index + 1}
-                    </div>
-
-                    <div className="flex items-center gap-3 min-w-0">
-                      <img src={team.flag} className="w-5 h-5" />
-                      <img src={team.logo} className="w-9 h-9" />
-                      <span className="truncate font-semibold group-hover:text-orange-400 transition">
-                        {team.name}
+                  if (change > 0) {
+                    indicator = (
+                      <span className="ml-2 text-xs text-green-400">
+                        ▲ +{change}
                       </span>
-                    </div>
+                    );
+                  } else if (change < 0) {
+                    indicator = (
+                      <span className="ml-2 text-xs text-red-400">
+                        ▼ {change}
+                      </span>
+                    );
+                  }
 
-                    <div className="font-semibold flex items-center">
-                      {team.points}
-                      {indicator}
-                    </div>
+                  return (
+                    <Link
+                      key={team.slug}
+                      to={`/teams/${team.slug}`}
+                      className="group relative grid grid-cols-[80px_2fr_170px_120px_140px] items-center overflow-hidden rounded-xl border border-white/5 bg-[#0c1016] p-4 transition-all duration-300 hover:z-10 hover:-translate-y-[3px] hover:border-orange-500/20 hover:bg-[#121a25] hover:shadow-[0_18px_45px_rgba(0,0,0,0.75)]"
+                    >
+                      <div className="font-bold text-orange-400">
+                        #{index + 1}
+                      </div>
 
-                    <div className="text-gray-300">
-                      {team.record}
-                    </div>
+                      <div className="flex min-w-0 items-center gap-3">
+                        {team.flag ? (
+                          <img src={team.flag} alt="" className="h-5 w-5 object-contain" />
+                        ) : (
+                          <div className="h-5 w-5 rounded bg-white/5" />
+                        )}
 
-                    <div className="text-orange-400 font-medium">
-                      {team.division}
-                    </div>
+                        {team.logo ? (
+                          <img src={team.logo} alt="" className="h-9 w-9 object-contain" />
+                        ) : (
+                          <div className="h-9 w-9 rounded-lg bg-white/5" />
+                        )}
 
-                  </Link>
-                )
-              })}
+                        <span className="truncate font-semibold transition group-hover:text-orange-400">
+                          {team.name}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center font-semibold">
+                        {team.points}
+                        {indicator}
+                      </div>
+
+                      <div className="text-gray-300">
+                        {team.record || "0-0"}
+                      </div>
+
+                      <div className="font-medium text-orange-400">
+                        {team.division}
+                      </div>
+                    </Link>
+                  );
+                })
+              )}
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* SEARCH (CENTER MODAL - HLTV STYLE) */}
       {showSearch && (
         <div
-          className="fixed inset-0 bg-black/70 flex items-start justify-center pt-28 z-50"
-          onClick={() => {
-            setShowSearch(false)
-            setSearch("")
-          }}
+          className="fixed inset-0 z-[100] flex items-start justify-center bg-black/70 px-4 pt-28"
+          onClick={closeSearch}
         >
           <div
             ref={searchRef}
-            className="w-full max-w-2xl bg-[#0b0f14] border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0b0f14] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
           >
-
-            {/* INPUT */}
-            <div className="p-4 border-b border-white/5">
+            <div className="border-b border-white/5 p-4">
               <input
                 autoFocus
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(event) => setSearch(event.target.value)}
                 onKeyDown={handleSearchKey}
-                placeholder="Search..."
-                className="w-full p-3 bg-[#0f131a] text-white outline-none rounded-lg"
+                placeholder="Search teams or players..."
+                className="w-full rounded-lg bg-[#0f131a] p-3 text-white outline-none placeholder:text-gray-600 focus:ring-1 focus:ring-orange-500"
               />
             </div>
 
-            {/* RESULTS */}
-            <div className="max-h-[400px] overflow-y-auto">
+            <div className="max-h-[450px] overflow-y-auto">
+              {!normalizedSearch && (
+                <div className="p-6 text-center text-gray-500">
+                  Enter a team or player name
+                </div>
+              )}
 
               {filteredSearchTeams.length > 0 && (
-  <>
-    <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">
-      Teams
-    </div>
+                <>
+                  <div className="px-4 py-2 text-xs font-semibold uppercase text-gray-500">
+                    Teams
+                  </div>
 
-    {filteredSearchTeams.map((team) => (
-      <div
-        key={team.slug}
-        onClick={() => {
-          navigate(`/teams/${team.slug}`)
-          setShowSearch(false)
-          setSearch("")
-        }}
-        className="flex items-center gap-3 p-3 hover:bg-[#121a25] cursor-pointer transition border-b border-white/5"
-      >
-        <img src={team.flag} className="w-5 h-5" />
-        <img src={team.logo} className="w-8 h-8" />
+                  {filteredSearchTeams.map((team) => (
+                    <button
+                      type="button"
+                      key={team.slug}
+                      onClick={() => openTeam(team)}
+                      className="flex w-full items-center gap-3 border-b border-white/5 p-3 text-left transition hover:bg-[#121a25]"
+                    >
+                      {team.flag ? (
+                        <img src={team.flag} alt="" className="h-5 w-5 object-contain" />
+                      ) : (
+                        <div className="h-5 w-5 rounded bg-white/5" />
+                      )}
 
-        <div className="flex flex-col">
-          <span className="text-white font-medium">
-            {team.name}
-          </span>
+                      {team.logo ? (
+                        <img src={team.logo} alt="" className="h-9 w-9 object-contain" />
+                      ) : (
+                        <div className="h-9 w-9 rounded-lg bg-white/5" />
+                      )}
 
-          <span className="text-xs text-gray-400">
-            {team.division} • {team.points} pts
-          </span>
-        </div>
-      </div>
-    ))}
-  </>
-)}
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <span className="truncate font-medium text-white">
+                          {team.name}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          {team.division} · {team.points} pts
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </>
+              )}
 
-{filteredPlayers.length > 0 && (
-  <>
-    <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">
-      Players
-    </div>
+              {filteredPlayers.length > 0 && (
+                <>
+                  <div className="px-4 py-2 text-xs font-semibold uppercase text-gray-500">
+                    Players
+                  </div>
 
-    {filteredPlayers.map((player) => (
-      <div
-        key={player.nickname}
-        onClick={() => {
-          navigate(`/players/${player.nickname}`)
-          setShowSearch(false)
-          setSearch("")
-        }}
-        className="flex items-center justify-between p-3 hover:bg-[#121a25] cursor-pointer transition border-b border-white/5"
-      >
-        <div className="flex items-center gap-3 relative">
+                  {filteredPlayers.map((player) => {
+                    const playerTeam = teams.find(
+                      (team) =>
+                        team.name === player.team ||
+                        team.slug === player.team
+                    );
 
-  {/* Background Team Logo */}
-  <div className="relative w-12 h-12 flex items-center justify-center overflow-hidden rounded-lg">
+                    return (
+                      <button
+                        type="button"
+                        key={player.nickname}
+                        onClick={() => openPlayer(player)}
+                        className="flex w-full items-center justify-between border-b border-white/5 p-3 text-left transition hover:bg-[#121a25]"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg bg-white/5">
+                            {playerTeam?.logo && (
+                              <img
+                                src={playerTeam.logo}
+                                alt=""
+                                className="absolute inset-0 h-full w-full scale-125 object-contain opacity-20"
+                              />
+                            )}
 
-    <img
-      src={
-        teams.find(
-          (t) => t.name === player.team || t.slug === player.team
-        )?.logo
-      }
-      alt=""
-      className="
-        absolute
-        inset-0
-        w-full
-        h-full
-        object-contain
-        opacity-20
-        scale-125
-      "
-    />
+                            <img
+                              src={`/players/${player.nickname}.png`}
+                              alt={player.nickname}
+                              onError={(event) => {
+                                event.currentTarget.onerror = null;
+                                event.currentTarget.src = "/player-silhouette.png";
+                              }}
+                              className="relative z-10 h-12 w-12 object-cover"
+                            />
+                          </div>
 
-    {/* Player Avatar */}
-    <img
-      src={`/players/${player.nickname}.png`}
-      alt={player.nickname}
-      onError={(e) => {
-        e.currentTarget.src = "/player-silhouette.png";
-      }}
-      className="
-        relative
-        z-10
-        w-12
-        h-12
-        object-cover
-      "
-    />
+                          <div className="flex flex-col">
+                            <span className="font-medium text-white">
+                              {player.nickname}
+                            </span>
+                            <span className="text-xs text-gray-400">
+                              {player.team || "No team"}
+                            </span>
+                          </div>
+                        </div>
 
-  </div>
+                        {typeof player.rating === "number" && (
+                          <span className="text-sm font-medium text-green-400">
+                            {player.rating.toFixed(2)}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </>
+              )}
 
-  <div className="flex flex-col">
-    <span className="text-white font-medium">
-      {player.nickname}
-    </span>
-
-    <span className="text-xs text-gray-400">
-      {player.team}
-    </span>
-  </div>
-
-</div>
-
-{player.rating && (
-  <span className="text-sm text-green-400 font-medium">
-    {player.rating.toFixed(2)}
-  </span>
-)}
-      </div>
-    ))}
-  </>
-)}
-
-              {search &&
- filteredTeams.length === 0 &&
- filteredPlayers.length === 0 && (
-  <div className="p-6 text-center text-gray-500">
-    No results found
-  </div>
-)}
-
+              {normalizedSearch &&
+                filteredSearchTeams.length === 0 &&
+                filteredPlayers.length === 0 && (
+                  <div className="p-6 text-center text-gray-500">
+                    No results found
+                  </div>
+                )}
             </div>
           </div>
         </div>
       )}
 
-      
-
-      {/* MODAL (UNCHANGED) */}
       {showModal && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4"
           onClick={() => setShowModal(false)}
         >
           <div
-            className="bg-[#0b0f14] p-6 rounded-xl w-[400px]"
-            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-[400px] rounded-xl border border-white/10 bg-[#0b0f14] p-6"
+            onClick={(event) => event.stopPropagation()}
           >
-            <h2 className="text-lg mb-2">Submit Team</h2>
+            <h2 className="mb-4 text-lg font-semibold">Submit Team</h2>
 
             <input
-              className="w-full p-2 mb-2 bg-[#121a25] rounded"
+              className="mb-2 w-full rounded bg-[#121a25] p-2 outline-none focus:ring-1 focus:ring-orange-500"
               placeholder="Team Name"
               value={teamName}
-              onChange={(e) => setTeamName(e.target.value)}
+              onChange={(event) => setTeamName(event.target.value)}
             />
 
             <input
-              className="w-full p-2 mb-2 bg-[#121a25] rounded"
+              className="mb-2 w-full rounded bg-[#121a25] p-2 outline-none focus:ring-1 focus:ring-orange-500"
               placeholder="Faceit Link"
               value={faceitLink}
-              onChange={(e) => setFaceitLink(e.target.value)}
+              onChange={(event) => setFaceitLink(event.target.value)}
             />
 
             <input
-              className="w-full p-2 mb-2 bg-[#121a25] rounded"
+              className="mb-2 w-full rounded bg-[#121a25] p-2 outline-none focus:ring-1 focus:ring-orange-500"
               placeholder="Contact"
               value={contact}
-              onChange={(e) => setContact(e.target.value)}
+              onChange={(event) => setContact(event.target.value)}
             />
 
             <textarea
-              className="w-full p-2 mb-3 bg-[#121a25] rounded"
+              className="mb-3 min-h-24 w-full resize-y rounded bg-[#121a25] p-2 outline-none focus:ring-1 focus:ring-orange-500"
               placeholder="Note"
               value={note}
-              onChange={(e) => setNote(e.target.value)}
+              onChange={(event) => setNote(event.target.value)}
             />
 
-            <button
-              onClick={submitTeam}
-              className="bg-orange-500 w-full py-2 rounded hover:bg-orange-600 transition"
-            >
-              Send
-            </button>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setShowModal(false)}
+                className="w-full rounded border border-white/5 bg-[#121a25] py-2 text-gray-300 transition hover:bg-[#17202c]"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={submitTeam}
+                className="w-full rounded bg-orange-500 py-2 font-medium transition hover:bg-orange-600"
+              >
+                Send
+              </button>
+            </div>
           </div>
         </div>
       )}
-
-{/* FEEDBACK BUTTON */}
-<a
-  href="https://t.me/LisssTzz1" // <- замени на свой Telegram
-  target="_blank"
-  rel="noopener noreferrer"
-  className="
-    fixed
-    bottom-4
-    right-4
-    bg-orange-500
-    hover:bg-orange-600
-    text-white
-    font-bold
-    px-4
-    py-3
-    rounded-full
-    shadow-lg
-    transition-colors
-    z-50
-  "
->
-  💬 Feedback
-</a>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default RankingsPage;

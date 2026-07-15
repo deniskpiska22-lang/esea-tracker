@@ -11,48 +11,7 @@ function MediaPage() {
 
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-10 relative">
 
-        {/* HEADER */}
-        <div className="mb-10">
-          <div className="flex gap-6 text-sm mt-6 border-b border-[#243041] pb-4">
-
-  <Link
-    to="/"
-    className="text-gray-400 hover:text-white transition"
-  >
-    Rankings
-  </Link>
-
-  <Link
-    to="/players"
-    className="text-gray-400 hover:text-white transition"
-  >
-    Players
-  </Link>
-
-  <Link
-    to="/Media"
-    className="text-white border-b border-orange-500 pb-1"
-  >
-    Media
-  </Link>
-
-  <Link
-    to="/about"
-    className="text-gray-400 hover:text-white transition"
-  >
-    About
-  </Link>
-
-</div>
-
-          <h1 className="text-4xl md:text-5xl font-bold mt-6">
-            Media
-          </h1>
-
-          <p className="text-gray-400 mt-3 max-w-2xl">
-            Community updates, team highlights and CIS scene insights.
-          </p>
-        </div>
+       
 
         {/* FEED */}
         <div className="space-y-5">

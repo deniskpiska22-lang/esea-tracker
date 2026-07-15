@@ -45,19 +45,26 @@ console.log(teams.map(t => t.slug))
       : team.points ?? 0
 
   // 🧠 STATS SAFE
-  const wins = team.stats?.wins ?? 0
-  const losses = team.stats?.losses ?? 0
-  const total = wins + losses
+ const teamMatches = matchesData
+  .filter((match) => match.teamSlug === slug)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const winrate = total ? Math.round((wins / total) * 100) : 0
-  const teamMatches = matchesData
-  .filter(match => match.teamSlug === slug)
-  .sort(
-    (a, b) =>
-      new Date(b.date) - new Date(a.date)
-  );
+const wins = teamMatches.filter(
+  (match) => match.won === true || match.result === "WIN"
+).length;
+
+const losses = teamMatches.filter(
+  (match) => match.won === false || match.result === "LOSS"
+).length;
+
+const total = wins + losses;
+
+const winrate =
+  total > 0 ? Math.round((wins / total) * 100) : 0;
 
 const recentForm = teamMatches.slice(0, 5);
+
+
 
 const mapStats = Object.values(
   teamMatches.reduce((acc, match) => {
@@ -90,15 +97,7 @@ const mapStats = Object.values(
   return (
   <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
 
-    {/* HEADER */}
-    <Link
-      to="/"
-      className="inline-flex items-center gap-3 mb-8 hover:opacity-80 transition"
-    >
-      <span className="text-2xl md:text-3xl font-black text-orange-500">
-        ESEA Tracker
-      </span>
-    </Link>
+
 
     {/* HERO */}
     <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-[#1f2a3a] bg-[#111823] shadow-2xl">

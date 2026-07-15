@@ -1,94 +1,76 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Analytics } from "@vercel/analytics/react"
-import MatchesPage from "./pages/MatchesPage";
-import ScrollToTop from "./components/ScrollToTop";
-import StatsPage from "./pages/StatsPage";
-import MatchPage from "./pages/MatchPage";
-import PlayerPage from "./pages/PlayerPage.jsx";
-import TopPlayersPage from "./pages/TopPlayersPage";
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import {
   BrowserRouter,
   Routes,
   Route,
-} from 'react-router-dom'
+} from "react-router-dom";
 
-import './index.css'
+import "./index.css";
 
-import App from './App'
-import TeamPage from './pages/TeamPage'
-import About from './pages/About'
-import MediaPage from './pages/MediaPage'
+import App from "./App";
+import Home from "./pages/Home";
+import RankingsPage from "./pages/RankingsPage";
+import TeamPage from "./pages/TeamPage";
+import About from "./pages/About";
+import MediaPage from "./pages/MediaPage";
+import MatchesPage from "./pages/MatchesPage";
+import ScrollToTop from "./components/ScrollToTop";
+import StatsPage from "./pages/StatsPage";
+import MatchPage from "./pages/MatchPage";
+import PlayerPage from "./pages/PlayerPage";
+import TopPlayersPage from "./pages/TopPlayersPage";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-
     <BrowserRouter>
-
-    <ScrollToTop />
+      <ScrollToTop />
 
       <Routes>
+        <Route element={<App />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/rankings" element={<RankingsPage />} />
 
-        {/* HOME */}
-        <Route
-          path="/"
-          element={<App />}
-        />
+          <Route path="/teams/:slug" element={<TeamPage />} />
+<Route path="/team/:slug" element={<TeamPage />} />
 
-        {/* TEAM PAGE */}
-        <Route
-          path="/teams/:slug"
-          element={<TeamPage />}
-        />
+<Route path="/about" element={<About />} />
+<Route path="/media" element={<MediaPage />} />
 
-        {/* ABOUT */}
-        <Route
-          path="/about"
-          element={<About />}
-        />
+          <Route
+            path="/team/:slug/matches"
+            element={<MatchesPage />}
+          />
 
-        {/* MEDIA */}
-        <Route
-          path="/media"
-          element={<MediaPage />}
-        />
+          <Route
+            path="/team/:slug/stats"
+            element={<StatsPage />}
+          />
 
-        {/* Matches */}
-        <Route
-  path="/team/:slug/matches"
-  element={<MatchesPage />}
-/>
+          <Route
+            path="/team/:slug/matches/:matchId"
+            element={<MatchPage />}
+          />
 
-{/* Stats */}
-<Route
-  path="/team/:slug/stats"
-  element={<StatsPage />}
-/>
+          <Route
+            path="/players/:nickname"
+            element={<PlayerPage />}
+          />
 
-<Route
-  path="/team/:slug/matches/:matchId"
-  element={<MatchPage />}
-/>
+          <Route
+            path="/matches/:matchId"
+            element={<MatchPage />}
+          />
 
-<Route
-  path="/team/:slug"
-  element={<TeamPage />}
-/>
-
-<Route path="/players/:nickname"
- element={<PlayerPage />} />
-
- <Route path="/matches/:matchId" 
- element={<MatchPage />} />
-
- <Route path="/players" element={<TopPlayersPage />} />
-
+          <Route
+            path="/players"
+            element={<TopPlayersPage />}
+          />
+        </Route>
       </Routes>
 
       <Analytics />
-
     </BrowserRouter>
-
   </React.StrictMode>
-)
+);

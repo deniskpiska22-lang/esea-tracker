@@ -10,46 +10,7 @@ function About() {
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 relative">
 
-        {/* HEADER */}
-        <div className="flex items-center justify-between mb-10">
-
-          <div className="flex gap-6 text-sm mt-8 border-b border-[#243041] pb-4">
-
-  <Link
-    to="/"
-    className="text-gray-400 hover:text-white transition"
-  >
-    Rankings
-  </Link>
-
-  <Link
-    to="/players"
-    className="text-gray-400 hover:text-white transition"
-  >
-    Players
-  </Link>
-
-  <Link
-    to="/Media"
-    className="text-gray-400 hover:text-white transition"
-  >
-    Media
-  </Link>
-
-  <Link
-    to="/about"
-    className="text-white border-b border-orange-500 pb-1"
-  >
-    About
-  </Link>
-
-</div>
-
-          <div className="text-sm text-gray-500">
-            About Project
-          </div>
-
-        </div>
+        
 
         {/* TITLE BLOCK */}
         <div className="mb-12">
