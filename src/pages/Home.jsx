@@ -778,7 +778,7 @@ function Home() {
 
         <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)_320px]">
           <aside className="order-2 space-y-4 xl:order-1">
-            <section className="flex h-[520px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
+            <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Upcoming"
                 subtitle="Ближайшие матчи"
@@ -873,7 +873,7 @@ function Home() {
           </div>
 
           <aside className="order-3 space-y-4">
-            <section className="flex h-[520px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
+            <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Recent results"
                 subtitle="Последние завершённые игры"
