@@ -18,3 +18,10 @@ on public.matches
 for select
 to anon, authenticated
 using (true);
+
+-- Recommended indexes for automatic match feeds.
+create index if not exists matches_status_scheduled_at_idx
+on public.matches (status, scheduled_at);
+
+create index if not exists matches_finished_at_idx
+on public.matches (finished_at desc);
