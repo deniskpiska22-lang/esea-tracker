@@ -1794,20 +1794,7 @@ faceitTeamId: "9639ff38-ab1e-4498-a506-09834166e958",
     players: ["f4ad", "lyufi", "Norm115", "_z1ro", "henkisuru"],
     matches: [],
   },
-                                                              {
-    slug: "goldrashers",
-    name: "GoldRashers",
-    faceitTeamId: "fd7422ac-2bdb-45d7-b4b0-7f5206f15f63",
-    logo: "/logos/hodes.png",
-    flag: "/flags/bel.svg",
-    division: "Entry",
-    stats: {
-      wins: 0,
-      losses: 0,
-    },
-    players: ["fxrgxt10", "s1ner-", "susa", "akari999", "waqvs"],
-    matches: [],
-  },
+
                                                                 {
     slug: "flame-guardians",
     name: "Flame Guardians",
