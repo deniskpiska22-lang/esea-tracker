@@ -834,11 +834,7 @@ function Home() {
                     Новости лиги появятся здесь
                   </h3>
 
-                  <p className="mt-2 text-sm leading-6 text-gray-600">
-                    Подключим posts.js или отдельный
-                    парсер новостей и сделаем полноценную
-                    ленту.
-                  </p>
+                  
                 </article>
 
                 <div className="bg-[#0d1218]">
