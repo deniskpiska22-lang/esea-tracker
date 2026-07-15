@@ -6,6 +6,8 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseSecretKey =
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
 const faceitApiKey = process.env.FACEIT_API_KEY;
+const faceitSessionCookie =
+  process.env.FACEIT_SESSION_COOKIE || process.env.FACEIT_STATS_COOKIE || "";
 const mode = process.argv.includes("--live") ? "live" : "full";
 
 if (!supabaseUrl || !supabaseSecretKey) {
@@ -69,6 +71,49 @@ function statValue(stats, keys, fallback = 0) {
     if (value !== undefined && value !== null && value !== "") return Number(value);
   }
   return fallback;
+}
+
+function normalizeInternalMatchStats(payload) {
+  const entries = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload?.items)
+      ? payload.items
+      : Array.isArray(payload?.rounds)
+        ? payload.rounds
+        : [];
+
+  // FACEIT stats/v3 commonly returns one series-summary item with matchRound=0
+  // followed by one item per actually played map. The summary must not be
+  // counted as an additional map.
+  let mapEntries = entries.filter((entry) => Number(entry?.matchRound) > 0);
+  if (!mapEntries.length) {
+    mapEntries = entries.filter((entry) => {
+      const teamsRaw = Array.isArray(entry?.teams) ? entry.teams : [];
+      if (!entry?.map || teamsRaw.length < 2) return false;
+      const scores = teamsRaw.slice(0, 2).map((team) => Number(team?.score || 0));
+      return Math.max(...scores) > Number(entry?.bestOf || 1);
+    });
+  }
+
+  return mapEntries
+    .map((entry, index) => {
+      const teamsNormalized = (Array.isArray(entry?.teams) ? entry.teams : [])
+        .slice(0, 2)
+        .map((team) => ({
+          teamId: team?.teamId || team?.team_id || null,
+          teamName: team?.teamName || team?.team_name || null,
+          score: Number(team?.score || 0),
+        }));
+      const map = cleanMapName(entry?.map || entry?.mapName);
+      if (!map || teamsNormalized.length < 2) return null;
+      return {
+        map,
+        order: Number(entry?.matchRound || index + 1),
+        teams: teamsNormalized,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.order - b.order);
 }
 
 function normalizeOfficialMatchStats(payload) {
@@ -478,6 +523,46 @@ async function refreshActive() {
 }
 
 
+async function fetchFinishedMatchStats(matchId) {
+  const officialUrl = `https://open.faceit.com/data/v4/matches/${encodeURIComponent(matchId)}/stats`;
+
+  try {
+    const payload = await fetchJson(officialUrl, {
+      headers: {
+        Authorization: `Bearer ${faceitApiKey}`,
+        Accept: "application/json",
+      },
+    });
+    const normalized = normalizeOfficialMatchStats(payload);
+    if (normalized.length) return { source: "data-v4", rounds: normalized };
+  } catch (error) {
+    const isMissing = String(error?.message || "").startsWith("404 ");
+    if (!isMissing) throw error;
+    if (!faceitSessionCookie) {
+      throw new Error(
+        "official stats returned 404 and FACEIT_SESSION_COOKIE is not configured"
+      );
+    }
+  }
+
+  if (!faceitSessionCookie) {
+    return { source: "data-v4", rounds: [] };
+  }
+
+  const internalUrl = `https://www.faceit.com/api/stats/v3/matches/${encodeURIComponent(matchId)}`;
+  const payload = await fetchJson(internalUrl, {
+    headers: {
+      Accept: "application/json",
+      Cookie: faceitSessionCookie,
+      Referer: `https://www.faceit.com/en/cs2/room/${encodeURIComponent(matchId)}`,
+      "User-Agent": "Mozilla/5.0 ESEA-Tracker/1.0",
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+
+  return { source: "stats-v3", rounds: normalizeInternalMatchStats(payload) };
+}
+
 async function syncFinishedMapStats() {
   const { data: matches, error } = await supabase
     .from("matches")
@@ -493,11 +578,8 @@ async function syncFinishedMapStats() {
   let failed = 0;
   await runPool(matches || [], async (match) => {
     try {
-      const payload = await fetchJson(
-        `https://open.faceit.com/data/v4/matches/${encodeURIComponent(match.id)}/stats`,
-        { headers: { Authorization: `Bearer ${faceitApiKey}`, Accept: "application/json" } }
-      );
-      const mapScores = mapsForMatch(normalizeOfficialMatchStats(payload), match);
+      const statsResult = await fetchFinishedMatchStats(match.id);
+      const mapScores = mapsForMatch(statsResult.rounds, match);
       const patch = {
         map_scores: mapScores,
         maps: mapScores.map((item) => item.map),
@@ -507,8 +589,13 @@ async function syncFinishedMapStats() {
       };
       const { error: updateError } = await supabase.from("matches").update(patch).eq("id", match.id);
       if (updateError) throw updateError;
-      if (mapScores.length) synced += 1;
-      else empty += 1;
+      if (mapScores.length) {
+        synced += 1;
+        console.log(`Map stats synced ${match.id}: ${mapScores.length} map(s) via ${statsResult.source}`);
+      } else {
+        empty += 1;
+        console.warn(`Map stats empty ${match.id} via ${statsResult.source}`);
+      }
     } catch (syncError) {
       failed += 1;
       console.warn(`Map stats failed ${match.id}: ${syncError.message}`);
