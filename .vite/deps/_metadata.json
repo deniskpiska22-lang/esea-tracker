@@ -1,60 +1,8 @@
 {
-  "hash": "e8a7d071",
+  "hash": "5df39c67",
   "configHash": "88e7fccf",
-  "lockfileHash": "93003167",
-  "browserHash": "cb5b9cc2",
-  "optimized": {
-    "@supabase/supabase-js": {
-      "src": "../../node_modules/@supabase/supabase-js/dist/index.mjs",
-      "file": "@supabase_supabase-js.js",
-      "fileHash": "a71d50c0",
-      "needsInterop": false
-    },
-    "@vercel/analytics/react": {
-      "src": "../../node_modules/@vercel/analytics/dist/react/index.mjs",
-      "file": "@vercel_analytics_react.js",
-      "fileHash": "5be6075f",
-      "needsInterop": false
-    },
-    "react-dom/client": {
-      "src": "../../node_modules/react-dom/client.js",
-      "file": "react-dom_client.js",
-      "fileHash": "41d98749",
-      "needsInterop": true
-    },
-    "react-router-dom": {
-      "src": "../../node_modules/react-router-dom/dist/index.mjs",
-      "file": "react-router-dom.js",
-      "fileHash": "a5d3cbda",
-      "needsInterop": false
-    },
-    "react": {
-      "src": "../../node_modules/react/index.js",
-      "file": "react.js",
-      "fileHash": "8e80c669",
-      "needsInterop": true
-    },
-    "react/jsx-dev-runtime": {
-      "src": "../../node_modules/react/jsx-dev-runtime.js",
-      "file": "react_jsx-dev-runtime.js",
-      "fileHash": "f9bd0dcd",
-      "needsInterop": true
-    },
-    "recharts": {
-      "src": "../../node_modules/recharts/es6/index.js",
-      "file": "recharts.js",
-      "fileHash": "1d249d7c",
-      "needsInterop": false
-    }
-  },
-  "chunks": {
-    "react-B6BdZLWZ": {
-      "file": "react-B6BdZLWZ.js",
-      "isDynamicEntry": false
-    },
-    "react-dom-ChMvxt5E": {
-      "file": "react-dom-ChMvxt5E.js",
-      "isDynamicEntry": false
-    }
-  }
+  "lockfileHash": "df376934",
+  "browserHash": "624878a2",
+  "optimized": {},
+  "chunks": {}
 }
