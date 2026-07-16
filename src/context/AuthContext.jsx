@@ -23,11 +23,21 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("id, username, display_name, avatar_url, created_at, updated_at")
-      .eq("id", userId)
-      .maybeSingle();
+ const { data, error } = await supabase
+  .from("profiles")
+  .select(`
+    id,
+    username,
+    display_name,
+    avatar_url,
+    bio,
+    country_code,
+    favorite_team_slug,
+    created_at,
+    updated_at
+  `)
+  .eq("id", userId)
+  .maybeSingle();
 
     if (error) {
       console.error("Failed to load profile:", error);

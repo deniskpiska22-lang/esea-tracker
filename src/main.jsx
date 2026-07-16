@@ -25,6 +25,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { AuthProvider } from "./context/AuthContext";
+import UserProfilePage from "./pages/UserProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -94,6 +96,17 @@ ReactDOM.createRoot(
               path="/players"
               element={<TopPlayersPage />}
             />
+
+            <Route
+  path="/profile/:username"
+  element={<UserProfilePage />}
+/>
+
+<Route
+  path="/profile/:username/edit"
+  element={<EditProfilePage />}
+/>
+
           </Route>
         </Routes>
 

@@ -86,10 +86,18 @@ function App() {
                       <div className="truncate font-bold">{profile?.username || "Пользователь"}</div>
                       <div className="truncate text-xs text-gray-500">{user.email}</div>
                     </div>
+                    <Link
+                      to={`/profile/${encodeURIComponent(profile?.username || "")}`}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full px-4 py-3 text-left text-sm font-bold text-white transition hover:bg-white/5"
+                    >
+                      Мой профиль
+                    </Link>
+
                     <button
                       type="button"
                       onClick={handleSignOut}
-                      className="w-full px-4 py-3 text-left text-sm font-bold text-red-300 transition hover:bg-white/5"
+                      className="w-full border-t border-[#243041] px-4 py-3 text-left text-sm font-bold text-red-300 transition hover:bg-white/5"
                     >
                       Выйти
                     </button>

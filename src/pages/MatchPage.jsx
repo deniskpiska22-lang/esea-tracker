@@ -18,6 +18,7 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { supabase } from "../lib/supabaseClient";
+import MatchComments from "../components/MatchComments";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -511,6 +512,7 @@ function MapStatisticsCard({
 }
 
 function VoteCard({ matchId, team1, team2 }) {
+  const location = useLocation();
   const [user, setUser] = useState(null);
   const [votes, setVotes] = useState([]);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
@@ -1885,6 +1887,8 @@ function MatchPage() {
           </div>
         </div>
         )}
+
+        <MatchComments matchId={matchId} />
       </div>
     </div>
   );
