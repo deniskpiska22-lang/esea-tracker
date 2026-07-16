@@ -685,10 +685,17 @@ function VoteCard({ matchId, team1, team2 }) {
             </div>
 
             {!user && !error && (
-              <div className="mt-5 rounded-xl border border-[#243041] bg-[#0b0f14] p-3 text-center text-sm text-gray-400">
-                Log in to vote
-              </div>
-            )}
+  <div className="mt-5 rounded-xl border border-[#243041] bg-[#0b0f14] p-3 text-center text-sm text-gray-400">
+    <Link
+      to="/login"
+      state={{ from: location }}
+      className="font-semibold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
+    >
+      Log in
+    </Link>{" "}
+    to vote
+  </div>
+)}
 
             {hasVoted && (
               <div className="mt-5 text-center text-sm font-semibold text-green-400">
