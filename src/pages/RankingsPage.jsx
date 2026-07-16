@@ -6,28 +6,8 @@ import playerAverageRatings from "../data/playerAverageRatings.json";
 
 // Добавь сюда свои команды.
 const teams = [
-  {
-    rank: 1,
-    slug: "cybershoke-prospects",
-    logo: "/logos/cybershoke.png",
-    name: "CYBERSHOKE Prospects",
-    flag: "/flags/russia.svg",
-    points: 374,
-    
-    record: "0-0",
-    division: "Advanced",
-  },
-  {
-    rank: 2,
-    slug: "eternal-premium",
-    logo: "/logos/ep.png",
-    name: "eternal premium",
-    flag: "/flags/russia.svg",
-    points: 377,
-    
-    record: "0-0",
-    division: "Advanced",
-  },
+
+
   {
     rank: 3,
     slug: "new-vision",
@@ -162,9 +142,9 @@ const teams = [
   },
                {
     rank: 15,
-    slug: "ex-peep",
+    slug: "nexora",
     logo: "/logos/peep.png",
-    name: "ex-PeeP",
+    name: "Nexora",
     flag: "/flags/russia.svg",
     points: 325,
     
@@ -250,9 +230,9 @@ const teams = [
   },
                             {
     rank: 23,
-    slug: "roc-team",
-    logo: "/logos/rocteam.png",
-    name: "ROC Team",
+    slug: "hugo",
+    logo: "/logos/hugo.png",
+    name: "hugo",
     flag: "/flags/russia.svg",
     points: 314,
     record: "0-0",
@@ -328,7 +308,7 @@ const teams = [
                               {
     rank: 30,
     slug: "375",
-    logo: "/logos/platoon.png",
+    logo: "/logos/375.png",
     name: "375",
     flag: "/flags/bel.svg",
     points: 312,
@@ -358,39 +338,6 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                  {
-    rank: 33,
-    slug: "olympia",
-    logo: "/logos/olympia.png",
-    name: "OLYMPIA",
-    flag: "/flags/russia.svg",
-    points: 306,
-    
-    record: "0-0",
-    division: "Main",
-      },
-                                  {
-    rank: 34,
-    slug: "clutch-studio-agency",
-    name: "Clutch Studio Agency",
-    flag: "/flags/russia.svg",
-    logo: "/logos/clutch-studio-agensy.png",
-    points: 321,
-    
-    record: "0-0",
-    division: "Entry",
-      },
-                                  {
-    rank: 35,
-    slug: "fartflow",
-    logo: "/logos/fartflow.png",
-    name: "FartFlow",
-    flag: "/flags/russia.svg",
-    points: 290,
-    
-    record: "0-0",
-    division: "Entry",
-      },
                                   {
     rank: 36,
     slug: "bhemanha",
@@ -446,17 +393,7 @@ const teams = [
     record: "0-0",
     division: "Main",
       },
-                                      {
-    rank: 42,
-    slug: "fortis",
-    logo: "/logos/fortis.png",
-    name: "FORTIS",
-    flag: "/flags/russia.svg",
-    points: 281,
-    
-    record: "0-0",
-    division: "Entry",
-  },
+
                                       {
     rank: 43,
     slug: "redtigersgaming",
@@ -468,17 +405,7 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                      {
-    rank: 44,
-   slug: "kislyakk",
-   logo: "/logos/kislyak.png",
-    name: "KISLYAKK",
-    flag: "/flags/russia.svg",
-    points: 276,
-    
-    record: "0-0",
-    division: "Main",
-  },
+
                                        {
     rank: 45,
      slug: "wobuzhidao",
@@ -492,9 +419,9 @@ const teams = [
   },
                                        {
     rank: 46,
-    slug: "p7ay3r5",
-    logo: "/logos/p7.png",
-    name: "P7AY3R5",
+    slug: "m33",
+    logo: "/logos/m33.png",
+    name: "M33",
     flag: "/flags/russia.svg",
     points: 273,
     
@@ -523,28 +450,8 @@ const teams = [
     record: "0-0",
     division: "Advanced",
   },
-                                          {
-    rank: 49,
-    slug: "aeternum",
-    logo: "/logos/aeternum.png",
-    name: "AETERNUM",
-    flag: "/flags/russia.svg",
-    points: 255,
-    
-    record: "0-0",
-    division: "Main",
-  },
-                                            {
-    rank: 50,
-    slug: "donatrix",
-    logo: "/logos/donatrix.png",
-    name: "Donatrix",
-    flag: "/flags/russia.svg",
-    points: 267,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
+
                                             {
     rank: 51,
     slug: "sakura",
@@ -556,23 +463,13 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                            {
-    rank: 52,
-    slug: "allinners",
-    logo: "/logos/allinners.png",
-    name: "ALLINNERS",
-    flag: "/flags/kaz.svg",
-    points: 262,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
   
                                           {
     rank: 53,
-    slug: "godbless",
+    slug: "k1ll3rz",
     logo: "/logos/godbles.png",
-    name: "Godbless",
+    name: "k1LL3RZ",
     flag: "/flags/russia.svg",
     points: 254,
     record: "0-0",
@@ -589,27 +486,7 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                            {
-    rank: 55,
-    slug: "m33",
-    logo: "/logos/m33.png",
-    name: "M33",
-    flag: "/flags/russia.svg",
-    points: 250,
-    record: "0-0",
-    division: "Main",
-  },
-                                              {
-    rank: 56,
-    slug: "prem3adpotbi",
-    logo: "/logos/prem.png",
-    name: "Prem3aDPOTbl",
-    flag: "/flags/russia.svg",
-    points: 263,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
                                                 {
     rank: 57,
     slug: "team-ka6anbi",
@@ -621,17 +498,7 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-                                                {
-    rank: 58,
-    slug: "wapa",
-    logo: "/logos/wapa.png",
-    name: "WaPa",
-    flag: "/flags/russia.svg",
-    points: 254,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
                                                   {
     rank: 59,
     slug: "infernals",
@@ -641,15 +508,7 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                                  {
-    rank: 60,
-    slug: "dzungarz",
-    name: "dzungarz",
-    flag: "/flags/russia.svg",
-    points: 240,
-    record: "0-0",
-    division: "Main",
-  },
+
                                                     {
     rank: 61,
     slug: "sunthraw",
@@ -693,17 +552,7 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                                      {
-    rank: 65,
-    slug: "turtles",
-    logo: "/logos/turtles.png",
-    name: "TURTLES",
-    flag: "/flags/russia.svg",
-    points: 245,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
                                                       {
     rank: 66,
     slug: "teamworkers",
@@ -748,49 +597,6 @@ const teams = [
     record: "0-0",
     division: "Entry",
   },
-                                                        {
-    rank: 70,
-    slug: "vexar",
-    logo: "/logos/vexar.png",
-    name: "Vexar",
-    flag: "/flags/russia.svg",
-    points: 227,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                          {
-    rank: 71,
-    slug: "prius",
-    logo: "/logos/prius.png",
-    name: "Prius",
-    flag: "/flags/russia.svg",
-    points: 221,
-   
-    record: "0-0",
-    division: "Entry",
-  },
-                                                          {
-    rank: 72,
-    slug: "goodjob",
-    logo: "/logos/good.png",
-    name: "GoodJob",
-    flag: "/flags/bel.svg",
-    points: 225,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                          {
-    rank: 73,
-    slug: "lanklan",
-    name: "LanKlan",
-    flag: "/flags/russia.svg",
-    points: 225,
-    
-    record: "0-0",
-    division: "Entry",
-  },
                                                           {
     rank: 74,
     slug: "fate",
@@ -824,26 +630,6 @@ const teams = [
     record: "0-0",
     division: "Advanced",
   },
-                                                            {
-    rank: 77,
-    slug: "homo-sapiens",
-    name: "homo_sapiens",
-    flag: "/flags/russia.svg",
-    points: 225,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                            {
-    rank: 78,
-    slug: "cerberus",
-    logo: "/logos/cerberus.png",
-    name: "CERBERUS",
-    flag: "/flags/russia.svg",
-    points: 206,
-    record: "0-0",
-    division: "Entry",
-  },
                                                         {
     rank: 79,
     slug: "ablaze-team",
@@ -873,29 +659,7 @@ const teams = [
     points: 217,
     
     record: "0-0",
-    division: "Intermediate",
-  },
-                                                            {
-    rank: 82,
-    slug: "all-eyes-on-me",
-    logo: "/logos/alleyes.png",
-    name: "all eyes on me",
-    flag: "/flags/russia.svg",
-    points: 227,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
-                                                            {
-    rank: 83,
-    slug: "lqnely",
-    logo: "/logos/iqneli.png",
-    name: "lqnely",
-    flag: "/flags/russia.svg",
-    points: 198,
-   
-    record: "0-0",
-    division: "Intermediate",
+    division: "Entry",
   },
                                                             {
     rank: 84,
@@ -908,17 +672,7 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-                                                            {
-    rank: 85,
-    slug: "clickbate",
-    logo: "/logos/clickbate.png",
-    name: "ClickBate",
-    flag: "/flags/russia.svg",
-    points: 201,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
+
                                                               {
     rank: 86,
     slug: "fak1e-lab",
@@ -951,45 +705,14 @@ const teams = [
     record: "0-0",
     division: "Entry",
   },
-                                                              {
-    rank: 89,
-    slug: "eternal",
-    logo: "/logos/eternal.png",
-    name: "eternal",
-    flag: "/flags/russia.svg",
-    points: 187,
-   
-    record: "0-0",
-    division: "Entry",
-  },
+
                                                               {
     rank: 90,
-    slug: "fusion",
+    slug: "bcgame-academy",
     logo: "/logos/fusion.png",
-    name: "FUSION",
+    name: "BCGame Academy",
     flag: "/flags/russia.svg",
     points: 185,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                {
-    rank: 91,
-    slug: "posle-zavoda",
-    name: "POSLE ZAVODA",
-    flag: "/flags/russia.svg",
-    points: 184,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                {
-    rank: 92,
-    slug: "thekomyakz",
-    logo: "/logos/thekom.png",
-    name: "THEKOMYAKZ",
-    flag: "/flags/russia.svg",
-    points: 181,
     
     record: "0-0",
     division: "Entry",
@@ -1005,33 +728,11 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-                                                                {
-    rank: 94,
-    slug: "s1wka-team",
-    logo: "/logos/siwka.png",
-    name: "S1WKA Team",
-    flag: "/flags/russia.svg",
-    points: 184,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                  {
-    rank: 95,
-    slug: "flame-guardians",
-    logo: "/logos/flameguardians.png",
-    name: "Flame Guardians",
-    flag: "/flags/russia.svg",
-    points: 196,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
                                                               {
     rank: 96,
-    slug: "ne-priehali",
+    slug: "agency-of-violence",
     logo: "/logos/nepriehali.png",
-    name: "NE PRIEHALI",
+    name: "Agency of Violence",
     flag: "/flags/russia.svg",
     points: 165,
     
@@ -1040,22 +741,11 @@ const teams = [
   },
                                                                 {
     rank: 97,
-    slug: "magic-fairies",
+    slug: "ewe_posidim",
     logo: "/logos/magic.png",
-    name: "Magic Fairies",
+    name: "ewe_posidim",
     flag: "/flags/russia.svg",
     points: 183,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
-                                                                {
-    rank: 98,
-    slug: "youth4ez",
-    logo: "/logos/you.png",
-    name: "YouTH4eZ",
-    flag: "/flags/russia.svg",
-    points: 162,
     
     record: "0-0",
     division: "Intermediate",
@@ -1071,17 +761,6 @@ const teams = [
     division: "Intermediate",
   },
                                                                 {
-    rank: 100,
-    slug: "donstu-youngsters",
-    logo: "/logos/donstuyoung.png",
-    name: "DONSTU YOUNGSTERS",
-    flag: "/flags/russia.svg",
-    points: 186,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
-                                                                {
     rank: 101,
     slug: "quazar-school",
     logo: "/logos/quazarschool.png",
@@ -1091,48 +770,6 @@ const teams = [
     
     record: "0-0",
     division: "Intermediate",
-  },
-                                                                {
-    rank: 102,
-    slug: "gsq",
-    logo: "/logos/gsq.png",
-    name: "GSQ",
-    flag: "/flags/russia.svg",
-    points: 189,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
-                                                                  {
-    rank: 103,
-    slug: "c0b0r",
-    name: "c0b0r",
-    flag: "/flags/russia.svg",
-    points: 163,
-    
-    record: "0-0",
-    division: "Intermediate",
-  },
-                                                                  {
-    rank: 104,
-    slug: "eca-esports",
-    logo: "/logos/eca.png",
-    name: "ECA Esports",
-    flag: "/flags/russia.svg",
-    points: 165,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                  {
-    rank: 105,
-    slug: "pivstar",
-    name: "pivstar",
-    flag: "/flags/russia.svg",
-    points: 164,
-    
-    record: "0-0",
-    division: "Entry",
   },
                                                                   {
     rank: 106,
@@ -1145,16 +782,6 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-                                                                  {
-    rank: 107,
-    slug: "urat",
-    name: "UraT",
-    flag: "/flags/russia.svg",
-    points: 169,
-    
-    record: "0-0",
-    division: "Entry",
-  },
                                                                     {
     rank: 108,
     slug: "unknowns",
@@ -1166,28 +793,7 @@ const teams = [
     record: "0-0",
     division: "Main",
   },
-                                                                    {
-    rank: 109,
-    slug: "dodg3rs",
-    logo: "/logos/dodg.png",
-    name: "dodg3rs",
-    flag: "/flags/russia.svg",
-    points: 144,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                    {
-    rank: 110,
-    slug: "sixseven",
-    logo: "/logos/sixseven.png",
-    name: "SixSeven",
-    flag: "/flags/russia.svg",
-    points: 153,
-    
-    record: "0-0",
-    division: "Entry",
-  },
+
                                                                       {
     rank: 111,
     slug: "stubborn-boys",
@@ -1210,50 +816,6 @@ const teams = [
     record: "0-0",
     division: "Entry",
   },
-                                                                        {
-    rank: 113,
-    slug: "mephi",
-    logo: "/logos/mephi.png",
-    name: "MEPHI",
-    flag: "/flags/russia.svg",
-    points: 149,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                        {
-    rank: 114,
-    slug: "zbk",
-    logo: "/logos/zbk.png",
-    name: "ZBK",
-    flag: "/flags/russia.svg",
-    points: 131,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                          {
-    rank: 115,
-    slug: "ha-ncuxotponhbix",
-    logo: "/logos/ha.png",
-    name: "Ha ncuxoTPonHblx",
-    flag: "/flags/russia.svg",
-    points: 127,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                          {
-    rank: 116,
-    slug: "kynetic",
-    logo: "/logos/kynetic.png",
-    name: "Kynetic",
-    flag: "/flags/russia.svg",
-    points: 133,
-    
-    record: "0-0",
-    division: "Entry",
-  },
                                                                           {
     rank: 117,
     slug: "outsiders",
@@ -1265,17 +827,7 @@ const teams = [
     record: "0-0",
     division: "Entry",
   },
-                                                                          {
-    rank: 118,
-    slug: "m0nkeys",
-    logo: "/logos/monkeys.png",
-    name: "m0nkeys",
-    flag: "/flags/russia.svg",
-    points: 129,
-   
-    record: "0-0",
-    division: "Entry",
-  },
+
                                                                           {
     rank: 119,
     slug: "1minute",
@@ -1298,28 +850,6 @@ const teams = [
     record: "0-0",
     division: "Entry",
   },
-                                                                            {
-    rank: 121,
-    slug: "inputlag-enjoyers",
-    logo: "/logos/input.png",
-    name: "inputlag enjoyers",
-    flag: "/flags/russia.svg",
-    points: 123,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                            {
-    rank: 122,
-    slug: "justtag",
-    name: "JustTag",
-    flag: "/flags/russia.svg",
-    logo: "/logos/just.png",
-    points: 113,
-    
-    record: "0-0",
-    division: "Entry",
-  },
                                                                               {
     rank: 123,
     slug: "leetcase",
@@ -1331,50 +861,6 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-                                                                              {
-    rank: 124,
-    slug: "w1nks",
-    logo: "/logos/winks.png",
-    name: "W1NKS",
-    flag: "/flags/russia.svg",
-    points: 110,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                              {
-    rank: 125,
-    slug: "bestaimmers",
-    logo: "/logos/best.png",
-    name: "bestAIMMERS",
-    flag: "/flags/russia.svg",
-    points: 108,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                              {
-    rank: 126,
-    slug: "the-relics",
-    logo: "/logos/relics.png",
-    name: "The Relics",
-    flag: "/flags/russia.svg",
-    points: 113,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                                {
-    rank: 127,
-    slug: "kagen",
-    logo: "/logos/kagen.png",
-    name: "KageN",
-    flag: "/flags/russia.svg",
-    points: 103,
-    
-    record: "0-0",
-    division: "Entry",
-  },
                                                                                 {
     rank: 128,
     slug: "back2back",
@@ -1382,17 +868,6 @@ const teams = [
     flag: "/flags/russia.svg",
     logo: "/logos/b2b.png",
     points: 117,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                                {
-    rank: 129,
-    slug: "full-dobro",
-    logo: "/logos/full.png",
-    name: "Full Dobro",
-    flag: "/flags/russia.svg",
-    points: 100,
     
     record: "0-0",
     division: "Entry",
@@ -1416,17 +891,6 @@ const teams = [
     name: "Emlight",
     flag: "/flags/russia.svg",
     points: 97,
-    
-    record: "0-0",
-    division: "Entry",
-  },
-                                                                                    {
-    rank: 132,
-    slug: "cybercom",
-    logo: "/logos/cybercom.png",
-    name: "CYBERCOM",
-    flag: "/flags/russia.svg",
-    points: 96,
     
     record: "0-0",
     division: "Entry",

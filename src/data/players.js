@@ -396,7 +396,7 @@ const players = {
       "rating": 1.01
     }
   ],
-  "ex-peep": [
+  "nexora": [
     {
       "nickname": "vrnskY",
       "elo": 3301,
@@ -612,7 +612,7 @@ const players = {
       "rating": 1.28
     }
   ],
-  "roc-team": [
+  "hugo": [
     {
       "nickname": "rovvdy",
       "elo": 3388,
@@ -693,7 +693,7 @@ const players = {
       "rating": 1.16
     }
   ],
-  "platoon-beta": [
+  "375": [
     {
       "nickname": "ArmanZwerrr",
       "elo": 2735,
@@ -884,9 +884,9 @@ const players = {
   ],
   "wobuzhidao": [
     {
-      "nickname": "hate_system",
-      "elo": 2855,
-      "rating": 1.04
+      "nickname": "-jujuworld",
+      "elo": 3661,
+      
     },
     {
       "nickname": "KOT_XAMEP",
@@ -894,9 +894,9 @@ const players = {
       "rating": 1.04
     },
     {
-      "nickname": "0b535510n",
-      "elo": 3452,
-      "rating": 0.75
+      "nickname": "tessska",
+      "elo": 3148,
+      
     },
     {
       "nickname": "jzx",
@@ -909,7 +909,7 @@ const players = {
       "rating": 1.08
     }
   ],
-  "p7ay3r5": [
+  "m33": [
     {
       "nickname": "ulqu1ora",
       "elo": 3616,
@@ -1017,7 +1017,7 @@ const players = {
       "rating": 1.07
     }
   ],
-  "godbless": [
+  "k1ll3rz": [
     {
       "nickname": "YURk3N",
       "elo": 2979,
@@ -1069,33 +1069,6 @@ const players = {
       "nickname": "-auxaa",
       "elo": 2972,
       "rating": 0.91
-    }
-  ],
-  "m33": [
-    {
-      "nickname": "Groysss",
-      "elo": 2841,
-      "rating": 0.99
-    },
-    {
-      "nickname": "Jagermaister",
-      "elo": 3197,
-      "rating": 0.91
-    },
-    {
-      "nickname": "Kapibaris",
-      "elo": 3374,
-      "rating": 0.86
-    },
-    {
-      "nickname": "-Re333",
-      "elo": 2875,
-      "rating": 0.91
-    },
-    {
-      "nickname": "deceyced",
-      "elo": 3336,
-      "rating": 0.92
     }
   ],
   "graf-monte-cristo": [
@@ -1746,7 +1719,7 @@ const players = {
       "rating": 1.02
     }
   ],
-  "magic-fairies": [
+  "ewe_posidim": [
     {
       "nickname": "npoe6aJlu",
       "elo": 3024,
@@ -2552,7 +2525,7 @@ const players = {
       "rating": 1.06
     }
   ],
-  "fusion": [
+  "bcgame-academy": [
     {
       "nickname": "s1mkl",
       "elo": 2801,
