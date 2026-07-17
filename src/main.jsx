@@ -27,6 +27,8 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { AuthProvider } from "./context/AuthContext";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import VerificationRequestPage from "./pages/VerificationRequestPage";
+import AdminVerificationPage from "./pages/AdminVerificationPage";
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -105,6 +107,16 @@ ReactDOM.createRoot(
 <Route
   path="/profile/:username/edit"
   element={<EditProfilePage />}
+/>
+
+<Route
+  path="/profile/:username/verification"
+  element={<VerificationRequestPage />}
+/>
+
+<Route
+  path="/admin/verifications"
+  element={<AdminVerificationPage />}
 />
 
           </Route>
