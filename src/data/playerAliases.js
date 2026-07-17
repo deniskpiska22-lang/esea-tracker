@@ -59,6 +59,7 @@ const playerAliases = {
     "--turbo",
     "BOTNPC228",
     "turbojkee",
+    "dcuhaiunid22",
     "nbnvgfdstr11"
     ],
     xddd1111: [
@@ -79,7 +80,8 @@ const playerAliases = {
     "-ka1d0",
     "-Zzen"
     ],
-    "ceomanhattan": [
+    "z3ndy": [
+      "z3ndy",
     "ceomanhattan",
     "-Zzen",
     "krasnuglaza",
@@ -809,7 +811,14 @@ const playerAliases = {
     "y9wonky",
     "shiz0phr3nia",
     ],
-    
+        "flawix": [
+    "flawix",
+    "Ayri_i21",
+    ],
+         "mmmotya": [
+    "mmmotya",
+    "4wfulthings",
+    ],
 };
 
 export default playerAliases;

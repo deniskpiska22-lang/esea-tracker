@@ -110,7 +110,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["4wfulthings", "seberya", "Gashhhhi4", "tronic", "ceomanhattan"],
+    players: ["mmmotya", "seberya", "Gashhhhi4", "tronic", "z3ndy"],
     matches: [],
   },
     {
@@ -180,7 +180,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["vrnskY", "ekztasii", "-Denzi", "LE4R", "tokyoshi"],
+    players: ["vrnskY", "-matusik", "Pryan3ch-", "LE4R", "tokyoshi"],
     matches: [],
   },
       {
@@ -479,7 +479,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["-sh1k1mos1k", "IaNeR", "tsy", "nukleos143", "-auxaa"],
+    players: ["-sh1k1mos1k", "IaNeR", "sensless9", "nukleos143", "xsiyz"],
     matches: [],
   },
 
@@ -753,7 +753,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["xddd1111", "turbo67", "-k9ppy", "whisperr23", "Sa1nTy"],
+    players: ["xddd1111", "turbo67", "danistzz", "whisperr23", "Norwi-"],
     matches: [],
   },
                                 {

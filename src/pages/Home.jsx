@@ -5,6 +5,7 @@ import upcomingMatches from "../data/upcomingMatches";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";
+import PartnersSection from "../components/PartnersSection";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
