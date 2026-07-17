@@ -555,22 +555,6 @@ const teams = [
     players: ["JIAPWICHNIK", "uwantcatchme", "marcelobraun", "yogiri", "_f0ma"],
     matches: [],
   },
-
-          {
-    slug: "infernals",
-    name: "iNFERNALES",
-    faceitTeamId: "b424eab5-cca1-404a-a6a1-96d052ea9114",
-    logo: "iNFR",
-    flag: "/flags/russia.svg",
-    division: "Main",
-    stats: {
-      wins: 0,
-      losses: 0,
-    },
-    players: ["paketAAA", "rmboo0_o", "Acura-", "strongkid666", "yoshimaaa"],
-    matches: [],
-  },
-
           {
     slug: "sunthraw",
     name: "SUNTHRAW",

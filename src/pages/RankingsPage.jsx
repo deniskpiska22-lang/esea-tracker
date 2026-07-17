@@ -498,17 +498,6 @@ const teams = [
     record: "0-0",
     division: "Intermediate",
   },
-
-                                                  {
-    rank: 59,
-    slug: "infernals",
-    name: "iNFERNALES",
-    flag: "/flags/russia.svg",
-    points: 242,
-    record: "0-0",
-    division: "Main",
-  },
-
                                                     {
     rank: 61,
     slug: "sunthraw",
