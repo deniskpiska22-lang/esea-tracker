@@ -6,6 +6,90 @@ import { supabase } from "../lib/supabaseClient";
 
 const FINISHED_STATUSES = ["FINISHED", "MATCH_STATUS_FINISHED"];
 
+function getSeasonNumber(value = "") {
+  const normalized = String(value).toLowerCase();
+
+  const patterns = [
+    /(?:season|сезон)\s*#?\s*(\d{1,3})/i,
+    /\bs\s*[-#]?\s*(\d{1,3})\b/i,
+    /\bs(\d{1,3})\b/i,
+  ];
+
+  for (const pattern of patterns) {
+    const match = normalized.match(pattern);
+
+    if (match) {
+      return Number(match[1]);
+    }
+  }
+
+  return 0;
+}
+
+function getStagePriority(value = "") {
+  const normalized = String(value).toLowerCase();
+
+  if (
+    normalized.includes("final") ||
+    normalized.includes("финал")
+  ) {
+    return 500;
+  }
+
+  if (
+    normalized.includes("playoff") ||
+    normalized.includes("play-off") ||
+    normalized.includes("плей-офф") ||
+    normalized.includes("плей офф")
+  ) {
+    return 400;
+  }
+
+  if (
+    normalized.includes("relegation") ||
+    normalized.includes("demotion")
+  ) {
+    return 300;
+  }
+
+  if (
+    normalized.includes("regular") ||
+    normalized.includes("group") ||
+    normalized.includes("групп")
+  ) {
+    return 200;
+  }
+
+  return 100;
+}
+
+function compareSeasons(firstSeason, secondSeason) {
+  const seasonDifference =
+    getSeasonNumber(secondSeason) -
+    getSeasonNumber(firstSeason);
+
+  if (seasonDifference !== 0) {
+    return seasonDifference;
+  }
+
+  const stageDifference =
+    getStagePriority(secondSeason) -
+    getStagePriority(firstSeason);
+
+  if (stageDifference !== 0) {
+    return stageDifference;
+  }
+
+  return String(secondSeason).localeCompare(
+    String(firstSeason),
+    "ru",
+    {
+      numeric: true,
+      sensitivity: "base",
+    }
+  );
+}
+
 function normalizeName(value = "") {
   return value.replace(/\s+/g, "").toLowerCase();
 }
@@ -210,11 +294,27 @@ function MatchesPage() {
   }, [databaseRows, mapFilter, team]);
 
   const groupedMatches = useMemo(() => {
-    return teamMatches.reduce((groups, match) => {
-      if (!groups[match.season]) groups[match.season] = [];
-      groups[match.season].push(match);
-      return groups;
+    const groups = teamMatches.reduce((result, match) => {
+      if (!result[match.season]) {
+        result[match.season] = [];
+      }
+
+      result[match.season].push(match);
+      return result;
     }, {});
+
+    return Object.entries(groups)
+      .sort(([firstSeason], [secondSeason]) =>
+        compareSeasons(firstSeason, secondSeason)
+      )
+      .map(([season, matches]) => ({
+        season,
+        matches: [...matches].sort(
+          (first, second) =>
+            new Date(second.timestamp) -
+            new Date(first.timestamp)
+        ),
+      }));
   }, [teamMatches]);
 
   return (
@@ -266,7 +366,7 @@ function MatchesPage() {
 
         {!loading &&
           !errorMessage &&
-          Object.entries(groupedMatches).map(([season, matches]) => (
+          groupedMatches.map(({ season, matches }) => (
             <div key={season} className="mb-10">
               <div className="mb-4 rounded-xl bg-[#1a2330] p-4">
                 <h2 className="text-xl font-bold">{season}</h2>
