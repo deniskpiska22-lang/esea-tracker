@@ -35,6 +35,28 @@ function normalizeName(value = "") {
   return value.replace(/\s+/g, "").toLowerCase();
 }
 
+function normalizeLogoUrl(value) {
+  if (!value || typeof value !== "string") {
+    return null;
+  }
+
+  const url = value.trim();
+
+  if (!url) {
+    return null;
+  }
+
+  if (url.startsWith("//")) {
+    return `https:${url}`;
+  }
+
+  if (url.startsWith("http://")) {
+    return url.replace("http://", "https://");
+  }
+
+  return url;
+}
+
 function findTeamByName(name) {
   if (!name) return null;
 
@@ -79,10 +101,9 @@ function normalizeTeam(team) {
       localTeam?.slug ||
       team.slug ||
       null,
-    logo:
-      localTeam?.logo ||
-      team.logo ||
-      null,
+    logo: normalizeLogoUrl(
+      localTeam?.logo || team.logo
+    ),
     points:
       localTeam?.points ??
       team.points ??
@@ -392,6 +413,8 @@ function getTopTeams(limit = 8) {
 }
 
 function Logo({ team, size = "md" }) {
+  const [imageError, setImageError] = useState(false);
+
   const sizeClass =
     size === "sm"
       ? "h-7 w-7"
@@ -399,14 +422,22 @@ function Logo({ team, size = "md" }) {
       ? "h-12 w-12"
       : "h-9 w-9";
 
-  if (!team?.logo) {
+  const initials =
+    team?.name
+      ?.trim()
+      .split(/\s+/)
+      .map((word) => word[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "?";
+
+  if (!team?.logo || imageError) {
     return (
       <div
         className={`${sizeClass} flex shrink-0 items-center justify-center rounded-md border border-white/5 bg-[#151a21] text-[10px] font-black text-gray-500`}
+        title={team?.name || "Unknown team"}
       >
-        {team?.name
-          ?.slice(0, 2)
-          .toUpperCase() || "?"}
+        {initials}
       </div>
     );
   }
@@ -414,8 +445,18 @@ function Logo({ team, size = "md" }) {
   return (
     <img
       src={team.logo}
-      alt={team.name}
+      alt={`${team.name} logo`}
       className={`${sizeClass} shrink-0 object-contain`}
+      loading="lazy"
+      referrerPolicy="no-referrer"
+      onError={() => {
+        console.warn("FACEIT logo failed:", {
+          team: team?.name,
+          logo: team?.logo,
+        });
+
+        setImageError(true);
+      }}
     />
   );
 }
