@@ -57,6 +57,8 @@ export default function VerificationRequestPage() {
     useState("");
   const [teamRole, setTeamRole] =
     useState("player");
+  const [birthDate, setBirthDate] =
+    useState("");
   const [contactEmail, setContactEmail] =
     useState("");
   const [contactHandle, setContactHandle] =
@@ -157,6 +159,10 @@ export default function VerificationRequestPage() {
         ? "player"
         : "coach"
     );
+
+    if (nextType !== "player") {
+      setBirthDate("");
+    }
   }
 
   async function handleSubmit(event) {
@@ -167,6 +173,51 @@ export default function VerificationRequestPage() {
     if (!teamSlug) {
       setError("Выберите команду.");
       return;
+    }
+
+    if (accountType === "player") {
+      if (!birthDate) {
+        setError("Укажите дату рождения игрока.");
+        return;
+      }
+
+      const parsedBirthDate = new Date(
+        `${birthDate}T00:00:00`
+      );
+      const today = new Date();
+
+      if (
+        Number.isNaN(
+          parsedBirthDate.getTime()
+        ) ||
+        parsedBirthDate > today
+      ) {
+        setError("Укажите корректную дату рождения.");
+        return;
+      }
+
+      let age =
+        today.getFullYear() -
+        parsedBirthDate.getFullYear();
+      const monthDifference =
+        today.getMonth() -
+        parsedBirthDate.getMonth();
+
+      if (
+        monthDifference < 0 ||
+        (monthDifference === 0 &&
+          today.getDate() <
+            parsedBirthDate.getDate())
+      ) {
+        age -= 1;
+      }
+
+      if (age < 10 || age > 70) {
+        setError(
+          "Дата рождения выглядит некорректно."
+        );
+        return;
+      }
     }
 
     if (!contactEmail.trim()) {
@@ -191,6 +242,10 @@ export default function VerificationRequestPage() {
           p_team_slug: teamSlug,
           p_account_type: accountType,
           p_team_role: teamRole,
+          p_birth_date:
+            accountType === "player"
+              ? birthDate
+              : null,
           p_contact_email:
             contactEmail.trim(),
           p_contact_handle:
@@ -396,6 +451,35 @@ export default function VerificationRequestPage() {
                 </label>
               </div>
 
+              {accountType === "player" && (
+                <div className="rounded-3xl border border-orange-500/15 bg-orange-500/[0.035] p-5">
+                  <label className="block">
+                    <span className="mb-2 block text-sm font-black text-gray-200">
+                      Дата рождения
+                    </span>
+
+                    <input
+                      type="date"
+                      value={birthDate}
+                      disabled={hasPending}
+                      max={new Date()
+                        .toISOString()
+                        .slice(0, 10)}
+                      onChange={(event) =>
+                        setBirthDate(
+                          event.target.value
+                        )
+                      }
+                      className="w-full rounded-2xl border border-[#3a4658] bg-[#0a1018] px-4 py-3.5 text-white outline-none focus:border-orange-500 disabled:opacity-60 sm:max-w-sm"
+                    />
+
+                    <p className="mt-3 text-xs leading-5 text-gray-500">
+                      Дата рождения нужна для скаутинга и проверки возрастной категории. Она не публикуется в открытом профиле.
+                    </p>
+                  </label>
+                </div>
+              )}
+
               <div className="grid gap-5 md:grid-cols-2">
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
@@ -530,6 +614,20 @@ export default function VerificationRequestPage() {
                           teamRole
                       )?.label || "Роль"}
                     </div>
+
+                    {accountType === "player" &&
+                      birthDate && (
+                        <div className="mt-1 text-xs text-gray-600">
+                          Дата рождения:{" "}
+                          {new Intl.DateTimeFormat(
+                            "ru-RU"
+                          ).format(
+                            new Date(
+                              `${birthDate}T00:00:00`
+                            )
+                          )}
+                        </div>
+                      )}
                   </div>
                 </div>
               </div>
