@@ -819,6 +819,10 @@ const playerAliases = {
     "mmmotya",
     "4wfulthings",
     ],
+             "mecry": [
+    "mecry",
+    "CleanJackson",
+    ],
 };
 
 export default playerAliases;

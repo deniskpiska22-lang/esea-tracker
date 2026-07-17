@@ -82,7 +82,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["-yummy", "CleanJackson", "--DeDe", "kinyx", "str0ngl"],
+    players: ["-yummy", "mecry", "--DeDe", "kinyx", "str0ngl"],
     matches: [],
   },
     {
