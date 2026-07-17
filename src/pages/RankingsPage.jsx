@@ -1099,24 +1099,6 @@ function RankingsPage() {
             </p>
           </div>
 
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => setShowSearch(true)}
-              className="flex items-center gap-2 rounded-lg border border-white/5 bg-[#0f131a] px-4 py-2 text-sm text-gray-300 transition hover:bg-[#121a25] hover:text-white"
-            >
-              <span aria-hidden="true">🔍</span>
-              Search
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setShowModal(true)}
-              className="rounded-lg border border-white/5 bg-[#0f131a] px-4 py-2 text-sm text-gray-300 transition hover:bg-[#121a25] hover:text-white"
-            >
-              Submit Team
-            </button>
-          </div>
         </div>
 
         <div className="flex flex-wrap gap-2">
