@@ -265,10 +265,10 @@ function ProfessionalCard({
             <Link
               to={`/profile/${encodeURIComponent(
                 profile.username
-              )}/edit`}
+              )}/verification`}
               className="mt-5 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
             >
-              Настроить профиль
+              Пройти верификацию
             </Link>
           )}
         </div>
@@ -381,13 +381,16 @@ function ProfessionalCard({
                 <Link
                   to={`/profile/${encodeURIComponent(
                     profile.username
-                  )}/edit`}
-                  className="mt-6 inline-flex rounded-xl border border-[#41516a] px-5 py-2.5 text-sm font-black text-gray-300 transition hover:border-orange-500/40 hover:text-orange-300"
+                  )}/verification`}
+                  className="mt-6 inline-flex rounded-xl border border-orange-500/30 bg-orange-500/10 px-5 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
                 >
                   {profile.verification_status ===
                   "pending"
-                    ? "Открыть заявку"
-                    : "Пройти верификацию"}
+                    ? "Посмотреть заявку"
+                    : profile.verification_status ===
+                        "rejected"
+                      ? "Отправить повторно"
+                      : "Пройти верификацию"}
                 </Link>
               )}
           </div>

@@ -15,51 +15,6 @@ import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
 import teams from "../data/teams";
 
-const ACCOUNT_TYPES = [
-  {
-    value: "fan",
-    title: "Фанат",
-    description:
-      "Обычный профиль без профессиональной принадлежности.",
-  },
-  {
-    value: "player",
-    title: "Игрок",
-    description:
-      "Профессиональный или полупрофессиональный игрок.",
-  },
-  {
-    value: "staff",
-    title: "Team Staff",
-    description:
-      "Тренер, менеджер или аналитик команды.",
-  },
-];
-
-const ROLE_OPTIONS = {
-  fan: [],
-  player: [
-    {
-      value: "player",
-      label: "Player",
-    },
-  ],
-  staff: [
-    {
-      value: "coach",
-      label: "Coach",
-    },
-    {
-      value: "manager",
-      label: "Manager",
-    },
-    {
-      value: "analyst",
-      label: "Analyst",
-    },
-  ],
-};
-
 function getInitials(profile, displayName) {
   const source =
     displayName ||
@@ -132,6 +87,29 @@ function FieldLabel({
   );
 }
 
+const STATUS_META = {
+  verified: {
+    label: "Подтверждено",
+    classes:
+      "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
+  },
+  pending: {
+    label: "Ожидает проверки",
+    classes:
+      "border-amber-500/25 bg-amber-500/10 text-amber-300",
+  },
+  rejected: {
+    label: "Заявка отклонена",
+    classes:
+      "border-red-500/25 bg-red-500/10 text-red-300",
+  },
+  none: {
+    label: "Не подтверждено",
+    classes:
+      "border-gray-500/20 bg-gray-500/10 text-gray-400",
+  },
+};
+
 export default function EditProfilePage() {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -143,12 +121,6 @@ export default function EditProfilePage() {
     refreshProfile,
   } = useAuth();
 
-  const [accountType, setAccountType] =
-    useState("fan");
-  const [teamSlug, setTeamSlug] =
-    useState("");
-  const [teamRole, setTeamRole] =
-    useState("");
   const [displayName, setDisplayName] =
     useState("");
   const [bio, setBio] = useState("");
@@ -200,15 +172,6 @@ export default function EditProfilePage() {
       profile.avatar_url || ""
     );
     setAvatarBroken(false);
-    setAccountType(
-      profile.account_type || "fan"
-    );
-    setTeamSlug(
-      profile.team_slug || ""
-    );
-    setTeamRole(
-      profile.team_role || ""
-    );
   }, [profile]);
 
   const sortedTeams = useMemo(
@@ -231,44 +194,12 @@ export default function EditProfilePage() {
     [favoriteTeamSlug, sortedTeams]
   );
 
-  const professionalTeam = useMemo(
-    () =>
-      sortedTeams.find(
-        (team) =>
-          team.slug === teamSlug
-      ) || null,
-    [teamSlug, sortedTeams]
-  );
+  const verificationStatus =
+    profile?.verification_status || "none";
 
-  const availableRoles =
-    ROLE_OPTIONS[accountType] || [];
-
-  const showProfessionalFields =
-    accountType !== "fan";
-
-  function handleAccountTypeChange(
-    nextType
-  ) {
-    setAccountType(nextType);
-
-    if (nextType === "fan") {
-      setTeamSlug("");
-      setTeamRole("");
-      return;
-    }
-
-    if (nextType === "player") {
-      setTeamRole("player");
-      return;
-    }
-
-    if (
-      nextType === "staff" &&
-      teamRole === "player"
-    ) {
-      setTeamRole("");
-    }
-  }
+  const statusMeta =
+    STATUS_META[verificationStatus] ||
+    STATUS_META.none;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -297,61 +228,11 @@ export default function EditProfilePage() {
       return;
     }
 
-    if (
-      showProfessionalFields &&
-      !teamSlug
-    ) {
-      setError(
-        "Выберите команду для профессионального профиля."
-      );
-      return;
-    }
-
-    if (
-      showProfessionalFields &&
-      !teamRole
-    ) {
-      setError(
-        "Выберите роль в команде."
-      );
-      return;
-    }
-
     setSaving(true);
     setError("");
     setSuccess("");
 
     try {
-      const currentVerificationStatus =
-        profile.verification_status ||
-        "none";
-
-      const professionalDataChanged =
-        accountType !==
-          (profile.account_type ||
-            "fan") ||
-        teamSlug !==
-          (profile.team_slug || "") ||
-        teamRole !==
-          (profile.team_role || "");
-
-      let nextVerificationStatus =
-        currentVerificationStatus;
-
-      if (accountType === "fan") {
-        nextVerificationStatus =
-          "none";
-      } else if (
-        professionalDataChanged ||
-        currentVerificationStatus ===
-          "none" ||
-        currentVerificationStatus ===
-          "rejected"
-      ) {
-        nextVerificationStatus =
-          "pending";
-      }
-
       const { error: updateError } =
         await supabase
           .from("profiles")
@@ -366,18 +247,6 @@ export default function EditProfilePage() {
               favoriteTeamSlug || null,
             avatar_url:
               avatarUrl.trim() || null,
-            account_type:
-              accountType,
-            team_slug:
-              accountType === "fan"
-                ? null
-                : teamSlug || null,
-            team_role:
-              accountType === "fan"
-                ? null
-                : teamRole || null,
-            verification_status:
-              nextVerificationStatus,
             updated_at:
               new Date().toISOString(),
           })
@@ -485,7 +354,7 @@ export default function EditProfilePage() {
                   </h1>
 
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50/60">
-                    Обновите личную информацию, любимую команду и профессиональный статус.
+                    Здесь редактируются только личные данные. Команда и роль подтверждаются через отдельную заявку.
                   </p>
                 </div>
               </div>
@@ -632,142 +501,49 @@ export default function EditProfilePage() {
 
             <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
               <SectionHeader
-                eyebrow="Competitive identity"
+                eyebrow="Professional verification"
                 title="Профессиональный профиль"
-                description="Выберите тип аккаунта, команду и роль. Изменения профессиональных данных отправят профиль на повторную проверку."
+                description="Команду, роль и статус нельзя менять вручную. Они обновляются после проверки заявки администратором."
               />
 
-              <div className="space-y-6 p-5 md:p-6">
-                <div>
-                  <FieldLabel
-                    title="Тип аккаунта"
-                    hint="Выберите вариант, который соответствует вашему статусу"
-                  />
-
-                  <div className="grid gap-3 md:grid-cols-3">
-                    {ACCOUNT_TYPES.map(
-                      (option) => {
-                        const active =
-                          accountType ===
-                          option.value;
-
-                        return (
-                          <button
-                            key={
-                              option.value
-                            }
-                            type="button"
-                            onClick={() =>
-                              handleAccountTypeChange(
-                                option.value
-                              )
-                            }
-                            className={`rounded-2xl border p-4 text-left transition ${
-                              active
-                                ? "border-orange-500/60 bg-orange-500/10 shadow-[0_0_0_1px_rgba(249,115,22,0.12)]"
-                                : "border-[#2b394b] bg-[#0a1018] hover:border-[#41516a]"
-                            }`}
-                          >
-                            <div
-                              className={`font-black ${
-                                active
-                                  ? "text-orange-300"
-                                  : "text-white"
-                              }`}
-                            >
-                              {option.title}
-                            </div>
-
-                            <div className="mt-2 text-xs leading-5 text-gray-600">
-                              {
-                                option.description
-                              }
-                            </div>
-                          </button>
-                        );
-                      }
-                    )}
+              <div className="p-5 md:p-6">
+                <div
+                  className={`rounded-2xl border p-4 ${statusMeta.classes}`}
+                >
+                  <div className="font-black">
+                    {statusMeta.label}
                   </div>
+
+                  <p className="mt-2 text-sm opacity-80">
+                    {verificationStatus ===
+                    "verified"
+                      ? "Команда и роль подтверждены администрацией."
+                      : verificationStatus ===
+                          "pending"
+                        ? "Ваша заявка находится на проверке."
+                        : verificationStatus ===
+                            "rejected"
+                          ? "Заявку можно исправить и отправить повторно."
+                          : "Отправьте заявку, чтобы подтвердить связь с командой."}
+                  </p>
                 </div>
 
-                {showProfessionalFields && (
-                  <div className="grid gap-5 rounded-3xl border border-orange-500/15 bg-orange-500/[0.035] p-5 md:grid-cols-2">
-                    <label className="block">
-                      <FieldLabel
-                        title="Команда"
-                        hint="Команда, которую вы представляете"
-                      />
-
-                      <select
-                        value={teamSlug}
-                        onChange={(event) =>
-                          setTeamSlug(
-                            event.target.value
-                          )
-                        }
-                        className="w-full rounded-2xl border border-[#3a4658] bg-[#0a1018] px-4 py-3.5 text-white outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
-                      >
-                        <option value="">
-                          Выберите команду
-                        </option>
-
-                        {sortedTeams.map(
-                          (team) => (
-                            <option
-                              key={
-                                team.slug
-                              }
-                              value={
-                                team.slug
-                              }
-                            >
-                              {team.name}
-                            </option>
-                          )
-                        )}
-                      </select>
-                    </label>
-
-                    <label className="block">
-                      <FieldLabel
-                        title="Роль"
-                        hint="Ваша роль в составе"
-                      />
-
-                      <select
-                        value={teamRole}
-                        onChange={(event) =>
-                          setTeamRole(
-                            event.target.value
-                          )
-                        }
-                        className="w-full rounded-2xl border border-[#3a4658] bg-[#0a1018] px-4 py-3.5 text-white outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
-                      >
-                        <option value="">
-                          Выберите роль
-                        </option>
-
-                        {availableRoles.map(
-                          (role) => (
-                            <option
-                              key={
-                                role.value
-                              }
-                              value={
-                                role.value
-                              }
-                            >
-                              {role.label}
-                            </option>
-                          )
-                        )}
-                      </select>
-                    </label>
-
-                    <div className="md:col-span-2 rounded-2xl border border-amber-500/20 bg-amber-500/[0.06] px-4 py-3 text-sm leading-6 text-amber-200/80">
-                      После изменения команды или роли профиль получит статус «Ожидает проверки».
-                    </div>
-                  </div>
+                {verificationStatus !==
+                  "verified" && (
+                  <Link
+                    to={`/profile/${encodeURIComponent(
+                      profile.username
+                    )}/verification`}
+                    className="mt-4 inline-flex rounded-2xl bg-orange-500 px-5 py-3 font-black text-white transition hover:bg-orange-400"
+                  >
+                    {verificationStatus ===
+                    "pending"
+                      ? "Посмотреть заявку"
+                      : verificationStatus ===
+                          "rejected"
+                        ? "Отправить повторно"
+                        : "Пройти верификацию"}
+                  </Link>
                 )}
               </div>
             </section>
@@ -845,12 +621,7 @@ export default function EditProfilePage() {
                       <span>•</span>
 
                       <span>
-                        {ACCOUNT_TYPES.find(
-                          (item) =>
-                            item.value ===
-                            accountType
-                        )?.title ||
-                          "Фанат"}
+                        {statusMeta.label}
                       </span>
                     </div>
 
@@ -865,42 +636,14 @@ export default function EditProfilePage() {
 
             <section className="rounded-[30px] border border-[#263548] bg-[#0f1722] p-5">
               <div className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-600">
-                Команды
+                Любимая команда
               </div>
 
-              <div className="mt-4 space-y-3">
-                <div className="rounded-2xl border border-[#29384a] bg-[#0a1018] p-4">
-                  <div className="text-xs text-gray-600">
-                    Любимая команда
-                  </div>
-
-                  <div className="mt-1 font-black text-white">
-                    {favoriteTeam?.name ||
-                      "Не выбрана"}
-                  </div>
+              <div className="mt-4 rounded-2xl border border-[#29384a] bg-[#0a1018] p-4">
+                <div className="font-black text-white">
+                  {favoriteTeam?.name ||
+                    "Не выбрана"}
                 </div>
-
-                {showProfessionalFields && (
-                  <div className="rounded-2xl border border-orange-500/20 bg-orange-500/[0.04] p-4">
-                    <div className="text-xs text-orange-300/60">
-                      Профессиональный профиль
-                    </div>
-
-                    <div className="mt-1 font-black text-white">
-                      {professionalTeam?.name ||
-                        "Команда не выбрана"}
-                    </div>
-
-                    <div className="mt-2 text-xs text-gray-500">
-                      {availableRoles.find(
-                        (role) =>
-                          role.value ===
-                          teamRole
-                      )?.label ||
-                        "Роль не выбрана"}
-                    </div>
-                  </div>
-                )}
               </div>
             </section>
 
@@ -923,10 +666,6 @@ export default function EditProfilePage() {
               >
                 Отмена
               </Link>
-
-              <p className="mt-4 text-center text-xs leading-5 text-gray-600">
-                Изменения применятся сразу после сохранения.
-              </p>
             </section>
           </aside>
         </form>
