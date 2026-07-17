@@ -528,23 +528,23 @@ export default function EditProfilePage() {
                   </p>
                 </div>
 
-                {verificationStatus !==
-                  "verified" && (
-                  <Link
-                    to={`/profile/${encodeURIComponent(
-                      profile.username
-                    )}/verification`}
-                    className="mt-4 inline-flex rounded-2xl bg-orange-500 px-5 py-3 font-black text-white transition hover:bg-orange-400"
-                  >
-                    {verificationStatus ===
-                    "pending"
-                      ? "Посмотреть заявку"
+                <Link
+                  to={`/profile/${encodeURIComponent(
+                    profile.username
+                  )}/verification`}
+                  className="mt-4 inline-flex rounded-2xl bg-orange-500 px-5 py-3 font-black text-white transition hover:bg-orange-400"
+                >
+                  {verificationStatus ===
+                  "pending"
+                    ? "Посмотреть заявку"
+                    : verificationStatus ===
+                        "verified"
+                      ? "Изменить профессиональную информацию"
                       : verificationStatus ===
                           "rejected"
                         ? "Отправить повторно"
                         : "Пройти верификацию"}
-                  </Link>
-                )}
+                </Link>
               </div>
             </section>
 

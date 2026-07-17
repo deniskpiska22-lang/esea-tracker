@@ -239,8 +239,7 @@ function ProfessionalCard({
   isOwnProfile,
 }) {
   if (
-    profile.account_type === "fan" ||
-    !team
+    profile.account_type === "fan"
   ) {
     return (
       <section className="rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
@@ -284,6 +283,75 @@ function ProfessionalCard({
     ACCOUNT_TYPE_LABELS[
       profile.account_type
     ] || "Профессиональный аккаунт";
+
+
+  if (!team) {
+    return (
+      <section className="relative overflow-hidden rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-orange-500/[0.06] blur-3xl" />
+
+        <div className="relative">
+          <SectionTitle
+            icon="◇"
+            action={
+              <VerificationBadge
+                status={
+                  profile.verification_status
+                }
+              />
+            }
+          >
+            Профессиональный профиль
+          </SectionTitle>
+
+          <div className="mt-7 rounded-2xl border border-orange-500/20 bg-orange-500/[0.05] p-6">
+            <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
+              Free Agent
+            </div>
+
+            <h3 className="mt-2 text-3xl font-black text-white">
+              Свободный агент
+            </h3>
+
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-400">
+              Пользователь имеет подтверждённый профессиональный профиль, но сейчас не состоит в команде.
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-3">
+              <div className="rounded-xl border border-[#2b394b] bg-[#0a1018] px-4 py-3">
+                <div className="text-xs text-gray-600">
+                  Тип аккаунта
+                </div>
+                <div className="mt-1 font-black text-orange-300">
+                  {accountType}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-[#2b394b] bg-[#0a1018] px-4 py-3">
+                <div className="text-xs text-gray-600">
+                  Роль
+                </div>
+                <div className="mt-1 font-black text-orange-300">
+                  {role}
+                </div>
+              </div>
+            </div>
+
+            {isOwnProfile && (
+              <Link
+                to={`/profile/${encodeURIComponent(
+                  profile.username
+                )}/verification`}
+                className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
+              >
+                Изменить профессиональную информацию
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative overflow-hidden rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
@@ -375,24 +443,25 @@ function ProfessionalCard({
               </div>
             </div>
 
-            {isOwnProfile &&
-              profile.verification_status !==
-                "verified" && (
-                <Link
-                  to={`/profile/${encodeURIComponent(
-                    profile.username
-                  )}/verification`}
-                  className="mt-6 inline-flex rounded-xl border border-orange-500/30 bg-orange-500/10 px-5 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
-                >
-                  {profile.verification_status ===
-                  "pending"
-                    ? "Посмотреть заявку"
+            {isOwnProfile && (
+              <Link
+                to={`/profile/${encodeURIComponent(
+                  profile.username
+                )}/verification`}
+                className="mt-6 inline-flex rounded-xl border border-orange-500/30 bg-orange-500/10 px-5 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
+              >
+                {profile.verification_status ===
+                "pending"
+                  ? "Посмотреть заявку"
+                  : profile.verification_status ===
+                      "verified"
+                    ? "Изменить профессиональную информацию"
                     : profile.verification_status ===
                         "rejected"
                       ? "Отправить повторно"
                       : "Пройти верификацию"}
-                </Link>
-              )}
+              </Link>
+            )}
           </div>
         </div>
       </div>

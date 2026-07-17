@@ -51,6 +51,8 @@ export default function VerificationRequestPage() {
   const { user, profile, loading, refreshProfile } =
     useAuth();
 
+  const [requestType, setRequestType] =
+    useState("join_team");
   const [accountType, setAccountType] =
     useState("player");
   const [teamSlug, setTeamSlug] =
@@ -105,6 +107,16 @@ export default function VerificationRequestPage() {
 
   useEffect(() => {
     if (!profile) return;
+
+    const hasProfessionalProfile =
+      profile.account_type === "player" ||
+      profile.account_type === "staff";
+
+    setRequestType(
+      hasProfessionalProfile
+        ? "change_team"
+        : "join_team"
+    );
 
     setAccountType(
       profile.account_type === "staff"
@@ -170,12 +182,18 @@ export default function VerificationRequestPage() {
     setError("");
     setSuccess("");
 
-    if (!teamSlug) {
+    if (
+      requestType !== "leave_team" &&
+      !teamSlug
+    ) {
       setError("Выберите команду.");
       return;
     }
 
-    if (accountType === "player") {
+    if (
+      requestType !== "leave_team" &&
+      accountType === "player"
+    ) {
       if (!birthDate) {
         setError("Укажите дату рождения игрока.");
         return;
@@ -239,10 +257,18 @@ export default function VerificationRequestPage() {
       } = await supabase.rpc(
         "submit_team_claim",
         {
-          p_team_slug: teamSlug,
+          p_request_type: requestType,
+          p_team_slug:
+            requestType === "leave_team"
+              ? null
+              : teamSlug,
           p_account_type: accountType,
-          p_team_role: teamRole,
+          p_team_role:
+            requestType === "leave_team"
+              ? null
+              : teamRole,
           p_birth_date:
+            requestType !== "leave_team" &&
             accountType === "player"
               ? birthDate
               : null,
@@ -325,10 +351,10 @@ export default function VerificationRequestPage() {
                 Team verification
               </div>
               <h1 className="mt-3 text-3xl font-black md:text-4xl">
-                Подтверждение профессионального профиля
+                {profile.verification_status === "verified" ? "Изменение профессионального профиля" : "Подтверждение профессионального профиля"}
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-orange-50/60">
-                Оставьте реальные контакты и публичное доказательство вашей связи с командой.
+                {profile.verification_status === "verified" ? "Смените команду, роль или отправьте заявку на получение статуса свободного агента." : "Оставьте реальные контакты и публичное доказательство вашей связи с командой."}
               </p>
             </div>
           </div>
@@ -365,6 +391,65 @@ export default function VerificationRequestPage() {
                 </div>
               )}
 
+              {profile.verification_status ===
+                "verified" && (
+                <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
+                  <div className="text-sm font-black text-white">
+                    Что вы хотите изменить?
+                  </div>
+
+                  <div className="mt-4 grid gap-3 md:grid-cols-2">
+                    <button
+                      type="button"
+                      disabled={hasPending}
+                      onClick={() =>
+                        setRequestType(
+                          "change_team"
+                        )
+                      }
+                      className={`rounded-2xl border p-4 text-left transition ${
+                        requestType ===
+                        "change_team"
+                          ? "border-orange-500/50 bg-orange-500/10 text-orange-300"
+                          : "border-[#2b394b] text-gray-300 hover:border-[#41516a]"
+                      } disabled:opacity-60`}
+                    >
+                      <div className="font-black">
+                        Сменить команду или роль
+                      </div>
+                      <div className="mt-2 text-xs leading-5 opacity-70">
+                        Текущая информация останется в профиле до одобрения заявки.
+                      </div>
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled={hasPending}
+                      onClick={() =>
+                        setRequestType(
+                          "leave_team"
+                        )
+                      }
+                      className={`rounded-2xl border p-4 text-left transition ${
+                        requestType ===
+                        "leave_team"
+                          ? "border-red-500/40 bg-red-500/10 text-red-300"
+                          : "border-[#2b394b] text-gray-300 hover:border-[#41516a]"
+                      } disabled:opacity-60`}
+                    >
+                      <div className="font-black">
+                        Покинуть команду
+                      </div>
+                      <div className="mt-2 text-xs leading-5 opacity-70">
+                        После одобрения в профиле появится статус Free Agent.
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {requestType !==
+                "leave_team" && (
               <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
                 <div className="text-sm font-black text-white">
                   Тип профессионального профиля
@@ -393,7 +478,19 @@ export default function VerificationRequestPage() {
                   ))}
                 </div>
               </div>
+              )}
 
+              {requestType ===
+                "leave_team" ? (
+                <div className="rounded-3xl border border-red-500/20 bg-red-500/[0.05] p-5">
+                  <div className="font-black text-red-300">
+                    Заявка на выход из команды
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-gray-400">
+                    После одобрения команда будет удалена из профессионального профиля, а вы получите статус Free Agent. Тип аккаунта и профессиональная роль сохранятся.
+                  </p>
+                </div>
+              ) : (
               <div className="grid gap-5 md:grid-cols-2">
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
@@ -450,8 +547,11 @@ export default function VerificationRequestPage() {
                   </select>
                 </label>
               </div>
+              )}
 
-              {accountType === "player" && (
+              {requestType !==
+                "leave_team" &&
+                accountType === "player" && (
                 <div className="rounded-3xl border border-orange-500/15 bg-orange-500/[0.035] p-5">
                   <label className="block">
                     <span className="mb-2 block text-sm font-black text-gray-200">
@@ -574,7 +674,11 @@ export default function VerificationRequestPage() {
                 >
                   {submitting
                     ? "Отправка..."
-                    : "Отправить заявку"}
+                    : requestType === "leave_team"
+                    ? "Отправить заявку на выход"
+                    : profile.verification_status === "verified"
+                      ? "Отправить изменения"
+                      : "Отправить заявку"}
                 </button>
               )}
             </form>

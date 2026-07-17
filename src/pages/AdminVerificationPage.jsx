@@ -66,6 +66,12 @@ const ACCOUNT_TYPE_LABELS = {
   staff: "Team Staff",
 };
 
+const REQUEST_TYPE_LABELS = {
+  join_team: "Первичная верификация",
+  change_team: "Изменение профиля",
+  leave_team: "Выход из команды",
+};
+
 function formatDate(value) {
   if (!value) {
     return "Неизвестно";
@@ -220,6 +226,10 @@ export default function AdminVerificationPage() {
           .select(`
             id,
             user_id,
+            request_type,
+            previous_team_slug,
+            previous_account_type,
+            previous_team_role,
             team_slug,
             account_type,
             team_role,
@@ -379,6 +389,8 @@ export default function AdminVerificationPage() {
         team?.name,
         claim.team_role,
         claim.account_type,
+        claim.request_type,
+        claim.previous_team_slug,
       ]
         .filter(Boolean)
         .join(" ")
@@ -731,6 +743,13 @@ export default function AdminVerificationPage() {
                                       "unknown"}
                                   </div>
                                 </div>
+                              </div>
+
+                              <div className="mt-4 inline-flex rounded-lg border border-orange-500/20 bg-orange-500/[0.06] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-orange-300">
+                                {REQUEST_TYPE_LABELS[
+                                  claim.request_type
+                                ] ||
+                                  REQUEST_TYPE_LABELS.join_team}
                               </div>
 
                               <div className="mt-5">
