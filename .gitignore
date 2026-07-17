@@ -27,3 +27,4 @@ src/data/matchStatsV3.json
 .env.local
 .vercel
 .env*
+.vercel
