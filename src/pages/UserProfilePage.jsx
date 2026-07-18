@@ -12,6 +12,7 @@ import {
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import teams from "../data/teams";
 
 const FINISHED_STATUSES = new Set([
@@ -20,8 +21,8 @@ const FINISHED_STATUSES = new Set([
 ]);
 
 const ACCOUNT_TYPE_LABELS = {
-  fan: "Фанат",
-  player: "Игрок",
+  fan: "fan",
+  player: "player",
   staff: "Team Staff",
 };
 
@@ -33,22 +34,22 @@ const TEAM_ROLE_LABELS = {
 };
 
 const VERIFICATION_LABELS = {
-  verified: "Подтверждено",
-  pending: "Ожидает проверки",
-  rejected: "Заявка отклонена",
-  none: "Не подтверждено",
+  verified: "verified",
+  pending: "pending",
+  rejected: "rejected",
+  none: "none",
 };
 
 function formatDate(value) {
-  if (!value) return "Неизвестно";
+  if (!value) return document.documentElement.lang === "ru" ? "Неизвестно" : "Unknown";
 
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return "Неизвестно";
+    return document.documentElement.lang === "ru" ? "Неизвестно" : "Unknown";
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
+  return new Intl.DateTimeFormat(document.documentElement.lang === "ru" ? "ru-RU" : "en-US", {
     day: "2-digit",
     month: "long",
     year: "numeric",
@@ -64,7 +65,7 @@ function formatDateTime(value) {
     return "";
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
+  return new Intl.DateTimeFormat(document.documentElement.lang === "ru" ? "ru-RU" : "en-US", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -238,13 +239,14 @@ function ProfessionalCard({
   team,
   isOwnProfile,
 }) {
+  const { tr } = useLanguage();
   if (
     profile.account_type === "fan"
   ) {
     return (
       <section className="rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
         <SectionTitle icon="▣">
-          Профессиональный профиль
+          {tr("Профессиональный профиль", "Professional profile")}
         </SectionTitle>
 
         <div className="mt-7 flex min-h-48 flex-col items-center justify-center rounded-2xl border border-dashed border-[#2b394b] bg-[#0a1018] px-6 text-center">
@@ -253,11 +255,11 @@ function ProfessionalCard({
           </div>
 
           <div className="mt-4 font-black text-white">
-            Профессиональный статус не указан
+            {tr("Профессиональный статус не указан", "Professional status is not specified")}
           </div>
 
           <p className="mt-2 max-w-md text-sm leading-6 text-gray-500">
-            Игроки, тренеры, менеджеры и аналитики могут отправить заявку на подтверждение команды.
+            {tr("Игроки, тренеры, менеджеры и аналитики могут отправить заявку на подтверждение команды.", "Players, coaches, managers, and analysts can submit a team verification request.")}
           </p>
 
           {isOwnProfile && (
@@ -267,7 +269,7 @@ function ProfessionalCard({
               )}/verification`}
               className="mt-5 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
             >
-              Пройти верификацию
+              {tr("Пройти верификацию", "Get verified")}
             </Link>
           )}
         </div>
@@ -277,12 +279,12 @@ function ProfessionalCard({
 
   const role =
     TEAM_ROLE_LABELS[profile.team_role] ||
-    "Роль не указана";
+    tr("Роль не указана", "Role not specified");
 
   const accountType =
     ACCOUNT_TYPE_LABELS[
       profile.account_type
-    ] || "Профессиональный аккаунт";
+    ] || tr("Профессиональный аккаунт", "Professional account");
 
 
   if (!team) {
@@ -301,7 +303,7 @@ function ProfessionalCard({
               />
             }
           >
-            Профессиональный профиль
+            {tr("Профессиональный профиль", "Professional profile")}
           </SectionTitle>
 
           <div className="mt-7 rounded-2xl border border-orange-500/20 bg-orange-500/[0.05] p-6">
@@ -310,17 +312,17 @@ function ProfessionalCard({
             </div>
 
             <h3 className="mt-2 text-3xl font-black text-white">
-              Свободный агент
+              {tr("Свободный агент", "Free agent")}
             </h3>
 
             <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-400">
-              Пользователь имеет подтверждённый профессиональный профиль, но сейчас не состоит в команде.
+              {tr("Пользователь имеет подтверждённый профессиональный профиль, но сейчас не состоит в команде.", "This user has a verified professional profile but is not currently on a team.")}
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
               <div className="rounded-xl border border-[#2b394b] bg-[#0a1018] px-4 py-3">
                 <div className="text-xs text-gray-600">
-                  Тип аккаунта
+                  {tr("Тип аккаунта", "Account type")}
                 </div>
                 <div className="mt-1 font-black text-orange-300">
                   {accountType}
@@ -329,7 +331,7 @@ function ProfessionalCard({
 
               <div className="rounded-xl border border-[#2b394b] bg-[#0a1018] px-4 py-3">
                 <div className="text-xs text-gray-600">
-                  Роль
+                  {tr("Роль", "Role")}
                 </div>
                 <div className="mt-1 font-black text-orange-300">
                   {role}
@@ -344,7 +346,7 @@ function ProfessionalCard({
                 )}/verification`}
                 className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
               >
-                Изменить профессиональную информацию
+                {tr("Изменить профессиональную информацию", "Edit professional information")}
               </Link>
             )}
           </div>
@@ -368,7 +370,7 @@ function ProfessionalCard({
             />
           }
         >
-          Профессиональный профиль
+          {tr("Профессиональный профиль", "Professional profile")}
         </SectionTitle>
 
         <div className="mt-7 grid gap-7 md:grid-cols-[140px_1fr]">
@@ -411,20 +413,20 @@ function ProfessionalCard({
             <p className="mt-4 max-w-xl text-sm leading-6 text-gray-400">
               {profile.verification_status ===
               "verified"
-                ? "Командная принадлежность и роль подтверждены администрацией ESEA Tracker."
+                ? tr("Командная принадлежность и роль подтверждены администрацией ESEA Tracker.", "Team affiliation and role have been verified by ESEA Tracker administrators.")
                 : profile.verification_status ===
                     "pending"
-                  ? "Заявка отправлена на проверку. Мы проверим данные и обновим статус профиля."
+                  ? tr("Заявка отправлена на проверку. Мы проверим данные и обновим статус профиля.", "The request has been submitted for review. We will check the details and update the profile status.")
                   : profile.verification_status ===
                       "rejected"
-                    ? "Заявка не прошла проверку. Обновите информацию и отправьте её повторно."
-                    : "Командная принадлежность пока не подтверждена."}
+                    ? tr("Заявка не прошла проверку. Обновите информацию и отправьте её повторно.", "The request was rejected. Update the information and submit it again.")
+                    : tr("Командная принадлежность пока не подтверждена.", "Team affiliation has not been verified yet.")}
             </p>
 
             <div className="mt-7 grid gap-4 border-t border-[#233044] pt-5 sm:grid-cols-2">
               <div>
                 <div className="text-xs text-gray-600">
-                  Тип аккаунта
+                  {tr("Тип аккаунта", "Account type")}
                 </div>
 
                 <div className="mt-1 font-black text-orange-400">
@@ -434,7 +436,7 @@ function ProfessionalCard({
 
               <div>
                 <div className="text-xs text-gray-600">
-                  Роль
+                  {tr("Роль", "Role")}
                 </div>
 
                 <div className="mt-1 font-black text-orange-400">
@@ -452,14 +454,14 @@ function ProfessionalCard({
               >
                 {profile.verification_status ===
                 "pending"
-                  ? "Посмотреть заявку"
+                  ? tr("Посмотреть заявку", "View request")
                   : profile.verification_status ===
                       "verified"
-                    ? "Изменить профессиональную информацию"
+                    ? tr("Изменить профессиональную информацию", "Edit professional information")
                     : profile.verification_status ===
                         "rejected"
-                      ? "Отправить повторно"
-                      : "Пройти верификацию"}
+                      ? tr("Отправить повторно", "Submit again")
+                      : tr("Пройти верификацию", "Get verified")}
               </Link>
             )}
           </div>
@@ -470,6 +472,7 @@ function ProfessionalCard({
 }
 
 export default function UserProfilePage() {
+  const { tr, language } = useLanguage();
   const { username } = useParams();
 
   const {
@@ -662,7 +665,7 @@ export default function UserProfilePage() {
         );
 
         setError(
-          "Не удалось загрузить профиль."
+          tr("Не удалось загрузить профиль.", "Could not load the profile.")
         );
       } finally {
         setLoading(false);
@@ -788,7 +791,7 @@ export default function UserProfilePage() {
     return (
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-7xl text-center text-gray-500">
-          Загрузка профиля...
+          {tr("Загрузка профиля...", "Loading profile...")}
         </div>
       </main>
     );
@@ -809,18 +812,18 @@ export default function UserProfilePage() {
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-3xl rounded-3xl border border-[#243041] bg-[#0f1722] p-8 text-center">
           <h1 className="text-3xl font-black">
-            Профиль не найден
+            {tr("Профиль не найден", "Profile not found")}
           </h1>
 
           <p className="mt-2 text-gray-500">
-            Пользователь @{username} не существует.
+            {tr("Пользователь", "User")} @{username} {tr("не существует.", "does not exist.")}
           </p>
 
           <Link
             to="/"
             className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-3 font-black transition hover:bg-orange-400"
           >
-            На главную
+            {tr("На главную", "Go home")}
           </Link>
         </div>
       </main>
@@ -888,7 +891,7 @@ export default function UserProfilePage() {
 
                 <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-400">
                   <span>
-                    ▣ На платформе с{" "}
+                    ▣ {tr("На платформе с", "Member since")}{" "}
                     {formatDate(
                       profile.created_at
                     )}
@@ -902,7 +905,7 @@ export default function UserProfilePage() {
                     ♙{" "}
                     {ACCOUNT_TYPE_LABELS[
                       profile.account_type
-                    ] || "Пользователь"}
+                    ] || tr("Пользователь", "User")}
                   </span>
                 </div>
               </div>
@@ -914,7 +917,7 @@ export default function UserProfilePage() {
                   )}/edit`}
                   className="mb-1 inline-flex items-center justify-center rounded-xl border border-orange-500/60 bg-orange-500/[0.06] px-6 py-3.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white lg:mt-20"
                 >
-                  Редактировать профиль
+                  {tr("Редактировать профиль", "Edit profile")}
                 </Link>
               )}
             </div>
@@ -923,18 +926,18 @@ export default function UserProfilePage() {
               <div className="grid gap-5">
                 <section className="rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
                   <SectionTitle icon="♙">
-                    О пользователе
+                    {tr("О пользователе", "About")}
                   </SectionTitle>
 
                   <p className="mt-7 min-h-10 text-sm leading-7 text-gray-200">
                     {profile.bio ||
-                      "Пользователь пока ничего о себе не рассказал."}
+                      tr("Пользователь пока ничего о себе не рассказал.", "This user has not added a bio yet.")}
                   </p>
                 </section>
 
                 <section className="rounded-3xl border border-[#243244] bg-[#0f1722] p-6">
                   <SectionTitle icon="☆">
-                    Любимая команда
+                    {tr("Любимая команда", "Favorite team")}
                   </SectionTitle>
 
                   {favoriteTeam ? (
@@ -953,13 +956,13 @@ export default function UserProfilePage() {
                         </div>
 
                         <div className="mt-2 text-sm text-gray-500">
-                          Открыть страницу команды ↗
+                          {tr("Открыть страницу команды ↗", "Open team page ↗")}
                         </div>
                       </div>
                     </Link>
                   ) : (
                     <div className="mt-6 rounded-2xl border border-dashed border-[#2a394c] p-6 text-sm text-gray-500">
-                      Любимая команда не выбрана.
+                      {tr("Любимая команда", "Favorite team")} не выбрана.
                     </div>
                   )}
                 </section>
@@ -977,7 +980,7 @@ export default function UserProfilePage() {
                 <StatItem
                   icon="⌾"
                   value={votes.length}
-                  label="Прогнозов сделано"
+                  label={tr("Прогнозов сделано", "Predictions made")}
                 />
 
                 <StatItem
@@ -987,25 +990,25 @@ export default function UserProfilePage() {
                       ? "—"
                       : `${predictionAccuracy}%`
                   }
-                  label="Точность прогнозов"
+                  label={tr("Точность прогнозов", "Prediction accuracy")}
                 />
 
                 <StatItem
                   icon="♕"
                   value={correctPredictions}
-                  label="Выигранных прогнозов"
+                  label={tr("Выигранных прогнозов", "Correct predictions")}
                 />
 
                 <StatItem
                   icon="▢"
                   value={commentCount}
-                  label="Комментариев"
+                  label={tr("Комментариев", "Comments")}
                 />
 
                 <StatItem
                   icon="▣"
                   value={membershipDays}
-                  label="Дней на сайте"
+                  label={tr("Дней на сайте", "Days on site")}
                 />
               </div>
             </section>
@@ -1013,13 +1016,13 @@ export default function UserProfilePage() {
             <section className="mt-6 overflow-hidden rounded-3xl border border-[#243244] bg-[#0f1722]">
               <div className="border-b border-[#243244] px-6 py-5">
                 <SectionTitle icon="▢">
-                  Последние комментарии
+                  {tr("Последние комментарии", "Latest comments")}
                 </SectionTitle>
               </div>
 
               {comments.length === 0 ? (
                 <div className="p-10 text-center text-gray-500">
-                  Пользователь пока не оставлял комментариев.
+                  {tr("Пользователь пока не оставлял комментариев.", "This user has not posted any comments yet.")}
                 </div>
               ) : (
                 <div className="divide-y divide-[#233044]">
@@ -1032,7 +1035,7 @@ export default function UserProfilePage() {
                       >
                         <div>
                           <div className="font-black text-white">
-                            Матч #{comment.match_id}
+                            {tr("Матч", "Match")} #{comment.match_id}
                           </div>
 
                           <div className="mt-1 text-xs text-gray-500">
@@ -1047,7 +1050,7 @@ export default function UserProfilePage() {
                         </p>
 
                         <div className="text-sm font-black text-orange-400 transition group-hover:translate-x-1">
-                          Открыть →
+                          {tr("Открыть →", "Open →")}
                         </div>
                       </Link>
                     )
@@ -1060,7 +1063,7 @@ export default function UserProfilePage() {
               currentProfile?.username !==
                 profile.username && (
                 <div className="mt-6 rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-4 text-sm text-yellow-300">
-                  Данные профиля в контексте ещё не обновлены. Обновите страницу.
+                  {tr("Данные профиля в контексте ещё не обновлены. Обновите страницу.", "The profile data has not updated in the current session yet. Refresh the page.")}
                 </div>
               )}
           </div>

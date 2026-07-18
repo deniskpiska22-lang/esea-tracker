@@ -13,6 +13,7 @@ import {
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import teams from "../data/teams";
 
 function getInitials(profile, displayName) {
@@ -89,22 +90,22 @@ function FieldLabel({
 
 const STATUS_META = {
   verified: {
-    label: "Подтверждено",
+    label: "verified",
     classes:
       "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
   },
   pending: {
-    label: "Ожидает проверки",
+    label: "pending",
     classes:
       "border-amber-500/25 bg-amber-500/10 text-amber-300",
   },
   rejected: {
-    label: "Заявка отклонена",
+    label: "rejected",
     classes:
       "border-red-500/25 bg-red-500/10 text-red-300",
   },
   none: {
-    label: "Не подтверждено",
+    label: "none",
     classes:
       "border-gray-500/20 bg-gray-500/10 text-gray-400",
   },
@@ -113,6 +114,7 @@ const STATUS_META = {
 export default function EditProfilePage() {
   const { username } = useParams();
   const navigate = useNavigate();
+  const { tr } = useLanguage();
 
   const {
     user,
@@ -216,14 +218,14 @@ export default function EditProfilePage() {
       )
     ) {
       setError(
-        "Код страны должен состоять из двух латинских букв, например RU."
+        tr("Код страны должен состоять из двух латинских букв, например RU.", "The country code must contain two Latin letters, for example US.")
       );
       return;
     }
 
     if (bio.length > 300) {
       setError(
-        "Описание не может быть длиннее 300 символов."
+        tr("Описание не может быть длиннее 300 символов.", "The bio cannot be longer than 300 characters.")
       );
       return;
     }
@@ -259,7 +261,7 @@ export default function EditProfilePage() {
       await refreshProfile();
 
       setSuccess(
-        "Профиль успешно сохранён."
+        tr("Профиль успешно сохранён.", "Profile saved successfully.")
       );
 
       window.setTimeout(() => {
@@ -280,7 +282,7 @@ export default function EditProfilePage() {
 
       setError(
         saveError.message ||
-          "Не удалось сохранить профиль."
+          tr("Не удалось сохранить профиль.", "Could not save the profile.")
       );
     } finally {
       setSaving(false);
@@ -291,7 +293,7 @@ export default function EditProfilePage() {
     return (
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-7xl text-center text-gray-500">
-          Загрузка...
+          {tr("Загрузка...", "Loading...")}
         </div>
       </main>
     );
@@ -310,7 +312,7 @@ export default function EditProfilePage() {
     return (
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-3xl rounded-3xl border border-red-500/20 bg-red-500/10 p-6 text-center text-red-300">
-          У вас нет доступа к редактированию этого профиля.
+          {tr("У вас нет доступа к редактированию этого профиля.", "You do not have permission to edit this profile.")}
         </div>
       </main>
     );
@@ -327,11 +329,11 @@ export default function EditProfilePage() {
             className="inline-flex items-center gap-2 text-sm font-black text-orange-400 transition hover:text-orange-300"
           >
             <span>←</span>
-            Назад в профиль
+            {tr("Назад в профиль", "Back to profile")}
           </Link>
 
           <div className="text-sm text-gray-600">
-            Редактирование @{profile.username}
+            {tr("Редактирование", "Editing")} @{profile.username}
           </div>
         </div>
 
@@ -346,15 +348,15 @@ export default function EditProfilePage() {
 
                 <div className="relative">
                   <div className="text-[11px] font-black uppercase tracking-[0.2em] text-orange-300">
-                    Profile editor
+                    {tr("Редактор профиля", "Profile editor")}
                   </div>
 
                   <h1 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-                    Настройте профиль
+                    {tr("Настройте профиль", "Customize your profile")}
                   </h1>
 
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50/60">
-                    Здесь редактируются только личные данные. Команда и роль подтверждаются через отдельную заявку.
+                    {tr("Здесь редактируются только личные данные. Команда и роль подтверждаются через отдельную заявку.", "Only personal details are edited here. Team and role are verified through a separate request.")}
                   </p>
                 </div>
               </div>
@@ -362,8 +364,8 @@ export default function EditProfilePage() {
               <div className="grid gap-5 p-5 md:grid-cols-2 md:p-6">
                 <label className="block">
                   <FieldLabel
-                    title="Отображаемое имя"
-                    hint="До 50 символов"
+                    title={tr("Отображаемое имя", "Display name")}
+                    hint={tr("До 50 символов", "Up to 50 characters")}
                   />
 
                   <input
@@ -383,8 +385,8 @@ export default function EditProfilePage() {
 
                 <label className="block">
                   <FieldLabel
-                    title="Код страны"
-                    hint="Например RU, UA, KZ"
+                    title={tr("Код страны", "Country code")}
+                    hint={tr("Например RU, UA, KZ", "For example US, DE, PL")}
                   />
 
                   <input
@@ -401,15 +403,15 @@ export default function EditProfilePage() {
                       )
                     }
                     maxLength={2}
-                    placeholder="RU"
+                    placeholder={tr("RU", "US")}
                     className="w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 uppercase text-white outline-none transition placeholder:text-gray-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
                   />
                 </label>
 
                 <label className="block md:col-span-2">
                   <FieldLabel
-                    title="О себе"
-                    hint="Коротко расскажите о себе"
+                    title={tr("О себе", "About you")}
+                    hint={tr("Коротко расскажите о себе", "Tell us a little about yourself")}
                   />
 
                   <textarea
@@ -424,7 +426,7 @@ export default function EditProfilePage() {
                     }
                     rows={6}
                     maxLength={300}
-                    placeholder="Расскажите о себе, своём опыте и интересах..."
+                    placeholder={tr("Расскажите о себе, своём опыте и интересах...", "Tell us about yourself, your experience, and interests...")}
                     className="w-full resize-y rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
                   />
 
@@ -437,16 +439,16 @@ export default function EditProfilePage() {
 
             <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
               <SectionHeader
-                eyebrow="Preferences"
-                title="Персональные настройки"
-                description="Выберите любимую команду и настройте внешний вид профиля."
+                eyebrow={tr("Настройки", "Preferences")}
+                title={tr("Персональные настройки", "Personal settings")}
+                description={tr("Выберите любимую команду и настройте внешний вид профиля.", "Choose your favorite team and customize your profile.")}
               />
 
               <div className="grid gap-5 p-5 md:grid-cols-2 md:p-6">
                 <label className="block">
                   <FieldLabel
-                    title="Любимая команда"
-                    hint="Показывается в профиле"
+                    title={tr("Любимая команда", "Favorite team")}
+                    hint={tr("Показывается в профиле", "Shown on your profile")}
                   />
 
                   <select
@@ -461,7 +463,7 @@ export default function EditProfilePage() {
                     className="w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 text-white outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
                   >
                     <option value="">
-                      Не выбрана
+                      {tr("Не выбрана", "Not selected")}
                     </option>
 
                     {sortedTeams.map(
@@ -479,8 +481,8 @@ export default function EditProfilePage() {
 
                 <label className="block">
                   <FieldLabel
-                    title="Ссылка на аватар"
-                    hint="Прямая ссылка на изображение"
+                    title={tr("Ссылка на аватар", "Avatar URL")}
+                    hint={tr("Прямая ссылка на изображение", "Direct link to an image")}
                   />
 
                   <input
@@ -501,9 +503,9 @@ export default function EditProfilePage() {
 
             <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
               <SectionHeader
-                eyebrow="Professional verification"
-                title="Профессиональный профиль"
-                description="Команду, роль и статус нельзя менять вручную. Они обновляются после проверки заявки администратором."
+                eyebrow={tr("Профессиональная верификация", "Professional verification")}
+                title={tr("Профессиональный профиль", "Professional profile")}
+                description={tr("Команду, роль и статус нельзя менять вручную. Они обновляются после проверки заявки администратором.", "Team, role, and status cannot be changed manually. They are updated after an administrator reviews your request.")}
               />
 
               <div className="p-5 md:p-6">
@@ -511,20 +513,26 @@ export default function EditProfilePage() {
                   className={`rounded-2xl border p-4 ${statusMeta.classes}`}
                 >
                   <div className="font-black">
-                    {statusMeta.label}
+                    {statusMeta.label === "verified"
+                        ? tr("Подтверждено", "Verified")
+                        : statusMeta.label === "pending"
+                          ? tr("Ожидает проверки", "Pending review")
+                          : statusMeta.label === "rejected"
+                            ? tr("Заявка отклонена", "Request rejected")
+                            : tr("Не подтверждено", "Not verified")}
                   </div>
 
                   <p className="mt-2 text-sm opacity-80">
                     {verificationStatus ===
                     "verified"
-                      ? "Команда и роль подтверждены администрацией."
+                      ? tr("Команда и роль подтверждены администрацией.", "Team and role have been verified by an administrator.")
                       : verificationStatus ===
                           "pending"
-                        ? "Ваша заявка находится на проверке."
+                        ? tr("Ваша заявка находится на проверке.", "Your request is under review.")
                         : verificationStatus ===
                             "rejected"
-                          ? "Заявку можно исправить и отправить повторно."
-                          : "Отправьте заявку, чтобы подтвердить связь с командой."}
+                          ? tr("Заявку можно исправить и отправить повторно.", "You can update the request and submit it again.")
+                          : tr("Отправьте заявку, чтобы подтвердить связь с командой.", "Submit a request to verify your connection with the team.")}
                   </p>
                 </div>
 
@@ -536,14 +544,14 @@ export default function EditProfilePage() {
                 >
                   {verificationStatus ===
                   "pending"
-                    ? "Посмотреть заявку"
+                    ? tr("Посмотреть заявку", "View request")
                     : verificationStatus ===
                         "verified"
-                      ? "Изменить профессиональную информацию"
+                      ? tr("Изменить профессиональную информацию", "Edit professional information")
                       : verificationStatus ===
                           "rejected"
-                        ? "Отправить повторно"
-                        : "Пройти верификацию"}
+                        ? tr("Отправить повторно", "Submit again")
+                        : tr("Пройти верификацию", "Get verified")}
                 </Link>
               </div>
             </section>
@@ -564,9 +572,9 @@ export default function EditProfilePage() {
           <aside className="space-y-6 xl:sticky xl:top-6 xl:self-start">
             <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
               <SectionHeader
-                eyebrow="Live preview"
-                title="Предпросмотр профиля"
-                description="Так основные данные будут выглядеть в профиле."
+                eyebrow={tr("Предпросмотр", "Live preview")}
+                title={tr("Предпросмотр профиля", "Profile preview")}
+                description={tr("Так основные данные будут выглядеть в профиле.", "This is how the main details will appear on your profile.")}
               />
 
               <div className="p-5">
@@ -621,13 +629,19 @@ export default function EditProfilePage() {
                       <span>•</span>
 
                       <span>
-                        {statusMeta.label}
+                        {statusMeta.label === "verified"
+                        ? tr("Подтверждено", "Verified")
+                        : statusMeta.label === "pending"
+                          ? tr("Ожидает проверки", "Pending review")
+                          : statusMeta.label === "rejected"
+                            ? tr("Заявка отклонена", "Request rejected")
+                            : tr("Не подтверждено", "Not verified")}
                       </span>
                     </div>
 
                     <p className="mt-4 line-clamp-4 text-sm leading-6 text-gray-400">
                       {bio ||
-                        "Описание профиля появится здесь."}
+                        tr("Описание профиля появится здесь.", "Your profile bio will appear here.")}
                     </p>
                   </div>
                 </div>
@@ -636,13 +650,13 @@ export default function EditProfilePage() {
 
             <section className="rounded-[30px] border border-[#263548] bg-[#0f1722] p-5">
               <div className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-600">
-                Любимая команда
+                {tr("Любимая команда", "Favorite team")}
               </div>
 
               <div className="mt-4 rounded-2xl border border-[#29384a] bg-[#0a1018] p-4">
                 <div className="font-black text-white">
                   {favoriteTeam?.name ||
-                    "Не выбрана"}
+                    tr("Не выбрана", "Not selected")}
                 </div>
               </div>
             </section>
@@ -654,8 +668,8 @@ export default function EditProfilePage() {
                 className="w-full rounded-2xl bg-orange-500 px-6 py-4 font-black text-white shadow-lg shadow-orange-500/15 transition hover:-translate-y-0.5 hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {saving
-                  ? "Сохранение..."
-                  : "Сохранить изменения"}
+                  ? tr("Сохранение...", "Saving...")
+                  : tr("Сохранить изменения", "Save changes")}
               </button>
 
               <Link
@@ -664,7 +678,7 @@ export default function EditProfilePage() {
                 )}`}
                 className="mt-3 inline-flex w-full items-center justify-center rounded-2xl border border-[#2b394b] px-5 py-3.5 font-black text-gray-300 transition hover:border-[#41516a] hover:bg-white/[0.025]"
               >
-                Отмена
+                {tr("Отмена", "Cancel")}
               </Link>
             </section>
           </aside>

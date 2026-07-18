@@ -12,6 +12,7 @@ import {
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import teams from "../data/teams";
 
 const ROLE_OPTIONS = {
@@ -50,6 +51,7 @@ export default function VerificationRequestPage() {
   const { username } = useParams();
   const { user, profile, loading, refreshProfile } =
     useAuth();
+  const { tr, language } = useLanguage();
 
   const [requestType, setRequestType] =
     useState("join_team");
@@ -186,7 +188,7 @@ export default function VerificationRequestPage() {
       requestType !== "leave_team" &&
       !teamSlug
     ) {
-      setError("Выберите команду.");
+      setError(tr("Выберите команду.", "Select a team."));
       return;
     }
 
@@ -195,7 +197,7 @@ export default function VerificationRequestPage() {
       accountType === "player"
     ) {
       if (!birthDate) {
-        setError("Укажите дату рождения игрока.");
+        setError(tr("Укажите дату рождения игрока.", "Enter the player birth date."));
         return;
       }
 
@@ -210,7 +212,7 @@ export default function VerificationRequestPage() {
         ) ||
         parsedBirthDate > today
       ) {
-        setError("Укажите корректную дату рождения.");
+        setError(tr("Укажите корректную дату рождения.", "Enter a valid birth date."));
         return;
       }
 
@@ -232,19 +234,19 @@ export default function VerificationRequestPage() {
 
       if (age < 10 || age > 70) {
         setError(
-          "Дата рождения выглядит некорректно."
+          tr("Дата рождения выглядит некорректно.", "The birth date appears to be invalid.")
         );
         return;
       }
     }
 
     if (!contactEmail.trim()) {
-      setError("Укажите контактный email.");
+      setError(tr("Укажите контактный email.", "Enter a contact email."));
       return;
     }
 
     if (!proofUrl.trim()) {
-      setError("Добавьте ссылку-доказательство.");
+      setError(tr("Добавьте ссылку-доказательство.", "Add a proof link."));
       return;
     }
 
@@ -288,14 +290,14 @@ export default function VerificationRequestPage() {
 
       setLatestClaim(data);
       setSuccess(
-        "Заявка отправлена на проверку."
+        tr("Заявка отправлена на проверку.", "The request has been submitted for review.")
       );
       await refreshProfile();
     } catch (submitError) {
       console.error(submitError);
       setError(
         submitError.message ||
-          "Не удалось отправить заявку."
+          tr("Не удалось отправить заявку.", "Could not submit the request.")
       );
     } finally {
       setSubmitting(false);
@@ -306,7 +308,7 @@ export default function VerificationRequestPage() {
     return (
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-5xl text-center text-gray-500">
-          Загрузка...
+          {tr("Загрузка...", "Loading...")}
         </div>
       </main>
     );
@@ -322,7 +324,7 @@ export default function VerificationRequestPage() {
     return (
       <main className="min-h-screen bg-[#080d14] px-4 py-12 text-white">
         <div className="mx-auto max-w-3xl rounded-3xl border border-red-500/20 bg-red-500/10 p-6 text-center text-red-300">
-          У вас нет доступа к этой странице.
+          {tr("У вас нет доступа к этой странице.", "You do not have access to this page.")}
         </div>
       </main>
     );
@@ -340,7 +342,7 @@ export default function VerificationRequestPage() {
           )}`}
           className="text-sm font-black text-orange-400 hover:text-orange-300"
         >
-          ← Назад в профиль
+          ← {tr("Назад в профиль", "Back to profile")}
         </Link>
 
         <section className="mt-6 overflow-hidden rounded-[32px] border border-[#263548] bg-[#0f1722]">
@@ -348,13 +350,13 @@ export default function VerificationRequestPage() {
             <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_center,white_1px,transparent_1px)] [background-size:18px_18px]" />
             <div className="relative">
               <div className="text-xs font-black uppercase tracking-[0.22em] text-orange-300">
-                Team verification
+                {tr("Верификация команды", "Team verification")}
               </div>
               <h1 className="mt-3 text-3xl font-black md:text-4xl">
-                {profile.verification_status === "verified" ? "Изменение профессионального профиля" : "Подтверждение профессионального профиля"}
+                {profile.verification_status === "verified" ? tr("Изменение профессионального профиля", "Edit professional profile") : tr("Подтверждение профессионального профиля", "Verify professional profile")}
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-orange-50/60">
-                {profile.verification_status === "verified" ? "Смените команду, роль или отправьте заявку на получение статуса свободного агента." : "Оставьте реальные контакты и публичное доказательство вашей связи с командой."}
+                {profile.verification_status === "verified" ? tr("Смените команду, роль или отправьте заявку на получение статуса свободного агента.", "Change your team or role, or request free-agent status.") : tr("Оставьте реальные контакты и публичное доказательство вашей связи с командой.", "Provide real contact details and public proof of your connection to the team.")}
               </p>
             </div>
           </div>
@@ -374,19 +376,24 @@ export default function VerificationRequestPage() {
                   }`}
                 >
                   <div className="font-black">
-                    {STATUS_META[
-                      latestClaim.status
-                    ]?.title ||
-                      "Статус заявки"}
+                    {latestClaim.status === "approved"
+                      ? tr("Заявка одобрена", "Request approved")
+                      : latestClaim.status === "rejected"
+                        ? tr("Заявка отклонена", "Request rejected")
+                        : latestClaim.status === "pending"
+                          ? tr("Заявка на проверке", "Request under review")
+                          : tr("Статус заявки", "Request status")}
                   </div>
                   <p className="mt-1 text-sm opacity-80">
                     {latestClaim.status ===
                       "rejected" &&
                     latestClaim.rejection_reason
                       ? latestClaim.rejection_reason
-                      : STATUS_META[
-                          latestClaim.status
-                        ]?.text}
+                      : latestClaim.status === "approved"
+                        ? tr("Профессиональный профиль подтверждён.", "The professional profile has been verified.")
+                        : latestClaim.status === "rejected"
+                          ? tr("Исправьте данные и отправьте новую заявку.", "Correct the information and submit a new request.")
+                          : tr("Мы проверим предоставленные контакты и доказательства.", "We will review the provided contacts and proof.")}
                   </p>
                 </div>
               )}
@@ -395,7 +402,7 @@ export default function VerificationRequestPage() {
                 "verified" && (
                 <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
                   <div className="text-sm font-black text-white">
-                    Что вы хотите изменить?
+                    {tr("Что вы хотите изменить?", "What would you like to change?")}
                   </div>
 
                   <div className="mt-4 grid gap-3 md:grid-cols-2">
@@ -415,10 +422,10 @@ export default function VerificationRequestPage() {
                       } disabled:opacity-60`}
                     >
                       <div className="font-black">
-                        Сменить команду или роль
+                        {tr("Сменить команду или роль", "Change team or role")}
                       </div>
                       <div className="mt-2 text-xs leading-5 opacity-70">
-                        Текущая информация останется в профиле до одобрения заявки.
+                        {tr("Текущая информация останется в профиле до одобрения заявки.", "Your current information will remain visible until the request is approved.")}
                       </div>
                     </button>
 
@@ -438,10 +445,10 @@ export default function VerificationRequestPage() {
                       } disabled:opacity-60`}
                     >
                       <div className="font-black">
-                        Покинуть команду
+                        {tr("Покинуть команду", "Leave team")}
                       </div>
                       <div className="mt-2 text-xs leading-5 opacity-70">
-                        После одобрения в профиле появится статус Free Agent.
+                        {tr("После одобрения в профиле появится статус Free Agent.", "After approval, your profile will show Free Agent status.")}
                       </div>
                     </button>
                   </div>
@@ -452,13 +459,13 @@ export default function VerificationRequestPage() {
                 "leave_team" && (
               <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
                 <div className="text-sm font-black text-white">
-                  Тип профессионального профиля
+                  {tr("Тип профессионального профиля", "Professional profile type")}
                 </div>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    ["player", "Игрок"],
-                    ["staff", "Team Staff"],
+                    ["player", tr("Игрок", "Player")],
+                    ["staff", tr("Персонал команды", "Team staff")],
                   ].map(([value, label]) => (
                     <button
                       key={value}
@@ -484,17 +491,17 @@ export default function VerificationRequestPage() {
                 "leave_team" ? (
                 <div className="rounded-3xl border border-red-500/20 bg-red-500/[0.05] p-5">
                   <div className="font-black text-red-300">
-                    Заявка на выход из команды
+                    {tr("Заявка на выход из команды", "Request to leave team")}
                   </div>
                   <p className="mt-2 text-sm leading-6 text-gray-400">
-                    После одобрения команда будет удалена из профессионального профиля, а вы получите статус Free Agent. Тип аккаунта и профессиональная роль сохранятся.
+                    {tr("После одобрения команда будет удалена из профессионального профиля, а вы получите статус Free Agent. Тип аккаунта и профессиональная роль сохранятся.", "After approval, the team will be removed from your professional profile and you will receive Free Agent status. Your account type and professional role will remain unchanged.")}
                   </p>
                 </div>
               ) : (
               <div className="grid gap-5 md:grid-cols-2">
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
-                    Команда
+                    {tr("Команда", "Team")}
                   </span>
                   <select
                     value={teamSlug}
@@ -507,7 +514,7 @@ export default function VerificationRequestPage() {
                     className="w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 outline-none focus:border-orange-500 disabled:opacity-60"
                   >
                     <option value="">
-                      Выберите команду
+                      {tr("Выберите команду", "Select a team")}
                     </option>
                     {sortedTeams.map((team) => (
                       <option
@@ -522,7 +529,7 @@ export default function VerificationRequestPage() {
 
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
-                    Роль
+                    {tr("Роль", "Role")}
                   </span>
                   <select
                     value={teamRole}
@@ -541,7 +548,13 @@ export default function VerificationRequestPage() {
                         key={role.value}
                         value={role.value}
                       >
-                        {role.label}
+                        {role.value === "player"
+                          ? tr("Игрок", "Player")
+                          : role.value === "coach"
+                            ? tr("Тренер", "Coach")
+                            : role.value === "manager"
+                              ? tr("Менеджер", "Manager")
+                              : tr("Аналитик", "Analyst")}
                       </option>
                     ))}
                   </select>
@@ -555,7 +568,7 @@ export default function VerificationRequestPage() {
                 <div className="rounded-3xl border border-orange-500/15 bg-orange-500/[0.035] p-5">
                   <label className="block">
                     <span className="mb-2 block text-sm font-black text-gray-200">
-                      Дата рождения
+                      {tr("Дата рождения", "Birth date")}
                     </span>
 
                     <input
@@ -574,7 +587,7 @@ export default function VerificationRequestPage() {
                     />
 
                     <p className="mt-3 text-xs leading-5 text-gray-500">
-                      Дата рождения нужна для скаутинга и проверки возрастной категории. Она не публикуется в открытом профиле.
+                      {tr("Дата рождения нужна для скаутинга и проверки возрастной категории. Она не публикуется в открытом профиле.", "The birth date is used for scouting and age verification. It is not shown on the public profile.")}
                     </p>
                   </label>
                 </div>
@@ -583,7 +596,7 @@ export default function VerificationRequestPage() {
               <div className="grid gap-5 md:grid-cols-2">
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
-                    Контактный email
+                    {tr("Контактный email", "Contact email")}
                   </span>
                   <input
                     type="email"
@@ -601,7 +614,7 @@ export default function VerificationRequestPage() {
 
                 <label>
                   <span className="mb-2 block text-sm font-black text-gray-200">
-                    Discord или Telegram
+                    {tr("Discord или Telegram", "Discord or Telegram")}
                   </span>
                   <input
                     value={contactHandle}
@@ -619,7 +632,7 @@ export default function VerificationRequestPage() {
 
               <label className="block">
                 <span className="mb-2 block text-sm font-black text-gray-200">
-                  Ссылка-доказательство
+                  {tr("Ссылка-доказательство", "Proof link")}
                 </span>
                 <input
                   type="url"
@@ -630,14 +643,14 @@ export default function VerificationRequestPage() {
                       event.target.value
                     )
                   }
-                  placeholder="FACEIT, ESEA, HLTV, Liquipedia, официальный сайт или соцсеть команды"
+                  placeholder={tr("FACEIT, ESEA, HLTV, Liquipedia, официальный сайт или соцсеть команды", "FACEIT, ESEA, HLTV, Liquipedia, the official website, or a team social account")}
                   className="w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 outline-none placeholder:text-gray-700 focus:border-orange-500 disabled:opacity-60"
                 />
               </label>
 
               <label className="block">
                 <span className="mb-2 block text-sm font-black text-gray-200">
-                  Комментарий
+                  {tr("Комментарий", "Comment")}
                 </span>
                 <textarea
                   rows={5}
@@ -649,7 +662,7 @@ export default function VerificationRequestPage() {
                       event.target.value
                     )
                   }
-                  placeholder="Расскажите, как можно подтвердить вашу роль..."
+                  placeholder={tr("Расскажите, как можно подтвердить вашу роль...", "Explain how your role can be verified...")}
                   className="w-full resize-y rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 outline-none placeholder:text-gray-700 focus:border-orange-500 disabled:opacity-60"
                 />
               </label>
@@ -673,12 +686,12 @@ export default function VerificationRequestPage() {
                   className="rounded-2xl bg-orange-500 px-6 py-4 font-black text-white transition hover:bg-orange-400 disabled:opacity-60"
                 >
                   {submitting
-                    ? "Отправка..."
+                    ? tr("Отправка...", "Submitting...")
                     : requestType === "leave_team"
-                    ? "Отправить заявку на выход"
+                    ? tr("Отправить заявку на выход", "Submit leave request")
                     : profile.verification_status === "verified"
-                      ? "Отправить изменения"
-                      : "Отправить заявку"}
+                      ? tr("Отправить изменения", "Submit changes")
+                      : tr("Отправить заявку", "Submit request")}
                 </button>
               )}
             </form>
@@ -686,7 +699,7 @@ export default function VerificationRequestPage() {
             <aside className="space-y-5">
               <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                  Предпросмотр
+                  {tr("Предпросмотр", "Preview")}
                 </div>
 
                 <div className="mt-5 flex items-center gap-4">
@@ -707,7 +720,7 @@ export default function VerificationRequestPage() {
                   <div>
                     <div className="font-black text-white">
                       {selectedTeam?.name ||
-                        "Команда не выбрана"}
+                        tr("Команда не выбрана", "No team selected")}
                     </div>
                     <div className="mt-1 text-sm text-gray-500">
                       {ROLE_OPTIONS[
@@ -716,15 +729,15 @@ export default function VerificationRequestPage() {
                         (role) =>
                           role.value ===
                           teamRole
-                      )?.label || "Роль"}
+                      )?.value === "player" ? tr("Игрок", "Player") : ROLE_OPTIONS[accountType]?.find((role) => role.value === teamRole)?.value === "coach" ? tr("Тренер", "Coach") : ROLE_OPTIONS[accountType]?.find((role) => role.value === teamRole)?.value === "manager" ? tr("Менеджер", "Manager") : ROLE_OPTIONS[accountType]?.find((role) => role.value === teamRole)?.value === "analyst" ? tr("Аналитик", "Analyst") : tr("Роль", "Role")}
                     </div>
 
                     {accountType === "player" &&
                       birthDate && (
                         <div className="mt-1 text-xs text-gray-600">
-                          Дата рождения:{" "}
+                          {tr("Дата рождения", "Birth date")}:{" "}
                           {new Intl.DateTimeFormat(
-                            "ru-RU"
+                            language === "ru" ? "ru-RU" : "en-US"
                           ).format(
                             new Date(
                               `${birthDate}T00:00:00`
@@ -738,14 +751,14 @@ export default function VerificationRequestPage() {
 
               <div className="rounded-3xl border border-[#29384a] bg-[#0a1018] p-5">
                 <div className="font-black text-white">
-                  Что подходит как доказательство
+                  {tr("Что подходит как доказательство", "What counts as proof")}
                 </div>
                 <div className="mt-4 space-y-3 text-sm leading-6 text-gray-500">
-                  <p>• Профиль FACEIT или ESEA</p>
-                  <p>• Страница HLTV или Liquipedia</p>
-                  <p>• Официальный ростер команды</p>
-                  <p>• Пост в официальной соцсети</p>
-                  <p>• Рабочая почта команды</p>
+                  <p>• {tr("Профиль FACEIT или ESEA", "FACEIT or ESEA profile")}</p>
+                  <p>• {tr("Страница HLTV или Liquipedia", "HLTV or Liquipedia page")}</p>
+                  <p>• {tr("Официальный ростер команды", "Official team roster")}</p>
+                  <p>• {tr("Пост в официальной соцсети", "Post from an official social account")}</p>
+                  <p>• {tr("Рабочая почта команды", "Official team email address")}</p>
                 </div>
               </div>
             </aside>

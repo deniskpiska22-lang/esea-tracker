@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 
 import { useAuth } from "./context/AuthContext";
+import { useLanguage } from "./context/LanguageContext";
 import teams from "./data/teams";
 import playerTeams from "./data/playerTeams.json";
 import playerAverageRatings from "./data/playerAverageRatings.json";
@@ -19,6 +20,7 @@ import playerAverageRatings from "./data/playerAverageRatings.json";
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { language, setLanguage, tr } = useLanguage();
 
   const {
     user,
@@ -160,7 +162,7 @@ function App() {
       !contact.trim()
     ) {
       window.alert(
-        "Заполните название команды, ссылку FACEIT и контакт."
+        tr("Заполните название команды, ссылку FACEIT и контакт.", "Fill in the team name, FACEIT link, and contact details.")
       );
       return;
     }
@@ -191,12 +193,12 @@ function App() {
       if (!response.ok) {
         throw new Error(
           data.error ||
-            "Не удалось отправить команду."
+            tr("Не удалось отправить команду.", "Could not submit the team.")
         );
       }
 
       window.alert(
-        "Команда успешно отправлена!"
+        tr("Команда успешно отправлена!", "Team submitted successfully!")
       );
 
       setTeamName("");
@@ -212,7 +214,7 @@ function App() {
 
       window.alert(
         error.message ||
-          "Ошибка сервера."
+          tr("Ошибка сервера.", "Server error.")
       );
     } finally {
       setSubmittingTeam(false);
@@ -485,7 +487,7 @@ function App() {
                     <div className="absolute right-0 top-14 w-64 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d131d]/98 p-2 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
                       <div className="rounded-xl bg-white/[0.035] px-3 py-3">
                         <div className="truncate font-black text-white">
-                          {profile?.username || "Пользователь"}
+                          {profile?.username || tr("Пользователь", "User")}
                         </div>
 
                         <div className="mt-1 truncate text-xs text-gray-600">
@@ -499,6 +501,38 @@ function App() {
                         )}
                       </div>
 
+                      <div className="mt-2 flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2">
+                        <span className="text-xs font-bold text-gray-500">
+                          {tr("Язык", "Language")}
+                        </span>
+
+                        <div className="flex rounded-lg border border-white/[0.08] bg-black/20 p-0.5">
+                          <button
+                            type="button"
+                            onClick={() => setLanguage("en")}
+                            className={`rounded-md px-2 py-1 text-[11px] font-black transition ${
+                              language === "en"
+                                ? "bg-orange-500 text-white"
+                                : "text-gray-500 hover:text-white"
+                            }`}
+                          >
+                            EN
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setLanguage("ru")}
+                            className={`rounded-md px-2 py-1 text-[11px] font-black transition ${
+                              language === "ru"
+                                ? "bg-orange-500 text-white"
+                                : "text-gray-500 hover:text-white"
+                            }`}
+                          >
+                            RU
+                          </button>
+                        </div>
+                      </div>
+
                       <div className="mt-2 space-y-1">
                         <Link
                           to={`/profile/${encodeURIComponent(
@@ -507,7 +541,7 @@ function App() {
                           onClick={closeMenu}
                           className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-gray-300 transition hover:bg-white/[0.05] hover:text-white"
                         >
-                          <span>Мой профиль</span>
+                          <span>{tr("Мой профиль", "My profile")}</span>
                           <span className="text-gray-600">→</span>
                         </Link>
 
@@ -518,7 +552,7 @@ function App() {
                           onClick={closeMenu}
                           className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-gray-300 transition hover:bg-white/[0.05] hover:text-white"
                         >
-                          <span>Настройки</span>
+                          <span>{tr("Настройки", "Settings")}</span>
                           <span className="text-gray-600">⚙</span>
                         </Link>
 
@@ -528,7 +562,7 @@ function App() {
                             onClick={closeMenu}
                             className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500/10"
                           >
-                            <span>Админ-панель</span>
+                            <span>{tr("Админ-панель", "Admin panel")}</span>
                             <span>→</span>
                           </Link>
                         )}
@@ -538,7 +572,7 @@ function App() {
                           onClick={handleSignOut}
                           className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-bold text-red-300 transition hover:bg-red-500/10"
                         >
-                          <span>Выйти</span>
+                          <span>{tr("Выйти", "Log out")}</span>
                           <span>↗</span>
                         </button>
                       </div>
@@ -551,14 +585,14 @@ function App() {
                     to="/login"
                     className="hidden h-11 items-center rounded-2xl px-3 text-sm font-bold text-gray-400 transition hover:bg-white/[0.04] hover:text-white sm:flex"
                   >
-                    Войти
+                    {tr("Войти", "Log in")}
                   </Link>
 
                   <Link
                     to="/register"
                     className="flex h-11 items-center rounded-2xl border border-orange-400/20 bg-orange-500/10 px-4 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
                   >
-                    Регистрация
+                    {tr("Регистрация", "Sign up")}
                   </Link>
                 </>
               )}
@@ -645,7 +679,7 @@ function App() {
             <div className="max-h-[65vh] overflow-y-auto">
               {!normalizedSearch && (
                 <div className="p-10 text-center text-gray-500">
-                  Введите название команды или ник игрока
+                  {tr("Введите название команды или ник игрока", "Enter a team name or player nickname")}
                 </div>
               )}
 
@@ -655,7 +689,7 @@ function App() {
                 filteredPlayers.length ===
                   0 && (
                   <div className="p-10 text-center text-gray-500">
-                    Ничего не найдено
+                    {tr("Ничего не найдено", "Nothing found")}
                   </div>
                 )}
 

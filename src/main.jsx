@@ -25,6 +25,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { AuthProvider } from "./context/AuthContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import VerificationRequestPage from "./pages/VerificationRequestPage";
@@ -35,6 +36,7 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <BrowserRouter>
+      <LanguageProvider>
       <AuthProvider>
         <ScrollToTop />
 
@@ -124,6 +126,7 @@ ReactDOM.createRoot(
 
         <Analytics />
       </AuthProvider>
+      </LanguageProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
