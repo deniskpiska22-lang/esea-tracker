@@ -28,20 +28,20 @@ const ROLE_OPTIONS = {
 
 const STATUS_META = {
   pending: {
-    title: "Заявка на проверке",
-    text: "Мы проверим предоставленные контакты и доказательства.",
+    title: "Request under review",
+    text: "We will review the provided contact details and proof.",
     classes:
       "border-amber-500/25 bg-amber-500/10 text-amber-300",
   },
   approved: {
-    title: "Заявка одобрена",
-    text: "Профессиональный профиль подтверждён.",
+    title: "Request approved",
+    text: "The professional profile has been verified.",
     classes:
       "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
   },
   rejected: {
-    title: "Заявка отклонена",
-    text: "Исправьте данные и отправьте новую заявку.",
+    title: "Request rejected",
+    text: "Correct the information and submit a new request.",
     classes:
       "border-red-500/25 bg-red-500/10 text-red-300",
   },
@@ -377,11 +377,11 @@ export default function VerificationRequestPage() {
                 >
                   <div className="font-black">
                     {latestClaim.status === "approved"
-                      ? tr("Заявка одобрена", "Request approved")
+                      ? tr("Request approved", "Request approved")
                       : latestClaim.status === "rejected"
-                        ? tr("Заявка отклонена", "Request rejected")
+                        ? tr("Request rejected", "Request rejected")
                         : latestClaim.status === "pending"
-                          ? tr("Заявка на проверке", "Request under review")
+                          ? tr("Request under review", "Request under review")
                           : tr("Статус заявки", "Request status")}
                   </div>
                   <p className="mt-1 text-sm opacity-80">
@@ -390,10 +390,10 @@ export default function VerificationRequestPage() {
                     latestClaim.rejection_reason
                       ? latestClaim.rejection_reason
                       : latestClaim.status === "approved"
-                        ? tr("Профессиональный профиль подтверждён.", "The professional profile has been verified.")
+                        ? tr("The professional profile has been verified.", "The professional profile has been verified.")
                         : latestClaim.status === "rejected"
-                          ? tr("Исправьте данные и отправьте новую заявку.", "Correct the information and submit a new request.")
-                          : tr("Мы проверим предоставленные контакты и доказательства.", "We will review the provided contacts and proof.")}
+                          ? tr("Correct the information and submit a new request.", "Correct the information and submit a new request.")
+                          : tr("We will review the provided contact details and proof.", "We will review the provided contacts and proof.")}
                   </p>
                 </div>
               )}

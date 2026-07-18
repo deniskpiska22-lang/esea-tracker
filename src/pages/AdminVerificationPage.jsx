@@ -17,46 +17,46 @@ import teams from "../data/teams";
 const NAV_ITEMS = [
   {
     value: "overview",
-    label: "Обзор",
+    label: "Overview",
     icon: "◫",
   },
   {
     value: "verification",
-    label: "Верификация",
+    label: "Verification",
     icon: "✓",
   },
   {
     value: "users",
-    label: "Пользователи",
+    label: "Users",
     icon: "◎",
   },
   {
     value: "teams",
-    label: "Команды",
+    label: "Teams",
     icon: "◆",
   },
   {
     value: "activity",
-    label: "История",
+    label: "History",
     icon: "↺",
   },
 ];
 
 const STATUS_META = {
   pending: {
-    label: "Ожидает",
+    label: "Pending",
     badge:
       "border-amber-500/30 bg-amber-500/10 text-amber-300",
     dot: "bg-amber-400",
   },
   approved: {
-    label: "Одобрено",
+    label: "Approved",
     badge:
       "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
     dot: "bg-emerald-400",
   },
   rejected: {
-    label: "Отклонено",
+    label: "Rejected",
     badge:
       "border-red-500/30 bg-red-500/10 text-red-300",
     dot: "bg-red-400",
@@ -65,15 +65,15 @@ const STATUS_META = {
 
 const REQUEST_TYPE_META = {
   join_team: {
-    label: "Первичная верификация",
+    label: "Initial verification",
     short: "Join",
   },
   change_team: {
-    label: "Изменение профиля",
+    label: "Profile update",
     short: "Change",
   },
   leave_team: {
-    label: "Выход из команды",
+    label: "Leave team",
     short: "Leave",
   },
 };
@@ -86,20 +86,20 @@ const ROLE_LABELS = {
 };
 
 const ACCOUNT_TYPE_LABELS = {
-  fan: "Фанат",
-  player: "Игрок",
+  fan: "Fan",
+  player: "Player",
   staff: "Team Staff",
 };
 
 function formatDate(value, withTime = true) {
   if (!value) {
-    return "Неизвестно";
+    return "Unknown";
   }
 
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return "Неизвестно";
+    return "Unknown";
   }
 
   return new Intl.DateTimeFormat("ru-RU", {
@@ -134,11 +134,11 @@ function relativeTime(value) {
   );
 
   if (minutes < 1) {
-    return "только что";
+    return "just now";
   }
 
   if (minutes < 60) {
-    return `${minutes} мин назад`;
+    return `${minutes} min ago`;
   }
 
   const hours = Math.floor(
@@ -146,14 +146,14 @@ function relativeTime(value) {
   );
 
   if (hours < 24) {
-    return `${hours} ч назад`;
+    return `${hours} hr ago`;
   }
 
   const days = Math.floor(
     hours / 24
   );
 
-  return `${days} дн назад`;
+  return `${days} days ago`;
 }
 
 function getInitials(profile) {
@@ -450,7 +450,7 @@ export default function AdminVerificationPage() {
 
         setError(
           loadError.message ||
-            "Не удалось загрузить админ-панель."
+            "Could not load the admin dashboard."
         );
       } finally {
         setLoading(false);
@@ -757,7 +757,7 @@ export default function AdminVerificationPage() {
       !normalizedReason
     ) {
       setError(
-        "Укажите причину отклонения."
+        "Enter a rejection reason."
       );
       return;
     }
@@ -809,8 +809,8 @@ export default function AdminVerificationPage() {
 
       setSuccess(
         decision === "approved"
-          ? "Заявка успешно одобрена."
-          : "Заявка отклонена."
+          ? "Request approved successfully."
+          : "Request rejected."
       );
       setRejectionReason("");
     } catch (reviewError) {
@@ -821,7 +821,7 @@ export default function AdminVerificationPage() {
 
       setError(
         reviewError.message ||
-          "Не удалось обработать заявку."
+          "Could not process the request."
       );
     } finally {
       setProcessingId(null);
@@ -832,7 +832,7 @@ export default function AdminVerificationPage() {
     return (
       <main className="min-h-screen bg-[#070b11] px-4 py-14 text-white">
         <div className="mx-auto max-w-7xl text-center text-gray-500">
-          Загрузка Admin Center...
+          Loading Admin Center...
         </div>
       </main>
     );
@@ -900,7 +900,7 @@ export default function AdminVerificationPage() {
 
           <div className="mt-8 rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4">
             <div className="text-xs font-black text-gray-300">
-              Быстрый статус
+              Quick status
             </div>
 
             <div className="mt-3 flex items-center justify-between text-sm">
@@ -926,7 +926,7 @@ export default function AdminVerificationPage() {
             to="/"
             className="mt-6 flex items-center justify-center rounded-2xl border border-white/[0.07] px-4 py-3 text-sm font-black text-gray-400 transition hover:border-orange-500/25 hover:text-orange-300"
           >
-            ← Вернуться на сайт
+            ← Back to site
           </Link>
         </aside>
 
@@ -961,15 +961,15 @@ export default function AdminVerificationPage() {
                   className="rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300 disabled:opacity-50"
                 >
                   {refreshing
-                    ? "Обновление..."
-                    : "↻ Обновить"}
+                    ? "Refreshing..."
+                    : "↻ Refresh"}
                 </button>
 
                 <Link
                   to="/"
                   className="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-black text-white transition hover:bg-orange-400 xl:hidden"
                 >
-                  На сайт
+                  Open site
                 </Link>
               </div>
             </div>
@@ -1013,32 +1013,32 @@ export default function AdminVerificationPage() {
               <div className="space-y-6">
                 <section className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
                   <MetricCard
-                    label="Ожидают проверки"
+                    label="Awaiting review"
                     value={counts.pending}
-                    hint="Требуют решения"
+                    hint="Action required"
                     icon="✓"
                     tone="amber"
                   />
                   <MetricCard
-                    label="Подтверждено"
+                    label="Verified"
                     value={
                       verifiedProfiles.length
                     }
-                    hint="Профессиональные профили"
+                    hint="Professional profiles"
                     icon="◎"
                     tone="green"
                   />
                   <MetricCard
-                    label="Пользователи"
+                    label="Users"
                     value={profiles.length}
-                    hint="Всего аккаунтов"
+                    hint="Total accounts"
                     icon="◫"
                     tone="blue"
                   />
                   <MetricCard
-                    label="Активные команды"
+                    label="Active teams"
                     value={activeTeamCount}
-                    hint="Представлены в профилях"
+                    hint="Represented in profiles"
                     icon="◆"
                     tone="orange"
                   />
@@ -1052,7 +1052,7 @@ export default function AdminVerificationPage() {
                           Verification activity
                         </div>
                         <h2 className="mt-2 text-xl font-black">
-                          Последние заявки
+                          Latest requests
                         </h2>
                       </div>
 
@@ -1065,7 +1065,7 @@ export default function AdminVerificationPage() {
                         }
                         className="text-sm font-black text-orange-400 hover:text-orange-300"
                       >
-                        Смотреть все →
+                        View all →
                       </button>
                     </div>
 
@@ -1146,7 +1146,7 @@ export default function AdminVerificationPage() {
                       Platform health
                     </div>
                     <h2 className="mt-2 text-xl font-black">
-                      Состояние платформы
+                      Platform status
                     </h2>
 
                     <div className="mt-6 space-y-5">
@@ -1229,7 +1229,7 @@ export default function AdminVerificationPage() {
                         New accounts
                       </div>
                       <h2 className="mt-2 text-xl font-black">
-                        Новые пользователи
+                        New users
                       </h2>
                     </div>
 
@@ -1240,7 +1240,7 @@ export default function AdminVerificationPage() {
                       }
                       className="text-sm font-black text-orange-400 hover:text-orange-300"
                     >
-                      Открыть users →
+                      Open users →
                     </button>
                   </div>
 
@@ -1296,7 +1296,7 @@ export default function AdminVerificationPage() {
                           event.target.value
                         )
                       }
-                      placeholder="Поиск по нику, команде, email..."
+                      placeholder="Search by username, team, or email..."
                       className="w-full rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
                     />
 
@@ -1310,16 +1310,16 @@ export default function AdminVerificationPage() {
                       className="rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm font-bold outline-none focus:border-orange-500"
                     >
                       <option value="all">
-                        Все статусы
+                        All statuses
                       </option>
                       <option value="pending">
-                        Ожидают
+                        Pending
                       </option>
                       <option value="approved">
-                        Одобрены
+                        Approved
                       </option>
                       <option value="rejected">
-                        Отклонены
+                        Rejected
                       </option>
                     </select>
 
@@ -1333,16 +1333,16 @@ export default function AdminVerificationPage() {
                       className="rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm font-bold outline-none focus:border-orange-500"
                     >
                       <option value="all">
-                        Все типы
+                        All types
                       </option>
                       <option value="join_team">
-                        Первичная
+                        Initial
                       </option>
                       <option value="change_team">
-                        Изменение
+                        Update
                       </option>
                       <option value="leave_team">
-                        Выход
+                        Leave team
                       </option>
                     </select>
                   </div>
@@ -1353,10 +1353,10 @@ export default function AdminVerificationPage() {
                     <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
                       <div>
                         <div className="font-black">
-                          Заявки
+                          Requests
                         </div>
                         <div className="mt-1 text-xs text-gray-600">
-                          Найдено: {
+                          Found: {
                             filteredClaims.length
                           }
                         </div>
@@ -1371,7 +1371,7 @@ export default function AdminVerificationPage() {
                       {filteredClaims.length ===
                       0 ? (
                         <div className="p-10 text-center text-sm text-gray-600">
-                          Заявок не найдено
+                          No requests found
                         </div>
                       ) : (
                         filteredClaims.map(
@@ -1453,7 +1453,7 @@ export default function AdminVerificationPage() {
                                         {currentTeam?.name ||
                                           (claim.previous_team_slug
                                             ? claim.previous_team_slug
-                                            : "Нет команды")}
+                                            : "No team")}
                                       </span>
                                       <span className="text-orange-400">
                                         →
@@ -1464,7 +1464,7 @@ export default function AdminVerificationPage() {
                                           ? "Free Agent"
                                           : requestedTeam?.name ||
                                             claim.team_slug ||
-                                            "Не указано"}
+                                            "Not specified"}
                                       </span>
                                     </div>
 
@@ -1495,8 +1495,8 @@ export default function AdminVerificationPage() {
                   <div className="rounded-[28px] border border-white/[0.07] bg-[#0c121b]">
                     {!selectedClaim ? (
                       <EmptyState
-                        title="Выберите заявку"
-                        text="Справа появится профиль пользователя, сравнение изменений и инструменты модерации."
+                        title="Select a request"
+                        text="The user profile, proposed changes, and moderation tools will appear on the right."
                       />
                     ) : (
                       <div>
@@ -1553,7 +1553,7 @@ export default function AdminVerificationPage() {
                                 )}`}
                                 className="rounded-2xl border border-white/[0.08] px-4 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
                               >
-                                Открыть профиль ↗
+                                Open profile ↗
                               </Link>
                             )}
                           </div>
@@ -1574,7 +1574,7 @@ export default function AdminVerificationPage() {
                                     ) || {
                                       name:
                                         selectedClaim.previous_team_slug ||
-                                        "Без команды",
+                                        "No team",
                                     }
                                   }
                                   size="h-16 w-16"
@@ -1586,14 +1586,14 @@ export default function AdminVerificationPage() {
                                       selectedClaim.previous_team_slug
                                     )?.name ||
                                       selectedClaim.previous_team_slug ||
-                                      "Без команды"}
+                                      "No team"}
                                   </div>
                                   <div className="mt-2 text-sm font-bold text-gray-500">
                                     {ROLE_LABELS[
                                       selectedClaim.previous_team_role
                                     ] ||
                                       selectedClaim.previous_team_role ||
-                                      "Роль не указана"}
+                                      "Role not specified"}
                                   </div>
                                 </div>
                               </div>
@@ -1622,7 +1622,7 @@ export default function AdminVerificationPage() {
                                         ) || {
                                           name:
                                             selectedClaim.team_slug ||
-                                            "Не указано",
+                                            "Not specified",
                                         }
                                   }
                                   size="h-16 w-16"
@@ -1637,17 +1637,17 @@ export default function AdminVerificationPage() {
                                           selectedClaim.team_slug
                                         )?.name ||
                                         selectedClaim.team_slug ||
-                                        "Не указано"}
+                                        "Not specified"}
                                   </div>
                                   <div className="mt-2 text-sm font-bold text-orange-300">
                                     {selectedClaim.request_type ===
                                     "leave_team"
-                                      ? "Покидает команду"
+                                      ? "Leaving team"
                                       : ROLE_LABELS[
                                           selectedClaim.team_role
                                         ] ||
                                         selectedClaim.team_role ||
-                                        "Роль не указана"}
+                                        "Role not specified"}
                                   </div>
                                 </div>
                               </div>
@@ -1673,7 +1673,7 @@ export default function AdminVerificationPage() {
                               </div>
                               <div className="mt-2 break-all font-black text-white">
                                 {selectedClaim.contact_handle ||
-                                  "Не указан"}
+                                  "Not specified"}
                               </div>
                             </div>
                           </div>
@@ -1685,7 +1685,7 @@ export default function AdminVerificationPage() {
                                   Proof
                                 </div>
                                 <div className="mt-2 text-sm font-black text-white">
-                                  Подтверждение связи с командой
+                                  Proof of team affiliation
                                 </div>
                               </div>
 
@@ -1697,7 +1697,7 @@ export default function AdminVerificationPage() {
                                 rel="noreferrer"
                                 className="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-black text-white transition hover:bg-orange-400"
                               >
-                                Открыть доказательство ↗
+                                Open proof ↗
                               </a>
                             </div>
 
@@ -1712,7 +1712,7 @@ export default function AdminVerificationPage() {
                             </div>
                             <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-gray-300">
                               {selectedClaim.message ||
-                                "Пользователь не оставил комментарий."}
+                                "The user did not leave a comment."}
                             </p>
                           </div>
 
@@ -1730,7 +1730,7 @@ export default function AdminVerificationPage() {
                                     )
                                   }
                                   rows={4}
-                                  placeholder="Причина отклонения — обязательна только при Reject..."
+                                  placeholder="Rejection reason — required only when rejecting..."
                                   className="w-full resize-y rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-red-500"
                                 />
 
@@ -1750,7 +1750,7 @@ export default function AdminVerificationPage() {
                                   >
                                     {processingId ===
                                     selectedClaim.id
-                                      ? "Обработка..."
+                                      ? "Processing..."
                                       : "✓ Approve"}
                                   </button>
 
@@ -1777,7 +1777,7 @@ export default function AdminVerificationPage() {
                               <div className="flex items-center justify-between gap-4">
                                 <div>
                                   <div className="text-xs text-gray-600">
-                                    Решение принято
+                                    Decision recorded
                                   </div>
                                   <div className="mt-2 font-black">
                                     {formatDate(
@@ -1817,10 +1817,10 @@ export default function AdminVerificationPage() {
                     User directory
                   </div>
                   <h2 className="mt-2 text-2xl font-black">
-                    Все пользователи
+                    All users
                   </h2>
                   <p className="mt-2 text-sm text-gray-600">
-                    Профили, роли, команды и состояние верификации.
+                    Profiles, roles, teams, and verification status.
                   </p>
                 </div>
 
@@ -1946,7 +1946,7 @@ export default function AdminVerificationPage() {
                   Team coverage
                 </div>
                 <h2 className="mt-2 text-2xl font-black">
-                  Команды на платформе
+                  Teams on the platform
                 </h2>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
@@ -2005,7 +2005,7 @@ export default function AdminVerificationPage() {
                   Audit timeline
                 </div>
                 <h2 className="mt-2 text-2xl font-black">
-                  История заявок
+                  Request history
                 </h2>
 
                 <div className="mt-7 space-y-3">

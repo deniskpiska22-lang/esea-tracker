@@ -354,13 +354,13 @@ function MatchesPage() {
 
         {!loading && errorMessage && (
           <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">
-            Не удалось загрузить матчи из Supabase: {errorMessage}
+            Could not load matches from Supabase: {errorMessage}
           </div>
         )}
 
         {!loading && !errorMessage && teamMatches.length === 0 && (
           <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">
-            У этой команды пока нет завершённых матчей в базе.
+            This team does not have any completed matches in the database yet.
           </div>
         )}
 

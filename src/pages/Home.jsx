@@ -752,7 +752,7 @@ function FeaturedPanel({ match }) {
     <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
       <SectionHeader
         title="Featured"
-        subtitle="Главный матч дня"
+        subtitle="Featured match of the day"
       />
 
       <div className="bg-[#0d1218] p-6 md:p-8">
@@ -1025,7 +1025,7 @@ function Home() {
             </h1>
 
             <p className="mt-1 text-sm text-gray-600">
-              Матчи, результаты и рейтинг команд
+              Matches, results, and team rankings
             </p>
           </div>
 
@@ -1054,7 +1054,7 @@ function Home() {
             <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Upcoming"
-                subtitle="Ближайшие матчи"
+                subtitle="Upcoming matches"
                 action={
                   <span className="rounded-full bg-orange-500/10 px-2.5 py-1 text-[11px] font-bold text-orange-400">
                     {nonLiveMatches.length}
@@ -1087,7 +1087,7 @@ function Home() {
             <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="News feed"
-                subtitle="Здесь позже будет лента новостей"
+                subtitle="League news and updates"
                 action={
                   <span className="text-xs font-bold text-gray-600">
                     Coming soon
@@ -1104,7 +1104,7 @@ function Home() {
                   </div>
 
                   <h3 className="mt-2 text-lg font-black">
-                    Новости лиги появятся здесь
+                    League news will appear here
                   </h3>
 
                   
@@ -1112,10 +1112,10 @@ function Home() {
 
                 <div className="bg-[#0d1218]">
                   {[
-                    "Последние изменения в составах",
-                    "Главные матчи игрового дня",
-                    "Кто поднялся в рейтинге",
-                    "Лучшие игроки недели",
+                    "Latest roster changes",
+                    "Top matches of the day",
+                    "Biggest ranking climbers",
+                    "Players of the week",
                   ].map((title, index) => (
                     <div
                       key={title}
@@ -1145,7 +1145,7 @@ function Home() {
             <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Recent results"
-                subtitle="Последние завершённые игры"
+                subtitle="Latest completed matches"
                 action={
                   <span className="rounded-full bg-green-500/10 px-2.5 py-1 text-[11px] font-bold text-green-400">
                     {results.length}
@@ -1172,7 +1172,7 @@ function Home() {
             <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
               <SectionHeader
                 title="Team ranking"
-                subtitle="Лучшие команды"
+                subtitle="Top teams"
                 action={
                   <Link
                     to="/rankings"

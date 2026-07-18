@@ -107,7 +107,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Не удалось загрузить комментарии."
+        "Could not load comments."
       );
     } finally {
       setLoading(false);
@@ -155,7 +155,7 @@ export default function MatchComments({ matchId }) {
 
     if (trimmedBody.length > MAX_COMMENT_LENGTH) {
       setError(
-        `Комментарий не может быть длиннее ${MAX_COMMENT_LENGTH} символов.`
+        `A comment cannot be longer than ${MAX_COMMENT_LENGTH} characters.`
       );
       return;
     }
@@ -183,7 +183,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Не удалось отправить комментарий."
+        "Could not post the comment."
       );
     } finally {
       setSubmitting(false);
@@ -196,7 +196,7 @@ export default function MatchComments({ matchId }) {
     }
 
     const shouldDelete = window.confirm(
-      "Удалить этот комментарий?"
+      "Delete this comment?"
     );
 
     if (!shouldDelete) return;
@@ -225,7 +225,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Не удалось удалить комментарий."
+        "Could not delete the comment."
       );
     } finally {
       setDeletingId(null);
@@ -236,14 +236,14 @@ export default function MatchComments({ matchId }) {
     const count = comments.length;
 
     if (count === 1) {
-      return "1 комментарий";
+      return "1 comment";
     }
 
     if (count >= 2 && count <= 4) {
-      return `${count} комментария`;
+      return `${count} comments`;
     }
 
-    return `${count} комментариев`;
+    return `${count} comments`;
   }, [comments.length]);
 
   return (
@@ -251,7 +251,7 @@ export default function MatchComments({ matchId }) {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#243041] px-5 py-4">
         <div>
           <h2 className="text-2xl font-black">
-            Комментарии
+            Comments
           </h2>
 
           <p className="mt-1 text-sm text-gray-500">
@@ -263,7 +263,7 @@ export default function MatchComments({ matchId }) {
       <div className="p-5 md:p-6">
         {authLoading ? (
           <div className="rounded-xl border border-[#243041] bg-[#0b0f14] p-4 text-sm text-gray-500">
-            Проверяем авторизацию...
+            Checking authentication...
           </div>
         ) : user ? (
           <form
@@ -287,7 +287,7 @@ export default function MatchComments({ matchId }) {
                 <div className="font-bold">
                   {profile?.display_name ||
                     profile?.username ||
-                    "Пользователь"}
+                    "User"}
                 </div>
 
                 {profile?.username && (
@@ -310,7 +310,7 @@ export default function MatchComments({ matchId }) {
               }
               rows={4}
               maxLength={MAX_COMMENT_LENGTH}
-              placeholder="Напишите комментарий о матче..."
+              placeholder="Write a comment about the match..."
               className="w-full resize-y rounded-xl border border-[#2b3748] bg-[#111823] px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
             />
 
@@ -322,7 +322,7 @@ export default function MatchComments({ matchId }) {
                     : "text-gray-500"
                 }`}
               >
-                {remainingCharacters} символов осталось
+                {remainingCharacters} characters remaining
               </div>
 
               <button
@@ -331,8 +331,8 @@ export default function MatchComments({ matchId }) {
                 className="rounded-xl bg-orange-500 px-5 py-2.5 text-sm font-black text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitting
-                  ? "Отправка..."
-                  : "Отправить"}
+                  ? "Posting..."
+                  : "Post"}
               </button>
             </div>
           </form>
@@ -343,17 +343,17 @@ export default function MatchComments({ matchId }) {
               state={{ from: location }}
               className="font-bold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
             >
-              Войдите
+              Log in
             </Link>{" "}
-            или{" "}
+            or{" "}
             <Link
               to="/register"
               state={{ from: location }}
               className="font-bold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
             >
-              зарегистрируйтесь
+              sign up
             </Link>
-            , чтобы оставить комментарий.
+            , to leave a comment.
           </div>
         )}
 
@@ -366,16 +366,16 @@ export default function MatchComments({ matchId }) {
         <div className="mt-6">
           {loading ? (
             <div className="py-8 text-center text-sm text-gray-500">
-              Загрузка комментариев...
+              Loading comments...
             </div>
           ) : comments.length === 0 ? (
             <div className="rounded-xl border border-dashed border-[#2b3748] px-5 py-10 text-center">
               <div className="font-bold">
-                Комментариев пока нет
+                No comments yet
               </div>
 
               <div className="mt-1 text-sm text-gray-500">
-                Будьте первым, кто обсудит этот матч.
+                Be the first to discuss this match.
               </div>
             </div>
           ) : (
@@ -385,7 +385,7 @@ export default function MatchComments({ matchId }) {
                 const authorName =
                   author?.display_name ||
                   author?.username ||
-                  "Удалённый пользователь";
+                  "Deleted user";
                 const isOwnComment =
                   user?.id === comment.user_id;
 
@@ -442,8 +442,8 @@ export default function MatchComments({ matchId }) {
                               className="text-xs font-semibold text-gray-500 transition-colors hover:text-red-400 disabled:cursor-wait disabled:opacity-50"
                             >
                               {deletingId === comment.id
-                                ? "Удаление..."
-                                : "Удалить"}
+                                ? "Deleting..."
+                                : "Delete"}
                             </button>
                           )}
                         </div>

@@ -4,10 +4,10 @@ const partners = [
   {
     name: "CIS Finder",
     description:
-      "Найди команду, игроков и новые возможности в CS2-комьюнити.",
+      "Find a team, players, and new opportunities in the CS2 community.",
     logo: "/partners/cis-finder.png",
     url: "https://example.com",
-    cta: "Перейти в CIS Finder",
+    cta: "Visit CIS Finder",
     featured: true,
   },
 ];
@@ -59,7 +59,7 @@ export default function PartnersSection() {
           </div>
 
           <div className="border-t border-white/[0.06] bg-white/[0.02] px-6 py-3 text-center text-xs text-gray-600 md:px-8">
-            Партнёрский блок не мешает навигации и органично вписывается между секциями главной страницы.
+            A community partner helping CS2 players find teams and opportunities.
           </div>
         </div>
       </div>

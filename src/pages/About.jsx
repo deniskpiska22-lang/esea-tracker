@@ -16,12 +16,12 @@ function About() {
         <div className="mb-12">
 
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-            О проекте <span className="text-orange-500">Esea Tracker</span>
+            About <span className="text-orange-500">Esea Tracker</span>
           </h1>
 
           <p className="text-gray-400 mt-4 max-w-3xl leading-7">
-            Независимая рейтинговая платформа CIS-команд ESEA.
-            Цель — отслеживание прогресса, развитие сцены и создание единого рейтинга полупро сцены.
+            An independent ranking platform for ESEA teams.
+            Our goal is to track progress, support the competitive scene, and build a unified ranking for semi-professional teams.
           </p>
 
         </div>
@@ -33,16 +33,16 @@ function About() {
           <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
             <h2 className="text-lg font-semibold text-orange-400 mb-4">
-              Проект
+              Project
             </h2>
 
             <p className="text-gray-300 leading-7">
-              CIS ESEA Rankings создан, чтобы дать внимание командам вне тир-1 сцены.
-              Многие составы из Advanced / Main / Intermediate / Entry остаются без медиа-освещения.
+              ESEA Tracker was created to give more visibility to teams outside the tier-one scene.
+              Many teams in Advanced, Main, Intermediate, and Entry receive little or no media coverage.
             </p>
 
             <p className="text-gray-400 leading-7 mt-4">
-              Рейтинг формируется на основе результатов матчей, стабильности и дивизиона.
+              The ranking is based on match results, consistency, and division strength.
             </p>
 
           </div>
@@ -51,15 +51,15 @@ function About() {
           <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
             <h2 className="text-lg font-semibold text-orange-400 mb-4">
-              Возможности
+              Features
             </h2>
 
             <ul className="space-y-2 text-gray-300">
-              <li>• Рейтинг CIS команд ESEA</li>
-              <li>• Страницы команд с аналитикой</li>
-              <li>• Дивизионная система</li>
-              <li>• Статистика и динамика</li>
-              <li>• Mobile-first интерфейс</li>
+              <li>• ESEA team rankings</li>
+              <li>• Team pages with analytics</li>
+              <li>• Division-based structure</li>
+              <li>• Statistics and ranking trends</li>
+              <li>• Mobile-first interface</li>
             </ul>
 
           </div>
@@ -68,7 +68,7 @@ function About() {
           <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
             <h2 className="text-lg font-semibold text-orange-400 mb-4">
-              Система рейтинга
+              Ranking system
             </h2>
 
             <div className="space-y-4 text-gray-300">
@@ -76,21 +76,21 @@ function About() {
               <div>
                 <div className="text-white font-medium">Advanced</div>
                 <div className="text-gray-400 text-sm">
-                  Высокий множитель и вес матчей
+                  Higher multiplier and match weight
                 </div>
               </div>
 
               <div>
                 <div className="text-white font-medium">Main</div>
                 <div className="text-gray-400 text-sm">
-                  Стабильность и бонус за победы
+                  Consistency and win bonuses
                 </div>
               </div>
 
               <div>
                 <div className="text-white font-medium">Intermediate / Entry</div>
                 <div className="text-gray-400 text-sm">
-                  Прогресс и базовый винрейт
+                  Progress and baseline win rate
                 </div>
               </div>
 
@@ -102,15 +102,15 @@ function About() {
           <div className="bg-[#0c1016] border border-white/5 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-orange-500/20 transition">
 
             <h2 className="text-lg font-semibold text-orange-400 mb-4">
-              Создатель
+              Creator
             </h2>
 
             <p className="text-gray-300 leading-7">
-              Проект создан CIS-тренером, работающим с молодыми игроками и командами.
+              The project was created by a CS2 coach working with developing players and teams.
             </p>
 
             <p className="text-gray-400 leading-7 mt-4">
-              Фокус — развитие сцены и повышение видимости перспективных игроков.
+              The focus is on growing the scene and increasing the visibility of promising players.
             </p>
 
             <div className="mt-6 space-y-2">
