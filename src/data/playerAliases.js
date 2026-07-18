@@ -823,6 +823,10 @@ const playerAliases = {
     "mecry",
     "CleanJackson",
     ],
+                 "hyp3else66": [
+    "hyp3else66",
+    "saizius666",
+    ],
 };
 
 export default playerAliases;

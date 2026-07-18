@@ -12,7 +12,8 @@
     "refresh:matches": "node scripts/updateUpcomingMatches.js && node scripts/updateMatches.js && node --env-file=.env.local scripts/syncMatchesToSupabase.js",
     "sync:auto": "node scripts/autoSyncMatches.js",
     "sync:live": "node scripts/autoSyncMatches.js --live",
-    "generate:maps": "node scripts/generateMaps.js"
+    "generate:maps": "node scripts/generateMaps.js",
+    "rankings:update": "node scripts/update-rankings.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",

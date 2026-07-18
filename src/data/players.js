@@ -140,7 +140,8 @@ const players = {
       "elo": 3659
     },
     {
-      "nickname": "2n14g"
+      "nickname": "2n14g",
+      "elo": 3963
     },
     {
       "nickname": "zazzer",
@@ -198,7 +199,7 @@ const players = {
   "young-tigeres": [
     {
       "nickname": "mmmotya",
-      "elo": 2851
+      "elo": 3044
     },
     {
       "nickname": "seberya",
@@ -213,7 +214,8 @@ const players = {
       "elo": 3601
     },
     {
-      "nickname": "z3ndy"
+      "nickname": "z3ndy",
+      "elo": 3645
     }
   ],
   "vpprodigy": [
@@ -306,7 +308,8 @@ const players = {
   ],
   "nexora": [
     {
-      "nickname": "vrnskY"
+      "nickname": "vrnskY",
+      "elo": 3297
     },
     {
       "nickname": "-matusik",
@@ -404,7 +407,8 @@ const players = {
       "elo": 3441
     },
     {
-      "nickname": "saizius666"
+      "nickname": "hyp3else66",
+      "elo": 3398
     },
     {
       "nickname": "xdxdxxdxxdd",
@@ -417,7 +421,8 @@ const players = {
       "elo": 3458
     },
     {
-      "nickname": "mdlxd"
+      "nickname": "mdlxd",
+      "elo": 3544
     },
     {
       "nickname": "menddel",
@@ -1736,10 +1741,12 @@ const players = {
   ],
   "chikiryau": [
     {
-      "nickname": "reinz"
+      "nickname": "reinz",
+      "elo": 3248
     },
     {
-      "nickname": "y9wonky"
+      "nickname": "y9wonky",
+      "elo": 2890
     },
     {
       "nickname": "Jagermaister",
