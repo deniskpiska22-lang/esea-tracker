@@ -1,5 +1,34 @@
 const matches = [
   {
+    "id": "1-58fd6e15-147a-4018-b257-e83e23e83502",
+    "matchId": "1-58fd6e15-147a-4018-b257-e83e23e83502",
+    "teamSlug": "1minute",
+    "teamName": "1Minute",
+    "opponentName": "GetPrefire Ruthenia",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-18",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-58fd6e15-147a-4018-b257-e83e23e83502"
+  },
+  {
     "id": "1-d8774b6a-3203-4152-977a-fd5e5dee9ca6",
     "matchId": "1-d8774b6a-3203-4152-977a-fd5e5dee9ca6",
     "teamSlug": "arch",
@@ -9457,43 +9486,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-40587345-6308-4765-ae1b-a7a39dfbfa47"
   },
   {
-    "id": "1-ddb0f82f-9578-4513-8a7b-78f663fa14a7",
-    "matchId": "1-ddb0f82f-9578-4513-8a7b-78f663fa14a7",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "Project EVERSIO",
-    "teamScore": 2,
-    "opponentScore": 0,
-    "won": true,
-    "result": "WIN",
-    "boScore": "2 : 0",
-    "season": "S57 EU Intermediate C - Playoffs",
-    "date": "2026-05-30",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 3,
-    "championshipId": "7dfdafbe-2898-43e4-ba19-68d3a0e6c64e",
-    "maps": [
-      "Ancient",
-      "Overpass",
-      "Inferno"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 13,
-        "opponentScore": 4,
-        "won": true
-      },
-      {
-        "map": "Overpass",
-        "teamScore": 13,
-        "opponentScore": 10,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ddb0f82f-9578-4513-8a7b-78f663fa14a7"
-  },
-  {
     "id": "1-e9cda184-10ac-43f4-b0f7-546af9fb3300",
     "matchId": "1-e9cda184-10ac-43f4-b0f7-546af9fb3300",
     "teamSlug": "baks-esports",
@@ -13232,43 +13224,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6473ff04-f2dc-4a07-9b3a-995ef95fce72"
   },
   {
-    "id": "1-494ddf44-bd44-479c-9752-1fa6bc3a3b03",
-    "matchId": "1-494ddf44-bd44-479c-9752-1fa6bc3a3b03",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "FatePredict",
-    "teamScore": 0,
-    "opponentScore": 2,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "0 : 2",
-    "season": "S57 EU Intermediate C - Playoffs",
-    "date": "2026-05-26",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 3,
-    "championshipId": "7dfdafbe-2898-43e4-ba19-68d3a0e6c64e",
-    "maps": [
-      "Overpass",
-      "Dust2",
-      "Inferno"
-    ],
-    "mapScores": [
-      {
-        "map": "Overpass",
-        "teamScore": 8,
-        "opponentScore": 13,
-        "won": false
-      },
-      {
-        "map": "Dust2",
-        "teamScore": 5,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-494ddf44-bd44-479c-9752-1fa6bc3a3b03"
-  },
-  {
     "id": "1-f4c0ea79-4068-423f-95d5-24e95ed22779",
     "matchId": "1-f4c0ea79-4068-423f-95d5-24e95ed22779",
     "teamSlug": "baks-esports",
@@ -15766,35 +15721,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4198c094-cb39-413a-8a26-30b1b032f110"
   },
   {
-    "id": "1-45d2cbea-b546-42ae-b236-bc55f66c4cb5",
-    "matchId": "1-45d2cbea-b546-42ae-b236-bc55f66c4cb5",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "Doxa Gaming",
-    "teamScore": 6,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "6 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-05-20",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Mirage"
-    ],
-    "mapScores": [
-      {
-        "map": "Mirage",
-        "teamScore": 6,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-45d2cbea-b546-42ae-b236-bc55f66c4cb5"
-  },
-  {
     "id": "1-88e42fac-ede6-4612-9615-a04d022ffa92",
     "matchId": "1-88e42fac-ede6-4612-9615-a04d022ffa92",
     "teamSlug": "yelets-esports",
@@ -17245,35 +17171,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-783a484e-e4fd-42e5-bd9b-10efb73eb9e9"
   },
   {
-    "id": "1-d782ebae-913e-4feb-97c8-6a84ef1366d5",
-    "matchId": "1-d782ebae-913e-4feb-97c8-6a84ef1366d5",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "dzungarz",
-    "teamScore": 8,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "8 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-05-19",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Dust2"
-    ],
-    "mapScores": [
-      {
-        "map": "Dust2",
-        "teamScore": 8,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d782ebae-913e-4feb-97c8-6a84ef1366d5"
-  },
-  {
     "id": "1-4fab477b-4a47-4adb-b79b-9eb7fdbafec7",
     "matchId": "1-4fab477b-4a47-4adb-b79b-9eb7fdbafec7",
     "teamSlug": "sunthraw",
@@ -17475,35 +17372,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9e704208-e9e1-4980-859c-2edb2f0a5b89"
-  },
-  {
-    "id": "1-25d48ba8-f943-4cc7-90ae-cfe9a632d4db",
-    "matchId": "1-25d48ba8-f943-4cc7-90ae-cfe9a632d4db",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "Team Exceed",
-    "teamScore": 16,
-    "opponentScore": 12,
-    "won": true,
-    "result": "WIN",
-    "boScore": "16 : 12",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-05-19",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Overpass"
-    ],
-    "mapScores": [
-      {
-        "map": "Overpass",
-        "teamScore": 16,
-        "opponentScore": 12,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25d48ba8-f943-4cc7-90ae-cfe9a632d4db"
   },
   {
     "id": "1-d79058fd-8ddf-4fef-a922-05522f0ab41b",
@@ -19623,35 +19491,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2e7c78ed-2c2a-4170-99f8-f15b7ca34bb4"
   },
   {
-    "id": "1-b7d23567-fa30-4d28-8a78-a31929e1a42f",
-    "matchId": "1-b7d23567-fa30-4d28-8a78-a31929e1a42f",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "Brest Esport",
-    "teamScore": 13,
-    "opponentScore": 11,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 11",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-05-14",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Dust2"
-    ],
-    "mapScores": [
-      {
-        "map": "Dust2",
-        "teamScore": 13,
-        "opponentScore": 11,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b7d23567-fa30-4d28-8a78-a31929e1a42f"
-  },
-  {
     "id": "1-a8738c82-0d22-4f48-bbcb-84ae154197e7",
     "matchId": "1-a8738c82-0d22-4f48-bbcb-84ae154197e7",
     "teamSlug": "yelets-esports",
@@ -19795,35 +19634,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25475d03-1379-46e0-aa1b-823abe8e8c27"
-  },
-  {
-    "id": "1-b1123ef2-a496-4ce0-aa19-4adaa95089bf",
-    "matchId": "1-b1123ef2-a496-4ce0-aa19-4adaa95089bf",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "picburgLV",
-    "teamScore": 3,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "3 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-05-14",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 3,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b1123ef2-a496-4ce0-aa19-4adaa95089bf"
   },
   {
     "id": "1-91b3870c-d7be-42b4-a85e-37bcaffbfc08",
@@ -23422,35 +23232,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-24a0099b-0c19-4bdf-8fb7-bd0527683caa"
   },
   {
-    "id": "1-807ee649-bb75-4a3b-8f35-5616354aabfd",
-    "matchId": "1-807ee649-bb75-4a3b-8f35-5616354aabfd",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "ABlaze Team",
-    "teamScore": 13,
-    "opponentScore": 9,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 9",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-05-07",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Mirage"
-    ],
-    "mapScores": [
-      {
-        "map": "Mirage",
-        "teamScore": 13,
-        "opponentScore": 9,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-807ee649-bb75-4a3b-8f35-5616354aabfd"
-  },
-  {
     "id": "1-58fbcbed-b6d6-4ae7-86d2-e72c5f7e7c9b",
     "matchId": "1-58fbcbed-b6d6-4ae7-86d2-e72c5f7e7c9b",
     "teamSlug": "sunthraw",
@@ -23710,35 +23491,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6732e35e-7f77-4477-8c94-513937c93808"
-  },
-  {
-    "id": "1-f5dfc0b8-8f57-4da4-9300-9458dd87b7b4",
-    "matchId": "1-f5dfc0b8-8f57-4da4-9300-9458dd87b7b4",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "gotards",
-    "teamScore": 13,
-    "opponentScore": 11,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 11",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-05-07",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Inferno"
-    ],
-    "mapScores": [
-      {
-        "map": "Inferno",
-        "teamScore": 13,
-        "opponentScore": 11,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f5dfc0b8-8f57-4da4-9300-9458dd87b7b4"
   },
   {
     "id": "1-4f9f71f6-e559-40f6-93e2-dcfe540b5866",
@@ -25655,35 +25407,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6f844b5e-d7b6-45fe-8c86-a66960d349f6"
   },
   {
-    "id": "1-ca1000bd-fdfb-4bd0-b44a-0be74760e365",
-    "matchId": "1-ca1000bd-fdfb-4bd0-b44a-0be74760e365",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "4A1C",
-    "teamScore": 9,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "9 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-05-05",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Anubis"
-    ],
-    "mapScores": [
-      {
-        "map": "Anubis",
-        "teamScore": 9,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ca1000bd-fdfb-4bd0-b44a-0be74760e365"
-  },
-  {
     "id": "1-7f2cbfe4-126c-485b-9403-303a157005c2",
     "matchId": "1-7f2cbfe4-126c-485b-9403-303a157005c2",
     "teamSlug": "baks-esports",
@@ -27279,35 +27002,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c8a459fc-02bc-498c-b7db-c471259bb95a"
   },
   {
-    "id": "1-ba158838-2439-4ae5-bf57-584d5baf5404",
-    "matchId": "1-ba158838-2439-4ae5-bf57-584d5baf5404",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "M1Z",
-    "teamScore": 11,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "11 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-30",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Mirage"
-    ],
-    "mapScores": [
-      {
-        "map": "Mirage",
-        "teamScore": 11,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ba158838-2439-4ae5-bf57-584d5baf5404"
-  },
-  {
     "id": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
     "matchId": "1-6c0dbe28-7447-47f1-909c-6b2b44a9fbfd",
     "teamSlug": "sunthraw",
@@ -27538,35 +27232,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-39bd1183-f686-45c5-83be-81bb0abb7025"
-  },
-  {
-    "id": "1-310b07a9-e8d0-46f5-b073-c87afb7a44fb",
-    "matchId": "1-310b07a9-e8d0-46f5-b073-c87afb7a44fb",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "MINI SAUCISSE",
-    "teamScore": 10,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "10 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-30",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Anubis"
-    ],
-    "mapScores": [
-      {
-        "map": "Anubis",
-        "teamScore": 10,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-310b07a9-e8d0-46f5-b073-c87afb7a44fb"
   },
   {
     "id": "1-38411ef8-cdb9-4db8-bb15-996835b44940",
@@ -29164,35 +28829,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c391bc5e-85a3-4d17-80c8-0ced9bb903fc"
   },
   {
-    "id": "1-c328d753-8649-4a3e-8bf2-10b36eee2ae5",
-    "matchId": "1-c328d753-8649-4a3e-8bf2-10b36eee2ae5",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "Project conquerors",
-    "teamScore": 11,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "11 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-28",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Dust2"
-    ],
-    "mapScores": [
-      {
-        "map": "Dust2",
-        "teamScore": 11,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c328d753-8649-4a3e-8bf2-10b36eee2ae5"
-  },
-  {
     "id": "1-e758d7cc-e5ad-4726-9374-40c3c816e4a9",
     "matchId": "1-e758d7cc-e5ad-4726-9374-40c3c816e4a9",
     "teamSlug": "sunthraw",
@@ -29394,35 +29030,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ba57e97b-1a05-49f2-9750-84681e74cd16"
-  },
-  {
-    "id": "1-265be3ba-5137-4e42-9821-7d73c8de2c65",
-    "matchId": "1-265be3ba-5137-4e42-9821-7d73c8de2c65",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "Fyro",
-    "teamScore": 13,
-    "opponentScore": 11,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 11",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-28",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 13,
-        "opponentScore": 11,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-265be3ba-5137-4e42-9821-7d73c8de2c65"
   },
   {
     "id": "1-0ce8d70c-e1f6-414d-bb3e-a454442583cf",
@@ -31194,35 +30801,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d9b6c083-ea18-420f-bcc1-5dc8a759fc0d"
   },
   {
-    "id": "1-fdcb110e-b1ed-4457-949e-ab060e35bbcc",
-    "matchId": "1-fdcb110e-b1ed-4457-949e-ab060e35bbcc",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "EWAVE ESPORTS",
-    "teamScore": 9,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "9 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-23",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Inferno"
-    ],
-    "mapScores": [
-      {
-        "map": "Inferno",
-        "teamScore": 9,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fdcb110e-b1ed-4457-949e-ab060e35bbcc"
-  },
-  {
     "id": "1-23ee986d-8129-4aae-95d9-ff8be42ab398",
     "matchId": "1-23ee986d-8129-4aae-95d9-ff8be42ab398",
     "teamSlug": "3nation",
@@ -31424,35 +31002,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-28f11dba-286b-4647-b087-aef875343516"
-  },
-  {
-    "id": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
-    "matchId": "1-011a67cd-19e8-47af-a53f-5a53cb21b90e",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "c0b0r",
-    "teamScore": 13,
-    "opponentScore": 9,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 9",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-23",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 13,
-        "opponentScore": 9,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-011a67cd-19e8-47af-a53f-5a53cb21b90e"
   },
   {
     "id": "1-58c9eb2f-c055-4955-a780-c39074f4e488",
@@ -32673,35 +32222,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-54fde9eb-eff6-434b-98d1-627f25fa3c8c"
   },
   {
-    "id": "1-bea58fc7-a920-480a-aa46-50dd68c66260",
-    "matchId": "1-bea58fc7-a920-480a-aa46-50dd68c66260",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "MOLO",
-    "teamScore": 7,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "7 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-21",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Mirage"
-    ],
-    "mapScores": [
-      {
-        "map": "Mirage",
-        "teamScore": 7,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-bea58fc7-a920-480a-aa46-50dd68c66260"
-  },
-  {
     "id": "1-57596ec8-bff8-4914-988a-349d47fe4b06",
     "matchId": "1-57596ec8-bff8-4914-988a-349d47fe4b06",
     "teamSlug": "sunthraw",
@@ -32961,35 +32481,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2dd39531-a834-44d2-a3f0-6eb76fb60b69"
-  },
-  {
-    "id": "1-cc081f1c-33b3-4001-a76c-4bc96c7dd804",
-    "matchId": "1-cc081f1c-33b3-4001-a76c-4bc96c7dd804",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "Vesteria",
-    "teamScore": 6,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "6 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-21",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Dust2"
-    ],
-    "mapScores": [
-      {
-        "map": "Dust2",
-        "teamScore": 6,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cc081f1c-33b3-4001-a76c-4bc96c7dd804"
   },
   {
     "id": "1-98facfb9-c2d0-4587-881e-ed06f5941a9b",
@@ -34007,35 +33498,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-bbe382aa-9fd0-4bd0-ac29-c656b87dcfdc"
   },
   {
-    "id": "1-0ea3e4c4-4ef5-461a-9de8-b172f21dff25",
-    "matchId": "1-0ea3e4c4-4ef5-461a-9de8-b172f21dff25",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "Fortress Esport",
-    "teamScore": 6,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "6 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-19",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 6,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0ea3e4c4-4ef5-461a-9de8-b172f21dff25"
-  },
-  {
     "id": "1-50db89b5-b61d-46fd-bd93-36f7d9fd8fac",
     "matchId": "1-50db89b5-b61d-46fd-bd93-36f7d9fd8fac",
     "teamSlug": "1337",
@@ -34790,64 +34252,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0ae73e24-39a3-43d9-b08f-05c0498dfe27"
   },
   {
-    "id": "1-e7c26bc3-06b8-474f-80e9-6d5380297866",
-    "matchId": "1-e7c26bc3-06b8-474f-80e9-6d5380297866",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "Inner Circle Academy",
-    "teamScore": 3,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "3 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-16",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 3,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e7c26bc3-06b8-474f-80e9-6d5380297866"
-  },
-  {
-    "id": "1-0db7aa15-d6bd-44ea-bdd7-a51141ebb6ac",
-    "matchId": "1-0db7aa15-d6bd-44ea-bdd7-a51141ebb6ac",
-    "teamSlug": "infernals",
-    "teamName": "iNFERNALES",
-    "opponentName": "ORGLESS",
-    "teamScore": 10,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "10 : 13",
-    "season": "S57 EU Main A - Regular Season",
-    "date": "2026-04-16",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "83fc05fb-0f31-42e3-82c3-96c6dc16660a",
-    "maps": [
-      "Mirage"
-    ],
-    "mapScores": [
-      {
-        "map": "Mirage",
-        "teamScore": 10,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0db7aa15-d6bd-44ea-bdd7-a51141ebb6ac"
-  },
-  {
     "id": "1-715328fa-bb1f-480c-8216-2e3ba4499e9b",
     "matchId": "1-715328fa-bb1f-480c-8216-2e3ba4499e9b",
     "teamSlug": "sunthraw",
@@ -35078,35 +34482,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b642a56c-bdf8-405c-97b4-f8b77ee00641"
-  },
-  {
-    "id": "1-49b6c3ad-2ea0-4a53-9b28-e70e1bae591c",
-    "matchId": "1-49b6c3ad-2ea0-4a53-9b28-e70e1bae591c",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "4ztankuamiley",
-    "teamScore": 1,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "1 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-16",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Anubis"
-    ],
-    "mapScores": [
-      {
-        "map": "Anubis",
-        "teamScore": 1,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-49b6c3ad-2ea0-4a53-9b28-e70e1bae591c"
   },
   {
     "id": "1-8efd3903-9c5d-4f70-876a-14bf4a1a649d",
@@ -36789,35 +36164,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a37f1137-94ce-46be-b018-b857684a05c5"
-  },
-  {
-    "id": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
-    "matchId": "1-e231779d-dd10-41f4-a93a-9c63c2b3e13a",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "TEAM KA6ANbl",
-    "teamScore": 5,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "5 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-14",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Anubis"
-    ],
-    "mapScores": [
-      {
-        "map": "Anubis",
-        "teamScore": 5,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e231779d-dd10-41f4-a93a-9c63c2b3e13a"
   },
   {
     "id": "1-00a5b29e-3fdf-450e-8823-5f6b48255410",
@@ -38676,35 +38022,6 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-872346c9-35bc-4ae3-ab4f-57915c78a140"
   },
   {
-    "id": "1-917d1fbe-ea0a-460e-a8b8-f513522ce2f7",
-    "matchId": "1-917d1fbe-ea0a-460e-a8b8-f513522ce2f7",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "ProjectVapourGG",
-    "teamScore": 6,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "6 : 13",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-09",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Overpass"
-    ],
-    "mapScores": [
-      {
-        "map": "Overpass",
-        "teamScore": 6,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-917d1fbe-ea0a-460e-a8b8-f513522ce2f7"
-  },
-  {
     "id": "1-f6a8fd0c-5838-4802-86db-11b3f9e4da04",
     "matchId": "1-f6a8fd0c-5838-4802-86db-11b3f9e4da04",
     "teamSlug": "bcgame-academy",
@@ -39805,35 +39122,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-54743f93-d664-491d-ab9b-60bf81cbca9d"
-  },
-  {
-    "id": "1-bdf8381f-9083-4eb6-a6e2-1ef18ad74d26",
-    "matchId": "1-bdf8381f-9083-4eb6-a6e2-1ef18ad74d26",
-    "teamSlug": "quazar-school",
-    "teamName": "QUAZAR SCHOOL",
-    "opponentName": "FlamingoZ",
-    "teamScore": 13,
-    "opponentScore": 7,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 7",
-    "season": "S57 EU Intermediate C - Regular Season",
-    "date": "2026-04-07",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "6faf7269-8a1b-4403-ae45-d2a9fa8cbb8e",
-    "maps": [
-      "Overpass"
-    ],
-    "mapScores": [
-      {
-        "map": "Overpass",
-        "teamScore": 13,
-        "opponentScore": 7,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-bdf8381f-9083-4eb6-a6e2-1ef18ad74d26"
   },
   {
     "id": "1-9889822d-3ca7-4043-8dcc-8fda0bcbf8ca",
