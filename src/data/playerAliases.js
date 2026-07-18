@@ -827,6 +827,10 @@ const playerAliases = {
     "hyp3else66",
     "saizius666",
     ],
+                     "mdl--": [
+    "mdl--",
+    "mdlxd",
+    ],
 };
 
 export default playerAliases;

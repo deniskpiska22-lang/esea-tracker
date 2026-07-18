@@ -274,7 +274,7 @@ const teams = [
       wins: 0,
       losses: 0,
     },
-    players: ["shootic", "mdlxd", "menddel", "lollipop21k", "Maksilvl"],
+    players: ["shootic", "mdl--", "menddel", "lollipop21k", "Maksilvl"],
     matches: [],
   },
       {

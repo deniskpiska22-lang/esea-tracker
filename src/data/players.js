@@ -421,7 +421,7 @@ const players = {
       "elo": 3458
     },
     {
-      "nickname": "mdlxd",
+      "nickname": "mdl--",
       "elo": 3544
     },
     {
