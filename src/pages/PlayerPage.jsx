@@ -30,6 +30,12 @@ const FINISHED_STATUSES = [
 const MATCH_LIMIT = 1000;
 const RECENT_MATCH_LIMIT = 10;
 
+function isFaceitPlayerId(value) {
+  return /^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(
+    String(value || "").trim()
+  );
+}
+
 function normalizeName(value = "") {
   return String(value || "")
     .replace(/\s+/g, "")
@@ -741,6 +747,29 @@ function PlayerPage() {
       avatar: null,
     };
 
+  /*
+   * В FACEIT URL нельзя подставлять UUID.
+   * Сначала сопоставляем players.faceit_id с players.nickname,
+   * затем строим ссылку только из nickname.
+   */
+  const faceitProfileNickname =
+    String(
+      databasePlayer?.nickname ||
+      databaseRating?.nickname ||
+      (
+        !isFaceitPlayerId(routePlayerKey)
+          ? decodedNickname
+          : ""
+      )
+    ).trim();
+
+  const faceitProfileUrl =
+    faceitProfileNickname
+      ? `https://www.faceit.com/en/players/${encodeURIComponent(
+          faceitProfileNickname
+        )}`
+      : null;
+
   useEffect(() => {
     let cancelled = false;
 
@@ -758,7 +787,7 @@ function PlayerPage() {
         let ratingRow = null;
 
         const looksLikePlayerId =
-          /^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(
+          isFaceitPlayerId(
             routePlayerKey
           );
 
@@ -837,12 +866,6 @@ function PlayerPage() {
           ratingRow = data || null;
         }
 
-        const nicknameFromRating =
-          String(
-            ratingRow?.nickname ||
-            decodedRouteValue
-          );
-
         const playerIdFromRating =
           String(
             ratingRow?.player_id ||
@@ -878,6 +901,23 @@ function PlayerPage() {
 
           playerRow = data || null;
         }
+
+        /*
+         * Жёсткое сопоставление:
+         * players.faceit_id -> players.nickname.
+         * Для FACEIT-ссылки и заголовка используем именно nickname,
+         * а UUID оставляем только для запросов в базу.
+         */
+        const resolvedProfileNickname =
+          String(
+            playerRow?.nickname ||
+            ratingRow?.nickname ||
+            (
+              isFaceitPlayerId(routePlayerKey)
+                ? ""
+                : decodedRouteValue
+            )
+          ).trim();
 
         const {
           data: matchRows,
@@ -939,7 +979,8 @@ function PlayerPage() {
           
 
           setResolvedNickname(
-            nicknameFromRating
+            resolvedProfileNickname ||
+            decodedRouteValue
           );
 
           setResolvedPlayerId(
@@ -1272,19 +1313,37 @@ const currentTeam =
 </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3">
-                <a
-                  href={`https://www.faceit.com/en/players/${decodedNickname}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold transition hover:border-orange-500/40 hover:bg-[#131d29]"
-                >
-                  <img
-                    src="/logos/faceit-logo.png"
-                    alt=""
-                    className="h-5 w-5 object-contain"
-                  />
-                  FACEIT
-                </a>
+                {faceitProfileUrl ? (
+                  <a
+                    href={faceitProfileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold transition hover:border-orange-500/40 hover:bg-[#131d29]"
+                  >
+                    <img
+                      src="/logos/faceit-logo.png"
+                      alt=""
+                      className="h-5 w-5 object-contain"
+                    />
+                    FACEIT
+                  </a>
+                ) : (
+                  <div
+                    title={
+                      loadingStats
+                        ? "Loading FACEIT profile..."
+                        : "FACEIT nickname not found"
+                    }
+                    className="flex items-center justify-center gap-2 rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold text-slate-600"
+                  >
+                    <img
+                      src="/logos/faceit-logo.png"
+                      alt=""
+                      className="h-5 w-5 object-contain opacity-40"
+                    />
+                    FACEIT
+                  </div>
+                )}
 
                 {localPlayerInfo?.steamUrl ? (
                   <a
