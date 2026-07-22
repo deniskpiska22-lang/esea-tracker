@@ -1770,8 +1770,15 @@ function MatchPage() {
 
   const {
     slug: routeSlug,
-    matchId,
+    matchId: routeMatchId,
+    id: routeId,
   } = useParams();
+
+  /*
+   * Поддержка обоих вариантов маршрута:
+   * /match/:id и /match/:matchId
+   */
+  const matchId = routeMatchId || routeId || "";
 
   const finishedMatch = useMemo(
     () =>

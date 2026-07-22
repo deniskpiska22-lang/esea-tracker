@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import upcomingMatches from "../data/upcomingMatches";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";
-import PartnersSection from "../components/PartnersSection";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -13,46 +12,231 @@ const LIVE_STATUSES = new Set([
   "MATCH_STATUS_ONGOING",
 ]);
 
+const FINISHED_STATUSES = new Set([
+  "FINISHED",
+  "MATCH_STATUS_FINISHED",
+]);
+
 const UPCOMING_WINDOW_HOURS = 24;
+const RESULTS_LIMIT = 12;
 
-function isWithinUpcomingWindow(value) {
-  if (!value) return false;
-
-  const scheduledTime = new Date(value).getTime();
-
-  if (Number.isNaN(scheduledTime)) {
-    return false;
-  }
-
-  const now = Date.now();
-  const windowEnd =
-    now + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000;
-
-  return scheduledTime >= now && scheduledTime <= windowEnd;
+function toNumber(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
 }
 
 function normalizeName(value = "") {
-  return value.replace(/\s+/g, "").toLowerCase();
+  return String(value || "").replace(/\s+/g, "").toLowerCase();
 }
 
-function normalizeLogoUrl(value) {
-  if (!value || typeof value !== "string") {
-    return null;
+function normalizeSlug(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[_\s]+/g, "-")
+    .replace(/[^a-z0-9а-яё-]/gi, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function getRatingRowSlug(row) {
+  return row?.team_slug ?? row?.slug ?? row?.teamSlug ?? "";
+}
+
+function getRatingRowId(row) {
+  return (
+    row?.team_id ??
+    row?.teamId ??
+    row?.faceit_team_id ??
+    row?.faceitTeamId ??
+    row?.id ??
+    null
+  );
+}
+
+function getRatingRowName(row) {
+  return row?.team_name ?? row?.name ?? row?.teamName ?? "";
+}
+
+function getRatingValue(row) {
+  const value =
+    row?.points ??
+    row?.rating ??
+    row?.current_rating ??
+    row?.currentRating ??
+    row?.elo ??
+    row?.score;
+
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.round(number) : null;
+}
+
+function getPointsChange(row) {
+  const value =
+    row?.points_change ??
+    row?.rating_change ??
+    row?.pointsChange ??
+    row?.ratingChange;
+
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.round(number) : 0;
+}
+
+function getRankChange(row) {
+  const value =
+    row?.rank_change ??
+    row?.position_change ??
+    row?.rankChange ??
+    row?.positionChange;
+
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.round(number) : 0;
+}
+
+function getRatingTeamLogo(staticTeam, ratingRow) {
+  return normalizeLogoUrl(
+    staticTeam?.logo ??
+      staticTeam?.logoUrl ??
+      staticTeam?.logo_url ??
+      staticTeam?.avatar ??
+      ratingRow?.logo ??
+      ratingRow?.logo_url ??
+      null
+  );
+}
+
+function mergeRatingTeams(ratingRows) {
+  const bySlug = new Map();
+  const byId = new Map();
+  const byName = new Map();
+
+  for (const team of teams) {
+    const slug = normalizeSlug(team?.slug);
+    const id = String(
+      team?.id ??
+        team?.teamId ??
+        team?.faceitTeamId ??
+        team?.faceit_team_id ??
+        ""
+    ).trim();
+    const name = normalizeName(team?.name);
+
+    if (slug) bySlug.set(slug, team);
+    if (id) byId.set(id, team);
+    if (name) byName.set(name, team);
   }
+
+  return (Array.isArray(ratingRows) ? ratingRows : [])
+    .map((ratingRow) => {
+      const ratingSlug = normalizeSlug(getRatingRowSlug(ratingRow));
+      const ratingId = String(getRatingRowId(ratingRow) ?? "").trim();
+      const ratingName = normalizeName(getRatingRowName(ratingRow));
+
+      const staticTeam =
+        bySlug.get(ratingSlug) ??
+        byId.get(ratingId) ??
+        byName.get(ratingName) ??
+        null;
+
+      const name =
+        staticTeam?.name ||
+        getRatingRowName(ratingRow) ||
+        "Unknown team";
+
+      const slug =
+        staticTeam?.slug ||
+        getRatingRowSlug(ratingRow) ||
+        normalizeSlug(name);
+
+      const points = getRatingValue(ratingRow);
+      if (points === null || !slug) return null;
+
+      return {
+        id:
+          getRatingRowId(ratingRow) ??
+          staticTeam?.id ??
+          staticTeam?.faceitTeamId ??
+          slug,
+        name,
+        slug,
+        logo: getRatingTeamLogo(staticTeam, ratingRow),
+        division:
+          staticTeam?.division ??
+          ratingRow?.division ??
+          ratingRow?.league_division ??
+          null,
+        points,
+        pointsChange: getPointsChange(ratingRow),
+        rankChange: getRankChange(ratingRow),
+      };
+    })
+    .filter(Boolean)
+    .sort((first, second) => {
+      const pointsDifference = second.points - first.points;
+      if (pointsDifference !== 0) return pointsDifference;
+
+      return String(first.name).localeCompare(String(second.name), "en");
+    })
+    .map((team, index) => ({
+      ...team,
+      rank: index + 1,
+    }));
+}
+
+function applyRatingToTeam(team, rankedTeams) {
+  if (!team) return team;
+
+  const teamId = String(
+    team.id ??
+      team.faceitTeamId ??
+      team.faceit_team_id ??
+      ""
+  ).trim();
+
+  const teamSlug = normalizeSlug(team.slug);
+  const teamName = normalizeName(team.name);
+
+  const ratingTeam =
+    rankedTeams.find((item) => {
+      const itemId = String(
+        item.id ??
+          item.faceitTeamId ??
+          item.faceit_team_id ??
+          ""
+      ).trim();
+
+      return (
+        (teamId && itemId && teamId === itemId) ||
+        (teamSlug && normalizeSlug(item.slug) === teamSlug) ||
+        (teamName && normalizeName(item.name) === teamName)
+      );
+    }) || null;
+
+  if (!ratingTeam) {
+    return {
+      ...team,
+      rank: team.rank ?? null,
+      points: toNumber(team.points, 0),
+    };
+  }
+
+  return {
+    ...team,
+    rank: ratingTeam.rank,
+    points: ratingTeam.points,
+    pointsChange: ratingTeam.pointsChange,
+    rankChange: ratingTeam.rankChange,
+  };
+}
+
+
+function normalizeLogoUrl(value) {
+  if (!value || typeof value !== "string") return null;
 
   const url = value.trim();
-
-  if (!url) {
-    return null;
-  }
-
-  if (url.startsWith("//")) {
-    return `https:${url}`;
-  }
-
-  if (url.startsWith("http://")) {
-    return url.replace("http://", "https://");
-  }
+  if (!url) return null;
+  if (url.startsWith("//")) return `https:${url}`;
+  if (url.startsWith("http://")) return url.replace("http://", "https://");
 
   return url;
 }
@@ -62,8 +246,7 @@ function findTeamByName(name) {
 
   return (
     teams.find(
-      (team) =>
-        normalizeName(team.name) === normalizeName(name)
+      (team) => normalizeName(team.name) === normalizeName(name)
     ) || null
   );
 }
@@ -73,7 +256,8 @@ function findTeamById(faceitTeamId) {
 
   return (
     teams.find(
-      (team) => team.faceitTeamId === faceitTeamId
+      (team) =>
+        String(team.faceitTeamId || "") === String(faceitTeamId)
     ) || null
   );
 }
@@ -81,34 +265,290 @@ function findTeamById(faceitTeamId) {
 function normalizeTeam(team) {
   if (!team) {
     return {
+      id: null,
       name: "TBD",
       slug: null,
       logo: null,
       points: 0,
+      division: null,
+      rank: null,
     };
   }
 
   const localTeam =
-    findTeamById(team.id) ||
+    findTeamById(team.id || team.faceitTeamId) ||
     findTeamByName(team.name);
 
   return {
-    name:
-      localTeam?.name ||
-      team.name ||
-      "TBD",
-    slug:
-      localTeam?.slug ||
-      team.slug ||
+    id:
+      team.id ||
+      team.faceitTeamId ||
+      localTeam?.faceitTeamId ||
       null,
-    logo: normalizeLogoUrl(
-      localTeam?.logo || team.logo
-    ),
-    points:
-      localTeam?.points ??
-      team.points ??
-      0,
+    name: localTeam?.name || team.name || "TBD",
+    slug: localTeam?.slug || team.slug || null,
+    logo: normalizeLogoUrl(localTeam?.logo || team.logo),
+    points: toNumber(localTeam?.points ?? team.points),
+    division: localTeam?.division || team.division || null,
+    rank: localTeam?.rank ?? team.rank ?? null,
   };
+}
+
+function isLiveStatus(status = "") {
+  return LIVE_STATUSES.has(String(status).toUpperCase());
+}
+
+function isFinishedStatus(status = "") {
+  return FINISHED_STATUSES.has(String(status).toUpperCase());
+}
+
+function isWithinUpcomingWindow(value) {
+  if (!value) return false;
+
+  const scheduled = new Date(value).getTime();
+  if (Number.isNaN(scheduled)) return false;
+
+  const now = Date.now();
+  const end = now + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000;
+
+  return scheduled >= now && scheduled <= end;
+}
+
+function formatTime(value) {
+  if (!value) return "TBD";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "TBD";
+
+  return new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
+
+function formatDate(value) {
+  if (!value) return "";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+  }).format(date);
+}
+
+function formatRelative(value) {
+  if (!value) return "";
+
+  const timestamp = new Date(value).getTime();
+  if (Number.isNaN(timestamp)) return formatDate(value);
+
+  const diff = Math.max(0, Date.now() - timestamp);
+  const minutes = Math.floor(diff / 60000);
+
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes} min ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+
+  return formatDate(value);
+}
+
+function formatCountdown(value) {
+  if (!value) return "Soon";
+
+  const timestamp = new Date(value).getTime();
+  if (Number.isNaN(timestamp)) return "Soon";
+
+  const diff = timestamp - Date.now();
+  if (diff <= 0) return "Starting";
+
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(minutes / 60);
+
+  if (hours >= 24) {
+    const days = Math.floor(hours / 24);
+    return `${days}d ${hours % 24}h`;
+  }
+
+  return `${hours}h ${String(minutes % 60).padStart(2, "0")}m`;
+}
+
+function getLeaguePriority(season = "") {
+  const value = String(season).toLowerCase();
+
+  if (value.includes("ecl") || value.includes("finals")) return 700;
+  if (value.includes("advanced") && value.includes("playoff")) return 650;
+  if (value.includes("advanced")) return 600;
+  if (value.includes("main") && value.includes("playoff")) return 550;
+  if (value.includes("main")) return 500;
+  if (value.includes("intermediate") && value.includes("playoff")) return 450;
+  if (value.includes("intermediate")) return 400;
+  if (value.includes("entry") && value.includes("playoff")) return 350;
+  if (value.includes("entry")) return 300;
+  if (value.includes("playoff")) return 250;
+
+  return 100;
+}
+
+function getMatchImportance(match) {
+  const league =
+    match.season ||
+    match.championshipName ||
+    "";
+
+  const leagueScore = getLeaguePriority(league) * 100000;
+  const teamStrength =
+    toNumber(match.team1?.points) +
+    toNumber(match.team2?.points);
+
+  const liveBonus = isLiveStatus(match.status) ? 10000000 : 0;
+  const scheduled = new Date(match.scheduledAt).getTime();
+  const timeBonus = Number.isNaN(scheduled)
+    ? 0
+    : Math.max(0, 86400000 - Math.abs(scheduled - Date.now())) / 1000;
+
+  return leagueScore + teamStrength + liveBonus + timeBonus;
+}
+
+function selectFeaturedMatch(matches) {
+  return (
+    [...matches].sort(
+      (first, second) =>
+        getMatchImportance(second) - getMatchImportance(first)
+    )[0] || null
+  );
+}
+
+function isAutomaticWin(match) {
+  if (!match) return true;
+
+  const searchableText = [
+    match.status,
+    match.resultType,
+    match.result_type,
+    match.finishReason,
+    match.finish_reason,
+    match.reason,
+    match.season,
+    match.team1?.name,
+    match.team2?.name,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  const automaticWinMarkers = [
+    "auto win",
+    "autowin",
+    "auto-win",
+    "automatic win",
+    "walkover",
+    "walk-over",
+    "forfeit",
+    "default win",
+    "no show",
+    "noshow",
+    "w/o",
+    "bye",
+  ];
+
+  if (
+    automaticWinMarkers.some((marker) =>
+      searchableText.includes(marker)
+    )
+  ) {
+    return true;
+  }
+
+  const team1Name = String(match.team1?.name || "")
+    .trim()
+    .toLowerCase();
+  const team2Name = String(match.team2?.name || "")
+    .trim()
+    .toLowerCase();
+
+  if (
+    !team1Name ||
+    !team2Name ||
+    team1Name === "tbd" ||
+    team2Name === "tbd" ||
+    team1Name === "bye" ||
+    team2Name === "bye"
+  ) {
+    return true;
+  }
+
+  const team1Score = Number(match.team1?.score);
+  const team2Score = Number(match.team2?.score);
+
+  /*
+   * FACEIT technical wins are not always marked as BYE/forfeit.
+   * Many of them are stored as FINISHED with a 0:0 series score.
+   * Such matches must never be selected for the featured result.
+   */
+  if (
+    Number.isFinite(team1Score) &&
+    Number.isFinite(team2Score) &&
+    team1Score === 0 &&
+    team2Score === 0
+  ) {
+    return true;
+  }
+
+  /*
+   * Invalid or missing series scores are also excluded. A genuinely
+   * completed CS2 match must have at least one positive series score.
+   */
+  if (
+    !Number.isFinite(team1Score) ||
+    !Number.isFinite(team2Score) ||
+    Math.max(team1Score, team2Score) <= 0
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function getCompletedMatchPopularity(match) {
+  if (!match) return 0;
+
+  const leagueScore =
+    getLeaguePriority(match.season || "ESEA League") * 1_000_000;
+
+  const teamStrength =
+    (
+      toNumber(match.team1?.points) +
+      toNumber(match.team2?.points)
+    ) * 1_000;
+
+  const finishedAt = new Date(match.date).getTime();
+  const ageInHours = Number.isNaN(finishedAt)
+    ? 168
+    : Math.max(0, (Date.now() - finishedAt) / 3_600_000);
+
+  /*
+   * Recent matches receive a small bonus, while league level and
+   * the combined team rating remain the main popularity signals.
+   */
+  const recencyBonus = Math.max(0, 168 - ageInHours) * 100;
+
+  return leagueScore + teamStrength + recencyBonus;
+}
+
+function selectPopularCompletedMatch(matches) {
+  return (
+    [...matches]
+      .filter((match) => !isAutomaticWin(match))
+      .sort(
+        (first, second) =>
+          getCompletedMatchPopularity(second) -
+          getCompletedMatchPopularity(first)
+      )[0] || null
+  );
 }
 
 function dbRowToMatch(row) {
@@ -121,6 +561,8 @@ function dbRowToMatch(row) {
     scheduledAt: row.scheduled_at,
     startedAt: row.started_at,
     finishedAt: row.finished_at,
+    team1Score: toNumber(row.team1_score),
+    team2Score: toNumber(row.team2_score),
     team1: normalizeTeam({
       id: row.team1_id,
       name: row.team1_name,
@@ -133,18 +575,31 @@ function dbRowToMatch(row) {
       slug: row.team2_slug,
       logo: row.team2_logo,
     }),
-    team1Score: row.team1_score,
-    team2Score: row.team2_score,
-    faceitUrl: row.faceit_url,
   };
 }
 
 function dbRowToResult(row) {
   return {
     id: row.id,
+    matchId: row.id,
     date: row.finished_at || row.scheduled_at,
     season: row.competition_name || "ESEA League",
     bestOf: row.best_of,
+    status: row.status,
+    resultType:
+      row.result_type ||
+      row.finish_reason ||
+      row.reason ||
+      null,
+    finishReason:
+      row.finish_reason ||
+      row.reason ||
+      null,
+    mapScores:
+      row.map_scores ||
+      row.maps ||
+      null,
+    statsSynced: Boolean(row.stats_synced),
     team1: {
       ...normalizeTeam({
         id: row.team1_id,
@@ -166,261 +621,100 @@ function dbRowToResult(row) {
   };
 }
 
-function isFinishedStatus(status = "") {
-  return [
-    "FINISHED",
-    "MATCH_STATUS_FINISHED",
-  ].includes(status.toUpperCase());
-}
-
-function formatTime(value) {
-  if (!value) return "TBD";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "TBD";
-  }
-
-  return new Intl.DateTimeFormat("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(date);
-}
-
-function formatDate(value) {
-  if (!value) return "";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
-  }
-
-  return new Intl.DateTimeFormat("ru-RU", {
-    day: "2-digit",
-    month: "short",
-  }).format(date);
-}
-
-function isToday(value) {
-  if (!value) return false;
-
-  const date = new Date(value);
-  const today = new Date();
-
-  return (
-    date.getFullYear() === today.getFullYear() &&
-    date.getMonth() === today.getMonth() &&
-    date.getDate() === today.getDate()
-  );
-}
-
-
-function getLeaguePriority(season = "") {
-  const value = season.toLowerCase();
-
-  if (
-    value.includes("ecl") ||
-    value.includes("finals")
-  ) {
-    return 600;
-  }
-
-  if (
-    value.includes("advanced") &&
-    value.includes("playoff")
-  ) {
-    return 550;
-  }
-
-  if (value.includes("advanced")) {
-    return 500;
-  }
-
-  if (
-    value.includes("main") &&
-    value.includes("playoff")
-  ) {
-    return 450;
-  }
-
-  if (value.includes("main")) {
-    return 400;
-  }
-
-  if (
-    value.includes("intermediate") &&
-    value.includes("playoff")
-  ) {
-    return 350;
-  }
-
-  if (value.includes("intermediate")) {
-    return 300;
-  }
-
-  if (
-    value.includes("entry") &&
-    value.includes("playoff")
-  ) {
-    return 250;
-  }
-
-  if (value.includes("entry")) {
-    return 200;
-  }
-
-  if (value.includes("playoff")) {
-    return 150;
-  }
-
-  return 100;
-}
-
-function getMatchImportance(match) {
-  const league =
-    match.season ||
-    match.championshipName ||
-    "";
-
-  const leagueScore =
-    getLeaguePriority(league) * 100000;
-
-  const teamStrength =
-    Number(match.team1?.points || 0) +
-    Number(match.team2?.points || 0);
-
-  const scheduledTime =
-    new Date(match.scheduledAt).getTime();
-
-  const timeTieBreaker =
-    Number.isNaN(scheduledTime)
-      ? 0
-      : Math.max(
-          0,
-          10000000000000 - scheduledTime
-        ) / 10000000000000;
-
-  return (
-    leagueScore +
-    teamStrength +
-    timeTieBreaker
-  );
-}
-
-function selectFeaturedMatch(matches) {
-  return (
-    [...matches].sort(
-      (first, second) =>
-        getMatchImportance(second) -
-        getMatchImportance(first)
-    )[0] || null
-  );
-}
-
-function getUpcoming() {
+function getStaticUpcoming() {
   return [...upcomingMatches]
     .map((match) => ({
       ...match,
       team1: normalizeTeam(match.team1),
       team2: normalizeTeam(match.team2),
     }))
+    .filter(
+      (match) =>
+        isLiveStatus(match.status) ||
+        isWithinUpcomingWindow(match.scheduledAt)
+    )
     .sort(
-      (a, b) =>
-        new Date(a.scheduledAt) -
-        new Date(b.scheduledAt)
+      (first, second) =>
+        new Date(first.scheduledAt) - new Date(second.scheduledAt)
     );
 }
 
-function getResults(limit = 10) {
+function getStaticResults(limit = RESULTS_LIMIT) {
   const unique = new Map();
 
   for (const match of matchesData) {
     const matchId = match.matchId || match.id;
-
-    if (!matchId || unique.has(matchId)) {
-      continue;
-    }
+    if (!matchId || unique.has(matchId)) continue;
 
     const team1 =
-      teams.find(
-        (team) => team.slug === match.teamSlug
-      ) || findTeamByName(match.teamName);
+      teams.find((team) => team.slug === match.teamSlug) ||
+      findTeamByName(match.teamName);
 
-    const team2 =
-      findTeamByName(match.opponentName);
+    const team2 = findTeamByName(match.opponentName);
 
-    const [fallbackScore1, fallbackScore2] =
-      String(match.boScore || "")
-        .split(":")
-        .map((value) => value.trim());
+    const [score1, score2] = String(match.boScore || "")
+      .split(":")
+      .map((value) => value.trim());
 
     unique.set(matchId, {
       id: matchId,
+      matchId,
       date: match.date,
-      season: match.season,
+      season: match.season || "ESEA League",
       bestOf: match.bestOf,
+      status: match.status || "FINISHED",
+      resultType:
+        match.resultType ||
+        match.result_type ||
+        match.finishReason ||
+        match.finish_reason ||
+        match.reason ||
+        null,
+      finishReason:
+        match.finishReason ||
+        match.finish_reason ||
+        match.reason ||
+        null,
+      mapScores:
+        match.mapScores ||
+        match.map_scores ||
+        match.maps ||
+        null,
       team1: {
-        name:
-          team1?.name ||
-          match.teamName ||
-          "Unknown",
-        slug:
-          team1?.slug ||
-          match.teamSlug ||
-          null,
-        logo: team1?.logo || null,
-        score:
-          match.teamScore ??
-          fallbackScore1 ??
-          "-",
+        ...normalizeTeam({
+          id: team1?.faceitTeamId,
+          name: team1?.name || match.teamName,
+          slug: team1?.slug || match.teamSlug,
+          logo: team1?.logo,
+        }),
+        score: match.teamScore ?? score1 ?? "-",
       },
       team2: {
-        name:
-          team2?.name ||
-          match.opponentName ||
-          "Unknown",
-        slug: team2?.slug || null,
-        logo: team2?.logo || null,
-        score:
-          match.opponentScore ??
-          fallbackScore2 ??
-          "-",
+        ...normalizeTeam({
+          id: team2?.faceitTeamId,
+          name: team2?.name || match.opponentName,
+          slug: team2?.slug,
+          logo: team2?.logo,
+        }),
+        score: match.opponentScore ?? score2 ?? "-",
       },
     });
   }
 
   return [...unique.values()]
-    .sort(
-      (a, b) =>
-        new Date(b.date) -
-        new Date(a.date)
-    )
-    .slice(0, limit);
-}
-
-function getTopTeams(limit = 8) {
-  return [...teams]
-    .filter(
-      (team) =>
-        typeof team.points === "number" &&
-        team.slug &&
-        team.name
-    )
-    .sort((a, b) => b.points - a.points)
+    .sort((first, second) => new Date(second.date) - new Date(first.date))
     .slice(0, limit);
 }
 
 function Logo({ team, size = "md" }) {
   const [imageError, setImageError] = useState(false);
 
-  const sizeClass =
-    size === "sm"
-      ? "h-7 w-7"
-      : size === "lg"
-      ? "h-12 w-12"
-      : "h-9 w-9";
+  const sizes = {
+    xs: "h-7 w-7",
+    sm: "h-10 w-10",
+    md: "h-14 w-14",
+    lg: "h-24 w-24 md:h-32 md:w-32",
+  };
 
   const initials =
     team?.name
@@ -434,8 +728,7 @@ function Logo({ team, size = "md" }) {
   if (!team?.logo || imageError) {
     return (
       <div
-        className={`${sizeClass} flex shrink-0 items-center justify-center rounded-md border border-white/5 bg-[#151a21] text-[10px] font-black text-gray-500`}
-        title={team?.name || "Unknown team"}
+        className={`${sizes[size] || sizes.md} flex shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-[#121820] text-xs font-black text-slate-500`}
       >
         {initials}
       </div>
@@ -445,470 +738,523 @@ function Logo({ team, size = "md" }) {
   return (
     <img
       src={team.logo}
-      alt={`${team.name} logo`}
-      className={`${sizeClass} shrink-0 object-contain`}
+      alt={team.name}
+      className={`${sizes[size] || sizes.md} shrink-0 object-contain`}
       loading="lazy"
       referrerPolicy="no-referrer"
-      onError={() => {
-        console.warn("FACEIT logo failed:", {
-          team: team?.name,
-          logo: team?.logo,
-        });
-
-        setImageError(true);
-      }}
+      onError={() => setImageError(true)}
     />
   );
 }
 
-function TeamLink({
-  team,
-  className = "",
-}) {
-  if (team?.slug) {
+function TeamLink({ team, className = "" }) {
+  if (!team?.slug) {
     return (
-      <Link
-        to={`/team/${team.slug}`}
-        onClick={(event) => event.stopPropagation()}
-        className={`truncate transition hover:text-orange-400 ${className}`}
-      >
-        {team.name}
-      </Link>
+      <span className={`truncate ${className}`}>
+        {team?.name || "TBD"}
+      </span>
     );
   }
 
   return (
-    <span className={`truncate ${className}`}>
-      {team?.name || "TBD"}
-    </span>
+    <Link
+      to={`/teams/${team.slug}`}
+      onClick={(event) => event.stopPropagation()}
+      className={`truncate transition hover:text-orange-400 ${className}`}
+    >
+      {team.name}
+    </Link>
   );
 }
 
-function SectionHeader({
-  title,
-  subtitle,
-  action,
-}) {
+function SectionTitle({ title, action }) {
   return (
-    <div className="flex items-center justify-between border-b border-white/5 bg-[#10151c] px-4 py-3">
-      <div>
-        <h2 className="text-sm font-black uppercase tracking-[0.12em] text-white">
-          {title}
-        </h2>
-
-        {subtitle && (
-          <p className="mt-0.5 text-xs text-gray-600">
-            {subtitle}
-          </p>
-        )}
-      </div>
-
+    <div className="mb-4 flex items-center justify-between gap-4">
+      <h2 className="text-xl font-black tracking-tight text-white md:text-2xl">
+        {title}
+      </h2>
       {action}
     </div>
   );
 }
 
-function LiveStrip({ matches }) {
-  if (matches.length === 0) {
-    return null;
+function HeroMatch({ match }) {
+  if (!match) {
+    return (
+      <section className="flex min-h-[430px] items-center justify-center rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-8 text-center">
+        <div>
+          <div className="text-xl font-black text-white">
+            No matches available
+          </div>
+          <Link
+            to="/matches"
+            className="mt-4 inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
+          >
+            Open matches page
+          </Link>
+        </div>
+      </section>
+    );
   }
 
+  const live = isLiveStatus(match.status);
+  const matchPath = `/match/${match.matchId || match.id}`;
+
   return (
-    <section className="mb-4 overflow-hidden rounded-xl border border-red-500/15 bg-[#0f141a]">
-      <div className="flex items-center gap-3 border-b border-red-500/10 bg-red-500/[0.05] px-4 py-3">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-red-400" />
-
-        <span className="text-xs font-black uppercase tracking-[0.16em] text-red-400">
-          Live now
-        </span>
-
-        <span className="text-xs text-gray-600">
-          {matches.length} match
-          {matches.length === 1 ? "" : "es"}
-        </span>
+    <section className="group relative overflow-hidden rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-6 shadow-2xl shadow-black/25 md:p-10">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_20%_50%,rgba(249,115,22,0.18),transparent_60%)]" />
+        <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_50%,rgba(56,189,248,0.12),transparent_60%)]" />
       </div>
 
-      <div className="grid gap-px bg-white/5 md:grid-cols-2 xl:grid-cols-3">
-        {matches.map((match) => (
+      <div className="relative">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
-            key={match.matchId || match.id}
-            to={`/matches/${match.matchId || match.id}`}
-            className="group bg-[#0d1218] p-4 transition hover:bg-[#121820]"
+            to={matchPath}
+            state={{ from: "/", label: "← Back to Home" }}
+            className="text-[11px] font-black uppercase tracking-[0.24em] text-orange-400 transition hover:text-orange-300"
           >
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs text-gray-600">
-                {match.season ||
-                  match.championshipName ||
-                  "ESEA League"}
-              </span>
+            Match of the Day
+          </Link>
 
-              <span className="text-[11px] font-bold text-red-400">
-                LIVE
-              </span>
+          <div className="flex items-center gap-2">
+            <Link
+              to={matchPath}
+              state={{ from: "/", label: "← Back to Home" }}
+              className={`rounded-full border px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] transition ${
+                live
+                  ? "border-red-500/25 bg-red-500/10 text-red-400 hover:bg-red-500/15"
+                  : "border-white/10 bg-white/[0.04] text-slate-400 hover:bg-white/[0.08]"
+              }`}
+            >
+              {live ? "● Live" : formatCountdown(match.scheduledAt)}
+            </Link>
+
+            <Link
+              to={matchPath}
+              state={{ from: "/", label: "← Back to Home" }}
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-black text-slate-400 transition hover:bg-white/[0.08]"
+            >
+              BO{match.bestOf || "?"}
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8 grid items-center gap-8 md:grid-cols-[1fr_180px_1fr]">
+          <Link
+            to={match.team1?.slug ? `/teams/${match.team1.slug}` : matchPath}
+            className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-start md:text-left"
+          >
+            <Logo team={match.team1} size="lg" />
+            <div className="mt-5 max-w-full truncate text-3xl font-black tracking-tight transition hover:text-orange-400 md:text-5xl">
+              {match.team1?.name || "TBD"}
             </div>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-start">
+              {match.team1?.rank ? (
+                <span className="rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-orange-400">
+                  #{match.team1.rank}
+                </span>
+              ) : (
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">
+                  Unranked
+                </span>
+              )}
 
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Logo team={match.team1} size="sm" />
-
-                <TeamLink
-                  team={match.team1}
-                  className="font-semibold"
-                />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Logo team={match.team2} size="sm" />
-
-                <TeamLink
-                  team={match.team2}
-                  className="font-semibold"
-                />
-              </div>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-3 text-xs">
-              <span className="text-gray-600">
-                BO{match.bestOf || "?"}
-              </span>
-
-              <span className="font-semibold text-red-400 transition group-hover:text-red-300">
-                Open room →
+              <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-400">
+                {toNumber(match.team1?.points)} PTS
               </span>
             </div>
           </Link>
-        ))}
+
+          <Link
+            to={matchPath}
+            state={{ from: "/", label: "← Back to Home" }}
+            className="rounded-2xl px-3 py-5 text-center transition hover:bg-white/[0.03]"
+          >
+            {live ? (
+              <>
+                <div className="text-6xl font-black tracking-[-0.08em]">
+                  {match.team1Score}:{match.team2Score}
+                </div>
+                <div className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-red-400">
+                  Live now
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-6xl font-black tracking-[-0.08em]">
+                  {formatTime(match.scheduledAt)}
+                </div>
+                <div className="mt-2 text-sm font-semibold text-slate-500">
+                  {formatDate(match.scheduledAt)}
+                </div>
+              </>
+            )}
+
+            <div className="mt-4 text-xs font-semibold text-slate-500">
+              {match.season || "ESEA League"}
+            </div>
+          </Link>
+
+          <Link
+            to={match.team2?.slug ? `/teams/${match.team2.slug}` : matchPath}
+            className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-end md:text-right"
+          >
+            <Logo team={match.team2} size="lg" />
+            <div className="mt-5 max-w-full truncate text-3xl font-black tracking-tight transition hover:text-orange-400 md:text-5xl">
+              {match.team2?.name || "TBD"}
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-end">
+              {match.team2?.rank ? (
+                <span className="rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-orange-400">
+                  #{match.team2.rank}
+                </span>
+              ) : (
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">
+                  Unranked
+                </span>
+              )}
+
+              <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-400">
+                {toNumber(match.team2?.points)} PTS
+              </span>
+            </div>
+          </Link>
+        </div>
+
+        <Link
+          to={matchPath}
+          state={{ from: "/", label: "← Back to Home" }}
+          className="mt-9 flex items-center justify-center border-t border-white/[0.07] pt-6 text-sm font-black text-orange-400 transition hover:text-orange-300"
+        >
+          Open Match Center →
+        </Link>
       </div>
     </section>
   );
 }
 
-function MatchListItem({ match }) {
+function LiveCard({ match }) {
   return (
     <Link
-      to={`/matches/${match.matchId || match.id}`}
-      className="group grid grid-cols-[58px_1fr_auto] items-center gap-3 border-b border-white/5 px-4 py-3.5 transition last:border-b-0 hover:bg-white/[0.025]"
+      to={`/match/${match.matchId || match.id}`}
+      state={{ from: "/", label: "← Back to Home" }}
+      className="group rounded-2xl border border-red-500/15 bg-red-500/[0.035] p-4 transition hover:border-red-500/30 hover:bg-red-500/[0.06]"
     >
-      <div>
-        <div className="text-sm font-black text-white">
-          {formatTime(match.scheduledAt)}
+      <div className="flex items-center justify-between">
+        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-red-400">
+          Live
         </div>
-
-        <div className="mt-0.5 text-[10px] uppercase tracking-wide text-gray-600">
-          {isToday(match.scheduledAt)
-            ? "today"
-            : formatDate(match.scheduledAt)}
-        </div>
-      </div>
-
-      <div className="min-w-0 space-y-1.5">
-        <div className="flex items-center gap-2">
-          <Logo team={match.team1} size="sm" />
-
-          <TeamLink
-            team={match.team1}
-            className="text-sm font-semibold"
-          />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Logo team={match.team2} size="sm" />
-
-          <TeamLink
-            team={match.team2}
-            className="text-sm font-semibold"
-          />
-        </div>
-      </div>
-
-      <div className="text-right">
-        <div className="text-xs font-bold text-gray-500">
+        <div className="text-xs font-bold text-slate-500">
           BO{match.bestOf || "?"}
         </div>
+      </div>
 
-        <div className="mt-1 text-[10px] uppercase tracking-wide text-gray-700 transition group-hover:text-orange-400">
-          match
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center gap-3">
+          <Logo team={match.team1} size="xs" />
+          <div className="min-w-0 flex-1 truncate text-sm font-bold">
+            {match.team1.name}
+          </div>
+          <div className="text-xl font-black">{match.team1Score}</div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Logo team={match.team2} size="xs" />
+          <div className="min-w-0 flex-1 truncate text-sm font-bold">
+            {match.team2.name}
+          </div>
+          <div className="text-xl font-black">{match.team2Score}</div>
         </div>
       </div>
     </Link>
   );
 }
 
-function ResultListItem({ match }) {
+function MatchCard({ match }) {
+  return (
+    <Link
+      to={`/match/${match.matchId || match.id}`}
+      state={{ from: "/", label: "← Back to Home" }}
+      className="group rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f]"
+    >
+      <div className="flex items-center justify-between text-xs">
+        <div className="font-black text-white">
+          {formatTime(match.scheduledAt)}
+        </div>
+        <div className="text-slate-600">{formatDate(match.scheduledAt)}</div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <Logo team={match.team1} size="sm" />
+          <div className="mt-2 max-w-full truncate text-sm font-bold">
+            {match.team1.name}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <div className="text-[10px] font-black uppercase tracking-wider text-slate-600">
+            vs
+          </div>
+          <div className="mt-1 text-xs font-black text-orange-400">
+            BO{match.bestOf || "?"}
+          </div>
+        </div>
+
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <Logo team={match.team2} size="sm" />
+          <div className="mt-2 max-w-full truncate text-sm font-bold">
+            {match.team2.name}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 truncate border-t border-white/[0.06] pt-3 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">
+        {match.season || "ESEA League"}
+      </div>
+    </Link>
+  );
+}
+
+function ResultCard({ match }) {
   const firstScore = Number(match.team1.score);
   const secondScore = Number(match.team2.score);
-
-  const firstWon =
-    Number.isFinite(firstScore) &&
-    Number.isFinite(secondScore) &&
-    firstScore > secondScore;
-
-  const secondWon =
-    Number.isFinite(firstScore) &&
-    Number.isFinite(secondScore) &&
-    secondScore > firstScore;
+  const firstWon = Number.isFinite(firstScore) && firstScore > secondScore;
+  const secondWon = Number.isFinite(secondScore) && secondScore > firstScore;
 
   return (
     <Link
-      to={`/matches/${match.id}`}
-      className="group grid grid-cols-[1fr_auto] gap-3 border-b border-white/5 px-4 py-3.5 transition last:border-b-0 hover:bg-white/[0.025]"
+      to={`/match/${match.matchId || match.id}`}
+      state={{ from: "/", label: "← Back to Home" }}
+      className="group rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-emerald-500/20 hover:bg-[#10171f]"
     >
-      <div className="min-w-0 space-y-1.5">
-        <div className="flex items-center gap-2">
-          <Logo team={match.team1} size="sm" />
-
-          <TeamLink
-            team={match.team1}
-            className={`text-sm font-semibold ${
-              firstWon
-                ? "text-white"
-                : "text-gray-500"
-            }`}
-          />
+      <div className="flex items-center justify-between text-xs">
+        <div className="truncate text-slate-600">
+          {match.season || "ESEA League"}
         </div>
-
-        <div className="flex items-center gap-2">
-          <Logo team={match.team2} size="sm" />
-
-          <TeamLink
-            team={match.team2}
-            className={`text-sm font-semibold ${
-              secondWon
-                ? "text-white"
-                : "text-gray-500"
-            }`}
-          />
+        <div className="shrink-0 text-slate-600">
+          {formatRelative(match.date)}
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="grid grid-rows-2 gap-1 text-right text-sm font-black">
-          <span
-            className={
-              firstWon
-                ? "text-green-400"
-                : "text-gray-600"
-            }
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center gap-3">
+          <Logo team={match.team1} size="xs" />
+          <div
+            className={`min-w-0 flex-1 truncate text-sm font-bold ${
+              firstWon ? "text-white" : "text-slate-500"
+            }`}
           >
-            {match.team1.score ?? "-"}
-          </span>
-
-          <span
-            className={
-              secondWon
-                ? "text-green-400"
-                : "text-gray-600"
-            }
+            {match.team1.name}
+          </div>
+          <div
+            className={`text-xl font-black ${
+              firstWon ? "text-emerald-400" : "text-slate-600"
+            }`}
           >
-            {match.team2.score ?? "-"}
-          </span>
+            {match.team1.score}
+          </div>
         </div>
 
-        <div className="text-[10px] uppercase tracking-wide text-gray-700">
-          {formatDate(match.date)}
+        <div className="flex items-center gap-3">
+          <Logo team={match.team2} size="xs" />
+          <div
+            className={`min-w-0 flex-1 truncate text-sm font-bold ${
+              secondWon ? "text-white" : "text-slate-500"
+            }`}
+          >
+            {match.team2.name}
+          </div>
+          <div
+            className={`text-xl font-black ${
+              secondWon ? "text-emerald-400" : "text-slate-600"
+            }`}
+          >
+            {match.team2.score}
+          </div>
         </div>
       </div>
     </Link>
   );
 }
 
-function RankingItem({ team, index }) {
+function RankingCard({ team, index }) {
   return (
     <Link
-      to={`/team/${team.slug}`}
-      className="group flex items-center gap-3 border-b border-white/5 px-4 py-3 transition last:border-b-0 hover:bg-white/[0.025]"
+      to={`/teams/${team.slug}`}
+      className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f]"
     >
-      <span className="w-5 text-xs font-black text-orange-400">
-        {index + 1}
-      </span>
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-500/10 text-xs font-black text-orange-400">
+        {team.rank || index + 1}
+      </div>
 
-      <Logo team={team} size="sm" />
+      <Logo team={team} size="xs" />
 
       <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-semibold transition group-hover:text-orange-400">
-          {team.name}
-        </div>
-
-        <div className="text-[10px] uppercase tracking-wide text-gray-700">
+        <div className="truncate text-sm font-black">{team.name}</div>
+        <div className="mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
           {team.division || "ESEA"}
         </div>
       </div>
 
       <div className="text-right">
-        <div className="text-sm font-black">
-          {team.points}
-        </div>
+        <div className="text-lg font-black">{team.points}</div>
 
-        <div className="text-[9px] uppercase tracking-wide text-gray-700">
-          pts
+        <div className="mt-1 flex items-center justify-end gap-2 text-[9px] font-black uppercase tracking-wider">
+          <span className="text-slate-600">pts</span>
+
+          {team.pointsChange !== 0 && (
+            <span
+              className={
+                team.pointsChange > 0
+                  ? "text-emerald-400"
+                  : "text-red-400"
+              }
+            >
+              {team.pointsChange > 0 ? "+" : ""}
+              {team.pointsChange}
+            </span>
+          )}
+
+          {team.rankChange !== 0 && (
+            <span
+              className={
+                team.rankChange > 0
+                  ? "text-emerald-400"
+                  : "text-red-400"
+              }
+            >
+              {team.rankChange > 0 ? "↑" : "↓"}
+              {Math.abs(team.rankChange)}
+            </span>
+          )}
         </div>
       </div>
     </Link>
   );
 }
 
-function FeaturedPanel({ match }) {
+function NewsCard({
+  title,
+  text,
+  tag,
+  to,
+  large = false,
+}) {
   return (
-    <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
-      <SectionHeader
-        title="Featured"
-        subtitle="Featured match of the day"
-      />
+    <Link
+      to={to}
+      className={`group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0d131a] p-5 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f] ${
+        large ? "min-h-[300px] md:p-7" : ""
+      }`}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(249,115,22,0.12),transparent_45%)]" />
 
-      <div className="bg-[#0d1218] p-6 md:p-8">
-        {match ? (
-          <Link
-            to={`/matches/${match.matchId || match.id}`}
-            state={{
-              from: "/",
-              label: "← Back to Home",
-            }}
-            className="group block"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-[0.14em] text-orange-400">
-                  Main match
-                </div>
+      <div className="relative flex h-full flex-col justify-end">
+        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
+          {tag}
+        </div>
 
-                <div className="mt-1 text-xs text-gray-600">
-                  {match.season ||
-                    match.championshipName ||
-                    "ESEA League"}
-                </div>
-              </div>
+        <h3
+          className={`mt-3 font-black tracking-tight transition group-hover:text-orange-400 ${
+            large ? "text-3xl" : "text-lg"
+          }`}
+        >
+          {title}
+        </h3>
 
-              <div className="text-right">
-                <div className="text-sm font-black text-white">
-                  {formatTime(match.scheduledAt)}
-                </div>
+        <p className="mt-3 text-sm leading-6 text-slate-500">
+          {text}
+        </p>
 
-                <div className="mt-0.5 text-[10px] uppercase tracking-wide text-gray-600">
-                  {formatDate(match.scheduledAt)}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-5 md:gap-10">
-              <div className="flex min-w-0 flex-col items-center">
-                <Logo team={match.team1} size="lg" />
-
-                <TeamLink
-                  team={match.team1}
-                  className="mt-3 max-w-full text-center text-base font-black md:text-xl"
-                />
-              </div>
-
-              <div className="text-center">
-                <div className="text-4xl font-black text-white md:text-6xl">
-                  {formatTime(match.scheduledAt)}
-                </div>
-
-                <div className="mt-2 inline-flex rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-xs font-bold text-orange-400">
-                  BO{match.bestOf || "?"}
-                </div>
-              </div>
-
-              <div className="flex min-w-0 flex-col items-center">
-                <Logo team={match.team2} size="lg" />
-
-                <TeamLink
-                  team={match.team2}
-                  className="mt-3 max-w-full text-center text-base font-black md:text-xl"
-                />
-              </div>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center border-t border-white/5 pt-5 text-sm font-bold text-orange-400 transition group-hover:text-orange-300">
-              Open match room →
-            </div>
-          </Link>
-        ) : (
-          <div className="py-12 text-center text-sm text-gray-600">
-            No upcoming match
-          </div>
-        )}
+        <div className="mt-5 text-xs font-black text-orange-400 opacity-80 transition group-hover:translate-x-1 group-hover:opacity-100">
+          Read more →
+        </div>
       </div>
-    </section>
+    </Link>
   );
 }
+
 function Home() {
   const [databaseRows, setDatabaseRows] = useState([]);
   const [databaseReady, setDatabaseReady] = useState(false);
   const [databaseError, setDatabaseError] = useState("");
+  const [ratingRows, setRatingRows] = useState([]);
+  const [ratingsReady, setRatingsReady] = useState(false);
+
+  const upcomingSectionRef = useRef(null);
+  const recentResultsSectionRef = useRef(null);
+
+  function scrollToUpcomingMatches() {
+    upcomingSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  function scrollToRecentResults() {
+    recentResultsSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
 
   useEffect(() => {
     let cancelled = false;
+    let channel = null;
 
-    const loadMatches = async () => {
+    async function loadMatches() {
       if (!supabase) {
         if (!cancelled) {
-          setDatabaseError(
-            "Supabase client is not configured"
-          );
+          setDatabaseError("Supabase client is not configured");
           setDatabaseReady(true);
         }
         return;
       }
 
-      // В базе уже несколько тысяч матчей. Старый запрос сортировал
-      // все записи от самых ранних и брал только первые 250, поэтому
-      // будущие матчи вообще не доходили до фронтенда.
-      const [activeResponse, finishedResponse] =
-        await Promise.all([
-          supabase
-            .from("matches")
-            .select("*")
-            .in("status", [
-              "SCHEDULED",
-              "READY",
-              "ONGOING",
-              "LIVE",
-              "MATCH_STATUS_SCHEDULED",
-              "MATCH_STATUS_READY",
-              "MATCH_STATUS_ONGOING",
-            ])
-            .gte(
-              "scheduled_at",
-              new Date().toISOString()
-            )
-            .lte(
-              "scheduled_at",
-              new Date(
-                Date.now() +
-                  UPCOMING_WINDOW_HOURS *
-                    60 *
-                    60 *
-                    1000
-              ).toISOString()
-            )
-            .order("scheduled_at", {
-              ascending: true,
-            })
-            .limit(250),
+      const now = new Date();
+      const end = new Date(
+        Date.now() + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000
+      );
 
-          supabase
-            .from("matches")
-            .select("*")
-            .in("status", [
-              "FINISHED",
-              "MATCH_STATUS_FINISHED",
-            ])
-            .order("finished_at", {
-              ascending: false,
-              nullsFirst: false,
-            })
-            .limit(20),
-        ]);
+      const [activeResponse, finishedResponse] = await Promise.all([
+        supabase
+          .from("matches")
+          .select("*")
+          .in("status", [
+            "SCHEDULED",
+            "READY",
+            "ONGOING",
+            "LIVE",
+            "MATCH_STATUS_SCHEDULED",
+            "MATCH_STATUS_READY",
+            "MATCH_STATUS_ONGOING",
+          ])
+          .gte("scheduled_at", now.toISOString())
+          .lte("scheduled_at", end.toISOString())
+          .order("scheduled_at", { ascending: true })
+          .limit(200),
+
+        supabase
+          .from("matches")
+          .select("*")
+          .in("status", [
+            "FINISHED",
+            "MATCH_STATUS_FINISHED",
+          ])
+          .order("finished_at", {
+            ascending: false,
+            nullsFirst: false,
+          })
+          .limit(RESULTS_LIMIT),
+      ]);
 
       if (cancelled) return;
 
-      const error =
-        activeResponse.error ||
-        finishedResponse.error;
+      const error = activeResponse.error || finishedResponse.error;
 
       if (error) {
-        console.error("Home matches error:", error);
         setDatabaseError(error.message);
       } else {
         setDatabaseRows([
@@ -919,276 +1265,452 @@ function Home() {
       }
 
       setDatabaseReady(true);
-    };
+    }
 
     loadMatches();
 
-    // Fallback-обновление: даже если realtime временно недоступен,
-    // данные перечитываются каждые 30 секунд.
-    const intervalId = window.setInterval(
-      loadMatches,
-      30000
-    );
+    const intervalId = window.setInterval(loadMatches, 30000);
 
-    // Мгновенное обновление при INSERT / UPDATE / DELETE в таблице matches.
-    // GitHub Actions обновляет Supabase, а фронтенд сразу перечитывает данные.
-    const matchesChannel = supabase
-      .channel("home-matches-live")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "matches",
-        },
-        () => {
-          loadMatches();
-        }
-      )
-      .subscribe();
+    if (supabase) {
+      channel = supabase
+        .channel("home-card-layout")
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "matches",
+          },
+          loadMatches
+        )
+        .subscribe();
+    }
 
     return () => {
       cancelled = true;
       window.clearInterval(intervalId);
-      supabase.removeChannel(matchesChannel);
+
+      if (supabase && channel) {
+        supabase.removeChannel(channel);
+      }
     };
   }, []);
 
-  const upcoming = useMemo(() => {
+  useEffect(() => {
+    let cancelled = false;
+    let ratingsChannel = null;
+
+    async function loadRatings() {
+      if (!supabase) {
+        if (!cancelled) setRatingsReady(true);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("team_ratings")
+        .select("*");
+
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Failed to load ratings on Home:", error);
+        setRatingRows([]);
+      } else {
+        setRatingRows(Array.isArray(data) ? data : []);
+      }
+
+      setRatingsReady(true);
+    }
+
+    loadRatings();
+
+    if (supabase) {
+      ratingsChannel = supabase
+        .channel("home-team-ratings")
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "team_ratings",
+          },
+          loadRatings
+        )
+        .subscribe();
+    }
+
+    return () => {
+      cancelled = true;
+
+      if (supabase && ratingsChannel) {
+        supabase.removeChannel(ratingsChannel);
+      }
+    };
+  }, []);
+
+  const activeMatches = useMemo(() => {
     if (!databaseReady || databaseRows.length === 0) {
-      return getUpcoming();
+      return getStaticUpcoming();
     }
 
     return databaseRows
       .filter(
         (row) =>
           !isFinishedStatus(row.status) &&
-          (LIVE_STATUSES.has(
-            row.status?.toUpperCase() || ""
-          ) ||
-            isWithinUpcomingWindow(row.scheduled_at))
+          (
+            isLiveStatus(row.status) ||
+            isWithinUpcomingWindow(row.scheduled_at)
+          )
       )
       .map(dbRowToMatch)
       .sort(
         (first, second) =>
-          new Date(first.scheduledAt) -
-          new Date(second.scheduledAt)
+          new Date(first.scheduledAt) - new Date(second.scheduledAt)
       );
   }, [databaseReady, databaseRows]);
 
   const results = useMemo(() => {
     if (!databaseReady || databaseRows.length === 0) {
-      return getResults();
+      return getStaticResults();
     }
 
     return databaseRows
       .filter((row) => isFinishedStatus(row.status))
       .map(dbRowToResult)
-      .sort(
-        (first, second) =>
-          new Date(second.date) -
-          new Date(first.date)
-      )
-      .slice(0, 20);
+      .sort((first, second) => new Date(second.date) - new Date(first.date))
+      .slice(0, RESULTS_LIMIT);
   }, [databaseReady, databaseRows]);
 
-  const topTeams = useMemo(
-    () => getTopTeams(),
-    []
-  );
+  const rankedTeams = useMemo(() => {
+    const syncedTeams = mergeRatingTeams(ratingRows);
 
-  const liveMatches = upcoming.filter((match) =>
-    LIVE_STATUSES.has(
-      match.status?.toUpperCase() || ""
-    )
-  );
+    if (syncedTeams.length > 0) {
+      return syncedTeams;
+    }
 
-  const nonLiveMatches = upcoming.filter(
-    (match) =>
-      !LIVE_STATUSES.has(
-        match.status?.toUpperCase() || ""
+    /*
+     * Fallback only when Supabase is unavailable.
+     * As soon as team_ratings loads, Home automatically
+     * displays the same ranking as RankingsPage.
+     */
+    return [...teams]
+      .filter(
+        (team) =>
+          Number.isFinite(Number(team.points)) &&
+          team.slug &&
+          team.name
       )
+      .sort(
+        (first, second) =>
+          toNumber(second.points) - toNumber(first.points)
+      )
+      .map((team, index) => ({
+        ...normalizeTeam(team),
+        rank: index + 1,
+        pointsChange: 0,
+        rankChange: 0,
+      }));
+  }, [ratingRows]);
+
+  const topTeams = useMemo(
+    () => rankedTeams.slice(0, 8),
+    [rankedTeams]
   );
 
-  const featuredMatch =
-    liveMatches.length > 0
-      ? selectFeaturedMatch(liveMatches)
-      : selectFeaturedMatch(nonLiveMatches);
+  const liveMatches = activeMatches.filter((match) =>
+    isLiveStatus(match.status)
+  );
+
+  const upcoming = activeMatches.filter(
+    (match) => !isLiveStatus(match.status)
+  );
+
+  const featuredBase =
+    selectFeaturedMatch(liveMatches) ||
+    selectFeaturedMatch(upcoming);
+
+  const featured = useMemo(() => {
+    if (!featuredBase) return null;
+
+    return {
+      ...featuredBase,
+      team1: applyRatingToTeam(
+        featuredBase.team1,
+        rankedTeams
+      ),
+      team2: applyRatingToTeam(
+        featuredBase.team2,
+        rankedTeams
+      ),
+    };
+  }, [featuredBase, rankedTeams]);
+
+  const popularRecentMatch = useMemo(
+    () => selectPopularCompletedMatch(results),
+    [results]
+  );
+
+  const popularRecentMatchPath = popularRecentMatch
+    ? `/match/${popularRecentMatch.matchId || popularRecentMatch.id}`
+    : null;
 
   return (
-    <main className="min-h-screen bg-[#080b10] text-white">
-      <div className="mx-auto max-w-7xl px-4 py-4 md:px-8 md:py-6">
-        <div className="mb-4 flex flex-col gap-3 rounded-xl border border-white/5 bg-[#0d1218] px-4 py-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h1 className="text-xl font-black">
-              ESEA Tracker
-            </h1>
+    <main className="min-h-screen bg-[#090d12] text-white">
+      <style>{`
+        .home-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+        }
 
-            <p className="mt-1 text-sm text-gray-600">
-              Matches, results, and team rankings
-            </p>
-          </div>
+        .home-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
 
-          <div className="flex flex-wrap gap-2">
-            <Link
-              to="/rankings"
-              className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-bold transition hover:bg-orange-600"
-            >
-              Rankings
-            </Link>
+        .home-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
 
-           
-          </div>
-        </div>
+        .home-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(148, 163, 184, 0.24);
+          border-radius: 999px;
+        }
 
+        .home-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(249, 115, 22, 0.48);
+        }
+      `}</style>
+      <div className="mx-auto max-w-[1500px] px-4 py-5 sm:px-6 lg:px-8">
         {databaseError && (
-          <div className="mb-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5 px-4 py-3 text-xs text-yellow-400">
-            Supabase temporarily unavailable. Static data is shown.
+          <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">
+            Supabase is temporarily unavailable. Local data is being shown.
           </div>
         )}
 
-        <LiveStrip matches={liveMatches} />
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_420px]">
+          <HeroMatch match={featured} />
 
-        <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)_320px]">
-          <aside className="order-2 space-y-4 xl:order-1">
-            <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
-              <SectionHeader
-                title="Upcoming"
-                subtitle="Upcoming matches"
-                action={
-                  <span className="rounded-full bg-orange-500/10 px-2.5 py-1 text-[11px] font-bold text-orange-400">
-                    {nonLiveMatches.length}
-                  </span>
-                }
-              />
+          <div className="grid gap-6">
+            <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
+              <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
+                <div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400">
+                    Live center
+                  </div>
+                  <h2 className="mt-1 text-xl font-black">
+                    Live Matches
+                  </h2>
+                </div>
 
-              {nonLiveMatches.length > 0 ? (
-                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-color:#374151_#0d1218] [scrollbar-width:thin]">
-                  {nonLiveMatches.map((match) => (
-                      <MatchListItem
+                <div className="rounded-full bg-red-500/10 px-3 py-1 text-xs font-black text-red-400">
+                  {liveMatches.length}
+                </div>
+              </div>
+
+              {liveMatches.length > 0 ? (
+                <div className="home-scrollbar max-h-[430px] overflow-y-auto p-4 pr-3">
+                  <div className="grid gap-3">
+                    {liveMatches.map((match) => (
+                      <LiveCard
                         key={match.matchId || match.id}
                         match={match}
                       />
                     ))}
+                  </div>
                 </div>
               ) : (
-                <div className="flex flex-1 items-center justify-center p-8 text-center text-sm text-gray-600">
-                  No upcoming matches
+                <div className="flex min-h-[180px] items-center justify-center px-6 text-center text-sm text-slate-600">
+                  No live matches right now
                 </div>
               )}
             </section>
-          </aside>
 
-          <div className="order-1 space-y-4 xl:order-2">
-            <FeaturedPanel
-              match={featuredMatch}
-            />
+            <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
+              <div className="border-b border-white/[0.06] px-5 py-4">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
+                  Trending
+                </div>
+                <h2 className="mt-1 text-xl font-black">
+                  Trending Now
+                </h2>
+              </div>
 
-            <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
-              <SectionHeader
-                title="News feed"
-                subtitle="League news and updates"
-                action={
-                  <span className="text-xs font-bold text-gray-600">
-                    Coming soon
-                  </span>
-                }
-              />
+              <div className="divide-y divide-white/[0.06]">
+                <Link
+                  to={topTeams[0]?.slug ? `/teams/${topTeams[0].slug}` : "/rankings"}
+                  className="flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.03]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-sm font-black text-orange-400">
+                    01
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-sm font-black">
+                      {topTeams[0]?.name || "Ranking leader"}
+                    </div>
+                    <div className="mt-1 text-xs text-slate-600">
+                      Top team in the overall ranking
+                    </div>
+                  </div>
+                  <div className="text-xs font-black text-emerald-400">
+                    ↑
+                  </div>
+                </Link>
 
-              <div className="grid gap-px bg-white/5 md:grid-cols-2">
-                <article className="bg-[#0d1218] p-5">
-                  <div className="mb-4 h-36 rounded-lg bg-[linear-gradient(135deg,#151b24,#0f141a)]" />
+                <button
+                  type="button"
+                  onClick={scrollToUpcomingMatches}
+                  className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-white/[0.03]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10 text-sm font-black text-red-400">
+                    02
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-sm font-black">
+                      {liveMatches.length > 0
+                        ? `${liveMatches.length} matches are live now`
+                        : "Upcoming matches are already scheduled"}
+                    </div>
+                    <div className="mt-1 text-xs text-slate-600">
+                      Match statuses update automatically
+                    </div>
+                  </div>
+                  <div className="text-xs font-black text-red-400">
+                    ●
+                  </div>
+                </button>
 
-                  <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-orange-400">
-                    ESEA
+                <button
+                  type="button"
+                  onClick={scrollToRecentResults}
+                  className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-white/[0.03]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sm font-black text-sky-400">
+                    03
                   </div>
 
-                  <h3 className="mt-2 text-lg font-black">
-                    League news will appear here
-                  </h3>
-
-                  
-                </article>
-
-                <div className="bg-[#0d1218]">
-                  {[
-                    "Latest roster changes",
-                    "Top matches of the day",
-                    "Biggest ranking climbers",
-                    "Players of the week",
-                  ].map((title, index) => (
-                    <div
-                      key={title}
-                      className="flex gap-3 border-b border-white/5 p-4 last:border-b-0"
-                    >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-orange-500/10 text-xs font-black text-orange-400">
-                        {index + 1}
-                      </div>
-
-                      <div>
-                        <div className="text-sm font-bold">
-                          {title}
-                        </div>
-
-                        <div className="mt-1 text-xs text-gray-700">
-                          News placeholder
-                        </div>
-                      </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-sm font-black">
+                      {results.length} recent results
                     </div>
-                  ))}
-                </div>
+
+                    <div className="mt-1 text-xs text-slate-600">
+                      Latest completed matches
+                    </div>
+                  </div>
+
+                  <div className="text-xs font-black text-sky-400">
+                    ↓
+                  </div>
+                </button>
               </div>
             </section>
           </div>
-
-          <aside className="order-3 space-y-4">
-            <section className="flex h-[720px] flex-col overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
-              <SectionHeader
-                title="Recent results"
-                subtitle="Latest completed matches"
-                action={
-                  <span className="rounded-full bg-green-500/10 px-2.5 py-1 text-[11px] font-bold text-green-400">
-                    {results.length}
-                  </span>
-                }
-              />
-
-              {results.length > 0 ? (
-                <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-color:#374151_#0d1218] [scrollbar-width:thin]">
-                  {results.map((match) => (
-                      <ResultListItem
-                        key={match.id}
-                        match={match}
-                      />
-                    ))}
-                </div>
-              ) : (
-                <div className="flex flex-1 items-center justify-center p-8 text-center text-sm text-gray-600">
-                  No recent results
-                </div>
-              )}
-            </section>
-
-            <section className="overflow-hidden rounded-xl border border-white/5 bg-[#0d1218]">
-              <SectionHeader
-                title="Team ranking"
-                subtitle="Top teams"
-                action={
-                  <Link
-                    to="/rankings"
-                    className="text-xs font-bold text-orange-400 hover:text-orange-300"
-                  >
-                    All →
-                  </Link>
-                }
-              />
-
-              <div>
-                
-              </div>
-            </section>
-          </aside>
         </div>
+
+        <div className="mt-8 grid gap-6 xl:grid-cols-2">
+          <section
+            ref={upcomingSectionRef}
+            className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
+          >
+            <SectionTitle title="Upcoming Matches" />
+
+            {upcoming.length > 0 ? (
+              <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {upcoming.map((match) => (
+                  <MatchCard
+                    key={match.matchId || match.id}
+                    match={match}
+                  />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">
+                No matches scheduled in the next 24 hours
+              </div>
+            )}
+          </section>
+
+          <section
+            ref={recentResultsSectionRef}
+            className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
+          >
+            <SectionTitle title="Recent Results" />
+
+            <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {results.map((match) => (
+                  <ResultCard
+                    key={match.matchId || match.id}
+                    match={match}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section className="mt-8">
+          <SectionTitle
+            title="Top Teams"
+            action={
+              <Link
+                to="/rankings"
+                className="text-sm font-black text-orange-400 hover:text-orange-300"
+              >
+                Full rankings →
+              </Link>
+            }
+          />
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {topTeams.slice(0, 8).map((team, index) => (
+              <RankingCard
+                key={team.slug || team.name}
+                team={team}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <SectionTitle title="Latest Updates" />
+
+          <div className="grid gap-4 lg:grid-cols-[1.3fr_1fr_1fr]">
+            <NewsCard
+              large
+              to="/about"
+              tag="PLATFORM"
+              title="Matches, rankings, and statistics in one place"
+              text="ESEA Tracker automatically collects schedules, results, maps, and player statistics."
+            />
+
+            <NewsCard
+              to="/rankings"
+              tag="RANKINGS"
+              title="Team rankings update after completed matches"
+              text="Points and positions are recalculated automatically after synchronization."
+            />
+
+            <NewsCard
+              to={popularRecentMatchPath || "/stats"}
+              tag="STATISTICS"
+              title={
+                popularRecentMatch
+                  ? `${popularRecentMatch.team1?.name || "Team 1"} vs ${
+                      popularRecentMatch.team2?.name || "Team 2"
+                    }`
+                  : "MVP, ADR, and K/D are available in the Match Center"
+              }
+              text={
+                popularRecentMatch
+                  ? "Open the most popular recent completed match. Automatic wins and walkovers are excluded."
+                  : "Statistics appear after FACEIT publishes the match data."
+              }
+            />
+          </div>
+        </section>
       </div>
     </main>
   );

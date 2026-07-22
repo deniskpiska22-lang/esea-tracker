@@ -74,6 +74,16 @@ ReactDOM.createRoot(
             />
 
             <Route
+              path="/matches"
+              element={<MatchesPage />}
+            />
+
+            <Route
+              path="/match/:id"
+              element={<MatchPage />}
+            />
+
+            <Route
               path="/teams/:slug/matches"
               element={<MatchesPage />}
             />

@@ -25,11 +25,13 @@
     "sync:rosters": "node --env-file=.env.local scripts/syncTeamRosters.js",
     "stats:backfill": "node --env-file=.env.local scripts/backfillMissingMatchStats.js",
     "import:json": "node --env-file=.env.local scripts/importJsonToSupabase.js",
-     "matches:supabase": "node --env-file=.env.local scripts/updateMatchesToSupabase.js",
+    "matches:supabase": "node --env-file=.env.local scripts/updateMatchesToSupabase.js",
     "stats:supabase": "node --env-file=.env.local scripts/updateMatchStatsV3ToSupabase.js",
     "stats:json-to-supabase": "node --env-file=.env.local scripts/importExistingMatchStatsJsonToSupabase.js",
     "stats:full": "node --env-file=.env.local scripts/fullSyncStatsToSupabase.js",
-    "rosters:backfill": "node --env-file=.env.local scripts/backfillTeamPlayerAppearances.js"
+    "rosters:backfill": "node --env-file=.env.local scripts/backfillTeamPlayerAppearances.js",
+    "stats:normalize": "node --env-file=.env.local scripts/backfillNormalizedMatchStats.js",
+    "stats:check": "node --env-file=.env.local scripts/checkNormalizedMatchStats.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",
