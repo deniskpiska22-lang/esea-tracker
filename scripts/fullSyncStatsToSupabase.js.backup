@@ -14,18 +14,6 @@ const MAX_DELAY_MS = Math.max(MIN_DELAY_MS, Number(process.env.STATS_MAX_DELAY_M
 const BATCH_PAUSE_MS = Math.max(0, Number(process.env.STATS_BATCH_PAUSE_MS || 15000));
 const MAX_ATTEMPTS = Math.max(1, Number(process.env.STATS_MAX_ATTEMPTS || 5));
 const FAILED_FILE = process.env.STATS_FAILED_FILE || "./data/stats-import-failed.json";
-
-const argv = process.argv.slice(2);
-const MATCH_ID = (() => {
-  const inline = argv.find((item) => item.startsWith("--match="));
-  if (inline) return inline.slice("--match=".length).trim();
-  const index = argv.indexOf("--match");
-  return index >= 0 ? String(argv[index + 1] || "").trim() : "";
-})();
-const RETRY_FAILED = argv.includes("--retry-failed");
-const RETRY_404 = argv.includes("--retry-404");
-const FAILED_RETRY_HOURS = Math.max(0, Number(process.env.STATS_FAILED_RETRY_HOURS || 24));
-const NOT_FOUND_RETRY_DAYS = Math.max(0, Number(process.env.STATS_404_RETRY_DAYS || 7));
 const RUN_POST_MATCH_PIPELINE =
   String(process.env.RUN_POST_MATCH_PIPELINE || "1") === "1";
 
@@ -229,41 +217,9 @@ function compactStats(body, matchId) {
     }),
   );
 
-  const teamsByKey = new Map();
-
-  for (const player of players) {
-    const key = player.teamId || player.teamName || "unknown-team";
-    if (!teamsByKey.has(key)) {
-      const sourceTeam = maps
-        .flatMap((map) => map.teams)
-        .find((team) =>
-          (player.teamId && team.teamId === player.teamId) ||
-          (!player.teamId && player.teamName && team.teamName === player.teamName)
-        );
-
-      teamsByKey.set(key, {
-        teamId: player.teamId || sourceTeam?.teamId || null,
-        teamName: player.teamName || sourceTeam?.teamName || "Unknown",
-        score: Number(sourceTeam?.score || 0),
-        players: [],
-      });
-    }
-
-    teamsByKey.get(key).players.push(player);
-  }
-
-  const teams = [...teamsByKey.values()].filter(
-    (team) => Array.isArray(team.players) && team.players.length > 0,
-  );
-
-  if (teams.length < 2) {
-    return null;
-  }
-
   return {
     matchId,
     maps,
-    teams,
     players,
   };
 }
@@ -297,33 +253,7 @@ async function countRemaining() {
   return count || 0;
 }
 
-function shouldExcludeFailure(failure) {
-  if (!failure || RETRY_FAILED) return false;
-
-  const lastAttempt = new Date(failure.lastAttemptAt || 0).getTime();
-  const ageMs = Number.isFinite(lastAttempt) ? Date.now() - lastAttempt : Infinity;
-
-  if (failure.status === 404 || failure.permanent === true) {
-    if (RETRY_404) return false;
-    return ageMs < NOT_FOUND_RETRY_DAYS * 86400000;
-  }
-
-  return ageMs < FAILED_RETRY_HOURS * 3600000;
-}
-
-async function loadAllCandidates(failedState) {
-  if (MATCH_ID) {
-    const { data, error } = await supabase
-      .from("matches")
-      .select("id,map_scores,player_stats,stats_synced,finished_at,status")
-      .eq("id", MATCH_ID)
-      .maybeSingle();
-
-    if (error) throw error;
-    if (!data) throw new Error(`Match not found in Supabase: ${MATCH_ID}`);
-    return [data];
-  }
-
+async function loadAllCandidates(excludedIds) {
   const pageSize = 1000;
   const result = [];
   let from = 0;
@@ -331,7 +261,7 @@ async function loadAllCandidates(failedState) {
   while (true) {
     const { data, error } = await supabase
       .from("matches")
-      .select("id,map_scores,player_stats,stats_synced,finished_at,status")
+      .select("id,map_scores,player_stats,stats_synced,finished_at")
       .in("status", ["FINISHED", "MATCH_STATUS_FINISHED"])
       .or("stats_synced.eq.false,stats_synced.is.null,player_stats.is.null")
       .order("finished_at", { ascending: true, nullsFirst: false })
@@ -342,9 +272,7 @@ async function loadAllCandidates(failedState) {
 
     const rows = data || [];
     for (const match of rows) {
-      if (!shouldExcludeFailure(failedState[match.id])) {
-        result.push(match);
-      }
+      if (!excludedIds.has(match.id)) result.push(match);
     }
 
     if (rows.length < pageSize) break;
@@ -508,9 +436,9 @@ async function runPostMatchPipeline() {
 async function main() {
   const failedState = await readFailedState();
 
-  // Ошибки больше не исключаются навсегда. Временные ошибки повторяются
-  // после STATS_FAILED_RETRY_HOURS, а 404 — после STATS_404_RETRY_DAYS.
-  // Флаги --retry-failed и --retry-404 принудительно снимают паузу.
+  // Все уже известные ошибки пропускаются. Поэтому один и тот же 404
+  // не возвращается в начало очереди при каждом новом пакете.
+  const excludedIds = new Set(Object.keys(failedState));
 
   const browser = await chromium.connectOverCDP(CDP_URL);
   const context = browser.contexts()[0];
@@ -523,11 +451,10 @@ async function main() {
   }
 
   const databaseRemaining = await countRemaining();
-  const queue = await loadAllCandidates(failedState);
+  const queue = await loadAllCandidates(excludedIds);
 
   console.log(`Database without stats: ${databaseRemaining}`);
-  console.log(`Failures remembered: ${Object.keys(failedState).length}`);
-  if (MATCH_ID) console.log(`Target match: ${MATCH_ID}`);
+  console.log(`Previously skipped: ${excludedIds.size}`);
   console.log(`Queue for this run: ${queue.length}`);
 
   let totalSynced = 0;
@@ -551,8 +478,8 @@ async function main() {
         try {
           const result = await fetchStats(page, match.id);
 
-          // 404 записывается в failed-файл, но не блокируется навсегда.
-          // Повтор произойдёт после STATS_404_RETRY_DAYS или с --retry-404.
+          // Все 404 считаются постоянными и записываются в failed-файл.
+          // Они автоматически пропускаются при следующих запусках.
           if (result.status === 404) {
             failedState[match.id] = {
               attempts: attempt,
@@ -657,8 +584,8 @@ async function main() {
     )
   );
   console.log(
-    "Failed matches are retried automatically after cooldown. " +
-      "Use --retry-failed, --retry-404, or --match <id> for an immediate retry."
+    "Known 404 and exhausted ordinary errors are excluded on the next run. " +
+      "403/429 matches are skipped without waiting and can be retried on the next run."
   );
 
   if (totalSynced > 0) {

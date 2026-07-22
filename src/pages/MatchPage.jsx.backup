@@ -278,144 +278,6 @@ function formatMapName(value) {
   );
 }
 
-function getMapTeamIdentity(team = {}) {
-  return {
-    id:
-      team?.teamId ||
-      team?.team_id ||
-      team?.id ||
-      null,
-    name:
-      team?.teamName ||
-      team?.team_name ||
-      team?.name ||
-      null,
-    score: toNumber(team?.score),
-  };
-}
-
-function teamIdentityMatches(team, displayTeam) {
-  if (!team || !displayTeam) {
-    return false;
-  }
-
-  if (
-    team.id &&
-    displayTeam.id &&
-    String(team.id) === String(displayTeam.id)
-  ) {
-    return true;
-  }
-
-  return Boolean(
-    team.name &&
-    displayTeam.name &&
-    normalizeName(team.name) === normalizeName(displayTeam.name)
-  );
-}
-
-function normalizeDisplayedMapScore(map, displayTeam1, displayTeam2) {
-  if (!map || typeof map !== "object") {
-    return null;
-  }
-
-  /*
-   * Новый формат Supabase:
-   * { map, team1: { teamId, teamName, score }, team2: {...} }
-   */
-  const nestedFirst = getMapTeamIdentity(map.team1);
-  const nestedSecond = getMapTeamIdentity(map.team2);
-
-  /*
-   * Старый плоский формат autoSyncMatches:
-   * { team1_id, team1_name, team1_score, ... }
-   */
-  const first = {
-    id:
-      nestedFirst.id ||
-      map.team1_id ||
-      null,
-    name:
-      nestedFirst.name ||
-      map.team1_name ||
-      null,
-    score: toNumber(
-      map.team1_score ??
-      map.score1 ??
-      nestedFirst.score
-    ),
-  };
-
-  const second = {
-    id:
-      nestedSecond.id ||
-      map.team2_id ||
-      null,
-    name:
-      nestedSecond.name ||
-      map.team2_name ||
-      null,
-    score: toNumber(
-      map.team2_score ??
-      map.score2 ??
-      nestedSecond.score
-    ),
-  };
-
-  let left = first;
-  let right = second;
-
-  if (
-    teamIdentityMatches(second, displayTeam1) ||
-    teamIdentityMatches(first, displayTeam2)
-  ) {
-    left = second;
-    right = first;
-  }
-
-  /* Поддержка старых локальных данных teamScore/opponentScore. */
-  const hasDatabaseTeams = Boolean(
-    first.id ||
-    first.name ||
-    second.id ||
-    second.name ||
-    map.team1 ||
-    map.team2 ||
-    map.team1_score !== undefined ||
-    map.team2_score !== undefined
-  );
-
-  const teamScore = hasDatabaseTeams
-    ? left.score
-    : toNumber(map.teamScore);
-
-  const opponentScore = hasDatabaseTeams
-    ? right.score
-    : toNumber(map.opponentScore);
-
-  return {
-    ...map,
-    map:
-      map.map ||
-      map.map_name ||
-      map.mapName ||
-      "Unknown",
-    teamScore,
-    opponentScore,
-    team1: {
-      id: left.id || displayTeam1?.id || null,
-      name: left.name || displayTeam1?.name || "Team 1",
-      score: teamScore,
-    },
-    team2: {
-      id: right.id || displayTeam2?.id || null,
-      name: right.name || displayTeam2?.name || "Team 2",
-      score: opponentScore,
-    },
-    won: teamScore > opponentScore,
-  };
-}
-
 function getRecentMatchesForTeam(team) {
   if (!team?.slug) {
     return [];
@@ -2084,32 +1946,87 @@ function MatchPage() {
     null;
 
   const databaseMapScores =
-    Array.isArray(liveData?.mapScores)
-      ? liveData.mapScores
-          .map((map) =>
-            normalizeDisplayedMapScore(
-              map,
-              displayTeam1,
-              displayTeam2
-            )
-          )
-          .filter(Boolean)
+    Array.isArray(
+      liveData?.mapScores
+    )
+      ? liveData.mapScores.map(
+          (map) => {
+            const displayedTeamId =
+              liveData?.team1?.id;
+
+            const displayedTeamName =
+              liveData?.team1?.name;
+
+            const mapFirstIsDisplayedTeam =
+              Boolean(
+                displayedTeamId &&
+                map.team1_id ===
+                  displayedTeamId
+              ) ||
+              Boolean(
+                displayedTeamName &&
+                normalizeName(
+                  map.team1_name
+                ) ===
+                  normalizeName(
+                    displayedTeamName
+                  )
+              );
+
+            const nestedTeam1 = map.team1 || null;
+            const nestedTeam2 = map.team2 || null;
+
+            const rawTeam1Id =
+              map.team1_id || nestedTeam1?.teamId || nestedTeam1?.team_id || null;
+            const rawTeam1Name =
+              map.team1_name || nestedTeam1?.teamName || nestedTeam1?.team_name || null;
+
+            const nestedFirstIsDisplayedTeam =
+              Boolean(displayedTeamId && rawTeam1Id === displayedTeamId) ||
+              Boolean(
+                displayedTeamName &&
+                rawTeam1Name &&
+                normalizeName(rawTeam1Name) === normalizeName(displayedTeamName)
+              );
+
+            const firstIsDisplayedTeam =
+              mapFirstIsDisplayedTeam || nestedFirstIsDisplayedTeam;
+
+            const rawTeam1Score =
+              map.team1_score ?? nestedTeam1?.score ?? 0;
+            const rawTeam2Score =
+              map.team2_score ?? nestedTeam2?.score ?? 0;
+
+            const teamScore = toNumber(
+              firstIsDisplayedTeam ? rawTeam1Score : rawTeam2Score
+            );
+
+            const opponentScore = toNumber(
+              firstIsDisplayedTeam ? rawTeam2Score : rawTeam1Score
+            );
+
+            return {
+              map:
+                map.map ||
+                "Unknown",
+
+              teamScore,
+
+              opponentScore,
+
+              won:
+                teamScore >
+                opponentScore,
+            };
+          }
+        )
       : [];
 
   const displayedMapScores =
     databaseMapScores.length > 0
       ? databaseMapScores
-      : (Array.isArray(finishedMatch?.mapScores)
-          ? finishedMatch.mapScores
-              .map((map) =>
-                normalizeDisplayedMapScore(
-                  map,
-                  displayTeam1,
-                  displayTeam2
-                )
-              )
-              .filter(Boolean)
-          : []);
+      : finishedMatch?.mapScores ||
+        [];
 
   const orderedTeams = [
     ...(Array.isArray(stats?.teams)

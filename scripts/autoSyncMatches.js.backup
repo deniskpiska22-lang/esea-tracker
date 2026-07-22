@@ -3180,10 +3180,7 @@ async function syncFinishedMapStats() {
         ),
 
         player_stats: hasPlayerStats
-          ? {
-              ...statsResult.playerStats,
-              maps: correctedMapScores,
-            }
+          ? statsResult.playerStats
           : null,
 
         stats_synced:

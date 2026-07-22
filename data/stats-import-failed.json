@@ -1,63 +1,87 @@
 {
   "1-97290446-2c02-4a98-9038-b5c08cfead3a": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:02:28.340Z"
+    "lastAttemptAt": "2026-07-22T21:14:59.279Z"
   },
   "1-da94955a-ad86-4746-bf5b-d72241be5db6": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:02:38.620Z"
+    "lastAttemptAt": "2026-07-22T21:14:59.517Z"
   },
   "1-511643f3-118b-49c9-84b7-9a3eb5d82ded": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:02:48.890Z"
+    "lastAttemptAt": "2026-07-22T21:14:59.760Z"
   },
   "1-d7a308bd-6e89-49fa-880c-0b1ebc66ff87": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:02:59.176Z"
+    "lastAttemptAt": "2026-07-22T21:15:00.790Z"
   },
   "1-bdc7ef95-305f-4909-bd89-38fafb35befa": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:03:09.463Z"
+    "lastAttemptAt": "2026-07-22T21:15:00.995Z"
   },
   "1-8ae13fe4-e3c0-4a50-9013-03b99f640aa2": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:03:19.732Z"
+    "lastAttemptAt": "2026-07-22T21:15:01.630Z"
   },
   "1-451c28c0-55fc-4063-ac9b-a84ed8647705": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:03:30.005Z"
+    "lastAttemptAt": "2026-07-22T21:15:01.858Z"
   },
   "1-afffd90c-2b07-4065-8358-75a7e45fb688": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:03:40.283Z"
+    "lastAttemptAt": "2026-07-22T21:15:02.073Z"
   },
   "1-39a7d776-e82a-4110-b7e9-d69b5f987b7e": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:03:50.597Z"
+    "lastAttemptAt": "2026-07-22T21:15:02.694Z"
   },
   "1-c7e60617-a6ea-4978-98e6-dc37bbcf4959": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:04:00.882Z"
+    "lastAttemptAt": "2026-07-22T21:15:02.920Z"
   },
   "1-e84c4323-4b4b-4dbd-8b43-cd1b2fdb0699": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:04:11.186Z"
+    "lastAttemptAt": "2026-07-22T21:15:03.766Z"
   },
   "1-fc5e32bb-921c-4d53-a861-6857dff06915": {
-    "attempts": 2,
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T14:04:21.471Z"
+    "lastAttemptAt": "2026-07-22T21:15:03.979Z"
   },
   "1-ea8a650d-bb34-47dd-b0d6-3acd3ce5ce59": {
     "attempts": 2,
@@ -452,28 +476,28 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T16:57:07.655Z"
+    "lastAttemptAt": "2026-07-22T21:16:19.123Z"
   },
   "1-4e348afa-c2a3-462d-a59f-d213f7e1694d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T16:57:13.413Z"
+    "lastAttemptAt": "2026-07-22T21:16:19.326Z"
   },
   "1-acd025a2-2838-4482-a919-e0a8e31e7cb0": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T16:57:13.641Z"
+    "lastAttemptAt": "2026-07-22T21:16:19.530Z"
   },
   "1-e7b7438e-9b59-40c3-93d6-9f9881d66965": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T16:57:13.908Z"
+    "lastAttemptAt": "2026-07-22T21:16:20.158Z"
   },
   "1-0a34c8df-e13a-4a59-9b10-47c284139d00": {
     "attempts": 1,
@@ -914,49 +938,49 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:01:10.584Z"
+    "lastAttemptAt": "2026-07-22T21:17:36.150Z"
   },
   "1-d43ad1aa-7f8b-4d24-819b-bd1e91729204": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:02:16.606Z"
+    "lastAttemptAt": "2026-07-22T21:17:37.594Z"
   },
   "1-86535298-a23b-4759-aa70-c153511bd8ac": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:10:40.609Z"
+    "lastAttemptAt": "2026-07-22T21:17:38.557Z"
   },
   "1-d5e0d370-0270-4db3-ada4-fa02ee9200e6": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:11:12.987Z"
+    "lastAttemptAt": "2026-07-22T21:17:39.397Z"
   },
   "1-f94e7c10-030c-4552-bc79-752957f2011f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:11:13.214Z"
+    "lastAttemptAt": "2026-07-22T21:17:39.602Z"
   },
   "1-e371bf94-7517-46cb-8a8c-c566d74aeff4": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:11:13.459Z"
+    "lastAttemptAt": "2026-07-22T21:17:39.822Z"
   },
   "1-4ba7ddd6-ab1b-47a7-9a1d-6da702323f43": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T19:12:31.055Z"
+    "lastAttemptAt": "2026-07-22T21:17:40.500Z"
   },
   "1-256af42e-ddbb-474a-b1f9-844a5c137acd": {
     "attempts": 1,
@@ -1292,77 +1316,77 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:50:14.663Z"
+    "lastAttemptAt": "2026-07-22T21:18:56.540Z"
   },
   "1-b86f2bc8-14c9-478a-832b-3d06ed55b933": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:50:14.875Z"
+    "lastAttemptAt": "2026-07-22T21:18:56.982Z"
   },
   "1-174386c4-66c9-40f9-83d9-cdf3b5f824d6": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:50:25.319Z"
+    "lastAttemptAt": "2026-07-22T21:18:57.607Z"
   },
   "1-4a322826-f34b-4de5-ab96-77174feae535": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:50:37.759Z"
+    "lastAttemptAt": "2026-07-22T21:18:59.366Z"
   },
   "1-03b33593-0bfe-4880-b8a6-4cfb7f75f6f2": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:52:17.672Z"
+    "lastAttemptAt": "2026-07-22T21:18:59.997Z"
   },
   "1-63096705-bb81-4023-bd93-ff4852ab0b96": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:52:17.884Z"
+    "lastAttemptAt": "2026-07-22T21:19:00.350Z"
   },
   "1-15b2804d-818e-4e62-bc3a-93e2d6eb3bba": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:55:27.266Z"
+    "lastAttemptAt": "2026-07-22T21:19:00.550Z"
   },
   "1-69ad9b02-0dee-4314-a36d-e4877319abdf": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:56:10.809Z"
+    "lastAttemptAt": "2026-07-22T21:19:01.596Z"
   },
   "1-a7fff848-bfde-4895-bd59-b130eb6f9e65": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:56:11.023Z"
+    "lastAttemptAt": "2026-07-22T21:19:01.801Z"
   },
   "1-e40a28ec-fa1d-424d-bb51-52ff23255ccf": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:56:11.229Z"
+    "lastAttemptAt": "2026-07-22T21:19:02.438Z"
   },
   "1-c0b59fa2-c1e2-4f11-9603-17cbd74b81b3": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T21:56:11.437Z"
+    "lastAttemptAt": "2026-07-22T21:19:02.880Z"
   },
   "1-b6e6dd9d-0a1f-4794-982a-6c36af81263f": {
     "attempts": 1,
@@ -1684,42 +1708,42 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:41:04.038Z"
+    "lastAttemptAt": "2026-07-22T21:20:17.230Z"
   },
   "1-90106b20-cb57-4944-9c82-8beccece18fe": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:41:12.524Z"
+    "lastAttemptAt": "2026-07-22T21:20:17.459Z"
   },
   "1-e9bc05cc-035c-4d12-bccc-d9ea871a2349": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:42:17.213Z"
+    "lastAttemptAt": "2026-07-22T21:20:17.680Z"
   },
   "1-482b41c6-e8a8-4c56-acef-e99431d9a6f0": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:43:04.558Z"
+    "lastAttemptAt": "2026-07-22T21:20:17.900Z"
   },
   "1-a3663def-0bf2-4127-b088-3fc7f74b2301": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:44:52.925Z"
+    "lastAttemptAt": "2026-07-22T21:20:18.333Z"
   },
   "1-105334e5-5b23-4d05-911f-1785279b756d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T22:51:34.193Z"
+    "lastAttemptAt": "2026-07-22T21:20:19.198Z"
   },
   "1-e62229be-c874-4219-b5d6-b4595e1f028c": {
     "attempts": 1,
@@ -2055,77 +2079,77 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:36.343Z"
+    "lastAttemptAt": "2026-07-22T21:21:34.951Z"
   },
   "1-8ec0955d-4ddd-4901-a01b-f3285769fa33": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:36.574Z"
+    "lastAttemptAt": "2026-07-22T21:21:35.676Z"
   },
   "1-d2a3c015-8e66-41e5-a736-d857c101e052": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:36.811Z"
+    "lastAttemptAt": "2026-07-22T21:21:36.096Z"
   },
   "1-fe023ec1-c5a9-4c05-b78d-987b1b54d65e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:52.023Z"
+    "lastAttemptAt": "2026-07-22T21:21:37.583Z"
   },
   "1-154997d5-11c3-46b5-bf69-0dec685e6bfe": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:52.308Z"
+    "lastAttemptAt": "2026-07-22T21:21:38.454Z"
   },
   "1-e77ed385-053e-4f64-bb8a-5ea007bc0fa7": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:52.535Z"
+    "lastAttemptAt": "2026-07-22T21:21:38.673Z"
   },
   "1-fb6fc70b-9190-4019-a944-2e0cd25bd56a": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:05:52.739Z"
+    "lastAttemptAt": "2026-07-22T21:21:38.884Z"
   },
   "1-acaf5dc8-bde2-4665-9d2d-23508c9aa324": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:14:31.125Z"
+    "lastAttemptAt": "2026-07-22T21:21:39.525Z"
   },
   "1-ee49b5ae-2c44-4dc3-80dc-de7b2398bedc": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:15:26.351Z"
+    "lastAttemptAt": "2026-07-22T21:21:39.939Z"
   },
   "1-680385fe-87f8-4bfa-8cd0-9ea4e9212dc1": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:15:26.550Z"
+    "lastAttemptAt": "2026-07-22T21:21:40.159Z"
   },
   "1-1faa34bb-00b4-4209-88b0-a6e702b73e20": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-20T23:15:31.910Z"
+    "lastAttemptAt": "2026-07-22T21:21:40.357Z"
   },
   "1-9cf1c1ce-c1b6-42bd-aec4-270a29d3a06a": {
     "attempts": 1,
@@ -2524,21 +2548,21 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T00:04:40.107Z"
+    "lastAttemptAt": "2026-07-22T21:22:41.546Z"
   },
   "1-3ba42161-3cd2-4737-9438-2b4be3ab0694": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T00:05:03.071Z"
+    "lastAttemptAt": "2026-07-22T21:22:42.192Z"
   },
   "1-37f53edc-9fcd-4106-9c1f-dfbecdf5c850": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T00:05:16.792Z"
+    "lastAttemptAt": "2026-07-22T21:22:42.405Z"
   },
   "1-00dc9b44-ac1d-431a-93ef-61dd70526bde": {
     "attempts": 1,
@@ -2825,7 +2849,7 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T00:43:31.758Z"
+    "lastAttemptAt": "2026-07-22T21:40:55.280Z"
   },
   "1-6dfec0ff-1c60-455a-97d2-d6303e6fbb0f": {
     "attempts": 1,
@@ -2839,126 +2863,126 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:46.293Z"
+    "lastAttemptAt": "2026-07-22T21:14:57.703Z"
   },
   "1-ebf95187-9260-45d0-80e9-75af90fca477": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:46.578Z"
+    "lastAttemptAt": "2026-07-22T21:14:57.927Z"
   },
   "1-5f0764e0-98f3-443a-a99b-28f9daf0bb3a": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:46.858Z"
+    "lastAttemptAt": "2026-07-22T21:14:58.136Z"
   },
   "1-c3543a52-7e43-4db3-b849-01efdd5c4548": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:47.139Z"
+    "lastAttemptAt": "2026-07-22T21:14:58.334Z"
   },
   "1-040f2747-9993-4f44-92ff-d8ec5a2d33bc": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:47.404Z"
+    "lastAttemptAt": "2026-07-22T21:14:58.552Z"
   },
   "1-15829ab5-e441-4e95-8ebd-2f0e42c01325": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:47.677Z"
+    "lastAttemptAt": "2026-07-22T21:14:58.755Z"
   },
   "1-c12e84cb-3978-464d-bc72-2899d9562117": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:47.959Z"
+    "lastAttemptAt": "2026-07-22T21:14:59.064Z"
   },
   "1-71578cb5-4199-48e2-9cdd-144a429c6670": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:48.231Z"
+    "lastAttemptAt": "2026-07-22T21:14:59.963Z"
   },
   "1-7c4848b5-5ada-4009-a0a5-6331adfc511c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:48.515Z"
+    "lastAttemptAt": "2026-07-22T21:15:00.184Z"
   },
   "1-2561462f-6f2f-4958-9f47-2c4512b243e8": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:48.804Z"
+    "lastAttemptAt": "2026-07-22T21:15:00.391Z"
   },
   "1-0d516f76-34ef-4699-a7dd-e334ab7a037f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:49.076Z"
+    "lastAttemptAt": "2026-07-22T21:15:00.596Z"
   },
   "1-1749f483-27e8-4d85-8f4d-b4d324c682e5": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:49.336Z"
+    "lastAttemptAt": "2026-07-22T21:15:01.192Z"
   },
   "1-26156f89-c5a0-48fd-ad19-1d00cdd3c3a1": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:49.604Z"
+    "lastAttemptAt": "2026-07-22T21:15:01.423Z"
   },
   "1-262f7c77-36c4-4361-b0d6-a8edf85e3970": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:49.886Z"
+    "lastAttemptAt": "2026-07-22T21:15:02.276Z"
   },
   "1-a148059f-bf34-421b-b257-d8cb67565ff3": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:50.150Z"
+    "lastAttemptAt": "2026-07-22T21:15:02.483Z"
   },
   "1-d356999d-9d82-40fd-8928-c1822d8b3d68": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:50.420Z"
+    "lastAttemptAt": "2026-07-22T21:15:03.147Z"
   },
   "1-a72fbf3a-67c4-41fd-972c-adbb6f10199e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:50.703Z"
+    "lastAttemptAt": "2026-07-22T21:15:03.350Z"
   },
   "1-23657291-6f5b-4cd2-9f86-98b3f0049402": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:04:50.967Z"
+    "lastAttemptAt": "2026-07-22T21:15:03.555Z"
   },
   "1-180e91a2-c791-4d5d-8719-a5d703784d0e": {
     "attempts": 1,
@@ -3735,63 +3759,63 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:23.800Z"
+    "lastAttemptAt": "2026-07-22T21:16:18.061Z"
   },
   "1-1c9293a2-ac69-418d-9544-e28edb1e8a7f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:24.066Z"
+    "lastAttemptAt": "2026-07-22T21:16:18.266Z"
   },
   "1-0b6eacc9-9612-4cda-9b8f-4e6df815cc3e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:24.353Z"
+    "lastAttemptAt": "2026-07-22T21:16:18.471Z"
   },
   "1-6d8dcc34-6890-40d9-b23f-2b5387980817": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:24.627Z"
+    "lastAttemptAt": "2026-07-22T21:16:18.676Z"
   },
   "1-a00808d6-0566-4bb8-9972-8171c394bb32": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:24.916Z"
+    "lastAttemptAt": "2026-07-22T21:16:18.919Z"
   },
   "1-053dcdd9-a6d7-4002-85d0-19d5778fb9dd": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:25.184Z"
+    "lastAttemptAt": "2026-07-22T21:16:19.753Z"
   },
   "1-590856a9-3f2d-42c7-b561-fcff2ffe820d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:25.461Z"
+    "lastAttemptAt": "2026-07-22T21:16:19.954Z"
   },
   "1-9f21bc29-fee3-46b3-a444-a5c861b36eab": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:25.720Z"
+    "lastAttemptAt": "2026-07-22T21:16:20.393Z"
   },
   "1-2527b352-dd43-44ba-a25d-f7fe4240f2fb": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:18:26.017Z"
+    "lastAttemptAt": "2026-07-22T21:16:20.621Z"
   },
   "1-2f91464f-7bee-42d9-af78-ba1a6a790de4": {
     "attempts": 1,
@@ -4666,147 +4690,147 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:38.371Z"
+    "lastAttemptAt": "2026-07-22T21:17:20.938Z"
   },
   "1-8b724208-4ec6-4f8c-bb96-986093365207": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:38.600Z"
+    "lastAttemptAt": "2026-07-22T21:17:36.362Z"
   },
   "1-ed1a4c89-88d3-410b-97ac-d2cdc060a62d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:38.813Z"
+    "lastAttemptAt": "2026-07-22T21:17:36.568Z"
   },
   "1-fac86fb8-a91f-47c6-8c58-94da51e9bb63": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:39.026Z"
+    "lastAttemptAt": "2026-07-22T21:17:36.764Z"
   },
   "1-dcf5c0d4-1b05-4d5f-8d74-aa2c2ae0feb2": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:39.241Z"
+    "lastAttemptAt": "2026-07-22T21:17:37.176Z"
   },
   "1-178e8a57-1c30-42fa-8a99-e32d42aad933": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:39.467Z"
+    "lastAttemptAt": "2026-07-22T21:17:37.383Z"
   },
   "1-5fe555ed-c8c7-4743-8579-9017f9f83820": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:31:56.440Z"
+    "lastAttemptAt": "2026-07-22T21:17:37.903Z"
   },
   "1-7d105b65-30fd-41e1-a951-93eb335aa9db": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:28.454Z"
+    "lastAttemptAt": "2026-07-22T21:17:38.124Z"
   },
   "1-2d09b26c-26b6-45b2-a10b-876a08d7b30d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:28.670Z"
+    "lastAttemptAt": "2026-07-22T21:17:38.335Z"
   },
   "1-a46bf8c5-183d-403a-872d-caaa4cb8b720": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:28.891Z"
+    "lastAttemptAt": "2026-07-22T21:17:38.755Z"
   },
   "1-cc68e4b4-9156-494d-b7b6-9151a2101d61": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:29.178Z"
+    "lastAttemptAt": "2026-07-22T21:17:38.959Z"
   },
   "1-b3d9fec3-e30d-48e8-b3bb-b87c5aa2cad7": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:29.407Z"
+    "lastAttemptAt": "2026-07-22T21:17:39.182Z"
   },
   "1-0dda7a0c-dd77-492f-a8c1-77f33e656ace": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:29.636Z"
+    "lastAttemptAt": "2026-07-22T21:17:40.049Z"
   },
   "1-dd8fcb85-b3d1-419c-824f-65d62fc2dc2f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:29.862Z"
+    "lastAttemptAt": "2026-07-22T21:17:40.262Z"
   },
   "1-6ffe1d9f-b481-4659-a44e-ca66cb0bf685": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:30.104Z"
+    "lastAttemptAt": "2026-07-22T21:17:40.716Z"
   },
   "1-ce640226-eee1-4d77-b36f-6ea2b8793c67": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:56.917Z"
+    "lastAttemptAt": "2026-07-22T21:17:40.917Z"
   },
   "1-b939385c-af6c-48e3-acb3-f0aa9c1aa1ff": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:32:57.135Z"
+    "lastAttemptAt": "2026-07-22T21:17:41.115Z"
   },
   "1-e58f46e2-0222-4929-bb76-da5f00f8e5ae": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:33:13.495Z"
+    "lastAttemptAt": "2026-07-22T21:17:41.324Z"
   },
   "1-af28e512-e402-4efc-b134-e8ee6a8cd3cf": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:33:13.771Z"
+    "lastAttemptAt": "2026-07-22T21:17:41.549Z"
   },
   "1-a45161ba-727c-45d4-a1a3-d451ebbd57b6": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:33:14.011Z"
+    "lastAttemptAt": "2026-07-22T21:17:41.758Z"
   },
   "1-f4d1c67c-9121-4777-91d3-629f6b10585c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:33:14.240Z"
+    "lastAttemptAt": "2026-07-22T21:17:41.977Z"
   },
   "1-3d8a4907-bc71-4bdd-b906-d8a8fce95adc": {
     "attempts": 1,
@@ -5961,112 +5985,112 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:36.592Z"
+    "lastAttemptAt": "2026-07-22T21:21:34.745Z"
   },
   "1-415181dc-be9e-4053-aabe-2f7bc0b4f1a9": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:36.817Z"
+    "lastAttemptAt": "2026-07-22T21:21:35.163Z"
   },
   "1-a7ca7545-319f-45e7-a0f4-ee85436e8000": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:37.050Z"
+    "lastAttemptAt": "2026-07-22T21:21:35.403Z"
   },
   "1-8ed104de-d739-41ad-80aa-4e183c83c306": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:37.277Z"
+    "lastAttemptAt": "2026-07-22T21:21:35.884Z"
   },
   "1-ba7a5754-d419-4c52-bafe-7dfad926e28e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:37.493Z"
+    "lastAttemptAt": "2026-07-22T21:21:36.310Z"
   },
   "1-87492b78-903b-4883-b25d-3c27c2046b46": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:37.732Z"
+    "lastAttemptAt": "2026-07-22T21:21:36.512Z"
   },
   "1-aef3b853-c312-4e4c-9ab2-c8b8299274da": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:37.952Z"
+    "lastAttemptAt": "2026-07-22T21:21:36.729Z"
   },
   "1-f078728d-1cd3-4889-b7b6-6d58c42f065f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:38.166Z"
+    "lastAttemptAt": "2026-07-22T21:21:37.131Z"
   },
   "1-8b96a0ec-8ace-4488-bc3a-2a471b4617ef": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:38.406Z"
+    "lastAttemptAt": "2026-07-22T21:21:37.342Z"
   },
   "1-ecd14d4e-70e6-44c2-8360-38f6d85829f6": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:38.634Z"
+    "lastAttemptAt": "2026-07-22T21:21:37.799Z"
   },
   "1-37882bf9-43ac-4906-8228-bc4457f90ca4": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:38.852Z"
+    "lastAttemptAt": "2026-07-22T21:21:38.030Z"
   },
   "1-6823d0ab-d317-4068-b016-8bcc580e66fe": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:39.085Z"
+    "lastAttemptAt": "2026-07-22T21:21:38.242Z"
   },
   "1-f21910a1-c12c-4dc0-b162-c5f1b2a1a7c1": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:51:46.417Z"
+    "lastAttemptAt": "2026-07-22T21:21:39.090Z"
   },
   "1-d8782369-79d2-4340-8adf-8a61aedd051b": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:52:56.971Z"
+    "lastAttemptAt": "2026-07-22T21:21:39.292Z"
   },
   "1-0f19fb12-12dd-48ab-8a3e-6aef6a0db863": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:53:05.349Z"
+    "lastAttemptAt": "2026-07-22T21:21:39.728Z"
   },
   "1-063bb1d5-971e-486a-b29d-53592bf70835": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:53:54.477Z"
+    "lastAttemptAt": "2026-07-22T21:21:40.578Z"
   },
   "1-89eca64e-a357-4208-ac00-c227eb993115": {
     "attempts": 1,
@@ -6346,21 +6370,21 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:56:32.253Z"
+    "lastAttemptAt": "2026-07-22T21:22:40.922Z"
   },
   "1-b3f2882f-7de1-4862-b4d0-b6c5ed068391": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:56:32.463Z"
+    "lastAttemptAt": "2026-07-22T21:22:41.134Z"
   },
   "1-d2d9bf09-c588-45d7-9457-4a9c5739970f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:56:32.691Z"
+    "lastAttemptAt": "2026-07-22T21:22:41.334Z"
   },
   "1-b24406aa-11ef-4632-a4a3-de22bcf0e11b": {
     "attempts": 1,
@@ -6374,7 +6398,7 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T11:56:33.125Z"
+    "lastAttemptAt": "2026-07-22T21:22:41.974Z"
   },
   "1-2da9cc21-e056-4f12-8cf6-0ee3d978f01b": {
     "attempts": 1,
@@ -6976,63 +7000,63 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:15.079Z"
+    "lastAttemptAt": "2026-07-22T21:18:56.749Z"
   },
   "1-cb3ebafd-f6e5-4738-ad5a-ea3fe5905e22": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:15.286Z"
+    "lastAttemptAt": "2026-07-22T21:18:57.186Z"
   },
   "1-2e0e1561-7caa-493f-b457-599f7c024394": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:15.481Z"
+    "lastAttemptAt": "2026-07-22T21:18:57.395Z"
   },
   "1-a6d06d1e-c0a1-4103-831a-d482e4fd526d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:15.687Z"
+    "lastAttemptAt": "2026-07-22T21:18:57.820Z"
   },
   "1-22d56f81-058b-4cb2-8bd7-1748581f64f1": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:15.899Z"
+    "lastAttemptAt": "2026-07-22T21:18:58.036Z"
   },
   "1-7cdbbee1-5b7b-432e-8399-c4913486ac81": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:16.127Z"
+    "lastAttemptAt": "2026-07-22T21:18:58.274Z"
   },
   "1-3d150221-defb-4229-94fd-342b6ef278f9": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:16.326Z"
+    "lastAttemptAt": "2026-07-22T21:18:58.468Z"
   },
   "1-ddc04a26-384b-4204-9d21-b4e0c4dbe06b": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:16.531Z"
+    "lastAttemptAt": "2026-07-22T21:18:58.693Z"
   },
   "1-887b97e0-6653-4115-afc2-8a57b4c07521": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:27:16.790Z"
+    "lastAttemptAt": "2026-07-22T21:18:58.941Z"
   },
   "1-32e3229d-a3cc-4105-9112-d0a07f193720": {
     "attempts": 1,
@@ -7522,168 +7546,168 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:20.235Z"
+    "lastAttemptAt": "2026-07-22T21:22:42.608Z"
   },
   "1-29d78716-704f-4392-8916-a25ff222ac09": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:20.462Z"
+    "lastAttemptAt": "2026-07-22T21:22:42.960Z"
   },
   "1-b3c31968-5cd0-4d82-88a6-198b17f738eb": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:32.506Z"
+    "lastAttemptAt": "2026-07-22T21:22:58.206Z"
   },
   "1-ae995df5-c6db-46e0-a323-8b90f7df10ba": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:32.712Z"
+    "lastAttemptAt": "2026-07-22T21:22:58.408Z"
   },
   "1-eb2ae3f0-d23c-4720-9aeb-d3b0f8ff2b7b": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:32.952Z"
+    "lastAttemptAt": "2026-07-22T21:22:58.631Z"
   },
   "1-c0cecb68-7414-43ac-82d9-3bbc80842347": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:33.186Z"
+    "lastAttemptAt": "2026-07-22T21:22:58.851Z"
   },
   "1-e9ed90a9-f07f-416d-a347-c445aa843d1e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:37:58.789Z"
+    "lastAttemptAt": "2026-07-22T21:22:59.054Z"
   },
   "1-28197782-9526-4a31-9429-7d3006772e97": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:20.685Z"
+    "lastAttemptAt": "2026-07-22T21:22:59.286Z"
   },
   "1-3145d63c-1e37-4a41-a3df-ce65f986983d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:20.886Z"
+    "lastAttemptAt": "2026-07-22T21:22:59.489Z"
   },
   "1-2ecc3141-67df-4a72-a6af-75fa06bfe01d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:27.993Z"
+    "lastAttemptAt": "2026-07-22T21:22:59.695Z"
   },
   "1-0c09ebed-2188-45ec-a330-fea83018bbbd": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:28.195Z"
+    "lastAttemptAt": "2026-07-22T21:22:59.909Z"
   },
   "1-7e8bd22f-b4e5-4dde-8890-9437287dde1c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:28.396Z"
+    "lastAttemptAt": "2026-07-22T21:23:00.110Z"
   },
   "1-52c71f87-4d40-44e0-8440-1a77f96bc87c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:28.604Z"
+    "lastAttemptAt": "2026-07-22T21:23:00.328Z"
   },
   "1-4b1b6b19-fb62-4b58-8eeb-3192d3c4cba9": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:28.804Z"
+    "lastAttemptAt": "2026-07-22T21:23:00.542Z"
   },
   "1-47510824-eb5f-4bee-a3a1-ff2c3d109d6e": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:29.024Z"
+    "lastAttemptAt": "2026-07-22T21:23:00.752Z"
   },
   "1-39d4ce5f-3c97-4a6b-8f05-2b9a0afcc1dd": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:29.239Z"
+    "lastAttemptAt": "2026-07-22T21:23:01.473Z"
   },
   "1-cdea1011-fd34-465c-ba50-c1e48c8ffb46": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:29.448Z"
+    "lastAttemptAt": "2026-07-22T21:23:01.687Z"
   },
   "1-28febefb-e92d-4ea2-a9de-1ddca92fdcd8": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:29.678Z"
+    "lastAttemptAt": "2026-07-22T21:23:01.886Z"
   },
   "1-054d4ddc-a790-47cc-a4ef-693c00f55c48": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:37.293Z"
+    "lastAttemptAt": "2026-07-22T21:23:02.120Z"
   },
   "1-edd0c3ca-cb0e-4c1b-9563-9beeb1524711": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:37.509Z"
+    "lastAttemptAt": "2026-07-22T21:23:02.343Z"
   },
   "1-23db304f-3bb9-44fb-b165-ec1dd59f6f3a": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:42.135Z"
+    "lastAttemptAt": "2026-07-22T21:23:02.545Z"
   },
   "1-55c36889-a27c-4b28-bbe1-f48042962d0c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:42.339Z"
+    "lastAttemptAt": "2026-07-22T21:23:02.755Z"
   },
   "1-39b3d41f-5690-4c0a-81a8-504a8024a2ad": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:42.545Z"
+    "lastAttemptAt": "2026-07-22T21:23:02.971Z"
   },
   "1-5c5899d0-6013-49db-98c2-3e6609272630": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T19:38:42.748Z"
+    "lastAttemptAt": "2026-07-22T21:23:03.182Z"
   },
   "1-bd3662a4-21ae-4d97-ab45-1dd1e2bb2b94": {
     "attempts": 1,
@@ -8194,119 +8218,119 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:43.386Z"
+    "lastAttemptAt": "2026-07-22T21:24:17.732Z"
   },
   "1-93485cdb-cb20-496d-ab8e-d78dde56894d": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:43.612Z"
+    "lastAttemptAt": "2026-07-22T21:24:17.964Z"
   },
   "1-dc72568a-9f2e-4840-83fd-15ea110ab6f2": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:43.828Z"
+    "lastAttemptAt": "2026-07-22T21:24:18.175Z"
   },
   "1-e907b8fc-9a70-4d8a-8b09-0eb09b8f75e4": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:50.940Z"
+    "lastAttemptAt": "2026-07-22T21:24:18.378Z"
   },
   "1-8b075d2b-28bc-4eae-91c0-826e179d04f5": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:51.236Z"
+    "lastAttemptAt": "2026-07-22T21:24:18.599Z"
   },
   "1-5770bba3-d438-40cb-8dba-f029ca85591f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:51.465Z"
+    "lastAttemptAt": "2026-07-22T21:24:18.819Z"
   },
   "1-5a520215-e37d-4bfb-89be-cb82cb7e4d2b": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:51.698Z"
+    "lastAttemptAt": "2026-07-22T21:24:19.333Z"
   },
   "1-7f500925-055f-40ef-b3a5-86ae6ede6457": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:51.928Z"
+    "lastAttemptAt": "2026-07-22T21:24:19.532Z"
   },
   "1-c03b82cb-df03-4566-b1f1-0518c7392db5": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:52.153Z"
+    "lastAttemptAt": "2026-07-22T21:24:19.750Z"
   },
   "1-c9a32175-074b-4fc6-adc8-c3b1f193c8a5": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:52.357Z"
+    "lastAttemptAt": "2026-07-22T21:24:19.953Z"
   },
   "1-ed8dcd98-3724-4699-bf3f-cd14c4eb5d33": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:52.579Z"
+    "lastAttemptAt": "2026-07-22T21:24:20.181Z"
   },
   "1-0bfccb3a-7535-409b-a299-c6f2b67492bf": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:57.757Z"
+    "lastAttemptAt": "2026-07-22T21:24:20.402Z"
   },
   "1-37e17cf2-8b2c-47da-b227-92dd3129d020": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:57.964Z"
+    "lastAttemptAt": "2026-07-22T21:24:20.601Z"
   },
   "1-fe687d07-79bd-44de-a2e9-a598f0b61a8a": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:58.173Z"
+    "lastAttemptAt": "2026-07-22T21:24:20.815Z"
   },
   "1-98bf36ab-b78b-498e-ad6a-61f768920dd4": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:58.408Z"
+    "lastAttemptAt": "2026-07-22T21:24:21.074Z"
   },
   "1-8f9bd6b8-d3f0-4da6-a7ac-167353bab74f": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:58.601Z"
+    "lastAttemptAt": "2026-07-22T21:24:21.278Z"
   },
   "1-176ba27a-9935-4167-b46e-65d5008be8ea": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T20:08:58.830Z"
+    "lastAttemptAt": "2026-07-22T21:24:21.517Z"
   },
   "1-9aa0223d-9d0f-4b7b-8411-4850bd66bbe7": {
     "attempts": 1,
@@ -8355,70 +8379,70 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:06.673Z"
+    "lastAttemptAt": "2026-07-22T21:18:59.162Z"
   },
   "1-30be78f1-ef49-4e55-9146-ee1813af1762": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:06.877Z"
+    "lastAttemptAt": "2026-07-22T21:18:59.579Z"
   },
   "1-982964b4-fb32-4246-831c-06122f1e1708": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:07.095Z"
+    "lastAttemptAt": "2026-07-22T21:18:59.784Z"
   },
   "1-9e906675-e18d-402e-a50d-3d2330f10fb2": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:51.688Z"
+    "lastAttemptAt": "2026-07-22T21:19:00.763Z"
   },
   "1-33c8b9fa-dcb6-45a4-995f-15c69cd8eed9": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:51.896Z"
+    "lastAttemptAt": "2026-07-22T21:19:00.972Z"
   },
   "1-b37de587-273a-4b64-84c5-083e2c87b53c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:52.106Z"
+    "lastAttemptAt": "2026-07-22T21:19:01.184Z"
   },
   "1-ae625ee7-1c8e-4e5c-9fad-4f1886253f98": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:52.314Z"
+    "lastAttemptAt": "2026-07-22T21:19:01.395Z"
   },
   "1-a300c0a0-8bca-4926-82fe-7d0ce29c3ec1": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:52.520Z"
+    "lastAttemptAt": "2026-07-22T21:19:02.015Z"
   },
   "1-5d60d50e-14e6-49c2-9321-5f64c53fd3e3": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:52.729Z"
+    "lastAttemptAt": "2026-07-22T21:19:02.229Z"
   },
   "1-9b35b549-799e-497c-b771-02a66093ab7c": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:13:52.938Z"
+    "lastAttemptAt": "2026-07-22T21:19:02.661Z"
   },
   "1-aec30b84-721a-4ccb-9513-e0f900589072": {
     "attempts": 1,
@@ -8992,7 +9016,7 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-21T23:44:51.176Z"
+    "lastAttemptAt": "2026-07-22T21:24:19.093Z"
   },
   "1-6f9e236f-41ee-4aa4-ba63-9c29a976d1de": {
     "attempts": 1,
@@ -9447,42 +9471,42 @@
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:01.819Z"
+    "lastAttemptAt": "2026-07-22T21:20:16.813Z"
   },
   "1-4e4d9eab-1523-4de6-a4c7-644a52feb4af": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:02.085Z"
+    "lastAttemptAt": "2026-07-22T21:20:17.026Z"
   },
   "1-2faadec6-27c0-41a3-aafa-7edfefaaab50": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:02.297Z"
+    "lastAttemptAt": "2026-07-22T21:20:18.116Z"
   },
   "1-7a330026-a6dc-4207-8b5d-a84ef0ed84ef": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:10.488Z"
+    "lastAttemptAt": "2026-07-22T21:20:18.540Z"
   },
   "1-decd31aa-a6c4-4b95-b8e6-3e6d603a84f0": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:37.305Z"
+    "lastAttemptAt": "2026-07-22T21:20:18.760Z"
   },
   "1-0c694b8c-f5eb-497e-86bf-e242cae8f696": {
     "attempts": 1,
     "permanent": true,
     "status": 404,
     "lastError": "FACEIT stats status 404",
-    "lastAttemptAt": "2026-07-22T12:03:37.534Z"
+    "lastAttemptAt": "2026-07-22T21:20:18.993Z"
   },
   "1-85aba965-4412-44ec-891f-180c45909aee": {
     "attempts": 1,
@@ -9546,5 +9570,222 @@
     "status": 404,
     "lastError": "FACEIT stats status 404",
     "lastAttemptAt": "2026-07-22T12:03:39.425Z"
+  },
+  "1-8689ec71-2b46-4310-8e39-ef9b21cfcda8": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:04.228Z"
+  },
+  "1-cdf8fa3e-fafd-4e8d-84aa-32318a2002c5": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:04.489Z"
+  },
+  "1-eaa98804-5dc0-4f53-b57d-9b230f68c384": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:04.734Z"
+  },
+  "1-f509bb81-9171-4db1-8c0e-11319aeb0580": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:05.098Z"
+  },
+  "1-07f80db7-c577-41ac-97fc-5d0c02f5031c": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:05.355Z"
+  },
+  "1-295c6fd3-c977-4390-ab62-b9e0d7420079": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:05.612Z"
+  },
+  "1-296e3392-3df7-48ed-ac7f-9bcc3d4f0dd3": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:05.874Z"
+  },
+  "1-7792b776-6029-460b-b702-88fe4a172e17": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:06.133Z"
+  },
+  "1-a585a1dc-be3b-4e52-82d2-311f496f3d8b": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:06.389Z"
+  },
+  "1-b17cfc55-3a39-4c1e-af03-919de74a4071": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:06.925Z"
+  },
+  "1-dadd202f-fe74-47a6-b33f-f0d9963bfa57": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:07.264Z"
+  },
+  "1-e4b736a2-59ca-4887-b182-ecae8c913bbc": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:07.581Z"
+  },
+  "1-70375e4b-ea60-4ff2-98ad-66e33af52466": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:07.842Z"
+  },
+  "1-d724b2ea-67e0-4ba8-9c61-a96ab975bd07": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:08.082Z"
+  },
+  "1-580f6750-23f0-495a-bf3d-a187af0a3218": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:08.318Z"
+  },
+  "1-6c7fd849-373c-4734-8b8d-2660496d88fa": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:08.568Z"
+  },
+  "1-7561dc6a-bf5a-4274-8dcc-65a2d4fda8c1": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:08.829Z"
+  },
+  "1-efa1e7a9-6dc1-4ceb-b419-4f64762395dc": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:09.076Z"
+  },
+  "1-f73e0893-513c-4657-85f3-f0a78e40011e": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:09.331Z"
+  },
+  "1-fcdffbe7-045f-4d4c-ab89-6f221d0abddb": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:09.559Z"
+  },
+  "1-06b87411-79a7-49bb-a745-8a7c32aff49d": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:09.837Z"
+  },
+  "1-5610318a-ebd1-4250-a1f5-76c6a84446ca": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:10.088Z"
+  },
+  "1-a167ea07-f994-4452-bbc1-0bf16a5df78d": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:10.321Z"
+  },
+  "1-ee438e5b-73ad-4548-b883-a4be49153ee7": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:10.577Z"
+  },
+  "1-eee67c71-295a-4066-a4c8-5b0bc634f2b7": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:02:10.824Z"
+  },
+  "1-e3834ac8-de3a-4877-afe7-751218deb98e": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:10:06.035Z"
+  },
+  "1-9a863eee-372c-432d-b76e-1fc96c7a4d25": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:10:47.297Z"
+  },
+  "1-43c1d1d2-1e90-496f-bdbf-3515144b5905": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:11:44.421Z"
+  },
+  "1-1c636f53-8ce0-44c1-b2ef-f318c9238a52": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:12:05.179Z"
+  },
+  "1-4d95503a-63f3-4532-a0e1-d5f83d7a716e": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T19:12:05.444Z"
+  },
+  "1-89d7aa6d-a163-41b0-81ad-ad1ac2a2b095": {
+    "attempts": 1,
+    "permanent": true,
+    "status": 404,
+    "lastError": "FACEIT stats status 404",
+    "lastAttemptAt": "2026-07-22T21:32:44.672Z"
   }
 }

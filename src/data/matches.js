@@ -1,5 +1,34 @@
 const matches = [
   {
+    "id": "1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc",
+    "matchId": "1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc",
+    "teamSlug": "0-swing-8b426413",
+    "teamName": "0 Swing",
+    "opponentName": "LATVJUBANDA",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Cache"
+    ],
+    "mapScores": [
+      {
+        "map": "Cache",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc"
+  },
+  {
     "id": "1-faa12baa-8b72-43b8-becf-f78a993d70b1",
     "matchId": "1-faa12baa-8b72-43b8-becf-f78a993d70b1",
     "teamSlug": "1001-fragrance-3655330b",
@@ -27,6 +56,122 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-faa12baa-8b72-43b8-becf-f78a993d70b1"
+  },
+  {
+    "id": "1-3a571168-8628-412d-af33-bb6283ee5dd8",
+    "matchId": "1-3a571168-8628-412d-af33-bb6283ee5dd8",
+    "teamSlug": "100pinggods-c222b519",
+    "teamName": "100PingGods",
+    "opponentName": "EGOISTO",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3a571168-8628-412d-af33-bb6283ee5dd8"
+  },
+  {
+    "id": "1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45",
+    "matchId": "1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45",
+    "teamSlug": "1337-1d45a519",
+    "teamName": "1337",
+    "opponentName": "SouthendMassive",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45"
+  },
+  {
+    "id": "1-934a7490-6bfb-4caf-938d-dfb91adefcd9",
+    "matchId": "1-934a7490-6bfb-4caf-938d-dfb91adefcd9",
+    "teamSlug": "1337-72bef55c",
+    "teamName": "1337",
+    "opponentName": "GENESIUM",
+    "teamScore": 16,
+    "opponentScore": 13,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 16,
+        "opponentScore": 13,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-934a7490-6bfb-4caf-938d-dfb91adefcd9"
+  },
+  {
+    "id": "1-0f72b779-da66-498e-a84a-fc463c051824",
+    "matchId": "1-0f72b779-da66-498e-a84a-fc463c051824",
+    "teamSlug": "1minute-32c6b263",
+    "teamName": "1Minute",
+    "opponentName": "Stubborn Boys",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0f72b779-da66-498e-a84a-fc463c051824"
   },
   {
     "id": "1-aeae3cb4-07c5-4f98-b318-a944dc3e415b",
@@ -58,6 +203,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-aeae3cb4-07c5-4f98-b318-a944dc3e415b"
   },
   {
+    "id": "1-af02cb36-ee99-460e-a077-bdf76b62b269",
+    "matchId": "1-af02cb36-ee99-460e-a077-bdf76b62b269",
+    "teamSlug": "2k-elo-clowns-c7a1a87a",
+    "teamName": "2k elo clowns",
+    "opponentName": "Peaky Blinders",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-af02cb36-ee99-460e-a077-bdf76b62b269"
+  },
+  {
     "id": "1-174f8bc9-a53f-4149-a9ff-ea730a39b8ef",
     "matchId": "1-174f8bc9-a53f-4149-a9ff-ea730a39b8ef",
     "teamSlug": "37u-passion-ce04e4d4",
@@ -85,6 +259,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-174f8bc9-a53f-4149-a9ff-ea730a39b8ef"
+  },
+  {
+    "id": "1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d",
+    "matchId": "1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d",
+    "teamSlug": "4otkie-cheli-58506bce",
+    "teamName": "4OTKIE CHELI",
+    "opponentName": "Barylki",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d"
+  },
+  {
+    "id": "1-77702dc5-4628-4976-9ccc-5d417d57f858",
+    "matchId": "1-77702dc5-4628-4976-9ccc-5d417d57f858",
+    "teamSlug": "4z-195410f5",
+    "teamName": "4Z",
+    "opponentName": "Zenvor",
+    "teamScore": 13,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 0",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 0,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-77702dc5-4628-4976-9ccc-5d417d57f858"
   },
   {
     "id": "1-5af5195a-50d4-4f01-84c9-7aa77d6de3e3",
@@ -172,6 +404,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b65038a4-cc31-46d8-b9c0-32890db6faa4"
+  },
+  {
+    "id": "1-6d42626c-034b-4995-857c-5493f75ea6e8",
+    "matchId": "1-6d42626c-034b-4995-857c-5493f75ea6e8",
+    "teamSlug": "99p-5fb02c49",
+    "teamName": "99p",
+    "opponentName": "Insiders Esport",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6d42626c-034b-4995-857c-5493f75ea6e8"
   },
   {
     "id": "1-c57dee39-768e-405b-815a-f9fe1d07b3e3",
@@ -319,6 +580,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a97e8c20-b512-4e83-b6f5-8d0ba090392d"
   },
   {
+    "id": "1-abfef31a-e9a5-4bef-9565-b22db910b92d",
+    "matchId": "1-abfef31a-e9a5-4bef-9565-b22db910b92d",
+    "teamSlug": "aces-400892ee",
+    "teamName": "Aces",
+    "opponentName": "Avada",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-abfef31a-e9a5-4bef-9565-b22db910b92d"
+  },
+  {
+    "id": "1-955e9d8e-1542-4642-b698-6d0a70b9ae34",
+    "matchId": "1-955e9d8e-1542-4642-b698-6d0a70b9ae34",
+    "teamSlug": "acvitania-ab7071bb",
+    "teamName": "Acvitania",
+    "opponentName": "HA_YCJIOBKE",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-955e9d8e-1542-4642-b698-6d0a70b9ae34"
+  },
+  {
+    "id": "1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1",
+    "matchId": "1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1",
+    "teamSlug": "acvitania-ab7071bb",
+    "teamName": "Acvitania",
+    "opponentName": "LeeK NXT",
+    "teamScore": 1,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 1,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1"
+  },
+  {
     "id": "1-afee4d77-8f3e-4221-a4af-d169574fc0f8",
     "matchId": "1-afee4d77-8f3e-4221-a4af-d169574fc0f8",
     "teamSlug": "addice-ee2358dc",
@@ -346,6 +694,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-afee4d77-8f3e-4221-a4af-d169574fc0f8"
+  },
+  {
+    "id": "1-1b712ba2-6d70-4377-9e64-7c22b7666c66",
+    "matchId": "1-1b712ba2-6d70-4377-9e64-7c22b7666c66",
+    "teamSlug": "aeris-5af99ee0",
+    "teamName": "AERIS",
+    "opponentName": "LUCH",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1b712ba2-6d70-4377-9e64-7c22b7666c66"
   },
   {
     "id": "1-259bc802-5301-44e6-9a8e-ebe2af4ebc53",
@@ -435,6 +812,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3b757ef7-4dc7-4253-87fb-c4857c27b9c4"
   },
   {
+    "id": "1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a",
+    "matchId": "1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a",
+    "teamSlug": "aimstxrs-c9484332",
+    "teamName": "aimstxrs",
+    "opponentName": "kinderPENGUI",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a"
+  },
+  {
+    "id": "1-a4190bdc-94ad-4d6a-9ae3-af7774803184",
+    "matchId": "1-a4190bdc-94ad-4d6a-9ae3-af7774803184",
+    "teamSlug": "aisha-legion-90dee36d",
+    "teamName": "Aisha Legion",
+    "opponentName": "Menace Universe",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a4190bdc-94ad-4d6a-9ae3-af7774803184"
+  },
+  {
     "id": "1-b0744a0d-26bb-486d-954b-3225381e160b",
     "matchId": "1-b0744a0d-26bb-486d-954b-3225381e160b",
     "teamSlug": "akatsuki-0991cbb4",
@@ -464,6 +899,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b0744a0d-26bb-486d-954b-3225381e160b"
   },
   {
+    "id": "1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf",
+    "matchId": "1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf",
+    "teamSlug": "akiko-fda42be9",
+    "teamName": "Akiko",
+    "opponentName": "Riset",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf"
+  },
+  {
     "id": "1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b",
     "matchId": "1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b",
     "teamSlug": "all-in-11fe000a",
@@ -491,6 +955,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b"
+  },
+  {
+    "id": "1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a",
+    "matchId": "1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a",
+    "teamSlug": "altay-esports-fb9d2405",
+    "teamName": "Altay Esports",
+    "opponentName": "Hard2Kill",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a"
   },
   {
     "id": "1-b16d11ed-7e6d-4c28-895e-5d5333d57086",
@@ -551,6 +1044,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-438d005c-2ffa-464c-91d0-44b6372a35a1"
   },
   {
+    "id": "1-8c516cd5-191a-4e81-9338-c4622112c0f4",
+    "matchId": "1-8c516cd5-191a-4e81-9338-c4622112c0f4",
+    "teamSlug": "anaba-85e00a91",
+    "teamName": "Anaba",
+    "opponentName": "golubki",
+    "teamScore": 14,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "14 : 16",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8c516cd5-191a-4e81-9338-c4622112c0f4"
+  },
+  {
     "id": "1-6a28f4c3-f1de-49ff-8458-66348161a5b5",
     "matchId": "1-6a28f4c3-f1de-49ff-8458-66348161a5b5",
     "teamSlug": "anchors-anonymous-a01aa536",
@@ -580,6 +1102,122 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a28f4c3-f1de-49ff-8458-66348161a5b5"
   },
   {
+    "id": "1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e",
+    "matchId": "1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e",
+    "teamSlug": "anchors-with-attitudes-db6e4e68",
+    "teamName": "Anchors With Attitudes",
+    "opponentName": "TryHearts",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e"
+  },
+  {
+    "id": "1-874b14ca-f18e-4c5d-919e-566a5f0b42b4",
+    "matchId": "1-874b14ca-f18e-4c5d-919e-566a5f0b42b4",
+    "teamSlug": "animewasmistake-6c28e774",
+    "teamName": "AnimeWasMistake",
+    "opponentName": "FC BAL OP DAK",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-874b14ca-f18e-4c5d-919e-566a5f0b42b4"
+  },
+  {
+    "id": "1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400",
+    "matchId": "1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400",
+    "teamSlug": "any-baggers-d6c6237f",
+    "teamName": "any baggers",
+    "opponentName": "ZYBR Gaming",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400"
+  },
+  {
+    "id": "1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7",
+    "matchId": "1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7",
+    "teamSlug": "armitra-esports-46340fad",
+    "teamName": "Armitra Esports",
+    "opponentName": "Vitality Academy",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7"
+  },
+  {
     "id": "1-60243450-0291-4e92-94ee-d57a0139b2fd",
     "matchId": "1-60243450-0291-4e92-94ee-d57a0139b2fd",
     "teamSlug": "armored-talent-26a1d874",
@@ -607,6 +1245,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60243450-0291-4e92-94ee-d57a0139b2fd"
+  },
+  {
+    "id": "1-5c745495-662e-43f2-9f22-bd17d5cf4f9a",
+    "matchId": "1-5c745495-662e-43f2-9f22-bd17d5cf4f9a",
+    "teamSlug": "arzamas-gang-92ba42b4",
+    "teamName": "Arzamas Gang",
+    "opponentName": "Royal Legion",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5c745495-662e-43f2-9f22-bd17d5cf4f9a"
   },
   {
     "id": "1-7255ed2d-bbac-4774-a204-d69d1d70b2d9",
@@ -754,6 +1421,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5af5195a-50d4-4f01-84c9-7aa77d6de3e3"
   },
   {
+    "id": "1-abfef31a-e9a5-4bef-9565-b22db910b92d",
+    "matchId": "1-abfef31a-e9a5-4bef-9565-b22db910b92d",
+    "teamSlug": "avada-7dce6b50",
+    "teamName": "Avada",
+    "opponentName": "Aces",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-abfef31a-e9a5-4bef-9565-b22db910b92d"
+  },
+  {
+    "id": "1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757",
+    "matchId": "1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757",
+    "teamSlug": "aveo-esport-aff6bd38",
+    "teamName": "Aveo Esport",
+    "opponentName": "w0a",
+    "teamScore": 1,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 1,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757"
+  },
+  {
+    "id": "1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f",
+    "matchId": "1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f",
+    "teamSlug": "awwrora-6cef4ae3",
+    "teamName": "AWWRORA",
+    "opponentName": "SEVENTEEN",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f"
+  },
+  {
+    "id": "1-c599bbdb-104a-4717-8434-e03f78864e36",
+    "matchId": "1-c599bbdb-104a-4717-8434-e03f78864e36",
+    "teamSlug": "axen-304b4346",
+    "teamName": "AXEN",
+    "opponentName": "iNsanity",
+    "teamScore": 0,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 0,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c599bbdb-104a-4717-8434-e03f78864e36"
+  },
+  {
+    "id": "1-912418a8-90bc-4eb6-8da1-99c3dab17738",
+    "matchId": "1-912418a8-90bc-4eb6-8da1-99c3dab17738",
+    "teamSlug": "back2back-4a4ef292",
+    "teamName": "back2back",
+    "opponentName": "XP_ZoMbIEZ",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-912418a8-90bc-4eb6-8da1-99c3dab17738"
+  },
+  {
     "id": "1-a3a02d65-d415-4270-b067-d790029ce509",
     "matchId": "1-a3a02d65-d415-4270-b067-d790029ce509",
     "teamSlug": "backshot-gaming-896440e0",
@@ -781,6 +1593,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3a02d65-d415-4270-b067-d790029ce509"
+  },
+  {
+    "id": "1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c",
+    "matchId": "1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c",
+    "teamSlug": "bad-beavers-8fc2d2c3",
+    "teamName": "Bad Beavers",
+    "opponentName": "KlAnashe",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c"
+  },
+  {
+    "id": "1-51eb60a8-322f-4970-8616-991bf4db9281",
+    "matchId": "1-51eb60a8-322f-4970-8616-991bf4db9281",
+    "teamSlug": "bad-beavers-blue-70c67f06",
+    "teamName": "Bad Beavers Blue",
+    "opponentName": "HysK",
+    "teamScore": 1,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 1,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-51eb60a8-322f-4970-8616-991bf4db9281"
   },
   {
     "id": "1-a1bce669-483a-4fff-a1de-8d1044f7b212",
@@ -812,6 +1682,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a1bce669-483a-4fff-a1de-8d1044f7b212"
   },
   {
+    "id": "1-1f993a58-6987-41f1-a67c-58d94eb8681f",
+    "matchId": "1-1f993a58-6987-41f1-a67c-58d94eb8681f",
+    "teamSlug": "baks-esports-3afba5b9",
+    "teamName": "BAKS Esports",
+    "opponentName": "Vitality Academy",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1f993a58-6987-41f1-a67c-58d94eb8681f"
+  },
+  {
     "id": "1-9489ddc3-a466-4772-b046-9c4fe1203f87",
     "matchId": "1-9489ddc3-a466-4772-b046-9c4fe1203f87",
     "teamSlug": "bald-c2370fb4",
@@ -839,6 +1738,180 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9489ddc3-a466-4772-b046-9c4fe1203f87"
+  },
+  {
+    "id": "1-62c397c7-056d-4a83-9322-3d14a9a6c190",
+    "matchId": "1-62c397c7-056d-4a83-9322-3d14a9a6c190",
+    "teamSlug": "banda-chuya-lfo-3f0342b6",
+    "teamName": "Banda chuya LFO",
+    "opponentName": "LPH Gaming",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-62c397c7-056d-4a83-9322-3d14a9a6c190"
+  },
+  {
+    "id": "1-435e6320-4dc6-4c81-a6ef-5564b170165f",
+    "matchId": "1-435e6320-4dc6-4c81-a6ef-5564b170165f",
+    "teamSlug": "bandycka-jechankav3-ce952339",
+    "teamName": "Bandycka JechankaV3",
+    "opponentName": "cs-fasher",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-435e6320-4dc6-4c81-a6ef-5564b170165f"
+  },
+  {
+    "id": "1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf",
+    "matchId": "1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf",
+    "teamSlug": "bangaranga-23cfaf71",
+    "teamName": "BANGARANGA",
+    "opponentName": "singular",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf"
+  },
+  {
+    "id": "1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d",
+    "matchId": "1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d",
+    "teamSlug": "barylki-74a86ef9",
+    "teamName": "Barylki",
+    "opponentName": "4OTKIE CHELI",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-66d48cd7-0a53-41c8-be6f-6ca4c08ff01d"
+  },
+  {
+    "id": "1-8b7f79f2-01e6-41ac-afe1-f837f32abd52",
+    "matchId": "1-8b7f79f2-01e6-41ac-afe1-f837f32abd52",
+    "teamSlug": "bcgame-academy-4569b790",
+    "teamName": "BCGame Academy",
+    "opponentName": "DOM2",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8b7f79f2-01e6-41ac-afe1-f837f32abd52"
+  },
+  {
+    "id": "1-64015c34-e245-42ab-9844-91979575ce63",
+    "matchId": "1-64015c34-e245-42ab-9844-91979575ce63",
+    "teamSlug": "bedolagi-d61c85dc",
+    "teamName": "Bedolagi",
+    "opponentName": "DimoniXEsports",
+    "teamScore": 13,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 0",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 0,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-64015c34-e245-42ab-9844-91979575ce63"
   },
   {
     "id": "1-82408d9d-8757-4cf2-8245-e0dcf9a549e1",
@@ -870,6 +1943,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-82408d9d-8757-4cf2-8245-e0dcf9a549e1"
   },
   {
+    "id": "1-f0a1aed3-621f-4a48-bf30-3b4a972d571c",
+    "matchId": "1-f0a1aed3-621f-4a48-bf30-3b4a972d571c",
+    "teamSlug": "benched-373b0137",
+    "teamName": "Benched",
+    "opponentName": "Do Chrzanu",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f0a1aed3-621f-4a48-bf30-3b4a972d571c"
+  },
+  {
+    "id": "1-88711873-43d6-488f-acee-2026e7ad1453",
+    "matchId": "1-88711873-43d6-488f-acee-2026e7ad1453",
+    "teamSlug": "bergsteiger-88a9a955",
+    "teamName": "Bergsteiger",
+    "opponentName": "Five Guns",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-88711873-43d6-488f-acee-2026e7ad1453"
+  },
+  {
     "id": "1-d0b9afe6-b84a-4ab4-a447-50f445f435ae",
     "matchId": "1-d0b9afe6-b84a-4ab4-a447-50f445f435ae",
     "teamSlug": "beyond-limits-ad5e40f9",
@@ -897,6 +2028,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d0b9afe6-b84a-4ab4-a447-50f445f435ae"
+  },
+  {
+    "id": "1-2332a51b-43bb-41de-be09-87cf3f05b942",
+    "matchId": "1-2332a51b-43bb-41de-be09-87cf3f05b942",
+    "teamSlug": "bezbenzina-3f728475",
+    "teamName": "BezBENZINA",
+    "opponentName": "RONIN PT",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2332a51b-43bb-41de-be09-87cf3f05b942"
+  },
+  {
+    "id": "1-7e6a0101-442e-4e73-bff8-d8e66642803e",
+    "matchId": "1-7e6a0101-442e-4e73-bff8-d8e66642803e",
+    "teamSlug": "bhemanha-f5da733f",
+    "teamName": "BHemanha",
+    "opponentName": "WHNG TEAM",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7e6a0101-442e-4e73-bff8-d8e66642803e"
   },
   {
     "id": "1-c57dee39-768e-405b-815a-f9fe1d07b3e3",
@@ -1073,6 +2262,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-025de32e-12c4-4957-9e76-fbd12d6a4443"
   },
   {
+    "id": "1-023da5ad-c605-4843-9c5a-abea5fd78d7c",
+    "matchId": "1-023da5ad-c605-4843-9c5a-abea5fd78d7c",
+    "teamSlug": "bo3dyxahbi-15e2c75f",
+    "teamName": "BO3DYXAHbI",
+    "opponentName": "EMPIRE",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-023da5ad-c605-4843-9c5a-abea5fd78d7c"
+  },
+  {
+    "id": "1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9",
+    "matchId": "1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9",
+    "teamSlug": "bombard1rs-2e624a78",
+    "teamName": "BOMBARD1RS",
+    "opponentName": "DEFEATERS",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9"
+  },
+  {
+    "id": "1-c864b3a9-5686-47ea-845c-1f326c6978a5",
+    "matchId": "1-c864b3a9-5686-47ea-845c-1f326c6978a5",
+    "teamSlug": "bonk-b7061158",
+    "teamName": "Bonk",
+    "opponentName": "Souls Heart Esport",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c864b3a9-5686-47ea-845c-1f326c6978a5"
+  },
+  {
     "id": "1-e2abd5a6-2152-415b-8b0e-a2fffb3bd93f",
     "matchId": "1-e2abd5a6-2152-415b-8b0e-a2fffb3bd93f",
     "teamSlug": "bonk-6bbc5302",
@@ -1160,6 +2436,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-438d005c-2ffa-464c-91d0-44b6372a35a1"
   },
   {
+    "id": "1-b7f53f22-b09f-47a1-92d3-27225c49c8d8",
+    "matchId": "1-b7f53f22-b09f-47a1-92d3-27225c49c8d8",
+    "teamSlug": "brudmus-2a345331",
+    "teamName": "Brudmus",
+    "opponentName": "LoaThE",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Cache"
+    ],
+    "mapScores": [
+      {
+        "map": "Cache",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b7f53f22-b09f-47a1-92d3-27225c49c8d8"
+  },
+  {
     "id": "1-193ba0ec-6793-466d-b68b-98563f5bd930",
     "matchId": "1-193ba0ec-6793-466d-b68b-98563f5bd930",
     "teamSlug": "bubibabu-5ae01ba2",
@@ -1216,6 +2521,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-89d3e073-0023-495b-bf00-e136ca979c13"
+  },
+  {
+    "id": "1-60c57fa2-dd2d-4a71-8d13-96588d0f447e",
+    "matchId": "1-60c57fa2-dd2d-4a71-8d13-96588d0f447e",
+    "teamSlug": "butelki-cecbb44d",
+    "teamName": "butelki",
+    "opponentName": "Young Nordic Capital",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60c57fa2-dd2d-4a71-8d13-96588d0f447e"
+  },
+  {
+    "id": "1-2487bb7e-940f-4c72-ab38-43db8e342523",
+    "matchId": "1-2487bb7e-940f-4c72-ab38-43db8e342523",
+    "teamSlug": "bypassed-3124eabb",
+    "teamName": "BYpassed",
+    "opponentName": "No7eam",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2487bb7e-940f-4c72-ab38-43db8e342523"
   },
   {
     "id": "1-5d7386a9-1af1-42f3-8bfc-4f47a20877de",
@@ -1276,6 +2639,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-174f8bc9-a53f-4149-a9ff-ea730a39b8ef"
   },
   {
+    "id": "1-cb366ea1-a5ca-4838-a615-549ce26b0159",
+    "matchId": "1-cb366ea1-a5ca-4838-a615-549ce26b0159",
+    "teamSlug": "cfs-0e2d9795",
+    "teamName": "CFS",
+    "opponentName": "FACEIT DEMON",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cb366ea1-a5ca-4838-a615-549ce26b0159"
+  },
+  {
+    "id": "1-630b90d6-471b-4fdb-9cfa-8838bc693abc",
+    "matchId": "1-630b90d6-471b-4fdb-9cfa-8838bc693abc",
+    "teamSlug": "chaos-enforcers-esports-13fb9502",
+    "teamName": "Chaos Enforcers Esports",
+    "opponentName": "K2 Cyberclub",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-630b90d6-471b-4fdb-9cfa-8838bc693abc"
+  },
+  {
     "id": "1-c979a580-c4c2-4f57-a9f0-9fd6744584a7",
     "matchId": "1-c979a580-c4c2-4f57-a9f0-9fd6744584a7",
     "teamSlug": "chicken-coop-esports-ba165b6b",
@@ -1303,6 +2724,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c979a580-c4c2-4f57-a9f0-9fd6744584a7"
+  },
+  {
+    "id": "1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02",
+    "matchId": "1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02",
+    "teamSlug": "chikiryau-7f46e5e4",
+    "teamName": "Chikiryau",
+    "opponentName": "Meteora",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02"
   },
   {
     "id": "1-8a8d3f1c-cb62-4dcd-96e1-2c29ea9dce68",
@@ -1361,6 +2811,122 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8e0396fe-ee9c-4085-95d9-9b89b9cf4c00"
+  },
+  {
+    "id": "1-e70437c4-f9f9-4d34-8891-8407f6d5d710",
+    "matchId": "1-e70437c4-f9f9-4d34-8891-8407f6d5d710",
+    "teamSlug": "chybamichalki-eaf3aed2",
+    "teamName": "ChybaMichalki",
+    "opponentName": "Lazy Genius",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e70437c4-f9f9-4d34-8891-8407f6d5d710"
+  },
+  {
+    "id": "1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c",
+    "matchId": "1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c",
+    "teamSlug": "chybamichalki-eaf3aed2",
+    "teamName": "ChybaMichalki",
+    "opponentName": "CSDIILIT",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c"
+  },
+  {
+    "id": "1-d88fd5a7-6936-4661-804e-4b9d9ab1b578",
+    "matchId": "1-d88fd5a7-6936-4661-804e-4b9d9ab1b578",
+    "teamSlug": "cillerian-80847e08",
+    "teamName": "Cillerian",
+    "opponentName": "MyHUD",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d88fd5a7-6936-4661-804e-4b9d9ab1b578"
+  },
+  {
+    "id": "1-55c873eb-b67b-4e08-9001-d74e4d877dfd",
+    "matchId": "1-55c873eb-b67b-4e08-9001-d74e4d877dfd",
+    "teamSlug": "cisbratva-fab584b4",
+    "teamName": "CISBratva",
+    "opponentName": "MillwallBushwak",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-55c873eb-b67b-4e08-9001-d74e4d877dfd"
   },
   {
     "id": "1-db1a7ae8-54c8-4530-bc5e-038b73edd2da",
@@ -1624,6 +3190,180 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3006875c-b391-4aab-bb42-ae6ccaf0cc80"
   },
   {
+    "id": "1-cbbd4217-7f70-4494-94b7-33562c2caaa8",
+    "matchId": "1-cbbd4217-7f70-4494-94b7-33562c2caaa8",
+    "teamSlug": "critical-73bc0074",
+    "teamName": "Critical",
+    "opponentName": "Zettai",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cbbd4217-7f70-4494-94b7-33562c2caaa8"
+  },
+  {
+    "id": "1-435e6320-4dc6-4c81-a6ef-5564b170165f",
+    "matchId": "1-435e6320-4dc6-4c81-a6ef-5564b170165f",
+    "teamSlug": "cs-fasher-2b4d2ea1",
+    "teamName": "cs-fasher",
+    "opponentName": "Bandycka JechankaV3",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-435e6320-4dc6-4c81-a6ef-5564b170165f"
+  },
+  {
+    "id": "1-74e763e5-8546-4758-9f92-a12c1e7115d0",
+    "matchId": "1-74e763e5-8546-4758-9f92-a12c1e7115d0",
+    "teamSlug": "csdiilit-bf4507a1",
+    "teamName": "CSDIILIT",
+    "opponentName": "ONVOG",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-74e763e5-8546-4758-9f92-a12c1e7115d0"
+  },
+  {
+    "id": "1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c",
+    "matchId": "1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c",
+    "teamSlug": "csdiilit-bf4507a1",
+    "teamName": "CSDIILIT",
+    "opponentName": "ChybaMichalki",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fb38ba2d-0bcd-47d0-8ebe-4b4b609a109c"
+  },
+  {
+    "id": "1-679f68b9-aa92-4c23-a2ee-1412d05ed77e",
+    "matchId": "1-679f68b9-aa92-4c23-a2ee-1412d05ed77e",
+    "teamSlug": "csgamble-d6c58212",
+    "teamName": "CSGAMBLE",
+    "opponentName": "Koira123",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-679f68b9-aa92-4c23-a2ee-1412d05ed77e"
+  },
+  {
+    "id": "1-a3befe79-4304-403b-9c30-b281da1e6ca7",
+    "matchId": "1-a3befe79-4304-403b-9c30-b281da1e6ca7",
+    "teamSlug": "d0nkers-7f7ee789",
+    "teamName": "D0nkers",
+    "opponentName": "YoungStars",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3befe79-4304-403b-9c30-b281da1e6ca7"
+  },
+  {
     "id": "1-139fa71e-dc08-41e0-9403-01ffdee1aecb",
     "matchId": "1-139fa71e-dc08-41e0-9403-01ffdee1aecb",
     "teamSlug": "d1nk-esports-25761002",
@@ -1651,6 +3391,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-139fa71e-dc08-41e0-9403-01ffdee1aecb"
+  },
+  {
+    "id": "1-d686bf4c-7111-4d89-92ec-95830cd69123",
+    "matchId": "1-d686bf4c-7111-4d89-92ec-95830cd69123",
+    "teamSlug": "da-kore-319f604e",
+    "teamName": "dA koRe",
+    "opponentName": "Strael-BoraBNL",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d686bf4c-7111-4d89-92ec-95830cd69123"
   },
   {
     "id": "1-b1ea01f6-3d28-44c1-93f8-0f2dda568357",
@@ -1769,6 +3538,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1dd09603-eaff-4d82-9e36-2a961a3f2734"
   },
   {
+    "id": "1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9",
+    "matchId": "1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9",
+    "teamSlug": "defeaters-b53794fb",
+    "teamName": "DEFEATERS",
+    "opponentName": "BOMBARD1RS",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5b71b5a7-9692-42e7-ade6-b9d4dec476c9"
+  },
+  {
+    "id": "1-25f638aa-5379-4d3b-872b-0e82664257ac",
+    "matchId": "1-25f638aa-5379-4d3b-872b-0e82664257ac",
+    "teamSlug": "demiseerar-b99fd62a",
+    "teamName": "DEMISEERAR",
+    "opponentName": "Emlight",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25f638aa-5379-4d3b-872b-0e82664257ac"
+  },
+  {
     "id": "1-c0e792b4-a1dd-4537-b203-94be4dc3ff78",
     "matchId": "1-c0e792b4-a1dd-4537-b203-94be4dc3ff78",
     "teamSlug": "demolition-46e6a1e1",
@@ -1854,6 +3681,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0cb159ee-9cdc-480f-8934-14c1c3ea5fbc"
+  },
+  {
+    "id": "1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362",
+    "matchId": "1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362",
+    "teamSlug": "devl33t-6ceee39e",
+    "teamName": "DevL33T",
+    "opponentName": "chrupekTV armia",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362"
+  },
+  {
+    "id": "1-5e2747b5-afb4-4228-b36f-bae5510e57e1",
+    "matchId": "1-5e2747b5-afb4-4228-b36f-bae5510e57e1",
+    "teamSlug": "dh-premium-16615bf0",
+    "teamName": "DH Premium",
+    "opponentName": "VAZE",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5e2747b5-afb4-4228-b36f-bae5510e57e1"
   },
   {
     "id": "1-5a69da7f-0d85-4337-ab70-b15b11fda2cc",
@@ -1943,6 +3828,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cc881fdd-72e1-4a7f-b0c8-a1043b05c2b6"
   },
   {
+    "id": "1-64015c34-e245-42ab-9844-91979575ce63",
+    "matchId": "1-64015c34-e245-42ab-9844-91979575ce63",
+    "teamSlug": "dimonixesports-83c48b5f",
+    "teamName": "DimoniXEsports",
+    "opponentName": "Bedolagi",
+    "teamScore": 0,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 0,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-64015c34-e245-42ab-9844-91979575ce63"
+  },
+  {
     "id": "1-3592afdc-0462-4b10-813b-6916e9692578",
     "matchId": "1-3592afdc-0462-4b10-813b-6916e9692578",
     "teamSlug": "dingtone-cc118538",
@@ -2001,6 +3915,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0271dddb-aab2-48a3-8619-990b7b7d7bd2"
   },
   {
+    "id": "1-0d954acc-0ba9-486a-8843-57cf57ebe582",
+    "matchId": "1-0d954acc-0ba9-486a-8843-57cf57ebe582",
+    "teamSlug": "directors-team-272f8714",
+    "teamName": "DIRECTORs TEAM",
+    "opponentName": "playboyz",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0d954acc-0ba9-486a-8843-57cf57ebe582"
+  },
+  {
     "id": "1-5f3a31ce-fda3-472f-9140-e336a8b4cf85",
     "matchId": "1-5f3a31ce-fda3-472f-9140-e336a8b4cf85",
     "teamSlug": "distinguished-ducks-66c01c2c",
@@ -2028,6 +3971,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5f3a31ce-fda3-472f-9140-e336a8b4cf85"
+  },
+  {
+    "id": "1-f0a1aed3-621f-4a48-bf30-3b4a972d571c",
+    "matchId": "1-f0a1aed3-621f-4a48-bf30-3b4a972d571c",
+    "teamSlug": "do-chrzanu-77444557",
+    "teamName": "Do Chrzanu",
+    "opponentName": "Benched",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f0a1aed3-621f-4a48-bf30-3b4a972d571c"
   },
   {
     "id": "1-c2c1dbe1-b64a-47b5-9237-46875aa54614",
@@ -2059,6 +4031,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c2c1dbe1-b64a-47b5-9237-46875aa54614"
   },
   {
+    "id": "1-8b7f79f2-01e6-41ac-afe1-f837f32abd52",
+    "matchId": "1-8b7f79f2-01e6-41ac-afe1-f837f32abd52",
+    "teamSlug": "dom2-c8346a22",
+    "teamName": "DOM2",
+    "opponentName": "BCGame Academy",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8b7f79f2-01e6-41ac-afe1-f837f32abd52"
+  },
+  {
     "id": "1-b65038a4-cc31-46d8-b9c0-32890db6faa4",
     "matchId": "1-b65038a4-cc31-46d8-b9c0-32890db6faa4",
     "teamSlug": "down-to-frag-468b5f66",
@@ -2086,6 +4087,93 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b65038a4-cc31-46d8-b9c0-32890db6faa4"
+  },
+  {
+    "id": "1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329",
+    "matchId": "1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329",
+    "teamSlug": "dpl-2a266142",
+    "teamName": "DPL",
+    "opponentName": "proqishot",
+    "teamScore": 16,
+    "opponentScore": 14,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 14",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329"
+  },
+  {
+    "id": "1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18",
+    "matchId": "1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18",
+    "teamSlug": "dreamteam-3a7c16f7",
+    "teamName": "Dreamteam",
+    "opponentName": "MUMYALAYICILAR",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18"
+  },
+  {
+    "id": "1-1603f798-dadc-4259-afbc-9ec9bb64bd39",
+    "matchId": "1-1603f798-dadc-4259-afbc-9ec9bb64bd39",
+    "teamSlug": "drosselfamily-6a1e586c",
+    "teamName": "drosselfamily",
+    "opponentName": "Mai Tai",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1603f798-dadc-4259-afbc-9ec9bb64bd39"
   },
   {
     "id": "1-52cb5b3d-a653-4b43-befa-460bdacb4b7f",
@@ -2117,6 +4205,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-52cb5b3d-a653-4b43-befa-460bdacb4b7f"
   },
   {
+    "id": "1-72020151-3770-4a04-8bc1-e278be461e56",
+    "matchId": "1-72020151-3770-4a04-8bc1-e278be461e56",
+    "teamSlug": "duggedup-97499070",
+    "teamName": "Duggedup",
+    "opponentName": "FeedTheEgo",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-72020151-3770-4a04-8bc1-e278be461e56"
+  },
+  {
     "id": "1-3ddf2a87-87de-4582-9e6b-99c351115ca9",
     "matchId": "1-3ddf2a87-87de-4582-9e6b-99c351115ca9",
     "teamSlug": "dumbo-9f2e7c81",
@@ -2144,6 +4261,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3ddf2a87-87de-4582-9e6b-99c351115ca9"
+  },
+  {
+    "id": "1-6a6d0234-ecef-4066-87c8-1a81a8eca296",
+    "matchId": "1-6a6d0234-ecef-4066-87c8-1a81a8eca296",
+    "teamSlug": "dusty-8b6e1784",
+    "teamName": "Dusty",
+    "opponentName": "Erlamand Academy",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a6d0234-ecef-4066-87c8-1a81a8eca296"
   },
   {
     "id": "1-adcca5b9-39c6-4b9a-ad9e-ef76a683a9b9",
@@ -2175,6 +4321,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-adcca5b9-39c6-4b9a-ad9e-ef76a683a9b9"
   },
   {
+    "id": "1-137d31b5-8da7-43a9-aba3-42aa8d91869b",
+    "matchId": "1-137d31b5-8da7-43a9-aba3-42aa8d91869b",
+    "teamSlug": "eac-extra-b293056e",
+    "teamName": "EAC Extra",
+    "opponentName": "MADMANgg",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-137d31b5-8da7-43a9-aba3-42aa8d91869b"
+  },
+  {
+    "id": "1-3a571168-8628-412d-af33-bb6283ee5dd8",
+    "matchId": "1-3a571168-8628-412d-af33-bb6283ee5dd8",
+    "teamSlug": "egoisto-54540cd2",
+    "teamName": "EGOISTO",
+    "opponentName": "100PingGods",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3a571168-8628-412d-af33-bb6283ee5dd8"
+  },
+  {
     "id": "1-c2f5794c-25e3-4ce8-8c8f-7464a5a16f61",
     "matchId": "1-c2f5794c-25e3-4ce8-8c8f-7464a5a16f61",
     "teamSlug": "emerald-isle-376e91fc",
@@ -2202,6 +4406,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c2f5794c-25e3-4ce8-8c8f-7464a5a16f61"
+  },
+  {
+    "id": "1-25f638aa-5379-4d3b-872b-0e82664257ac",
+    "matchId": "1-25f638aa-5379-4d3b-872b-0e82664257ac",
+    "teamSlug": "emlight-91974fa2",
+    "teamName": "Emlight",
+    "opponentName": "DEMISEERAR",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-25f638aa-5379-4d3b-872b-0e82664257ac"
+  },
+  {
+    "id": "1-023da5ad-c605-4843-9c5a-abea5fd78d7c",
+    "matchId": "1-023da5ad-c605-4843-9c5a-abea5fd78d7c",
+    "teamSlug": "empire-cfe203c0",
+    "teamName": "EMPIRE",
+    "opponentName": "BO3DYXAHbI",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-023da5ad-c605-4843-9c5a-abea5fd78d7c"
   },
   {
     "id": "1-ae51ea84-0e39-45e6-94fe-4ab0a78f4c7f",
@@ -2262,6 +4524,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-abb08a5e-fa2c-480b-b707-d97946adb6f8"
   },
   {
+    "id": "1-84ca9895-9766-435a-9c4e-23730c70ddd4",
+    "matchId": "1-84ca9895-9766-435a-9c4e-23730c70ddd4",
+    "teamSlug": "enrage-71bc0f1d",
+    "teamName": "ENRAGE",
+    "opponentName": "WBT Academy",
+    "teamScore": 16,
+    "opponentScore": 14,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 14",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-84ca9895-9766-435a-9c4e-23730c70ddd4"
+  },
+  {
     "id": "1-1e34090f-7e74-45ac-9c59-71cce5435bbf",
     "matchId": "1-1e34090f-7e74-45ac-9c59-71cce5435bbf",
     "teamSlug": "entertainment-cheese-8ab8e348",
@@ -2320,6 +4611,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fbbab935-9b63-4d08-b6f9-e482260104df"
   },
   {
+    "id": "1-6a6d0234-ecef-4066-87c8-1a81a8eca296",
+    "matchId": "1-6a6d0234-ecef-4066-87c8-1a81a8eca296",
+    "teamSlug": "erlamand-academy-5670e6b6",
+    "teamName": "Erlamand Academy",
+    "opponentName": "Dusty",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a6d0234-ecef-4066-87c8-1a81a8eca296"
+  },
+  {
+    "id": "1-c27b0669-0939-4308-8f24-714c2f3c355b",
+    "matchId": "1-c27b0669-0939-4308-8f24-714c2f3c355b",
+    "teamSlug": "error404-85899c9b",
+    "teamName": "error404",
+    "opponentName": "Project SZPONT",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c27b0669-0939-4308-8f24-714c2f3c355b"
+  },
+  {
     "id": "1-2a6d38be-0773-47fc-a370-f69042fd93d7",
     "matchId": "1-2a6d38be-0773-47fc-a370-f69042fd93d7",
     "teamSlug": "evil-space-wizards-bb535e35",
@@ -2347,6 +4696,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2a6d38be-0773-47fc-a370-f69042fd93d7"
+  },
+  {
+    "id": "1-9fea3f1b-f59f-4319-aec7-5543f46805f0",
+    "matchId": "1-9fea3f1b-f59f-4319-aec7-5543f46805f0",
+    "teamSlug": "evinium-cee026d1",
+    "teamName": "eViniuM",
+    "opponentName": "vodkaGHOULS",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9fea3f1b-f59f-4319-aec7-5543f46805f0"
+  },
+  {
+    "id": "1-c0372731-d287-47eb-a74e-5d55a63e6a2e",
+    "matchId": "1-c0372731-d287-47eb-a74e-5d55a63e6a2e",
+    "teamSlug": "exen-1ce16320",
+    "teamName": "EXEN",
+    "opponentName": "Scuttle Gap",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c0372731-d287-47eb-a74e-5d55a63e6a2e"
   },
   {
     "id": "1-ae352e77-6db3-48be-8c95-05f0b8a91cb5",
@@ -2378,6 +4785,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ae352e77-6db3-48be-8c95-05f0b8a91cb5"
   },
   {
+    "id": "1-086b7dd3-cf2b-4844-a91b-12159192e665",
+    "matchId": "1-086b7dd3-cf2b-4844-a91b-12159192e665",
+    "teamSlug": "expedition-33-f9f236df",
+    "teamName": "Expedition 33",
+    "opponentName": "Fury Finesse",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Intermediate B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "b453b0b9-f5e5-4f08-964d-d127691243d0",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-086b7dd3-cf2b-4844-a91b-12159192e665"
+  },
+  {
     "id": "1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b",
     "matchId": "1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b",
     "teamSlug": "f1lthy-puggers-507169e8",
@@ -2407,6 +4843,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-02f52e7a-57d8-49e8-add0-aa0e2d530b1b"
   },
   {
+    "id": "1-cb366ea1-a5ca-4838-a615-549ce26b0159",
+    "matchId": "1-cb366ea1-a5ca-4838-a615-549ce26b0159",
+    "teamSlug": "faceit-demon-93d37859",
+    "teamName": "FACEIT DEMON",
+    "opponentName": "CFS",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cb366ea1-a5ca-4838-a615-549ce26b0159"
+  },
+  {
+    "id": "1-f36d585b-7ca9-46db-a948-07a953e467f4",
+    "matchId": "1-f36d585b-7ca9-46db-a948-07a953e467f4",
+    "teamSlug": "fajne-chlopaki-3829366a",
+    "teamName": "FAJNE CHLOPAKI",
+    "opponentName": "Pesujakuivaus60",
+    "teamScore": 13,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "13 : 16",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f36d585b-7ca9-46db-a948-07a953e467f4"
+  },
+  {
     "id": "1-8720facc-09b8-42be-b6f9-27b8f2942c46",
     "matchId": "1-8720facc-09b8-42be-b6f9-27b8f2942c46",
     "teamSlug": "fathom-gaming-8946ac76",
@@ -2434,6 +4928,93 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8720facc-09b8-42be-b6f9-27b8f2942c46"
+  },
+  {
+    "id": "1-77f58d7d-f6a1-411e-89e8-5afb534e728d",
+    "matchId": "1-77f58d7d-f6a1-411e-89e8-5afb534e728d",
+    "teamSlug": "fazeupnext-4881bd59",
+    "teamName": "FaZeUpNext",
+    "opponentName": "GetPrefire Ruthenia",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-77f58d7d-f6a1-411e-89e8-5afb534e728d"
+  },
+  {
+    "id": "1-874b14ca-f18e-4c5d-919e-566a5f0b42b4",
+    "matchId": "1-874b14ca-f18e-4c5d-919e-566a5f0b42b4",
+    "teamSlug": "fc-bal-op-dak-6add1ec7",
+    "teamName": "FC BAL OP DAK",
+    "opponentName": "AnimeWasMistake",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-874b14ca-f18e-4c5d-919e-566a5f0b42b4"
+  },
+  {
+    "id": "1-72020151-3770-4a04-8bc1-e278be461e56",
+    "matchId": "1-72020151-3770-4a04-8bc1-e278be461e56",
+    "teamSlug": "feedtheego-742c96f0",
+    "teamName": "FeedTheEgo",
+    "opponentName": "Duggedup",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-72020151-3770-4a04-8bc1-e278be461e56"
   },
   {
     "id": "1-193ba0ec-6793-466d-b68b-98563f5bd930",
@@ -2492,6 +5073,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e8b329a1-907c-4c63-acd7-48c84e8132dc"
+  },
+  {
+    "id": "1-88711873-43d6-488f-acee-2026e7ad1453",
+    "matchId": "1-88711873-43d6-488f-acee-2026e7ad1453",
+    "teamSlug": "five-guns-c813ab08",
+    "teamName": "Five Guns",
+    "opponentName": "Bergsteiger",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-88711873-43d6-488f-acee-2026e7ad1453"
   },
   {
     "id": "1-3ec34aba-0b1c-4661-9ce3-41423dcce44a",
@@ -2639,6 +5249,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-74e98458-c472-45e9-b77b-da8a502cbb5d"
   },
   {
+    "id": "1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6",
+    "matchId": "1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6",
+    "teamSlug": "force-syndicate-bdc870bc",
+    "teamName": "Force Syndicate",
+    "opponentName": "NEW PROJECT",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6"
+  },
+  {
+    "id": "1-1ed841d3-0d27-43eb-8214-f7edc144995f",
+    "matchId": "1-1ed841d3-0d27-43eb-8214-f7edc144995f",
+    "teamSlug": "fossils-4c22421c",
+    "teamName": "Fossils",
+    "opponentName": "Icebreaker",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1ed841d3-0d27-43eb-8214-f7edc144995f"
+  },
+  {
     "id": "1-fb191c8a-f39c-479a-8d9d-369c1fb32a9b",
     "matchId": "1-fb191c8a-f39c-479a-8d9d-369c1fb32a9b",
     "teamSlug": "fourstrokegang-80d856fb",
@@ -2666,6 +5334,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fb191c8a-f39c-479a-8d9d-369c1fb32a9b"
+  },
+  {
+    "id": "1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7",
+    "matchId": "1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7",
+    "teamSlug": "fraternity-e09a5784",
+    "teamName": "Fraternity",
+    "opponentName": "XI Esport",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7"
   },
   {
     "id": "1-08060e5f-7515-4706-803a-f2fc33947baa",
@@ -2726,6 +5423,180 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a9ec6e5f-9325-4bad-b3ab-827547d3e177"
   },
   {
+    "id": "1-29c6a134-1186-4127-b88e-8a1552394b85",
+    "matchId": "1-29c6a134-1186-4127-b88e-8a1552394b85",
+    "teamSlug": "fulltnt-47800fed",
+    "teamName": "fullTNT",
+    "opponentName": "TOVARX",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Main B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "8961a4f3-2860-4545-87db-1ce1e32c7e13",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-29c6a134-1186-4127-b88e-8a1552394b85"
+  },
+  {
+    "id": "1-086b7dd3-cf2b-4844-a91b-12159192e665",
+    "matchId": "1-086b7dd3-cf2b-4844-a91b-12159192e665",
+    "teamSlug": "fury-finesse-a08eada1",
+    "teamName": "Fury Finesse",
+    "opponentName": "Expedition 33",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Intermediate B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "b453b0b9-f5e5-4f08-964d-d127691243d0",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-086b7dd3-cf2b-4844-a91b-12159192e665"
+  },
+  {
+    "id": "1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c",
+    "matchId": "1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c",
+    "teamSlug": "g6-x-roc-afa62ee8",
+    "teamName": "g6 x ROC",
+    "opponentName": "HiddenInShadows",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c"
+  },
+  {
+    "id": "1-7b4831e6-4def-42c3-a743-494ab0035eae",
+    "matchId": "1-7b4831e6-4def-42c3-a743-494ab0035eae",
+    "teamSlug": "gamegend-e4614ae1",
+    "teamName": "GameGend",
+    "opponentName": "Nerwisn",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7b4831e6-4def-42c3-a743-494ab0035eae"
+  },
+  {
+    "id": "1-3595a6cc-25b8-44ef-b955-f00f41b474d9",
+    "matchId": "1-3595a6cc-25b8-44ef-b955-f00f41b474d9",
+    "teamSlug": "gatorian-15f51fa6",
+    "teamName": "Gatorian",
+    "opponentName": "VESPERA JOKES",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3595a6cc-25b8-44ef-b955-f00f41b474d9"
+  },
+  {
+    "id": "1-934a7490-6bfb-4caf-938d-dfb91adefcd9",
+    "matchId": "1-934a7490-6bfb-4caf-938d-dfb91adefcd9",
+    "teamSlug": "genesium-f1331eb0",
+    "teamName": "GENESIUM",
+    "opponentName": "1337",
+    "teamScore": 13,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "13 : 16",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-934a7490-6bfb-4caf-938d-dfb91adefcd9"
+  },
+  {
     "id": "1-0481cdd9-660a-4063-a89a-9a585c699b3f",
     "matchId": "1-0481cdd9-660a-4063-a89a-9a585c699b3f",
     "teamSlug": "geneticdiff-f140bc76",
@@ -2755,6 +5626,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0481cdd9-660a-4063-a89a-9a585c699b3f"
   },
   {
+    "id": "1-77f58d7d-f6a1-411e-89e8-5afb534e728d",
+    "matchId": "1-77f58d7d-f6a1-411e-89e8-5afb534e728d",
+    "teamSlug": "getprefire-ruthenia-54c463de",
+    "teamName": "GetPrefire Ruthenia",
+    "opponentName": "FaZeUpNext",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-77f58d7d-f6a1-411e-89e8-5afb534e728d"
+  },
+  {
+    "id": "1-7ae91e28-3962-4f24-b7e3-dac007b6f413",
+    "matchId": "1-7ae91e28-3962-4f24-b7e3-dac007b6f413",
+    "teamSlug": "gg-arena-academy-de32214b",
+    "teamName": "GG Arena ACADEMY",
+    "opponentName": "ugounderme",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7ae91e28-3962-4f24-b7e3-dac007b6f413"
+  },
+  {
+    "id": "1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2",
+    "matchId": "1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2",
+    "teamSlug": "glips-03d240ad",
+    "teamName": "GLIPS",
+    "opponentName": "LEISURE Rebels",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Intermediate B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "b453b0b9-f5e5-4f08-964d-d127691243d0",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2"
+  },
+  {
+    "id": "1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3",
+    "matchId": "1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3",
+    "teamSlug": "gold-beasts-a7c70109",
+    "teamName": "Gold Beasts",
+    "opponentName": "smiecie",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3"
+  },
+  {
+    "id": "1-8c516cd5-191a-4e81-9338-c4622112c0f4",
+    "matchId": "1-8c516cd5-191a-4e81-9338-c4622112c0f4",
+    "teamSlug": "golubki-9650b15a",
+    "teamName": "golubki",
+    "opponentName": "Anaba",
+    "teamScore": 16,
+    "opponentScore": 14,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 14",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8c516cd5-191a-4e81-9338-c4622112c0f4"
+  },
+  {
     "id": "1-4ffccde3-c459-46ff-9b8c-cd45a969d051",
     "matchId": "1-4ffccde3-c459-46ff-9b8c-cd45a969d051",
     "teamSlug": "gomi-dot-club-5a36863a",
@@ -2782,6 +5798,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4ffccde3-c459-46ff-9b8c-cd45a969d051"
+  },
+  {
+    "id": "1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8",
+    "matchId": "1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8",
+    "teamSlug": "goodjob-16f12899",
+    "teamName": "GoodJob",
+    "opponentName": "Turtles Clan",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8"
   },
   {
     "id": "1-edf0ec20-c321-49e9-9419-ab793a128166",
@@ -3045,6 +6090,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ae51ea84-0e39-45e6-94fe-4ab0a78f4c7f"
   },
   {
+    "id": "1-be5ab973-03fe-4563-b2d0-62cb5bfa2273",
+    "matchId": "1-be5ab973-03fe-4563-b2d0-62cb5bfa2273",
+    "teamSlug": "gtz-esports-rise-dbe076ad",
+    "teamName": "GTZ esports RISE",
+    "opponentName": "Prestige Academy",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-be5ab973-03fe-4563-b2d0-62cb5bfa2273"
+  },
+  {
+    "id": "1-5e27c816-e7ac-448a-ab0c-40d30205487a",
+    "matchId": "1-5e27c816-e7ac-448a-ab0c-40d30205487a",
+    "teamSlug": "gusarov-390f21cb",
+    "teamName": "GUSAROV",
+    "opponentName": "NoGamePlan",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5e27c816-e7ac-448a-ab0c-40d30205487a"
+  },
+  {
     "id": "1-8e0396fe-ee9c-4085-95d9-9b89b9cf4c00",
     "matchId": "1-8e0396fe-ee9c-4085-95d9-9b89b9cf4c00",
     "teamSlug": "guys-i-lagged-out-b98be84b",
@@ -3072,6 +6175,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8e0396fe-ee9c-4085-95d9-9b89b9cf4c00"
+  },
+  {
+    "id": "1-955e9d8e-1542-4642-b698-6d0a70b9ae34",
+    "matchId": "1-955e9d8e-1542-4642-b698-6d0a70b9ae34",
+    "teamSlug": "ha-ycjiobke-be9e440d",
+    "teamName": "HA_YCJIOBKE",
+    "opponentName": "Acvitania",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-955e9d8e-1542-4642-b698-6d0a70b9ae34"
   },
   {
     "id": "1-11ffa3cc-9b5e-48c0-aeaa-bc91141736d3",
@@ -3130,6 +6262,151 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7255ed2d-bbac-4774-a204-d69d1d70b2d9"
+  },
+  {
+    "id": "1-b48c7596-93f4-4f0b-9924-c706c6577570",
+    "matchId": "1-b48c7596-93f4-4f0b-9924-c706c6577570",
+    "teamSlug": "hamster-ghoul-1c89fcbb",
+    "teamName": "Hamster Ghoul",
+    "opponentName": "prezidentkazani",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b48c7596-93f4-4f0b-9924-c706c6577570"
+  },
+  {
+    "id": "1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a",
+    "matchId": "1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a",
+    "teamSlug": "hard2kill-e5555fd1",
+    "teamName": "Hard2Kill",
+    "opponentName": "Altay Esports",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d3d81c53-f6e4-4f2b-bdd6-d1ff1112b84a"
+  },
+  {
+    "id": "1-80149209-e350-44a8-abf2-bda8cbd1666a",
+    "matchId": "1-80149209-e350-44a8-abf2-bda8cbd1666a",
+    "teamSlug": "hazard-e-sports-3d622310",
+    "teamName": "HAZARD E-sports",
+    "opponentName": "MELLSTROY GAMING",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-80149209-e350-44a8-abf2-bda8cbd1666a"
+  },
+  {
+    "id": "1-79079047-8ca2-4235-9e5c-6063be0a4474",
+    "matchId": "1-79079047-8ca2-4235-9e5c-6063be0a4474",
+    "teamSlug": "hellforge-4f80fb8e",
+    "teamName": "Hellforge",
+    "opponentName": "NRE e-Sports",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79079047-8ca2-4235-9e5c-6063be0a4474"
+  },
+  {
+    "id": "1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c",
+    "matchId": "1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c",
+    "teamSlug": "hiddeninshadows-c5b8ff39",
+    "teamName": "HiddenInShadows",
+    "opponentName": "g6 x ROC",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-41cde249-c3e0-4eb4-b2de-c4eddb16cb4c"
   },
   {
     "id": "1-259bc802-5301-44e6-9a8e-ebe2af4ebc53",
@@ -3219,6 +6496,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5543008c-8cb9-4cf2-be7b-9e34a6621e63"
   },
   {
+    "id": "1-60de4f78-19c1-4c45-8fa1-2356105d3ae9",
+    "matchId": "1-60de4f78-19c1-4c45-8fa1-2356105d3ae9",
+    "teamSlug": "hyperion-6b155741",
+    "teamName": "HyperioN",
+    "opponentName": "SCL-INFINITY",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60de4f78-19c1-4c45-8fa1-2356105d3ae9"
+  },
+  {
+    "id": "1-51eb60a8-322f-4970-8616-991bf4db9281",
+    "matchId": "1-51eb60a8-322f-4970-8616-991bf4db9281",
+    "teamSlug": "hysk-6c46e45c",
+    "teamName": "HysK",
+    "opponentName": "Bad Beavers Blue",
+    "teamScore": 13,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 1",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-51eb60a8-322f-4970-8616-991bf4db9281"
+  },
+  {
     "id": "1-379d9120-8aac-4be6-a88e-98cc3a1efc0e",
     "matchId": "1-379d9120-8aac-4be6-a88e-98cc3a1efc0e",
     "teamSlug": "ibuypowder-a1c98555",
@@ -3277,6 +6612,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c260c3a1-4619-489e-a6f9-9608dd0c746e"
   },
   {
+    "id": "1-1ed841d3-0d27-43eb-8214-f7edc144995f",
+    "matchId": "1-1ed841d3-0d27-43eb-8214-f7edc144995f",
+    "teamSlug": "icebreaker-b186227f",
+    "teamName": "Icebreaker",
+    "opponentName": "Fossils",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1ed841d3-0d27-43eb-8214-f7edc144995f"
+  },
+  {
     "id": "1-c8348b3d-3fa7-4b33-b24e-4b4bed06c104",
     "matchId": "1-c8348b3d-3fa7-4b33-b24e-4b4bed06c104",
     "teamSlug": "icons-of-vanity-cb3818d1",
@@ -3304,6 +6668,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c8348b3d-3fa7-4b33-b24e-4b4bed06c104"
+  },
+  {
+    "id": "1-931edf18-859b-4c3c-a781-3855a94187ab",
+    "matchId": "1-931edf18-859b-4c3c-a781-3855a94187ab",
+    "teamSlug": "imprerial-law-2ad3447c",
+    "teamName": "Imprerial Law",
+    "opponentName": "PRZ GAMING",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-931edf18-859b-4c3c-a781-3855a94187ab"
   },
   {
     "id": "1-11bf96c4-b26e-473f-a825-fb734777d65b",
@@ -3364,6 +6757,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-89d3e073-0023-495b-bf00-e136ca979c13"
   },
   {
+    "id": "1-2600a73e-b941-4831-b189-9d189167d392",
+    "matchId": "1-2600a73e-b941-4831-b189-9d189167d392",
+    "teamSlug": "infinite-talent-0994da2c",
+    "teamName": "INFINITE Talent",
+    "opponentName": "Neds",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2600a73e-b941-4831-b189-9d189167d392"
+  },
+  {
+    "id": "1-c599bbdb-104a-4717-8434-e03f78864e36",
+    "matchId": "1-c599bbdb-104a-4717-8434-e03f78864e36",
+    "teamSlug": "insanity-3b7075cd",
+    "teamName": "iNsanity",
+    "opponentName": "AXEN",
+    "teamScore": 13,
+    "opponentScore": 0,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 0",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 0,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c599bbdb-104a-4717-8434-e03f78864e36"
+  },
+  {
+    "id": "1-6d42626c-034b-4995-857c-5493f75ea6e8",
+    "matchId": "1-6d42626c-034b-4995-857c-5493f75ea6e8",
+    "teamSlug": "insiders-esport-cf5d9fe0",
+    "teamName": "Insiders Esport",
+    "opponentName": "99p",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6d42626c-034b-4995-857c-5493f75ea6e8"
+  },
+  {
+    "id": "1-e7a131fa-7b1f-4c98-9032-1211cd8af421",
+    "matchId": "1-e7a131fa-7b1f-4c98-9032-1211cd8af421",
+    "teamSlug": "ironfive-96b34f1a",
+    "teamName": "IRONFIVE",
+    "opponentName": "RYBA67",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e7a131fa-7b1f-4c98-9032-1211cd8af421"
+  },
+  {
+    "id": "1-cb7da450-4579-432b-8bce-cb365f855698",
+    "matchId": "1-cb7da450-4579-432b-8bce-cb365f855698",
+    "teamSlug": "istanbul-contra-e7602bff",
+    "teamName": "Istanbul Contra",
+    "opponentName": "VirtualCasino",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cb7da450-4579-432b-8bce-cb365f855698"
+  },
+  {
     "id": "1-faa12baa-8b72-43b8-becf-f78a993d70b1",
     "matchId": "1-faa12baa-8b72-43b8-becf-f78a993d70b1",
     "teamSlug": "itaintoveryet-a6a91b5a",
@@ -3393,6 +6931,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-faa12baa-8b72-43b8-becf-f78a993d70b1"
   },
   {
+    "id": "1-d615b9ce-50c8-42b0-9534-26f0d3025dd2",
+    "matchId": "1-d615b9ce-50c8-42b0-9534-26f0d3025dd2",
+    "teamSlug": "ivor-cs-0c03ae9f",
+    "teamName": "Ivor CS",
+    "opponentName": "Seizer B",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d615b9ce-50c8-42b0-9534-26f0d3025dd2"
+  },
+  {
+    "id": "1-490c71e3-b57f-4803-a01e-6049f0d480de",
+    "matchId": "1-490c71e3-b57f-4803-a01e-6049f0d480de",
+    "teamSlug": "izako-boars-d93b9fa9",
+    "teamName": "Izako Boars",
+    "opponentName": "Volume 7",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-490c71e3-b57f-4803-a01e-6049f0d480de"
+  },
+  {
+    "id": "1-28cec3dd-5e10-446a-a43e-932acd22fd29",
+    "matchId": "1-28cec3dd-5e10-446a-a43e-932acd22fd29",
+    "teamSlug": "jpd-078978a5",
+    "teamName": "Jpd",
+    "opponentName": "NovaX",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-28cec3dd-5e10-446a-a43e-932acd22fd29"
+  },
+  {
     "id": "1-45a2bd60-a0d5-4503-928a-9367b22d1add",
     "matchId": "1-45a2bd60-a0d5-4503-928a-9367b22d1add",
     "teamSlug": "juked-5da1016b",
@@ -3420,6 +7045,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-45a2bd60-a0d5-4503-928a-9367b22d1add"
+  },
+  {
+    "id": "1-630b90d6-471b-4fdb-9cfa-8838bc693abc",
+    "matchId": "1-630b90d6-471b-4fdb-9cfa-8838bc693abc",
+    "teamSlug": "k2-cyberclub-3cf62aa3",
+    "teamName": "K2 Cyberclub",
+    "opponentName": "Chaos Enforcers",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-630b90d6-471b-4fdb-9cfa-8838bc693abc"
+  },
+  {
+    "id": "1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc",
+    "matchId": "1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc",
+    "teamSlug": "kanngu-red-6cd8fae9",
+    "teamName": "KANNGU RED",
+    "opponentName": "VoidWalkers",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc"
   },
   {
     "id": "1-1c16db35-eae6-4799-9c2b-e7095f03d7a9",
@@ -3480,6 +7163,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-22097374-5931-48f7-b438-a48954f68ca1"
   },
   {
+    "id": "1-b26b4e82-57a2-4201-967e-cde92ecbae4e",
+    "matchId": "1-b26b4e82-57a2-4201-967e-cde92ecbae4e",
+    "teamSlug": "kholodtsi-8cdcba94",
+    "teamName": "KHOLODTSI",
+    "opponentName": "Ryvex",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b26b4e82-57a2-4201-967e-cde92ecbae4e"
+  },
+  {
+    "id": "1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a",
+    "matchId": "1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a",
+    "teamSlug": "kinderpengui-87a273aa",
+    "teamName": "kinderPENGUI",
+    "opponentName": "aimstxrs",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3390e7c7-fece-4bb1-9aa3-99d1de1f6f9a"
+  },
+  {
+    "id": "1-d14e204c-7109-4ff0-a2f6-8ff19d699051",
+    "matchId": "1-d14e204c-7109-4ff0-a2f6-8ff19d699051",
+    "teamSlug": "kinetic-586554bf",
+    "teamName": "Kinetic",
+    "opponentName": "warriorPATH",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d14e204c-7109-4ff0-a2f6-8ff19d699051"
+  },
+  {
+    "id": "1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c",
+    "matchId": "1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c",
+    "teamSlug": "klanashe-dfcb5570",
+    "teamName": "KlAnashe",
+    "opponentName": "Bad Beavers",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a7170ef9-1c52-4ae9-a57d-d96d40d1b17c"
+  },
+  {
+    "id": "1-91f35bad-b16f-47f1-aeaf-242cf670dd6c",
+    "matchId": "1-91f35bad-b16f-47f1-aeaf-242cf670dd6c",
+    "teamSlug": "klano-fontano-67ed68d2",
+    "teamName": "KLANO  FONTANO",
+    "opponentName": "PANY",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-91f35bad-b16f-47f1-aeaf-242cf670dd6c"
+  },
+  {
     "id": "1-b16d11ed-7e6d-4c28-895e-5d5333d57086",
     "matchId": "1-b16d11ed-7e6d-4c28-895e-5d5333d57086",
     "teamSlug": "knight-owls-0cc333e0",
@@ -3507,6 +7335,151 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b16d11ed-7e6d-4c28-895e-5d5333d57086"
+  },
+  {
+    "id": "1-679f68b9-aa92-4c23-a2ee-1412d05ed77e",
+    "matchId": "1-679f68b9-aa92-4c23-a2ee-1412d05ed77e",
+    "teamSlug": "koira123-19eec9e8",
+    "teamName": "Koira123",
+    "opponentName": "CSGAMBLE",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-679f68b9-aa92-4c23-a2ee-1412d05ed77e"
+  },
+  {
+    "id": "1-de80b911-7ee2-40fe-a845-5f0518db8da7",
+    "matchId": "1-de80b911-7ee2-40fe-a845-5f0518db8da7",
+    "teamSlug": "komah9a228-3ed1d296",
+    "teamName": "KOMAH9A228",
+    "opponentName": "Lucky2up",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-de80b911-7ee2-40fe-a845-5f0518db8da7"
+  },
+  {
+    "id": "1-5188a65c-06d9-4d1d-8655-8fb3f7d47536",
+    "matchId": "1-5188a65c-06d9-4d1d-8655-8fb3f7d47536",
+    "teamSlug": "kombinerki-125a0495",
+    "teamName": "KOMBINERKI",
+    "opponentName": "menszczysni",
+    "teamScore": 1,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 1,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5188a65c-06d9-4d1d-8655-8fb3f7d47536"
+  },
+  {
+    "id": "1-7816f8d1-d799-42f0-bfa6-aaccb649f949",
+    "matchId": "1-7816f8d1-d799-42f0-bfa6-aaccb649f949",
+    "teamSlug": "kosiarki-42acff5a",
+    "teamName": "Kosiarki",
+    "opponentName": "Miracles",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7816f8d1-d799-42f0-bfa6-aaccb649f949"
+  },
+  {
+    "id": "1-84b2436b-afc3-4cfc-8a11-7d2023a080df",
+    "matchId": "1-84b2436b-afc3-4cfc-8a11-7d2023a080df",
+    "teamSlug": "kulbowicze-a8def901",
+    "teamName": "Kulbowicze",
+    "opponentName": "Seizer",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-84b2436b-afc3-4cfc-8a11-7d2023a080df"
   },
   {
     "id": "1-4cad0e28-5347-4a3c-a27b-53aea79b967a",
@@ -3625,6 +7598,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60243450-0291-4e92-94ee-d57a0139b2fd"
   },
   {
+    "id": "1-623d7ea4-854e-4647-aa35-48121c448de4",
+    "matchId": "1-623d7ea4-854e-4647-aa35-48121c448de4",
+    "teamSlug": "last-minute-cda2d613",
+    "teamName": "Last minute",
+    "opponentName": "XRUCTEAM",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-623d7ea4-854e-4647-aa35-48121c448de4"
+  },
+  {
+    "id": "1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc",
+    "matchId": "1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc",
+    "teamSlug": "latvjubanda-0978be65",
+    "teamName": "LATVJUBANDA",
+    "opponentName": "0 Swing",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Cache"
+    ],
+    "mapScores": [
+      {
+        "map": "Cache",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a04ea6e-dff1-4b74-ad68-f63b0e4921bc"
+  },
+  {
+    "id": "1-e70437c4-f9f9-4d34-8891-8407f6d5d710",
+    "matchId": "1-e70437c4-f9f9-4d34-8891-8407f6d5d710",
+    "teamSlug": "lazy-genius-62bead71",
+    "teamName": "Lazy Genius",
+    "opponentName": "ChybaMichalki",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e70437c4-f9f9-4d34-8891-8407f6d5d710"
+  },
+  {
+    "id": "1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1",
+    "matchId": "1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1",
+    "teamSlug": "leek-nxt-01d54ae9",
+    "teamName": "LeeK NXT",
+    "opponentName": "Acvitania",
+    "teamScore": 13,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 1",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7518e50d-7ce5-4842-90b0-9e3c9c1fa5b1"
+  },
+  {
+    "id": "1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2",
+    "matchId": "1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2",
+    "teamSlug": "leisure-rebels-8c1e2a1a",
+    "teamName": "LEISURE Rebels",
+    "opponentName": "GLIPS",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Intermediate B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "b453b0b9-f5e5-4f08-964d-d127691243d0",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-aeab7c6b-6a63-4424-9ae9-d7e9b073f6f2"
+  },
+  {
     "id": "1-afcd3041-8174-4316-a3e6-b123e6384b43",
     "matchId": "1-afcd3041-8174-4316-a3e6-b123e6384b43",
     "teamSlug": "les-ptis-jus-1e641482",
@@ -3652,6 +7770,209 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-afcd3041-8174-4316-a3e6-b123e6384b43"
+  },
+  {
+    "id": "1-b7f53f22-b09f-47a1-92d3-27225c49c8d8",
+    "matchId": "1-b7f53f22-b09f-47a1-92d3-27225c49c8d8",
+    "teamSlug": "loathe-65fc1155",
+    "teamName": "LoaThE",
+    "opponentName": "Brudmus",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Cache"
+    ],
+    "mapScores": [
+      {
+        "map": "Cache",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b7f53f22-b09f-47a1-92d3-27225c49c8d8"
+  },
+  {
+    "id": "1-e356eda3-91a8-4c71-8259-fad445848cd5",
+    "matchId": "1-e356eda3-91a8-4c71-8259-fad445848cd5",
+    "teamSlug": "loyvt-trot-9f55fb68",
+    "teamName": "loyvt trot",
+    "opponentName": "Warzywniak",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e356eda3-91a8-4c71-8259-fad445848cd5"
+  },
+  {
+    "id": "1-62c397c7-056d-4a83-9322-3d14a9a6c190",
+    "matchId": "1-62c397c7-056d-4a83-9322-3d14a9a6c190",
+    "teamSlug": "lph-gaming-1f98d0ae",
+    "teamName": "LPH Gaming",
+    "opponentName": "Banda chuya LFO",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-62c397c7-056d-4a83-9322-3d14a9a6c190"
+  },
+  {
+    "id": "1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1",
+    "matchId": "1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1",
+    "teamSlug": "lph-gaming-1f98d0ae",
+    "teamName": "LPH Gaming",
+    "opponentName": "XI Esport",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1"
+  },
+  {
+    "id": "1-1b712ba2-6d70-4377-9e64-7c22b7666c66",
+    "matchId": "1-1b712ba2-6d70-4377-9e64-7c22b7666c66",
+    "teamSlug": "luch-bfeed6d0",
+    "teamName": "LUCH",
+    "opponentName": "AERIS",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1b712ba2-6d70-4377-9e64-7c22b7666c66"
+  },
+  {
+    "id": "1-de80b911-7ee2-40fe-a845-5f0518db8da7",
+    "matchId": "1-de80b911-7ee2-40fe-a845-5f0518db8da7",
+    "teamSlug": "lucky2up-2c9bd308",
+    "teamName": "Lucky2up",
+    "opponentName": "KOMAH9A228",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-de80b911-7ee2-40fe-a845-5f0518db8da7"
+  },
+  {
+    "id": "1-6a2589a6-447a-4b79-a945-222b925b4efc",
+    "matchId": "1-6a2589a6-447a-4b79-a945-222b925b4efc",
+    "teamSlug": "ludomani-df108ee5",
+    "teamName": "LUDOMANI",
+    "opponentName": "ONLY GAMERS",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a2589a6-447a-4b79-a945-222b925b4efc"
   },
   {
     "id": "1-628aacf1-9424-48e8-9bfc-9d256f5be162",
@@ -3770,6 +8091,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5e978d87-fca4-42f5-9281-0ea9e6de431a"
   },
   {
+    "id": "1-137d31b5-8da7-43a9-aba3-42aa8d91869b",
+    "matchId": "1-137d31b5-8da7-43a9-aba3-42aa8d91869b",
+    "teamSlug": "madmangg-fc0baf05",
+    "teamName": "MADMANgg",
+    "opponentName": "EAC Extra",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-137d31b5-8da7-43a9-aba3-42aa8d91869b"
+  },
+  {
+    "id": "1-488ac5b1-3409-46ce-b1bc-1be933f5e780",
+    "matchId": "1-488ac5b1-3409-46ce-b1bc-1be933f5e780",
+    "teamSlug": "magneta-a8ff39cd",
+    "teamName": "Magneta",
+    "opponentName": "Theseus Esports",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-488ac5b1-3409-46ce-b1bc-1be933f5e780"
+  },
+  {
+    "id": "1-1603f798-dadc-4259-afbc-9ec9bb64bd39",
+    "matchId": "1-1603f798-dadc-4259-afbc-9ec9bb64bd39",
+    "teamSlug": "mai-tai-6a1cfe3c",
+    "teamName": "Mai Tai",
+    "opponentName": "drosselfamily",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1603f798-dadc-4259-afbc-9ec9bb64bd39"
+  },
+  {
     "id": "1-c2c1dbe1-b64a-47b5-9237-46875aa54614",
     "matchId": "1-c2c1dbe1-b64a-47b5-9237-46875aa54614",
     "teamSlug": "makeyousaylate-fb715310",
@@ -3797,6 +8205,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c2c1dbe1-b64a-47b5-9237-46875aa54614"
+  },
+  {
+    "id": "1-5c8929fb-3959-4567-a0ce-a1107a960beb",
+    "matchId": "1-5c8929fb-3959-4567-a0ce-a1107a960beb",
+    "teamSlug": "mamagla1na-72db4ee4",
+    "teamName": "mamagla1na",
+    "opponentName": "TEOX",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5c8929fb-3959-4567-a0ce-a1107a960beb"
   },
   {
     "id": "1-ae352e77-6db3-48be-8c95-05f0b8a91cb5",
@@ -3973,6 +8410,209 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-afcd3041-8174-4316-a3e6-b123e6384b43"
   },
   {
+    "id": "1-db027d54-36ff-4ca9-99b3-5b9ea9c24228",
+    "matchId": "1-db027d54-36ff-4ca9-99b3-5b9ea9c24228",
+    "teamSlug": "mellren-b38c3bb9",
+    "teamName": "Mellren",
+    "opponentName": "Privateer Gaming",
+    "teamScore": 14,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "14 : 16",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-db027d54-36ff-4ca9-99b3-5b9ea9c24228"
+  },
+  {
+    "id": "1-80149209-e350-44a8-abf2-bda8cbd1666a",
+    "matchId": "1-80149209-e350-44a8-abf2-bda8cbd1666a",
+    "teamSlug": "mellstroy-gaming-e25f7906",
+    "teamName": "MELLSTROY GAMING",
+    "opponentName": "HAZARD E-sports",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-80149209-e350-44a8-abf2-bda8cbd1666a"
+  },
+  {
+    "id": "1-a4190bdc-94ad-4d6a-9ae3-af7774803184",
+    "matchId": "1-a4190bdc-94ad-4d6a-9ae3-af7774803184",
+    "teamSlug": "menace-universe-50542600",
+    "teamName": "Menace Universe",
+    "opponentName": "Aisha Legion",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a4190bdc-94ad-4d6a-9ae3-af7774803184"
+  },
+  {
+    "id": "1-5188a65c-06d9-4d1d-8655-8fb3f7d47536",
+    "matchId": "1-5188a65c-06d9-4d1d-8655-8fb3f7d47536",
+    "teamSlug": "menszczysni-7707a21e",
+    "teamName": "menszczysni",
+    "opponentName": "KOMBINERKI",
+    "teamScore": 13,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 1",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5188a65c-06d9-4d1d-8655-8fb3f7d47536"
+  },
+  {
+    "id": "1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02",
+    "matchId": "1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02",
+    "teamSlug": "meteora-422dbf39",
+    "teamName": "Meteora",
+    "opponentName": "Chikiryau",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0c12ebab-6e6c-435a-9b7e-bbf412e9bc02"
+  },
+  {
+    "id": "1-f394fa63-41bb-4b2b-bbe5-e019424e9f59",
+    "matchId": "1-f394fa63-41bb-4b2b-bbe5-e019424e9f59",
+    "teamSlug": "mgt-502a8ade",
+    "teamName": "mgt",
+    "opponentName": "Mom of Four",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f394fa63-41bb-4b2b-bbe5-e019424e9f59"
+  },
+  {
+    "id": "1-8320d594-abbb-4463-af1b-c8c908a25033",
+    "matchId": "1-8320d594-abbb-4463-af1b-c8c908a25033",
+    "teamSlug": "midasdrakes-7ef4c9ee",
+    "teamName": "MidasDrakes",
+    "opponentName": "teamorkzsebesgoblin",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8320d594-abbb-4463-af1b-c8c908a25033"
+  },
+  {
     "id": "1-42f1ebb7-7afe-4211-9066-462551d975f5",
     "matchId": "1-42f1ebb7-7afe-4211-9066-462551d975f5",
     "teamSlug": "midwest-farmers-04a82bb3",
@@ -4002,6 +8642,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-42f1ebb7-7afe-4211-9066-462551d975f5"
   },
   {
+    "id": "1-55c873eb-b67b-4e08-9001-d74e4d877dfd",
+    "matchId": "1-55c873eb-b67b-4e08-9001-d74e4d877dfd",
+    "teamSlug": "millwallbushwak-2f8385be",
+    "teamName": "MillwallBushwak",
+    "opponentName": "CISBratva",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-55c873eb-b67b-4e08-9001-d74e4d877dfd"
+  },
+  {
+    "id": "1-f008796b-0351-4368-b446-1cd3fc0f0157",
+    "matchId": "1-f008796b-0351-4368-b446-1cd3fc0f0157",
+    "teamSlug": "mindhunters-e094ac14",
+    "teamName": "MindHunters",
+    "opponentName": "NoScope eSports",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f008796b-0351-4368-b446-1cd3fc0f0157"
+  },
+  {
     "id": "1-11bf96c4-b26e-473f-a825-fb734777d65b",
     "matchId": "1-11bf96c4-b26e-473f-a825-fb734777d65b",
     "teamSlug": "mindtrip-6f3ff135",
@@ -4029,6 +8727,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-11bf96c4-b26e-473f-a825-fb734777d65b"
+  },
+  {
+    "id": "1-70291d51-8734-4598-a7f9-3895c6918c50",
+    "matchId": "1-70291d51-8734-4598-a7f9-3895c6918c50",
+    "teamSlug": "minkens-shooters-e07490d6",
+    "teamName": "MINKENS SHOOTERS",
+    "opponentName": "WOLF TEAM GUYS AC",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-70291d51-8734-4598-a7f9-3895c6918c50"
+  },
+  {
+    "id": "1-7816f8d1-d799-42f0-bfa6-aaccb649f949",
+    "matchId": "1-7816f8d1-d799-42f0-bfa6-aaccb649f949",
+    "teamSlug": "miracles-fde58975",
+    "teamName": "Miracles",
+    "opponentName": "Kosiarki",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7816f8d1-d799-42f0-bfa6-aaccb649f949"
   },
   {
     "id": "1-c8348b3d-3fa7-4b33-b24e-4b4bed06c104",
@@ -4089,6 +8845,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-dda35f6a-7129-4902-9810-611806f2737a"
   },
   {
+    "id": "1-f394fa63-41bb-4b2b-bbe5-e019424e9f59",
+    "matchId": "1-f394fa63-41bb-4b2b-bbe5-e019424e9f59",
+    "teamSlug": "mom-of-four-0a9dfa4a",
+    "teamName": "Mom of Four",
+    "opponentName": "mgt",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f394fa63-41bb-4b2b-bbe5-e019424e9f59"
+  },
+  {
     "id": "1-60b85cfc-5b41-40da-ac09-a6e02c5cfe48",
     "matchId": "1-60b85cfc-5b41-40da-ac09-a6e02c5cfe48",
     "teamSlug": "mommysports-a5cad615",
@@ -4147,6 +8932,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3ec34aba-0b1c-4661-9ce3-41423dcce44a"
   },
   {
+    "id": "1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18",
+    "matchId": "1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18",
+    "teamSlug": "mumyalayicilar-d5c188a5",
+    "teamName": "MUMYALAYICILAR",
+    "opponentName": "Dreamteam",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3c9f077b-2ff2-4d85-a2d0-06d3106e2e18"
+  },
+  {
+    "id": "1-16446e42-b55c-46bd-b7ad-3ddcdde78352",
+    "matchId": "1-16446e42-b55c-46bd-b7ad-3ddcdde78352",
+    "teamSlug": "mushu-7c038581",
+    "teamName": "Mushu",
+    "opponentName": "TSAISLEMEC",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-16446e42-b55c-46bd-b7ad-3ddcdde78352"
+  },
+  {
     "id": "1-ccdc6195-eada-48f1-a115-4ee3e53d8c65",
     "matchId": "1-ccdc6195-eada-48f1-a115-4ee3e53d8c65",
     "teamSlug": "my-life-be-like-2bfd608f",
@@ -4174,6 +9017,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ccdc6195-eada-48f1-a115-4ee3e53d8c65"
+  },
+  {
+    "id": "1-d88fd5a7-6936-4661-804e-4b9d9ab1b578",
+    "matchId": "1-d88fd5a7-6936-4661-804e-4b9d9ab1b578",
+    "teamSlug": "myhud-311b0c6d",
+    "teamName": "MyHUD",
+    "opponentName": "Cillerian",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d88fd5a7-6936-4661-804e-4b9d9ab1b578"
   },
   {
     "id": "1-3592afdc-0462-4b10-813b-6916e9692578",
@@ -4263,6 +9135,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60b85cfc-5b41-40da-ac09-a6e02c5cfe48"
   },
   {
+    "id": "1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3",
+    "matchId": "1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3",
+    "teamSlug": "navi-junior-05eaa5ef",
+    "teamName": "NAVI Junior",
+    "opponentName": "OldBoys",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3"
+  },
+  {
+    "id": "1-2600a73e-b941-4831-b189-9d189167d392",
+    "matchId": "1-2600a73e-b941-4831-b189-9d189167d392",
+    "teamSlug": "neds-75de4393",
+    "teamName": "Neds",
+    "opponentName": "INFINITE Talent",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2600a73e-b941-4831-b189-9d189167d392"
+  },
+  {
+    "id": "1-7b4831e6-4def-42c3-a743-494ab0035eae",
+    "matchId": "1-7b4831e6-4def-42c3-a743-494ab0035eae",
+    "teamSlug": "nerwisn-9e37eb89",
+    "teamName": "Nerwisn",
+    "opponentName": "GameGend",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7b4831e6-4def-42c3-a743-494ab0035eae"
+  },
+  {
+    "id": "1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6",
+    "matchId": "1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6",
+    "teamSlug": "new-project-567d0203",
+    "teamName": "NEW PROJECT",
+    "opponentName": "Force Syndicate",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4db32186-3e0f-4ff0-9bea-22abbe8e42b6"
+  },
+  {
+    "id": "1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13",
+    "matchId": "1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13",
+    "teamSlug": "nextmapplease-53aadb79",
+    "teamName": "NextMapPlease",
+    "opponentName": "ORGLEZZ",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13"
+  },
+  {
     "id": "1-1a885574-5246-4c6f-a5fa-77870dd7280b",
     "matchId": "1-1a885574-5246-4c6f-a5fa-77870dd7280b",
     "teamSlug": "ninjas-in-boxer-6c1c8430",
@@ -4292,6 +9309,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1a885574-5246-4c6f-a5fa-77870dd7280b"
   },
   {
+    "id": "1-48d125e0-4131-4f99-83af-96fadb83778d",
+    "matchId": "1-48d125e0-4131-4f99-83af-96fadb83778d",
+    "teamSlug": "nio-esports-a7d88c76",
+    "teamName": "NIO Esports",
+    "opponentName": "Spryzen Team",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-48d125e0-4131-4f99-83af-96fadb83778d"
+  },
+  {
     "id": "1-9a555663-c989-4ca9-ad0c-4d26e8aff31c",
     "matchId": "1-9a555663-c989-4ca9-ad0c-4d26e8aff31c",
     "teamSlug": "no-leaders-please-db3166cd",
@@ -4319,6 +9365,93 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9a555663-c989-4ca9-ad0c-4d26e8aff31c"
+  },
+  {
+    "id": "1-44421e6c-1925-426e-9c7f-109f037cddac",
+    "matchId": "1-44421e6c-1925-426e-9c7f-109f037cddac",
+    "teamSlug": "no-time-to-die-3e9703cb",
+    "teamName": "No time to Die",
+    "opponentName": "Poles and Holes",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-44421e6c-1925-426e-9c7f-109f037cddac"
+  },
+  {
+    "id": "1-2487bb7e-940f-4c72-ab38-43db8e342523",
+    "matchId": "1-2487bb7e-940f-4c72-ab38-43db8e342523",
+    "teamSlug": "no7eam-a2b80877",
+    "teamName": "No7eam",
+    "opponentName": "BYpassed",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2487bb7e-940f-4c72-ab38-43db8e342523"
+  },
+  {
+    "id": "1-5e27c816-e7ac-448a-ab0c-40d30205487a",
+    "matchId": "1-5e27c816-e7ac-448a-ab0c-40d30205487a",
+    "teamSlug": "nogameplan-5b6b5bdc",
+    "teamName": "NoGamePlan",
+    "opponentName": "GUSAROV",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5e27c816-e7ac-448a-ab0c-40d30205487a"
   },
   {
     "id": "1-628aacf1-9424-48e8-9bfc-9d256f5be162",
@@ -4379,6 +9512,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ce935e54-388a-45ee-9de4-c8cbc5bc9d81"
   },
   {
+    "id": "1-1db205d9-4b34-45b6-ab29-47240acfa533",
+    "matchId": "1-1db205d9-4b34-45b6-ab29-47240acfa533",
+    "teamSlug": "noname-team-1ad551eb",
+    "teamName": "NoName Team",
+    "opponentName": "Step 1 Do A Madness",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1db205d9-4b34-45b6-ab29-47240acfa533"
+  },
+  {
     "id": "1-42f1ebb7-7afe-4211-9066-462551d975f5",
     "matchId": "1-42f1ebb7-7afe-4211-9066-462551d975f5",
     "teamSlug": "noprac-d9722c09",
@@ -4408,6 +9570,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-42f1ebb7-7afe-4211-9066-462551d975f5"
   },
   {
+    "id": "1-f008796b-0351-4368-b446-1cd3fc0f0157",
+    "matchId": "1-f008796b-0351-4368-b446-1cd3fc0f0157",
+    "teamSlug": "noscope-esports-d2f2cb28",
+    "teamName": "NoScope eSports",
+    "opponentName": "MindHunters",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f008796b-0351-4368-b446-1cd3fc0f0157"
+  },
+  {
     "id": "1-11a331a3-6e69-4f5a-a882-7fe4bb40cdc7",
     "matchId": "1-11a331a3-6e69-4f5a-a882-7fe4bb40cdc7",
     "teamSlug": "novair-ba94d28e",
@@ -4435,6 +9626,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-11a331a3-6e69-4f5a-a882-7fe4bb40cdc7"
+  },
+  {
+    "id": "1-28cec3dd-5e10-446a-a43e-932acd22fd29",
+    "matchId": "1-28cec3dd-5e10-446a-a43e-932acd22fd29",
+    "teamSlug": "novax-ef7464f8",
+    "teamName": "NovaX",
+    "opponentName": "Jpd",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-28cec3dd-5e10-446a-a43e-932acd22fd29"
+  },
+  {
+    "id": "1-79079047-8ca2-4235-9e5c-6063be0a4474",
+    "matchId": "1-79079047-8ca2-4235-9e5c-6063be0a4474",
+    "teamSlug": "nre-5fb2f4a4",
+    "teamName": "NRE",
+    "opponentName": "Hellforge",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79079047-8ca2-4235-9e5c-6063be0a4474"
   },
   {
     "id": "1-343cde9f-c0f1-437b-bf95-c7575350215d",
@@ -4582,6 +9831,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-afee4d77-8f3e-4221-a4af-d169574fc0f8"
   },
   {
+    "id": "1-742795ed-f512-489f-ba58-1105098f2cfe",
+    "matchId": "1-742795ed-f512-489f-ba58-1105098f2cfe",
+    "teamSlug": "old-but-gold-b68cf047",
+    "teamName": "Old but Gold",
+    "opponentName": "TpuDeB9TOE Tsarstvo",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-742795ed-f512-489f-ba58-1105098f2cfe"
+  },
+  {
     "id": "1-5543008c-8cb9-4cf2-be7b-9e34a6621e63",
     "matchId": "1-5543008c-8cb9-4cf2-be7b-9e34a6621e63",
     "teamSlug": "old-dads-banging-c3c6fd6e",
@@ -4638,6 +9916,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-17889ac1-6331-42f9-a24f-544cfb8d8c1b"
+  },
+  {
+    "id": "1-0b1fbdb5-6886-487e-a068-c2930a55d263",
+    "matchId": "1-0b1fbdb5-6886-487e-a068-c2930a55d263",
+    "teamSlug": "oldboys-51aa82a4",
+    "teamName": "OldBoys",
+    "opponentName": "WBT Academy",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0b1fbdb5-6886-487e-a068-c2930a55d263"
+  },
+  {
+    "id": "1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3",
+    "matchId": "1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3",
+    "teamSlug": "oldboys-51aa82a4",
+    "teamName": "OldBoys",
+    "opponentName": "NAVI Junior",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ecb65297-e9ae-44fa-bb7c-2ee877ee30a3"
   },
   {
     "id": "1-4989c22c-4d05-4695-8884-770cf64af8de",
@@ -4727,6 +10063,122 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1dd09603-eaff-4d82-9e36-2a961a3f2734"
   },
   {
+    "id": "1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7",
+    "matchId": "1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7",
+    "teamSlug": "one-time-874b171c",
+    "teamName": "One time",
+    "opponentName": "Oxingame Esports",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7"
+  },
+  {
+    "id": "1-6a2589a6-447a-4b79-a945-222b925b4efc",
+    "matchId": "1-6a2589a6-447a-4b79-a945-222b925b4efc",
+    "teamSlug": "only-gamers-61be9f3c",
+    "teamName": "ONLY GAMERS",
+    "opponentName": "LUDOMANI",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6a2589a6-447a-4b79-a945-222b925b4efc"
+  },
+  {
+    "id": "1-74e763e5-8546-4758-9f92-a12c1e7115d0",
+    "matchId": "1-74e763e5-8546-4758-9f92-a12c1e7115d0",
+    "teamSlug": "onvog-dcaf9fb0",
+    "teamName": "ONVOG",
+    "opponentName": "CSDIILIT",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-74e763e5-8546-4758-9f92-a12c1e7115d0"
+  },
+  {
+    "id": "1-6d10469b-f515-4e30-9ba8-0b00d16662bd",
+    "matchId": "1-6d10469b-f515-4e30-9ba8-0b00d16662bd",
+    "teamSlug": "onyx-8f0f0577",
+    "teamName": "ONYX",
+    "opponentName": "ZolwOdTylu",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6d10469b-f515-4e30-9ba8-0b00d16662bd"
+  },
+  {
     "id": "1-0481cdd9-660a-4063-a89a-9a585c699b3f",
     "matchId": "1-0481cdd9-660a-4063-a89a-9a585c699b3f",
     "teamSlug": "orca-1f0a7bde",
@@ -4754,6 +10206,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0481cdd9-660a-4063-a89a-9a585c699b3f"
+  },
+  {
+    "id": "1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13",
+    "matchId": "1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13",
+    "teamSlug": "orglezz-7ee75e89",
+    "teamName": "ORGLEZZ",
+    "opponentName": "NextMapPlease",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e50e6beb-5e6c-48a8-a594-5f8ae961dd13"
   },
   {
     "id": "1-0ee2e86f-3186-4478-bddd-c2bcce22224a",
@@ -4814,6 +10295,151 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8720facc-09b8-42be-b6f9-27b8f2942c46"
   },
   {
+    "id": "1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7",
+    "matchId": "1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7",
+    "teamSlug": "oxingame-esports-c208f2a5",
+    "teamName": "Oxingame Esports",
+    "opponentName": "One time",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5d28cc43-ef19-45c8-a9ed-3b6306ba1be7"
+  },
+  {
+    "id": "1-91f35bad-b16f-47f1-aeaf-242cf670dd6c",
+    "matchId": "1-91f35bad-b16f-47f1-aeaf-242cf670dd6c",
+    "teamSlug": "pany-6342c9df",
+    "teamName": "PANY",
+    "opponentName": "KLANO  FONTANO",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-91f35bad-b16f-47f1-aeaf-242cf670dd6c"
+  },
+  {
+    "id": "1-81c26414-a941-4248-90ca-b59764afa7e9",
+    "matchId": "1-81c26414-a941-4248-90ca-b59764afa7e9",
+    "teamSlug": "papillon-03d0fb44",
+    "teamName": "Papillon",
+    "opponentName": "Vigor Esports",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-81c26414-a941-4248-90ca-b59764afa7e9"
+  },
+  {
+    "id": "1-7c216b9d-389f-4318-8825-7c79ba4314ca",
+    "matchId": "1-7c216b9d-389f-4318-8825-7c79ba4314ca",
+    "teamSlug": "partizan-junior-6cdbbd89",
+    "teamName": "PARTIZAN Junior",
+    "opponentName": "Vexed Vortex",
+    "teamScore": 13,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 1",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7c216b9d-389f-4318-8825-7c79ba4314ca"
+  },
+  {
+    "id": "1-af02cb36-ee99-460e-a077-bdf76b62b269",
+    "matchId": "1-af02cb36-ee99-460e-a077-bdf76b62b269",
+    "teamSlug": "peaky-blinders-544bd8af",
+    "teamName": "Peaky Blinders",
+    "opponentName": "2k elo clowns",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-af02cb36-ee99-460e-a077-bdf76b62b269"
+  },
+  {
     "id": "1-4507e788-6720-4a57-bae4-a45cc91b4ba2",
     "matchId": "1-4507e788-6720-4a57-bae4-a45cc91b4ba2",
     "teamSlug": "penazoid-138acd1d",
@@ -4841,6 +10467,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4507e788-6720-4a57-bae4-a45cc91b4ba2"
+  },
+  {
+    "id": "1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce",
+    "matchId": "1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce",
+    "teamSlug": "perpetual-c9621556",
+    "teamName": "Perpetual",
+    "opponentName": "winners of winners",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce"
   },
   {
     "id": "1-74e98458-c472-45e9-b77b-da8a502cbb5d",
@@ -4872,6 +10527,267 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-74e98458-c472-45e9-b77b-da8a502cbb5d"
   },
   {
+    "id": "1-f36d585b-7ca9-46db-a948-07a953e467f4",
+    "matchId": "1-f36d585b-7ca9-46db-a948-07a953e467f4",
+    "teamSlug": "pesujakuivaus60-ed6f77b1",
+    "teamName": "Pesujakuivaus60",
+    "opponentName": "FAJNE CHLOPAKI",
+    "teamScore": 16,
+    "opponentScore": 13,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 16,
+        "opponentScore": 13,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f36d585b-7ca9-46db-a948-07a953e467f4"
+  },
+  {
+    "id": "1-50d7b1fb-3e77-4fe1-bd09-24346ae24170",
+    "matchId": "1-50d7b1fb-3e77-4fe1-bd09-24346ae24170",
+    "teamSlug": "picburglv-731922be",
+    "teamName": "picburgLV",
+    "opponentName": "PLATOON SIGMA",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-50d7b1fb-3e77-4fe1-bd09-24346ae24170"
+  },
+  {
+    "id": "1-56e39fd2-b9c8-4145-bc47-8a3214f27e24",
+    "matchId": "1-56e39fd2-b9c8-4145-bc47-8a3214f27e24",
+    "teamSlug": "pixen-esports-04166b41",
+    "teamName": "PIXEN Esports",
+    "opponentName": "TSG",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-56e39fd2-b9c8-4145-bc47-8a3214f27e24"
+  },
+  {
+    "id": "1-50d7b1fb-3e77-4fe1-bd09-24346ae24170",
+    "matchId": "1-50d7b1fb-3e77-4fe1-bd09-24346ae24170",
+    "teamSlug": "platoon-sigma-7c5edd5c",
+    "teamName": "PLATOON SIGMA",
+    "opponentName": "picburgLV",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-50d7b1fb-3e77-4fe1-bd09-24346ae24170"
+  },
+  {
+    "id": "1-0d954acc-0ba9-486a-8843-57cf57ebe582",
+    "matchId": "1-0d954acc-0ba9-486a-8843-57cf57ebe582",
+    "teamSlug": "playboyz-9676ef9b",
+    "teamName": "playboyz",
+    "opponentName": "DIRECTORs TEAM",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0d954acc-0ba9-486a-8843-57cf57ebe582"
+  },
+  {
+    "id": "1-44421e6c-1925-426e-9c7f-109f037cddac",
+    "matchId": "1-44421e6c-1925-426e-9c7f-109f037cddac",
+    "teamSlug": "poles-and-holes-4b6719cd",
+    "teamName": "Poles and Holes",
+    "opponentName": "No time to Die",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-44421e6c-1925-426e-9c7f-109f037cddac"
+  },
+  {
+    "id": "1-be5ab973-03fe-4563-b2d0-62cb5bfa2273",
+    "matchId": "1-be5ab973-03fe-4563-b2d0-62cb5bfa2273",
+    "teamSlug": "prestige-academy-1635200f",
+    "teamName": "Prestige Academy",
+    "opponentName": "GTZ esports RISE",
+    "teamScore": 13,
+    "opponentScore": 3,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 3",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 3,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-be5ab973-03fe-4563-b2d0-62cb5bfa2273"
+  },
+  {
+    "id": "1-b48c7596-93f4-4f0b-9924-c706c6577570",
+    "matchId": "1-b48c7596-93f4-4f0b-9924-c706c6577570",
+    "teamSlug": "prezidentkazani-5f0a8300",
+    "teamName": "prezidentkazani",
+    "opponentName": "Hamster Ghoul",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b48c7596-93f4-4f0b-9924-c706c6577570"
+  },
+  {
+    "id": "1-db027d54-36ff-4ca9-99b3-5b9ea9c24228",
+    "matchId": "1-db027d54-36ff-4ca9-99b3-5b9ea9c24228",
+    "teamSlug": "privateer-gaming-96ea5baa",
+    "teamName": "Privateer Gaming",
+    "opponentName": "mellren",
+    "teamScore": 16,
+    "opponentScore": 14,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 14",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 16,
+        "opponentScore": 14,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-db027d54-36ff-4ca9-99b3-5b9ea9c24228"
+  },
+  {
     "id": "1-f107ab0c-bece-4f26-8bef-7b9a09469597",
     "matchId": "1-f107ab0c-bece-4f26-8bef-7b9a09469597",
     "teamSlug": "pro-lapse-60939309",
@@ -4901,6 +10817,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f107ab0c-bece-4f26-8bef-7b9a09469597"
   },
   {
+    "id": "1-c27b0669-0939-4308-8f24-714c2f3c355b",
+    "matchId": "1-c27b0669-0939-4308-8f24-714c2f3c355b",
+    "teamSlug": "project-szpont-155cd538",
+    "teamName": "Project SZPONT",
+    "opponentName": "error404",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c27b0669-0939-4308-8f24-714c2f3c355b"
+  },
+  {
     "id": "1-b6209b3c-7b70-442c-9e81-20333f81ebdc",
     "matchId": "1-b6209b3c-7b70-442c-9e81-20333f81ebdc",
     "teamSlug": "project-z-theta-x-f85cfe74",
@@ -4928,6 +10873,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b6209b3c-7b70-442c-9e81-20333f81ebdc"
+  },
+  {
+    "id": "1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329",
+    "matchId": "1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329",
+    "teamSlug": "proqishot-2e133ef4",
+    "teamName": "proqishot",
+    "opponentName": "DPL",
+    "teamScore": 14,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "14 : 16",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3c5d8f76-505b-4ec4-874c-73ff3e7a8329"
+  },
+  {
+    "id": "1-931edf18-859b-4c3c-a781-3855a94187ab",
+    "matchId": "1-931edf18-859b-4c3c-a781-3855a94187ab",
+    "teamSlug": "prz-gaming-047d53f8",
+    "teamName": "PRZ GAMING",
+    "opponentName": "Imprerial Law",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-931edf18-859b-4c3c-a781-3855a94187ab"
   },
   {
     "id": "1-6b081408-7d01-4d95-b978-abccc998b221",
@@ -5075,6 +11078,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-45a2bd60-a0d5-4503-928a-9367b22d1add"
   },
   {
+    "id": "1-64788227-45a3-473b-9638-e7e2522ba9f4",
+    "matchId": "1-64788227-45a3-473b-9638-e7e2522ba9f4",
+    "teamSlug": "quit-07024996",
+    "teamName": "quit",
+    "opponentName": "RolatorPeek",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-64788227-45a3-473b-9638-e7e2522ba9f4"
+  },
+  {
     "id": "1-1a885574-5246-4c6f-a5fa-77870dd7280b",
     "matchId": "1-1a885574-5246-4c6f-a5fa-77870dd7280b",
     "teamSlug": "qupmanacs-48ba5161",
@@ -5218,6 +11250,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a577fbba-3ce9-4e32-aad2-bbc15a29b9b5"
+  },
+  {
+    "id": "1-943c41f0-3039-4657-9134-054f9d175959",
+    "matchId": "1-943c41f0-3039-4657-9134-054f9d175959",
+    "teamSlug": "regnum4games-5e23d9f1",
+    "teamName": "regnum4games",
+    "opponentName": "TrafficPills Esports",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-943c41f0-3039-4657-9134-054f9d175959"
   },
   {
     "id": "1-0fe89bd6-6261-4d20-95f7-3ee9a706c260",
@@ -5394,6 +11455,122 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6b081408-7d01-4d95-b978-abccc998b221"
   },
   {
+    "id": "1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf",
+    "matchId": "1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf",
+    "teamSlug": "riset-bb0901d0",
+    "teamName": "Riset",
+    "opponentName": "Akiko",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-80d69e17-2c98-4fcd-b3f4-d251d2d362cf"
+  },
+  {
+    "id": "1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c",
+    "matchId": "1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c",
+    "teamSlug": "rising-radiance-6605b173",
+    "teamName": "Rising Radiance",
+    "opponentName": "Sostes",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c"
+  },
+  {
+    "id": "1-64788227-45a3-473b-9638-e7e2522ba9f4",
+    "matchId": "1-64788227-45a3-473b-9638-e7e2522ba9f4",
+    "teamSlug": "rolatorpeek-00c9fb8f",
+    "teamName": "RolatorPeek",
+    "opponentName": "quit",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-64788227-45a3-473b-9638-e7e2522ba9f4"
+  },
+  {
+    "id": "1-2332a51b-43bb-41de-be09-87cf3f05b942",
+    "matchId": "1-2332a51b-43bb-41de-be09-87cf3f05b942",
+    "teamSlug": "ronin-pt-dca73234",
+    "teamName": "RONIN PT",
+    "opponentName": "BezBENZINA",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2332a51b-43bb-41de-be09-87cf3f05b942"
+  },
+  {
     "id": "1-c0e792b4-a1dd-4537-b203-94be4dc3ff78",
     "matchId": "1-c0e792b4-a1dd-4537-b203-94be4dc3ff78",
     "teamSlug": "room-temp-iqs-777103dc",
@@ -5423,6 +11600,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c0e792b4-a1dd-4537-b203-94be4dc3ff78"
   },
   {
+    "id": "1-5c745495-662e-43f2-9f22-bd17d5cf4f9a",
+    "matchId": "1-5c745495-662e-43f2-9f22-bd17d5cf4f9a",
+    "teamSlug": "royal-legion-09987d65",
+    "teamName": "Royal Legion",
+    "opponentName": "Arzamas Gang",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5c745495-662e-43f2-9f22-bd17d5cf4f9a"
+  },
+  {
     "id": "1-3ddf2a87-87de-4582-9e6b-99c351115ca9",
     "matchId": "1-3ddf2a87-87de-4582-9e6b-99c351115ca9",
     "teamSlug": "runthedamnball-85eeef4d",
@@ -5450,6 +11656,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3ddf2a87-87de-4582-9e6b-99c351115ca9"
+  },
+  {
+    "id": "1-e7a131fa-7b1f-4c98-9032-1211cd8af421",
+    "matchId": "1-e7a131fa-7b1f-4c98-9032-1211cd8af421",
+    "teamSlug": "ryba67-2875b45b",
+    "teamName": "RYBA67",
+    "opponentName": "IRONFIVE",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e7a131fa-7b1f-4c98-9032-1211cd8af421"
+  },
+  {
+    "id": "1-b26b4e82-57a2-4201-967e-cde92ecbae4e",
+    "matchId": "1-b26b4e82-57a2-4201-967e-cde92ecbae4e",
+    "teamSlug": "ryvex-1083345b",
+    "teamName": "Ryvex",
+    "opponentName": "KHOLODTSI",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b26b4e82-57a2-4201-967e-cde92ecbae4e"
   },
   {
     "id": "1-5d6a4c47-6d6a-44a6-8c86-33491ee24596",
@@ -5568,6 +11832,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4877300b-8b06-4bfa-aad4-2beb6b635d4c"
   },
   {
+    "id": "1-60de4f78-19c1-4c45-8fa1-2356105d3ae9",
+    "matchId": "1-60de4f78-19c1-4c45-8fa1-2356105d3ae9",
+    "teamSlug": "scl-infinity-47a2032f",
+    "teamName": "SCL-INFINITY",
+    "opponentName": "HyperioN",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60de4f78-19c1-4c45-8fa1-2356105d3ae9"
+  },
+  {
+    "id": "1-c0372731-d287-47eb-a74e-5d55a63e6a2e",
+    "matchId": "1-c0372731-d287-47eb-a74e-5d55a63e6a2e",
+    "teamSlug": "scuttle-gap-7d123fe0",
+    "teamName": "Scuttle Gap",
+    "opponentName": "EXEN",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c0372731-d287-47eb-a74e-5d55a63e6a2e"
+  },
+  {
     "id": "1-5a69da7f-0d85-4337-ab70-b15b11fda2cc",
     "matchId": "1-5a69da7f-0d85-4337-ab70-b15b11fda2cc",
     "teamSlug": "second-nature-e315c316",
@@ -5595,6 +11917,93 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5a69da7f-0d85-4337-ab70-b15b11fda2cc"
+  },
+  {
+    "id": "1-84b2436b-afc3-4cfc-8a11-7d2023a080df",
+    "matchId": "1-84b2436b-afc3-4cfc-8a11-7d2023a080df",
+    "teamSlug": "seizer-2b071fde",
+    "teamName": "Seizer",
+    "opponentName": "Kulbowicze",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-84b2436b-afc3-4cfc-8a11-7d2023a080df"
+  },
+  {
+    "id": "1-d615b9ce-50c8-42b0-9534-26f0d3025dd2",
+    "matchId": "1-d615b9ce-50c8-42b0-9534-26f0d3025dd2",
+    "teamSlug": "seizer-b-096db7ae",
+    "teamName": "Seizer B",
+    "opponentName": "Ivor CS",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d615b9ce-50c8-42b0-9534-26f0d3025dd2"
+  },
+  {
+    "id": "1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f",
+    "matchId": "1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f",
+    "teamSlug": "seventeen-f01c52a5",
+    "teamName": "SEVENTEEN",
+    "opponentName": "AWWRORA",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2c9d3a8b-9acf-4bca-8821-909ed26d1f9f"
   },
   {
     "id": "1-3006875c-b391-4aab-bb42-ae6ccaf0cc80",
@@ -5742,6 +12151,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-946ffa82-ebd8-43fa-9160-7e4bdb2d22cf"
   },
   {
+    "id": "1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12",
+    "matchId": "1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12",
+    "teamSlug": "shells-of-victory-58e12cd4",
+    "teamName": "Shells of Victory",
+    "opponentName": "Sparkad IRL",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12"
+  },
+  {
     "id": "1-344dadc7-52ee-4ade-ab6a-b365fa9ec227",
     "matchId": "1-344dadc7-52ee-4ade-ab6a-b365fa9ec227",
     "teamSlug": "shirtcockin-e18d3e4b",
@@ -5769,6 +12207,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-344dadc7-52ee-4ade-ab6a-b365fa9ec227"
+  },
+  {
+    "id": "1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf",
+    "matchId": "1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf",
+    "teamSlug": "singular-a4d6810c",
+    "teamName": "singular",
+    "opponentName": "Void Warriors",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-bbdee378-c3d2-4c0d-950a-0a5c0921b7bf"
   },
   {
     "id": "1-e8b329a1-907c-4c63-acd7-48c84e8132dc",
@@ -5858,6 +12325,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-db1a7ae8-54c8-4530-bc5e-038b73edd2da"
   },
   {
+    "id": "1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3",
+    "matchId": "1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3",
+    "teamSlug": "smiecie-4ff663f9",
+    "teamName": "smiecie",
+    "opponentName": "Gold Beasts",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2b731ed4-ed6d-43e1-b6aa-cb69b9ff46d3"
+  },
+  {
+    "id": "1-2a2be996-14d8-480d-8e85-04906c10527c",
+    "matchId": "1-2a2be996-14d8-480d-8e85-04906c10527c",
+    "teamSlug": "smokinsexxystyle-cd10d589",
+    "teamName": "SmokinSexxyStyle",
+    "opponentName": "Invincible",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2a2be996-14d8-480d-8e85-04906c10527c"
+  },
+  {
     "id": "1-8a8d3f1c-cb62-4dcd-96e1-2c29ea9dce68",
     "matchId": "1-8a8d3f1c-cb62-4dcd-96e1-2c29ea9dce68",
     "teamSlug": "snowplowers-f964eb9a",
@@ -5945,6 +12470,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ce935e54-388a-45ee-9de4-c8cbc5bc9d81"
   },
   {
+    "id": "1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c",
+    "matchId": "1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c",
+    "teamSlug": "sostes-0f7d1c7a",
+    "teamName": "Sostes",
+    "opponentName": "Rising Radiance",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5fc85fbb-b261-4fa9-80e2-2c1c4dc9786c"
+  },
+  {
+    "id": "1-c864b3a9-5686-47ea-845c-1f326c6978a5",
+    "matchId": "1-c864b3a9-5686-47ea-845c-1f326c6978a5",
+    "teamSlug": "souls-heart-esport-25c78de2",
+    "teamName": "Souls Heart Esport",
+    "opponentName": "Bonk",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-c864b3a9-5686-47ea-845c-1f326c6978a5"
+  },
+  {
     "id": "1-86a7045b-917c-4f1a-9dc0-4606bd18316d",
     "matchId": "1-86a7045b-917c-4f1a-9dc0-4606bd18316d",
     "teamSlug": "sound-of-arthritis-4bf39b37",
@@ -5974,6 +12557,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-86a7045b-917c-4f1a-9dc0-4606bd18316d"
   },
   {
+    "id": "1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45",
+    "matchId": "1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45",
+    "teamSlug": "southendmassive-d6da59f2",
+    "teamName": "SouthendMassive",
+    "opponentName": "1337",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0e34e6d4-72be-4e0a-96ea-cb636d9dbd45"
+  },
+  {
+    "id": "1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12",
+    "matchId": "1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12",
+    "teamSlug": "sparkad-irl-d7779ae1",
+    "teamName": "Sparkad IRL",
+    "opponentName": "Shells of Victory",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ca32bb96-0e8e-4c22-a968-4c6caa8d5b12"
+  },
+  {
+    "id": "1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea",
+    "matchId": "1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea",
+    "teamSlug": "spg-9afcc1e5",
+    "teamName": "spg",
+    "opponentName": "XCVV",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea"
+  },
+  {
     "id": "1-3b757ef7-4dc7-4253-87fb-c4857c27b9c4",
     "matchId": "1-3b757ef7-4dc7-4253-87fb-c4857c27b9c4",
     "teamSlug": "spin-da-block-53c741d7",
@@ -6001,6 +12671,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3b757ef7-4dc7-4253-87fb-c4857c27b9c4"
+  },
+  {
+    "id": "1-48d125e0-4131-4f99-83af-96fadb83778d",
+    "matchId": "1-48d125e0-4131-4f99-83af-96fadb83778d",
+    "teamSlug": "spryzen-team-9d90384d",
+    "teamName": "Spryzen Team",
+    "opponentName": "NIO Esports",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-48d125e0-4131-4f99-83af-96fadb83778d"
   },
   {
     "id": "1-bde857b8-05d2-4504-a1ba-a5fa0dce921b",
@@ -6090,6 +12789,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-abb08a5e-fa2c-480b-b707-d97946adb6f8"
   },
   {
+    "id": "1-1db205d9-4b34-45b6-ab29-47240acfa533",
+    "matchId": "1-1db205d9-4b34-45b6-ab29-47240acfa533",
+    "teamSlug": "step-1-do-a-madness-ebb76f8a",
+    "teamName": "Step 1 Do A Madness",
+    "opponentName": "NoName Team",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1db205d9-4b34-45b6-ab29-47240acfa533"
+  },
+  {
     "id": "1-5d7386a9-1af1-42f3-8bfc-4f47a20877de",
     "matchId": "1-5d7386a9-1af1-42f3-8bfc-4f47a20877de",
     "teamSlug": "stfdysab-912f01c2",
@@ -6148,6 +12876,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1e34090f-7e74-45ac-9c59-71cce5435bbf"
   },
   {
+    "id": "1-d686bf4c-7111-4d89-92ec-95830cd69123",
+    "matchId": "1-d686bf4c-7111-4d89-92ec-95830cd69123",
+    "teamSlug": "strael-borabnl-1e115c05",
+    "teamName": "Strael-BoraBNL",
+    "opponentName": "dA koRe",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d686bf4c-7111-4d89-92ec-95830cd69123"
+  },
+  {
     "id": "1-946ffa82-ebd8-43fa-9160-7e4bdb2d22cf",
     "matchId": "1-946ffa82-ebd8-43fa-9160-7e4bdb2d22cf",
     "teamSlug": "strafe-ba69cceb",
@@ -6175,6 +12932,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-946ffa82-ebd8-43fa-9160-7e4bdb2d22cf"
+  },
+  {
+    "id": "1-0f72b779-da66-498e-a84a-fc463c051824",
+    "matchId": "1-0f72b779-da66-498e-a84a-fc463c051824",
+    "teamSlug": "stubborn-boys-df5c7b48",
+    "teamName": "Stubborn Boys",
+    "opponentName": "1Minute",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0f72b779-da66-498e-a84a-fc463c051824"
   },
   {
     "id": "1-0b177ece-3047-4fd7-86ae-872e90ecfecc",
@@ -6380,6 +13166,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1c16db35-eae6-4799-9c2b-e7095f03d7a9"
   },
   {
+    "id": "1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21",
+    "matchId": "1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21",
+    "teamSlug": "team-shock-d528df78",
+    "teamName": "Team Shock",
+    "opponentName": "UncNation",
+    "teamScore": 6,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "6 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 6,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21"
+  },
+  {
     "id": "1-fd73ef20-df1b-4627-a2dc-b8d8889ab95c",
     "matchId": "1-fd73ef20-df1b-4627-a2dc-b8d8889ab95c",
     "teamSlug": "team-skyline-16962af4",
@@ -6467,6 +13282,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2da7fe79-13ae-497a-9320-088ca709781d"
   },
   {
+    "id": "1-8320d594-abbb-4463-af1b-c8c908a25033",
+    "matchId": "1-8320d594-abbb-4463-af1b-c8c908a25033",
+    "teamSlug": "teamorkzsebesgoblin-5c8dc5ad",
+    "teamName": "teamorkzsebesgoblin",
+    "opponentName": "MidasDrakes",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8320d594-abbb-4463-af1b-c8c908a25033"
+  },
+  {
     "id": "1-08060e5f-7515-4706-803a-f2fc33947baa",
     "matchId": "1-08060e5f-7515-4706-803a-f2fc33947baa",
     "teamSlug": "temple-of-swing-7a115769",
@@ -6552,6 +13396,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b0744a0d-26bb-486d-954b-3225381e160b"
+  },
+  {
+    "id": "1-5c8929fb-3959-4567-a0ce-a1107a960beb",
+    "matchId": "1-5c8929fb-3959-4567-a0ce-a1107a960beb",
+    "teamSlug": "teox-b8907252",
+    "teamName": "TEOX",
+    "opponentName": "mamagla1na",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5c8929fb-3959-4567-a0ce-a1107a960beb"
+  },
+  {
+    "id": "1-570ef0ca-7cb9-468d-a151-c079dd30475a",
+    "matchId": "1-570ef0ca-7cb9-468d-a151-c079dd30475a",
+    "teamSlug": "terreno-gioco-esports-757e1494",
+    "teamName": "Terreno Gioco Esports",
+    "opponentName": "unluko",
+    "teamScore": 13,
+    "opponentScore": 11,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 11",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 11,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-570ef0ca-7cb9-468d-a151-c079dd30475a"
   },
   {
     "id": "1-ccdc6195-eada-48f1-a115-4ee3e53d8c65",
@@ -6757,6 +13659,93 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-344dadc7-52ee-4ade-ab6a-b365fa9ec227"
   },
   {
+    "id": "1-488ac5b1-3409-46ce-b1bc-1be933f5e780",
+    "matchId": "1-488ac5b1-3409-46ce-b1bc-1be933f5e780",
+    "teamSlug": "theseus-esports-b1293305",
+    "teamName": "Theseus Esports",
+    "opponentName": "Magneta",
+    "teamScore": 7,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "7 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 7,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-488ac5b1-3409-46ce-b1bc-1be933f5e780"
+  },
+  {
+    "id": "1-29c6a134-1186-4127-b88e-8a1552394b85",
+    "matchId": "1-29c6a134-1186-4127-b88e-8a1552394b85",
+    "teamSlug": "tovarx-63458fb2",
+    "teamName": "TOVARX",
+    "opponentName": "fullTNT",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Main B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "8961a4f3-2860-4545-87db-1ce1e32c7e13",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-29c6a134-1186-4127-b88e-8a1552394b85"
+  },
+  {
+    "id": "1-742795ed-f512-489f-ba58-1105098f2cfe",
+    "matchId": "1-742795ed-f512-489f-ba58-1105098f2cfe",
+    "teamSlug": "tpudeb9toe-tsarstvo-2d573094",
+    "teamName": "TpuDeB9TOE Tsarstvo",
+    "opponentName": "Old but Gold",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-742795ed-f512-489f-ba58-1105098f2cfe"
+  },
+  {
     "id": "1-b8188662-f126-4b8e-81cb-faec3ed52848",
     "matchId": "1-b8188662-f126-4b8e-81cb-faec3ed52848",
     "teamSlug": "tractors-cb7d5cec",
@@ -6784,6 +13773,209 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b8188662-f126-4b8e-81cb-faec3ed52848"
+  },
+  {
+    "id": "1-943c41f0-3039-4657-9134-054f9d175959",
+    "matchId": "1-943c41f0-3039-4657-9134-054f9d175959",
+    "teamSlug": "trafficpills-esports-2f4aa01a",
+    "teamName": "TrafficPills Esports",
+    "opponentName": "regnum4games",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-943c41f0-3039-4657-9134-054f9d175959"
+  },
+  {
+    "id": "1-8e04457e-149a-4d9b-a98f-6ae02143728d",
+    "matchId": "1-8e04457e-149a-4d9b-a98f-6ae02143728d",
+    "teamSlug": "tropic-thunder-3412e282",
+    "teamName": "Tropic Thunder",
+    "opponentName": "Yokai",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8e04457e-149a-4d9b-a98f-6ae02143728d"
+  },
+  {
+    "id": "1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e",
+    "matchId": "1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e",
+    "teamSlug": "tryhearts-45303e1f",
+    "teamName": "TryHearts",
+    "opponentName": "Anchors With Attitudes",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4951e9fd-64b7-4f8d-a3a4-ccb674c0b83e"
+  },
+  {
+    "id": "1-16446e42-b55c-46bd-b7ad-3ddcdde78352",
+    "matchId": "1-16446e42-b55c-46bd-b7ad-3ddcdde78352",
+    "teamSlug": "tsaislemec-93874e27",
+    "teamName": "TSAISLEMEC",
+    "opponentName": "Mushu",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-16446e42-b55c-46bd-b7ad-3ddcdde78352"
+  },
+  {
+    "id": "1-56e39fd2-b9c8-4145-bc47-8a3214f27e24",
+    "matchId": "1-56e39fd2-b9c8-4145-bc47-8a3214f27e24",
+    "teamSlug": "tsg-b523e23b",
+    "teamName": "TSG",
+    "opponentName": "PIXEN Esports",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-56e39fd2-b9c8-4145-bc47-8a3214f27e24"
+  },
+  {
+    "id": "1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362",
+    "matchId": "1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362",
+    "teamSlug": "turkiye-federasyonu-0cb2d592",
+    "teamName": "Turkiye Federasyonu",
+    "opponentName": "DevL33T",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-29a5f7fa-7b92-4c5b-b33d-8a8a9ab2c362"
+  },
+  {
+    "id": "1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8",
+    "matchId": "1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8",
+    "teamSlug": "turtles-clan-b6bdcd54",
+    "teamName": "Turtles Clan",
+    "opponentName": "GoodJob",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5759ed4a-76ab-4bb5-87b1-e2c2e5fbc4e8"
   },
   {
     "id": "1-fbbab935-9b63-4d08-b6f9-e482260104df",
@@ -6815,6 +14007,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fbbab935-9b63-4d08-b6f9-e482260104df"
   },
   {
+    "id": "1-7ae91e28-3962-4f24-b7e3-dac007b6f413",
+    "matchId": "1-7ae91e28-3962-4f24-b7e3-dac007b6f413",
+    "teamSlug": "ugounderme-34070ac0",
+    "teamName": "ugounderme",
+    "opponentName": "GG Arena ACADEMY",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7ae91e28-3962-4f24-b7e3-dac007b6f413"
+  },
+  {
+    "id": "1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21",
+    "matchId": "1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21",
+    "teamSlug": "uncnation-744eb764",
+    "teamName": "UncNation",
+    "opponentName": "Team Shock",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ca2e3b0d-0562-4baf-aae3-de5e331a4d21"
+  },
+  {
     "id": "1-a43abbf4-75d0-497a-85c5-b4a4dd4022d8",
     "matchId": "1-a43abbf4-75d0-497a-85c5-b4a4dd4022d8",
     "teamSlug": "unitedstatesarmy-esports-5477fad6",
@@ -6842,6 +14092,35 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a43abbf4-75d0-497a-85c5-b4a4dd4022d8"
+  },
+  {
+    "id": "1-570ef0ca-7cb9-468d-a151-c079dd30475a",
+    "matchId": "1-570ef0ca-7cb9-468d-a151-c079dd30475a",
+    "teamSlug": "unluko-a514822f",
+    "teamName": "unluko",
+    "opponentName": "Terreno Gioco Esports",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-570ef0ca-7cb9-468d-a151-c079dd30475a"
   },
   {
     "id": "1-a3a02d65-d415-4270-b067-d790029ce509",
@@ -6873,6 +14152,35 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3a02d65-d415-4270-b067-d790029ce509"
   },
   {
+    "id": "1-5e2747b5-afb4-4228-b36f-bae5510e57e1",
+    "matchId": "1-5e2747b5-afb4-4228-b36f-bae5510e57e1",
+    "teamSlug": "vaze-46e361f1",
+    "teamName": "VAZE",
+    "opponentName": "DH Premium",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5e2747b5-afb4-4228-b36f-bae5510e57e1"
+  },
+  {
     "id": "1-cc881fdd-72e1-4a7f-b0c8-a1043b05c2b6",
     "matchId": "1-cc881fdd-72e1-4a7f-b0c8-a1043b05c2b6",
     "teamSlug": "verybigdoogoos-92fc268d",
@@ -6900,6 +14208,122 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cc881fdd-72e1-4a7f-b0c8-a1043b05c2b6"
+  },
+  {
+    "id": "1-3595a6cc-25b8-44ef-b955-f00f41b474d9",
+    "matchId": "1-3595a6cc-25b8-44ef-b955-f00f41b474d9",
+    "teamSlug": "vespera-jokes-32b993d1",
+    "teamName": "VESPERA JOKES",
+    "opponentName": "Gatorian",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-3595a6cc-25b8-44ef-b955-f00f41b474d9"
+  },
+  {
+    "id": "1-7c216b9d-389f-4318-8825-7c79ba4314ca",
+    "matchId": "1-7c216b9d-389f-4318-8825-7c79ba4314ca",
+    "teamSlug": "vexed-vortex-024f37c3",
+    "teamName": "Vexed Vortex",
+    "opponentName": "PARTIZAN Junior",
+    "teamScore": 1,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "1 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 1,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7c216b9d-389f-4318-8825-7c79ba4314ca"
+  },
+  {
+    "id": "1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf",
+    "matchId": "1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf",
+    "teamSlug": "vibecheck-e1cf1350",
+    "teamName": "VibeCheck",
+    "opponentName": "WTG",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf"
+  },
+  {
+    "id": "1-81c26414-a941-4248-90ca-b59764afa7e9",
+    "matchId": "1-81c26414-a941-4248-90ca-b59764afa7e9",
+    "teamSlug": "vigor-esports-a02661aa",
+    "teamName": "Vigor Esports",
+    "opponentName": "Papillon",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-81c26414-a941-4248-90ca-b59764afa7e9"
   },
   {
     "id": "1-a577fbba-3ce9-4e32-aad2-bbc15a29b9b5",
@@ -6960,6 +14384,122 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5850cb07-572b-4560-9893-4f4029e9e65e"
   },
   {
+    "id": "1-cb7da450-4579-432b-8bce-cb365f855698",
+    "matchId": "1-cb7da450-4579-432b-8bce-cb365f855698",
+    "teamSlug": "virtualcasino-410b543a",
+    "teamName": "VirtualCasino",
+    "opponentName": "Istanbul Contra",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cb7da450-4579-432b-8bce-cb365f855698"
+  },
+  {
+    "id": "1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7",
+    "matchId": "1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7",
+    "teamSlug": "vitality-academy-581092cd",
+    "teamName": "Vitality Academy",
+    "opponentName": "Armitra Esports",
+    "teamScore": 13,
+    "opponentScore": 7,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 7",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 7,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e52d42e5-72d0-431a-97ac-a5d7b2e3fcc7"
+  },
+  {
+    "id": "1-1f993a58-6987-41f1-a67c-58d94eb8681f",
+    "matchId": "1-1f993a58-6987-41f1-a67c-58d94eb8681f",
+    "teamSlug": "vitality-academy-581092cd",
+    "teamName": "Vitality Academy",
+    "opponentName": "BAKS Esports",
+    "teamScore": 3,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "3 : 13",
+    "season": "S58 EU Main A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 3,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-1f993a58-6987-41f1-a67c-58d94eb8681f"
+  },
+  {
+    "id": "1-9fea3f1b-f59f-4319-aec7-5543f46805f0",
+    "matchId": "1-9fea3f1b-f59f-4319-aec7-5543f46805f0",
+    "teamSlug": "vodkaghouls-c07d0153",
+    "teamName": "vodkaGHOULS",
+    "opponentName": "eViniuM",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9fea3f1b-f59f-4319-aec7-5543f46805f0"
+  },
+  {
     "id": "1-4507e788-6720-4a57-bae4-a45cc91b4ba2",
     "matchId": "1-4507e788-6720-4a57-bae4-a45cc91b4ba2",
     "teamSlug": "void-alune-b1afb56d",
@@ -6987,6 +14527,93 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-4507e788-6720-4a57-bae4-a45cc91b4ba2"
+  },
+  {
+    "id": "1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc",
+    "matchId": "1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc",
+    "teamSlug": "voidwalkers-7e5f602d",
+    "teamName": "VoidWalkers",
+    "opponentName": "KANNGU RED",
+    "teamScore": 13,
+    "opponentScore": 4,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 4",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 4,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-b21cc882-ac1b-4f74-b76a-2c2ca09915bc"
+  },
+  {
+    "id": "1-490c71e3-b57f-4803-a01e-6049f0d480de",
+    "matchId": "1-490c71e3-b57f-4803-a01e-6049f0d480de",
+    "teamSlug": "volume-7-e89ba77a",
+    "teamName": "Volume 7",
+    "opponentName": "Izako Boars",
+    "teamScore": 2,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "2 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 2,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-490c71e3-b57f-4803-a01e-6049f0d480de"
+  },
+  {
+    "id": "1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757",
+    "matchId": "1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757",
+    "teamSlug": "w0a-84892320",
+    "teamName": "w0a",
+    "opponentName": "Aveo Esport",
+    "teamScore": 13,
+    "opponentScore": 1,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 1",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 13,
+        "opponentScore": 1,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d0e39c7f-e4c0-4074-930e-a5cc34e8d757"
   },
   {
     "id": "1-2db4d233-0df3-4dcf-9e43-30548e2dcc61",
@@ -7047,6 +14674,64 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5850cb07-572b-4560-9893-4f4029e9e65e"
   },
   {
+    "id": "1-d14e204c-7109-4ff0-a2f6-8ff19d699051",
+    "matchId": "1-d14e204c-7109-4ff0-a2f6-8ff19d699051",
+    "teamSlug": "warriorpath-cc80bc3f",
+    "teamName": "warriorPATH",
+    "opponentName": "Kinetic",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-d14e204c-7109-4ff0-a2f6-8ff19d699051"
+  },
+  {
+    "id": "1-e356eda3-91a8-4c71-8259-fad445848cd5",
+    "matchId": "1-e356eda3-91a8-4c71-8259-fad445848cd5",
+    "teamSlug": "warzywniak-119147bf",
+    "teamName": "Warzywniak",
+    "opponentName": "loyvt trot",
+    "teamScore": 11,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "11 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 11,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-e356eda3-91a8-4c71-8259-fad445848cd5"
+  },
+  {
     "id": "1-0b177ece-3047-4fd7-86ae-872e90ecfecc",
     "matchId": "1-0b177ece-3047-4fd7-86ae-872e90ecfecc",
     "teamSlug": "waterdrinkers-9111bfce",
@@ -7074,6 +14759,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0b177ece-3047-4fd7-86ae-872e90ecfecc"
+  },
+  {
+    "id": "1-0b1fbdb5-6886-487e-a068-c2930a55d263",
+    "matchId": "1-0b1fbdb5-6886-487e-a068-c2930a55d263",
+    "teamSlug": "wbt-01c6e989",
+    "teamName": "WBT",
+    "opponentName": "OldBoys",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0b1fbdb5-6886-487e-a068-c2930a55d263"
+  },
+  {
+    "id": "1-84ca9895-9766-435a-9c4e-23730c70ddd4",
+    "matchId": "1-84ca9895-9766-435a-9c4e-23730c70ddd4",
+    "teamSlug": "wbt-01c6e989",
+    "teamName": "WBT",
+    "opponentName": "ENRAGE",
+    "teamScore": 14,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "14 : 16",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 14,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-84ca9895-9766-435a-9c4e-23730c70ddd4"
   },
   {
     "id": "1-80910de1-6476-4b9a-992e-ea173e162ac3",
@@ -7132,6 +14875,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8c06782a-817b-454b-8fdf-029c25a23118"
+  },
+  {
+    "id": "1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d",
+    "matchId": "1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d",
+    "teamSlug": "white-tigers-07f6d6f8",
+    "teamName": "White tigers",
+    "opponentName": "Wolves Hill",
+    "teamScore": 16,
+    "opponentScore": 13,
+    "won": true,
+    "result": "WIN",
+    "boScore": "16 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 16,
+        "opponentScore": 13,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d"
+  },
+  {
+    "id": "1-7e6a0101-442e-4e73-bff8-d8e66642803e",
+    "matchId": "1-7e6a0101-442e-4e73-bff8-d8e66642803e",
+    "teamSlug": "whng-team-5af900cc",
+    "teamName": "WHNG TEAM",
+    "opponentName": "BHemanha",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Intermediate A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7e6a0101-442e-4e73-bff8-d8e66642803e"
   },
   {
     "id": "1-f7fff66c-7cfe-43c0-95a2-304e0a343a02",
@@ -7221,6 +15022,209 @@ const matches = [
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-5f3a31ce-fda3-472f-9140-e336a8b4cf85"
   },
   {
+    "id": "1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce",
+    "matchId": "1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce",
+    "teamSlug": "winners-of-winners-977730a0",
+    "teamName": "winners of winners",
+    "opponentName": "Perpetual",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f14c20ac-0a47-43cd-87b6-8db4df8b43ce"
+  },
+  {
+    "id": "1-70291d51-8734-4598-a7f9-3895c6918c50",
+    "matchId": "1-70291d51-8734-4598-a7f9-3895c6918c50",
+    "teamSlug": "wolf-team-guys-ac-f76d1466",
+    "teamName": "WOLF TEAM GUYS AC",
+    "opponentName": "MINKENS SHOOTERS",
+    "teamScore": 5,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "5 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 5,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-70291d51-8734-4598-a7f9-3895c6918c50"
+  },
+  {
+    "id": "1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d",
+    "matchId": "1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d",
+    "teamSlug": "wolves-hill-da924a67",
+    "teamName": "Wolves Hill",
+    "opponentName": "White tigers",
+    "teamScore": 13,
+    "opponentScore": 16,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "13 : 16",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 16,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-79163a4b-61bb-44e1-bc3c-fa2e1af2439d"
+  },
+  {
+    "id": "1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf",
+    "matchId": "1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf",
+    "teamSlug": "wtg-93efdd70",
+    "teamName": "WTG",
+    "opponentName": "VibeCheck",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-9a445b78-bfc9-4590-a1c6-e3e91da8b7cf"
+  },
+  {
+    "id": "1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea",
+    "matchId": "1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea",
+    "teamSlug": "xcvv-335cc81c",
+    "teamName": "XCVV",
+    "opponentName": "spg",
+    "teamScore": 13,
+    "opponentScore": 8,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 8",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Anubis"
+    ],
+    "mapScores": [
+      {
+        "map": "Anubis",
+        "teamScore": 13,
+        "opponentScore": 8,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-de1f7d55-2b0a-4a1f-a8e3-96feb3dc6fea"
+  },
+  {
+    "id": "1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7",
+    "matchId": "1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7",
+    "teamSlug": "xi-esport-5f2e9987",
+    "teamName": "XI Esport",
+    "opponentName": "Fraternity",
+    "teamScore": 10,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "10 : 13",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Nuke"
+    ],
+    "mapScores": [
+      {
+        "map": "Nuke",
+        "teamScore": 10,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3612af7-d1ca-4e7f-b95b-803b678d4bd7"
+  },
+  {
+    "id": "1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1",
+    "matchId": "1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1",
+    "teamSlug": "xi-esport-5f2e9987",
+    "teamName": "XI Esport",
+    "opponentName": "LPH Gaming",
+    "teamScore": 13,
+    "opponentScore": 6,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 6",
+    "season": "S58 EU Advanced Central - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 6,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-7e151257-08b6-4f4b-92f8-b04e6f1e5ac1"
+  },
+  {
     "id": "1-8ddeb737-4d7a-4d69-aac3-b2e690a7c62c",
     "matchId": "1-8ddeb737-4d7a-4d69-aac3-b2e690a7c62c",
     "teamSlug": "xiaoma-gaming-2162ad25",
@@ -7248,6 +15252,64 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8ddeb737-4d7a-4d69-aac3-b2e690a7c62c"
+  },
+  {
+    "id": "1-912418a8-90bc-4eb6-8da1-99c3dab17738",
+    "matchId": "1-912418a8-90bc-4eb6-8da1-99c3dab17738",
+    "teamSlug": "xp-zombiez-7d72d8bd",
+    "teamName": "XP_ZoMbIEZ",
+    "opponentName": "back2back",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Dust2"
+    ],
+    "mapScores": [
+      {
+        "map": "Dust2",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-912418a8-90bc-4eb6-8da1-99c3dab17738"
+  },
+  {
+    "id": "1-623d7ea4-854e-4647-aa35-48121c448de4",
+    "matchId": "1-623d7ea4-854e-4647-aa35-48121c448de4",
+    "teamSlug": "xructeam-c0f23bee",
+    "teamName": "XRUCTEAM",
+    "opponentName": "Last minute",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-623d7ea4-854e-4647-aa35-48121c448de4"
   },
   {
     "id": "1-0ee2e86f-3186-4478-bddd-c2bcce22224a",
@@ -7306,6 +15368,238 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-0671049f-d09e-4485-80fe-71b5b3467d35"
+  },
+  {
+    "id": "1-8e04457e-149a-4d9b-a98f-6ae02143728d",
+    "matchId": "1-8e04457e-149a-4d9b-a98f-6ae02143728d",
+    "teamSlug": "yokai-1996c68d",
+    "teamName": "Yokai",
+    "opponentName": "Tropic Thunder",
+    "teamScore": 4,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "4 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 4,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-8e04457e-149a-4d9b-a98f-6ae02143728d"
+  },
+  {
+    "id": "1-60c57fa2-dd2d-4a71-8d13-96588d0f447e",
+    "matchId": "1-60c57fa2-dd2d-4a71-8d13-96588d0f447e",
+    "teamSlug": "young-nordic-capital-6da1eb96",
+    "teamName": "Young Nordic Capital",
+    "opponentName": "butelki",
+    "teamScore": 13,
+    "opponentScore": 9,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 9",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 13,
+        "opponentScore": 9,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-60c57fa2-dd2d-4a71-8d13-96588d0f447e"
+  },
+  {
+    "id": "1-a3befe79-4304-403b-9c30-b281da1e6ca7",
+    "matchId": "1-a3befe79-4304-403b-9c30-b281da1e6ca7",
+    "teamSlug": "youngsters-18cdcfef",
+    "teamName": "Youngsters",
+    "opponentName": "D0nkers",
+    "teamScore": 8,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "8 : 13",
+    "season": "S58 EU Entry B - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "c1641aae-0e63-4564-a571-927091687b5b",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 8,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a3befe79-4304-403b-9c30-b281da1e6ca7"
+  },
+  {
+    "id": "1-2a2be996-14d8-480d-8e85-04906c10527c",
+    "matchId": "1-2a2be996-14d8-480d-8e85-04906c10527c",
+    "teamSlug": "zdarovakorova-374233b3",
+    "teamName": "ZdarovaKorova",
+    "opponentName": "SmokinSexxyStyle",
+    "teamScore": 9,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "9 : 13",
+    "season": "S58 EU Entry A - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 9,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-2a2be996-14d8-480d-8e85-04906c10527c"
+  },
+  {
+    "id": "1-77702dc5-4628-4976-9ccc-5d417d57f858",
+    "matchId": "1-77702dc5-4628-4976-9ccc-5d417d57f858",
+    "teamSlug": "zenvor-804309d3",
+    "teamName": "Zenvor",
+    "opponentName": "4Z",
+    "teamScore": 0,
+    "opponentScore": 13,
+    "won": false,
+    "result": "LOSS",
+    "boScore": "0 : 13",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Inferno"
+    ],
+    "mapScores": [
+      {
+        "map": "Inferno",
+        "teamScore": 0,
+        "opponentScore": 13,
+        "won": false
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-77702dc5-4628-4976-9ccc-5d417d57f858"
+  },
+  {
+    "id": "1-cbbd4217-7f70-4494-94b7-33562c2caaa8",
+    "matchId": "1-cbbd4217-7f70-4494-94b7-33562c2caaa8",
+    "teamSlug": "zettai-9e48748a",
+    "teamName": "Zettai",
+    "opponentName": "Critical",
+    "teamScore": 13,
+    "opponentScore": 10,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 10",
+    "season": "S58 EU Entry C - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 10,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-cbbd4217-7f70-4494-94b7-33562c2caaa8"
+  },
+  {
+    "id": "1-6d10469b-f515-4e30-9ba8-0b00d16662bd",
+    "matchId": "1-6d10469b-f515-4e30-9ba8-0b00d16662bd",
+    "teamSlug": "zolwodtylu-67172ad0",
+    "teamName": "ZolwOdTylu",
+    "opponentName": "ONYX",
+    "teamScore": 13,
+    "opponentScore": 5,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 5",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Ancient"
+    ],
+    "mapScores": [
+      {
+        "map": "Ancient",
+        "teamScore": 13,
+        "opponentScore": 5,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-6d10469b-f515-4e30-9ba8-0b00d16662bd"
+  },
+  {
+    "id": "1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400",
+    "matchId": "1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400",
+    "teamSlug": "zybr-gaming-35d1300e",
+    "teamName": "ZYBR Gaming",
+    "opponentName": "any baggers",
+    "teamScore": 13,
+    "opponentScore": 2,
+    "won": true,
+    "result": "WIN",
+    "boScore": "13 : 2",
+    "season": "S58 EU Entry D - Regular Season",
+    "date": "2026-07-22",
+    "status": "MATCH_STATUS_FINISHED",
+    "bestOf": 1,
+    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
+    "maps": [
+      "Mirage"
+    ],
+    "mapScores": [
+      {
+        "map": "Mirage",
+        "teamScore": 13,
+        "opponentScore": 2,
+        "won": true
+      }
+    ],
+    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-f5ae81e8-e47b-48b8-ab37-3d7d6251c400"
   },
   {
     "id": "1-59d19ae2-fe13-4ce3-b0fb-ca97b534fb0f",
@@ -23169,35 +31463,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-144e2700-0afe-43d9-84b6-7cbb6584def1"
-  },
-  {
-    "id": "1-ee1c0238-c0ca-448f-b890-fa0c60869e2b",
-    "matchId": "1-ee1c0238-c0ca-448f-b890-fa0c60869e2b",
-    "teamSlug": "nxvoid-d5e44f43",
-    "teamName": "NXVOID",
-    "opponentName": "Dynamo Eclot Phoenix",
-    "teamScore": 0,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "0 : 13",
-    "season": "S58 EU Entry C - Regular Season",
-    "date": "2026-07-19",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 0,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ee1c0238-c0ca-448f-b890-fa0c60869e2b"
   },
   {
     "id": "1-144e2700-0afe-43d9-84b6-7cbb6584def1",
@@ -40424,35 +48689,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-fcab88a1-9310-4e9e-a3fe-2ee3fbc647d2"
-  },
-  {
-    "id": "1-ed739d2f-3783-4159-8a68-49038a309cab",
-    "matchId": "1-ed739d2f-3783-4159-8a68-49038a309cab",
-    "teamSlug": "bzrs-c72048d9",
-    "teamName": "bzrs",
-    "opponentName": "Boolsheet",
-    "teamScore": 13,
-    "opponentScore": 3,
-    "won": true,
-    "result": "WIN",
-    "boScore": "13 : 3",
-    "season": "S58 EU Entry D - Regular Season",
-    "date": "2026-07-15",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42",
-    "maps": [
-      "Ancient"
-    ],
-    "mapScores": [
-      {
-        "map": "Ancient",
-        "teamScore": 13,
-        "opponentScore": 3,
-        "won": true
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-ed739d2f-3783-4159-8a68-49038a309cab"
   },
   {
     "id": "1-b29da3d9-f4bb-4c5d-8243-96a215f793e9",
@@ -60463,35 +68699,6 @@ const matches = [
       }
     ],
     "faceitUrl": "https://www.faceit.com/en/cs2/room/1-a55a1131-fd64-49c8-bbc0-f2bc2fe5a59f"
-  },
-  {
-    "id": "1-91954c1f-9f7d-47da-95cb-ddacbdac6189",
-    "matchId": "1-91954c1f-9f7d-47da-95cb-ddacbdac6189",
-    "teamSlug": "nxvoid-d5e44f43",
-    "teamName": "NXVOID",
-    "opponentName": "Akiko",
-    "teamScore": 3,
-    "opponentScore": 13,
-    "won": false,
-    "result": "LOSS",
-    "boScore": "3 : 13",
-    "season": "S58 EU Entry C - Regular Season",
-    "date": "2026-07-13",
-    "status": "MATCH_STATUS_FINISHED",
-    "bestOf": 1,
-    "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e",
-    "maps": [
-      "Dust2"
-    ],
-    "mapScores": [
-      {
-        "map": "Dust2",
-        "teamScore": 3,
-        "opponentScore": 13,
-        "won": false
-      }
-    ],
-    "faceitUrl": "https://www.faceit.com/en/cs2/room/1-91954c1f-9f7d-47da-95cb-ddacbdac6189"
   },
   {
     "id": "1-f9722f37-ad9e-49c6-9aa9-2b070f53bf12",
