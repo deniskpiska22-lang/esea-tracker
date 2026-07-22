@@ -366,7 +366,7 @@ function App() {
                   ESEA Tracker
                 </span>
                 <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-600">
-                  Competitive Hub
+                  Community Hub
                 </span>
               </span>
             </Link>
