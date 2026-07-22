@@ -163,10 +163,21 @@ const PLAYER_RATING_SCRIPT =
   process.env.PLAYER_RATING_SCRIPT ||
   "./scripts/recalculatePlayerRatings.js";
 
+function isValidPlayerNickname(value) {
+  const nickname = String(value || "").trim();
+
+  return (
+    Boolean(nickname) &&
+    nickname.toLowerCase() !== "unknown"
+  );
+}
+
 async function upsertRosterPlayer(player) {
   const faceitId =
     player?.playerId ||
     player?.player_id ||
+    player?.faceit_id ||
+    player?.faceitId ||
     player?.id ||
     null;
 
@@ -174,11 +185,44 @@ async function upsertRosterPlayer(player) {
     return null;
   }
 
-  const nickname =
-    player?.nickname ||
-    player?.playerName ||
-    player?.player_name ||
-    "Unknown";
+  const incomingNickname =
+    String(
+      player?.nickname ||
+      player?.playerName ||
+      player?.player_name ||
+      ""
+    ).trim();
+
+  const {
+    data: existingPlayer,
+    error: lookupError,
+  } = await supabase
+    .from("players")
+    .select("id,faceit_id,nickname")
+    .eq("faceit_id", faceitId)
+    .maybeSingle();
+
+  if (lookupError) {
+    throw new Error(
+      `Player lookup failed ${faceitId}: ${lookupError.message}`
+    );
+  }
+
+  /*
+   * Если FACEIT не прислал ник, не создаём новую
+   * запись с "Unknown" и не затираем существующий ник.
+   */
+  if (!isValidPlayerNickname(incomingNickname)) {
+    if (existingPlayer) {
+      return existingPlayer;
+    }
+
+    console.warn(
+      `Player skipped without nickname: ${faceitId}`
+    );
+
+    return null;
+  }
 
   const now = new Date().toISOString();
 
@@ -187,7 +231,7 @@ async function upsertRosterPlayer(player) {
     .upsert(
       {
         faceit_id: faceitId,
-        nickname,
+        nickname: incomingNickname,
         updated_at: now,
       },
       {
@@ -586,7 +630,7 @@ function normalizePlayer(player = {}) {
       player.player_name ||
       player.playerName ||
       stats.Nickname ||
-      "Unknown",
+      null,
 
     kills,
 
@@ -2281,7 +2325,7 @@ function normalizeMatchRosterPlayer(
       player.player_name ||
       player.playerName ||
       player.name ||
-      "Unknown",
+      null,
   };
 }
 

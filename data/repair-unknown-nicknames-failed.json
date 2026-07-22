@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-07-22T12:25:36.126Z",
+  "total": 563,
+  "recovered": 562,
+  "skipped": 0,
+  "failed": 1,
+  "items": [
+    {
+      "status": "failed",
+      "id": "526b06b1-bfc1-462f-b8ad-c75e3d6e82da",
+      "faceitId": "372cd16e-0f46-49c7-afc8-acd497b86113",
+      "error": "Error | 404 Not Found: {\"errors\":[{\"message\":\"The resource was not found.\",\"code\":\"err_nf0\",\"http_status\":404,\"parameters\":[]}]}"
+    }
+  ]
+}
