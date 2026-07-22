@@ -17,6 +17,7 @@ import teams from "../data/teams";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
+import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 
@@ -245,19 +246,20 @@ function TeamHero({
   team,
   align = "left",
 }) {
-  return (
-    <div
-      className={`flex flex-col items-center gap-4 ${
-        align === "right"
-          ? "md:flex-row-reverse md:justify-start"
-          : "md:flex-row"
-      }`}
-    >
-      {team.logo ? (
+  const localTeam = findLocalTeam(team?.id, team?.name);
+
+  const navigationSlug =
+    localTeam?.slug ||
+    team?.slug ||
+    null;
+
+  const content = (
+    <>
+      {team.logo || localTeam?.logo ? (
         <img
-          src={team.logo}
-          alt={team.name}
-          className="h-20 w-20 rounded-xl bg-[#0b0f14] object-contain p-2 md:h-24 md:w-24"
+          src={localTeam?.logo || team.logo}
+          alt={localTeam?.name || team.name}
+          className="h-20 w-20 rounded-xl bg-[#0b0f14] object-contain p-2 transition group-hover:scale-[1.04] md:h-24 md:w-24"
         />
       ) : (
         <div className="flex h-20 w-20 items-center justify-center rounded-xl border border-[#243041] bg-[#0b0f14] text-2xl font-black text-gray-500 md:h-24 md:w-24">
@@ -265,19 +267,28 @@ function TeamHero({
         </div>
       )}
 
-      {team.slug ? (
-        <Link
-          to={`/team/${team.slug}`}
-          className="text-center text-2xl font-black transition-colors hover:text-orange-400 md:text-4xl"
-        >
-          {team.name}
-        </Link>
-      ) : (
-        <div className="text-center text-2xl font-black md:text-4xl">
-          {team.name}
+      <div className={`min-w-0 ${align==="right"?"md:text-right":"md:text-left"}`}>
+        <div className="truncate text-center text-2xl font-black transition-colors group-hover:text-orange-400 md:text-4xl">
+          {localTeam?.name || team.name}
         </div>
-      )}
-    </div>
+      </div>
+    </>
+  );
+
+  const cls=`group flex flex-col items-center gap-4 ${align==="right"?"md:flex-row-reverse md:justify-start":"md:flex-row"}`;
+
+  if(!navigationSlug){
+    return <div className={cls}>{content}</div>;
+  }
+
+  return (
+    <Link
+      to={`/teams/${navigationSlug}`}
+      state={{from:window.location.pathname,label:"← Back to Match"}}
+      className={cls}
+    >
+      {content}
+    </Link>
   );
 }
 
@@ -307,7 +318,7 @@ function RecentMatchesCard({
           {matches.map((item) => (
             <Link
               key={`${item.matchId}-${item.teamSlug}`}
-              to={`/matches/${item.matchId}`}
+              to={`/match/${item.matchId}`}
               className="flex items-center justify-between border-b border-[#1d2634] px-5 py-3 transition-colors last:border-b-0 hover:bg-[#151e2b]"
             >
               <div>
@@ -346,7 +357,7 @@ const MAP_ORDER = [
   "Anubis",
   "Dust2",
   "Train",
-  "Overpass",
+  "Cache",
   "Vertigo",
 ];
 
@@ -439,7 +450,7 @@ function MapStatisticsCard({
   }, [leftStats, rightStats]);
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
         <h2 className="text-xl font-black">Map Statistics</h2>
         <p className="mt-1 text-xs text-gray-500">
@@ -609,7 +620,7 @@ function VoteCard({ matchId, team1, team2 }) {
   const hasVoted = Boolean(selectedTeamId);
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
         <h2 className="text-xl font-black">Vote for Winner</h2>
         <p className="mt-1 text-xs text-gray-500">
@@ -726,7 +737,7 @@ function MatchInformationCard({
   faceitUrl,
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
         <h2 className="text-xl font-black">Match Information</h2>
       </div>
@@ -757,6 +768,800 @@ function MatchInformationCard({
         >
           Open FACEIT Match Room →
         </a>
+      </div>
+    </section>
+  );
+}
+
+
+function getRatingPoints(row) {
+  return toNumber(row?.points ?? row?.rating, 0);
+}
+
+function getRatingMatchesPlayed(row) {
+  return toNumber(
+    row?.rating_matches_played ?? row?.matches_played,
+    0
+  );
+}
+
+function getTeamLookupCandidates(team) {
+  const localTeam = findLocalTeam(
+    team?.id,
+    team?.name
+  );
+
+  return {
+    ids: new Set(
+      [
+        team?.id,
+        team?.teamId,
+        team?.faceitTeamId,
+        team?.faceit_team_id,
+        localTeam?.id,
+        localTeam?.teamId,
+        localTeam?.faceitTeamId,
+        localTeam?.faceit_team_id,
+      ]
+        .filter(Boolean)
+        .map((value) => String(value))
+    ),
+    slugs: new Set(
+      [
+        team?.slug,
+        localTeam?.slug,
+      ]
+        .filter(Boolean)
+        .map((value) => String(value).toLowerCase())
+    ),
+    names: new Set(
+      [
+        team?.name,
+        localTeam?.name,
+      ]
+        .filter(Boolean)
+        .map(normalizeName)
+    ),
+  };
+}
+
+function findTeamRating(rows, team) {
+  if (!Array.isArray(rows) || !team) {
+    return null;
+  }
+
+  const candidates =
+    getTeamLookupCandidates(team);
+
+  return (
+    rows.find((row) => {
+      const rowIds = [
+        row.team_id,
+        row.faceit_team_id,
+        row.faceitTeamId,
+        row.id,
+      ]
+        .filter(Boolean)
+        .map((value) => String(value));
+
+      const rowSlugs = [
+        row.team_slug,
+        row.slug,
+      ]
+        .filter(Boolean)
+        .map((value) =>
+          String(value).toLowerCase()
+        );
+
+      const rowNames = [
+        row.team_name,
+        row.name,
+      ]
+        .filter(Boolean)
+        .map(normalizeName);
+
+      return (
+        rowIds.some((id) =>
+          candidates.ids.has(id)
+        ) ||
+        rowSlugs.some((slug) =>
+          candidates.slugs.has(slug)
+        ) ||
+        rowNames.some((name) =>
+          candidates.names.has(name)
+        )
+      );
+    }) || null
+  );
+}
+
+function getForecastSeriesScore(bestOf) {
+  const bo = Math.max(1, toNumber(bestOf, 1));
+  const winnerScore = Math.floor(bo / 2) + 1;
+  return {
+    winnerScore,
+    loserScore: Math.max(0, winnerScore - 1),
+  };
+}
+
+function buildRankMap(rows, replacements = new Map()) {
+  const ranked = (Array.isArray(rows) ? rows : [])
+    .map((row) => {
+      const key = String(
+        row.team_id ?? row.faceit_team_id ?? row.id ??
+        row.team_slug ?? row.slug ?? row.team_name ?? row.name ?? ""
+      );
+
+      return {
+        row,
+        key,
+        points: replacements.has(key)
+          ? replacements.get(key)
+          : getRatingPoints(row),
+      };
+    })
+    .filter((item) => getRatingMatchesPlayed(item.row) >= 3)
+    .sort((first, second) =>
+      second.points - first.points ||
+      getRatingMatchesPlayed(second.row) -
+        getRatingMatchesPlayed(first.row)
+    );
+
+  return new Map(
+    ranked.map((item, index) => [item.key, index + 1])
+  );
+}
+
+function getRatingRowKey(row) {
+  return String(
+    row?.team_id ?? row?.faceit_team_id ?? row?.id ??
+    row?.team_slug ?? row?.slug ?? row?.team_name ?? row?.name ?? ""
+  );
+}
+
+function RatingForecastCard({
+  ratingRows,
+  team1,
+  team2,
+  season,
+  bestOf,
+  loading,
+}) {
+  const forecast = useMemo(() => {
+    const team1Row =
+      findTeamRating(ratingRows, team1);
+
+    const team2Row =
+      findTeamRating(ratingRows, team2);
+
+    const team1Points = team1Row
+      ? getRatingPoints(team1Row)
+      : null;
+
+    const team2Points = team2Row
+      ? getRatingPoints(team2Row)
+      : null;
+
+    const team1Available =
+      Boolean(team1Row) &&
+      Number.isFinite(team1Points) &&
+      team1Points > 0;
+
+    const team2Available =
+      Boolean(team2Row) &&
+      Number.isFinite(team2Points) &&
+      team2Points > 0;
+
+    const currentRanks =
+      buildRankMap(ratingRows);
+
+    const baseResult = {
+      team1: {
+        available: team1Available,
+        points: team1Available
+          ? team1Points
+          : null,
+        rank: team1Available
+          ? currentRanks.get(
+              getRatingRowKey(team1Row)
+            ) || null
+          : null,
+        winPoints: null,
+        winChange: null,
+        winRank: null,
+        lossPoints: null,
+        lossChange: null,
+        lossRank: null,
+      },
+      team2: {
+        available: team2Available,
+        points: team2Available
+          ? team2Points
+          : null,
+        rank: team2Available
+          ? currentRanks.get(
+              getRatingRowKey(team2Row)
+            ) || null
+          : null,
+        winPoints: null,
+        winChange: null,
+        winRank: null,
+        lossPoints: null,
+        lossChange: null,
+        lossRank: null,
+      },
+      calculable:
+        team1Available && team2Available,
+    };
+
+    if (!baseResult.calculable) {
+      return baseResult;
+    }
+
+    const division = normalizeDivisionName(
+      team1Row.division ||
+      team2Row.division ||
+      season
+    );
+
+    const { winnerScore, loserScore } =
+      getForecastSeriesScore(bestOf);
+
+    const team1Wins = calculateMatchRating({
+      winnerPoints: team1Points,
+      loserPoints: team2Points,
+      winnerScore,
+      loserScore,
+      division,
+      region: season,
+      winnerMatchesPlayed:
+        getRatingMatchesPlayed(team1Row),
+      loserMatchesPlayed:
+        getRatingMatchesPlayed(team2Row),
+    });
+
+    const team2Wins = calculateMatchRating({
+      winnerPoints: team2Points,
+      loserPoints: team1Points,
+      winnerScore,
+      loserScore,
+      division,
+      region: season,
+      winnerMatchesPlayed:
+        getRatingMatchesPlayed(team2Row),
+      loserMatchesPlayed:
+        getRatingMatchesPlayed(team1Row),
+    });
+
+    const team1Key =
+      getRatingRowKey(team1Row);
+
+    const team2Key =
+      getRatingRowKey(team2Row);
+
+    const team1WinRanks = buildRankMap(
+      ratingRows,
+      new Map([
+        [team1Key, team1Wins.winnerNewPoints],
+        [team2Key, team1Wins.loserNewPoints],
+      ])
+    );
+
+    const team2WinRanks = buildRankMap(
+      ratingRows,
+      new Map([
+        [team1Key, team2Wins.loserNewPoints],
+        [team2Key, team2Wins.winnerNewPoints],
+      ])
+    );
+
+    return {
+      calculable: true,
+      team1: {
+        ...baseResult.team1,
+        winPoints:
+          team1Wins.winnerNewPoints,
+        winChange:
+          team1Wins.winnerChange,
+        winRank:
+          team1WinRanks.get(team1Key) || null,
+        lossPoints:
+          team2Wins.loserNewPoints,
+        lossChange:
+          team2Wins.loserChange,
+        lossRank:
+          team2WinRanks.get(team1Key) || null,
+      },
+      team2: {
+        ...baseResult.team2,
+        winPoints:
+          team2Wins.winnerNewPoints,
+        winChange:
+          team2Wins.winnerChange,
+        winRank:
+          team2WinRanks.get(team2Key) || null,
+        lossPoints:
+          team1Wins.loserNewPoints,
+        lossChange:
+          team1Wins.loserChange,
+        lossRank:
+          team1WinRanks.get(team2Key) || null,
+      },
+    };
+  }, [
+    ratingRows,
+    team1,
+    team2,
+    season,
+    bestOf,
+  ]);
+
+  const rows = [
+    {
+      team: team1,
+      data: forecast?.team1,
+    },
+    {
+      team: team2,
+      data: forecast?.team2,
+    },
+  ];
+
+  return (
+    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+      <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
+        <h2 className="text-xl font-black">
+          Rating forecast
+        </h2>
+
+        <p className="mt-1 text-xs text-slate-500">
+          How this match can change the team ranking
+        </p>
+      </div>
+
+      <div className="overflow-x-auto">
+        <div className="min-w-[680px]">
+          <div className="grid grid-cols-[minmax(180px,1fr)_110px_150px_150px] border-b border-[#263244] px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 sm:px-6">
+            <div>Team</div>
+            <div className="text-center">Current</div>
+            <div className="text-center">If team wins</div>
+            <div className="text-center">If team loses</div>
+          </div>
+
+          {rows.map(({ team, data }) => (
+            <div
+              key={String(
+                team.id ||
+                team.slug ||
+                team.name
+              )}
+              className="grid grid-cols-[minmax(180px,1fr)_110px_150px_150px] items-center border-b border-[#222e3f] px-5 py-4 last:border-0 sm:px-6"
+            >
+              <div className="flex min-w-0 items-center gap-3">
+                {team.logo ? (
+                  <img
+                    src={team.logo}
+                    alt=""
+                    className="h-9 w-9 shrink-0 object-contain"
+                  />
+                ) : (
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#0b0f14] text-xs font-black text-slate-600">
+                    ?
+                  </div>
+                )}
+
+                <div className="truncate font-bold text-white">
+                  {team.name}
+                </div>
+              </div>
+
+              {loading ? (
+                <>
+                  <div className="text-center text-sm text-slate-600">
+                    …
+                  </div>
+                  <div className="text-center text-sm text-slate-600">
+                    …
+                  </div>
+                  <div className="text-center text-sm text-slate-600">
+                    …
+                  </div>
+                </>
+              ) : data?.available ? (
+                <>
+                  <div className="text-center">
+                    <div className="font-black text-slate-200">
+                      {data.points} pt
+                    </div>
+                    <div className="mt-1 text-xs text-slate-500">
+                      {data.rank
+                        ? `#${data.rank}`
+                        : "Unranked"}
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    {forecast?.calculable ? (
+                      <>
+                        <div className="font-black text-emerald-400">
+                          {data.winPoints} pt
+                        </div>
+                        <div className="mt-1 text-xs font-bold text-emerald-400">
+                          {data.winChange > 0 ? "+" : ""}
+                          {data.winChange}
+                          {data.winRank
+                            ? ` · #${data.winRank}`
+                            : ""}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-xs font-semibold text-slate-600">
+                        Unavailable
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="text-center">
+                    {forecast?.calculable ? (
+                      <>
+                        <div className="font-black text-rose-400">
+                          {data.lossPoints} pt
+                        </div>
+                        <div className="mt-1 text-xs font-bold text-rose-400">
+                          {data.lossChange > 0 ? "+" : ""}
+                          {data.lossChange}
+                          {data.lossRank
+                            ? ` · #${data.lossRank}`
+                            : ""}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-xs font-semibold text-slate-600">
+                        Unavailable
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-center text-xs font-semibold text-slate-500">
+                    Unrated
+                  </div>
+                  <div className="text-center text-xs font-semibold text-slate-600">
+                    Unavailable
+                  </div>
+                  <div className="text-center text-xs font-semibold text-slate-600">
+                    Unavailable
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+function getMatchMvp(stats) {
+  const teamsList = Array.isArray(stats?.teams)
+    ? stats.teams
+    : [];
+
+  const candidates = teamsList.flatMap((team) =>
+    (Array.isArray(team.players) ? team.players : []).map((player) => ({
+      ...player,
+      teamName: team.teamName,
+      teamScore: toNumber(team.score),
+      opponentScore: toNumber(
+        teamsList.find((item) => item !== team)?.score
+      ),
+    }))
+  );
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  return candidates
+    .map((player) => ({
+      ...player,
+      calculatedRating: calculatePlayerMatchRating(
+        player,
+        player.teamScore,
+        player.opponentScore
+      ),
+    }))
+    .sort(
+      (first, second) =>
+        second.calculatedRating -
+        first.calculatedRating
+    )[0];
+}
+
+function FinishedMatchHero({
+  team1,
+  team2,
+  score,
+  season,
+  bestOf,
+  date,
+  maps,
+  stats,
+  isLive,
+}) {
+  const mvp = useMemo(
+    () => getMatchMvp(stats),
+    [stats]
+  );
+
+  const [team1Score, team2Score] = String(score)
+    .split(":")
+    .map((value) => toNumber(value.trim()));
+
+  const team1Won =
+    !isLive && team1Score > team2Score;
+
+  const team2Won =
+    !isLive && team2Score > team1Score;
+
+  return (
+    <section className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#0f1620] shadow-2xl shadow-black/20">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-28 -top-32 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
+        <div className="absolute -right-28 -bottom-36 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />
+      </div>
+
+      <div className="relative grid gap-0 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="p-6 md:p-9 lg:p-11">
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <span className="rounded-full border border-[#2a3546] bg-[#151e2a] px-4 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+              BO{bestOf}
+            </span>
+
+            
+          </div>
+
+          <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_190px_minmax(0,1fr)]">
+            <div className="relative">
+              {team1Won && (
+                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-left">
+                  Winner
+                </div>
+              )}
+              <TeamHero team={team1} />
+            </div>
+
+            <div className="text-center">
+              <div className="text-5xl font-black tracking-[-0.07em] text-white sm:text-6xl">
+                {score}
+              </div>
+              <div className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                Series score
+              </div>
+            </div>
+
+            <div className="relative">
+              {team2Won && (
+                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-right">
+                  Winner
+                </div>
+              )}
+              <TeamHero team={team2} align="right" />
+            </div>
+          </div>
+
+          <div className="mt-9 border-t border-[#263244] pt-6">
+            <div className="text-center">
+              <div className="font-bold text-slate-300">
+                {season}
+              </div>
+              <div className="mt-1 text-sm text-slate-500">
+                {formatDateTime(date)}
+              </div>
+            </div>
+
+            {Array.isArray(maps) && maps.length > 0 && (
+              <div className="mt-6 flex flex-wrap justify-center gap-2">
+                {maps.map((map, index) => (
+                  <div
+                    key={`${map.map}-${index}`}
+                    className="flex items-center gap-2 rounded-xl border border-[#263244] bg-[#0b1119] px-3 py-2"
+                  >
+                    <span className="text-sm font-bold text-slate-300">
+                      {formatMapName(map.map)}
+                    </span>
+                    <span
+                      className={`text-sm font-black ${
+                        map.won
+                          ? "text-emerald-400"
+                          : "text-rose-400"
+                      }`}
+                    >
+                      {toNumber(map.teamScore)}:{toNumber(map.opponentScore)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <aside className="border-t border-[#263244] bg-[#0b1119]/70 p-6 xl:border-l xl:border-t-0">
+          <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+            Match spotlight
+          </div>
+
+          {mvp ? (
+            <div className="mt-6">
+              <div className="text-sm font-semibold text-orange-400">
+                MVP
+              </div>
+              <div className="mt-1 truncate text-3xl font-black text-white">
+                {mvp.nickname || "Unknown"}
+              </div>
+              <div className="mt-1 text-sm text-slate-500">
+                {mvp.teamName}
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
+                  <div className="text-xs uppercase tracking-wider text-slate-500">
+                    Rating
+                  </div>
+                  <div className="mt-1 text-2xl font-black text-emerald-400">
+                    {toNumber(mvp.calculatedRating).toFixed(2)}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
+                  <div className="text-xs uppercase tracking-wider text-slate-500">
+                    K / D
+                  </div>
+                  <div className="mt-1 text-2xl font-black text-white">
+                    {toNumber(mvp.kills)} / {toNumber(mvp.deaths)}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
+                  <div className="text-xs uppercase tracking-wider text-slate-500">
+                    ADR
+                  </div>
+                  <div className="mt-1 text-xl font-black text-white">
+                    {toNumber(mvp.adr).toFixed(1)}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
+                  <div className="text-xs uppercase tracking-wider text-slate-500">
+                    HS
+                  </div>
+                  <div className="mt-1 text-xl font-black text-white">
+                    {toNumber(mvp.hsRate).toFixed(0)}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-6 rounded-2xl border border-dashed border-[#2a3546] bg-[#111923] p-5">
+              <div className="font-bold text-slate-300">
+                Player statistics are processing
+              </div>
+              <div className="mt-2 text-sm leading-6 text-slate-500">
+                The result and map scores are already available. Individual player data will appear automatically after synchronization.
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function FinishedMapsPanel({
+  maps,
+  team1,
+  team2,
+}) {
+  if (!Array.isArray(maps) || maps.length === 0) {
+    return (
+      <section className="mt-8 overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+        <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
+          <h2 className="text-xl font-black">Maps</h2>
+          <p className="mt-1 text-xs text-slate-500">
+            Match result synchronization
+          </p>
+        </div>
+
+        <div className="p-6">
+          <div className="rounded-2xl border border-dashed border-[#2a3546] bg-[#0b1119] p-6 text-center">
+            <div className="font-bold text-slate-300">
+              Map scores are being processed
+            </div>
+            <div className="mt-2 text-sm text-slate-500">
+              The final series score is available. Detailed map results will appear automatically.
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mt-8 overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+      <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
+        <h2 className="text-xl font-black">Map results</h2>
+        <p className="mt-1 text-xs text-slate-500">
+          Full series breakdown
+        </p>
+      </div>
+
+      <div>
+        {maps.map((map, index) => {
+          const formattedName =
+            formatMapName(map.map);
+          const leftScore =
+            toNumber(map.teamScore);
+          const rightScore =
+            toNumber(map.opponentScore);
+
+          return (
+            <div
+              key={`${map.map}-${index}`}
+              className="relative overflow-hidden border-b border-[#222e3f] last:border-0"
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-[0.12]"
+                style={{
+                  backgroundImage: `url(/maps/${formattedName.toLowerCase()}.png)`,
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#101722] via-[#101722]/95 to-[#101722]" />
+
+              <div className="relative grid items-center gap-4 px-5 py-5 sm:grid-cols-[minmax(0,1fr)_140px_minmax(0,1fr)] sm:px-6">
+                <div className="flex items-center gap-3 sm:justify-end">
+                  <div className="truncate text-sm font-bold text-slate-300">
+                    {team1.name}
+                  </div>
+                  <div
+                    className={`text-3xl font-black ${
+                      leftScore > rightScore
+                        ? "text-emerald-400"
+                        : "text-white"
+                    }`}
+                  >
+                    {leftScore}
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
+                    Map {index + 1}
+                  </div>
+                  <div className="mt-1 text-xl font-black text-white">
+                    {formattedName}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-3 sm:justify-start">
+                  <div
+                    className={`text-3xl font-black ${
+                      rightScore > leftScore
+                        ? "text-emerald-400"
+                        : "text-white"
+                    }`}
+                  >
+                    {rightScore}
+                  </div>
+                  <div className="truncate text-sm font-bold text-slate-300">
+                    {team2.name}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -798,6 +1603,9 @@ function MatchPage() {
 
   const [liveError, setLiveError] =
     useState("");
+
+  const [ratingRows, setRatingRows] = useState([]);
+  const [ratingsLoading, setRatingsLoading] = useState(true);
 
   const loadLiveMatch = useCallback(
     async () => {
@@ -848,6 +1656,40 @@ function MatchPage() {
     setLoadingLive(true);
     loadLiveMatch();
   }, [loadLiveMatch]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadTeamRatings() {
+      if (!supabase) {
+        setRatingsLoading(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from("team_ratings")
+          .select("*");
+
+        if (error) throw error;
+
+        if (!cancelled) {
+          setRatingRows(Array.isArray(data) ? data : []);
+        }
+      } catch (error) {
+        console.warn("Rating forecast unavailable:", error.message);
+        if (!cancelled) setRatingRows([]);
+      } finally {
+        if (!cancelled) setRatingsLoading(false);
+      }
+    }
+
+    loadTeamRatings();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const normalizedStatus =
     liveData?.status?.toUpperCase() ||
@@ -1266,13 +2108,13 @@ function MatchPage() {
     apiSaysFinished;
 
   return (
-    <div className="min-h-screen bg-[#0b0f14] p-4 text-white md:p-8">
-      <div className="mx-auto max-w-6xl">
+    <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px]">
         <div className="flex items-center justify-between gap-4">
           <Link
             to={
               navigationSlug
-                ? `/team/${navigationSlug}/matches`
+                ? `/teams/${navigationSlug}/matches`
                 : "/"
             }
             className="text-orange-400 hover:text-orange-300"
@@ -1287,64 +2129,84 @@ function MatchPage() {
           )}
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-3xl border border-[#243041] bg-[#111823]">
-          <div className="p-6 md:p-10">
-            <div className="grid gap-8 md:grid-cols-[1fr_auto_1fr] md:items-center">
-              <TeamHero
-                team={displayTeam1}
-              />
+        {showFinishedSections || isLive ? (
+          <FinishedMatchHero
+            team1={displayTeam1}
+            team2={displayTeam2}
+            score={displayScore}
+            season={displaySeason}
+            bestOf={displayBestOf}
+            date={displayDate}
+            maps={displayedMapScores}
+            stats={stats}
+            isLive={isLive}
+          />
+        ) : (
+          <div className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#101722] shadow-2xl shadow-black/20">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -left-24 -top-28 h-80 w-80 rounded-full bg-orange-500/10 blur-3xl" />
+              <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-sky-500/5 blur-3xl" />
+            </div>
+            <div className="relative p-6 md:p-10 lg:p-12">
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px_minmax(0,1fr)] lg:items-center">
+                <TeamHero team={displayTeam1} />
 
-              <div className="text-center">
-                <div className="mb-4 inline-flex rounded-full border border-orange-500/30 bg-orange-500/15 px-4 py-1 text-sm font-bold text-orange-400">
-                  BO{displayBestOf}
+                <div className="text-center">
+                  <div className="mb-5 inline-flex rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-orange-300">
+                    BO{displayBestOf}
+                  </div>
+
+                  <div className="text-5xl font-black tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
+                    {displayScore}
+                  </div>
+
+                  <div className="mt-4 text-gray-400">
+                    {displaySeason}
+                  </div>
+
+                  <div className="mt-1 text-sm text-gray-500">
+                    {formatDateTime(displayDate)}
+                  </div>
+
+                  <div className="mt-3 text-sm font-semibold text-orange-400">
+                    Upcoming match
+                  </div>
                 </div>
 
-                <div className="text-5xl font-black text-orange-400 md:text-7xl">
-                  {displayScore}
-                </div>
-
-                <div className="mt-4 text-gray-400">
-                  {displaySeason}
-                </div>
-
-                <div className="mt-1 text-sm text-gray-500">
-                  {formatDateTime(
-                    displayDate
-                  )}
-                </div>
-
-                {!isLive &&
-                  !showFinishedSections && (
-                    <div className="mt-3 text-sm font-semibold text-orange-400">
-                      Upcoming match
-                    </div>
-                  )}
-
-                {showFinishedSections &&
-                  !isLive && (
-                    <div className="mt-3 text-sm text-gray-500">
-                      Final result
-                    </div>
-                  )}
+                <TeamHero
+                  team={displayTeam2}
+                  align="right"
+                />
               </div>
-
-              <TeamHero
-                team={displayTeam2}
-                align="right"
-              />
             </div>
           </div>
-        </div>
+        )}
 
         {!showFinishedSections && !isLive && (
-          <div className="mt-8 grid gap-4 lg:grid-cols-[1.05fr_1.05fr_1fr]">
-            <MapStatisticsCard
-              leftTeam={displayTeam1}
-              rightTeam={displayTeam2}
-              leftLocalTeam={leftLocalTeam}
-              rightLocalTeam={rightLocalTeam}
+          <div className="mt-8">
+            <RatingForecastCard
+              ratingRows={ratingRows}
+              team1={displayTeam1}
+              team2={displayTeam2}
+              season={displaySeason}
+              bestOf={displayBestOf}
+              loading={ratingsLoading}
             />
+          </div>
+        )}
 
+        {!showFinishedSections && !isLive && (
+          <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.6fr)]">
+            <div className="space-y-6">
+              <MapStatisticsCard
+                leftTeam={displayTeam1}
+                rightTeam={displayTeam2}
+                leftLocalTeam={leftLocalTeam}
+                rightLocalTeam={rightLocalTeam}
+              />
+            </div>
+
+            <div className="space-y-6">
             <VoteCard
               matchId={matchId}
               team1={displayTeam1}
@@ -1359,83 +2221,19 @@ function MatchPage() {
               bestOf={displayBestOf}
               faceitUrl={displayFaceitUrl}
             />
+            </div>
           </div>
         )}
 
         {/* MAPS */}
 
-        {showFinishedSections &&
-          displayedMapScores.length >
-            0 && (
-            <div className="mt-8">
-              <h2 className="mb-4 text-2xl font-black">
-                Maps
-              </h2>
-
-              <div className="grid gap-4 md:grid-cols-3">
-                {displayedMapScores.map(
-                  (map, index) => {
-                    const formattedName =
-                      formatMapName(
-                        map.map
-                      );
-
-                    const imageName =
-                      formattedName.toLowerCase();
-
-                    return (
-                      <div
-                        key={`${map.map}-${index}`}
-                        className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
-                      >
-                        <div
-                          className="relative h-28 bg-cover bg-center"
-                          style={{
-                            backgroundImage:
-                              `url(/maps/${imageName}.png)`,
-                          }}
-                        >
-                          <div className="absolute inset-0 bg-black/60" />
-
-                          <div className="relative z-10 flex h-full items-end p-4">
-                            <div className="text-2xl font-black">
-                              {
-                                formattedName
-                              }
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="p-4">
-                          <div className="flex items-center justify-between">
-                            <span className="text-gray-400">
-                              Map Score
-                            </span>
-
-                            <span
-                              className={`text-xl font-black ${
-                                map.won
-                                  ? "text-green-400"
-                                  : "text-red-400"
-                              }`}
-                            >
-                              {toNumber(
-                                map.teamScore
-                              )}{" "}
-                              :{" "}
-                              {toNumber(
-                                map.opponentScore
-                              )}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-          )}
+        {showFinishedSections && (
+          <FinishedMapsPanel
+            maps={displayedMapScores}
+            team1={displayTeam1}
+            team2={displayTeam2}
+          />
+        )}
 
         {/* PLAYER STATISTICS */}
 
@@ -1444,12 +2242,12 @@ function MatchPage() {
             stats?.teams
           ) &&
           stats.teams.length > 0 && (
-            <div className="mt-10">
-              <h2 className="mb-4 text-2xl font-black">
+            <div className="mt-8">
+              <h2 className="mb-4 text-2xl font-black tracking-tight">
                 Player Statistics
               </h2>
 
-              <div className="grid gap-6 lg:grid-cols-2">
+              <div className="space-y-6">
                 {orderedTeams.map(
                   (
                     team,
@@ -1475,7 +2273,7 @@ function MatchPage() {
                           team.teamId ||
                           team.teamName
                         }-${teamIndex}`}
-                        className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]"
+                        className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]"
                       >
                         <div className="border-b border-[#243041] px-5 py-4">
                           <div className="text-xl font-black">
@@ -1587,8 +2385,9 @@ function MatchPage() {
                                       >
                                         <td className="p-3 font-semibold">
                                           <Link
-                                            to={`/players/${encodeURIComponent(
-                                              player.nickname ||
+                                            to={`/player/${encodeURIComponent(
+                                              player.playerId ||
+                                                player.nickname ||
                                                 "Unknown"
                                             )}`}
                                             state={{
@@ -1678,8 +2477,8 @@ function MatchPage() {
         {/* RECENT MATCHES */}
 
         {showFinishedSections && (
-          <div className="mt-10">
-            <h2 className="mb-4 text-2xl font-black">
+          <div className="mt-8">
+            <h2 className="mb-4 text-2xl font-black tracking-tight">
               Recent Matches (Past 3 Months)
             </h2>
 
@@ -1706,12 +2505,12 @@ function MatchPage() {
           rightLocalTeam &&
           uniqueH2HMatches.length >
             0 && (
-            <div className="mt-10">
-              <h2 className="mb-4 text-2xl font-black">
+            <div className="mt-8">
+              <h2 className="mb-4 text-2xl font-black tracking-tight">
                 Head to Head
               </h2>
 
-              <div className="overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
+              <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
                 <div className="grid grid-cols-3 items-center border-b border-[#243041] p-6 text-center">
                   <div className="flex flex-col items-center">
                     {displayTeam1.logo && (
@@ -1779,7 +2578,7 @@ function MatchPage() {
                   (item) => (
                     <Link
                       key={`${item.matchId}-${item.teamSlug}`}
-                      to={`/matches/${item.matchId}`}
+                      to={`/match/${item.matchId}`}
                       className="relative flex items-center justify-between border-b border-[#1d2634] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#151e2b]"
                     >
                       <div className="font-medium">
@@ -1818,8 +2617,8 @@ function MatchPage() {
         {/* MATCH INFORMATION */}
 
         {(showFinishedSections || isLive) && (
-        <div className="mt-10">
-          <h2 className="mb-4 text-2xl font-black">
+        <div className="mt-8">
+          <h2 className="mb-4 text-2xl font-black tracking-tight">
             Match Information
           </h2>
 

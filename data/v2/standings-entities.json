@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-07-19T14:44:07.604Z",
+  "season": 58,
+  "seasonId": "ec187700-30e2-4245-b5e2-daa762db12fc",
+  "source": "https://www.faceit.com/api/team-leagues/v2/seasons/tree?entityType=season&entityId=ec187700-30e2-4245-b5e2-daa762db12fc",
+  "divisions": [
+    "Entry",
+    "Intermediate",
+    "Main",
+    "Advanced"
+  ],
+  "entities": [
+    {
+      "region": "Europe",
+      "regionId": "c6c16e33-8679-4c9b-84dc-bf6ff298e1bf",
+      "division": "Advanced",
+      "divisionId": "63e4227c-db93-4f75-b0be-16e37fe81901",
+      "stage": "Regular Season",
+      "stageId": "d15f4b3e-b05e-4a22-b47d-f01ea26d2112",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "ba97a0f8-a699-4cdd-a1f4-32e89bba94eb",
+          "name": "Central",
+          "championshipId": "f404458c-3ff0-4b6a-abdf-89a6b13694ca"
+        }
+      ],
+      "entityId": "d15f4b3e-b05e-4a22-b47d-f01ea26d2112",
+      "entityType": "stage"
+    },
+    {
+      "region": "Europe",
+      "regionId": "c6c16e33-8679-4c9b-84dc-bf6ff298e1bf",
+      "division": "Entry",
+      "divisionId": "3493082a-d735-4ac0-a395-8158cfc38891",
+      "stage": "Regular Season",
+      "stageId": "c3c65f24-e3e7-4fe3-8004-5bd46c8f7c79",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "e759a3f4-39f4-4f3c-a6f6-528d4d50605b",
+          "name": "A",
+          "championshipId": "df648492-2f7f-44ac-abbe-1d179a38d7c3"
+        },
+        {
+          "id": "dca8e11d-fb55-42d0-ad3f-41351ebbbc1a",
+          "name": "B",
+          "championshipId": "c1641aae-0e63-4564-a571-927091687b5b"
+        },
+        {
+          "id": "54c9a34e-53e2-4317-89a7-87a7fe4fd8dc",
+          "name": "C",
+          "championshipId": "4cc00188-c9af-472d-b2cc-d60091f9834e"
+        },
+        {
+          "id": "55cf8e1b-881e-4573-b991-ea72166992c2",
+          "name": "D",
+          "championshipId": "dde840d0-cb47-49c9-9ac4-a51a11991c42"
+        }
+      ],
+      "entityId": "c3c65f24-e3e7-4fe3-8004-5bd46c8f7c79",
+      "entityType": "stage"
+    },
+    {
+      "region": "Europe",
+      "regionId": "c6c16e33-8679-4c9b-84dc-bf6ff298e1bf",
+      "division": "Intermediate",
+      "divisionId": "b1248d6d-8ec4-4d23-9b14-fb3bcec31937",
+      "stage": "Regular Season",
+      "stageId": "87e8c6c2-fb87-4262-8c21-d895a6262d33",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "2d030177-3971-4f22-a0d3-a9ea3a6d12a4",
+          "name": "A",
+          "championshipId": "de368982-42fc-428e-9d2e-cfdbaa7d6363"
+        },
+        {
+          "id": "20dfda48-9b49-428e-b198-1f528c2e32c5",
+          "name": "B",
+          "championshipId": "b453b0b9-f5e5-4f08-964d-d127691243d0"
+        }
+      ],
+      "entityId": "87e8c6c2-fb87-4262-8c21-d895a6262d33",
+      "entityType": "stage"
+    },
+    {
+      "region": "Europe",
+      "regionId": "c6c16e33-8679-4c9b-84dc-bf6ff298e1bf",
+      "division": "Main",
+      "divisionId": "ef807d30-b28f-4baa-bb06-c09f13447e8e",
+      "stage": "Regular Season",
+      "stageId": "61e1562f-de04-46a5-9f0e-8135fe2bf238",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "bc962346-fdbe-459c-bce6-88c5927e9e47",
+          "name": "A",
+          "championshipId": "54f32bd1-55d3-4353-8818-79f57ef7a65b"
+        },
+        {
+          "id": "fee06aa7-01f3-4373-87c3-f40ffb3aa0bd",
+          "name": "B",
+          "championshipId": "8961a4f3-2860-4545-87db-1ce1e32c7e13"
+        }
+      ],
+      "entityId": "61e1562f-de04-46a5-9f0e-8135fe2bf238",
+      "entityType": "stage"
+    },
+    {
+      "region": "North America",
+      "regionId": "c1399d66-bf61-4c4f-882b-cf41cad047d9",
+      "division": "Advanced",
+      "divisionId": "06bfccfe-97d2-4823-806e-82d30fbfbf1f",
+      "stage": "Regular Season",
+      "stageId": "0bfc547a-b7df-47e9-8428-ac6a09b30b92",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "0f9a8533-3bd5-43bc-9655-5ffc5c2b2e4e",
+          "name": "Central",
+          "championshipId": "3481bbef-1c65-415d-8686-4c0474714dad"
+        }
+      ],
+      "entityId": "0bfc547a-b7df-47e9-8428-ac6a09b30b92",
+      "entityType": "stage"
+    },
+    {
+      "region": "North America",
+      "regionId": "c1399d66-bf61-4c4f-882b-cf41cad047d9",
+      "division": "Intermediate",
+      "divisionId": "6c0dd30d-7c77-4c01-9a7e-02b6a3dd68c8",
+      "stage": "Regular Season",
+      "stageId": "a57861b0-e436-4b29-a646-dc81bb5f71de",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "a2ddbb89-cb46-4c3c-b036-f94516490efa",
+          "name": "A",
+          "championshipId": "f03afa24-ad7f-47a1-8f54-9c2fa1c10ff7"
+        },
+        {
+          "id": "42b617de-57d2-4ad6-b5be-c38cbbaf08ef",
+          "name": "B",
+          "championshipId": "be8ec630-aceb-4f51-8ba6-636376ad337f"
+        }
+      ],
+      "entityId": "a57861b0-e436-4b29-a646-dc81bb5f71de",
+      "entityType": "stage"
+    },
+    {
+      "region": "North America",
+      "regionId": "c1399d66-bf61-4c4f-882b-cf41cad047d9",
+      "division": "Main",
+      "divisionId": "9f52f6d6-a84a-48cc-950f-2a0798fe55aa",
+      "stage": "Regular Season",
+      "stageId": "03be713a-8527-46b8-b71e-484ad9e740e4",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "6d9a4391-d26e-4c67-bde9-8f419e447812",
+          "name": "A",
+          "championshipId": "2173e911-8a3c-45d8-a929-f803fee740ba"
+        },
+        {
+          "id": "ee0e1ce1-8529-4a65-8637-50d5cde12597",
+          "name": "B",
+          "championshipId": "33c94aa7-6909-4b03-a8d8-cac136e7274e"
+        }
+      ],
+      "entityId": "03be713a-8527-46b8-b71e-484ad9e740e4",
+      "entityType": "stage"
+    },
+    {
+      "region": "Oceania",
+      "regionId": "277db980-3a89-4e68-b5ad-eab8f64f1216",
+      "division": "Intermediate",
+      "divisionId": "15e1c25b-adf7-48ed-a470-dabfbb273e97",
+      "stage": "Regular Season",
+      "stageId": "9eb0c8f0-8e90-41e2-9d44-03445a17a8d0",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "c82b2497-2988-44cc-81ee-e81eb7698867",
+          "name": "Central",
+          "championshipId": "48a763ab-7e43-4d3c-96c1-0cceb5a85e87"
+        }
+      ],
+      "entityId": "9eb0c8f0-8e90-41e2-9d44-03445a17a8d0",
+      "entityType": "stage"
+    }
+  ]
+}

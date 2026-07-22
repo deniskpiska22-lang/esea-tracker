@@ -1,21 +1,92 @@
-export function calculatePlayerMatchRating(player) {
+export function calculatePlayerMatchRating(player = {}) {
   const clamp = (value, min, max) =>
     Math.max(min, Math.min(max, value));
 
-  const kd = player.kd || 0;
-  const adr = player.adr || 0;
-  const assists = player.assists || 0;
-  const mvps = player.mvps || 0;
+  const number = (...values) => {
+    for (const value of values) {
+      const parsed = Number(value);
 
-  const entryDiff = player.entryDiff || 0;
-  const clutchWins = player.clutchRoundsWon || 0;
+      if (Number.isFinite(parsed)) {
+        return parsed;
+      }
+    }
 
-  const twoKs = player["2k"] || 0;
-  const threeKs = player["3k"] || 0;
-  const fourKs = player["4k"] || 0;
-  const aces = player.aces || 0;
+    return 0;
+  };
 
-  // Основные показатели
+  const kills = number(
+    player.kills,
+    player.Kills
+  );
+
+  const deaths = number(
+    player.deaths,
+    player.Deaths
+  );
+
+  const kd = number(
+    player.kd,
+    player["K/D Ratio"],
+    player["K/D"],
+    deaths > 0
+      ? kills / deaths
+      : kills
+  );
+
+  const adr = number(
+    player.adr,
+    player.ADR,
+    player["Average Damage per Round"]
+  );
+
+  const assists = number(
+    player.assists,
+    player.Assists
+  );
+
+  const mvps = number(
+    player.mvps,
+    player.MVPs,
+    player.MVP
+  );
+
+  const entryDiff = number(
+    player.entryDiff,
+    player.entry_diff,
+    player["Entry Diff"],
+    player["Entry difference"]
+  );
+
+  const clutchWins = number(
+    player.clutchRoundsWon,
+    player.clutch_rounds_won,
+    player["Clutch Rounds Won"],
+    player.clutches
+  );
+
+  const twoKs = number(
+    player["2k"],
+    player.twoKs,
+    player.doubleKills
+  );
+
+  const threeKs = number(
+    player["3k"],
+    player.threeKs,
+    player.tripleKills
+  );
+
+  const fourKs = number(
+    player["4k"],
+    player.fourKs,
+    player.quadroKills
+  );
+
+  const aces = number(
+    player.aces,
+    player["5k"],
+    player.pentaKills
+  );
 
   const kdScore =
     clamp(kd, 0.4, 1.8);
@@ -28,8 +99,6 @@ export function calculatePlayerMatchRating(player) {
 
   const mvpScore =
     clamp(mvps / 5, 0, 1.5);
-
-  // Бонусы за импакт
 
   const entryBonus =
     clamp(entryDiff / 20, -0.15, 0.15);
@@ -58,7 +127,7 @@ export function calculatePlayerMatchRating(player) {
     clutchBonus +
     impactBonus;
 
-  // Подгоняем шкалу ближе к Faceit
-
-  return Number((rating * 1.12).toFixed(2));
+  return Number(
+    (rating * 1.12).toFixed(2)
+  );
 }

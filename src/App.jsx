@@ -346,6 +346,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#05070a] text-white">
+      
 
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#070b11]/90 shadow-[0_14px_40px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
         <div className="mx-auto max-w-[1440px] px-4 md:px-6 xl:px-8">
@@ -410,19 +411,7 @@ function App() {
                 </span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  setShowSubmitTeam(true);
-                }}
-                className="group hidden h-11 items-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#ff8a1f,#ea580c)] px-4 text-sm font-black text-white shadow-[0_10px_26px_rgba(249,115,22,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(249,115,22,0.32)] md:flex"
-              >
-                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/15 text-lg leading-none transition group-hover:rotate-90">
-                  +
-                </span>
-                Submit Team
-              </button>
+              
 
               {profile?.is_admin && (
                 <Link
@@ -812,9 +801,7 @@ function App() {
                   ESEA Tracker
                 </div>
 
-                <h2 className="mt-1 text-2xl font-black">
-                  Submit Team
-                </h2>
+                
               </div>
 
               <button
@@ -920,17 +907,7 @@ function App() {
                 Cancel
               </button>
 
-              <button
-                type="submit"
-                disabled={
-                  submittingTeam
-                }
-                className="rounded-xl bg-orange-500 px-5 py-3 font-black text-white transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {submittingTeam
-                  ? "Sending..."
-                  : "Submit Team"}
-              </button>
+              
             </div>
           </form>
         </div>

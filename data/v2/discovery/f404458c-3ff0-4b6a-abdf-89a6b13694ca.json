@@ -1,0 +1,1742 @@
+{
+  "generatedAt": "2026-07-19T12:25:16.772Z",
+  "config": {
+    "id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+    "name": "S58 EU Advanced Central - Regular Season",
+    "season": 58,
+    "region": "EU",
+    "division": "Advanced",
+    "group": "Central",
+    "stage": "regular",
+    "active": true
+  },
+  "source": {
+    "endpoint": "https://www.faceit.com/api/team-leagues/v2/matches",
+    "strategy": "Use existing teams.js as seeds, fetch championship matches, then discover every faction team_id."
+  },
+  "summary": {
+    "seedTeams": 80,
+    "failedSeeds": 0,
+    "matches": 10,
+    "uniqueTeams": 17,
+    "loadedTeams": 17,
+    "failedTeams": 0,
+    "loadedPlayers": 0,
+    "playersWithoutCountry": 0
+  },
+  "teams": [
+    {
+      "id": "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
+      "name": "NEW VISION",
+      "nickname": "NEWV",
+      "avatar": "https://distribution.faceit-cdn.net/images/9a21c952-05f7-4bb0-9736-989891f44a07.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "759a2f6d-fde3-4387-a463-8599de5a4ce1",
+        "c7765868-cd45-4198-ae36-a567b89ce041",
+        "95b960d6-d2e6-444f-8c1a-9297e5be1b45",
+        "a3f6bb76-385f-41e0-a722-90e7a3ece379",
+        "a4bcfe4a-73c8-4bcd-bbe0-1bdba53ece19",
+        "95b9645d-75af-4062-867e-54ee26ffcbb0",
+        "9866bf07-6fc9-47b0-966e-e4302ecc93fb",
+        "0e5e5804-66dc-47fc-abf8-78fbabb2e486",
+        "b93722d1-70e8-48c5-9196-b7b8bf214715",
+        "2e0228fe-82cd-4e98-b73f-7b660e760b50"
+      ],
+      "players": []
+    },
+    {
+      "id": "fe66f943-b5ab-46f6-9f43-c3ed3b9b904a",
+      "name": "A Great Chaos",
+      "nickname": "AGC-",
+      "avatar": "https://distribution.faceit-cdn.net/images/53e3fb61-db9a-43e1-8aa2-27bd07ff337e.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "c3ada12c-2eca-4109-a73e-a996d1584857",
+        "07e353e7-c16c-4b0e-adcb-cd7507a382c5",
+        "036a4eac-7073-4e5d-b406-496554257516",
+        "536985e8-5e72-4193-a907-aa874bbfa79d",
+        "65d457f7-27a0-4df6-be88-574e2a850d60",
+        "91718533-917f-4088-af22-da3335864785",
+        "a9c09ebc-948f-430e-90d8-92a272e7917d",
+        "1af60106-4ea2-4ea0-aa7a-dcfdd43414bc"
+      ],
+      "players": []
+    },
+    {
+      "id": "ead06c55-949f-41b4-8138-fdeacddd0bcb",
+      "name": "EvolupeGG",
+      "nickname": "EVPGG",
+      "avatar": "https://distribution.faceit-cdn.net/images/0d82d948-8fc9-443a-b680-ba1fce6a27d8.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "cfab433b-57b0-4d70-b240-8ff18f2c3a00",
+        "437ca103-cb3c-45c1-a81a-d388e623fc3c",
+        "4981cf2d-8876-45b5-bdef-9ef3ae988db7",
+        "d84d4ff3-5445-4943-9b45-ac4f52d4f531",
+        "5c1b335d-7783-4114-a6f8-95f05e0e991c",
+        "3b33caa2-ee9d-4739-a4aa-9167b9fd47b5",
+        "1c6cfff8-00d4-472a-a252-be47befc14b0",
+        "b04059aa-d78f-4956-bf4b-b1847b04b74b",
+        "6d5d8a6b-591f-4fdc-b045-5b4141e93caf",
+        "30545fd0-5781-449c-a3ce-22e27ff44d2e",
+        "ab0e169c-9107-461c-b330-60ac44057c7b",
+        "a626a49d-770f-4a44-89b5-6251b4c110ff"
+      ],
+      "players": []
+    },
+    {
+      "id": "27eab7ad-4684-44b5-aa87-0c680d8c21d9",
+      "name": "QUAZAR",
+      "nickname": "QUAZAR",
+      "avatar": "https://distribution.faceit-cdn.net/images/427bd8f9-38d9-4200-afc3-972a9e32f7ba.jpeg",
+      "country": "INT",
+      "rosterIds": [
+        "655c7474-aa12-4737-bf21-373160fb16a1",
+        "3939bd47-6a42-43f0-936c-eb53bc5f16e5",
+        "326a3d6a-13ca-40b3-a56d-a47c27b6f2af",
+        "ebfe7a23-7829-41f0-836f-c76e794ec94c",
+        "56acd310-2046-412e-9e1b-d7cab21064b7",
+        "63bbf570-f8f3-4502-9c27-4b2d767bfeb8",
+        "de8546e3-f76c-4118-8671-2f0bed373ff4",
+        "a51dca55-de32-4806-944c-f73d310231db"
+      ],
+      "players": []
+    },
+    {
+      "id": "80473369-d322-499b-acfc-a8464edd132e",
+      "name": "Fortress Esport",
+      "nickname": "FortE",
+      "avatar": null,
+      "country": "INT",
+      "rosterIds": [
+        "c8a1d15e-bb4b-45e1-ab40-333cd2a6307b",
+        "5c21d6df-c939-430f-9b4f-9703c334abbf",
+        "a3fc72bb-df18-4198-a74a-39c67ec3deb9",
+        "01c2bc9e-dceb-4341-bced-ad745d5b61e6",
+        "e90dc9b5-2230-4d5b-b637-a5598bb22b31",
+        "47b045df-50d0-4571-a5e5-502d3ee684c5",
+        "6f0cfa34-c86a-4dc6-97ca-2d8a6aa39551",
+        "01fe1726-347a-4d68-97ed-e7b749b456ce",
+        "5501e2cb-0b97-411d-a55d-655c0e9589dc",
+        "ee513113-a946-4c02-8f48-6685653583d8",
+        "84df7eee-d67b-4e68-8b26-03e8000268da",
+        "dd3c5d81-1e4a-40d9-9f36-c20fd5a67bba",
+        "fdbce02a-3253-4853-b0cf-a87071b18806"
+      ],
+      "players": []
+    },
+    {
+      "id": "950a5365-d411-4aa3-ae53-3c622fcce2bf",
+      "name": "Strael-Bora",
+      "nickname": "S-Bora",
+      "avatar": "https://distribution.faceit-cdn.net/images/d189d5ca-6961-4145-82b7-1705106e2714.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "0fc95b9d-a7ac-48bf-9433-de7b1fe8bfdc",
+        "3522ed7a-f112-4b59-8902-626a3f46b130",
+        "33381280-63d2-4457-b2fe-400c78f97789",
+        "a8545d06-5cf5-4824-94e2-059559607773",
+        "64316b85-cf1b-4cc9-a898-c65a32f33a33",
+        "4ab46c16-d9bc-4615-9c24-ad7f33fd8a86",
+        "f7156ef1-866d-41dc-8a58-ee8f30f120e1",
+        "2acb30e1-ded6-4ef8-928e-b0b65904808f",
+        "08ae5db9-d670-4e6e-bd95-cbae9a4bc376",
+        "7dfeff0c-5a36-4d09-9165-9eb5cb125713"
+      ],
+      "players": []
+    },
+    {
+      "id": "ecdc2723-5329-4d3f-bef0-23c2176a2fbb",
+      "name": "IC Academy",
+      "nickname": "ICAcad",
+      "avatar": "https://distribution.faceit-cdn.net/images/3b56e8a7-9286-41ac-b2a6-57b93de39ef2.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "b279b210-51ef-4bdd-adae-92e68fde63c6",
+        "b5d097e9-8b92-4e6e-a2a6-2564f60b8cae",
+        "b064f4fb-5819-431f-927d-df5eaf754647",
+        "a23263d5-1925-4302-b6fc-21b74c3bea60",
+        "12870df5-1cef-4498-9efb-31f7a3add856",
+        "08934f1a-45a6-41a4-933f-cc20d89239a5",
+        "0980d9c4-7996-4a09-a1de-b16f0e874e0d",
+        "a421bf0b-db37-4194-8d57-59aa2cab64a0",
+        "f91cc088-cf0d-4577-bf59-eea21364f21a",
+        "a3acf3a7-dd5b-46a3-b697-6ac6f626cfa0",
+        "219f0100-b428-4c43-840a-c913329a198e",
+        "dd00574a-37b8-4c5e-87fa-b0569f624546",
+        "78a693e1-055d-46a3-9139-0b913116fdc4"
+      ],
+      "players": []
+    },
+    {
+      "id": "0bc946ec-99e3-4399-b34b-5aa93a3130e1",
+      "name": "bankaPEPSI",
+      "nickname": "ban04ka-",
+      "avatar": "https://distribution.faceit-cdn.net/images/d50e8103-9c59-4df9-9cdf-70f188b747cf.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "f1f0f280-1c3e-48b1-bade-f9274217c5d0",
+        "7a77ac28-1dc7-4d02-8689-57194de5628c",
+        "78407773-ed65-456a-a507-ca50cbd78e17",
+        "c1d62cf4-d294-4da7-a3bb-afc2fadb84cd",
+        "b5178a98-e9f1-47d9-80ac-13716332c313",
+        "f499a884-19e8-4b46-b143-87dcf739aa18"
+      ],
+      "players": []
+    },
+    {
+      "id": "f7bf8f6e-9e1e-4ffc-8c82-82fd850aec9e",
+      "name": "Enjoy1",
+      "nickname": "Enjoy1",
+      "avatar": "https://distribution.faceit-cdn.net/images/35e8db07-6e06-4e2c-b070-41b81420ae18.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "146d366f-0ed0-4204-936b-1596fccd03c1",
+        "d10b1954-bb7d-4b90-b1a0-17061e58d639",
+        "7ea66ae5-c99f-4846-8fc2-cd6e03a5559f",
+        "2ce03e2d-72bd-45d8-872c-dfdefd172e72",
+        "ac9219c4-4b21-4841-a986-c22ffee7b8c8",
+        "bf4c5d97-d8c0-4d0f-bdf3-26066898a7b9",
+        "8d35cd55-d778-43f1-a20e-13abf9a08f85",
+        "67345c91-57b6-42dc-b49c-330b091da3a6",
+        "22cdc809-1492-4c3c-8a62-58dd52c00732"
+      ],
+      "players": []
+    },
+    {
+      "id": "1f98d0ae-c844-4356-adf6-70e9501aba2a",
+      "name": "LPH Gaming",
+      "nickname": "-LPH-",
+      "avatar": "https://distribution.faceit-cdn.net/images/0e233643-8a30-41fa-8f3f-68a66436e70d.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "6c5fa337-ce81-483e-8450-7e10f3b0b638",
+        "9439c80f-d225-49c8-92f3-66d412f6cfe5",
+        "4e51b6e5-d2ea-4e03-b1d8-3f222d1e315b",
+        "d75c38a0-05f5-440d-b5e1-94b358df2433",
+        "ee98a960-c028-4fc6-a62f-af6244e6226e",
+        "045998a0-de08-44cb-b0aa-1e998a278dd7",
+        "4a0e33e6-2fc2-489c-b93e-fef6329b5140",
+        "a39bead7-6a87-44b0-b621-3ad906c9cf9e",
+        "58b969d1-5b3e-4258-a8af-1ae5f98bea34",
+        "a6574d15-8f4d-40d9-b47c-f380d849c36d",
+        "89aee03d-1762-4b48-99b9-61ff5827dd3f"
+      ],
+      "players": []
+    },
+    {
+      "id": "e09a5784-3de2-4132-87f5-65e907bcc602",
+      "name": "Fraternity",
+      "nickname": "FRATRNTY",
+      "avatar": "https://distribution.faceit-cdn.net/images/79865271-4e20-4278-a200-7aad020f0cd3.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "8450dcb5-7fd7-40f5-8065-a6506cfef476",
+        "131a1c99-fa4d-40fa-983a-53de76893a66",
+        "f537bfc9-a4bd-43f8-a897-fb4e0966e230",
+        "86525e76-06d5-47c2-8065-9ba8270bc2ed",
+        "a5552e19-97d5-4879-899b-3765796f183b",
+        "f7910ccc-22c4-4962-a7ab-2622b32da1eb"
+      ],
+      "players": []
+    },
+    {
+      "id": "4f497aed-dfcf-4029-b188-66e330bbfbbc",
+      "name": "Entropy",
+      "nickname": "Entropy-",
+      "avatar": "https://distribution.faceit-cdn.net/images/0a79b091-375b-4768-ad7c-eabc92408525.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "88f1a675-fb37-4f1b-bbfd-fd85bcb64ed1",
+        "279d0cfb-aaa6-4753-8d00-fd63de67ac27",
+        "fd00ce79-b6ce-4874-bbd6-f749962fbb5f",
+        "a5530536-1182-40f6-a507-b46f0dd6dae5",
+        "3b5f4850-8c74-46e8-acdd-9b4ba4eaeb08",
+        "1e21a770-a1f1-4c43-b00a-be4efdf3399e",
+        "f17ec023-1e08-4cc8-8c6e-adbd788bf564",
+        "dd00574a-37b8-4c5e-87fa-b0569f624546",
+        "1044f5e9-a7a8-4b56-bba9-53cdeeef355a",
+        "967b6309-c289-4900-8459-0e33ce488b1c",
+        "30399275-289d-406f-8aae-d3ff3fe2344e"
+      ],
+      "players": []
+    },
+    {
+      "id": "91416841-429d-405c-af9d-35e2ce855e5d",
+      "name": "VPProdigy",
+      "nickname": "VPp",
+      "avatar": "https://distribution.faceit-cdn.net/images/78e77c97-fe0e-4289-ba4f-24b5e56ae861.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "b0fb4114-0be0-4f0e-82e7-6db4602079bc",
+        "4ad4326b-aa54-4376-8e9e-34d1e9f6cb40",
+        "e1c59162-b1e7-48c6-9831-eff3170045af",
+        "b9124784-0b46-4279-b95a-9e6c0a3701c6",
+        "e78d5a17-9c4f-4204-b9c3-d905ee295729",
+        "bb310ae9-d10f-48d7-a867-3cffd17c8027"
+      ],
+      "players": []
+    },
+    {
+      "id": "3cb28ef5-ae7b-4e67-897d-0f7067810cc4",
+      "name": "Arch",
+      "nickname": "Arch",
+      "avatar": "https://distribution.faceit-cdn.net/images/28b1d153-aaa4-4b67-9a5e-c5bfa3215c1c.jpeg",
+      "country": "INT",
+      "rosterIds": [
+        "159069e0-7e7c-4e3e-989e-d9f723689e3a",
+        "ca3b8276-646a-4114-9bb9-8cb8035db700",
+        "18052c43-669b-4906-8514-41830c79e301",
+        "f2cde30d-f0ac-4a97-b203-c0db0b004030",
+        "dbe5a73d-0d93-4ce5-8cee-2737a35c4de9",
+        "8bac78ae-50d6-42af-968c-8e27f5b1da3d",
+        "fba47ab7-07a8-4574-8512-faef90af6494",
+        "cc550113-9932-4b8d-835d-babf25e209ca",
+        "f97a48cc-5565-4967-b230-dcd9358dbf1c",
+        "b5fd9620-bb3b-49b0-9269-6960e90464f2"
+      ],
+      "players": []
+    },
+    {
+      "id": "3c170b46-04a8-443a-9605-cfd3e03cd020",
+      "name": "DNK",
+      "nickname": "DNK_KRG",
+      "avatar": "https://distribution.faceit-cdn.net/images/88275da9-2371-4da5-99d4-82c782920677.jpeg",
+      "country": "INT",
+      "rosterIds": [
+        "1252bc31-a31d-48a9-a871-615a5951d2c2",
+        "3c1ca83f-5c0b-48c9-9efb-86e02999bad4",
+        "f05e2c24-f33d-42cb-8652-bf5cf0f08a3f",
+        "fed5173b-cc64-4d2a-914f-84273a4eb392",
+        "8690e939-7ea7-47b6-b46d-79c941e14def",
+        "2525fb85-f695-4d7e-9c4c-477ca8f0bf3b",
+        "01c23666-34c3-4c20-b8cb-93fe47884327",
+        "e07cc97a-0438-468f-be60-2dc90a2a9e2f",
+        "b63a6690-b63f-4eac-a354-1e6089a3bc86",
+        "53579c33-f45f-4240-b651-50b51beb75a2"
+      ],
+      "players": []
+    },
+    {
+      "id": "29dd3d3f-2d06-4ab2-857a-4980d7691713",
+      "name": "gothboiclique",
+      "nickname": "-lfo",
+      "avatar": "https://distribution.faceit-cdn.net/images/70795cc4-86ca-4ce8-993e-77c56c4ef030.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "cf55613e-5ec7-4362-a4db-625d70640a10",
+        "1e004a7b-a857-49ed-ad46-a3f8549d5b7e",
+        "02b26fe9-49d1-47e7-afa0-1b5c562ca4e2",
+        "0143e682-6fd5-48d5-b587-94ff15593d05",
+        "b89b63c3-72b3-4f94-ad9f-8f1cede7e874",
+        "f033900c-fa41-4016-baf1-dd2e8a4d840a",
+        "2a9f4c87-0b92-4695-9a10-e96c6f0b03db",
+        "7c15da7f-39d6-4f8d-b237-ddcc58d0751b",
+        "0935354e-7403-4bbf-b9a7-9b2e35149024",
+        "311dd83e-36cf-45f8-ba18-4286d318e351"
+      ],
+      "players": []
+    },
+    {
+      "id": "115c0893-5339-45fe-82fc-7cf535237fee",
+      "name": "GoldRashers",
+      "nickname": "GoldR",
+      "avatar": "https://distribution.faceit-cdn.net/images/cc4d1b9d-25c9-43cb-9025-a03d893c83f8.jpg",
+      "country": "INT",
+      "rosterIds": [
+        "4bb64e65-9cd8-4b83-a1fe-9fb853d48da6",
+        "f3988f23-6685-41a8-91c6-f336b98c5195",
+        "eeef9bda-7749-427a-b816-c9e9d1790d7e",
+        "e62989af-6180-48e3-8505-239325d7412c",
+        "28e7bda6-b7fd-4652-9834-0874bbbe6960",
+        "041833a0-e048-4122-9ca2-01315f7968c2",
+        "ebc391cc-4530-4933-9a4b-2b91c6ff5417",
+        "036f30dc-f8af-40c5-804a-31fc03c6ef03"
+      ],
+      "players": []
+    }
+  ],
+  "failedTeams": [],
+  "failedSeeds": [],
+  "matches": [
+    {
+      "id": "1-3f74ab5a-6128-4bef-b283-db5cc5973aef",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Inferno",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/e8a79a43-e6b8-42e4-b6ee-2dc366365e60.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/73905c39-b221-4739-b33b-3aa4487546bc.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/d71cae42-b38c-470d-a548-0c59d6c71fbe.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/a2cb95be-1a3f-49f3-a5fa-a02503d02086_1695819214782.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
+      "factions": [
+        {
+          "id": "606eb154-94f6-4caf-92d4-39ddcddfb3c5",
+          "premade_team_id": "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
+          "faction": "faction1",
+          "name": "NEW VISION",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "759a2f6d-fde3-4387-a463-8599de5a4ce1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "a4bcfe4a-73c8-4bcd-bbe0-1bdba53ece19",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "0e5e5804-66dc-47fc-abf8-78fbabb2e486",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "2e0228fe-82cd-4e98-b73f-7b660e760b50",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "95b9645d-75af-4062-867e-54ee26ffcbb0",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "a3f6bb76-385f-41e0-a722-90e7a3ece379",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Inferno",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 2,
+          "rank_end": 2
+        },
+        {
+          "id": "961faf46-c7e4-40f0-9d62-e7039ced4287",
+          "premade_team_id": "fe66f943-b5ab-46f6-9f43-c3ed3b9b904a",
+          "faction": "faction2",
+          "name": "A Great Chaos",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "036a4eac-7073-4e5d-b406-496554257516",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "1af60106-4ea2-4ea0-aa7a-dcfdd43414bc",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "07e353e7-c16c-4b0e-adcb-cd7507a382c5",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "c3ada12c-2eca-4109-a73e-a996d1584857",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "65d457f7-27a0-4df6-be88-574e2a850d60",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Inferno",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 24,
+          "rank_end": 24
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-16T18:44:24.559Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.299Z",
+      "updated_at": "2026-07-16T18:44:24.752315Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-6aceb593-7854-4e37-ad48-d3cdbcda6a57",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Nuke",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/723663eb-485e-4121-b367-bf43a16f8b3d.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/14087a76-7665-4c44-8747-9b80ec0c1e43.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/faa7775b-f42b-4627-891a-21ee7cc13637.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/15ff938d-a70d-4d0b-9bf9-6be215cdb193_1695819151395.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
+      "factions": [
+        {
+          "id": "606eb154-94f6-4caf-92d4-39ddcddfb3c5",
+          "premade_team_id": "52f0d3d8-c3b2-4f91-86b8-d998eca317bf",
+          "faction": "faction1",
+          "name": "NEW VISION",
+          "match_score": 13,
+          "members": [
+            {
+              "user_id": "759a2f6d-fde3-4387-a463-8599de5a4ce1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "a4bcfe4a-73c8-4bcd-bbe0-1bdba53ece19",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "0e5e5804-66dc-47fc-abf8-78fbabb2e486",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "2e0228fe-82cd-4e98-b73f-7b660e760b50",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "95b9645d-75af-4062-867e-54ee26ffcbb0",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "a3f6bb76-385f-41e0-a722-90e7a3ece379",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Nuke",
+              "score": 13,
+              "won": true
+            }
+          ],
+          "rank_start": 2,
+          "rank_end": 2
+        },
+        {
+          "id": "7169c0e3-6bbc-4df7-91ef-e0ff8a8a5254",
+          "premade_team_id": "ead06c55-949f-41b4-8138-fdeacddd0bcb",
+          "faction": "faction2",
+          "name": "EvolupeGG",
+          "match_score": 6,
+          "members": [
+            {
+              "user_id": "4981cf2d-8876-45b5-bdef-9ef3ae988db7",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "ab0e169c-9107-461c-b330-60ac44057c7b",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "d84d4ff3-5445-4943-9b45-ac4f52d4f531",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "1c6cfff8-00d4-472a-a252-be47befc14b0",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "3b33caa2-ee9d-4739-a4aa-9167b9fd47b5",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Nuke",
+              "score": 6,
+              "won": false
+            }
+          ],
+          "rank_start": 7,
+          "rank_end": 7
+        }
+      ],
+      "demo_urls": [
+        "https://demos-europe-central.backblaze.faceit-cdn.net/cs2/1-6aceb593-7854-4e37-ad48-d3cdbcda6a57-1-2.dem.zst"
+      ],
+      "started_time": "2026-07-14T17:39:43Z",
+      "finished_time": "2026-07-14T18:14:28.596Z",
+      "scheduled_time": "2026-07-14T17:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:27:22.985Z",
+      "updated_at": "2026-07-14T18:14:28.822727Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-2ca325da-8de1-4b2d-aa47-32e38f73a89f",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Ancient",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/b2afa719-c57f-425b-8959-83db436354bc.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/e4abd4f0-cfbc-4135-b8a0-b1ac45eb880e.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/6f72ffec-7607-44cf-9c31-09a865fa92f5.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/a7d193ca-9498-4546-bf7b-da33e3e429a5_1695819186093.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "80473369-d322-499b-acfc-a8464edd132e",
+      "factions": [
+        {
+          "id": "f02d06ab-97cd-4b52-ac38-ca7f28d62e7c",
+          "premade_team_id": "27eab7ad-4684-44b5-aa87-0c680d8c21d9",
+          "faction": "faction1",
+          "name": "QUAZAR",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "3939bd47-6a42-43f0-936c-eb53bc5f16e5",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "326a3d6a-13ca-40b3-a56d-a47c27b6f2af",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "63bbf570-f8f3-4502-9c27-4b2d767bfeb8",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "655c7474-aa12-4737-bf21-373160fb16a1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a51dca55-de32-4806-944c-f73d310231db",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "de8546e3-f76c-4118-8671-2f0bed373ff4",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Ancient",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 29,
+          "rank_end": 30
+        },
+        {
+          "id": "da12a1e2-a972-4d9c-9d95-59d04b7a01dc",
+          "premade_team_id": "80473369-d322-499b-acfc-a8464edd132e",
+          "faction": "faction2",
+          "name": "Fortress Esport",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "ee513113-a946-4c02-8f48-6685653583d8",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "47b045df-50d0-4571-a5e5-502d3ee684c5",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "01c2bc9e-dceb-4341-bced-ad745d5b61e6",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "fdbce02a-3253-4853-b0cf-a87071b18806",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "dd3c5d81-1e4a-40d9-9f36-c20fd5a67bba",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "84df7eee-d67b-4e68-8b26-03e8000268da",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Ancient",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 8,
+          "rank_end": 8
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-16T18:45:41.756Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:06.955Z",
+      "updated_at": "2026-07-16T18:45:41.941912Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-37f53edc-9fcd-4106-9c1f-dfbecdf5c850",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Ancient",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/b2afa719-c57f-425b-8959-83db436354bc.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/e4abd4f0-cfbc-4135-b8a0-b1ac45eb880e.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/6f72ffec-7607-44cf-9c31-09a865fa92f5.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/a7d193ca-9498-4546-bf7b-da33e3e429a5_1695819186093.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "950a5365-d411-4aa3-ae53-3c622fcce2bf",
+      "factions": [
+        {
+          "id": "5c9e7071-393b-4f5d-b74f-123c2ebfc8f8",
+          "premade_team_id": "950a5365-d411-4aa3-ae53-3c622fcce2bf",
+          "faction": "faction1",
+          "name": "Strael-Bora",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "08ae5db9-d670-4e6e-bd95-cbae9a4bc376",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "3522ed7a-f112-4b59-8902-626a3f46b130",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "a8545d06-5cf5-4824-94e2-059559607773",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "33381280-63d2-4457-b2fe-400c78f97789",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "0fc95b9d-a7ac-48bf-9433-de7b1fe8bfdc",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Ancient",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 6,
+          "rank_end": 6
+        },
+        {
+          "id": "f02d06ab-97cd-4b52-ac38-ca7f28d62e7c",
+          "premade_team_id": "27eab7ad-4684-44b5-aa87-0c680d8c21d9",
+          "faction": "faction2",
+          "name": "QUAZAR",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "3939bd47-6a42-43f0-936c-eb53bc5f16e5",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "326a3d6a-13ca-40b3-a56d-a47c27b6f2af",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "63bbf570-f8f3-4502-9c27-4b2d767bfeb8",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "655c7474-aa12-4737-bf21-373160fb16a1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a51dca55-de32-4806-944c-f73d310231db",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "de8546e3-f76c-4118-8671-2f0bed373ff4",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Ancient",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 29,
+          "rank_end": 30
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-14T18:45:42.836Z",
+      "scheduled_time": "2026-07-14T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:27:22.412Z",
+      "updated_at": "2026-07-14T18:45:43.033513Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-528c5371-9fca-48a7-8cee-79f2ceba2cd0",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [],
+      "locations_picked": [],
+      "winning_team_premade_id": "ecdc2723-5329-4d3f-bef0-23c2176a2fbb",
+      "factions": [
+        {
+          "id": "15beee57-87f7-408c-8825-0676ea9539c0",
+          "premade_team_id": "ecdc2723-5329-4d3f-bef0-23c2176a2fbb",
+          "faction": "faction1",
+          "name": "IC Academy",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "a421bf0b-db37-4194-8d57-59aa2cab64a0",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "b5d097e9-8b92-4e6e-a2a6-2564f60b8cae",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "dd00574a-37b8-4c5e-87fa-b0569f624546",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "b064f4fb-5819-431f-927d-df5eaf754647",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "12870df5-1cef-4498-9efb-31f7a3add856",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "b279b210-51ef-4bdd-adae-92e68fde63c6",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "unknown",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 11,
+          "rank_end": 13
+        },
+        {
+          "id": "e3933004-39e1-4aaa-903f-c3e8d6517295",
+          "premade_team_id": "0bc946ec-99e3-4399-b34b-5aa93a3130e1",
+          "faction": "faction2",
+          "name": "bankaPEPSI",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "b5178a98-e9f1-47d9-80ac-13716332c313",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "f1f0f280-1c3e-48b1-bade-f9274217c5d0",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "7a77ac28-1dc7-4d02-8689-57194de5628c",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "78407773-ed65-456a-a507-ca50cbd78e17",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "c1d62cf4-d294-4da7-a3bb-afc2fadb84cd",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": true,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "unknown",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 37,
+          "rank_end": 37
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-16T12:28:06.208Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.223Z",
+      "updated_at": "2026-07-16T12:28:06.371492Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-c9637059-8b75-4824-8151-3a1b71e92d25",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [],
+      "locations_picked": [],
+      "winning_team_premade_id": "1f98d0ae-c844-4356-adf6-70e9501aba2a",
+      "factions": [
+        {
+          "id": "ae901a32-ef94-41af-99c8-f743a41696d1",
+          "premade_team_id": "f7bf8f6e-9e1e-4ffc-8c82-82fd850aec9e",
+          "faction": "faction1",
+          "name": "Enjoy1",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "146d366f-0ed0-4204-936b-1596fccd03c1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "d10b1954-bb7d-4b90-b1a0-17061e58d639",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "7ea66ae5-c99f-4846-8fc2-cd6e03a5559f",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "8d35cd55-d778-43f1-a20e-13abf9a08f85",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "2ce03e2d-72bd-45d8-872c-dfdefd172e72",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "unknown",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 29,
+          "rank_end": 30
+        },
+        {
+          "id": "bd6e66f8-e3cf-457c-91ec-ae439bb87aba",
+          "premade_team_id": "1f98d0ae-c844-4356-adf6-70e9501aba2a",
+          "faction": "faction2",
+          "name": "LPH Gaming",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "045998a0-de08-44cb-b0aa-1e998a278dd7",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "9439c80f-d225-49c8-92f3-66d412f6cfe5",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "4e51b6e5-d2ea-4e03-b1d8-3f222d1e315b",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "4a0e33e6-2fc2-489c-b93e-fef6329b5140",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a6574d15-8f4d-40d9-b47c-f380d849c36d",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a39bead7-6a87-44b0-b621-3ad906c9cf9e",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "unknown",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 19,
+          "rank_end": 23
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-13T19:28:43.947Z",
+      "scheduled_time": "2026-07-13T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.016Z",
+      "updated_at": "2026-07-13T19:28:44.130095Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-60f333dc-69c6-47d9-ad26-ee2bc4497349",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Nuke",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/723663eb-485e-4121-b367-bf43a16f8b3d.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/14087a76-7665-4c44-8747-9b80ec0c1e43.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/faa7775b-f42b-4627-891a-21ee7cc13637.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/15ff938d-a70d-4d0b-9bf9-6be215cdb193_1695819151395.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "e09a5784-3de2-4132-87f5-65e907bcc602",
+      "factions": [
+        {
+          "id": "ae901a32-ef94-41af-99c8-f743a41696d1",
+          "premade_team_id": "f7bf8f6e-9e1e-4ffc-8c82-82fd850aec9e",
+          "faction": "faction1",
+          "name": "Enjoy1",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "146d366f-0ed0-4204-936b-1596fccd03c1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "d10b1954-bb7d-4b90-b1a0-17061e58d639",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "7ea66ae5-c99f-4846-8fc2-cd6e03a5559f",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "8d35cd55-d778-43f1-a20e-13abf9a08f85",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "2ce03e2d-72bd-45d8-872c-dfdefd172e72",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Nuke",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 29,
+          "rank_end": 30
+        },
+        {
+          "id": "fed8bc76-aef6-478e-a780-f34eeab98b84",
+          "premade_team_id": "e09a5784-3de2-4132-87f5-65e907bcc602",
+          "faction": "faction2",
+          "name": "Fraternity",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "8450dcb5-7fd7-40f5-8065-a6506cfef476",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a5552e19-97d5-4879-899b-3765796f183b",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "f537bfc9-a4bd-43f8-a897-fb4e0966e230",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "f7910ccc-22c4-4962-a7ab-2622b32da1eb",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "131a1c99-fa4d-40fa-983a-53de76893a66",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Nuke",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 19,
+          "rank_end": 23
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-14T16:02:25.140Z",
+      "scheduled_time": "2026-07-14T16:00:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:27:22.492Z",
+      "updated_at": "2026-07-14T16:02:25.348736Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-7fe2491c-897a-4ffe-97b5-b120fea630b1",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Dust2",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/c1040791-5184-4d9e-85e0-f4ee9f60b385.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/aabd22c4-0394-4fdf-a9f4-22ff24ed98af.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/4eafa800-b504-4dd2-afd0-90882c729140.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/adf58ac6-b0f3-40e9-87ef-0af23fc60918_1695819116078.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "91416841-429d-405c-af9d-35e2ce855e5d",
+      "factions": [
+        {
+          "id": "6da2bbc2-744e-48fd-8d52-aa49ae2fa9b0",
+          "premade_team_id": "4f497aed-dfcf-4029-b188-66e330bbfbbc",
+          "faction": "faction1",
+          "name": "Entropy",
+          "match_score": 0,
+          "members": [
+            {
+              "user_id": "279d0cfb-aaa6-4753-8d00-fd63de67ac27",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": false
+            },
+            {
+              "user_id": "fd00ce79-b6ce-4874-bbd6-f749962fbb5f",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "30399275-289d-406f-8aae-d3ff3fe2344e",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "88f1a675-fb37-4f1b-bbfd-fd85bcb64ed1",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": false
+            },
+            {
+              "user_id": "a5530536-1182-40f6-a507-b46f0dd6dae5",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Dust2",
+              "score": 0,
+              "won": false
+            }
+          ],
+          "rank_start": 35,
+          "rank_end": 36
+        },
+        {
+          "id": "76bb5a2f-99e6-4439-aa55-34857c48e36f",
+          "premade_team_id": "91416841-429d-405c-af9d-35e2ce855e5d",
+          "faction": "faction2",
+          "name": "VPProdigy",
+          "match_score": 1,
+          "members": [
+            {
+              "user_id": "e1c59162-b1e7-48c6-9831-eff3170045af",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "b0fb4114-0be0-4f0e-82e7-6db4602079bc",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "b9124784-0b46-4279-b95a-9e6c0a3701c6",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "e78d5a17-9c4f-4204-b9c3-d905ee295729",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "bb310ae9-d10f-48d7-a867-3cffd17c8027",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Dust2",
+              "score": 1,
+              "won": true
+            }
+          ],
+          "rank_start": 19,
+          "rank_end": 23
+        }
+      ],
+      "demo_urls": [],
+      "started_time": "1970-01-01T00:00:00Z",
+      "finished_time": "2026-07-16T18:45:23.580Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.315Z",
+      "updated_at": "2026-07-16T18:45:23.739428Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-d8774b6a-3203-4152-977a-fd5e5dee9ca6",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Anubis",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/7779c750-ad9b-4365-b35d-b4d929a30c1a.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/8c5fcbb3-52a1-45e2-b4b1-3fd710fd0f95.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/6f72ffec-7607-44cf-9c31-09a865fa92f5.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/847a46ed-fbcc-4347-a64a-bc2d6a24be89_1695819226252.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "3c170b46-04a8-443a-9605-cfd3e03cd020",
+      "factions": [
+        {
+          "id": "63198df2-0cfb-41c6-b655-85d8d7aa9e4a",
+          "premade_team_id": "3cb28ef5-ae7b-4e67-897d-0f7067810cc4",
+          "faction": "faction1",
+          "name": "Arch",
+          "match_score": 9,
+          "members": [
+            {
+              "user_id": "18052c43-669b-4906-8514-41830c79e301",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "dbe5a73d-0d93-4ce5-8cee-2737a35c4de9",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "f2cde30d-f0ac-4a97-b203-c0db0b004030",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "cc550113-9932-4b8d-835d-babf25e209ca",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "159069e0-7e7c-4e3e-989e-d9f723689e3a",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "ca3b8276-646a-4114-9bb9-8cb8035db700",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": false
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Anubis",
+              "score": 9,
+              "won": false
+            }
+          ],
+          "rank_start": 31,
+          "rank_end": 32
+        },
+        {
+          "id": "31f6a516-4303-4c23-82fd-336e99af26df",
+          "premade_team_id": "3c170b46-04a8-443a-9605-cfd3e03cd020",
+          "faction": "faction2",
+          "name": "DNK",
+          "match_score": 13,
+          "members": [
+            {
+              "user_id": "8690e939-7ea7-47b6-b46d-79c941e14def",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "b63a6690-b63f-4eac-a354-1e6089a3bc86",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "1252bc31-a31d-48a9-a871-615a5951d2c2",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "01c23666-34c3-4c20-b8cb-93fe47884327",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "fed5173b-cc64-4d2a-914f-84273a4eb392",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Anubis",
+              "score": 13,
+              "won": true
+            }
+          ],
+          "rank_start": 16,
+          "rank_end": 17
+        }
+      ],
+      "demo_urls": [
+        "https://demos-europe-central.backblaze.faceit-cdn.net/cs2/1-d8774b6a-3203-4152-977a-fd5e5dee9ca6-1-1.dem.zst"
+      ],
+      "started_time": "2026-07-16T18:39:13Z",
+      "finished_time": "2026-07-16T19:27:39.660Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.143Z",
+      "updated_at": "2026-07-16T19:27:39.897066Z",
+      "roster_with_substitutes": true
+    },
+    {
+      "id": "1-5b9ab74d-39b1-4870-a53a-7552a08f07a2",
+      "game": "cs2",
+      "region_code": "EU",
+      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca",
+      "state": "MATCH_STATE_FINISHED",
+      "status": "MATCH_STATUS_FINISHED",
+      "best_of": 1,
+      "team_size": 5,
+      "maps_picked": [
+        {
+          "name": "Dust2",
+          "category": "Defusal",
+          "meta_data": {
+            "icon": "https://distribution.faceit-cdn.net/images/c1040791-5184-4d9e-85e0-f4ee9f60b385.png",
+            "image_url_large": "https://distribution.faceit-cdn.net/images/aabd22c4-0394-4fdf-a9f4-22ff24ed98af.jpeg",
+            "image_url_regular": "https://distribution.faceit-cdn.net/images/4eafa800-b504-4dd2-afd0-90882c729140.jpeg",
+            "image_url_small": "https://assets.faceit-cdn.net/third_party/games/ce652bd4-0abb-4c90-9936-1133965ca38b/assets/votables/adf58ac6-b0f3-40e9-87ef-0af23fc60918_1695819116078.jpeg"
+          }
+        }
+      ],
+      "locations_picked": [],
+      "winning_team_premade_id": "115c0893-5339-45fe-82fc-7cf535237fee",
+      "factions": [
+        {
+          "id": "129337d7-df2f-45ac-81c5-f7653ea7a2bc",
+          "premade_team_id": "29dd3d3f-2d06-4ab2-857a-4980d7691713",
+          "faction": "faction1",
+          "name": "gothboiclique",
+          "match_score": 9,
+          "members": [
+            {
+              "user_id": "7c15da7f-39d6-4f8d-b237-ddcc58d0751b",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "0143e682-6fd5-48d5-b587-94ff15593d05",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "02b26fe9-49d1-47e7-afa0-1b5c562ca4e2",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "311dd83e-36cf-45f8-ba18-4286d318e351",
+              "role": "GAME_ROLE_COACH",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "cf55613e-5ec7-4362-a4db-625d70640a10",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "f033900c-fa41-4016-baf1-dd2e8a4d840a",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": false,
+          "map_scores": [
+            {
+              "map_name": "Dust2",
+              "score": 9,
+              "won": false
+            }
+          ],
+          "rank_start": 31,
+          "rank_end": 32
+        },
+        {
+          "id": "15223a87-97bf-4d81-8374-f66a655323bc",
+          "premade_team_id": "115c0893-5339-45fe-82fc-7cf535237fee",
+          "faction": "faction2",
+          "name": "GoldRashers",
+          "match_score": 13,
+          "members": [
+            {
+              "user_id": "f3988f23-6685-41a8-91c6-f336b98c5195",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": true,
+              "participated": true
+            },
+            {
+              "user_id": "e62989af-6180-48e3-8505-239325d7412c",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "4bb64e65-9cd8-4b83-a1fe-9fb853d48da6",
+              "role": "GAME_ROLE_PLAYER",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "041833a0-e048-4122-9ca2-01315f7968c2",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            },
+            {
+              "user_id": "ebc391cc-4530-4933-9a4b-2b91c6ff5417",
+              "role": "GAME_ROLE_SUBSTITUTE",
+              "leader": false,
+              "participated": true
+            }
+          ],
+          "forfeited": false,
+          "won": true,
+          "map_scores": [
+            {
+              "map_name": "Dust2",
+              "score": 13,
+              "won": true
+            }
+          ],
+          "rank_start": 16,
+          "rank_end": 17
+        }
+      ],
+      "demo_urls": [
+        "https://demos-europe-central.backblaze.faceit-cdn.net/cs2/1-5b9ab74d-39b1-4870-a53a-7552a08f07a2-1-2.dem.zst"
+      ],
+      "started_time": "2026-07-16T18:44:12Z",
+      "finished_time": "2026-07-16T19:25:19.565Z",
+      "scheduled_time": "2026-07-16T18:30:00Z",
+      "configured_time": null,
+      "created_at": "2026-07-10T22:28:07.064Z",
+      "updated_at": "2026-07-16T19:25:19.875587Z",
+      "roster_with_substitutes": true
+    }
+  ]
+}

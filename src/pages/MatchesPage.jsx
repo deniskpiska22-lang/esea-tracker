@@ -91,8 +91,12 @@ function compareSeasons(firstSeason, secondSeason) {
 }
 
 function normalizeName(value = "") {
-  return value.replace(/\s+/g, "").toLowerCase();
+  return String(value || "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
 }
+
+
 
 function formatDate(value) {
   if (!value) return "Unknown date";
@@ -145,13 +149,25 @@ function rowToTeamMatch(row, team) {
     row.team1_slug === team?.slug ||
     normalizeName(row.team1_name) === normalizeName(team?.name);
 
-  const ownScore = Number(teamIsFirst ? row.team1_score : row.team2_score);
-  const opponentScore = Number(
-    teamIsFirst ? row.team2_score : row.team1_score
-  );
+  const ownScoreRaw =
+    teamIsFirst ? row.team1_score : row.team2_score;
+
+  const opponentScoreRaw =
+    teamIsFirst ? row.team2_score : row.team1_score;
+
+  const ownScore =
+    ownScoreRaw === null || ownScoreRaw === undefined
+      ? null
+      : Number(ownScoreRaw);
+
+  const opponentScore =
+    opponentScoreRaw === null || opponentScoreRaw === undefined
+      ? null
+      : Number(opponentScoreRaw);
 
   const hasScores =
-    Number.isFinite(ownScore) && Number.isFinite(opponentScore);
+    Number.isFinite(ownScore) &&
+    Number.isFinite(opponentScore);
 
   const won = hasScores && ownScore > opponentScore;
   const draw = hasScores && ownScore === opponentScore;
@@ -214,9 +230,18 @@ function MatchesPage() {
         filters.push(`team2_id.eq.${team.faceitTeamId}`);
       }
 
-      if (team.name) {
-        filters.push(`team1_name.eq.${team.name}`);
-        filters.push(`team2_name.eq.${team.name}`);
+      /*
+       * По имени не фильтруем через .or():
+       * пробелы, запятые и спецсимволы в названии
+       * команды могут ломать PostgREST-выражение.
+       * slug и FACEIT team id надёжнее.
+       */
+      if (filters.length === 0 && team.name) {
+        const safeName = String(team.name)
+          .replace(/"/g, '\\"');
+
+        filters.push(`team1_name.eq."${safeName}"`);
+        filters.push(`team2_name.eq."${safeName}"`);
       }
 
       let query = supabase
@@ -284,7 +309,9 @@ function MatchesPage() {
         if (!mapFilter) return true;
 
         return match.maps.some(
-          (map) => map.toLowerCase() === mapFilter.toLowerCase()
+          (map) =>
+            String(map || "").toLowerCase() ===
+            String(mapFilter || "").toLowerCase()
         );
       })
       .sort(

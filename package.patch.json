@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "v2:standings": "node scripts/v2/discoverTeamsFromStandings.js"
+  }
+}

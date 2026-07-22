@@ -30,6 +30,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import VerificationRequestPage from "./pages/VerificationRequestPage";
 import AdminVerificationPage from "./pages/AdminVerificationPage";
+import DataStatusPage from "./pages/DataStatusPage";
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -46,6 +47,7 @@ ReactDOM.createRoot(
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/auth/callback" element={<AuthCallbackPage />} />
             <Route path="/" element={<Home />} />
+            <Route path="/data-status" element={<DataStatusPage />} />
             <Route
               path="/rankings"
               element={<RankingsPage />}
@@ -72,8 +74,18 @@ ReactDOM.createRoot(
             />
 
             <Route
+              path="/teams/:slug/matches"
+              element={<MatchesPage />}
+            />
+
+            <Route
               path="/team/:slug/matches"
               element={<MatchesPage />}
+            />
+
+            <Route
+              path="/teams/:slug/stats"
+              element={<StatsPage />}
             />
 
             <Route
@@ -82,12 +94,22 @@ ReactDOM.createRoot(
             />
 
             <Route
+              path="/teams/:slug/matches/:matchId"
+              element={<MatchPage />}
+            />
+
+            <Route
               path="/team/:slug/matches/:matchId"
               element={<MatchPage />}
             />
 
             <Route
-              path="/players/:nickname"
+              path="/player/:playerId"
+              element={<PlayerPage />}
+            />
+
+            <Route
+              path="/players/:playerId"
               element={<PlayerPage />}
             />
 

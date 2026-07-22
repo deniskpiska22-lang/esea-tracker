@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Refresh teams from standings
+        run: npm run v2:sync
+
       - name: Discover and sync matches
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

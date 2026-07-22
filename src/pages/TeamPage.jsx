@@ -1,12 +1,14 @@
-import { useParams, Link } from "react-router-dom"
-import teams from "../data/teams"
-import history from "../data/teamHistory.json"
-import playersData from "../data/players"
-import matchesData from "../data/matches"
-import playerAverageRatings from "../data/playerAverageRatings.json";
-import { normalizeNickname } from "../utils/normalizeNickname";
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { useParams, Link } from "react-router-dom";
+import teams from "../data/teams";
+import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
-
+import TeamRosterSection from "../components/TeamRosterSection";
+import { supabase } from "../lib/supabaseClient";
 
 import {
   LineChart,
@@ -16,461 +18,978 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-} from "recharts"
+} from "recharts";
+
+const COUNTRY_NAMES = {
+  RU: "Russia",
+  US: "United States",
+  CA: "Canada",
+  BR: "Brazil",
+  AR: "Argentina",
+  CL: "Chile",
+  PE: "Peru",
+  MX: "Mexico",
+  GB: "United Kingdom",
+  UA: "Ukraine",
+  PL: "Poland",
+  DE: "Germany",
+  FR: "France",
+  ES: "Spain",
+  PT: "Portugal",
+  IT: "Italy",
+  NL: "Netherlands",
+  BE: "Belgium",
+  DK: "Denmark",
+  SE: "Sweden",
+  NO: "Norway",
+  FI: "Finland",
+  CZ: "Czechia",
+  SK: "Slovakia",
+  RO: "Romania",
+  BG: "Bulgaria",
+  RS: "Serbia",
+  HR: "Croatia",
+  HU: "Hungary",
+  TR: "Türkiye",
+  KZ: "Kazakhstan",
+  CN: "China",
+  JP: "Japan",
+  KR: "South Korea",
+  AU: "Australia",
+  NZ: "New Zealand",
+};
+
+function normalizeText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeCountry(value) {
+  const raw = String(value || "")
+    .trim()
+    .toUpperCase();
+
+  if (raw.length === 2) {
+    return raw;
+  }
+
+  const aliases = {
+    RUSSIA: "RU",
+    RUSSIAN: "RU",
+    USA: "US",
+    "UNITED STATES": "US",
+    UK: "GB",
+    "UNITED KINGDOM": "GB",
+    UKRAINE: "UA",
+    POLAND: "PL",
+    GERMANY: "DE",
+    FRANCE: "FR",
+    SPAIN: "ES",
+    PORTUGAL: "PT",
+    BRAZIL: "BR",
+    CANADA: "CA",
+    AUSTRALIA: "AU",
+    KAZAKHSTAN: "KZ",
+  };
+
+  return aliases[raw] || raw || null;
+}
+
+function getRatingValue(row) {
+  const candidates = [
+    row?.rating,
+    row?.points,
+    row?.elo,
+    row?.score,
+    row?.current_rating,
+    row?.current_points,
+  ];
+
+  for (const value of candidates) {
+    const parsed = Number(value);
+
+    if (Number.isFinite(parsed)) {
+      return parsed;
+    }
+  }
+
+  return 0;
+}
+
+function getRankingTeamId(row) {
+  return (
+    row?.team_id ||
+    row?.faceit_team_id ||
+    row?.faceitTeamId ||
+    row?.id ||
+    null
+  );
+}
+
+function getRankingTeamName(row) {
+  return (
+    row?.team_name ||
+    row?.name ||
+    row?.team ||
+    ""
+  );
+}
+
+function findLocalTeamForRankingRow(row) {
+  const rowId = getRankingTeamId(row);
+  const rowName = normalizeText(
+    getRankingTeamName(row)
+  );
+
+  return teams.find((candidate) => {
+    const candidateIds = [
+      candidate?.faceitTeamId,
+      candidate?.faceit_team_id,
+      candidate?.teamId,
+      candidate?.id,
+    ]
+      .filter(Boolean)
+      .map(String);
+
+    if (
+      rowId &&
+      candidateIds.includes(String(rowId))
+    ) {
+      return true;
+    }
+
+    return (
+      rowName &&
+      normalizeText(candidate?.name) === rowName
+    );
+  });
+}
+
+function getRankingCountry(row) {
+  const directCountry = normalizeCountry(
+    row?.country ||
+    row?.country_code ||
+    row?.countryCode
+  );
+
+  if (directCountry) {
+    return directCountry;
+  }
+
+  const localTeam =
+    findLocalTeamForRankingRow(row);
+
+  return normalizeCountry(
+    localTeam?.country ||
+    localTeam?.countryCode ||
+    localTeam?.country_code
+  );
+}
+
+function rankingRowMatchesTeam(row, team) {
+  const teamIds = [
+    team?.faceitTeamId,
+    team?.faceit_team_id,
+    team?.teamId,
+    team?.id,
+  ]
+    .filter(Boolean)
+    .map(String);
+
+  const rowId = getRankingTeamId(row);
+
+  if (
+    rowId &&
+    teamIds.includes(String(rowId))
+  ) {
+    return true;
+  }
+
+  return (
+    normalizeText(getRankingTeamName(row)) ===
+    normalizeText(team?.name)
+  );
+}
+
+function getRankChange(row, type) {
+  const candidates =
+    type === "world"
+      ? [
+          row?.world_rank_change,
+          row?.rank_change,
+          row?.position_change,
+          row?.places_change,
+        ]
+      : [
+          row?.country_rank_change,
+          row?.national_rank_change,
+        ];
+
+  for (const value of candidates) {
+    const parsed = Number(value);
+
+    if (Number.isFinite(parsed)) {
+      return parsed;
+    }
+  }
+
+  return 0;
+}
+
+function RankChange({ value }) {
+  if (!Number.isFinite(value) || value === 0) {
+    return null;
+  }
+
+  const improved = value > 0;
+
+  return (
+    <span
+      className={[
+        "rounded-md px-2 py-1 text-[10px] font-black",
+        improved
+          ? "bg-emerald-500/10 text-emerald-400"
+          : "bg-rose-500/10 text-rose-400",
+      ].join(" ")}
+    >
+      {improved ? "▲" : "▼"}{" "}
+      {Math.abs(value)}
+    </span>
+  );
+}
+
+function RankCard({
+  eyebrow,
+  rank,
+  countryCode,
+  change,
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-black/15 p-4 backdrop-blur-sm">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/55 to-transparent" />
+
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+          {eyebrow}
+        </div>
+
+        <RankChange value={change} />
+      </div>
+
+      <div className="mt-3 flex items-end justify-between gap-4">
+        <div className="text-4xl font-black tracking-tight text-white">
+          {rank ? `#${rank}` : "—"}
+        </div>
+
+        {countryCode && (
+          <div className="text-sm font-black text-slate-500">
+            {countryCode}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function TeamPage() {
-  const { slug } = useParams()
-  console.log(slug)
-console.log(teams.map(t => t.slug))
+  const { slug } = useParams();
 
-  // 🧠 TEAM
-  const team = teams?.find((t) => t.slug === slug)
+  const team = teams?.find(
+    (item) => item.slug === slug
+  );
+
+  const [rankingRows, setRankingRows] =
+    useState([]);
+  const [rankingLoading, setRankingLoading] =
+    useState(true);
+  const [rankingError, setRankingError] =
+    useState(null);
+
+  const [
+    ratingHistoryRows,
+    setRatingHistoryRows,
+  ] = useState([]);
+
+  const [
+    ratingHistoryLoading,
+    setRatingHistoryLoading,
+  ] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadRankings() {
+      setRankingLoading(true);
+      setRankingError(null);
+
+      const { data, error } = await supabase
+        .from("team_ratings")
+        .select("*");
+
+      if (cancelled) {
+        return;
+      }
+
+      if (error) {
+        setRankingRows([]);
+        setRankingError(error.message);
+      } else {
+        setRankingRows(data || []);
+      }
+
+      setRankingLoading(false);
+    }
+
+    loadRankings();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadRatingHistory() {
+      const teamId =
+        team?.faceitTeamId ||
+        team?.faceit_team_id ||
+        team?.teamId ||
+        team?.id ||
+        null;
+
+      if (!teamId) {
+        setRatingHistoryRows([]);
+        setRatingHistoryLoading(false);
+        return;
+      }
+
+      setRatingHistoryLoading(true);
+
+      const { data, error } = await supabase
+        .from("team_rating_history")
+        .select(
+          "team_id,points,world_rank,matches_played,week_start,created_at"
+        )
+        .eq("team_id", String(teamId))
+        .eq("snapshot_type", "weekly")
+        .order("week_start", {
+          ascending: true,
+        })
+        .limit(104);
+
+      if (cancelled) {
+        return;
+      }
+
+      if (error) {
+        console.warn(
+          "Rating history load failed:",
+          error.message
+        );
+        setRatingHistoryRows([]);
+      } else {
+        setRatingHistoryRows(data || []);
+      }
+
+      setRatingHistoryLoading(false);
+    }
+
+    loadRatingHistory();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, team]);
 
   if (!team) {
     return (
-      <div className="bg-[#0b0f14] min-h-screen text-white flex items-center justify-center">
-        <h1 className="text-3xl font-bold text-gray-400">
-          Team not found
-        </h1>
+      <div className="flex min-h-screen items-center justify-center bg-[#080b10] px-4 text-white">
+        <div className="rounded-3xl border border-white/[0.06] bg-[#101720] px-10 py-14 text-center">
+          <div className="text-xs font-black uppercase tracking-[0.22em] text-orange-400">
+            ESEA Tracker
+          </div>
+
+          <h1 className="mt-3 text-3xl font-black text-white">
+            Team not found
+          </h1>
+
+          <Link
+            to="/rankings"
+            className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-2.5 font-black text-white transition hover:bg-orange-400"
+          >
+            Back to rankings
+          </Link>
+        </div>
       </div>
-    )
+    );
   }
 
-  // 🧠 HISTORY SAFE
-  const teamHistory = history?.[slug] ?? []
+  const teamHistory =
+    ratingHistoryRows.map((row) => {
+      const dateValue =
+        row.week_start ||
+        row.created_at;
 
-  // 🧠 CURRENT RATING (HLTV STYLE)
-  const currentRating =
-    teamHistory.length > 0
-      ? teamHistory.at(-1)?.rating
-      : team.points ?? 0
+      const date =
+        new Date(dateValue);
 
-  // 🧠 STATS SAFE
- const fallbackMatches = matchesData
-  .filter((match) => match.teamSlug === slug)
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-const { matches: teamMatches, maps: liveMapStats } = useTeamStats(slug, fallbackMatches);
-
-const wins = teamMatches.filter(
-  (match) => match.won === true || match.result === "WIN"
-).length;
-
-const losses = teamMatches.filter(
-  (match) => match.won === false || match.result === "LOSS"
-).length;
-
-const total = wins + losses;
-
-const winrate =
-  total > 0 ? Math.round((wins / total) * 100) : 0;
-
-const recentForm = teamMatches.slice(0, 5);
-
-
-
-const mapStats = liveMapStats ?? Object.values(
-  teamMatches.reduce((acc, match) => {
-    match.mapScores?.forEach((map) => {
-      if (!map.map || map.map === "unknown") return;
-      if (!acc[map.map]) acc[map.map] = { name: map.map, played: 0, wins: 0 };
-      acc[map.map].played += 1;
-      if (map.won) acc[map.map].wins += 1;
+      return {
+        week:
+          Number.isNaN(date.getTime())
+            ? String(dateValue || "")
+            : date.toLocaleDateString(
+                "en-US",
+                {
+                  month: "short",
+                  day: "numeric",
+                }
+              ),
+        rating:
+          Number(row.points || 0),
+        rank:
+          row.world_rank
+            ? Number(row.world_rank)
+            : null,
+        matchesPlayed:
+          Number(
+            row.matches_played || 0
+          ),
+      };
     });
-    return acc;
-  }, {})
-).map((map) => ({ ...map, winrate: Math.round((map.wins / map.played) * 100) }))
-  .sort((a, b) => b.winrate - a.winrate);
 
-  const teamPlayersStats = playersData?.[slug] ?? []
+  const fallbackMatches = matchesData
+    .filter(
+      (match) => match.teamSlug === slug
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.date) -
+        new Date(a.date)
+    );
+
+  const {
+    matches: teamMatches = [],
+  } = useTeamStats(
+    slug,
+    fallbackMatches
+  );
+
+  const wins = teamMatches.filter(
+    (match) =>
+      match.won === true ||
+      String(match.result).toUpperCase() ===
+        "WIN"
+  ).length;
+
+  const losses = teamMatches.filter(
+    (match) =>
+      match.won === false ||
+      String(match.result).toUpperCase() ===
+        "LOSS"
+  ).length;
+
+  const total = wins + losses;
+
+  const winrate =
+    total > 0
+      ? Math.round((wins / total) * 100)
+      : 0;
+
+  const recentForm =
+    teamMatches.slice(0, 5);
+
+  const rankingData = useMemo(() => {
+    const sortedWorld = [...rankingRows]
+      .filter(
+        (row) =>
+          getRatingValue(row) > 0
+      )
+      .sort(
+        (first, second) =>
+          getRatingValue(second) -
+          getRatingValue(first)
+      );
+
+    const currentRow = sortedWorld.find(
+      (row) =>
+        rankingRowMatchesTeam(row, team)
+    );
+
+    const worldIndex =
+      currentRow
+        ? sortedWorld.indexOf(currentRow)
+        : -1;
+
+    const teamCountry =
+      getRankingCountry(currentRow) ||
+      normalizeCountry(
+        team.country ||
+        team.countryCode ||
+        team.country_code ||
+        team.nationality
+      );
+
+    const countryRows = teamCountry
+      ? sortedWorld.filter((row) => {
+          const rowCountry =
+            getRankingCountry(row);
+
+          return rowCountry === teamCountry;
+        })
+      : [];
+
+    const countryIndex =
+      currentRow
+        ? countryRows.indexOf(currentRow)
+        : -1;
+
+    return {
+      row: currentRow,
+      rating:
+        getRatingValue(currentRow),
+      worldRank:
+        worldIndex >= 0
+          ? worldIndex + 1
+          : null,
+      countryRank:
+        countryIndex >= 0
+          ? countryIndex + 1
+          : null,
+      countryCode: teamCountry,
+      countryName:
+        COUNTRY_NAMES[teamCountry] ||
+        teamCountry ||
+        "Country",
+      worldRankChange:
+        getRankChange(
+          currentRow,
+          "world"
+        ),
+      countryRankChange:
+        getRankChange(
+          currentRow,
+          "country"
+        ),
+    };
+  }, [rankingRows, team]);
+
+  const currentRating =
+    rankingData.rating ||
+    Number(team.points) ||
+    0;
 
   return (
-  <div className="bg-[#0b0f14] min-h-screen text-white px-4 md:px-8 py-8">
+    <div className="min-h-screen bg-[#080b10] px-4 py-8 text-white md:px-8">
+      <div className="mx-auto max-w-6xl">
 
+        {/* HERO */}
+        <section className="relative overflow-hidden rounded-[32px] border border-white/[0.06] bg-gradient-to-br from-[#111821] via-[#0f151e] to-[#0b1017] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+          <div className="pointer-events-none absolute -left-28 -top-28 h-80 w-80 rounded-full bg-orange-500/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 top-8 h-72 w-72 rounded-full bg-orange-400/[0.06] blur-3xl" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/80 to-transparent" />
 
-
-    {/* HERO */}
-    <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-[#1f2a3a] bg-[#111823] shadow-2xl">
-
-      <div className="p-6 md:p-10">
-
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-
-          <div className="w-32 h-32 rounded-2xl bg-[#0f141c] border border-[#263041] flex items-center justify-center overflow-hidden">
+          {team.logo && (
             <img
               src={team.logo}
-              alt={team.name}
-              className="w-full h-full object-contain p-4"
+              alt=""
+              className="pointer-events-none absolute -right-16 top-1/2 h-[390px] w-[390px] -translate-y-1/2 scale-110 object-contain opacity-[0.045] grayscale"
             />
-          </div>
+          )}
 
-          <div className="text-center md:text-left">
+          <div className="relative p-6 md:p-10">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-center">
 
-            <div className="flex items-center gap-3 justify-center md:justify-start">
-              <img
-                src={team.flag}
-                className="w-7 h-7 rounded-sm"
-              />
-
-              <h1 className="text-4xl md:text-6xl font-black">
-                {team.name}
-              </h1>
-            </div>
-
-            <p className="text-gray-400 mt-3">
-              Division:{" "}
-              <span className="text-orange-400 font-semibold">
-                {team.division}
-              </span>
-            </p>
-
-
-
-            {/* HLTV VALUES */}
-            <div className="flex gap-12 mt-5 flex-wrap items-center justify-center md:justify-start">
-
-  <div className="flex gap-3">
-
-    <span className="px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-400 font-semibold">
-      {currentRating} Rating
-    </span>
-
-    <span className="px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 font-semibold">
-      {winrate}% WR
-    </span>
-
-  </div>
-
-  <div className="-mt-5">
-
-    <div className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-2">
-      Last 5
-    </div>
-
-    <div className="flex gap-2">
-
-      {recentForm.map((match, index) => (
-        <div
-          key={index}
-          className={`
-            w-9
-            h-9
-            rounded-lg
-            flex
-            items-center
-            justify-center
-            font-black
-            text-sm
-            ${
-              match.result === "WIN"
-                ? "bg-green-500/15 text-green-400 border border-green-500/30"
-                : "bg-red-500/15 text-red-400 border border-red-500/30"
-            }
-          `}
-        >
-          {match.result === "WIN" ? "W" : "L"}
-        </div>
-      ))}
-
-    </div>
-
-  </div>
-
-</div>
-          </div>
-        </div>
-
-        {/* STATS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-
-          <div className="bg-[#1a2330]/80 border border-[#263041] rounded-2xl p-5">
-            <p className="text-gray-400 text-sm">Wins</p>
-            <p className="text-3xl font-bold text-green-400">
-              {wins}
-            </p>
-          </div>
-
-          <div className="bg-[#1a2330]/80 border border-[#263041] rounded-2xl p-5">
-            <p className="text-gray-400 text-sm">Losses</p>
-            <p className="text-3xl font-bold text-red-400">
-              {losses}
-            </p>
-          </div>
-
-          <div className="bg-[#1a2330]/80 border border-[#263041] rounded-2xl p-5">
-            <p className="text-gray-400 text-sm">Winrate</p>
-            <p className="text-3xl font-bold text-orange-400">
-              {winrate}%
-            </p>
-          </div>
-
-          <div className="bg-[#1a2330]/80 border border-[#263041] rounded-2xl p-5">
-            <p className="text-gray-400 text-sm">Rating</p>
-            <p className="text-3xl font-bold text-blue-400">
-              {currentRating}
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-{/* NAVIGATION */}
-<div className="max-w-6xl mx-auto mt-8 mb-4">
-
-  <div className="flex gap-2 border-b border-[#263041] pb-3">
-
-    <Link
-      to={`/team/${slug}`}
-      className="
-        px-5
-        py-2
-        rounded-xl
-        bg-orange-500/10
-        text-orange-400
-        font-semibold
-      "
-    >
-      Overview
-    </Link>
-
-    <Link
-      to={`/team/${slug}/matches`}
-      className="
-        px-5
-        py-2
-        rounded-xl
-        text-gray-300
-        hover:bg-[#141d2a]
-        transition
-      "
-    >
-      Matches
-    </Link>
-
-    <Link
-  to={`/team/${slug}/stats`}
+              <div className="flex flex-col items-center gap-6 md:flex-row md:items-center">
+                <div
   className="
-    px-5
-    py-2
-    rounded-xl
-    text-gray-300
-    hover:bg-[#141d2a]
-    transition
-  "
->
-  Stats
-</Link>
-    
-
-  </div>
-
-</div>
-
-
-
-{/* 🧑 PLAYERS */}
-
-<div className="max-w-6xl mx-auto mt-8 flex gap-4 flex-wrap">
-
-{teamPlayersStats.map((player, index) => {
-  const rating =
-    playerAverageRatings[player.nickname] || 0;
-
-  const avatarNickname = normalizeNickname(player.nickname);
-  const avatarPath = `/players/${avatarNickname}.png`;
-
-  return (
-<Link
-  key={`${player.nickname}-${index}`}
-  to={`/players/${encodeURIComponent(player.nickname)}`}
-state={{
-  from: `/teams/${slug}`,
-  label: `← Back to ${team.name}`
-}}
-  className="
-    flex-1
-    min-w-[190px]
-    bg-gradient-to-b
-    from-[#182230]
-    to-[#0f141c]
-    border
-    border-[#2a3547]
-    rounded-3xl
-    p-6
+    group
     relative
+    h-36
+    w-36
+    shrink-0
     overflow-hidden
-    transition-all
-    duration-300
-    hover:-translate-y-2
-    hover:border-orange-500/50
-    hover:shadow-[0_15px_40px_rgba(249,115,22,0.15)]
-    block
-    cursor-pointer
+    rounded-[28px]
+    bg-[#0b1119]
+    shadow-[0_12px_35px_rgba(0,0,0,0.30)]
   "
 >
-  {/* TOP COLOR BAR */}
-  <div
-    className={`absolute top-0 left-0 w-full h-1 ${
-      rating >= 1.1
-        ? "bg-green-500"
-        : rating < 0.95
-        ? "bg-red-500"
-        : "bg-orange-500"
-    }`}
-  />
-
-  <div className="flex flex-col items-center text-center">
-
-    {/* PLAYER AVATAR */}
-<div
-  className="
-    relative
-    w-32
-    h-32
-    rounded-2xl
-    bg-[#111823]
-    border
-    border-[#243041]
-    overflow-hidden
-    mb-4
-    mt-2
-  "
->
-  {team.logo && (
-    <img
-      src={team.logo}
-      alt={team.name}
-      className="
-        absolute
-        inset-0
-        w-full
-        h-full
-        object-contain
-        opacity-20
-        scale-125
-      "
-    />
-  )}
-
-  <div
+  <img
+    src={team.logo}
+    alt={team.name}
     className="
       absolute
       inset-0
-      bg-gradient-to-t
-      from-[#111823]
-      via-transparent
-      to-transparent
-      z-10
+      h-full
+      w-full
+      scale-[1.04]
+      object-cover
+      transition
+      duration-300
+      group-hover:scale-[1.08]
     "
   />
 
-  <img
-    src={avatarPath}
-    alt={player.nickname}
-    onError={(e) => {
-      e.currentTarget.src = "/player-silhouette.png";
-    }}
+  <div
     className="
+      pointer-events-none
       absolute
-      bottom-0
-      left-1/2
-      -translate-x-1/2
-      h-[110%]
-      object-contain
-      z-20
+      inset-0
+      rounded-[28px]
+      ring-1
+      ring-inset
+      ring-white/[0.06]
     "
   />
 </div>
 
-    {/* NICKNAME */}
-    <div className="font-semibold hover:text-orange-400 transition-colors">
-  {player.nickname}
-</div>
+                <div className="min-w-0 text-center md:text-left">
+                  <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                    {team.flag && (
+                      <img
+                        src={team.flag}
+                        alt=""
+                        className="h-6 w-8 rounded-sm object-cover"
+                      />
+                    )}
 
-    {/* RATING */}
-    <div className="mt-5">
+                    <span className="rounded-lg border border-orange-500/15 bg-orange-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-orange-400">
+                      {team.division || "Division"}
+                    </span>
+                  </div>
 
-      <div
-        className={`text-4xl font-black leading-none ${
-          rating >= 1.1
-            ? "text-green-400"
-            : rating < 0.95
-            ? "text-red-400"
-            : "text-orange-400"
-        }`}
-      >
-        {playerAverageRatings[player.nickname]?.toFixed(2) ?? "-"}
+                  <h1 className="mt-3 truncate text-4xl font-black tracking-tight text-white md:text-6xl">
+                    {team.name}
+                  </h1>
+
+                  <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                    <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
+                      <span className="text-sm text-slate-500">
+                        Site rating
+                      </span>
+
+                      <span className="ml-2 text-lg font-black text-orange-400">
+                        {rankingLoading
+                          ? "..."
+                          : currentRating || "—"}
+                      </span>
+                    </div>
+
+                    <div className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.07] px-4 py-2">
+                      <span className="text-sm text-slate-500">
+                        Win rate
+                      </span>
+
+                      <span className="ml-2 text-lg font-black text-emerald-400">
+                        {winrate}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="grid grid-cols-2 gap-3">
+                  <RankCard
+                    eyebrow="World rank"
+                    rank={
+                      rankingLoading
+                        ? null
+                        : rankingData.worldRank
+                    }
+                    change={
+                      rankingData.worldRankChange
+                    }
+                  />
+
+                  <RankCard
+                    eyebrow={`${rankingData.countryName} rank`}
+                    rank={
+                      rankingLoading
+                        ? null
+                        : rankingData.countryRank
+                    }
+                    countryCode={
+                      rankingData.countryCode
+                    }
+                    change={
+                      rankingData.countryRankChange
+                    }
+                  />
+                </div>
+
+                {rankingError && (
+                  <div className="mt-2 text-right text-[10px] text-rose-400">
+                    Ranking data unavailable
+                  </div>
+                )}
+
+                <div className="mt-3 rounded-2xl border border-white/[0.06] bg-black/10 p-4 backdrop-blur-sm">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+                      Last 5
+                    </div>
+
+                    <Link
+                      to="/rankings"
+                      className="text-[10px] font-black uppercase tracking-[0.15em] text-orange-400 transition hover:text-orange-300"
+                    >
+                      Full rankings
+                    </Link>
+                  </div>
+
+                  <div className="mt-3 flex gap-2">
+                    {recentForm.length ? (
+                      recentForm.map(
+                        (match, index) => {
+                          const won =
+                            match.won === true ||
+                            String(
+                              match.result
+                            ).toUpperCase() ===
+                              "WIN";
+
+                          return (
+                            <div
+                              key={
+                                match.id ??
+                                index
+                              }
+                              className={[
+                                "flex h-9 w-9 items-center justify-center rounded-xl border text-xs font-black",
+                                won
+                                  ? "border-emerald-500/25 bg-emerald-500/10 text-emerald-400"
+                                  : "border-rose-500/25 bg-rose-500/10 text-rose-400",
+                              ].join(" ")}
+                            >
+                              {won ? "W" : "L"}
+                            </div>
+                          );
+                        }
+                      )
+                    ) : (
+                      <span className="text-sm text-slate-600">
+                        No matches
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4">
+              {[
+                {
+                  label: "Wins",
+                  value: wins,
+                  cls: "text-emerald-400",
+                },
+                {
+                  label: "Losses",
+                  value: losses,
+                  cls: "text-rose-400",
+                },
+                {
+                  label: "Win rate",
+                  value: `${winrate}%`,
+                  cls: "text-orange-400",
+                },
+                {
+                  label: "Site rating",
+                  value:
+                    rankingLoading
+                      ? "..."
+                      : currentRating || "—",
+                  cls: "text-white",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.025] p-5 transition hover:-translate-y-0.5 hover:border-orange-500/20 hover:bg-white/[0.035]"
+                >
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/50 to-transparent opacity-0 transition group-hover:opacity-100" />
+
+                  <p className="text-sm font-medium text-slate-500">
+                    {item.label}
+                  </p>
+
+                  <p
+                    className={`mt-2 text-3xl font-black ${item.cls}`}
+                  >
+                    {item.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NAVIGATION */}
+        <nav className="mt-7 overflow-x-auto border-b border-white/[0.07]">
+          <div className="flex min-w-max gap-8">
+            <Link
+              to={`/teams/${slug}`}
+              className="relative pb-4 text-sm font-black text-white"
+            >
+              Overview
+              <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-orange-500" />
+            </Link>
+
+            <Link
+              to={`/teams/${slug}/matches`}
+              className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
+            >
+              Matches
+            </Link>
+
+            
+
+            <Link
+              to={`/teams/${slug}/stats`}
+              className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
+            >
+              Statistics
+            </Link>
+          </div>
+        </nav>
+
+        {/* PLAYERS */}
+        <TeamRosterSection
+          team={team}
+          slug={slug}
+        />
+
+        {/* WEEKLY RATING HISTORY */}
+        {!ratingHistoryLoading &&
+          teamHistory.length >= 2 && (
+            <section className="mt-10 rounded-[28px] border border-white/[0.06] bg-[#101720] p-5 md:p-7">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">
+                    Progress
+                  </div>
+
+                  <h2 className="mt-1 text-2xl font-black text-white">
+                    Rating history
+                  </h2>
+                </div>
+
+                <div className="rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-xs font-bold text-slate-500">
+                  Weekly snapshots
+                </div>
+              </div>
+
+              <div className="h-96">
+                <ResponsiveContainer
+                  width="100%"
+                  height="100%"
+                >
+                  <LineChart
+                    data={teamHistory}
+                  >
+                    <CartesianGrid
+                      stroke="rgba(148,163,184,0.10)"
+                      strokeDasharray="4 6"
+                      vertical={false}
+                    />
+
+                    <XAxis
+                      dataKey="week"
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{
+                        fill: "#64748b",
+                        fontSize: 12,
+                      }}
+                    />
+
+                    <YAxis
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{
+                        fill: "#64748b",
+                        fontSize: 12,
+                      }}
+                      domain={[
+                        "dataMin - 30",
+                        "dataMax + 30",
+                      ]}
+                    />
+
+                    <Tooltip
+                      formatter={(
+                        value,
+                        name,
+                        item
+                      ) => {
+                        if (
+                          name === "rating"
+                        ) {
+                          const rank =
+                            item?.payload?.rank;
+
+                          return [
+                            rank
+                              ? `${value} · World #${rank}`
+                              : value,
+                            "Rating",
+                          ];
+                        }
+
+                        return [
+                          value,
+                          name,
+                        ];
+                      }}
+                      contentStyle={{
+                        background: "#090d13",
+                        border:
+                          "1px solid rgba(255,255,255,0.08)",
+                        borderRadius: "14px",
+                        color: "#fff",
+                        boxShadow:
+                          "0 20px 50px rgba(0,0,0,0.35)",
+                      }}
+                      labelStyle={{
+                        color: "#94a3b8",
+                      }}
+                      itemStyle={{
+                        color: "#fb923c",
+                        fontWeight: 800,
+                      }}
+                      cursor={{
+                        stroke:
+                          "rgba(251,146,60,0.25)",
+                      }}
+                    />
+
+                    <Line
+                      type="monotone"
+                      dataKey="rating"
+                      stroke="#f97316"
+                      strokeWidth={4}
+                      dot={{
+                        r: 3,
+                        fill: "#f97316",
+                        stroke: "#101720",
+                        strokeWidth: 2,
+                      }}
+                      activeDot={{
+                        r: 6,
+                        fill: "#fb923c",
+                        stroke: "#101720",
+                        strokeWidth: 3,
+                      }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </section>
+          )}
       </div>
-
-      <div className="text-[11px] uppercase tracking-[0.2em] text-gray-500 mt-1">
-        Rating
-      </div>
-
     </div>
-
-    {/* ELO */}
-    <div className="mt-5 w-full border-t border-[#243041] pt-4">
-
-      <div className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
-        FACEIT ELO
-      </div>
-
-      <div className="text-white font-bold text-xl mt-1">
-        {player.elo ?? "-"}
-      </div>
-
-    </div>
-
-  </div>
-
-</Link>
   );
-})}
-
-</div>
-
-    {/* 📈 GRAPH (MOVED DOWN) */}
-    <div className="max-w-6xl mx-auto mt-10 bg-[#111823] border border-[#1f2a3a] rounded-2xl p-6">
-
-      <h2 className="text-2xl font-bold mb-6">
-        Rating History
-      </h2>
-
-      {teamHistory.length ? (
-        <div className="h-96">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={teamHistory}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="week" />
-              <YAxis />
-              <Tooltip
-  contentStyle={{
-    background: "#111823",
-    border: "1px solid #2a3547",
-    borderRadius: "12px",
-    color: "#fff",
-  }}
-/>
-              <Line
-  type="monotone"
-  dataKey="rating"
-  stroke="#f97316"
-  strokeWidth={4}
-/>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      ) : (
-        <div className="text-gray-500">
-          No history yet
-        </div>
-      )}
-    </div>  
-
-</div>   
-
-)
 }
 
-export default TeamPage
+export default TeamPage;

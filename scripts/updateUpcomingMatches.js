@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import teams from "../src/data/teams.js";
+import teams from "../src/data/teams.generated.js";
 
 const CHAMPIONSHIP_IDS = [
 

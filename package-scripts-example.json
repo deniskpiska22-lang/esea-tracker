@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "sync:auto": "node --env-file=.env.local scripts/autoSyncMatches.js",
+    "ratings:recalculate": "node --env-file=.env.local scripts/recalculateAndSnapshotRatings.js",
+    "ratings:snapshot": "node --env-file=.env.local scripts/snapshotRatingChanges.js",
+    "patch:auto-ratings": "node scripts/patchAutoSyncForRatings.js"
+  }
+}

@@ -1,16 +1,97 @@
-# React + Vite
+# ESEA Tracker — standings trial
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Пробная версия импортера команд через внутренний FACEIT endpoint:
 
-Currently, two official plugins are available:
+```text
+GET https://www.faceit.com/api/team-leagues/v2/standings
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Импортер получает команды напрямую из `standings`, поэтому находит и те команды,
+которые ещё не сыграли матч. Основной идентификатор команды:
 
-## React Compiler
+```text
+premade_team_id
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Установка в текущий проект
 
-## Expanding the ESLint configuration
+Скопируйте папку `scripts/v2` в корень проекта.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+В `package.json` добавьте команду:
+
+```json
+"v2:standings": "node scripts/v2/discoverTeamsFromStandings.js"
+```
+
+## Первый запуск
+
+Используется тестовая конференция Europe Entry D:
+
+```bash
+npm run v2:standings
+```
+
+Результат появится здесь:
+
+```text
+data/v2/standings-teams.json
+```
+
+## Запуск для произвольной сущности
+
+Конференция:
+
+```bash
+node scripts/v2/discoverTeamsFromStandings.js \
+  --entity-id 55cf8e1b-881e-4573-b991-ea72166992c2 \
+  --entity-type conference
+```
+
+Стадия:
+
+```bash
+node scripts/v2/discoverTeamsFromStandings.js \
+  --entity-id c3c65f24-e3e7-4fe3-8004-5bd46c8f7c79 \
+  --entity-type stage
+```
+
+## userId
+
+Сначала запускайте без `userId`. Он нужен только для поля `user_team_standing`,
+а не для общего массива команд.
+
+Если FACEIT потребует его, можно передать:
+
+```bash
+FACEIT_USER_ID=0871c9f5-cacc-460e-a44a-c85bb414ad5 \
+npm run v2:standings
+```
+
+или:
+
+```bash
+node scripts/v2/discoverTeamsFromStandings.js \
+  --entity-id 55cf8e1b-881e-4573-b991-ea72166992c2 \
+  --entity-type conference \
+  --user-id 0871c9f5-cacc-460e-a44a-c85bb414ad5
+```
+
+## Что сохраняется
+
+Для каждой команды:
+
+- `team_id` / `premade_team_id`;
+- `league_team_id`;
+- название, короткое имя и логотип;
+- `country_code`;
+- число игроков;
+- победы, поражения, очки и позиция;
+- источник: регион, дивизион, стадия и конференция.
+
+## Следующий этап
+
+После успешной проверки этот модуль можно подключить к полному pipeline:
+
+```text
+season → stages/conferences → standings → teams → rosters → players → matches
+```

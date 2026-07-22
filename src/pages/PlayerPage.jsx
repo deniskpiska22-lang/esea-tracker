@@ -21,10 +21,14 @@ import { normalizeNickname } from "../utils/normalizeNickname";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { supabase } from "../lib/supabaseClient";
 
+
 const FINISHED_STATUSES = [
   "FINISHED",
   "MATCH_STATUS_FINISHED",
 ];
+
+const MATCH_LIMIT = 1000;
+const RECENT_MATCH_LIMIT = 10;
 
 function normalizeName(value = "") {
   return String(value || "")
@@ -63,6 +67,69 @@ function parseJsonValue(value, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function formatDate(value) {
+  if (!value) {
+    return "—";
+  }
+
+  const date = new Date(value);
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+    return "—";
+  }
+
+  return date.toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }
+  );
+}
+
+function ratingColor(value) {
+  const rating =
+    toNumber(value);
+
+  if (rating >= 1.2) {
+    return "text-emerald-400";
+  }
+
+  if (rating >= 1.05) {
+    return "text-lime-300";
+  }
+
+  if (rating >= 0.9) {
+    return "text-amber-300";
+  }
+
+  return "text-rose-400";
+}
+
+function ratingBackground(value) {
+  const rating =
+    toNumber(value);
+
+  if (rating >= 1.2) {
+    return "border-emerald-500/25 bg-emerald-500/10";
+  }
+
+  if (rating >= 1.05) {
+    return "border-lime-500/20 bg-lime-500/10";
+  }
+
+  if (rating >= 0.9) {
+    return "border-amber-500/20 bg-amber-500/10";
+  }
+
+  return "border-rose-500/20 bg-rose-500/10";
 }
 
 function findLocalTeam(
@@ -105,14 +172,60 @@ function findSiteMatch(
   );
 }
 
+function normalizeMatchPlayer(player = {}) {
+  return {
+    ...player,
+
+    kills:
+      toNumber(player.kills),
+
+    deaths:
+      toNumber(player.deaths),
+
+    assists:
+      toNumber(player.assists),
+
+    adr:
+      toNumber(player.adr),
+
+    kd:
+      toNumber(
+        player.kd,
+        toNumber(player.deaths) > 0
+          ? toNumber(player.kills) /
+            toNumber(player.deaths)
+          : toNumber(player.kills)
+      ),
+
+    hsRate:
+      toNumber(
+        player.hsRate ??
+        player.hs_rate ??
+        player.hs
+      ),
+
+    kast:
+      toNumber(player.kast),
+
+    mvps:
+      toNumber(player.mvps),
+  };
+}
+
 function buildSupabasePlayerMatches(
   rows,
-  decodedNickname
+  decodedNickname,
+  targetPlayerId
 ) {
   const normalizedTarget =
     normalizePlayerName(
       decodedNickname
     );
+
+  const normalizedPlayerId =
+    String(
+      targetPlayerId || ""
+    ).toLowerCase();
 
   return rows.flatMap((row) => {
     const playerStats =
@@ -143,11 +256,29 @@ function buildSupabasePlayerMatches(
             team.players
           ) &&
           team.players.some(
-            (player) =>
-              normalizePlayerName(
-                player.nickname
-              ) ===
-              normalizedTarget
+            (player) => {
+              const candidateId =
+                String(
+                  player.playerId ||
+                  player.player_id ||
+                  player.faceit_id ||
+                  player.faceitId ||
+                  player.id ||
+                  ""
+                ).toLowerCase();
+
+              return (
+                (
+                  normalizedPlayerId &&
+                  candidateId ===
+                    normalizedPlayerId
+                ) ||
+                normalizePlayerName(
+                  player.nickname
+                ) ===
+                  normalizedTarget
+              );
+            }
           )
       );
 
@@ -155,18 +286,43 @@ function buildSupabasePlayerMatches(
       return [];
     }
 
-    const player =
+    
+
+    const rawPlayer =
       playerTeam.players.find(
-        (item) =>
-          normalizePlayerName(
-            item.nickname
-          ) ===
-          normalizedTarget
+        (item) => {
+          const candidateId =
+            String(
+              item.playerId ||
+              item.player_id ||
+              item.faceit_id ||
+              item.faceitId ||
+              item.id ||
+              ""
+            ).toLowerCase();
+
+          return (
+            (
+              normalizedPlayerId &&
+              candidateId ===
+                normalizedPlayerId
+            ) ||
+            normalizePlayerName(
+              item.nickname
+            ) ===
+              normalizedTarget
+          );
+        }
       );
 
-    if (!player) {
+    if (!rawPlayer) {
       return [];
     }
+
+    const player =
+      normalizeMatchPlayer(
+        rawPlayer
+      );
 
     const opponent =
       playerStats.teams.find(
@@ -236,43 +392,24 @@ function buildSupabasePlayerMatches(
           playerTeam.teamName
       );
 
-    const firstMap =
-      Array.isArray(mapScores) &&
-      mapScores.length > 0
-        ? mapScores[0]?.map
-        : null;
+    const maps =
+      Array.isArray(mapScores)
+        ? mapScores
+            .map(
+              (map) =>
+                map?.map
+            )
+            .filter(Boolean)
+        : [];
 
-    const normalizedPlayer = {
-      ...player,
-
-      kills:
-        toNumber(player.kills),
-
-      deaths:
-        toNumber(player.deaths),
-
-      assists:
-        toNumber(player.assists),
-
-      adr:
-        toNumber(player.adr),
-
-      kd:
-        toNumber(player.kd),
-
-      hsRate:
-        toNumber(player.hsRate),
-
-      kast:
-        toNumber(player.kast),
-
-      mvps:
-        toNumber(player.mvps),
-    };
+    const rating =
+      calculatePlayerMatchRating(
+        player
+      );
 
     return [
       {
-        ...normalizedPlayer,
+        ...player,
 
         matchId: row.id,
 
@@ -311,16 +448,10 @@ function buildSupabasePlayerMatches(
 
         map:
           playerStats.map ||
-          firstMap ||
+          maps[0] ||
           "Unknown",
 
-        maps:
-          Array.isArray(mapScores)
-            ? mapScores.map(
-                (map) =>
-                  map.map
-              )
-            : [],
+        maps,
 
         date:
           row.finished_at ||
@@ -335,12 +466,7 @@ function buildSupabasePlayerMatches(
           teamScore >
           opponentScore,
 
-        rating:
-          calculatePlayerMatchRating(
-            normalizedPlayer,
-            teamScore,
-            opponentScore
-          ),
+        rating,
 
         source:
           "supabase",
@@ -374,7 +500,12 @@ function buildFallbackPlayerMatches(
               decodedNickname
             )
         )
-        .map((player) => {
+        .map((rawPlayer) => {
+          const player =
+            normalizeMatchPlayer(
+              rawPlayer
+            );
+
           const siteMatch =
             findSiteMatch(
               match.matchId,
@@ -388,34 +519,6 @@ function buildFallbackPlayerMatches(
                 team.teamId
             );
 
-          const normalizedPlayer = {
-            ...player,
-
-            kills:
-              toNumber(player.kills),
-
-            deaths:
-              toNumber(player.deaths),
-
-            assists:
-              toNumber(player.assists),
-
-            adr:
-              toNumber(player.adr),
-
-            kd:
-              toNumber(player.kd),
-
-            hsRate:
-              toNumber(player.hsRate),
-
-            kast:
-              toNumber(player.kast),
-
-            mvps:
-              toNumber(player.mvps),
-          };
-
           const teamScore =
             toNumber(team.score);
 
@@ -425,7 +528,7 @@ function buildFallbackPlayerMatches(
             );
 
           return {
-            ...normalizedPlayer,
+            ...player,
 
             matchId:
               match.matchId,
@@ -480,9 +583,7 @@ function buildFallbackPlayerMatches(
 
             rating:
               calculatePlayerMatchRating(
-                normalizedPlayer,
-                teamScore,
-                opponentScore
+                player
               ),
 
             source:
@@ -493,24 +594,82 @@ function buildFallbackPlayerMatches(
   );
 }
 
+function StatCard({
+  label,
+  value,
+  hint,
+  accent = false,
+}) {
+  return (
+    <div
+      className={`rounded-2xl border p-5 ${
+        accent
+          ? "border-orange-500/25 bg-orange-500/10"
+          : "border-[#263244] bg-[#0f1620]"
+      }`}
+    >
+      <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+        {label}
+      </div>
+
+      <div
+        className={`mt-2 text-3xl font-black ${
+          accent
+            ? "text-orange-300"
+            : "text-white"
+        }`}
+      >
+        {value}
+      </div>
+
+      {hint && (
+        <div className="mt-1 text-xs text-slate-500">
+          {hint}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PlayerPage() {
-  const { nickname } =
-    useParams();
+  const {
+    playerId,
+    nickname,
+  } = useParams();
+
+  const routePlayerKey =
+    playerId || nickname || "";
 
   const location =
     useLocation();
 
-  const decodedNickname =
+  const decodedRouteValue =
     String(
       normalizeNickname(
         decodeURIComponent(
-          nickname
+          routePlayerKey
         )
       )
     );
 
+  const [resolvedNickname, setResolvedNickname] =
+    useState("");
+
+  const decodedNickname =
+    resolvedNickname ||
+    decodedRouteValue;
+
   const [databaseMatches, setDatabaseMatches] =
     useState([]);
+
+  const [databaseRating, setDatabaseRating] =
+    useState(null);
+
+  const [databasePlayer, setDatabasePlayer] =
+    useState(null);
+
+  const [resolvedPlayerId, setResolvedPlayerId] =
+    useState(routePlayerKey);
 
   const [loadingStats, setLoadingStats] =
     useState(true);
@@ -535,7 +694,7 @@ function PlayerPage() {
     location.state?.from ||
     (
       playerTeam?.slug
-        ? `/team/${playerTeam.slug}`
+        ? `/teams/${playerTeam.slug}`
         : "/"
     );
 
@@ -547,10 +706,7 @@ function PlayerPage() {
         : "← Back"
     );
 
-  const avatarPath =
-    `/players/${decodedNickname}.png`;
-
-  const playerInfo =
+  const localPlayerInfo =
     Object.values(players)
       .flat()
       .find(
@@ -561,17 +717,34 @@ function PlayerPage() {
           normalizePlayerName(
             decodedNickname
           )
-      );
+      ) || null;
 
   const transfers =
     playerTransfers[
       decodedNickname
     ] || [];
 
+  /*
+   * PlayerPage и TeamPage используют
+   * одну и ту же запись players.avatar.
+   * Локальные картинки по нику больше
+   * не участвуют в выборе изображения.
+   */
+  const identityPlayer =
+    databasePlayer ||
+    localPlayerInfo ||
+    {
+      faceit_id:
+        resolvedPlayerId,
+      nickname:
+        decodedNickname,
+      avatar: null,
+    };
+
   useEffect(() => {
     let cancelled = false;
 
-    async function loadPlayerStats() {
+    async function loadPlayerData() {
       setLoadingStats(true);
       setStatsError("");
 
@@ -582,9 +755,133 @@ function PlayerPage() {
           );
         }
 
+        let ratingRow = null;
+
+        const looksLikePlayerId =
+          /^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(
+            routePlayerKey
+          );
+
+        if (looksLikePlayerId) {
+          const {
+            data,
+            error,
+          } = await supabase
+            .from("player_ratings")
+            .select(
+              [
+                "player_id",
+                "nickname",
+                "rating",
+                "recent_rating",
+                "matches_played",
+                "maps_played",
+                "kills",
+                "deaths",
+                "assists",
+                "adr",
+                "kd",
+                "last_match_at",
+              ].join(",")
+            )
+            .eq(
+              "player_id",
+              routePlayerKey
+            )
+            .maybeSingle();
+
+          if (
+            error &&
+            error.code !== "PGRST116"
+          ) {
+            throw error;
+          }
+
+          ratingRow = data || null;
+        } else {
+          const {
+            data,
+            error,
+          } = await supabase
+            .from("player_ratings")
+            .select(
+              [
+                "player_id",
+                "nickname",
+                "rating",
+                "recent_rating",
+                "matches_played",
+                "maps_played",
+                "kills",
+                "deaths",
+                "assists",
+                "adr",
+                "kd",
+                "last_match_at",
+              ].join(",")
+            )
+            .ilike(
+              "nickname",
+              decodedRouteValue
+            )
+            .limit(1)
+            .maybeSingle();
+
+          if (
+            error &&
+            error.code !== "PGRST116"
+          ) {
+            throw error;
+          }
+
+          ratingRow = data || null;
+        }
+
+        const nicknameFromRating =
+          String(
+            ratingRow?.nickname ||
+            decodedRouteValue
+          );
+
+        const playerIdFromRating =
+          String(
+            ratingRow?.player_id ||
+            routePlayerKey
+          );
+
+        let playerRow = null;
+
+        if (playerIdFromRating) {
+          const {
+            data,
+            error,
+          } = await supabase
+            .from("players")
+            .select(
+              "id,faceit_id,nickname,avatar,country,faceit_elo,faceit_level"
+            )
+            .eq(
+              "faceit_id",
+              playerIdFromRating
+            )
+            .maybeSingle();
+
+          if (
+            error &&
+            error.code !== "PGRST116"
+          ) {
+            console.warn(
+              "Player identity unavailable:",
+              error.message
+            );
+          }
+
+          playerRow = data || null;
+        }
+
         const {
-          data,
-          error,
+          data: matchRows,
+          error: matchesError,
         } = await supabase
           .from("matches")
           .select(
@@ -594,17 +891,12 @@ function PlayerPage() {
               "status",
               "scheduled_at",
               "finished_at",
-
               "team1_id",
               "team1_name",
-              "team1_slug",
               "team1_score",
-
               "team2_id",
               "team2_name",
-              "team2_slug",
               "team2_score",
-
               "map_scores",
               "player_stats",
               "stats_synced",
@@ -626,27 +918,52 @@ function PlayerPage() {
               nullsFirst: false,
             }
           )
-          .limit(1000);
+          .limit(MATCH_LIMIT);
 
-        if (error) {
-          throw error;
+        if (matchesError) {
+          throw matchesError;
         }
 
         if (!cancelled) {
           setDatabaseMatches(
-            data || []
+            matchRows || []
+          );
+
+          setDatabaseRating(
+            ratingRow
+          );
+
+          setDatabasePlayer(
+            playerRow
+          );
+          
+
+          setResolvedNickname(
+            nicknameFromRating
+          );
+
+          setResolvedPlayerId(
+            playerIdFromRating
           );
         }
       } catch (error) {
         console.error(
-          "Failed to load player statistics:",
+          "Failed to load player page:",
           error
         );
 
         if (!cancelled) {
           setDatabaseMatches([]);
+          setDatabaseRating(null);
+          setDatabasePlayer(null);
+          setResolvedNickname(
+            decodedRouteValue
+          );
+          setResolvedPlayerId(
+            routePlayerKey
+          );
           setStatsError(
-            "Failed to load automatic player statistics"
+            "Automatic statistics are temporarily unavailable"
           );
         }
       } finally {
@@ -656,23 +973,28 @@ function PlayerPage() {
       }
     }
 
-    loadPlayerStats();
+    loadPlayerData();
 
     return () => {
       cancelled = true;
     };
-  }, [decodedNickname]);
+  }, [
+    routePlayerKey,
+    decodedRouteValue,
+  ]);
 
   const supabasePlayerMatches =
     useMemo(
       () =>
         buildSupabasePlayerMatches(
           databaseMatches,
-          decodedNickname
+          decodedNickname,
+          resolvedPlayerId
         ),
       [
         databaseMatches,
         decodedNickname,
+        resolvedPlayerId,
       ]
     );
 
@@ -685,59 +1007,67 @@ function PlayerPage() {
       [decodedNickname]
     );
 
-  /*
-   * Объединяем Supabase и старый JSON.
-   *
-   * Если один и тот же матч есть в обоих
-   * источниках, оставляем вариант Supabase.
-   */
   const playerMatches =
-    useMemo(() => {
-      const combined =
-        new Map();
+  useMemo(() => {
+    const combined =
+      new Map();
 
-      fallbackPlayerMatches.forEach(
-        (match) => {
-          combined.set(
-            match.matchId,
-            match
-          );
-        }
-      );
+    fallbackPlayerMatches.forEach(
+      (match) => {
+        combined.set(
+          match.matchId,
+          match
+        );
+      }
+    );
 
-      supabasePlayerMatches.forEach(
-        (match) => {
-          combined.set(
-            match.matchId,
-            match
-          );
-        }
-      );
+    supabasePlayerMatches.forEach(
+      (match) => {
+        combined.set(
+          match.matchId,
+          match
+        );
+      }
+    );
 
-      return [
-        ...combined.values(),
-      ].sort(
-        (first, second) => {
-          const firstDate =
-            new Date(
-              first.date || 0
-            ).getTime();
+    return [
+      ...combined.values(),
+    ].sort(
+      (first, second) =>
+        new Date(
+          second.date || 0
+        ).getTime() -
+        new Date(
+          first.date || 0
+        ).getTime()
+    );
+  }, [
+    fallbackPlayerMatches,
+    supabasePlayerMatches,
+  ]);
 
-          const secondDate =
-            new Date(
-              second.date || 0
-            ).getTime();
+const currentTeam =
+  useMemo(() => {
+    const latestMatch =
+      playerMatches[0];
 
-          return (
-            secondDate -
-            firstDate
-          );
-        }
-      );
-    }, [
-      fallbackPlayerMatches,
-      supabasePlayerMatches,
-    ]);
+    if (!latestMatch) {
+      return playerTeam;
+    }
+
+    return (
+      findLocalTeam(
+        latestMatch.teamId,
+        latestMatch.teamName
+      ) ||
+      playerTeam
+    );
+  }, [
+    playerMatches,
+    playerTeam,
+  ]);
+
+    
 
   const totalMatches =
     playerMatches.length;
@@ -766,10 +1096,15 @@ function PlayerPage() {
   const avgDeaths =
     average("deaths");
 
+  const avgAssists =
+    average("assists");
+
   const avgAdr =
+    databaseRating?.adr ??
     average("adr");
 
   const avgKd =
+    databaseRating?.kd ??
     average("kd");
 
   const avgHs =
@@ -788,425 +1123,600 @@ function PlayerPage() {
         totalMatches
       : 0;
 
-  /*
-   * Новый рассчитанный рейтинг имеет приоритет.
-   * Старый playerAverageRatings остаётся fallback.
-   */
   const averageRating =
-    calculatedAverageRating ||
-    playerAverageRatings[
-      decodedNickname
-    ] ||
-    0;
+    toNumber(
+      databaseRating?.rating,
+      calculatedAverageRating ||
+        playerAverageRatings[
+          decodedNickname
+        ] ||
+        0
+    );
+
+  const recentRating =
+    toNumber(
+      databaseRating?.recent_rating,
+      playerMatches.length
+        ? playerMatches
+            .slice(
+              0,
+              RECENT_MATCH_LIMIT
+            )
+            .reduce(
+              (sum, match) =>
+                sum +
+                toNumber(
+                  match.rating
+                ),
+              0
+            ) /
+            Math.min(
+              playerMatches.length,
+              RECENT_MATCH_LIMIT
+            )
+        : averageRating
+    );
+
+  const matchesPlayed =
+    toNumber(
+      databaseRating?.matches_played,
+      totalMatches
+    );
+
+  const mapsPlayed =
+    toNumber(
+      databaseRating?.maps_played,
+      totalMatches
+    );
+
+  const wins =
+    playerMatches.filter(
+      (match) => match.won
+    ).length;
+
+  const winRate =
+    totalMatches > 0
+      ? (wins / totalMatches) * 100
+      : 0;
 
   const recentForm =
-    playerMatches
-      .slice(0, 10)
-      .map((match) => ({
-        win:
-          Boolean(match.won),
+    playerMatches.slice(
+      0,
+      RECENT_MATCH_LIMIT
+    );
 
-        map:
-          match.map,
-      }));
+  const performanceStats = [
+    {
+      label: "ADR",
+      value:
+        toNumber(avgAdr).toFixed(1),
+      caption:
+        "Average damage per round",
+    },
+    {
+      label: "K/D",
+      value:
+        toNumber(avgKd).toFixed(2),
+      caption:
+        "Kill/death ratio",
+    },
+    {
+      label: "Kills",
+      value:
+        toNumber(avgKills).toFixed(1),
+      caption:
+        "Average per match",
+    },
+    {
+      label: "Deaths",
+      value:
+        toNumber(avgDeaths).toFixed(1),
+      caption:
+        "Average per match",
+    },
+    {
+      label: "Assists",
+      value:
+        toNumber(avgAssists).toFixed(1),
+      caption:
+        "Average per match",
+    },
+    {
+      label: "HS%",
+      value:
+        `${toNumber(avgHs).toFixed(1)}%`,
+      caption:
+        "Headshot percentage",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#0b1118] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-8">
+    <div className="min-h-screen bg-[#090f16] text-white">
+      <div className="mx-auto max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
         <Link
           to={backLink}
-          className="text-gray-400 transition hover:text-orange-400"
+          className="inline-flex items-center text-sm font-medium text-slate-400 transition hover:text-orange-300"
         >
           {backLabel}
         </Link>
 
-        <div className="mt-6 rounded-3xl border border-[#243041] bg-[#111823] p-8">
-          <div className="grid gap-8 lg:grid-cols-[220px_1fr_220px]">
+        <section className="relative mt-5 overflow-hidden rounded-[28px] border border-[#263244] bg-[#101722]">
+          <div className="absolute inset-0">
+            <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
+            <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-sky-500/5 blur-3xl" />
+          </div>
 
-            {/* AVATAR */}
+          <div className="relative grid gap-8 p-5 sm:p-7 lg:grid-cols-[260px_minmax(0,1fr)_310px] lg:p-9">
+            <div>
+              <div className="relative aspect-square flex items-end justify-center overflow-hidden rounded-[28px]">
 
-            <div className="flex w-[220px] flex-col gap-4">
-              <div className="relative h-[220px] w-[220px] overflow-hidden rounded-3xl border border-[#243041] bg-[#111823]">
-                {playerTeam?.logo && (
-                  <img
-                    src={
-                      playerTeam.logo
-                    }
-                    alt={
-                      playerTeam.name
-                    }
-                    className="absolute inset-0 h-full w-full scale-125 object-contain opacity-20"
-                  />
-                )}
+    {currentTeam?.logo && (
+  <img
+    src={currentTeam.logo}
+    alt=""
+    className="absolute inset-0 h-full w-full object-contain scale-[1.3] opacity-[0.08] grayscale"
+  />
+)}
 
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#111823] via-transparent to-transparent" />
+    <img
+        src="/player-silhouette.png"
+        alt=""
+        className="
+        relative
+        h-[92%]
+        object-contain
+        z-10
+        "
+    />
 
-                <img
-                  src={avatarPath}
-                  alt={
-                    decodedNickname
-                  }
-                  onError={(event) => {
-                    event.currentTarget.src =
-                      "/player-silhouette.png";
-                  }}
-                  className="absolute bottom-0 left-1/2 z-20 h-[110%] -translate-x-1/2 object-contain"
-                />
-              </div>
+</div>
 
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 <a
                   href={`https://www.faceit.com/en/players/${decodedNickname}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="FACEIT"
-                  className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#243041] bg-[#0f1623] transition-all duration-200 hover:scale-105 hover:border-orange-500/50 hover:bg-[#151e2b]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold transition hover:border-orange-500/40 hover:bg-[#131d29]"
                 >
                   <img
                     src="/logos/faceit-logo.png"
-                    alt="FACEIT"
-                    className="h-8 w-8 object-contain"
+                    alt=""
+                    className="h-5 w-5 object-contain"
                   />
+                  FACEIT
                 </a>
+
+                {localPlayerInfo?.steamUrl ? (
+                  <a
+                    href={localPlayerInfo.steamUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold transition hover:border-sky-500/40 hover:bg-[#131d29]"
+                  >
+                    STEAM
+                  </a>
+                ) : (
+                  <div className="flex items-center justify-center rounded-xl border border-[#29364a] bg-[#0c141e] px-4 py-3 text-sm font-bold text-slate-600">
+                    STEAM
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* MAIN INFO */}
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-3">
+                {(databasePlayer?.country ||
+                  localPlayerInfo?.country) && (
+                  <span className="rounded-full border border-[#2a3749] bg-[#0c141e] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    {databasePlayer?.country ||
+                      localPlayerInfo?.country}
+                  </span>
+                )}
 
-            <div>
-              <h1 className="text-5xl font-black">
-                {decodedNickname}
-              </h1>
-
-              <div className="mt-3 text-xl text-gray-400">
-                {playerTeam?.name ||
-                  "Unknown Team"}
-              </div>
-
-              <div className="mt-3 text-sm text-gray-500">
-                Last{" "}
-                {
-                  recentForm.length
-                }{" "}
-                matches
-              </div>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {recentForm.map(
-                  (game, index) => (
-                    <div
-                      key={`${game.map}-${index}`}
-                      title={
-                        game.map
-                      }
-                      className={`flex h-8 w-8 items-center justify-center rounded-lg border text-xs font-bold ${
-                        game.win
-                          ? "border-green-500/30 bg-green-500/20 text-green-400"
-                          : "border-red-500/30 bg-red-500/20 text-red-400"
-                      }`}
-                    >
-                      {game.win
-                        ? "W"
-                        : "L"}
-                    </div>
-                  )
+                {localPlayerInfo?.role && (
+                  <span className="rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-300">
+                    {localPlayerInfo.role}
+                  </span>
                 )}
               </div>
 
-              <div className="mt-8 space-y-4">
-                <div className="flex justify-between border-b border-[#243041] pb-2">
-                  <span className="text-gray-400">
-                    Matches
-                  </span>
+              <h1 className="mt-4 break-words text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+                {decodedNickname}
+              </h1>
 
-                  <span>
-                    {totalMatches}
-                  </span>
+              {localPlayerInfo?.realName && (
+                <div className="mt-2 text-base text-slate-500">
+                  {localPlayerInfo.realName}
+                </div>
+              )}
+
+              <div className="mt-5 flex flex-wrap items-center gap-4">
+                {currentTeam ? (
+  <Link
+    to={`/teams/${currentTeam.slug}`}
+    className="inline-flex items-center gap-3 rounded-2xl border border-[#2a3749] bg-[#0d151f] px-4 py-3 transition hover:border-orange-500/30"
+  >
+    {currentTeam.logo && (
+      <img
+        src={currentTeam.logo}
+        alt=""
+        className="h-10 w-10 object-contain"
+      />
+    )}
+
+    <div>
+      <div className="text-xs uppercase tracking-wider text-slate-500">
+        Current team
+      </div>
+
+      <div className="font-bold text-white">
+        {currentTeam.name}
+      </div>
+    </div>
+  </Link>
+) : (
+  <div className="rounded-2xl border border-[#2a3749] bg-[#0d151f] px-4 py-3">
+    <div className="text-xs uppercase tracking-wider text-slate-500">
+      Current team
+    </div>
+
+    <div className="font-bold text-slate-400">
+      Free agent
+    </div>
+  </div>
+)}
+              </div>
+
+              <div className="mt-8">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                      Recent form
+                    </div>
+
+                    <div className="mt-1 text-sm text-slate-400">
+                      Last {recentForm.length} matches
+                    </div>
+                  </div>
+
+                  <div className="text-sm font-bold text-slate-300">
+                    {winRate.toFixed(0)}% wins
+                  </div>
                 </div>
 
-                <div className="flex justify-between border-b border-[#243041] pb-2">
-                  <span className="text-gray-400">
-                    Average ADR
-                  </span>
-
-                  <span>
-                    {avgAdr.toFixed(
-                      1
-                    )}
-                  </span>
-                </div>
-
-                <div className="flex justify-between border-b border-[#243041] pb-2">
-                  <span className="text-gray-400">
-                    Average K/D
-                  </span>
-
-                  <span>
-                    {avgKd.toFixed(
-                      2
-                    )}
-                  </span>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {recentForm.length ? (
+                    recentForm.map(
+                      (match, index) => (
+                        <Link
+                          key={`${match.matchId}-${index}`}
+                          to={`/match/${match.matchId}`}
+                          title={`${match.opponent?.teamName || "Unknown"} · ${match.rating.toFixed(2)}`}
+                          className={`flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-xs font-black transition hover:-translate-y-0.5 ${
+                            match.won
+                              ? "border-emerald-500/25 bg-emerald-500/10 text-emerald-300"
+                              : "border-rose-500/25 bg-rose-500/10 text-rose-300"
+                          }`}
+                        >
+                          {match.won
+                            ? "W"
+                            : "L"}
+                        </Link>
+                      )
+                    )
+                  ) : (
+                    <div className="text-sm text-slate-600">
+                      No recent matches
+                    </div>
+                  )}
                 </div>
               </div>
 
               {loadingStats && (
-                <div className="mt-4 text-sm text-gray-500">
-                  Loading automatic
-                  statistics...
+                <div className="mt-5 text-sm text-slate-500">
+                  Loading player statistics...
                 </div>
               )}
 
               {statsError && (
-                <div className="mt-4 text-sm text-yellow-400">
-                  {statsError}. Old
-                  saved data is shown.
+                <div className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+                  {statsError}. Saved local data is shown.
                 </div>
               )}
             </div>
 
-            {/* RIGHT STATS */}
-
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-[#243041] bg-[#0f1623] p-5">
-                <div className="text-sm text-gray-400">
-                  FACEIT ELO
+            <div className="grid content-start gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className={`rounded-3xl border p-6 ${ratingBackground(averageRating)}`}>
+                <div className="text-xs font-semibold uppercase tracking-[0.17em] text-slate-400">
+                  Player rating
                 </div>
 
-                <div className="mt-2 text-4xl font-black text-orange-400">
-                  {playerInfo?.elo ||
-                    "-"}
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-[#243041] bg-[#0f1623] p-5">
-                <div className="text-sm text-gray-400">
-                  PLAYER RATING
-                </div>
-
-                <div
-                  className={`mt-2 text-4xl font-black ${
-                    averageRating >= 1.1
-                      ? "text-green-400"
-                      : averageRating >= 1
-                        ? "text-yellow-400"
-                        : "text-red-400"
-                  }`}
-                >
+                <div className={`mt-3 text-6xl font-black tracking-tight ${ratingColor(averageRating)}`}>
                   {averageRating
-                    ? averageRating.toFixed(
-                        2
-                      )
-                    : "-"}
+                    ? averageRating.toFixed(2)
+                    : "—"}
+                </div>
+
+                <div className="mt-3 flex items-center justify-between text-sm">
+                  <span className="text-slate-500">
+                    Recent
+                  </span>
+
+                  <span className={`font-black ${ratingColor(recentRating)}`}>
+                    {recentRating
+                      ? recentRating.toFixed(2)
+                      : "—"}
+                  </span>
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-[#243041] bg-[#0f1623] p-5">
-                <div className="text-sm text-gray-400">
-                  MATCHES
-                </div>
+              <div className="grid grid-cols-2 gap-4">
+                <StatCard
+                  label="FACEIT ELO"
+                  value={
+                    databasePlayer?.faceit_elo ||
+                    localPlayerInfo?.elo ||
+                    "—"
+                  }
+                  accent
+                />
 
-                <div className="mt-2 text-4xl font-black">
-                  {totalMatches}
+                <StatCard
+                  label="Matches"
+                  value={
+                    matchesPlayed ||
+                    "—"
+                  }
+                  hint={`${mapsPlayed || 0} maps`}
+                />
+              </div>
+
+              <div className="rounded-2xl border border-[#263244] bg-[#0f1620] p-5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Last update
+                  </div>
+
+                  <div className="text-sm font-semibold text-slate-300">
+                    {formatDate(
+                      databaseRating?.last_match_at ||
+                      playerMatches[0]?.date
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* SECOND ROW */}
+        <section className="mt-6">
+          <div className="mb-4 flex items-end justify-between">
+            <div>
+              <h2 className="text-2xl font-black">
+                Performance
+              </h2>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-
-          {/* PERFORMANCE */}
-
-          <div className="rounded-3xl border border-[#243041] bg-[#111823] p-6">
-            <h2 className="mb-6 text-2xl font-black">
-              Performance
-            </h2>
-
-            {[
-              {
-                label: "ADR",
-                value: avgAdr,
-                max: 120,
-                digits: 1,
-              },
-              {
-                label: "K/D",
-                value: avgKd,
-                max: 2,
-                digits: 2,
-              },
-              {
-                label: "HS%",
-                value: avgHs,
-                max: 100,
-                digits: 1,
-              },
-              {
-                label: "Kills",
-                value: avgKills,
-                max: 30,
-                digits: 1,
-              },
-              {
-                label: "Deaths",
-                value: avgDeaths,
-                max: 30,
-                digits: 1,
-              },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="mb-5"
-              >
-                <div className="mb-1 flex justify-between">
-                  <span>
-                    {stat.label}
-                  </span>
-
-                  <span className="font-bold">
-                    {stat.value.toFixed(
-                      stat.digits
-                    )}
-                  </span>
-                </div>
-
-                <div className="h-2 overflow-hidden rounded-full bg-[#1a2433]">
-                  <div
-                    className="h-full bg-orange-500"
-                    style={{
-                      width: `${Math.min(
-                        (
-                          stat.value /
-                          stat.max
-                        ) * 100,
-                        100
-                      )}%`,
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
+              <p className="mt-1 text-sm text-slate-500">
+                Career averages from recorded matches
+              </p>
+            </div>
           </div>
 
-          {/* RECENT MATCHES */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            {performanceStats.map(
+              (stat) => (
+                <StatCard
+                  key={stat.label}
+                  label={stat.label}
+                  value={stat.value}
+                  hint={stat.caption}
+                />
+              )
+            )}
+          </div>
+        </section>
 
-          <div className="rounded-3xl border border-[#243041] bg-[#111823] p-6">
-            <h2 className="mb-6 text-2xl font-black">
-              Recent Matches
-            </h2>
+        <section className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(340px,0.55fr)]">
+          <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+            <div className="flex items-center justify-between border-b border-[#263244] px-5 py-5 sm:px-6">
+              <div>
+                <h2 className="text-xl font-black">
+                  Recent matches
+                </h2>
+
+                <div className="mt-1 text-sm text-slate-500">
+                  Individual performance in the latest games
+                </div>
+              </div>
+
+              <div className="text-sm font-bold text-slate-500">
+                {totalMatches} total
+              </div>
+            </div>
 
             {playerMatches.length ? (
-              playerMatches
-                .slice(0, 10)
-                .map(
-                  (
-                    match,
-                    index
-                  ) => (
-                    <Link
-                      key={`${match.matchId}-${index}`}
-                      to={`/matches/${match.matchId}`}
-                      className="flex items-center justify-between rounded border-b border-[#243041] px-2 py-3 transition-colors hover:bg-[#151e2b]"
-                    >
-                      <div>
-                        <div className="font-medium">
-                          {match.opponent
-                            ?.teamName ||
-                            "Unknown"}
-                        </div>
-
-                        <div className="text-sm text-gray-400">
-                          {match.map}
-                        </div>
-
-                        {match.date && (
-                          <div className="mt-1 text-xs text-gray-500">
-                            {new Date(
+              <div className="divide-y divide-[#222e3f]">
+                {playerMatches
+                  .slice(0, 12)
+                  .map(
+                    (
+                      match,
+                      index
+                    ) => (
+                      <Link
+                        key={`${match.matchId}-${index}`}
+                        to={`/match/${match.matchId}`}
+                        className="grid gap-4 px-5 py-4 transition hover:bg-[#141d29] sm:grid-cols-[110px_minmax(0,1fr)_90px_80px_80px] sm:items-center sm:px-6"
+                      >
+                        <div>
+                          <div className="text-sm font-bold text-slate-300">
+                            {formatDate(
                               match.date
-                            ).toLocaleDateString(
-                              "ru-RU"
                             )}
                           </div>
-                        )}
-                      </div>
 
-                      <div
-                        className={`font-bold ${
-                          match.rating >=
-                          1.15
-                            ? "text-green-400"
-                            : match.rating <
-                                0.95
-                              ? "text-red-400"
-                              : "text-orange-400"
-                        }`}
-                      >
-                        {toNumber(
-                          match.rating
-                        ).toFixed(2)}
-                      </div>
-                    </Link>
-                  )
-                )
+                          <div className="mt-1 text-xs text-slate-600">
+                            {match.map}
+                          </div>
+                        </div>
+
+                        <div className="min-w-0">
+                          <div className="truncate font-bold text-white">
+                            {match.teamName}
+                            <span className={`mx-2 ${
+                              match.won
+                                ? "text-emerald-400"
+                                : "text-rose-400"
+                            }`}>
+                              {match.teamScore}
+                              :
+                              {match.opponent?.score ?? 0}
+                            </span>
+                            {match.opponent?.teamName || "Unknown"}
+                          </div>
+
+                          <div className="mt-1 truncate text-xs text-slate-500">
+                            {match.season}
+                          </div>
+                        </div>
+
+                        <div className="text-sm">
+                          <div className="text-xs uppercase tracking-wider text-slate-600">
+                            K-D
+                          </div>
+
+                          <div className="mt-1 font-black">
+                            {match.kills}
+                            -
+                            {match.deaths}
+                          </div>
+                        </div>
+
+                        <div className="text-sm">
+                          <div className="text-xs uppercase tracking-wider text-slate-600">
+                            ADR
+                          </div>
+
+                          <div className="mt-1 font-black">
+                            {toNumber(
+                              match.adr
+                            ).toFixed(1)}
+                          </div>
+                        </div>
+
+                        <div className="sm:text-right">
+                          <div className="text-xs uppercase tracking-wider text-slate-600">
+                            Rating
+                          </div>
+
+                          <div className={`mt-1 text-lg font-black ${ratingColor(match.rating)}`}>
+                            {toNumber(
+                              match.rating
+                            ).toFixed(2)}
+                          </div>
+                        </div>
+                      </Link>
+                    )
+                  )}
+              </div>
             ) : (
-              <div className="text-gray-500">
-                No match statistics
-                found
+              <div className="px-6 py-16 text-center text-slate-600">
+                No match statistics found
               </div>
             )}
           </div>
-        </div>
 
-        {/* TEAM HISTORY */}
+          <div className="space-y-6">
+            <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
+              <h2 className="text-xl font-black">
+                Overview
+              </h2>
 
-        {transfers.length > 0 && (
-          <div className="mt-8 rounded-3xl border border-[#243041] bg-[#111823] p-6">
-            <h2 className="mb-6 text-2xl font-black">
-              Team History
-            </h2>
-
-            <div className="space-y-4">
-              {transfers
-                .slice()
-                .reverse()
-                .map(
-                  (
-                    transfer,
-                    index
-                  ) => (
+              <div className="mt-5 space-y-4">
+                {[
+                  [
+                    "Matches",
+                    matchesPlayed,
+                  ],
+                  [
+                    "Maps",
+                    mapsPlayed,
+                  ],
+                  [
+                    "Wins",
+                    wins,
+                  ],
+                  [
+                    "Win rate",
+                    `${winRate.toFixed(1)}%`,
+                  ],
+                  [
+                    "Total kills",
+                    databaseRating?.kills ?? "—",
+                  ],
+                  [
+                    "Total deaths",
+                    databaseRating?.deaths ?? "—",
+                  ],
+                ].map(
+                  ([label, value]) => (
                     <div
-                      key={`${transfer.date}-${index}`}
-                      className="flex items-center justify-between border-b border-[#243041] pb-4"
+                      key={label}
+                      className="flex items-center justify-between border-b border-[#263244] pb-3 last:border-0 last:pb-0"
                     >
-                      <div>
-                        <div className="font-bold text-white">
-                          {
-                            transfer.from
-                          }
-                          {" → "}
-                          {
-                            transfer.to
-                          }
-                        </div>
+                      <span className="text-sm text-slate-500">
+                        {label}
+                      </span>
 
-                        <div className="mt-1 text-sm text-gray-500">
-                          Transfer
-                        </div>
-                      </div>
-
-                      <div className="text-sm text-gray-400">
-                        {
-                          transfer.date
-                        }
-                      </div>
+                      <span className="font-black text-slate-200">
+                        {value}
+                      </span>
                     </div>
                   )
                 )}
+              </div>
             </div>
+
+            {transfers.length > 0 && (
+              <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
+                <h2 className="text-xl font-black">
+                  Team history
+                </h2>
+
+                <div className="mt-5 space-y-5">
+                  {transfers
+                    .slice()
+                    .reverse()
+                    .map(
+                      (
+                        transfer,
+                        index
+                      ) => (
+                        <div
+                          key={`${transfer.date}-${index}`}
+                          className="relative border-l border-[#344258] pl-5"
+                        >
+                          <div className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-orange-400" />
+
+                          <div className="font-bold text-white">
+                            {transfer.from}
+                            <span className="mx-2 text-slate-600">
+                              →
+                            </span>
+                            {transfer.to}
+                          </div>
+
+                          <div className="mt-1 text-xs text-slate-500">
+                            {transfer.date}
+                          </div>
+                        </div>
+                      )
+                    )}
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </section>
       </div>
     </div>
   );

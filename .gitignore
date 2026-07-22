@@ -28,3 +28,4 @@ src/data/matchStatsV3.json
 .vercel
 .env*
 .vercel
+.env.example

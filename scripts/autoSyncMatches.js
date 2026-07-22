@@ -1,6 +1,8 @@
 import "dotenv/config";
+import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
-import teams from "../src/data/teams.js";
+import teams from "../src/data/teams.generated.js";
 import { CHAMPIONSHIPS } from "./matchSyncConfig.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -86,12 +88,404 @@ const LIVE_LOOKAHEAD_HOURS = Number(
 );
 
 const concurrency = Number(
-  process.env.MATCH_SYNC_CONCURRENCY || 5
+  process.env.MATCH_SYNC_CONCURRENCY || 3
+);
+
+const REFRESH_CONCURRENCY = Number(
+  process.env.REFRESH_CONCURRENCY || 2
+);
+
+const FACEIT_FETCH_TIMEOUT_MS = Number(
+  process.env.FACEIT_FETCH_TIMEOUT_MS || 20000
 );
 
 const MAP_STATS_BATCH_SIZE = Number(
   process.env.MAP_STATS_BATCH_SIZE || 50
 );
+
+const LINEUP_SYNC_BATCH_SIZE = Number(
+  process.env.LINEUP_SYNC_BATCH_SIZE || 100
+);
+
+const LINEUP_SYNC_DAYS_BACK = Number(
+  process.env.LINEUP_SYNC_DAYS_BACK || 30
+);
+
+const RUN_POST_MATCH_PIPELINE =
+  String(
+    process.env.RUN_POST_MATCH_PIPELINE || "1"
+  ) === "1";
+
+const RUN_PLAYER_SYNC =
+  String(
+    process.env.RUN_PLAYER_SYNC || "1"
+  ) === "1";
+
+const RUN_LINEUP_SYNC =
+  String(
+    process.env.RUN_LINEUP_SYNC || "1"
+  ) === "1";
+
+const RUN_RATINGS_AFTER_SYNC =
+  String(
+    process.env.RUN_RATINGS_AFTER_SYNC || "1"
+  ) === "1";
+
+const STARTING_LINEUP_SCRIPT =
+  process.env.STARTING_LINEUP_SCRIPT ||
+  "./scripts/updateStartingLineups.js";
+
+const AUTOMATIC_RATING_SCRIPT =
+  process.env.AUTOMATIC_RATING_SCRIPT ||
+  "./scripts/recalculateRatingsAfterMatch.js";
+
+const RUN_WEEKLY_RATING_SNAPSHOT =
+  String(
+    process.env.RUN_WEEKLY_RATING_SNAPSHOT || "1"
+  ) === "1";
+
+const WEEKLY_RATING_SNAPSHOT_DAY_UTC =
+  Number(
+    process.env.WEEKLY_RATING_SNAPSHOT_DAY_UTC || 0
+  );
+
+const WEEKLY_RATING_SNAPSHOT_SCRIPT =
+  process.env.WEEKLY_RATING_SNAPSHOT_SCRIPT ||
+  "./scripts/snapshotWeeklyRatingHistory.js";
+
+
+const RUN_PLAYER_RATINGS_AFTER_SYNC =
+  String(
+    process.env.RUN_PLAYER_RATINGS_AFTER_SYNC || "1"
+  ) === "1";
+
+const PLAYER_RATING_SCRIPT =
+  process.env.PLAYER_RATING_SCRIPT ||
+  "./scripts/recalculatePlayerRatings.js";
+
+async function upsertRosterPlayer(player) {
+  const faceitId =
+    player?.playerId ||
+    player?.player_id ||
+    player?.id ||
+    null;
+
+  if (!faceitId) {
+    return null;
+  }
+
+  const nickname =
+    player?.nickname ||
+    player?.playerName ||
+    player?.player_name ||
+    "Unknown";
+
+  const now = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from("players")
+    .upsert(
+      {
+        faceit_id: faceitId,
+        nickname,
+        updated_at: now,
+      },
+      {
+        onConflict: "faceit_id",
+      }
+    )
+    .select("id,faceit_id,nickname")
+    .single();
+
+  if (error) {
+    throw new Error(
+      `Player upsert failed ${faceitId}: ${error.message}`
+    );
+  }
+
+  return data;
+}
+
+async function ensureTeamPlayerRelation(
+  teamId,
+  databasePlayerId
+) {
+  if (!teamId || !databasePlayerId) {
+    return;
+  }
+
+  const {
+    data: existingRelation,
+    error: relationLookupError,
+  } = await supabase
+    .from("team_players")
+    .select(
+      "id,team_id,player_id,is_active,joined_at,left_at"
+    )
+    .eq("team_id", teamId)
+    .eq("player_id", databasePlayerId)
+    .maybeSingle();
+
+  if (relationLookupError) {
+    throw new Error(
+      `Team player lookup failed ` +
+        `${teamId}/${databasePlayerId}: ` +
+        relationLookupError.message
+    );
+  }
+
+  if (existingRelation) {
+    return existingRelation;
+  }
+
+  const {
+    data: insertedRelation,
+    error: relationInsertError,
+  } = await supabase
+    .from("team_players")
+    .insert({
+      team_id: teamId,
+      player_id: databasePlayerId,
+      joined_at: new Date().toISOString(),
+      left_at: null,
+      is_active: false,
+    })
+    .select(
+      "id,team_id,player_id,is_active,joined_at,left_at"
+    )
+    .single();
+
+  if (relationInsertError) {
+    throw new Error(
+      `Team player insert failed ` +
+        `${teamId}/${databasePlayerId}: ` +
+        relationInsertError.message
+    );
+  }
+
+  return insertedRelation;
+}
+
+async function savePlayerAppearance({
+  matchId,
+  teamId,
+  databasePlayerId,
+  playedAt,
+}) {
+  if (!matchId || !teamId || !databasePlayerId) {
+    return false;
+  }
+
+  const { data: existing, error: lookupError } = await supabase
+    .from("team_player_appearances")
+    .select("id")
+    .eq("match_id", matchId)
+    .eq("team_id", teamId)
+    .eq("player_id", databasePlayerId)
+    .limit(1);
+
+  if (lookupError) {
+    throw new Error(
+      `Player appearance lookup failed ` +
+        `${matchId}/${teamId}/${databasePlayerId}: ` +
+        lookupError.message
+    );
+  }
+
+  if (Array.isArray(existing) && existing.length > 0) {
+    return false;
+  }
+
+  const { error: insertError } = await supabase
+    .from("team_player_appearances")
+    .insert({
+      match_id: matchId,
+      team_id: teamId,
+      player_id: databasePlayerId,
+      played_at: playedAt || new Date().toISOString(),
+    });
+
+  if (insertError) {
+    throw new Error(
+      `Player appearance insert failed ` +
+        `${matchId}/${teamId}/${databasePlayerId}: ` +
+        insertError.message
+    );
+  }
+
+  return true;
+}
+
+function resolveStatsTeamId(
+  statsTeam,
+  matchContext
+) {
+  const statsTeamId =
+    statsTeam?.teamId ||
+    statsTeam?.team_id ||
+    null;
+
+  const statsTeamName =
+    statsTeam?.teamName ||
+    statsTeam?.team_name ||
+    "";
+
+  if (
+    statsTeamId &&
+    statsTeamId ===
+      matchContext.team1Id
+  ) {
+    return matchContext.team1Id;
+  }
+
+  if (
+    statsTeamId &&
+    statsTeamId ===
+      matchContext.team2Id
+  ) {
+    return matchContext.team2Id;
+  }
+
+  if (
+    statsTeamName &&
+    matchContext.team1Name &&
+    normalizeName(statsTeamName) ===
+      normalizeName(
+        matchContext.team1Name
+      )
+  ) {
+    return matchContext.team1Id;
+  }
+
+  if (
+    statsTeamName &&
+    matchContext.team2Name &&
+    normalizeName(statsTeamName) ===
+      normalizeName(
+        matchContext.team2Name
+      )
+  ) {
+    return matchContext.team2Id;
+  }
+
+  if (statsTeamId) {
+    return statsTeamId;
+  }
+
+  return null;
+}
+
+async function updateTeamRosterFromPlayerStats({
+  matchId,
+  playerStats,
+  playedAt,
+  team1Id,
+  team1Name,
+  team2Id,
+  team2Name,
+}) {
+  const statsTeams = Array.isArray(
+    playerStats?.teams
+  )
+    ? playerStats.teams
+    : [];
+
+  if (
+    !matchId ||
+    !statsTeams.length
+  ) {
+    return {
+      teams: 0,
+      players: 0,
+      appearances: 0,
+    };
+  }
+
+  const matchContext = {
+    team1Id,
+    team1Name,
+    team2Id,
+    team2Name,
+  };
+
+  const touchedTeams = new Set();
+
+  let playerCount = 0;
+  let appearanceCount = 0;
+
+  for (const statsTeam of statsTeams) {
+    const resolvedTeamId =
+      resolveStatsTeamId(
+        statsTeam,
+        matchContext
+      );
+
+    if (!resolvedTeamId) {
+      console.warn(
+        `Roster team unresolved ${matchId}: ` +
+          `${statsTeam?.teamName || "Unknown"}`
+      );
+
+      continue;
+    }
+
+    const statsPlayers =
+      Array.isArray(
+        statsTeam?.players
+      )
+        ? statsTeam.players
+        : [];
+
+    if (!statsPlayers.length) {
+      continue;
+    }
+
+    for (const player of statsPlayers) {
+      const databasePlayer =
+        await upsertRosterPlayer(
+          player
+        );
+
+      if (!databasePlayer?.id) {
+        continue;
+      }
+
+      await ensureTeamPlayerRelation(
+        resolvedTeamId,
+        databasePlayer.id
+      );
+
+      const insertedAppearance = await savePlayerAppearance({
+        matchId,
+        teamId: resolvedTeamId,
+        databasePlayerId: databasePlayer.id,
+        playedAt,
+      });
+
+      playerCount += 1;
+      if (insertedAppearance) {
+        appearanceCount += 1;
+      }
+    }
+
+    touchedTeams.add(
+      resolvedTeamId
+    );
+  }
+
+  console.log(
+    `Roster stats synced ${matchId}: ` +
+      `${touchedTeams.size} team(s), ` +
+      `${playerCount} player(s), ` +
+      `${appearanceCount} appearance(s)`
+  );
+
+  return {
+    teams: touchedTeams.size,
+    players: playerCount,
+    appearances: appearanceCount,
+  };
+}
 
 function cleanMapName(value) {
   const raw = String(value || "").trim();
@@ -276,6 +670,244 @@ function normalizeStatsTeam(team = {}) {
       normalizePlayer
     ),
   };
+}
+
+
+function normalizeScoreboardSummaryPlayer(player = {}) {
+  return normalizePlayer({
+    ...player,
+    nickname:
+      player.nickname ||
+      player.playerName ||
+      player.player_name ||
+      null,
+  });
+}
+
+function mergeScoreboardPlayer(target, player) {
+  const stats = player?.stats || {};
+  const rounds = Number(stats.roundsPlayed || 0);
+  const damage = Number(stats.damage || 0);
+  const kills = Number(stats.kills || 0);
+  const deaths = Number(stats.deaths || 0);
+  const assists = Number(stats.assists || 0);
+  const hsKills = Number(stats.hsKills || 0);
+  const kast = Number(stats.kast || 0);
+  const rating = Number(stats.faceitRating || 0);
+
+  target.playerId =
+    target.playerId ||
+    player.playerId ||
+    player.player_id ||
+    player.id ||
+    null;
+
+  target.nickname =
+    target.nickname ||
+    player.nickname ||
+    player.playerName ||
+    player.player_name ||
+    null;
+
+  target.elo = Math.max(
+    Number(target.elo || 0),
+    Number(player.elo || 0)
+  );
+
+  target._rounds += rounds;
+  target._damage += damage;
+  target._kills += kills;
+  target._deaths += deaths;
+  target._assists += assists;
+  target._hsKills += hsKills;
+  target._mvps += Number(stats.mvps || 0);
+  target._kastWeighted += kast * rounds;
+  target._ratingWeighted += rating * rounds;
+}
+
+function normalizeScoreboardSummaries(
+  payloads,
+  matchId
+) {
+  const teams = new Map();
+
+  for (const payload of payloads) {
+    const cs2 = payload?.payload?.cs2;
+    const payloadTeams = Array.isArray(cs2?.teams)
+      ? cs2.teams
+      : [];
+
+    for (const team of payloadTeams) {
+      const teamId = team?.teamId || null;
+
+      if (!teamId) {
+        continue;
+      }
+
+      if (!teams.has(teamId)) {
+        teams.set(teamId, {
+          teamId,
+          teamName: team?.teamName || "Unknown",
+          score: 0,
+          players: new Map(),
+        });
+      }
+
+      const targetTeam = teams.get(teamId);
+      targetTeam.score += Number(team?.score || 0);
+
+      for (const player of Array.isArray(team?.players)
+        ? team.players
+        : []) {
+        const playerId =
+          player?.playerId ||
+          player?.player_id ||
+          player?.id ||
+          null;
+
+        if (!playerId) {
+          continue;
+        }
+
+        if (!targetTeam.players.has(playerId)) {
+          targetTeam.players.set(playerId, {
+            playerId,
+            nickname: null,
+            elo: 0,
+            _rounds: 0,
+            _damage: 0,
+            _kills: 0,
+            _deaths: 0,
+            _assists: 0,
+            _hsKills: 0,
+            _mvps: 0,
+            _kastWeighted: 0,
+            _ratingWeighted: 0,
+          });
+        }
+
+        mergeScoreboardPlayer(
+          targetTeam.players.get(playerId),
+          player
+        );
+      }
+    }
+  }
+
+  const normalizedTeams = Array.from(teams.values()).map(
+    (team) => ({
+      teamId: team.teamId,
+      teamName: team.teamName,
+      score: team.score,
+      players: Array.from(team.players.values()).map(
+        (player) => {
+          const rounds = player._rounds;
+          const kills = player._kills;
+          const deaths = player._deaths;
+
+          return normalizeScoreboardSummaryPlayer({
+            playerId: player.playerId,
+            nickname: player.nickname,
+            elo: player.elo,
+            stats: {
+              roundsPlayed: rounds,
+              kills,
+              deaths,
+              assists: player._assists,
+              damage: player._damage,
+              adr:
+                rounds > 0
+                  ? player._damage / rounds
+                  : 0,
+              kd:
+                deaths > 0
+                  ? kills / deaths
+                  : kills,
+              hsKills: player._hsKills,
+              hsRate:
+                kills > 0
+                  ? player._hsKills / kills
+                  : 0,
+              kast:
+                rounds > 0
+                  ? player._kastWeighted / rounds
+                  : 0,
+              mvps: player._mvps,
+              faceitRating:
+                rounds > 0
+                  ? player._ratingWeighted / rounds
+                  : 0,
+            },
+          });
+        }
+      ),
+    })
+  );
+
+  if (!normalizedTeams.length) {
+    return null;
+  }
+
+  return {
+    matchId,
+    map: null,
+    teams: normalizedTeams,
+  };
+}
+
+async function fetchScoreboardSummaries(
+  matchId,
+  expectedRoundCount = 0
+) {
+  const payloads = [];
+  const maxRounds = expectedRoundCount > 0
+    ? Math.min(expectedRoundCount, 5)
+    : 5;
+
+  for (let round = 1; round <= maxRounds; round += 1) {
+    const url =
+      `https://www.faceit.com/api/statistics/v1/cs2/matches/${encodeURIComponent(
+        matchId
+      )}/match-rounds/${round}/scoreboard-summary?statsType=2`;
+
+    try {
+      const payload = await fetchJson(url, {
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          ...(faceitSessionCookie
+            ? { Cookie: faceitSessionCookie }
+            : {}),
+          Referer:
+            `https://www.faceit.com/en/cs2/room/${encodeURIComponent(
+              matchId
+            )}`,
+          "User-Agent":
+            process.env.FACEIT_USER_AGENT ||
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142.0.0.0 Safari/537.36",
+          "Accept-Language":
+            "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+          "Faceit-Referer": "web-next",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      const teams = payload?.payload?.cs2?.teams;
+
+      if (!Array.isArray(teams) || !teams.length) {
+        break;
+      }
+
+      payloads.push(payload);
+    } catch (error) {
+      if (round === 1) {
+        throw error;
+      }
+
+      break;
+    }
+  }
+
+  return payloads;
 }
 
 function normalizeInternalPlayerStats(
@@ -966,22 +1598,69 @@ function buildDiscoveryUrl(
   );
 }
 
+function formatFetchError(error) {
+  const parts = [
+    error?.name,
+    error?.message,
+    error?.cause?.code,
+    error?.cause?.errno,
+    error?.cause?.syscall,
+    error?.cause?.hostname,
+  ].filter(Boolean);
+
+  return parts.join(" | ") || "Unknown fetch error";
+}
+
+function isRetryableFetchError(error) {
+  const code =
+    error?.cause?.code ||
+    error?.code ||
+    "";
+
+  return (
+    error?.name === "AbortError" ||
+    error?.name === "TimeoutError" ||
+    error?.message === "fetch failed" ||
+    [
+      "ECONNRESET",
+      "ECONNREFUSED",
+      "ETIMEDOUT",
+      "EAI_AGAIN",
+      "ENOTFOUND",
+      "UND_ERR_CONNECT_TIMEOUT",
+      "UND_ERR_HEADERS_TIMEOUT",
+      "UND_ERR_SOCKET",
+    ].includes(code)
+  );
+}
+
 async function fetchJson(
   url,
   options = {},
-  attempts = 3
+  attempts = 5
 ) {
-  let lastError;
+  let lastError = null;
 
   for (
     let attempt = 1;
     attempt <= attempts;
     attempt += 1
   ) {
+    const controller =
+      new AbortController();
+
+    const timeout = setTimeout(
+      () => controller.abort(),
+      FACEIT_FETCH_TIMEOUT_MS
+    );
+
     try {
       const response = await fetch(
         url,
-        options
+        {
+          ...options,
+          signal: controller.signal,
+        }
       );
 
       if (response.ok) {
@@ -996,32 +1675,64 @@ async function fetchJson(
         ? `: ${body}`
         : "";
 
-      if (
-        response.status < 500 &&
-        response.status !== 429
-      ) {
-        throw new Error(
-          `${response.status} ` +
-          `${response.statusText}` +
-          details
-        );
-      }
-
-      lastError = new Error(
+      const httpError = new Error(
         `${response.status} ` +
         `${response.statusText}` +
         details
       );
+
+      httpError.status =
+        response.status;
+
+      if (
+        response.status < 500 &&
+        response.status !== 408 &&
+        response.status !== 429
+      ) {
+        throw httpError;
+      }
+
+      lastError = httpError;
     } catch (error) {
       lastError = error;
+
+      const retryable =
+        isRetryableFetchError(error) ||
+        error?.status === 408 ||
+        error?.status === 429 ||
+        Number(error?.status) >= 500;
+
+      if (
+        !retryable ||
+        attempt === attempts
+      ) {
+        throw error;
+      }
+
+      console.warn(
+        `FACEIT request retry ${attempt}/${attempts} ` +
+        `${url}: ${formatFetchError(error)}`
+      );
+    } finally {
+      clearTimeout(timeout);
     }
 
-    await sleep(
-      400 * attempt
-    );
+    const delay =
+      Math.min(
+        10000,
+        750 * 2 ** (attempt - 1)
+      ) +
+      Math.floor(
+        Math.random() * 500
+      );
+
+    await sleep(delay);
   }
 
-  throw lastError;
+  throw lastError ||
+    new Error(
+      `FACEIT request failed: ${url}`
+    );
 }
 
 function insideDiscoveryWindow(
@@ -1407,6 +2118,13 @@ async function refreshActive() {
     candidates,
     async (match) => {
       try {
+        await sleep(
+          150 +
+          Math.floor(
+            Math.random() * 350
+          )
+        );
+
         const payload =
           await fetchJson(
             `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
@@ -1473,12 +2191,12 @@ async function refreshActive() {
         failed += 1;
 
         console.warn(
-          `Refresh failed ` +
-          `${match.id}: ` +
-          error.message
+          `Refresh failed ${match.id}: ` +
+          formatFetchError(error)
         );
       }
-    }
+    },
+    REFRESH_CONCURRENCY
   );
 
   return {
@@ -1495,129 +2213,686 @@ async function refreshActive() {
   };
 }
 
+async function fetchInternalStatsV3(matchId) {
+  const url =
+    `https://www.faceit.com/api/stats/v3/matches/${encodeURIComponent(
+      matchId
+    )}`;
+
+  const payload = await fetchJson(
+    url,
+    {
+      headers: {
+        Accept: "application/json, text/plain, */*",
+
+        ...(faceitSessionCookie
+          ? {
+              Cookie:
+                faceitSessionCookie,
+            }
+          : {}),
+
+        Referer:
+          `https://www.faceit.com/en/cs2/room/${encodeURIComponent(
+            matchId
+          )}`,
+
+        "User-Agent":
+          process.env.FACEIT_USER_AGENT ||
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142.0.0.0 Safari/537.36",
+
+        "Accept-Language":
+          "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+
+        "Faceit-Referer":
+          "web-next",
+
+        "X-Requested-With":
+          "XMLHttpRequest",
+      },
+    },
+    4
+  );
+
+  return payload;
+}
+
+
+function normalizeMatchRosterPlayer(
+  player = {}
+) {
+  const faceitId =
+    player.player_id ||
+    player.playerId ||
+    player.user_id ||
+    player.userId ||
+    player.id ||
+    null;
+
+  if (!faceitId) {
+    return null;
+  }
+
+  return {
+    playerId: faceitId,
+
+    nickname:
+      player.nickname ||
+      player.player_name ||
+      player.playerName ||
+      player.name ||
+      "Unknown",
+  };
+}
+
+function extractLineupsFromMatchPayload(
+  payload
+) {
+  const result = [];
+
+  const pushTeam = (
+    teamNode,
+    fallbackId = null,
+    fallbackName = null
+  ) => {
+    if (!teamNode) {
+      return;
+    }
+
+    const teamId =
+      teamNode.faction_id ||
+      teamNode.premade_team_id ||
+      teamNode.team_id ||
+      teamNode.teamId ||
+      teamNode.id ||
+      fallbackId ||
+      null;
+
+    const teamName =
+      teamNode.name ||
+      teamNode.nickname ||
+      teamNode.team_name ||
+      teamNode.teamName ||
+      fallbackName ||
+      "Unknown";
+
+    const candidates = [
+      teamNode.roster,
+      teamNode.players,
+      teamNode.members,
+    ];
+
+    const playerMap = new Map();
+
+    for (const candidate of candidates) {
+      if (!Array.isArray(candidate)) {
+        continue;
+      }
+
+      for (const rawPlayer of candidate) {
+        const player =
+          normalizeMatchRosterPlayer(
+            rawPlayer
+          );
+
+        if (
+          player &&
+          !playerMap.has(
+            player.playerId
+          )
+        ) {
+          playerMap.set(
+            player.playerId,
+            player
+          );
+        }
+      }
+    }
+
+    if (
+      teamId &&
+      playerMap.size > 0
+    ) {
+      result.push({
+        teamId,
+        teamName,
+        players:
+          [...playerMap.values()],
+      });
+    }
+  };
+
+  /*
+   * Open FACEIT API v4:
+   * teams = { faction1: {...}, faction2: {...} }
+   */
+  if (
+    payload?.teams &&
+    !Array.isArray(payload.teams)
+  ) {
+    for (
+      const [key, teamNode]
+      of Object.entries(payload.teams)
+    ) {
+      pushTeam(
+        teamNode,
+        key,
+        teamNode?.name
+      );
+    }
+  }
+
+  /*
+   * Internal match-room payload:
+   * factions = [...]
+   */
+  if (
+    Array.isArray(payload?.factions)
+  ) {
+    for (
+      const teamNode
+      of payload.factions
+    ) {
+      pushTeam(teamNode);
+    }
+  }
+
+  /*
+   * Some payloads expose team1/team2.
+   */
+  pushTeam(payload?.team1);
+  pushTeam(payload?.team2);
+
+  const deduplicated = new Map();
+
+  for (const team of result) {
+    if (
+      !deduplicated.has(
+        team.teamId
+      )
+    ) {
+      deduplicated.set(
+        team.teamId,
+        {
+          ...team,
+          players:
+            new Map(),
+        }
+      );
+    }
+
+    const target =
+      deduplicated.get(
+        team.teamId
+      );
+
+    for (
+      const player
+      of team.players
+    ) {
+      target.players.set(
+        player.playerId,
+        player
+      );
+    }
+  }
+
+  return [
+    ...deduplicated.values(),
+  ].map((team) => ({
+    teamId: team.teamId,
+    teamName: team.teamName,
+    players:
+      [...team.players.values()],
+  }));
+}
+
+function resolveLineupTeamId(
+  lineupTeam,
+  match
+) {
+  if (
+    lineupTeam.teamId ===
+    match.team1_id
+  ) {
+    return match.team1_id;
+  }
+
+  if (
+    lineupTeam.teamId ===
+    match.team2_id
+  ) {
+    return match.team2_id;
+  }
+
+  if (
+    lineupTeam.teamName &&
+    match.team1_name &&
+    normalizeName(
+      lineupTeam.teamName
+    ) ===
+      normalizeName(
+        match.team1_name
+      )
+  ) {
+    return match.team1_id;
+  }
+
+  if (
+    lineupTeam.teamName &&
+    match.team2_name &&
+    normalizeName(
+      lineupTeam.teamName
+    ) ===
+      normalizeName(
+        match.team2_name
+      )
+  ) {
+    return match.team2_id;
+  }
+
+  return lineupTeam.teamId || null;
+}
+
+async function saveLineupsFromPayload({
+  match,
+  payload,
+  source,
+}) {
+  const lineups =
+    extractLineupsFromMatchPayload(
+      payload
+    );
+
+  if (!lineups.length) {
+    return {
+      teams: 0,
+      players: 0,
+      appearances: 0,
+      source,
+    };
+  }
+
+  let teamsSaved = 0;
+  let playersSaved = 0;
+  let appearancesSaved = 0;
+
+  for (
+    const lineupTeam
+    of lineups
+  ) {
+    const teamId =
+      resolveLineupTeamId(
+        lineupTeam,
+        match
+      );
+
+    if (!teamId) {
+      continue;
+    }
+
+    let teamPlayerCount = 0;
+
+    for (
+      const player
+      of lineupTeam.players
+    ) {
+      const databasePlayer =
+        await upsertRosterPlayer(
+          player
+        );
+
+      if (!databasePlayer?.id) {
+        continue;
+      }
+
+      await ensureTeamPlayerRelation(
+        teamId,
+        databasePlayer.id
+      );
+
+      const inserted =
+        await savePlayerAppearance({
+          matchId: match.id,
+          teamId,
+          databasePlayerId:
+            databasePlayer.id,
+          playedAt:
+            match.finished_at ||
+            match.started_at ||
+            match.scheduled_at ||
+            new Date().toISOString(),
+        });
+
+      playersSaved += 1;
+      teamPlayerCount += 1;
+
+      if (inserted) {
+        appearancesSaved += 1;
+      }
+    }
+
+    if (teamPlayerCount > 0) {
+      teamsSaved += 1;
+    }
+  }
+
+  return {
+    teams: teamsSaved,
+    players: playersSaved,
+    appearances:
+      appearancesSaved,
+    source,
+  };
+}
+
+async function fetchMatchRoomPayload(
+  matchId
+) {
+  return fetchJson(
+    `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
+      matchId
+    )}`,
+    {
+      headers: {
+        Authorization:
+          `Bearer ${faceitApiKey}`,
+        Accept:
+          "application/json",
+      },
+    },
+    3
+  );
+}
+
+async function syncFinishedLineups() {
+  const from =
+    new Date(
+      Date.now() -
+        LINEUP_SYNC_DAYS_BACK *
+          86400000
+    ).toISOString();
+
+  const {
+    data: matches,
+    error,
+  } = await supabase
+    .from("matches")
+    .select(
+      [
+        "id",
+        "status",
+        "scheduled_at",
+        "started_at",
+        "finished_at",
+        "team1_id",
+        "team1_name",
+        "team2_id",
+        "team2_name",
+        "raw_data",
+      ].join(",")
+    )
+    .in("status", [
+      "FINISHED",
+      "MATCH_STATUS_FINISHED",
+    ])
+    .gte("finished_at", from)
+    .order(
+      "finished_at",
+      {
+        ascending: false,
+        nullsFirst: false,
+      }
+    )
+    .limit(
+      LINEUP_SYNC_BATCH_SIZE
+    );
+
+  if (error) {
+    throw error;
+  }
+
+  let candidates = 0;
+  let fromRawData = 0;
+  let fromMatchApi = 0;
+  let empty = 0;
+  let failed = 0;
+  let appearances = 0;
+
+  await runPool(
+    matches || [],
+    async (match) => {
+      candidates += 1;
+
+      try {
+        let result =
+          await saveLineupsFromPayload({
+            match,
+            payload:
+              match.raw_data || {},
+            source: "raw_data",
+          });
+
+        if (
+          result.players > 0
+        ) {
+          fromRawData += 1;
+          appearances +=
+            result.appearances;
+          return;
+        }
+
+        const matchPayload =
+          await fetchMatchRoomPayload(
+            match.id
+          );
+
+        result =
+          await saveLineupsFromPayload({
+            match,
+            payload:
+              matchPayload,
+            source:
+              "open-data-v4-match",
+          });
+
+        if (
+          result.players > 0
+        ) {
+          fromMatchApi += 1;
+          appearances +=
+            result.appearances;
+        } else {
+          empty += 1;
+
+          console.warn(
+            `Lineup unavailable ${match.id}`
+          );
+        }
+      } catch (error) {
+        failed += 1;
+
+        console.warn(
+          `Lineup sync failed ` +
+          `${match.id}: ` +
+          error.message
+        );
+      }
+    },
+    Math.min(
+      concurrency,
+      4
+    )
+  );
+
+  return {
+    candidates,
+    fromRawData,
+    fromMatchApi,
+    empty,
+    failed,
+    appearances,
+  };
+}
+
 async function fetchFinishedMatchStats(
   matchId
 ) {
-  let officialRounds = [];
-  let officialError = null;
+  let internalPayload = null;
+  let internalRounds = [];
+  let internalPlayerStats = null;
+  let internalError = null;
 
-  const officialUrl =
-    `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
-      matchId
-    )}/stats`;
-
+  /*
+   * Главный источник для ESEA:
+   * тот же endpoint, который использовал
+   * старый рабочий updateMatchStatsV3.js.
+   */
   try {
-    const officialPayload =
-      await fetchJson(
-        officialUrl,
-        {
-          headers: {
-            Authorization:
-              `Bearer ${faceitApiKey}`,
-
-            Accept:
-              "application/json",
-          },
-        }
+    internalPayload =
+      await fetchInternalStatsV3(
+        matchId
       );
 
-    officialRounds =
-      normalizeOfficialMatchStats(
-        officialPayload
+    internalRounds =
+      normalizeInternalMatchStats(
+        internalPayload
+      );
+
+    internalPlayerStats =
+      normalizeInternalPlayerStats(
+        internalPayload,
+        matchId
       );
   } catch (error) {
-    officialError = error;
+    internalError = error;
 
     console.warn(
-      `Official stats unavailable ` +
+      `Internal stats/v3 unavailable ` +
       `${matchId}: ` +
       error.message
     );
   }
 
-  let internalRounds = [];
-  let playerStats = null;
+  /*
+   * Public data-v4 оставляем как запасной
+   * источник карт.
+   */
+  let officialRounds = [];
+  let officialError = null;
 
-  if (faceitSessionCookie) {
-    const internalUrl =
-      `https://www.faceit.com/api/stats/v3/matches/${encodeURIComponent(
+  if (!internalRounds.length) {
+    const officialUrl =
+      `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
         matchId
-      )}`;
+      )}/stats`;
 
     try {
-      const internalPayload =
+      const officialPayload =
         await fetchJson(
-          internalUrl,
+          officialUrl,
           {
             headers: {
+              Authorization:
+                `Bearer ${faceitApiKey}`,
               Accept:
                 "application/json",
-
-              Cookie:
-                faceitSessionCookie,
-
-              Referer:
-                `https://www.faceit.com/en/cs2/room/${encodeURIComponent(
-                  matchId
-                )}`,
-
-              "User-Agent":
-                "Mozilla/5.0 ESEA-Tracker/1.0",
-
-              "X-Requested-With":
-                "XMLHttpRequest",
             },
           }
         );
 
-      internalRounds =
-        normalizeInternalMatchStats(
-          internalPayload
-        );
-
-      playerStats =
-        normalizeInternalPlayerStats(
-          internalPayload,
-          matchId
+      officialRounds =
+        normalizeOfficialMatchStats(
+          officialPayload
         );
     } catch (error) {
+      officialError = error;
+
       console.warn(
-        `Internal stats unavailable ` +
+        `Official stats unavailable ` +
         `${matchId}: ` +
         error.message
       );
     }
-  } else {
-    console.warn(
-      `FACEIT_SESSION_COOKIE is missing; ` +
-      `player stats cannot be loaded ` +
-      `for ${matchId}`
-    );
+  }
+
+  /*
+   * Scoreboard-summary — последний fallback
+   * для игроков, если stats/v3 не вернул их.
+   */
+  let scoreboardPlayerStats = null;
+
+  if (!internalPlayerStats) {
+    try {
+      const expectedRoundCount =
+        internalRounds.length ||
+        officialRounds.length;
+
+      const scoreboardPayloads =
+        await fetchScoreboardSummaries(
+          matchId,
+          expectedRoundCount
+        );
+
+      scoreboardPlayerStats =
+        normalizeScoreboardSummaries(
+          scoreboardPayloads,
+          matchId
+        );
+    } catch (error) {
+      console.warn(
+        `Scoreboard stats unavailable ` +
+        `${matchId}: ` +
+        error.message
+      );
+    }
   }
 
   const rounds =
-    officialRounds.length > 0
-      ? officialRounds
-      : internalRounds;
+    internalRounds.length
+      ? internalRounds
+      : officialRounds;
+
+  const playerStats =
+    internalPlayerStats ||
+    scoreboardPlayerStats;
 
   if (
     !rounds.length &&
-    officialError
+    !playerStats
   ) {
-    throw officialError;
+    throw (
+      internalError ||
+      officialError ||
+      new Error(
+        "No match maps or player statistics returned"
+      )
+    );
   }
 
   return {
     source:
-      officialRounds.length > 0 &&
-      playerStats
-        ? "data-v4 + stats-v3"
-        : officialRounds.length > 0
-          ? "data-v4"
-          : "stats-v3",
+      internalRounds.length &&
+      internalPlayerStats
+        ? "stats-v3"
+        : internalRounds.length &&
+            scoreboardPlayerStats
+          ? "stats-v3 + statistics-v1"
+          : officialRounds.length &&
+              internalPlayerStats
+            ? "data-v4 + stats-v3"
+            : officialRounds.length &&
+                scoreboardPlayerStats
+              ? "data-v4 + statistics-v1"
+              : internalPlayerStats
+                ? "stats-v3-players"
+                : scoreboardPlayerStats
+                  ? "statistics-v1"
+                  : internalRounds.length
+                    ? "stats-v3-maps"
+                    : "data-v4",
 
     rounds,
-
     playerStats,
   };
 }
@@ -1639,6 +2914,7 @@ async function syncFinishedMapStats() {
         "team2_logo",
         "team2_score",
         "winner_id",
+        "finished_at",
       ].join(",")
     )
     .in("status", [
@@ -1662,6 +2938,16 @@ async function syncFinishedMapStats() {
 
   await runPool(matches || [], async (match) => {
     try {
+      /*
+       * Небольшой jitter снижает риск 429
+       * при одновременной обработке матчей.
+       */
+      await sleep(
+        Math.floor(
+          150 + Math.random() * 350
+        )
+      );
+
       const statsResult =
         await fetchFinishedMatchStats(match.id);
 
@@ -1866,14 +3152,48 @@ async function syncFinishedMapStats() {
       };
 
       const { error: updateError } =
-        await supabase
-          .from("matches")
-          .update(patch)
-          .eq("id", match.id);
+  await supabase
+    .from("matches")
+    .update(patch)
+    .eq("id", match.id);
 
-      if (updateError) {
-        throw updateError;
-      }
+if (updateError) {
+  throw updateError;
+}
+
+if (hasPlayerStats && RUN_PLAYER_SYNC) {
+  try {
+    await updateTeamRosterFromPlayerStats({
+      matchId: match.id,
+
+      playerStats:
+        statsResult.playerStats,
+
+      playedAt:
+        match.finished_at ||
+        new Date().toISOString(),
+
+      team1Id:
+        resolvedTeam1Id,
+
+      team1Name:
+        resolvedLocalTeam1?.name ||
+        resolvedTeam1Name,
+
+      team2Id:
+        resolvedTeam2Id,
+
+      team2Name:
+        resolvedLocalTeam2?.name ||
+        resolvedTeam2Name,
+    });
+  } catch (rosterError) {
+    console.error(
+      `Roster sync failed ${match.id}:`,
+      rosterError
+    );
+  }
+}
 
       if (hasMaps && hasPlayerStats) {
         synced += 1;
@@ -1923,6 +3243,209 @@ async function syncFinishedMapStats() {
   };
 }
 
+
+async function runNodePipelineScript({
+  label,
+  script,
+  args = [],
+}) {
+  if (!existsSync(script)) {
+    return {
+      ran: false,
+      reason: "script-not-found",
+      script,
+    };
+  }
+
+  console.log(`\n=== ${label} ===`);
+
+  await new Promise((resolve, reject) => {
+    const child = spawn(
+      process.execPath,
+      [
+        "--env-file=.env.local",
+        script,
+        ...args,
+      ],
+      {
+        stdio: "inherit",
+        shell: false,
+        env: process.env,
+      }
+    );
+
+    child.on("error", reject);
+
+    child.on("exit", (code) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+
+      reject(
+        new Error(
+          `${label} exited with code ${code}`
+        )
+      );
+    });
+  });
+
+  return {
+    ran: true,
+    reason: "completed",
+    script,
+  };
+}
+
+async function runPlayerRatingPipeline() {
+  if (!RUN_PLAYER_RATINGS_AFTER_SYNC) {
+    return {
+      ran: false,
+      reason: "disabled",
+    };
+  }
+
+  return runNodePipelineScript({
+    label: "Player rating recalculation",
+    script: PLAYER_RATING_SCRIPT,
+  });
+}
+
+async function runStartingLineupPipeline() {
+  if (!RUN_LINEUP_SYNC) {
+    return {
+      ran: false,
+      reason: "disabled",
+    };
+  }
+
+  return runNodePipelineScript({
+    label: "Starting lineup update",
+    script: STARTING_LINEUP_SCRIPT,
+  });
+}
+
+async function runAutomaticRatingPipeline() {
+  if (!RUN_RATINGS_AFTER_SYNC) {
+    return {
+      ran: false,
+      reason: "disabled",
+    };
+  }
+
+  const result =
+    await runNodePipelineScript({
+      label: "Automatic rating update",
+      script: AUTOMATIC_RATING_SCRIPT,
+    });
+
+  if (!result.ran) {
+    return result;
+  }
+
+  return {
+    ...result,
+    reason: "new-finished-match-stats",
+  };
+}
+
+
+function getIsoWeekStart(date = new Date()) {
+  const value = new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate()
+    )
+  );
+
+  const isoDay =
+    value.getUTCDay() || 7;
+
+  value.setUTCDate(
+    value.getUTCDate() -
+      isoDay +
+      1
+  );
+
+  return value
+    .toISOString()
+    .slice(0, 10);
+}
+
+async function runWeeklyRatingSnapshotIfNeeded() {
+  if (!RUN_WEEKLY_RATING_SNAPSHOT) {
+    return {
+      ran: false,
+      reason: "disabled",
+    };
+  }
+
+  const now = new Date();
+
+  if (
+    now.getUTCDay() !==
+    WEEKLY_RATING_SNAPSHOT_DAY_UTC
+  ) {
+    return {
+      ran: false,
+      reason: "not-snapshot-day",
+      dayUtc:
+        now.getUTCDay(),
+      configuredDayUtc:
+        WEEKLY_RATING_SNAPSHOT_DAY_UTC,
+    };
+  }
+
+  const weekStart =
+    getIsoWeekStart(now);
+
+  const {
+    data,
+    error,
+  } = await supabase
+    .from("team_rating_history")
+    .select("id")
+    .eq(
+      "snapshot_type",
+      "weekly"
+    )
+    .eq(
+      "week_start",
+      weekStart
+    )
+    .limit(1);
+
+  if (error) {
+    throw new Error(
+      `Weekly snapshot lookup failed: ${error.message}`
+    );
+  }
+
+  if (
+    Array.isArray(data) &&
+    data.length > 0
+  ) {
+    return {
+      ran: false,
+      reason: "already-created",
+      weekStart,
+    };
+  }
+
+  const result =
+    await runNodePipelineScript({
+      label: "Weekly rating snapshot",
+      script:
+        WEEKLY_RATING_SNAPSHOT_SCRIPT,
+    });
+
+  return {
+    ...result,
+    weekStart,
+  };
+}
+
 async function main() {
   const started = Date.now();
 
@@ -1947,21 +3470,186 @@ async function main() {
   const refresh =
     await refreshActive();
 
-  const matchStats =
-    await syncFinishedMapStats();
+  let lineups = {
+    ran: false,
+    reason: RUN_POST_MATCH_PIPELINE
+      ? "disabled"
+      : "post-match-pipeline-disabled",
+  };
+
+  let matchStats = {
+    ran: false,
+    reason: "post-match-pipeline-disabled",
+    candidates: 0,
+    synced: 0,
+    empty: 0,
+    failed: 0,
+  };
+
+  let playerRatingUpdate = {
+    ran: false,
+    reason: "no-new-finished-match-stats",
+  };
+
+  let startingLineups = {
+    ran: false,
+    reason: "no-new-finished-match-stats",
+  };
+
+  let ratingUpdate = {
+    ran: false,
+    reason: "no-new-finished-match-stats",
+  };
+
+
+  let weeklyRatingSnapshot = {
+    ran: false,
+    reason: "not-checked",
+  };
+
+  if (RUN_POST_MATCH_PIPELINE) {
+    /*
+     * Составы из матч-румов и raw_data.
+     */
+    if (RUN_LINEUP_SYNC) {
+      lineups = {
+        ran: true,
+        ...(
+          await syncFinishedLineups()
+        ),
+      };
+    } else {
+      lineups = {
+        ran: false,
+        reason: "disabled",
+      };
+    }
+
+    /*
+     * Карты и статистика игроков.
+     * RUN_PLAYER_SYNC отдельно управляет записью
+     * players/team_players/appearances внутри функции.
+     */
+    matchStats = {
+      ran: true,
+      ...(
+        await syncFinishedMapStats()
+      ),
+    };
+
+    /*
+     * Пересчитываем стартовые пятёрки и рейтинг
+     * только после фактически синхронизированных
+     * завершённых матчей.
+     */
+    if (
+      Number(matchStats?.synced || 0) > 0
+    ) {
+      try {
+        playerRatingUpdate =
+          await runPlayerRatingPipeline();
+      } catch (playerRatingError) {
+        playerRatingUpdate = {
+          ran: false,
+          reason: "failed",
+          error:
+            playerRatingError?.message ||
+            String(playerRatingError),
+        };
+
+        console.error(
+          "Player rating recalculation failed:",
+          playerRatingError
+        );
+      }
+
+      try {
+        startingLineups =
+          await runStartingLineupPipeline();
+      } catch (lineupError) {
+        startingLineups = {
+          ran: false,
+          reason: "failed",
+          error:
+            lineupError?.message ||
+            String(lineupError),
+        };
+
+        console.error(
+          "Starting lineup update failed:",
+          lineupError
+        );
+      }
+
+      try {
+        ratingUpdate =
+          await runAutomaticRatingPipeline();
+      } catch (ratingError) {
+        ratingUpdate = {
+          ran: false,
+          reason: "failed",
+          error:
+            ratingError?.message ||
+            String(ratingError),
+        };
+
+        console.error(
+          "Automatic rating update failed:",
+          ratingError
+        );
+      }
+    }
+  }
+
+  /*
+   * Один и тот же cron синхронизации матчей
+   * создаёт недельную точку рейтинга.
+   * Скрипт запускается только в выбранный день UTC
+   * и только если снимка за эту ISO-неделю ещё нет.
+   */
+  try {
+    weeklyRatingSnapshot =
+      await runWeeklyRatingSnapshotIfNeeded();
+  } catch (weeklySnapshotError) {
+    weeklyRatingSnapshot = {
+      ran: false,
+      reason: "failed",
+      error:
+        weeklySnapshotError?.message ||
+        String(weeklySnapshotError),
+    };
+
+    console.error(
+      "Weekly rating snapshot failed:",
+      weeklySnapshotError
+    );
+  }
 
   console.log(
     JSON.stringify(
       {
         ok: true,
-
         mode,
-
         discovery,
-
         refresh,
 
+        postMatchPipeline: {
+          enabled:
+            RUN_POST_MATCH_PIPELINE,
+          playerSync:
+            RUN_PLAYER_SYNC,
+          lineupSync:
+            RUN_LINEUP_SYNC,
+          ratingsAfterSync:
+            RUN_RATINGS_AFTER_SYNC,
+        },
+
+        lineups,
         matchStats,
+        playerRatingUpdate,
+        startingLineups,
+        ratingUpdate,
+        weeklyRatingSnapshot,
 
         durationMs:
           Date.now() -

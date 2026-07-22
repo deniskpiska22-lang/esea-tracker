@@ -1184,13 +1184,7 @@ function Home() {
               />
 
               <div>
-                {topTeams.map((team, index) => (
-                  <RankingItem
-                    key={team.slug}
-                    team={team}
-                    index={index}
-                  />
-                ))}
+                
               </div>
             </section>
           </aside>

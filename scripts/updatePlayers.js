@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 
 const FACEIT_API_KEY = "1f7e7c47-0d9b-403e-9007-acd463de617b";
 
-const teams = (await import("../src/data/teams.js")).default;
+const teams = (await import("../src/data/teams.generated.js")).default;
 
 const TRANSFERS_FILE =
   "./src/data/playerTransfers.json";

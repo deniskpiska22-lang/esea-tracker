@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import upcomingMatches from "../src/data/upcomingMatches.js";
 import finishedMatches from "../src/data/matches.js";
-import teams from "../src/data/teams.js";
+import teams from "../src/data/teams.generated.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;

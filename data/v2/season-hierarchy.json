@@ -1,0 +1,710 @@
+{
+  "fetched_at": "2026-07-19T14:05:13.763087+00:00",
+  "seasonId": "ec187700-30e2-4245-b5e2-daa762db12fc",
+  "source": "https://www.faceit.com/api/team-leagues/v2/seasons/tree?entityType=season&entityId=ec187700-30e2-4245-b5e2-daa762db12fc",
+  "payload": {
+    "payload": {
+      "season_id": "ec187700-30e2-4245-b5e2-daa762db12fc",
+      "regions": [
+        {
+          "id": "c6c16e33-8679-4c9b-84dc-bf6ff298e1bf",
+          "name": "Europe",
+          "divisions": [
+            {
+              "id": "63e4227c-db93-4f75-b0be-16e37fe81901",
+              "name": "Advanced",
+              "stages": [
+                {
+                  "id": "d15f4b3e-b05e-4a22-b47d-f01ea26d2112",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "ba97a0f8-a699-4cdd-a1f4-32e89bba94eb",
+                      "name": "Central",
+                      "championship_id": "f404458c-3ff0-4b6a-abdf-89a6b13694ca"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "b8547345-7ae8-488a-8234-dca1d461cd5b",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "e3c1696e-f459-4ee2-b710-5b0d1786c631",
+                      "name": "Central",
+                      "championship_id": "6af31634-451e-4c61-9376-d4493a65792c"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "ef807d30-b28f-4baa-bb06-c09f13447e8e",
+              "name": "Main",
+              "stages": [
+                {
+                  "id": "61e1562f-de04-46a5-9f0e-8135fe2bf238",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "bc962346-fdbe-459c-bce6-88c5927e9e47",
+                      "name": "A",
+                      "championship_id": "54f32bd1-55d3-4353-8818-79f57ef7a65b"
+                    },
+                    {
+                      "id": "fee06aa7-01f3-4373-87c3-f40ffb3aa0bd",
+                      "name": "B",
+                      "championship_id": "8961a4f3-2860-4545-87db-1ce1e32c7e13"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "86c73161-1562-435a-85cd-f32cd633c112",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "edd99fe0-a3f5-4458-a892-de9dbaad9e44",
+                      "name": "A",
+                      "championship_id": "8309fbaf-653b-4ee4-b1f7-1414ba77bfb8"
+                    },
+                    {
+                      "id": "5839f90d-db9b-4374-a377-b0c136eb94aa",
+                      "name": "B",
+                      "championship_id": "fa369900-8ac3-4925-917d-3cf9e481208a"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "b1248d6d-8ec4-4d23-9b14-fb3bcec31937",
+              "name": "Intermediate",
+              "stages": [
+                {
+                  "id": "87e8c6c2-fb87-4262-8c21-d895a6262d33",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "2d030177-3971-4f22-a0d3-a9ea3a6d12a4",
+                      "name": "A",
+                      "championship_id": "de368982-42fc-428e-9d2e-cfdbaa7d6363"
+                    },
+                    {
+                      "id": "20dfda48-9b49-428e-b198-1f528c2e32c5",
+                      "name": "B",
+                      "championship_id": "b453b0b9-f5e5-4f08-964d-d127691243d0"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "234fb340-1577-4b7a-b7fc-7856bb03d9bf",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "4d9acad3-73e8-4aca-bbfc-fef3300406cb",
+                      "name": "A",
+                      "championship_id": "a902dd1c-7c79-4f34-966a-c766453705b7"
+                    },
+                    {
+                      "id": "31bb6eff-c813-46fa-ac46-cfcc27d1f8fa",
+                      "name": "B",
+                      "championship_id": "e22a04a8-8900-4865-b22e-80d014cbfd0c"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "3493082a-d735-4ac0-a395-8158cfc38891",
+              "name": "Entry",
+              "stages": [
+                {
+                  "id": "c3c65f24-e3e7-4fe3-8004-5bd46c8f7c79",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "e759a3f4-39f4-4f3c-a6f6-528d4d50605b",
+                      "name": "A",
+                      "championship_id": "df648492-2f7f-44ac-abbe-1d179a38d7c3"
+                    },
+                    {
+                      "id": "dca8e11d-fb55-42d0-ad3f-41351ebbbc1a",
+                      "name": "B",
+                      "championship_id": "c1641aae-0e63-4564-a571-927091687b5b"
+                    },
+                    {
+                      "id": "54c9a34e-53e2-4317-89a7-87a7fe4fd8dc",
+                      "name": "C",
+                      "championship_id": "4cc00188-c9af-472d-b2cc-d60091f9834e"
+                    },
+                    {
+                      "id": "55cf8e1b-881e-4573-b991-ea72166992c2",
+                      "name": "D",
+                      "championship_id": "dde840d0-cb47-49c9-9ac4-a51a11991c42"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "f3fadd88-b889-4448-9f90-4cb7c4abf661",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "d13c03ac-479d-4331-bf8a-0b8f85926c3a",
+                      "name": "A",
+                      "championship_id": "f2f5c9e3-9f21-4cb9-8f70-de11935d43c9"
+                    },
+                    {
+                      "id": "70a983e3-1dc3-4516-947b-6641400abb11",
+                      "name": "B",
+                      "championship_id": "28bb55d9-a710-444f-83e1-985a33f8557e"
+                    },
+                    {
+                      "id": "b903aac4-bdd8-4ca8-8e8b-7f2e6056547c",
+                      "name": "C",
+                      "championship_id": "df8759e4-9564-473a-b842-a9cad68a58bd"
+                    },
+                    {
+                      "id": "258a2698-4c72-4482-a52f-97656e3fce07",
+                      "name": "D",
+                      "championship_id": "6e01b162-17e4-4d7f-bcb1-c59bd108cfbd"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "7d32eeec-6c5d-426c-a8a8-f40ab3c749c5",
+              "name": "Open10",
+              "stages": [
+                {
+                  "id": "3cf26d5e-c2bd-4e9a-8cba-69bec7f6378f",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "9e47a72d-15e9-4a7e-91c2-ec5c3e2e9624",
+                      "name": "A",
+                      "championship_id": "b2b656de-eeee-4950-b1b4-f5db7cd0ad6f"
+                    },
+                    {
+                      "id": "f9bf85ad-de14-453f-b2f1-6492a965696f",
+                      "name": "B",
+                      "championship_id": "de119306-98cc-43a6-afde-37a4c1fc6a14"
+                    },
+                    {
+                      "id": "7fedceeb-ef76-4967-953c-e9e45f87e908",
+                      "name": "C",
+                      "championship_id": "10fc072e-5778-4bdd-923e-77725e778ae5"
+                    },
+                    {
+                      "id": "79ded044-048d-433a-8b7c-b61a3b834ec4",
+                      "name": "D",
+                      "championship_id": "86299a7d-692c-4287-8b45-2cf81fbd5b95"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "080b0c69-c8e3-442b-813e-bdba5ab877d6",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "6c717f2e-7edb-49a4-96b2-1ca02f8d0c4a",
+                      "name": "A",
+                      "championship_id": "1fcb46c7-d71a-41ab-9fb9-4e7d820513bd"
+                    },
+                    {
+                      "id": "6251e167-f840-4676-aa62-d84ca0296b10",
+                      "name": "B",
+                      "championship_id": "0aa43711-380d-4c07-9059-1602fb448132"
+                    },
+                    {
+                      "id": "05cd71d2-04d9-4fc8-bbf9-622400c1efbd",
+                      "name": "C",
+                      "championship_id": "b39ec621-986a-479b-bd28-615c15113795"
+                    },
+                    {
+                      "id": "ecc606c7-3a5b-4150-9a84-d1d883675169",
+                      "name": "D",
+                      "championship_id": "beb6d458-c04a-4fe0-9b7d-2c17df03a0bc"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "b59eb9de-5c50-4ce9-9982-8599bb0796d1",
+              "name": "Open9",
+              "stages": [
+                {
+                  "id": "55c0c5e0-4225-46bc-87dd-305c4dd4ac78",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "6669ce92-181b-475d-8e09-3b77cc8efa01",
+                      "name": "Central",
+                      "championship_id": "1fbb46b2-5448-4312-9c9a-69a727f6e7af"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "12cece2e-cd10-4bbb-8847-943ac4158b79",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "0babdbbe-c5ad-4077-ad62-00fa69a4d9ed",
+                      "name": "Central",
+                      "championship_id": "f9fcceb0-049c-4e2b-9c87-4df7a0c073e3"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "ec0d12e6-a210-4956-bc60-d620b94d9a04",
+              "name": "Open5-8",
+              "stages": [
+                {
+                  "id": "ea06da3b-0362-48c9-865b-f76cacc15753",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "b9209d7e-7f25-40ee-8b87-b6cf227c1b57",
+                      "name": "Central",
+                      "championship_id": "f31d714b-53de-4e09-9d3c-6eb0ac85bdbe"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "09c47d3d-89cc-455c-9ee9-4a88e1abe9e1",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "9210218f-48b6-48a8-8132-ab3efd157d32",
+                      "name": "Central",
+                      "championship_id": "177ee341-c1d5-4ae2-989b-29198446fb72"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "422d4836-1f60-4d2b-a47b-8ea72b1679a0",
+              "name": "Open1-4",
+              "stages": [
+                {
+                  "id": "ff77ff88-f9c9-4c2f-9f86-b2270197aadf",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "60f7688e-5060-43e8-8a40-859b9e2c24a5",
+                      "name": "Central",
+                      "championship_id": "0b6b7b88-5f3b-4406-b466-fa5bec6fd297"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "477c035e-96f3-429f-9c1b-bc1e30ecc2b5",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "bfb0959a-d1d0-424f-84c3-25d4d9ad99dd",
+                      "name": "Central",
+                      "championship_id": "59fb3c7f-c477-43ac-9de5-f54ec56fe81f"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c1399d66-bf61-4c4f-882b-cf41cad047d9",
+          "name": "North America",
+          "divisions": [
+            {
+              "id": "06bfccfe-97d2-4823-806e-82d30fbfbf1f",
+              "name": "Advanced",
+              "stages": [
+                {
+                  "id": "0bfc547a-b7df-47e9-8428-ac6a09b30b92",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "0f9a8533-3bd5-43bc-9655-5ffc5c2b2e4e",
+                      "name": "Central",
+                      "championship_id": "3481bbef-1c65-415d-8686-4c0474714dad"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "84b5d524-3162-4211-b603-74e242514935",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "1b767412-6851-4213-a2a1-7a01093cd262",
+                      "name": "Central",
+                      "championship_id": "6b344cab-2163-4622-ae13-fc41af4624d2"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "9f52f6d6-a84a-48cc-950f-2a0798fe55aa",
+              "name": "Main",
+              "stages": [
+                {
+                  "id": "03be713a-8527-46b8-b71e-484ad9e740e4",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "6d9a4391-d26e-4c67-bde9-8f419e447812",
+                      "name": "A",
+                      "championship_id": "2173e911-8a3c-45d8-a929-f803fee740ba"
+                    },
+                    {
+                      "id": "ee0e1ce1-8529-4a65-8637-50d5cde12597",
+                      "name": "B",
+                      "championship_id": "33c94aa7-6909-4b03-a8d8-cac136e7274e"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "a480b1d4-a486-4057-b072-1b1abe2c4039",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "f3301e13-b53d-4182-bc19-c6600fd377ce",
+                      "name": "Central",
+                      "championship_id": "2f0c0f91-3c94-44fe-a74f-9b00cffce0b8"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "6c0dd30d-7c77-4c01-9a7e-02b6a3dd68c8",
+              "name": "Intermediate",
+              "stages": [
+                {
+                  "id": "a57861b0-e436-4b29-a646-dc81bb5f71de",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "a2ddbb89-cb46-4c3c-b036-f94516490efa",
+                      "name": "A",
+                      "championship_id": "f03afa24-ad7f-47a1-8f54-9c2fa1c10ff7"
+                    },
+                    {
+                      "id": "42b617de-57d2-4ad6-b5be-c38cbbaf08ef",
+                      "name": "B",
+                      "championship_id": "be8ec630-aceb-4f51-8ba6-636376ad337f"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "96fb4eca-7f0c-4ee2-94a5-b9c708ae8333",
+                  "name": "Playoffs B",
+                  "conferences": [
+                    {
+                      "id": "e7257231-d7e6-4b26-b55c-16ad1f340063",
+                      "name": "Central",
+                      "championship_id": "669f789a-8289-4a3b-a6bb-67ba2ac0fd24"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "a59c7f7e-b6c4-4a8d-be2a-a0caf35fce17",
+                  "name": "Playoffs A",
+                  "conferences": [
+                    {
+                      "id": "c6bc6660-959c-49a9-9a9b-901901bed3a5",
+                      "name": "Central",
+                      "championship_id": "eeec1355-3f55-4e14-be97-0d5b9277510e"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "6eec2466-ce9c-4114-8687-0a39094c532f",
+              "name": "Open9-10",
+              "stages": [
+                {
+                  "id": "6b51d740-eb36-4fd9-b524-f0391c895c6e",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "1af21dbe-ba28-470e-a9c6-8f6c96f06a9a",
+                      "name": "East A",
+                      "championship_id": "fad3be54-85a3-48f5-a897-f6366bcbbb6e"
+                    },
+                    {
+                      "id": "f44c1586-8a97-41e5-96a4-3482fc17cd97",
+                      "name": "East B",
+                      "championship_id": "cddaae44-2c54-458f-8462-701bd0373d4c"
+                    },
+                    {
+                      "id": "855cc7bc-e1eb-42b2-96ea-ccbbdc980b27",
+                      "name": "East C",
+                      "championship_id": "0fc62c6d-e712-4f94-a28a-f7b787bd1fee"
+                    },
+                    {
+                      "id": "fe32c641-8da2-407e-9747-919bf39ab8ca",
+                      "name": "West",
+                      "championship_id": "6f444200-5b6e-43e9-8343-01265392f05d"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "3e4db138-c4ad-4ebb-83c9-27f50077b7d4",
+                  "name": "Playoffs B",
+                  "conferences": [
+                    {
+                      "id": "a8f7628f-bc2e-47e8-b781-bc6df3c1cfe2",
+                      "name": "Central",
+                      "championship_id": "91b9d47c-8f7e-4780-8917-79fe167a80ba"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "19984348-70f4-4cfb-818a-ef7343266bc8",
+                  "name": "Playoffs A",
+                  "conferences": [
+                    {
+                      "id": "8de1e8e1-c82c-4235-b440-dc4e46990086",
+                      "name": "Central",
+                      "championship_id": "a7652fd8-9a14-4164-ba7c-c6ee61a35c67"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "53560921-6fc2-4147-ac22-1a450f383b0c",
+                  "name": "Playoffs C",
+                  "conferences": [
+                    {
+                      "id": "63d781b7-21f2-47a2-8258-b4ee4d52d8b7",
+                      "name": "East C",
+                      "championship_id": "fb47ad0a-7d4a-4399-ac7a-dccf2e4e2fbb"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "d99b3048-b7f2-4cf5-9e62-0c9c9881e430",
+                  "name": "Playoffs West",
+                  "conferences": [
+                    {
+                      "id": "43b9ccff-30c6-4d27-a746-fbc86a5d10df",
+                      "name": "West",
+                      "championship_id": "09fcb57d-78ad-4761-83aa-3e1041dc7d17"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "25e05bf5-c236-4d74-9ab3-61c585aec48d",
+              "name": "Open1-8",
+              "stages": [
+                {
+                  "id": "390e7433-f98c-4879-b22b-939a7cd81fe9",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "946d722c-01ea-460a-9dd2-efad74306105",
+                      "name": "East",
+                      "championship_id": "9588d514-014c-431d-aba4-5d0763d16aa6"
+                    },
+                    {
+                      "id": "c24149d5-537b-4e74-ab17-fe39e6202681",
+                      "name": "West",
+                      "championship_id": "94057a72-b64e-4461-a8f1-c1fb9d95e091"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "c59610c8-96db-4a48-a582-eeee7280afa3",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "b962cbef-dde1-4b22-b36a-1eb0c3ec92bf",
+                      "name": "Central",
+                      "championship_id": "a2362b89-c5ba-4732-a005-11465618bb47"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "f58b9e74-e74c-4ba3-aa5c-b20efed65ba0",
+          "name": "South America",
+          "divisions": [
+            {
+              "id": "a146b892-08df-437a-a7e1-7ec740a63649",
+              "name": "Open",
+              "stages": [
+                {
+                  "id": "aeeeaaef-a380-48fd-88ee-1f534744610e",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "4f0e5d80-8a2d-4b0d-91e7-4c312a9d6e82",
+                      "name": "Central",
+                      "championship_id": "9b6defd0-383e-46b6-9cc8-3c265e289ddd"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "d2b0182e-1fa3-48eb-b577-495fa7816a98",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "d06a87f3-7db4-4ab3-a56b-98bcf73a7301",
+                      "name": "Central",
+                      "championship_id": "f95c9a05-60f2-41a3-9b57-7321997c82e5"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "277db980-3a89-4e68-b5ad-eab8f64f1216",
+          "name": "Oceania",
+          "divisions": [
+            {
+              "id": "15e1c25b-adf7-48ed-a470-dabfbb273e97",
+              "name": "Intermediate",
+              "stages": [
+                {
+                  "id": "9eb0c8f0-8e90-41e2-9d44-03445a17a8d0",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "c82b2497-2988-44cc-81ee-e81eb7698867",
+                      "name": "Central",
+                      "championship_id": "48a763ab-7e43-4d3c-96c1-0cceb5a85e87"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                },
+                {
+                  "id": "e2340846-10b8-4a7d-8c56-5d7072a2cc2e",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "cd9db272-7db7-436a-9f33-18a1c5892a08",
+                      "name": "Central",
+                      "championship_id": "0c373a1e-67d3-4e6b-9acc-20a3409dad27"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            },
+            {
+              "id": "1abc5a9f-1d25-4acf-abfd-f865f85ba5a5",
+              "name": "Open",
+              "stages": [
+                {
+                  "id": "d1ead49e-5cc2-473f-9d0c-55b55184022e",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "804e5330-08a4-4243-8849-f02dd09ec06f",
+                      "name": "Central",
+                      "championship_id": "4860c798-40d7-4e15-b8c6-f3ca3763a908"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "be828904-6f4c-4736-99de-1684c84a5de3",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "6e91a01b-01cf-40f3-b74f-91200eed1ad0",
+                      "name": "Central",
+                      "championship_id": "9d7d2cd7-0271-4f3b-87ad-9320936eec77"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "f35bd1d6-fe82-4f8f-9ae8-b1b35a374344",
+          "name": "Asia",
+          "divisions": [
+            {
+              "id": "fab0af98-533f-48dc-bb32-cde29e5fbfd5",
+              "name": "Open",
+              "stages": [
+                {
+                  "id": "1a5c12c0-a64a-4dd2-854c-9840f1b25c97",
+                  "name": "Regular Season",
+                  "conferences": [
+                    {
+                      "id": "b9f9a197-6100-4947-9525-b8a806d7062f",
+                      "name": "Central",
+                      "championship_id": "83873077-a11b-40a1-8d41-df87d6754c59"
+                    }
+                  ],
+                  "registration_mode": "public"
+                },
+                {
+                  "id": "47077d2c-9a23-4730-a6c9-382b04e1caec",
+                  "name": "Playoffs",
+                  "conferences": [
+                    {
+                      "id": "c5de34f4-7d7c-4a18-9210-8ba7b070fd3d",
+                      "name": "Central",
+                      "championship_id": "22a382e1-c7c5-46f7-a137-d48a686990f9"
+                    }
+                  ],
+                  "registration_mode": "internal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
