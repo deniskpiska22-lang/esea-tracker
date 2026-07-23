@@ -12,6 +12,8 @@
     "refresh:matches": "node scripts/updateUpcomingMatches.js && node scripts/updateMatches.js && node --env-file=.env.local scripts/syncMatchesToSupabase.js",
     "sync:auto": "node scripts/autoSyncMatches.js",
     "sync:live": "node scripts/autoSyncMatches.js --live",
+    "worker:start": "node --env-file=.env.local scripts/worker.js",
+    "worker:start:prod": "node scripts/worker.js",
     "generate:maps": "node scripts/generateMaps.js",
     "rankings:update": "node scripts/update-rankings.mjs",
     "v2:discover": "node --env-file=.env.local scripts/v2/discoverChampionship.js",

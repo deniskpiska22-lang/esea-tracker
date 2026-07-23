@@ -218,6 +218,7 @@ function faceitToPatch(data) {
   const isFinished = FINISHED_STATUSES.has(
     status.toUpperCase()
   );
+  const winnerFactionKey = data.results?.winner;
 
   const firstScore =
     data.results?.score?.[firstKey] ??
@@ -257,13 +258,18 @@ function faceitToPatch(data) {
     team2_slug: secondTeam.slug,
     team2_logo: secondTeam.logo,
     team2_score: secondScore,
+    // data.results.winner is a faction key ("faction1"/"faction2"), not a
+    // team id — must be translated via firstKey/secondKey before use.
     winner_id:
-      data.results?.winner ||
-      (isFinished && firstScore > secondScore
+      winnerFactionKey === firstKey
+        ? firstTeam.id
+        : winnerFactionKey === secondKey
+        ? secondTeam.id
+        : isFinished && firstScore > secondScore
         ? firstTeam.id
         : isFinished && secondScore > firstScore
         ? secondTeam.id
-        : null),
+        : null,
     faceit_url:
       data.faceit_url ||
       `https://www.faceit.com/en/cs2/room/${

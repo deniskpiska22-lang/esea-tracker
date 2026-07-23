@@ -1536,6 +1536,9 @@ function publicApiToPatch(data) {
       status.toUpperCase()
     );
 
+  const winnerFactionKey =
+    data.results?.winner;
+
   return {
     status,
 
@@ -1576,19 +1579,26 @@ function publicApiToPatch(data) {
     team2_logo: second.logo,
     team2_score: secondScore,
 
+    // data.results.winner is a faction key ("faction1"/"faction2"), not a
+    // team id — must be translated via firstKey/secondKey before use.
     winner_id:
-      data.results?.winner ||
-      (
-        finished
-          ? firstScore >
-            secondScore
-            ? first.id
-            : secondScore >
-                firstScore
-              ? second.id
-              : null
-          : null
-      ),
+      winnerFactionKey ===
+      firstKey
+        ? first.id
+        : winnerFactionKey ===
+          secondKey
+          ? second.id
+          : (
+              finished
+                ? firstScore >
+                  secondScore
+                  ? first.id
+                  : secondScore >
+                      firstScore
+                    ? second.id
+                    : null
+                : null
+            ),
 
     raw_data: data,
   };
