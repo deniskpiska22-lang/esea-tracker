@@ -1,0 +1,14 @@
+providers = ["node"]
+
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+# Root-cause fix for the "EBUSY: resource busy or locked, node_modules/.cache"
+# npm ci failure: Nixpacks normally mounts node_modules/.cache as a cache
+# volume to speed up rebuilds, but `npm ci` deletes node_modules first —
+# deleting a directory that contains an active mount point throws EBUSY.
+# Disabling the cache mount removes the conflict at the source instead of
+# working around the symptom.
+NIXPACKS_NO_CACHE = "1"
+
+[phases.install]
+cmds = ["npm ci"]
