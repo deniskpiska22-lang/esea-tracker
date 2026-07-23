@@ -213,15 +213,39 @@ function publicApiToPatch(data) {
   };
 }
 
+// Supabase returns timestamptz as "...+00:00" while asIso() produces
+// "...Z" (via Date#toISOString()) — same instant, different string. Without
+// normalizing, changed() would treat every timestamp field as "changed" on
+// every comparison, even when nothing actually changed.
+function normalizeCompareValue(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}T/.test(String(value))) {
+    const asDate = new Date(value);
+    if (!Number.isNaN(asDate.getTime())) {
+      return asDate.toISOString();
+    }
+  }
+
+  return String(value);
+}
+
 function changed(existing, incoming) {
   if (!existing) {
     return true;
   }
 
-  return COMPARE_FIELDS.some((field) => {
-    const before = existing[field] ?? null;
-    const after = incoming[field] ?? null;
-    return String(before) !== String(after);
+  // publicApiToPatch() never sets championship_id/faceit_url (Data API v4
+  // doesn't carry them) — only compare fields the incoming patch actually
+  // touches, not every COMPARE_FIELDS entry unconditionally.
+  return COMPARE_FIELDS.filter((field) =>
+    Object.prototype.hasOwnProperty.call(incoming, field)
+  ).some((field) => {
+    const before = normalizeCompareValue(existing[field] ?? null);
+    const after = normalizeCompareValue(incoming[field] ?? null);
+    return before !== after;
   });
 }
 
@@ -342,7 +366,7 @@ async function loadCandidates() {
   if (SINGLE_MATCH_ID) {
     const { data, error } = await supabase
       .from("matches")
-      .select("id,status,scheduled_at,team1_score,team2_score,started_at,finished_at")
+      .select(COMPARE_FIELDS.concat("id").join(","))
       .eq("id", SINGLE_MATCH_ID)
       .limit(1);
 
@@ -359,7 +383,7 @@ async function loadCandidates() {
 
   const { data, error } = await supabase
     .from("matches")
-    .select("id,status,scheduled_at,team1_score,team2_score,started_at,finished_at")
+    .select(COMPARE_FIELDS.concat("id").join(","))
     .in("status", ACTIVE_STATUSES)
     .gte("scheduled_at", from)
     .lte("scheduled_at", to)
