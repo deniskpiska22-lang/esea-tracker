@@ -8,7 +8,12 @@ import { supabase } from "../lib/supabaseClient";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
+  "STARTED",
   "ONGOING",
+  "IN_PROGRESS",
+  "RUNNING",
+  "MATCH_STATUS_LIVE",
+  "MATCH_STATUS_STARTED",
   "MATCH_STATUS_ONGOING",
 ]);
 
@@ -1079,6 +1084,146 @@ function ResultCard({ match }) {
   );
 }
 
+
+function findPlayerTeam(teamId, teamName, nickname) {
+  const normalizedTeamId = String(teamId || "").trim();
+  const normalizedTeamName = normalizeName(teamName);
+  const normalizedNickname = normalizeName(nickname);
+
+  const localTeam =
+    teams.find((team) => {
+      const candidateIds = [
+        team?.id,
+        team?.teamId,
+        team?.team_id,
+        team?.faceitTeamId,
+        team?.faceit_team_id,
+      ]
+        .filter(Boolean)
+        .map((value) => String(value).trim());
+
+      if (
+        normalizedTeamId &&
+        candidateIds.includes(normalizedTeamId)
+      ) {
+        return true;
+      }
+
+      return (
+        normalizedTeamName &&
+        normalizeName(team?.name) === normalizedTeamName
+      );
+    }) ||
+    teams.find((team) =>
+      (Array.isArray(team?.players) ? team.players : []).some((player) => {
+        const playerName =
+          typeof player === "string"
+            ? player
+            : player?.nickname ||
+              player?.name ||
+              player?.player_name;
+
+        return (
+          normalizedNickname &&
+          normalizeName(playerName) === normalizedNickname
+        );
+      })
+    ) ||
+    null;
+
+  if (localTeam) {
+    return normalizeTeam(localTeam);
+  }
+
+  if (teamName) {
+    return normalizeTeam({
+      id: teamId || null,
+      teamId: teamId || null,
+      name: teamName,
+      slug: slugify(teamName),
+      logo: null,
+    });
+  }
+
+  return null;
+}
+
+function TopPlayerRow({ player, index }) {
+  const playerPath = player?.playerId
+    ? `/players/${encodeURIComponent(player.playerId)}`
+    : `/players/${encodeURIComponent(player.nickname)}`;
+
+  const rankStyles = [
+    "border-amber-400/25 bg-amber-400/10 text-amber-300",
+    "border-slate-300/20 bg-slate-300/10 text-slate-300",
+    "border-orange-500/25 bg-orange-500/10 text-orange-400",
+  ];
+
+  return (
+    <Link
+      to={playerPath}
+      className="group flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.035]"
+    >
+      <div
+        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-xs font-black ${
+          rankStyles[index] ||
+          "border-white/10 bg-white/[0.04] text-slate-500"
+        }`}
+      >
+        {index + 1}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="truncate text-sm font-black text-white transition group-hover:text-orange-400">
+          {player.nickname}
+        </div>
+
+        <div className="mt-1 flex min-w-0 items-center gap-2">
+          {player.team ? (
+            <>
+              <Logo team={player.team} size="xs" />
+              <span className="truncate text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                {player.team.name}
+              </span>
+            </>
+          ) : (
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600">
+              Team unavailable
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="shrink-0 text-right">
+        <div className="text-lg font-black text-emerald-400">
+          {toNumber(player.rating).toFixed(2)}
+        </div>
+        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
+          Rating
+        </div>
+      </div>
+
+      <div className="hidden shrink-0 text-right sm:block">
+        <div className="text-xs font-black text-white">
+          {toNumber(player.adr).toFixed(1)}
+        </div>
+        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
+          ADR
+        </div>
+      </div>
+
+      <div className="hidden shrink-0 text-right sm:block">
+        <div className="text-xs font-black text-white">
+          {toNumber(player.kd).toFixed(2)}
+        </div>
+        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
+          K/D
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 function RankingCard({ team, index }) {
   return (
     <Link
@@ -1182,6 +1327,9 @@ function Home() {
   const [databaseError, setDatabaseError] = useState("");
   const [ratingRows, setRatingRows] = useState([]);
   const [ratingsReady, setRatingsReady] = useState(false);
+  const [topPlayers, setTopPlayers] = useState([]);
+  const [playersReady, setPlayersReady] = useState(false);
+  const [playersError, setPlayersError] = useState("");
 
   const upcomingSectionRef = useRef(null);
   const recentResultsSectionRef = useRef(null);
@@ -1218,22 +1366,39 @@ function Home() {
         Date.now() + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000
       );
 
+      const liveStatusFilter = [
+        "status.eq.LIVE",
+        "status.eq.STARTED",
+        "status.eq.ONGOING",
+        "status.eq.IN_PROGRESS",
+        "status.eq.RUNNING",
+        "status.eq.MATCH_STATUS_LIVE",
+        "status.eq.MATCH_STATUS_STARTED",
+        "status.eq.MATCH_STATUS_ONGOING",
+      ].join(",");
+
+      const upcomingStatusFilter = [
+        "SCHEDULED",
+        "READY",
+        "MATCH_STATUS_SCHEDULED",
+        "MATCH_STATUS_READY",
+      ].join(",");
+
+      const upcomingTimeFilter = [
+        `status.in.(${upcomingStatusFilter})`,
+        `scheduled_at.gte.${now.toISOString()}`,
+        `scheduled_at.lte.${end.toISOString()}`,
+      ].join(",");
+
       const [activeResponse, finishedResponse] = await Promise.all([
         supabase
           .from("matches")
           .select("*")
-          .in("status", [
-            "SCHEDULED",
-            "READY",
-            "ONGOING",
-            "LIVE",
-            "MATCH_STATUS_SCHEDULED",
-            "MATCH_STATUS_READY",
-            "MATCH_STATUS_ONGOING",
-          ])
-          .gte("scheduled_at", now.toISOString())
-          .lte("scheduled_at", end.toISOString())
-          .order("scheduled_at", { ascending: true })
+          .or(`${liveStatusFilter},and(${upcomingTimeFilter})`)
+          .order("scheduled_at", {
+            ascending: true,
+            nullsFirst: false,
+          })
           .limit(200),
 
         supabase
@@ -1354,14 +1519,17 @@ function Home() {
     }
 
     return databaseRows
-      .filter(
-        (row) =>
-          !isFinishedStatus(row.status) &&
-          (
-            isLiveStatus(row.status) ||
-            isWithinUpcomingWindow(row.scheduled_at)
-          )
-      )
+      .filter((row) => {
+        if (isFinishedStatus(row.status)) {
+          return false;
+        }
+
+        if (isLiveStatus(row.status)) {
+          return true;
+        }
+
+        return isWithinUpcomingWindow(row.scheduled_at);
+      })
       .map(dbRowToMatch)
       .sort(
         (first, second) =>
@@ -1380,6 +1548,110 @@ function Home() {
       .sort((first, second) => new Date(second.date) - new Date(first.date))
       .slice(0, RESULTS_LIMIT);
   }, [databaseReady, databaseRows]);
+
+
+  useEffect(() => {
+    let cancelled = false;
+    let playerRatingsChannel = null;
+
+    async function loadTopPlayers() {
+      if (!supabase) {
+        if (!cancelled) {
+          setTopPlayers([]);
+          setPlayersError("Supabase client is not configured");
+          setPlayersReady(true);
+        }
+        return;
+      }
+
+      const { data: ratingData, error: ratingError } = await supabase
+        .from("player_ratings")
+        .select(
+          [
+            "player_id",
+            "nickname",
+            "rating",
+            "recent_rating",
+            "matches_played",
+            "maps_played",
+            "adr",
+            "kd",
+            "last_match_at",
+            "team_id",
+            "team_name",
+          ].join(",")
+        )
+        .not("rating", "is", null)
+        .gt("matches_played", 5)
+        .order("rating", { ascending: false })
+        .limit(5);
+
+      if (cancelled) return;
+
+      if (ratingError) {
+        console.error("Failed to load top players:", ratingError);
+        setTopPlayers([]);
+        setPlayersError(ratingError.message);
+        setPlayersReady(true);
+        return;
+      }
+
+      const normalizedPlayers = (
+        Array.isArray(ratingData) ? ratingData : []
+      ).map((row) => {
+        const nickname =
+          row.nickname || "Unknown player";
+
+        return {
+          playerId: row.player_id,
+          nickname,
+          rating: toNumber(row.rating),
+          recentRating: toNumber(row.recent_rating),
+          matchesPlayed: toNumber(row.matches_played),
+          mapsPlayed: toNumber(row.maps_played),
+          adr: toNumber(row.adr),
+          kd: toNumber(row.kd),
+          lastMatchAt: row.last_match_at || null,
+          team: findPlayerTeam(
+            row.team_id,
+            row.team_name,
+            nickname
+          ),
+        };
+      });
+
+      if (!cancelled) {
+        setTopPlayers(normalizedPlayers);
+        setPlayersError("");
+        setPlayersReady(true);
+      }
+    }
+
+    loadTopPlayers();
+
+    if (supabase) {
+      playerRatingsChannel = supabase
+        .channel("home-player-ratings")
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "player_ratings",
+          },
+          loadTopPlayers
+        )
+        .subscribe();
+    }
+
+    return () => {
+      cancelled = true;
+
+      if (supabase && playerRatingsChannel) {
+        supabase.removeChannel(playerRatingsChannel);
+      }
+    };
+  }, []);
 
   const rankedTeams = useMemo(() => {
     const syncedTeams = mergeRatingTeams(ratingRows);
@@ -1493,32 +1765,32 @@ function Home() {
             <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
               <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
                 <div>
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400">
-                    Live center
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
+                    Live matches
                   </div>
                   <h2 className="mt-1 text-xl font-black">
-                    Live Matches
+                    Live Center
                   </h2>
                 </div>
 
-                <div className="rounded-full bg-red-500/10 px-3 py-1 text-xs font-black text-red-400">
-                  {liveMatches.length}
+                <div className="flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-red-400">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
+                  {liveMatches.length} live
                 </div>
               </div>
 
               {liveMatches.length > 0 ? (
-                <div className="home-scrollbar max-h-[430px] overflow-y-auto p-4 pr-3">
-                  <div className="grid gap-3">
-                    {liveMatches.map((match) => (
-                      <LiveCard
-                        key={match.matchId || match.id}
-                        match={match}
-                      />
-                    ))}
-                  </div>
+                <div className="max-h-[360px] divide-y divide-white/[0.06] overflow-y-auto">
+                  {liveMatches.map((match) => (
+                    <MatchRow
+                      key={match.id}
+                      match={match}
+                      compact
+                    />
+                  ))}
                 </div>
               ) : (
-                <div className="flex min-h-[180px] items-center justify-center px-6 text-center text-sm text-slate-600">
+                <div className="flex min-h-[260px] items-center justify-center px-6 text-center text-sm text-slate-600">
                   No live matches right now
                 </div>
               )}
