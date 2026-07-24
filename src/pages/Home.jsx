@@ -989,39 +989,40 @@ function LiveCard({ match }) {
     <Link
       to={`/match/${match.matchId || match.id}`}
       state={{ from: "/", label: "← Back to Home" }}
-      className="group flex h-[70px] shrink-0 flex-col justify-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 transition hover:border-orange-500/25 hover:bg-white/[0.05] sm:h-[74px] sm:px-3.5"
+      className="group flex shrink-0 flex-col gap-1 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 transition hover:border-orange-500/25 hover:bg-white/[0.05] sm:px-3.5 sm:py-3"
     >
-      <div className="flex items-center gap-2 sm:gap-3">
-        {/* Team 1 */}
+      {/* Team 1 row */}
+      <div className="flex items-center justify-between gap-2">
         <div className="flex min-w-0 flex-1 items-center gap-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-9 sm:w-9">
             <Logo team={match.team1} size="card" />
           </div>
           <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-white sm:text-sm">
             {match.team1?.name || "TBD"}
           </div>
         </div>
-
-        {/* Score */}
-        <div className="flex shrink-0 items-baseline gap-1.5 whitespace-nowrap text-lg font-extrabold tabular-nums sm:gap-2 sm:text-2xl">
-          <span className={score1Color}>{score1}</span>
-          <span className="text-slate-600">:</span>
-          <span className={score2Color}>{score2}</span>
+        <div className={`shrink-0 text-base font-extrabold tabular-nums sm:text-lg ${score1Color}`}>
+          {score1}
         </div>
+      </div>
 
-        {/* Team 2 */}
-        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
-          <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-right text-xs font-bold text-white sm:text-sm">
-            {match.team2?.name || "TBD"}
-          </div>
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
+      {/* Team 2 row */}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-2">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-9 sm:w-9">
             <Logo team={match.team2} size="card" />
           </div>
+          <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-white sm:text-sm">
+            {match.team2?.name || "TBD"}
+          </div>
+        </div>
+        <div className={`shrink-0 text-base font-extrabold tabular-nums sm:text-lg ${score2Color}`}>
+          {score2}
         </div>
       </div>
 
       {/* Meta: BOx • Map • LIVE • elapsed */}
-      <div className="flex items-center justify-center gap-1.5 overflow-hidden text-[10px] font-medium text-slate-500 sm:text-[11px]">
+      <div className="ml-9 flex items-center gap-1.5 overflow-hidden text-[10px] font-medium text-slate-500 sm:ml-11 sm:text-[11px]">
         {metaParts.map((part, index) => (
           <span
             key={index}
