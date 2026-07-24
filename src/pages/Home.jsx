@@ -1796,10 +1796,9 @@ function Home() {
               {liveMatches.length > 0 ? (
                 <div className="max-h-[360px] divide-y divide-white/[0.06] overflow-y-auto">
                   {liveMatches.map((match) => (
-                    <MatchRow
+                    <LiveCard
                       key={match.id}
                       match={match}
-                      compact
                     />
                   ))}
                 </div>
