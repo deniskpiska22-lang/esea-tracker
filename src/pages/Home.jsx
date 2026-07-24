@@ -566,6 +566,53 @@ function selectPopularCompletedMatch(matches) {
   );
 }
 
+// raw_data.detailed_results (already stored by worker.js/autoSyncMatches.js
+// on every live tick — nothing new fetched here) is FACEIT's per-map round
+// breakdown, one entry per map played/in-progress. matches.team1_score is
+// the *series* score (map wins once decided) and round score for a plain
+// BO1, but for a live BO3 it doesn't expose the current map's round score
+// at all — detailed_results is the only place that lives. Last entry is
+// always "the map currently relevant" (in progress, or the final map once
+// finished); comparing every entry's own faction scores gives the map-win
+// tally without needing any extra data.
+function getMapProgress(row) {
+  const detailedResults = Array.isArray(row.raw_data?.detailed_results)
+    ? row.raw_data.detailed_results
+    : [];
+
+  if (detailedResults.length === 0) {
+    return null;
+  }
+
+  // The last entry is the map currently being played — its round score
+  // isn't a decided result yet, so it must NOT count toward maps won
+  // unless the whole match has actually finished (in which case every
+  // entry, including the last, is a real, decided map).
+  const isFinished = FINISHED_STATUSES.has(String(row.status || "").toUpperCase());
+  const decidedMaps = isFinished
+    ? detailedResults
+    : detailedResults.slice(0, -1);
+
+  let mapsWon1 = 0;
+  let mapsWon2 = 0;
+
+  for (const map of decidedMaps) {
+    const s1 = Number(map?.factions?.faction1?.score ?? 0);
+    const s2 = Number(map?.factions?.faction2?.score ?? 0);
+    if (s1 > s2) mapsWon1 += 1;
+    else if (s2 > s1) mapsWon2 += 1;
+  }
+
+  const current = detailedResults[detailedResults.length - 1];
+
+  return {
+    currentScore1: Number(current?.factions?.faction1?.score ?? 0),
+    currentScore2: Number(current?.factions?.faction2?.score ?? 0),
+    mapsWon1,
+    mapsWon2,
+  };
+}
+
 function dbRowToMatch(row) {
   return {
     id: row.id,
@@ -578,6 +625,7 @@ function dbRowToMatch(row) {
     finishedAt: row.finished_at,
     team1Score: toNumber(row.team1_score),
     team2Score: toNumber(row.team2_score),
+    mapProgress: getMapProgress(row),
     team1: normalizeTeam({
       id: row.team1_id,
       name: row.team1_name,
@@ -960,8 +1008,22 @@ function LiveCard({ match }) {
   const elapsed = match.startedAt ? formatRelative(match.startedAt) : "";
   const map = match.map || match.currentMap || "";
 
-  const score1 = Number(match.team1Score) || 0;
-  const score2 = Number(match.team2Score) || 0;
+  // For BO1, team*Score already is the current map's round score. For a
+  // live BO3+, it's the map-win series score instead — mapProgress (parsed
+  // from raw_data.detailed_results) is the only source for the round score
+  // of whichever map is actually being played right now, so prefer it
+  // whenever it's there and fall back for older/never-live-ticked rows.
+  const score1 = match.mapProgress
+    ? match.mapProgress.currentScore1
+    : Number(match.team1Score) || 0;
+  const score2 = match.mapProgress
+    ? match.mapProgress.currentScore2
+    : Number(match.team2Score) || 0;
+
+  // Maps-won tally only means anything for a multi-map series — a BO1's
+  // "map score" and "match score" are the same thing, so showing "(1-0)"
+  // next to it would just be noise.
+  const showMapsWon = Number(match.bestOf) > 1 && match.mapProgress;
 
   // Winner's half of the score reads green, loser's red — level (or not
   // started yet) stays neutral white, matching an HLTV-style live row.
@@ -1001,8 +1063,15 @@ function LiveCard({ match }) {
             {match.team1?.name || "TBD"}
           </div>
         </div>
-        <div className={`shrink-0 text-base font-extrabold tabular-nums sm:text-lg ${score1Color}`}>
-          {score1}
+        <div className="flex shrink-0 items-baseline gap-1">
+          <span className={`text-base font-extrabold tabular-nums sm:text-lg ${score1Color}`}>
+            {score1}
+          </span>
+          {showMapsWon && (
+            <span className="text-[10px] font-semibold tabular-nums text-slate-500 sm:text-xs">
+              ({match.mapProgress.mapsWon1})
+            </span>
+          )}
         </div>
       </div>
 
@@ -1016,8 +1085,15 @@ function LiveCard({ match }) {
             {match.team2?.name || "TBD"}
           </div>
         </div>
-        <div className={`shrink-0 text-base font-extrabold tabular-nums sm:text-lg ${score2Color}`}>
-          {score2}
+        <div className="flex shrink-0 items-baseline gap-1">
+          <span className={`text-base font-extrabold tabular-nums sm:text-lg ${score2Color}`}>
+            {score2}
+          </span>
+          {showMapsWon && (
+            <span className="text-[10px] font-semibold tabular-nums text-slate-500 sm:text-xs">
+              ({match.mapProgress.mapsWon2})
+            </span>
+          )}
         </div>
       </div>
 
