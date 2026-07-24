@@ -160,23 +160,28 @@ function normalizeFaction(faction = {}) {
 }
 
 function publicApiToPatch(data) {
-  const entries = Object.entries(data?.teams || {});
+  const teams = data?.teams || {};
+  // Keyed by the faction key itself (always "faction1"/"faction2" on this
+  // endpoint), NOT by Object.entries() iteration order — FACEIT's response
+  // has been observed to list faction2 before faction1, and reading
+  // entries[0]/entries[1] positionally meant team1/team2 could silently
+  // swap identity between polls, flipping which side each team appeared on
+  // every time that ordering changed.
+  const firstRaw = teams.faction1;
+  const secondRaw = teams.faction2;
 
-  if (entries.length < 2) {
+  if (!firstRaw || !secondRaw) {
     return null;
   }
-
-  const [firstKey, firstRaw] = entries[0];
-  const [secondKey, secondRaw] = entries[1];
 
   const first = normalizeFaction(firstRaw);
   const second = normalizeFaction(secondRaw);
 
   const firstScore = Number(
-    data.results?.score?.[firstKey] ?? firstRaw?.score ?? 0
+    data.results?.score?.faction1 ?? firstRaw?.score ?? 0
   );
   const secondScore = Number(
-    data.results?.score?.[secondKey] ?? secondRaw?.score ?? 0
+    data.results?.score?.faction2 ?? secondRaw?.score ?? 0
   );
 
   const status = data.status || "UNKNOWN";
@@ -204,11 +209,11 @@ function publicApiToPatch(data) {
     team2_logo: second.logo,
     team2_score: secondScore,
     // data.results.winner is a faction key ("faction1"/"faction2"), not a
-    // team id — must be translated via firstKey/secondKey before use.
+    // team id — must be translated before use.
     winner_id:
-      winnerFactionKey === firstKey
+      winnerFactionKey === "faction1"
         ? first.id
-        : winnerFactionKey === secondKey
+        : winnerFactionKey === "faction2"
           ? second.id
           : finished
             ? firstScore > secondScore
