@@ -25,6 +25,10 @@ const supabase = createClient(
 const PAGE_SIZE = 1000;
 const WRITE_BATCH_SIZE = 200;
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+// Must match recalculateRatings.js's BASELINE_MAX_AGE_MS — both scripts
+// share the same team_ratings.rating_snapshot_at "is today's baseline
+// still fresh?" clock, written solely by recalculateRatings.js.
+const BASELINE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
 
 // Same computation as snapshotWeeklyRatingHistory.js — reused verbatim so
 // both scripts agree on which Monday a given snapshot belongs to.
@@ -224,7 +228,9 @@ async function main() {
       division,
       points,
       matches_played,
-      ranking_status
+      ranking_status,
+      previous_rank,
+      rating_snapshot_at
     `
   );
 
@@ -259,6 +265,15 @@ async function main() {
   const weeklyCutoff =
     now.getTime() - WEEK_MS;
 
+  // previous_points/points_change/rating_snapshot_at are recalculateRatings.js's
+  // job now (it runs right before this script in the automatic post-match
+  // pipeline) — it already solves the "resets every ~45s cycle instead of
+  // accumulating over the day" problem for points via a frozen daily
+  // baseline. rank_change has the exact same failure mode (history[0] is
+  // re-upserted, i.e. effectively "last cycle", every run), so it gets the
+  // same fix here: only take a fresh previous_rank when team_ratings'
+  // shared rating_snapshot_at (written solely by recalculateRatings.js) is
+  // stale; otherwise keep whatever previous_rank is already stored.
   const updates = rankedRows.map((row) => {
     const teamId = String(row.team_id);
     const history =
@@ -278,10 +293,21 @@ async function main() {
         ? Number(previous.points)
         : points;
 
-    const previousRank =
+    const baselineIsStale =
+      !row.rating_snapshot_at ||
+      Date.now() - Date.parse(row.rating_snapshot_at) >
+        BASELINE_MAX_AGE_MS;
+
+    const freshPreviousRank =
       previous?.world_rank
         ? Number(previous.world_rank)
         : currentRank;
+
+    const previousRank = baselineIsStale
+      ? freshPreviousRank
+      : Number.isFinite(Number(row.previous_rank))
+        ? Number(row.previous_rank)
+        : freshPreviousRank;
 
     const weeklyPoints =
       weekly
@@ -304,10 +330,6 @@ async function main() {
       ranking_status:
         row.ranking_status,
 
-      previous_points: previousPoints,
-      points_change:
-        points - previousPoints,
-
       previous_rank: previousRank,
 
       // Moving from #8 to #5 means +3.
@@ -320,7 +342,6 @@ async function main() {
       weekly_rank_change:
         weeklyRank - currentRank,
 
-      rating_snapshot_at: nowIso,
       updated_at: nowIso,
     };
   });
@@ -341,9 +362,7 @@ async function main() {
   );
 
   const changed = updates.filter(
-    (row) =>
-      row.points_change !== 0 ||
-      row.rank_change !== 0
+    (row) => row.rank_change !== 0
   );
 
   console.log(

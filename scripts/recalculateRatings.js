@@ -498,7 +498,9 @@ async function main() {
       team_name,
       slug,
       division,
-      points
+      points,
+      previous_points,
+      rating_snapshot_at
     `,
     orderColumn: "team_id",
   });
@@ -776,25 +778,55 @@ let historicalTeam2Created = 0;
     processed += 1;
   }
 
-const previousPointsByTeamId = new Map(
+// This script runs after every single match that finishes (often every
+// ~45s during a busy stretch), and always recomputes ALL 1092 teams via a
+// full replay — not just the teams whose match just synced. If
+// previous_points were re-frozen to "current points" on every single one
+// of those runs, a team's real change (e.g. -25 pts from a match that
+// finished an hour ago) would show correctly for one cycle and then get
+// silently erased back to 0 by the very next cycle triggered by some
+// OTHER team's match — points_change would only ever reflect "since the
+// last automated tick" (~seconds), not anything a human would call
+// "the last update". So the baseline is only re-frozen once it's older
+// than BASELINE_MAX_AGE_MS; every recalc in between keeps comparing
+// against that same frozen baseline, letting points_change correctly
+// accumulate the day's changes instead of resetting every cycle.
+const BASELINE_MAX_AGE_MS = 20 * 60 * 60 * 1000; // ~20h — effectively daily
+
+const previousStateByTeamId = new Map(
   ratingRows.map((row) => [
     normalizeTeamId(row.team_id),
-    Number(row.points),
+    {
+      points: Number(row.points),
+      previousPoints: Number.isFinite(Number(row.previous_points))
+        ? Number(row.previous_points)
+        : Number(row.points),
+      ratingSnapshotAtIso: row.rating_snapshot_at || null,
+      ratingSnapshotAtMs: row.rating_snapshot_at
+        ? new Date(row.rating_snapshot_at).getTime()
+        : null,
+    },
   ]),
 );
+
+const now = new Date();
+const nowIso = now.toISOString();
 
 const finalRows = Array.from(
   ratingsById.values(),
 )
   .filter((team) => team.isCurrentTeam)
   .map((team) => {
-    const storedPreviousPoints =
-      previousPointsByTeamId.get(team.teamId);
+    const stored = previousStateByTeamId.get(team.teamId);
 
-    const previousPoints =
-      Number.isFinite(storedPreviousPoints)
-        ? storedPreviousPoints
-        : team.points;
+    const baselineIsStale =
+      !stored ||
+      !stored.ratingSnapshotAtMs ||
+      now.getTime() - stored.ratingSnapshotAtMs > BASELINE_MAX_AGE_MS;
+
+    const previousPoints = baselineIsStale
+      ? (stored ? stored.points : team.points)
+      : stored.previousPoints;
 
     return {
       team_id: team.teamId,
@@ -805,20 +837,24 @@ const finalRows = Array.from(
       points: team.points,
 
       /*
-       * Рейтинг команды до текущего пересчёта.
-       * Благодаря этому изменение показывается
-       * относительно прошлого обновления,
-       * а не относительно старта сезона.
+       * Рейтинг команды на момент заморозки текущей "дневной" точки
+       * отсчёта (не старта сезона и не последнего автоматического цикла
+       * пересчёта — см. BASELINE_MAX_AGE_MS выше). Благодаря этому
+       * изменение накапливается за день, а не обнуляется каждым тиком.
        */
       previous_points: previousPoints,
 
       points_change:
         team.points - previousPoints,
 
+      rating_snapshot_at: baselineIsStale
+        ? nowIso
+        : stored?.ratingSnapshotAtIso || nowIso,
+
       matches_played: team.matchesPlayed,
       ranking_status: team.rankingStatus,
 
-      updated_at: new Date().toISOString(),
+      updated_at: nowIso,
     };
   });
 
