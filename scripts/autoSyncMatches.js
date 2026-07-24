@@ -2115,6 +2115,57 @@ function changed(
   );
 }
 
+// Discovery (internalToRow, above) assigns team1/team2 positionally from
+// an internal FACEIT endpoint's `factions` array — an entirely different,
+// uncoordinated source from the live-tick's public-API faction1/faction2
+// keys. Both are internally self-consistent, but nothing keeps them
+// agreeing on WHICH physical team is "team1" for a given match — so a
+// discovery pass can (and does) flip a match back and forth every time it
+// disagrees with whatever the live-tick last wrote, and vice versa. Fix:
+// once a match has an established team1/team2 orientation in the DB,
+// discovery must conform to it instead of overwriting it.
+function alignToExistingOrientation(row, existing) {
+  if (!existing || (!existing.team1_id && !existing.team1_name)) {
+    return row;
+  }
+
+  const matchesTeam1 =
+    (row.team1_id && existing.team1_id && row.team1_id === existing.team1_id) ||
+    (!row.team1_id &&
+      normalizeName(row.team1_name || "") ===
+        normalizeName(existing.team1_name || ""));
+
+  if (matchesTeam1) {
+    return row;
+  }
+
+  const matchesTeam2AsTeam1 =
+    (row.team1_id && existing.team2_id && row.team1_id === existing.team2_id) ||
+    (!row.team1_id &&
+      normalizeName(row.team1_name || "") ===
+        normalizeName(existing.team2_name || ""));
+
+  if (!matchesTeam2AsTeam1) {
+    // Neither side lines up with what's already stored (e.g. a genuine
+    // roster/team change) — nothing safe to normalize against, leave as-is.
+    return row;
+  }
+
+  return {
+    ...row,
+    team1_id: row.team2_id,
+    team1_name: row.team2_name,
+    team1_slug: row.team2_slug,
+    team1_logo: row.team2_logo,
+    team1_score: row.team2_score,
+    team2_id: row.team1_id,
+    team2_name: row.team1_name,
+    team2_slug: row.team1_slug,
+    team2_logo: row.team1_logo,
+    team2_score: row.team1_score,
+  };
+}
+
 async function upsertOnlyChanged(
   rows
 ) {
@@ -2169,7 +2220,15 @@ async function upsertOnlyChanged(
     }
   }
 
-  const changedRows = rows
+  const alignedRows = rows.map(
+    (row) =>
+      alignToExistingOrientation(
+        row,
+        existingById.get(row.id)
+      )
+  );
+
+  const changedRows = alignedRows
     .filter((row) =>
       changed(
         existingById.get(
