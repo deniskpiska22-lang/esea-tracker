@@ -1,9 +1,13 @@
 name: Process post-match stat jobs
 
 on:
+  # Schedule disabled — this backlog/queue processing now runs continuously
+  # on Railway via scripts/statsWorker.js (dedicated service, ~45s cadence),
+  # which doesn't suffer from GitHub Actions' cron drift (observed 1-2.5h
+  # delays on this repo's free-tier schedule). Kept as a manual backup
+  # (workflow_dispatch) rather than deleted, in case the Railway service is
+  # ever down and a one-off manual catch-up run is needed.
   workflow_dispatch:
-  schedule:
-    - cron: "*/3 * * * *"
 
 concurrency:
   group: process-stat-jobs
