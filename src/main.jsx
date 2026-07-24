@@ -18,7 +18,7 @@ import MediaPage from "./pages/MediaPage";
 import MatchesPage from "./pages/MatchesPage";
 import ScrollToTop from "./components/ScrollToTop";
 import StatsPage from "./pages/StatsPage";
-import MatchPage from "./pages/MatchPage";
+import MatchPageRouter from "./pages/MatchPageRouter";
 import PlayerPage from "./pages/PlayerPage";
 import TopPlayersPage from "./pages/TopPlayersPage";
 import LoginPage from "./pages/LoginPage";
@@ -80,7 +80,7 @@ ReactDOM.createRoot(
 
             <Route
               path="/match/:id"
-              element={<MatchPage />}
+              element={<MatchPageRouter />}
             />
 
             <Route
@@ -105,12 +105,12 @@ ReactDOM.createRoot(
 
             <Route
               path="/teams/:slug/matches/:matchId"
-              element={<MatchPage />}
+              element={<MatchPageRouter />}
             />
 
             <Route
               path="/team/:slug/matches/:matchId"
-              element={<MatchPage />}
+              element={<MatchPageRouter />}
             />
 
             <Route
@@ -125,7 +125,7 @@ ReactDOM.createRoot(
 
             <Route
               path="/matches/:matchId"
-              element={<MatchPage />}
+              element={<MatchPageRouter />}
             />
 
             <Route
