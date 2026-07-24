@@ -147,6 +147,16 @@ const AUTOMATIC_RATING_SCRIPT =
   process.env.AUTOMATIC_RATING_SCRIPT ||
   "./scripts/recalculateRatingsAfterMatch.js";
 
+// snapshotRatingChanges.js writes weekly_points_change/weekly_rank_change
+// (the "week" toggle on the rankings page) — previously only ever run
+// manually via recalculateAndSnapshotRatings.js, so it silently went stale
+// as soon as ratings started updating through the automatic pipeline
+// without it. Runs right after AUTOMATIC_RATING_SCRIPT so both "since last
+// update" and "this week" deltas stay in sync on every post-match cycle.
+const RATING_DELTA_SNAPSHOT_SCRIPT =
+  process.env.RATING_DELTA_SNAPSHOT_SCRIPT ||
+  "./scripts/snapshotRatingChanges.js";
+
 const RUN_WEEKLY_RATING_SNAPSHOT =
   String(
     process.env.RUN_WEEKLY_RATING_SNAPSHOT || "1"
@@ -3591,9 +3601,35 @@ async function runAutomaticRatingPipeline() {
     return result;
   }
 
+  let deltaSnapshot = {
+    ran: false,
+    reason: "not-attempted",
+  };
+
+  try {
+    deltaSnapshot = await runNodePipelineScript({
+      label: "Rating delta snapshot (weekly view)",
+      script: RATING_DELTA_SNAPSHOT_SCRIPT,
+    });
+  } catch (deltaSnapshotError) {
+    deltaSnapshot = {
+      ran: false,
+      reason: "failed",
+      error:
+        deltaSnapshotError?.message ||
+        String(deltaSnapshotError),
+    };
+
+    console.error(
+      "Rating delta snapshot failed:",
+      deltaSnapshotError
+    );
+  }
+
   return {
     ...result,
     reason: "new-finished-match-stats",
+    deltaSnapshot,
   };
 }
 
