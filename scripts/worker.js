@@ -24,7 +24,6 @@
 //   FACEIT_FETCH_TIMEOUT_MS   — те же переменные и значения по умолчанию,
 //                               что уже использует autoSyncMatches.js
 
-import { spawn } from "node:child_process";
 import { createClient } from "@supabase/supabase-js";
 import teams from "../src/data/teams.generated.js";
 
@@ -59,17 +58,6 @@ const SINGLE_MATCH_ID = (() => {
 
 const TICK_INTERVAL_MS = Number(
   process.env.LIVE_WORKER_INTERVAL_MS || 7000
-);
-
-// GitHub Actions' process-stat-jobs.yml (*/3 * * * *) is best-effort and in
-// practice can drift by 1-2+ hours under GitHub's own scheduler load — not
-// something fixable from this repo. worker.js already runs continuously on
-// Railway, so it doubles as a much more reliable clock for draining
-// match_stat_jobs. This does NOT replace process-stat-jobs.yml (still a
-// useful second producer/consumer if Railway is ever down) — just adds a
-// second, steadier cadence. Set to 0 to disable.
-const STAT_JOBS_TICK_INTERVAL_MS = Number(
-  process.env.STAT_JOBS_TICK_INTERVAL_MS || 180000
 );
 
 // Те же значения по умолчанию, что и в autoSyncMatches.js — сознательно не
@@ -450,44 +438,6 @@ async function createStatJobIfFinished(matchId, status) {
   }
 }
 
-// Fire-and-forget: runs scripts/processMatchStatJobs.js — the existing,
-// unmodified consumer (claim -> autoSyncMatches.js --post-match-only ->
-// resolve done/retry/failed) — on its own cadence, decoupled from the 7s
-// live tick so a multi-minute stat-jobs pass never delays live score
-// updates. claim_match_stat_jobs() already uses FOR UPDATE SKIP LOCKED, so
-// this is safe to overlap with a concurrent GitHub Actions run; the guard
-// below just avoids piling up redundant local runs if one is still going.
-let statJobsRunning = false;
-
-function runStatJobsCycle() {
-  if (statJobsRunning) {
-    return;
-  }
-
-  statJobsRunning = true;
-  const child = spawn(
-    process.execPath,
-    ["scripts/processMatchStatJobs.js"],
-    { stdio: "inherit", shell: false, env: process.env }
-  );
-
-  const finish = () => {
-    statJobsRunning = false;
-  };
-
-  child.on("error", (error) => {
-    console.warn(`[worker] stat-jobs cycle failed to start: ${formatFetchError(error)}`);
-    finish();
-  });
-
-  child.on("exit", (code) => {
-    if (code !== 0) {
-      console.warn(`[worker] stat-jobs cycle exited with code ${code}`);
-    }
-    finish();
-  });
-}
-
 async function logHeartbeat(row) {
   // Best-effort: если миграция 0002_live_worker_log.sql ещё не применена к
   // этой базе, просто молча пропускаем — воркер не должен падать из-за
@@ -599,25 +549,11 @@ async function tick() {
 async function main() {
   console.log(
     `[worker] starting — interval=${TICK_INTERVAL_MS}ms ` +
-    `dry_run=${DRY_RUN} single_match=${SINGLE_MATCH_ID || "none"} ` +
-    `stat_jobs_interval=${STAT_JOBS_TICK_INTERVAL_MS}ms`
+    `dry_run=${DRY_RUN} single_match=${SINGLE_MATCH_ID || "none"}`
   );
-
-  let lastStatJobsRunAt = 0;
 
   while (true) {
     await tick();
-
-    if (
-      STAT_JOBS_TICK_INTERVAL_MS > 0 &&
-      !DRY_RUN &&
-      !SINGLE_MATCH_ID &&
-      Date.now() - lastStatJobsRunAt >= STAT_JOBS_TICK_INTERVAL_MS
-    ) {
-      lastStatJobsRunAt = Date.now();
-      runStatJobsCycle();
-    }
-
     await sleep(TICK_INTERVAL_MS);
   }
 }
