@@ -81,8 +81,16 @@ const LIVE_STATUSES = [
   "READY",
   "ONGOING",
   "LIVE",
+  // VOTING (map veto) / CONFIGURING (server setup) sit between READY and
+  // ONGOING. Missing here meant loadCandidates()'s status filter dropped a
+  // match the instant FACEIT reported VOTING — it fell out of every future
+  // poll and never picked up the real round score once play started.
+  "VOTING",
+  "CONFIGURING",
   "MATCH_STATUS_READY",
   "MATCH_STATUS_ONGOING",
+  "MATCH_STATUS_VOTING",
+  "MATCH_STATUS_CONFIGURING",
 ];
 
 const ACTIVE_STATUSES = ["SCHEDULED", "MATCH_STATUS_SCHEDULED", ...LIVE_STATUSES];
