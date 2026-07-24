@@ -75,6 +75,13 @@ async function fetchAllRows({
           filter.value,
         );
       }
+
+      if (filter.type === "in") {
+        query = query.in(
+          filter.column,
+          filter.value,
+        );
+      }
     }
 
     if (orderColumn) {
@@ -561,9 +568,15 @@ async function main() {
     ascending: true,
     filters: [
       {
-        type: "eq",
+        // worker.js's live-tick writes the FACEIT public API's raw
+        // "FINISHED" status, while discovery/autoSync historically wrote
+        // the internal API's "MATCH_STATUS_FINISHED" — both mean the
+        // same thing. Matching only one variant silently excluded any
+        // match finished via the live-tick path from ever affecting
+        // ratings.
+        type: "in",
         column: "status",
-        value: "MATCH_STATUS_FINISHED",
+        value: ["FINISHED", "MATCH_STATUS_FINISHED"],
       },
     ],
   });
