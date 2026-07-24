@@ -662,10 +662,33 @@ function RankingsPage() {
       setLoading(true);
       setError("");
 
-      const { data, error: requestError } =
-        await supabase
-          .from("team_ratings")
-          .select("*");
+      // PostgREST caps an unbounded select() at 1000 rows — with 1092+
+      // teams in team_ratings, that silently dropped whichever ~90 rows
+      // happened to sort last, with no error to surface. Page through
+      // .range() until a page comes back short instead.
+      const PAGE_SIZE = 1000;
+      const allRows = [];
+      let requestError = null;
+
+      for (let from = 0; ; from += PAGE_SIZE) {
+        const { data, error: pageError } =
+          await supabase
+            .from("team_ratings")
+            .select("*")
+            .range(from, from + PAGE_SIZE - 1);
+
+        if (pageError) {
+          requestError = pageError;
+          break;
+        }
+
+        const page = Array.isArray(data) ? data : [];
+        allRows.push(...page);
+
+        if (page.length < PAGE_SIZE) {
+          break;
+        }
+      }
 
       if (!mounted) {
         return;
@@ -686,9 +709,7 @@ function RankingsPage() {
         return;
       }
 
-      setRatingRows(
-        Array.isArray(data) ? data : []
-      );
+      setRatingRows(allRows);
       setLoading(false);
     }
 

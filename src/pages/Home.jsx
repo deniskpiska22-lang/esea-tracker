@@ -1619,9 +1619,29 @@ function Home() {
         return;
       }
 
-      const { data, error } = await supabase
-        .from("team_ratings")
-        .select("*");
+      // PostgREST caps an unbounded select() at 1000 rows — with 1092+
+      // teams in team_ratings, that silently dropped whichever ~90 rows
+      // sorted last, no error surfaced. Page via .range() instead.
+      const PAGE_SIZE = 1000;
+      const allRows = [];
+      let error = null;
+
+      for (let from = 0; ; from += PAGE_SIZE) {
+        const { data, error: pageError } = await supabase
+          .from("team_ratings")
+          .select("*")
+          .range(from, from + PAGE_SIZE - 1);
+
+        if (pageError) {
+          error = pageError;
+          break;
+        }
+
+        const page = Array.isArray(data) ? data : [];
+        allRows.push(...page);
+
+        if (page.length < PAGE_SIZE) break;
+      }
 
       if (cancelled) return;
 
@@ -1629,7 +1649,7 @@ function Home() {
         console.error("Failed to load ratings on Home:", error);
         setRatingRows([]);
       } else {
-        setRatingRows(Array.isArray(data) ? data : []);
+        setRatingRows(allRows);
       }
 
       setRatingsReady(true);
