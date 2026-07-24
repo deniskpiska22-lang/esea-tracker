@@ -69,8 +69,21 @@ const LIVE_STATUSES = [
   "READY",
   "ONGOING",
   "LIVE",
+  // Same statuses worker.js's LIVE_STATUSES tracks (see the comment there):
+  // VOTING/CONFIGURING sit between READY and ONGOING, and SUBSTITUTION can
+  // block a match before it even reaches voting. This GH Actions sweep is
+  // the backup path when worker.js is down, so it needs to recognize the
+  // exact same active statuses — otherwise a match parked in one of these
+  // while worker.js happens to be unavailable falls out of both refresh
+  // loops and never advances again.
+  "VOTING",
+  "CONFIGURING",
+  "SUBSTITUTION",
   "MATCH_STATUS_READY",
   "MATCH_STATUS_ONGOING",
+  "MATCH_STATUS_VOTING",
+  "MATCH_STATUS_CONFIGURING",
+  "MATCH_STATUS_SUBSTITUTION",
 ];
 
 const ACTIVE_STATUSES = [
