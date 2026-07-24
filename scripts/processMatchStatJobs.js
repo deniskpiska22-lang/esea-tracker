@@ -155,6 +155,23 @@ async function resolveJobs(jobs, runResult) {
         throw updateError;
       }
 
+      // Stop syncFinishedMapStats() (autoSyncMatches.js) from rescanning
+      // this match on every future run — a job hitting max_attempts means
+      // FACEIT has genuinely never returned usable stats for it, so
+      // retrying forever would just keep starving newer matches out of
+      // the batch. Best-effort: the job itself is already marked failed
+      // above regardless of whether this second write succeeds.
+      const { error: matchUpdateError } = await supabase
+        .from("matches")
+        .update({ stats_unavailable: true })
+        .eq("id", job.match_id);
+
+      if (matchUpdateError) {
+        console.warn(
+          `[stat-jobs] failed to flag ${job.match_id} as stats_unavailable: ${matchUpdateError.message}`
+        );
+      }
+
       failedPermanently += 1;
       continue;
     }

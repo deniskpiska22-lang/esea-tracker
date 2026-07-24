@@ -3166,6 +3166,7 @@ async function syncFinishedMapStats() {
       "MATCH_STATUS_FINISHED",
     ])
     .eq("stats_synced", false)
+    .eq("stats_unavailable", false)
     .order("finished_at", {
       ascending: true,
       nullsFirst: false,
