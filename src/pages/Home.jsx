@@ -9,10 +9,12 @@ import { supabase } from "../lib/supabaseClient";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
+  "READY",
   "STARTED",
   "ONGOING",
   "IN_PROGRESS",
   "RUNNING",
+  "MATCH_STATUS_READY",
   "MATCH_STATUS_LIVE",
   "MATCH_STATUS_STARTED",
   "MATCH_STATUS_ONGOING",
@@ -1369,10 +1371,12 @@ function Home() {
 
       const liveStatusFilter = [
         "status.eq.LIVE",
+        "status.eq.READY",
         "status.eq.STARTED",
         "status.eq.ONGOING",
         "status.eq.IN_PROGRESS",
         "status.eq.RUNNING",
+        "status.eq.MATCH_STATUS_READY",
         "status.eq.MATCH_STATUS_LIVE",
         "status.eq.MATCH_STATUS_STARTED",
         "status.eq.MATCH_STATUS_ONGOING",
@@ -1380,9 +1384,7 @@ function Home() {
 
       const upcomingStatusFilter = [
         "SCHEDULED",
-        "READY",
         "MATCH_STATUS_SCHEDULED",
-        "MATCH_STATUS_READY",
       ].join(",");
 
       const upcomingTimeFilter = [
