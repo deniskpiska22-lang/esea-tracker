@@ -18,7 +18,7 @@ function runOnce(index) {
     const child = spawn(
       process.execPath,
       [
-        "--env-file=.env.local",
+        "--env-file-if-exists=.env.local",
         "scripts/autoSyncMatches.js",
         "--live",
       ],

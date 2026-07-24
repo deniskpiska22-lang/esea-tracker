@@ -80,7 +80,7 @@ async function runAutomaticRatingPipeline() {
     const child = spawn(
       process.execPath,
       [
-        "--env-file=.env.local",
+        "--env-file-if-exists=.env.local",
         AUTOMATIC_RATING_SCRIPT,
       ],
       {

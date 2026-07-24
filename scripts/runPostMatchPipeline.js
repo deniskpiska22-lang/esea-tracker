@@ -60,7 +60,7 @@ function runStep(step) {
     const child = spawn(
       process.execPath,
       [
-        "--env-file=.env.local",
+        "--env-file-if-exists=.env.local",
         step.script,
         ...(step.args || []),
       ],

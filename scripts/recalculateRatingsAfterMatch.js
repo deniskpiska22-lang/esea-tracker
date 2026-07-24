@@ -11,7 +11,7 @@ function run() {
     const child = spawn(
       process.execPath,
       [
-        "--env-file=.env.local",
+        "--env-file-if-exists=.env.local",
         script,
         "--apply",
       ],

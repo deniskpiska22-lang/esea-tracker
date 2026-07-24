@@ -444,7 +444,7 @@ async function runRatingsRecalculation() {
   await new Promise((resolve, reject) => {
     const child = spawn(
       process.execPath,
-      ["--env-file=.env.local", RATINGS_SCRIPT, "--apply"],
+      ["--env-file-if-exists=.env.local", RATINGS_SCRIPT, "--apply"],
       {
         stdio: "inherit",
         shell: false,
@@ -480,7 +480,7 @@ async function runPostMatchPipeline() {
     const child = spawn(
       process.execPath,
       [
-        "--env-file=.env.local",
+        "--env-file-if-exists=.env.local",
         POST_MATCH_PIPELINE_SCRIPT,
       ],
       {
