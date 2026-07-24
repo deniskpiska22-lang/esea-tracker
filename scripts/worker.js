@@ -449,6 +449,25 @@ async function logHeartbeat(row) {
   }
 }
 
+// Best-effort, как и logHeartbeat выше — отсутствие миграции
+// 0008_worker_status.sql не должно останавливать живой тик.
+async function pingWorkerStatus(detail) {
+  try {
+    await supabase.from("worker_status").upsert(
+      {
+        worker_name: "live-worker",
+        last_ping: new Date().toISOString(),
+        status: "online",
+        detail,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "worker_name" }
+    );
+  } catch {
+    // no-op
+  }
+}
+
 async function tick() {
   const startedAt = Date.now();
   let candidates;
@@ -462,6 +481,7 @@ async function tick() {
       matches_updated: 0,
       error: formatFetchError(error),
     });
+    await pingWorkerStatus(`error: ${formatFetchError(error)}`);
     return;
   }
 
@@ -544,6 +564,10 @@ async function tick() {
     matches_updated: updated,
     error: failed > 0 ? `${failed} match(es) failed to refresh` : null,
   });
+
+  await pingWorkerStatus(
+    `polled=${candidates.length} updated=${updated} failed=${failed}`
+  );
 }
 
 async function main() {
