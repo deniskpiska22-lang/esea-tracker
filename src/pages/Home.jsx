@@ -960,55 +960,84 @@ function LiveCard({ match }) {
   const elapsed = match.startedAt ? formatRelative(match.startedAt) : "";
   const map = match.map || match.currentMap || "";
 
+  const score1 = Number(match.team1Score) || 0;
+  const score2 = Number(match.team2Score) || 0;
+
+  // Winner's half of the score reads green, loser's red — level (or not
+  // started yet) stays neutral white, matching an HLTV-style live row.
+  const score1Color =
+    score1 > score2
+      ? "text-[#4ADE80]"
+      : score2 > score1
+        ? "text-[#EF4444]"
+        : "text-white";
+  const score2Color =
+    score2 > score1
+      ? "text-[#4ADE80]"
+      : score1 > score2
+        ? "text-[#EF4444]"
+        : "text-white";
+
+  const metaParts = [
+    { text: `BO${match.bestOf || "?"}` },
+    map ? { text: map } : null,
+    { text: statusLabel, isStatus: true },
+    elapsed ? { text: elapsed } : null,
+  ].filter(Boolean);
+
   return (
     <Link
       to={`/match/${match.matchId || match.id}`}
       state={{ from: "/", label: "← Back to Home" }}
-      className="group flex h-[68px] shrink-0 items-center gap-1.5 rounded-2xl border border-red-500/15 bg-red-500/[0.035] px-2.5 transition hover:border-red-500/30 hover:bg-red-500/[0.06] sm:h-[72px] sm:gap-2 sm:px-3"
+      className="group flex h-[70px] shrink-0 flex-col justify-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 transition hover:border-orange-500/25 hover:bg-white/[0.05] sm:h-[74px] sm:px-3.5"
     >
-      {/* Live indicator */}
-      <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-red-500" />
-
-      {/* Team 1 */}
-      <div className="flex min-w-0 flex-1 items-center justify-end gap-1.5 text-right sm:gap-2">
-        <div className="min-w-0 truncate text-[11px] font-bold text-white sm:text-xs">
-          {match.team1?.name || "TBD"}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Team 1 */}
+        <div className="flex min-w-0 flex-1 items-center gap-2">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
+            <Logo team={match.team1} size="card" />
+          </div>
+          <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-white sm:text-sm">
+            {match.team1?.name || "TBD"}
+          </div>
         </div>
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
-          <Logo team={match.team1} size="card" />
+
+        {/* Score */}
+        <div className="flex shrink-0 items-baseline gap-1.5 whitespace-nowrap text-lg font-extrabold tabular-nums sm:gap-2 sm:text-2xl">
+          <span className={score1Color}>{score1}</span>
+          <span className="text-slate-600">:</span>
+          <span className={score2Color}>{score2}</span>
+        </div>
+
+        {/* Team 2 */}
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+          <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-right text-xs font-bold text-white sm:text-sm">
+            {match.team2?.name || "TBD"}
+          </div>
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
+            <Logo team={match.team2} size="card" />
+          </div>
         </div>
       </div>
 
-      {/* Score + format */}
-      <div className="flex w-[46px] shrink-0 flex-col items-center sm:w-[64px]">
-        <div className="whitespace-nowrap text-sm font-black tabular-nums text-white sm:text-xl">
-          {match.team1Score}:{match.team2Score}
-        </div>
-        <div className="mt-0.5 max-w-full truncate text-[8px] font-semibold uppercase tracking-wide text-slate-500 sm:text-[9px]">
-          {map || `BO${match.bestOf || "?"}`}
-        </div>
-      </div>
-
-      {/* Team 2 */}
-      <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-2">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#0b1116] sm:h-10 sm:w-10">
-          <Logo team={match.team2} size="card" />
-        </div>
-        <div className="min-w-0 truncate text-[11px] font-bold text-white sm:text-xs">
-          {match.team2?.name || "TBD"}
-        </div>
-      </div>
-
-      {/* Status + elapsed time */}
-      <div className="flex w-[42px] shrink-0 flex-col items-end gap-0.5 sm:w-[54px]">
-        <span className="rounded border border-red-500/30 bg-red-500/10 px-1 py-0.5 text-[7px] font-black uppercase tracking-[0.06em] text-red-400 sm:text-[8px]">
-          {statusLabel}
-        </span>
-        {elapsed && (
-          <span className="truncate text-[8px] font-semibold text-slate-500 sm:text-[9px]">
-            {elapsed}
+      {/* Meta: BOx • Map • LIVE • elapsed */}
+      <div className="flex items-center justify-center gap-1.5 overflow-hidden text-[10px] font-medium text-slate-500 sm:text-[11px]">
+        {metaParts.map((part, index) => (
+          <span
+            key={index}
+            className="flex shrink-0 items-center gap-1.5 last:min-w-0 last:truncate"
+          >
+            {index > 0 && <span className="text-slate-700">•</span>}
+            {part.isStatus ? (
+              <span className="flex items-center gap-1 font-semibold text-red-400">
+                <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-red-500" />
+                {part.text}
+              </span>
+            ) : (
+              <span className="truncate">{part.text}</span>
+            )}
           </span>
-        )}
+        ))}
       </div>
     </Link>
   );
@@ -1822,7 +1851,7 @@ function Home() {
               </div>
 
               {liveMatches.length > 0 ? (
-                <div className="max-h-[360px] space-y-2 overflow-y-auto overflow-x-hidden p-2.5">
+                <div className="max-h-[360px] space-y-2 overflow-y-auto overflow-x-hidden p-2.5 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.12)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent">
                   {liveMatches.map((match) => (
                     <LiveCard
                       key={match.id}
