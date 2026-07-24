@@ -24,7 +24,13 @@ import MatchComments from "../components/MatchComments";
 const LIVE_STATUSES = new Set([
   "LIVE",
   "ONGOING",
+  "READY",
+  "VOTING",
+  "CONFIGURING",
   "MATCH_STATUS_ONGOING",
+  "MATCH_STATUS_READY",
+  "MATCH_STATUS_VOTING",
+  "MATCH_STATUS_CONFIGURING",
 ]);
 
 const FINISHED_STATUSES = new Set([

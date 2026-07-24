@@ -14,10 +14,17 @@ const LIVE_STATUSES = new Set([
   "ONGOING",
   "IN_PROGRESS",
   "RUNNING",
+  // VOTING (map veto) / CONFIGURING (server setup) — FACEIT states between
+  // READY and ONGOING. The match room is already active at this point
+  // (players in, veto happening), so it should read as live, not scheduled.
+  "VOTING",
+  "CONFIGURING",
   "MATCH_STATUS_READY",
   "MATCH_STATUS_LIVE",
   "MATCH_STATUS_STARTED",
   "MATCH_STATUS_ONGOING",
+  "MATCH_STATUS_VOTING",
+  "MATCH_STATUS_CONFIGURING",
 ]);
 
 const FINISHED_STATUSES = new Set([
@@ -1376,10 +1383,14 @@ function Home() {
         "status.eq.ONGOING",
         "status.eq.IN_PROGRESS",
         "status.eq.RUNNING",
+        "status.eq.VOTING",
+        "status.eq.CONFIGURING",
         "status.eq.MATCH_STATUS_READY",
         "status.eq.MATCH_STATUS_LIVE",
         "status.eq.MATCH_STATUS_STARTED",
         "status.eq.MATCH_STATUS_ONGOING",
+        "status.eq.MATCH_STATUS_VOTING",
+        "status.eq.MATCH_STATUS_CONFIGURING",
       ].join(",");
 
       const upcomingStatusFilter = [
