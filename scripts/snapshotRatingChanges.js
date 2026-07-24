@@ -26,6 +26,27 @@ const PAGE_SIZE = 1000;
 const WRITE_BATCH_SIZE = 200;
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
+// Same computation as snapshotWeeklyRatingHistory.js — reused verbatim so
+// both scripts agree on which Monday a given snapshot belongs to.
+function getIsoWeekStart(date = new Date()) {
+  const value = new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate()
+    )
+  );
+
+  const day = value.getUTCDay() || 7;
+  value.setUTCDate(
+    value.getUTCDate() - day + 1
+  );
+
+  return value
+    .toISOString()
+    .slice(0, 10);
+}
+
 async function fetchAll(table, select, configure) {
   const rows = [];
   let from = 0;
@@ -181,7 +202,9 @@ async function insertHistory(rows) {
 
     const { error } = await supabase
       .from("team_rating_history")
-      .insert(batch);
+      .upsert(batch, {
+        onConflict: "team_id,week_start",
+      });
 
     if (error) {
       throw new Error(
@@ -312,6 +335,7 @@ async function main() {
       matches_played:
         getMatchesPlayed(row),
       snapshot_type: "recalculation",
+      week_start: getIsoWeekStart(now),
       created_at: nowIso,
     }))
   );

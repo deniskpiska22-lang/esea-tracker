@@ -21,6 +21,14 @@ const mode = process.argv.includes("--live")
   ? "live"
   : "full";
 
+// Used by scripts/processMatchStatJobs.js: skip discovery/refresh entirely
+// and only run the existing RUN_POST_MATCH_PIPELINE block below — narrows
+// FACEIT API usage to what that block already does on its own
+// (syncFinishedMapStats() only scans matches.stats_synced=false).
+const postMatchOnly = process.argv.includes(
+  "--post-match-only"
+);
+
 if (!supabaseUrl || !supabaseSecretKey) {
   throw new Error(
     "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY " +
@@ -661,11 +669,15 @@ function normalizePlayer(player = {}) {
           ? (headshots / kills) * 100
           : 0,
 
-    kast: statValue(stats, [
-      "KAST %",
-      "KAST",
-      "kast",
-    ]),
+    // No default fallback: unlike kd/hsRate, KAST has no reliable
+    // local formula to derive from other fields — if the source doesn't
+    // report it (official Data API v4 never does), leave it null rather
+    // than silently claiming a 0% KAST that wasn't actually measured.
+    kast: statValue(
+      stats,
+      ["KAST %", "KAST", "kast"],
+      null
+    ),
 
     mvps: statValue(stats, [
       "MVPs",
@@ -954,23 +966,22 @@ async function fetchScoreboardSummaries(
   return payloads;
 }
 
-function normalizeInternalPlayerStats(
-  payload,
-  matchId
-) {
-  const entries = Array.isArray(payload)
-    ? payload
-    : Array.isArray(payload?.items)
-      ? payload.items
-      : Array.isArray(payload?.rounds)
-        ? payload.rounds
-        : [];
-
-  const summary =
+// Shared by the internal stats/v3 payload (entry.matchRound) and the
+// official data/v4/.../stats payload (entry.match_round) — both sometimes
+// carry a whole-match summary entry (round index 0) alongside per-map
+// entries; prefer that summary, else fall back to the first entry that
+// actually has player data. Not new aggregation logic — this is the exact
+// selection this file already used for the internal payload, only reused
+// instead of duplicated so the official-API path behaves identically.
+function findMatchSummaryEntry(entries) {
+  return (
     entries.find((entry) => {
-      if (
-        Number(entry?.matchRound) !== 0
-      ) {
+      const roundIndex = Number(
+        entry?.matchRound ??
+        entry?.match_round
+      );
+
+      if (roundIndex !== 0) {
         return false;
       }
 
@@ -998,7 +1009,25 @@ function normalizeInternalPlayerStats(
           Array.isArray(team?.players) &&
           team.players.length > 0
       );
-    });
+    }) ||
+    null
+  );
+}
+
+function normalizeInternalPlayerStats(
+  payload,
+  matchId
+) {
+  const entries = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload?.items)
+      ? payload.items
+      : Array.isArray(payload?.rounds)
+        ? payload.rounds
+        : [];
+
+  const summary =
+    findMatchSummaryEntry(entries);
 
   if (!summary) {
     return null;
@@ -1120,7 +1149,8 @@ function normalizeInternalMatchStats(
 }
 
 function normalizeOfficialMatchStats(
-  payload
+  payload,
+  matchId
 ) {
   const rounds = Array.isArray(payload)
     ? payload
@@ -1128,7 +1158,27 @@ function normalizeOfficialMatchStats(
       ? payload.rounds
       : [];
 
-  return rounds
+  // Whole-match player stats (kills/deaths/assists/ADR/KD/HS/MVP —
+  // everything normalizeStatsTeam()/normalizePlayer() already know how to
+  // read, since data/v4's team_stats/player_stats keys match what those
+  // functions were already written for). Reuses the same summary-entry
+  // selection as the internal stats/v3 path — no new aggregation.
+  const summaryEntry =
+    findMatchSummaryEntry(rounds);
+
+  const playerStats = summaryEntry
+    ? {
+        matchId,
+        map: null,
+        teams: summaryEntry.teams
+          .slice(0, 2)
+          .map(normalizeStatsTeam),
+      }
+    : null;
+
+  // All maps are kept below — a BO3 has one entry per map here, never
+  // truncated to the first.
+  const mapRounds = rounds
     .map((round, index) => {
       const roundStats =
         round?.round_stats ||
@@ -1205,6 +1255,11 @@ function normalizeOfficialMatchStats(
       };
     })
     .filter(Boolean);
+
+  return {
+    rounds: mapRounds,
+    playerStats,
+  };
 }
 
 function mapsForMatch(
@@ -2208,6 +2263,64 @@ async function loadRefreshCandidates() {
   return data || [];
 }
 
+// Matches worth fetching stats for — narrower than FINISHED_STATUSES, which
+// also includes CANCELLED (relevant for finished_at/winner_id elsewhere,
+// not for stats: a cancelled match has no map/player stats to sync).
+const STATS_ELIGIBLE_STATUSES =
+  new Set([
+    "FINISHED",
+    "MATCH_STATUS_FINISHED",
+  ]);
+
+// Producer #2 (see also worker.js — same hook, this one is the fallback in
+// case worker.js is down when a match finishes). Best-effort: match_stat_jobs
+// is an optional acceleration layer, not the only path to stats — the
+// existing stats_synced=false scan later in this file remains the safety
+// net regardless of this insert's outcome, so a failure here must never
+// break the refresh loop.
+async function createStatJobIfFinished(
+  matchId,
+  status
+) {
+  if (
+    !STATS_ELIGIBLE_STATUSES.has(
+      String(
+        status
+      ).toUpperCase()
+    )
+  ) {
+    return;
+  }
+
+  try {
+    const { error } =
+      await supabase
+        .from(
+          "match_stat_jobs"
+        )
+        .upsert(
+          {
+            match_id: matchId,
+            job_type: "stats_sync",
+          },
+          {
+            onConflict:
+              "match_id,job_type",
+            ignoreDuplicates: true,
+          }
+        );
+
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    console.warn(
+      `Failed to enqueue stats job for ${matchId}: ` +
+      formatFetchError(error)
+    );
+  }
+}
+
 async function refreshActive() {
   const candidates =
     await loadRefreshCandidates();
@@ -2289,6 +2402,11 @@ async function refreshActive() {
         }
 
         changedCount += 1;
+
+        await createStatJobIfFinished(
+          match.id,
+          clean.status
+        );
       } catch (error) {
         failed += 1;
 
@@ -2840,78 +2958,92 @@ async function syncFinishedLineups() {
 async function fetchFinishedMatchStats(
   matchId
 ) {
-  let internalPayload = null;
-  let internalRounds = [];
-  let internalPlayerStats = null;
-  let internalError = null;
-
   /*
-   * Главный источник для ESEA:
-   * тот же endpoint, который использовал
-   * старый рабочий updateMatchStatsV3.js.
+   * Основной источник: официальный Data API v4.
+   * Не требует cookie, не блокируется Cloudflare
+   * (в отличие от внутренних эндпоинтов ниже),
+   * и один ответ уже содержит и карты,
+   * и статистику игроков (Kills/Deaths/Assists/
+   * ADR/K-D/Headshots %/MVPs) — см. audit.
    */
+  let officialRounds = [];
+  let officialPlayerStats = null;
+  let officialError = null;
+
   try {
-    internalPayload =
-      await fetchInternalStatsV3(
+    const officialUrl =
+      `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
+        matchId
+      )}/stats`;
+
+    const officialPayload =
+      await fetchJson(
+        officialUrl,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${faceitApiKey}`,
+            Accept:
+              "application/json",
+          },
+        }
+      );
+
+    const official =
+      normalizeOfficialMatchStats(
+        officialPayload,
         matchId
       );
 
-    internalRounds =
-      normalizeInternalMatchStats(
-        internalPayload
-      );
-
-    internalPlayerStats =
-      normalizeInternalPlayerStats(
-        internalPayload,
-        matchId
-      );
+    officialRounds = official.rounds;
+    officialPlayerStats =
+      official.playerStats;
   } catch (error) {
-    internalError = error;
+    officialError = error;
 
     console.warn(
-      `Internal stats/v3 unavailable ` +
+      `Official stats unavailable ` +
       `${matchId}: ` +
       error.message
     );
   }
 
   /*
-   * Public data-v4 оставляем как запасной
-   * источник карт.
+   * Внутренний stats/v3 — fallback, не удалён.
+   * Пробуем только если официальный API не отдал
+   * карты и/или статистику игроков (например,
+   * ещё не опубликована, либо Cloudflare пропустит
+   * запрос в будущем).
    */
-  let officialRounds = [];
-  let officialError = null;
+  let internalRounds = [];
+  let internalPlayerStats = null;
+  let internalError = null;
 
-  if (!internalRounds.length) {
-    const officialUrl =
-      `https://open.faceit.com/data/v4/matches/${encodeURIComponent(
-        matchId
-      )}/stats`;
-
+  if (
+    !officialRounds.length ||
+    !officialPlayerStats
+  ) {
     try {
-      const officialPayload =
-        await fetchJson(
-          officialUrl,
-          {
-            headers: {
-              Authorization:
-                `Bearer ${faceitApiKey}`,
-              Accept:
-                "application/json",
-            },
-          }
+      const internalPayload =
+        await fetchInternalStatsV3(
+          matchId
         );
 
-      officialRounds =
-        normalizeOfficialMatchStats(
-          officialPayload
+      internalRounds =
+        normalizeInternalMatchStats(
+          internalPayload
+        );
+
+      internalPlayerStats =
+        normalizeInternalPlayerStats(
+          internalPayload,
+          matchId
         );
     } catch (error) {
-      officialError = error;
+      internalError = error;
 
       console.warn(
-        `Official stats unavailable ` +
+        `Internal stats/v3 unavailable ` +
         `${matchId}: ` +
         error.message
       );
@@ -2920,15 +3052,19 @@ async function fetchFinishedMatchStats(
 
   /*
    * Scoreboard-summary — последний fallback
-   * для игроков, если stats/v3 не вернул их.
+   * для игроков, если ни официальный API,
+   * ни stats/v3 не отдали статистику игроков.
    */
   let scoreboardPlayerStats = null;
 
-  if (!internalPlayerStats) {
+  if (
+    !officialPlayerStats &&
+    !internalPlayerStats
+  ) {
     try {
       const expectedRoundCount =
-        internalRounds.length ||
-        officialRounds.length;
+        officialRounds.length ||
+        internalRounds.length;
 
       const scoreboardPayloads =
         await fetchScoreboardSummaries(
@@ -2951,11 +3087,12 @@ async function fetchFinishedMatchStats(
   }
 
   const rounds =
-    internalRounds.length
-      ? internalRounds
-      : officialRounds;
+    officialRounds.length
+      ? officialRounds
+      : internalRounds;
 
   const playerStats =
+    officialPlayerStats ||
     internalPlayerStats ||
     scoreboardPlayerStats;
 
@@ -2964,8 +3101,8 @@ async function fetchFinishedMatchStats(
     !playerStats
   ) {
     throw (
-      internalError ||
       officialError ||
+      internalError ||
       new Error(
         "No match maps or player statistics returned"
       )
@@ -2974,25 +3111,30 @@ async function fetchFinishedMatchStats(
 
   return {
     source:
-      internalRounds.length &&
-      internalPlayerStats
-        ? "stats-v3"
-        : internalRounds.length &&
-            scoreboardPlayerStats
-          ? "stats-v3 + statistics-v1"
+      officialRounds.length &&
+      officialPlayerStats
+        ? "data-v4"
+        : officialRounds.length &&
+            internalPlayerStats
+          ? "data-v4 + stats-v3"
           : officialRounds.length &&
-              internalPlayerStats
-            ? "data-v4 + stats-v3"
-            : officialRounds.length &&
-                scoreboardPlayerStats
-              ? "data-v4 + statistics-v1"
-              : internalPlayerStats
-                ? "stats-v3-players"
-                : scoreboardPlayerStats
-                  ? "statistics-v1"
-                  : internalRounds.length
-                    ? "stats-v3-maps"
-                    : "data-v4",
+              scoreboardPlayerStats
+            ? "data-v4 + statistics-v1"
+            : internalRounds.length &&
+                internalPlayerStats
+              ? "stats-v3"
+              : internalRounds.length &&
+                  scoreboardPlayerStats
+                ? "stats-v3 + statistics-v1"
+                : officialPlayerStats
+                  ? "data-v4-players"
+                  : internalPlayerStats
+                    ? "stats-v3-players"
+                    : scoreboardPlayerStats
+                      ? "statistics-v1"
+                      : officialRounds.length
+                        ? "data-v4-maps"
+                        : "stats-v3-maps",
 
     rounds,
     playerStats,
@@ -3556,7 +3698,7 @@ async function main() {
 
   let discovery = null;
 
-  if (mode === "full") {
+  if (mode === "full" && !postMatchOnly) {
     const discovered =
       await discoverMatches();
 
@@ -3572,8 +3714,15 @@ async function main() {
     };
   }
 
-  const refresh =
-    await refreshActive();
+  const refresh = postMatchOnly
+    ? {
+        candidates: 0,
+        changed: 0,
+        unchanged: 0,
+        failed: 0,
+        skipped: "post-match-only",
+      }
+    : await refreshActive();
 
   let lineups = {
     ran: false,

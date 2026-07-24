@@ -13,7 +13,7 @@ const matchId = process.argv[2];
 if (!matchId) throw new Error("Usage: node --env-file=.env.local scripts/checkNormalizedMatchStats.js <matchId>");
 
 const [{ data: maps, error: mapsError }, { data: players, error: playersError }] = await Promise.all([
-  supabase.from("match_maps").select("*").eq("match_id", matchId).order("map_order"),
+  supabase.from("match_maps").select("*").eq("match_id", matchId).order("map_index"),
   supabase.from("match_player_stats").select("*").eq("match_id", matchId).order("team_name").order("kills", { ascending: false }),
 ]);
 

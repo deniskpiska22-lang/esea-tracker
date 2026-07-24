@@ -397,6 +397,47 @@ async function loadCandidates() {
   return data || [];
 }
 
+// Matches worth fetching stats for — narrower than FINISHED_STATUSES, which
+// also includes CANCELLED (relevant for finished_at/winner_id elsewhere,
+// not for stats: a cancelled match has no map/player stats to sync).
+const STATS_ELIGIBLE_STATUSES = new Set([
+  "FINISHED",
+  "MATCH_STATUS_FINISHED",
+]);
+
+// Producer #1 (see also autoSyncMatches.js refreshActive() — same hook,
+// kept as a fallback in case this process is down when a match finishes).
+// Best-effort: match_stat_jobs is an optional acceleration layer, not the
+// only path to stats — the existing stats_synced=false scan in
+// autoSyncMatches.js remains the safety net regardless of this insert's
+// outcome, so a failure here must never break the tick.
+async function createStatJobIfFinished(matchId, status) {
+  if (!STATS_ELIGIBLE_STATUSES.has(String(status).toUpperCase())) {
+    return;
+  }
+
+  try {
+    const { error } = await supabase.from("match_stat_jobs").upsert(
+      {
+        match_id: matchId,
+        job_type: "stats_sync",
+      },
+      {
+        onConflict: "match_id,job_type",
+        ignoreDuplicates: true,
+      }
+    );
+
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    console.warn(
+      `[worker] failed to enqueue stats job for ${matchId}: ${formatFetchError(error)}`
+    );
+  }
+}
+
 async function logHeartbeat(row) {
   // Best-effort: если миграция 0002_live_worker_log.sql ещё не применена к
   // этой базе, просто молча пропускаем — воркер не должен падать из-за
@@ -480,6 +521,8 @@ async function tick() {
           `[worker] ${match.id}: ${match.status} -> ${clean.status} ` +
           `(${clean.team1_score ?? match.team1_score}:${clean.team2_score ?? match.team2_score})`
         );
+
+        await createStatJobIfFinished(match.id, clean.status);
       } catch (error) {
         failed += 1;
         console.warn(`[worker] refresh failed ${match.id}: ${formatFetchError(error)}`);
