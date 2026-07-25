@@ -31,6 +31,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import VerificationRequestPage from "./pages/VerificationRequestPage";
 import AdminVerificationPage from "./pages/AdminVerificationPage";
 import DataStatusPage from "./pages/DataStatusPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -101,6 +102,16 @@ ReactDOM.createRoot(
             <Route
               path="/team/:slug/stats"
               element={<StatsPage />}
+            />
+
+            <Route
+              path="/teams/:slug/analytics"
+              element={<AnalyticsPage />}
+            />
+
+            <Route
+              path="/team/:slug/analytics"
+              element={<AnalyticsPage />}
             />
 
             <Route

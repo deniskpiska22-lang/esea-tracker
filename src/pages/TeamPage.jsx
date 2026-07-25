@@ -20,6 +20,9 @@ import {
   CartesianGrid,
 } from "recharts";
 
+// Flip to true once the Analytics page has real content to show.
+const SHOW_ANALYTICS_TAB = false;
+
 const COUNTRY_NAMES = {
   RU: "Russia",
   US: "United States",
@@ -871,6 +874,15 @@ function TeamPage() {
             >
               Statistics
             </Link>
+
+            {SHOW_ANALYTICS_TAB && (
+              <Link
+                to={`/teams/${slug}/analytics`}
+                className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
+              >
+                Analytics
+              </Link>
+            )}
           </div>
         </nav>
 

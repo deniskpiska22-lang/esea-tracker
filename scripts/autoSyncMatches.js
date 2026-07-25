@@ -2398,38 +2398,40 @@ async function createStatJobIfFinished(
     );
   }
 
-  // demo_sync — same queue/table, different job_type (see
-  // 0009_match_demo_sync.sql). Higher max_attempts than the stats_sync
-  // default (5): FACEIT can take much longer to render/upload a demo than
-  // to expose match stats, so this job type needs more retry budget at the
-  // same backoff cadence rather than a longer per-attempt wait.
-  try {
-    const { error } =
-      await supabase
-        .from(
-          "match_stat_jobs"
-        )
-        .upsert(
-          {
-            match_id: matchId,
-            job_type: "demo_sync",
-            max_attempts: 20,
-          },
-          {
-            onConflict:
-              "match_id,job_type",
-            ignoreDuplicates: true,
-          }
-        );
+  // demo_sync — paused fleet-wide (2026-07-25): a large demo_sync backlog
+  // was starving stats_sync out of every claim_match_stat_jobs() batch,
+  // since that RPC claims strictly by created_at with no job_type priority
+  // (0003_match_stat_jobs.sql). Re-enable by setting DEMO_SYNC_ENABLED=true
+  // once the demo-analysis pipeline is ready to consume the backlog again.
+  if (process.env.DEMO_SYNC_ENABLED === "true") {
+    try {
+      const { error } =
+        await supabase
+          .from(
+            "match_stat_jobs"
+          )
+          .upsert(
+            {
+              match_id: matchId,
+              job_type: "demo_sync",
+              max_attempts: 20,
+            },
+            {
+              onConflict:
+                "match_id,job_type",
+              ignoreDuplicates: true,
+            }
+          );
 
-    if (error) {
-      throw error;
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.warn(
+        `Failed to enqueue demo job for ${matchId}: ` +
+        formatFetchError(error)
+      );
     }
-  } catch (error) {
-    console.warn(
-      `Failed to enqueue demo job for ${matchId}: ` +
-      formatFetchError(error)
-    );
   }
 }
 

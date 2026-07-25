@@ -123,12 +123,16 @@ async function main() {
       ? await enqueueJobs(statsMatchIds, "stats_sync")
       : 0;
 
-  // demo_sync — same backlog-drain pattern as stats_sync above, just keyed
-  // off matches.demo_synced (see 0009_match_demo_sync.sql). Higher
-  // max_attempts than the stats_sync default (5), matching the value used
-  // by the two live producers (worker.js/autoSyncMatches.js) at
-  // FINISHED-transition time.
-  const demoMatchIds = await fetchFinishedMatchIdsMissing("demo_synced");
+  // demo_sync — paused fleet-wide (2026-07-25), same reason as the
+  // DEMO_SYNC_ENABLED guard in worker.js/autoSyncMatches.js: a large
+  // demo_sync backlog was starving stats_sync out of every
+  // claim_match_stat_jobs() batch. Skip re-discovering/enqueueing demo_sync
+  // candidates while paused, so this backlog-drain pass doesn't regrow the
+  // very backlog that was just paused.
+  const demoMatchIds =
+    process.env.DEMO_SYNC_ENABLED === "true"
+      ? await fetchFinishedMatchIdsMissing("demo_synced")
+      : [];
 
   const demoCreated =
     demoMatchIds.length > 0

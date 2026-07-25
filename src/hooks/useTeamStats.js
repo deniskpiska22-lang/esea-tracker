@@ -405,6 +405,9 @@ function normalizeDatabaseMatch(
       row.faceit_url ||
       `https://www.faceit.com/en/cs2/room/${row.id}`,
 
+    demoSynced:
+      Boolean(row.demo_synced),
+
     source:
       "supabase",
   };
@@ -820,6 +823,7 @@ export function useTeamStats(
               "maps",
               "map_scores",
               "stats_synced",
+              "demo_synced",
             ].join(",")
           )
           .in(
