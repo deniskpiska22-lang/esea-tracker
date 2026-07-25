@@ -25,10 +25,6 @@ const supabase = createClient(
 const PAGE_SIZE = 1000;
 const WRITE_BATCH_SIZE = 200;
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-// Must match recalculateRatings.js's BASELINE_MAX_AGE_MS — both scripts
-// share the same team_ratings.rating_snapshot_at "is today's baseline
-// still fresh?" clock, written solely by recalculateRatings.js.
-const BASELINE_MAX_AGE_MS = 20 * 60 * 60 * 1000;
 
 // Same computation as snapshotWeeklyRatingHistory.js — reused verbatim so
 // both scripts agree on which Monday a given snapshot belongs to.
@@ -130,6 +126,40 @@ function buildCurrentRanks(rows) {
     }));
 }
 
+// Rank moves depend on every OTHER team's points too, unlike points_change
+// which is intrinsic to one team — so "rank right before this team's last
+// match" isn't something a per-team replay can produce on its own. Instead:
+// where would this team sit in TODAY's field if its own points were still
+// at previousPoints (everyone else at their real current standing)? That
+// isolates the effect of this team's own last result on today's table,
+// using the same points-then-matches_played tiebreak as buildCurrentRanks.
+function computeRankForPoints(
+  points,
+  matchesPlayed,
+  rankedRows,
+  excludeTeamId
+) {
+  let better = 0;
+
+  for (const other of rankedRows) {
+    if (String(other.team_id) === excludeTeamId) {
+      continue;
+    }
+
+    const otherPoints = getPoints(other);
+    const otherMatches = getMatchesPlayed(other);
+
+    if (
+      otherPoints > points ||
+      (otherPoints === points && otherMatches > matchesPlayed)
+    ) {
+      better += 1;
+    }
+  }
+
+  return better + 1;
+}
+
 function groupHistory(rows) {
   const grouped = new Map();
 
@@ -227,10 +257,9 @@ async function main() {
       slug,
       division,
       points,
+      previous_points,
       matches_played,
-      ranking_status,
-      previous_rank,
-      rating_snapshot_at
+      ranking_status
     `
   );
 
@@ -265,49 +294,39 @@ async function main() {
   const weeklyCutoff =
     now.getTime() - WEEK_MS;
 
-  // previous_points/points_change/rating_snapshot_at are recalculateRatings.js's
-  // job now (it runs right before this script in the automatic post-match
-  // pipeline) — it already solves the "resets every ~45s cycle instead of
-  // accumulating over the day" problem for points via a frozen daily
-  // baseline. rank_change has the exact same failure mode (history[0] is
-  // re-upserted, i.e. effectively "last cycle", every run), so it gets the
-  // same fix here: only take a fresh previous_rank when team_ratings'
-  // shared rating_snapshot_at (written solely by recalculateRatings.js) is
-  // stale; otherwise keep whatever previous_rank is already stored.
+  // previous_points/points_change are recalculateRatings.js's job (it runs
+  // right before this script in the automatic post-match pipeline) — each
+  // team's own last processed match freezes previous_points to "points
+  // right before that match", held until their next match. rank_change
+  // mirrors that same "since this team's own last match" intent, but rank
+  // can't be produced by a per-team replay (it depends on every OTHER
+  // team's points too) — see computeRankForPoints() above.
   const updates = rankedRows.map((row) => {
     const teamId = String(row.team_id);
     const history =
       historyByTeam.get(teamId) || [];
 
-    const previous = history[0] || null;
     const weekly = findWeeklyBaseline(
       history,
       weeklyCutoff
     );
 
     const points = getPoints(row);
+    const matchesPlayed = getMatchesPlayed(row);
     const currentRank = row.computedRank;
 
-    const previousPoints =
-      previous
-        ? Number(previous.points)
-        : points;
+    const previousPoints = Number.isFinite(
+      Number(row.previous_points)
+    )
+      ? Number(row.previous_points)
+      : points;
 
-    const baselineIsStale =
-      !row.rating_snapshot_at ||
-      Date.now() - Date.parse(row.rating_snapshot_at) >
-        BASELINE_MAX_AGE_MS;
-
-    const freshPreviousRank =
-      previous?.world_rank
-        ? Number(previous.world_rank)
-        : currentRank;
-
-    const previousRank = baselineIsStale
-      ? freshPreviousRank
-      : Number.isFinite(Number(row.previous_rank))
-        ? Number(row.previous_rank)
-        : freshPreviousRank;
+    const previousRank = computeRankForPoints(
+      previousPoints,
+      matchesPlayed,
+      rankedRows,
+      teamId
+    );
 
     const weeklyPoints =
       weekly
@@ -325,8 +344,7 @@ async function main() {
       slug: row.slug,
       division: row.division,
       points,
-      matches_played:
-        getMatchesPlayed(row),
+      matches_played: matchesPlayed,
       ranking_status:
         row.ranking_status,
 
