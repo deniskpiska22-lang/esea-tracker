@@ -1,17 +1,21 @@
-// ESEA Tracker — match_stat_jobs consumer (Этап 5).
+// ESEA Tracker — match_stat_jobs consumer (Этап 5, расширено под demo_sync).
 //
-// Единственная задача: забрать due-задачи из match_stat_jobs, запустить уже
-// существующий post-match pipeline (autoSyncMatches.js --post-match-only —
-// syncFinishedLineups/syncFinishedMapStats/условные рейтинги, без единой
-// новой строчки в самой логике получения/сохранения статистики), затем по
-// matches.stats_synced определить исход каждой задачи: done / retry / failed.
+// Забирает due-задачи из match_stat_jobs (любого job_type) и обрабатывает
+// каждую группу своим путём:
+//   - stats_sync: запускает уже существующий post-match pipeline
+//     (autoSyncMatches.js --post-match-only — syncFinishedLineups/
+//     syncFinishedMapStats/условные рейтинги, без единой новой строчки в
+//     самой логике получения/сохранения статистики), затем по
+//     matches.stats_synced определяет исход: done / retry / failed.
+//   - demo_sync: запускает scripts/fetchMatchDemo.js на каждый match_id
+//     (см. 0009_match_demo_sync.sql), затем по matches.demo_synced
+//     определяет исход тем же способом.
 //
-// НЕ содержит собственной логики сбора статистики или пересчёта рейтингов —
-// это намеренно, вся эта логика уже есть и уже работает в autoSyncMatches.js.
-// match_stat_jobs — ускоряющий слой поверх штатного пайплайна, не замена:
-// обычный autoSyncMatches.js по расписанию (sync-matches.yml/sync-live.yml)
-// продолжает сам сканировать matches.stats_synced=false независимо от того,
-// как отработал этот consumer.
+// Обе группы резолвятся через один и тот же resolveJobGroup() — done/retry/
+// failed-логика идентична, отличаются только имя колонки-флага, колонка
+// "matches.*_unavailable" и бэкофф. НЕ содержит собственной логики сбора
+// статистики или демок — это уже есть в autoSyncMatches.js/fetchMatchDemo.js,
+// этот файл только заводит их по расписанию джобы.
 //
 // Запуск: node scripts/processMatchStatJobs.js
 // (в GitHub Actions секреты приходят через env: блок workflow; локально —
@@ -43,9 +47,19 @@ const MAX_BACKOFF_MS = Number(
   process.env.STAT_JOBS_MAX_BACKOFF_MS || 3_600_000
 );
 
-function backoffMs(attempts) {
+// Demos routinely take longer than stats to become available at FACEIT —
+// separate (higher) base backoff, same cap. Paired with the higher
+// max_attempts (20) set at enqueue time in worker.js/autoSyncMatches.js.
+const DEMO_JOBS_BASE_BACKOFF_MS = Number(
+  process.env.DEMO_JOBS_BASE_BACKOFF_MS || 60_000
+);
+const DEMO_JOBS_CONCURRENCY = Number(
+  process.env.DEMO_JOBS_CONCURRENCY || 5
+);
+
+function backoffMs(attempts, baseMs = BASE_BACKOFF_MS) {
   return Math.min(
-    BASE_BACKOFF_MS * 2 ** Math.max(attempts - 1, 0),
+    baseMs * 2 ** Math.max(attempts - 1, 0),
     MAX_BACKOFF_MS
   );
 }
@@ -55,6 +69,7 @@ function backoffMs(attempts) {
 // runs firing at the same time (e.g. a manual workflow_dispatch overlapping
 // the cron tick) always get disjoint sets of jobs, never the same one twice.
 // This is defense in depth alongside the workflow's own concurrency group.
+// Not filtered by job_type — claims whatever is due, of any type.
 async function claimDueJobs() {
   const { data: dueJobs, error } = await supabase.rpc(
     "claim_match_stat_jobs",
@@ -90,12 +105,71 @@ function runPostMatchOnly() {
   });
 }
 
-async function resolveJobs(jobs, runResult) {
+function runFetchMatchDemo(matchId) {
+  return new Promise((resolve) => {
+    const child = spawn(
+      process.execPath,
+      ["scripts/fetchMatchDemo.js", matchId],
+      {
+        stdio: "inherit",
+        shell: false,
+        env: process.env,
+      }
+    );
+
+    child.on("error", (error) => {
+      resolve({ code: null, error: error.message });
+    });
+
+    child.on("exit", (code) => {
+      resolve({ code, error: null });
+    });
+  });
+}
+
+// Bounded-concurrency runner for demo_sync — unlike stats_sync (one shared
+// pipeline run covers the whole claimed batch), each demo job is an
+// independent per-match subprocess, so results are tracked per match_id.
+async function runDemoJobs(matchIds) {
+  const results = new Map();
+  let cursor = 0;
+
+  async function worker() {
+    while (cursor < matchIds.length) {
+      const index = cursor++;
+      const matchId = matchIds[index];
+      results.set(matchId, await runFetchMatchDemo(matchId));
+    }
+  }
+
+  await Promise.all(
+    Array.from(
+      { length: Math.min(DEMO_JOBS_CONCURRENCY, matchIds.length) },
+      worker
+    )
+  );
+
+  return results;
+}
+
+// Shared done/retry/failed resolution for a group of same-job_type jobs.
+// column/unavailableColumn are matches.* flags checked after the run;
+// errorMessageFor(job) supplies the last_error text for a job that's still
+// not synced (differs between stats_sync — one shared runResult for the
+// whole batch — and demo_sync — one result per match_id).
+async function resolveJobGroup(
+  jobs,
+  { column, unavailableColumn, baseBackoffMs, errorMessageFor }
+) {
+  if (jobs.length === 0) {
+    return { done: 0, retried: 0, failedPermanently: 0 };
+  }
+
   const matchIds = [...new Set(jobs.map((job) => job.match_id))];
 
   const { data: rows, error } = await supabase
     .from("matches")
-    .select("id,stats_synced")
+    .select(`id,${column}`)
     .in("id", matchIds);
 
   if (error) {
@@ -103,7 +177,7 @@ async function resolveJobs(jobs, runResult) {
   }
 
   const syncedById = new Map(
-    (rows || []).map((row) => [row.id, row.stats_synced === true])
+    (rows || []).map((row) => [row.id, row[column] === true])
   );
 
   let done = 0;
@@ -134,11 +208,7 @@ async function resolveJobs(jobs, runResult) {
     }
 
     const nextAttempts = job.attempts + 1;
-    const errorMessage =
-      runResult.error ||
-      (runResult.code !== 0
-        ? `autoSyncMatches.js --post-match-only exited with code ${runResult.code}`
-        : "stats_synced still false after post-match-only run");
+    const errorMessage = errorMessageFor(job);
 
     if (nextAttempts >= job.max_attempts) {
       const { error: updateError } = await supabase
@@ -155,20 +225,21 @@ async function resolveJobs(jobs, runResult) {
         throw updateError;
       }
 
-      // Stop syncFinishedMapStats() (autoSyncMatches.js) from rescanning
-      // this match on every future run — a job hitting max_attempts means
-      // FACEIT has genuinely never returned usable stats for it, so
-      // retrying forever would just keep starving newer matches out of
-      // the batch. Best-effort: the job itself is already marked failed
-      // above regardless of whether this second write succeeds.
+      // Stop the corresponding backlog scan (syncFinishedMapStats() for
+      // stats, backfillMatchStatJobs.js's demo pass for demos) from
+      // rescanning this match forever — hitting max_attempts means FACEIT
+      // has genuinely never returned usable data for it (stats 404s,
+      // forfeited match with no demo, etc). Best-effort: the job itself is
+      // already marked failed above regardless of whether this write
+      // succeeds.
       const { error: matchUpdateError } = await supabase
         .from("matches")
-        .update({ stats_unavailable: true })
+        .update({ [unavailableColumn]: true })
         .eq("id", job.match_id);
 
       if (matchUpdateError) {
         console.warn(
-          `[stat-jobs] failed to flag ${job.match_id} as stats_unavailable: ${matchUpdateError.message}`
+          `[stat-jobs] failed to flag ${job.match_id} as ${unavailableColumn}: ${matchUpdateError.message}`
         );
       }
 
@@ -177,7 +248,7 @@ async function resolveJobs(jobs, runResult) {
     }
 
     const nextAttemptAt = new Date(
-      Date.now() + backoffMs(nextAttempts)
+      Date.now() + backoffMs(nextAttempts, baseBackoffMs)
     ).toISOString();
 
     const { error: updateError } = await supabase
@@ -209,28 +280,66 @@ async function main() {
     return;
   }
 
+  const statsJobs = jobs.filter((job) => job.job_type === "stats_sync");
+  const demoJobs = jobs.filter((job) => job.job_type === "demo_sync");
+
   console.log(
-    `[stat-jobs] claimed ${jobs.length} job(s): ${jobs
-      .map((job) => job.match_id)
+    `[stat-jobs] claimed ${jobs.length} job(s) — stats_sync=${statsJobs.length} demo_sync=${demoJobs.length}: ${jobs
+      .map((job) => `${job.match_id}:${job.job_type}`)
       .join(", ")}`
   );
 
-  const runResult = await runPostMatchOnly();
+  let statsSummary = { done: 0, retried: 0, failedPermanently: 0 };
+  let demoSummary = { done: 0, retried: 0, failedPermanently: 0 };
 
-  if (runResult.code !== 0) {
-    console.warn(
-      `[stat-jobs] autoSyncMatches.js --post-match-only exited with code ${runResult.code}` +
-        (runResult.error ? ` (${runResult.error})` : "")
-    );
+  if (statsJobs.length > 0) {
+    const runResult = await runPostMatchOnly();
+
+    if (runResult.code !== 0) {
+      console.warn(
+        `[stat-jobs] autoSyncMatches.js --post-match-only exited with code ${runResult.code}` +
+          (runResult.error ? ` (${runResult.error})` : "")
+      );
+    }
+
+    statsSummary = await resolveJobGroup(statsJobs, {
+      column: "stats_synced",
+      unavailableColumn: "stats_unavailable",
+      baseBackoffMs: BASE_BACKOFF_MS,
+      errorMessageFor: () =>
+        runResult.error ||
+        (runResult.code !== 0
+          ? `autoSyncMatches.js --post-match-only exited with code ${runResult.code}`
+          : "stats_synced still false after post-match-only run"),
+    });
   }
 
-  const summary = await resolveJobs(jobs, runResult);
+  if (demoJobs.length > 0) {
+    const demoMatchIds = [...new Set(demoJobs.map((job) => job.match_id))];
+    const demoResults = await runDemoJobs(demoMatchIds);
+
+    demoSummary = await resolveJobGroup(demoJobs, {
+      column: "demo_synced",
+      unavailableColumn: "demo_unavailable",
+      baseBackoffMs: DEMO_JOBS_BASE_BACKOFF_MS,
+      errorMessageFor: (job) => {
+        const result = demoResults.get(job.match_id) || { code: null, error: null };
+        return (
+          result.error ||
+          (result.code !== 0
+            ? `fetchMatchDemo.js exited with code ${result.code}`
+            : "demo_synced still false after fetchMatchDemo.js run")
+        );
+      },
+    });
+  }
 
   console.log(
     JSON.stringify({
       ok: true,
       claimed: jobs.length,
-      ...summary,
+      stats: statsSummary,
+      demo: demoSummary,
     })
   );
 }

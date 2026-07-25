@@ -1,14 +1,16 @@
-// ESEA Tracker — match_stat_jobs backlog backfill (Этап 5, автономность).
+// ESEA Tracker — match_stat_jobs backlog backfill (Этап 5, автономность;
+// demo_sync добавлен вместе с 0009_match_demo_sync.sql).
 //
 // One-shot, idempotent seeder. Finds FINISHED matches with
-// stats_synced=false that don't yet have a stats_sync job and enqueues
-// them — the existing scripts/processMatchStatJobs.js consumer (and the
-// unchanged autoSyncMatches.js --post-match-only pipeline it spawns) does
-// all the actual stats fetching/saving. This script contains NO
-// stats-fetching logic of its own — it only creates match_stat_jobs rows,
+// stats_synced=false / demo_synced=false that don't yet have the
+// corresponding job and enqueues them — the existing
+// scripts/processMatchStatJobs.js consumer (and the pipelines it spawns:
+// autoSyncMatches.js --post-match-only for stats, fetchMatchDemo.js for
+// demos) does all the actual fetching/saving. This script contains NO
+// fetching logic of its own — it only creates match_stat_jobs rows,
 // exactly like worker.js/autoSyncMatches.js already do for newly-finished
 // matches, just retroactively for matches that finished before the job
-// queue existed.
+// queue existed (or before this job_type existed).
 //
 // Safe to run on every cron tick forever: once the backlog is drained, the
 // query below returns nothing and the run is a fast no-op — there is no
@@ -42,7 +44,7 @@ const UPSERT_BATCH_SIZE = 500;
 
 const FINISHED_STATUSES = ["FINISHED", "MATCH_STATUS_FINISHED"];
 
-async function fetchUnsyncedFinishedMatchIds() {
+async function fetchFinishedMatchIdsMissing(column) {
   const ids = [];
   let from = 0;
 
@@ -51,7 +53,7 @@ async function fetchUnsyncedFinishedMatchIds() {
       .from("matches")
       .select("id")
       .in("status", FINISHED_STATUSES)
-      .eq("stats_synced", false)
+      .eq(column, false)
       .order("finished_at", {
         ascending: true,
         nullsFirst: false,
@@ -75,7 +77,7 @@ async function fetchUnsyncedFinishedMatchIds() {
   return ids;
 }
 
-async function enqueueJobs(matchIds) {
+async function enqueueJobs(matchIds, jobType, extraFields = {}) {
   let created = 0;
 
   for (
@@ -87,7 +89,8 @@ async function enqueueJobs(matchIds) {
       .slice(index, index + UPSERT_BATCH_SIZE)
       .map((matchId) => ({
         match_id: matchId,
-        job_type: "stats_sync",
+        job_type: jobType,
+        ...extraFields,
       }));
 
     const { data, error } = await supabase
@@ -113,28 +116,38 @@ async function enqueueJobs(matchIds) {
 }
 
 async function main() {
-  const matchIds = await fetchUnsyncedFinishedMatchIds();
+  const statsMatchIds = await fetchFinishedMatchIdsMissing("stats_synced");
 
-  if (matchIds.length === 0) {
-    console.log(
-      JSON.stringify({
-        ok: true,
-        candidates: 0,
-        created: 0,
-        message: "backlog empty",
-      })
-    );
-    return;
-  }
+  const statsCreated =
+    statsMatchIds.length > 0
+      ? await enqueueJobs(statsMatchIds, "stats_sync")
+      : 0;
 
-  const created = await enqueueJobs(matchIds);
+  // demo_sync — same backlog-drain pattern as stats_sync above, just keyed
+  // off matches.demo_synced (see 0009_match_demo_sync.sql). Higher
+  // max_attempts than the stats_sync default (5), matching the value used
+  // by the two live producers (worker.js/autoSyncMatches.js) at
+  // FINISHED-transition time.
+  const demoMatchIds = await fetchFinishedMatchIdsMissing("demo_synced");
+
+  const demoCreated =
+    demoMatchIds.length > 0
+      ? await enqueueJobs(demoMatchIds, "demo_sync", { max_attempts: 20 })
+      : 0;
 
   console.log(
     JSON.stringify({
       ok: true,
-      candidates: matchIds.length,
-      created,
-      alreadyQueued: matchIds.length - created,
+      stats: {
+        candidates: statsMatchIds.length,
+        created: statsCreated,
+        alreadyQueued: statsMatchIds.length - statsCreated,
+      },
+      demo: {
+        candidates: demoMatchIds.length,
+        created: demoCreated,
+        alreadyQueued: demoMatchIds.length - demoCreated,
+      },
     })
   );
 }

@@ -456,6 +456,33 @@ async function createStatJobIfFinished(matchId, status) {
       `[worker] failed to enqueue stats job for ${matchId}: ${formatFetchError(error)}`
     );
   }
+
+  // demo_sync — same queue/table, different job_type (see
+  // 0009_match_demo_sync.sql). Higher max_attempts than the stats_sync
+  // default (5): FACEIT can take much longer to render/upload a demo than
+  // to expose match stats, so this job type needs more retry budget at the
+  // same backoff cadence rather than a longer per-attempt wait.
+  try {
+    const { error } = await supabase.from("match_stat_jobs").upsert(
+      {
+        match_id: matchId,
+        job_type: "demo_sync",
+        max_attempts: 20,
+      },
+      {
+        onConflict: "match_id,job_type",
+        ignoreDuplicates: true,
+      }
+    );
+
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    console.warn(
+      `[worker] failed to enqueue demo job for ${matchId}: ${formatFetchError(error)}`
+    );
+  }
 }
 
 async function logHeartbeat(row) {

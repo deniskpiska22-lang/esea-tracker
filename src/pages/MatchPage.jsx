@@ -156,6 +156,11 @@ function normalizeDatabaseMatch(row) {
     row.player_stats
   );
 
+  const rawDemoUrls = parseJsonValue(
+    row.demo_urls,
+    []
+  );
+
   return {
     id: row.id,
     matchId: row.id,
@@ -239,6 +244,20 @@ function normalizeDatabaseMatch(row) {
 
     statsSynced:
       Boolean(row.stats_synced),
+
+    // demo_urls order matches map_scores/maps order (both come from the
+    // same FACEIT match object — one entry per map played), see
+    // 0009_match_demo_sync.sql.
+    demoUrls:
+      Array.isArray(rawDemoUrls)
+        ? rawDemoUrls
+        : [],
+
+    demoSynced:
+      Boolean(row.demo_synced),
+
+    demoUnavailable:
+      Boolean(row.demo_unavailable),
 
     faceitUrl:
       row.faceit_url ||
@@ -1667,7 +1686,11 @@ function FinishedMapsPanel({
   maps,
   team1,
   team2,
+  demoUrls,
+  demoUnavailable,
 }) {
+  const demos = Array.isArray(demoUrls) ? demoUrls : [];
+
   if (!Array.isArray(maps) || maps.length === 0) {
     return (
       <section className="mt-8 overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
@@ -1699,6 +1722,11 @@ function FinishedMapsPanel({
         <p className="mt-1 text-xs text-slate-500">
           Full series breakdown
         </p>
+        {demos.length === 0 && !demoUnavailable && (
+          <p className="mt-1 text-xs text-slate-500">
+            Demo is processing, it will appear here automatically
+          </p>
+        )}
       </div>
 
       <div>
@@ -1746,6 +1774,16 @@ function FinishedMapsPanel({
                   <div className="mt-1 text-xl font-black text-white">
                     {formattedName}
                   </div>
+                  {demos[index] && (
+                    <a
+                      href={demos[index]}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-block rounded-lg border border-orange-500/40 px-3 py-1 text-xs font-bold text-orange-400 transition hover:bg-orange-500/10"
+                    >
+                      Download Demo
+                    </a>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-end gap-3 sm:justify-start">
@@ -2420,6 +2458,8 @@ function MatchPage() {
             maps={displayedMapScores}
             team1={displayTeam1}
             team2={displayTeam2}
+            demoUrls={liveData?.demoUrls}
+            demoUnavailable={Boolean(liveData?.demoUnavailable)}
           />
         )}
 
