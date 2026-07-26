@@ -5,6 +5,7 @@ import {
   countHeadToHeadMapWins,
 } from "../utils/headToHead";
 import { formatMapName } from "../utils/formatMapName";
+import TournamentNameLink from "./TournamentNameLink";
 
 function HeadToHeadRow({ row, team1, team2, stripe }) {
   return (
@@ -36,7 +37,7 @@ function HeadToHeadRow({ row, team1, team2, stripe }) {
       </div>
 
       <span className="truncate text-center text-xs text-slate-500">
-        {row.season || ""}
+        {row.season && <TournamentNameLink name={row.season} />}
       </span>
 
       <div className="flex shrink-0 items-center gap-3 justify-self-end">

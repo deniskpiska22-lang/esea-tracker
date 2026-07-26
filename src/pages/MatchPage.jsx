@@ -22,6 +22,7 @@ import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
+import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
 
 const LIVE_STATUSES = new Set([
@@ -970,7 +971,9 @@ function MatchInformationCard({
         </div>
         <div>
           <div className="text-sm text-gray-500">League</div>
-          <div className="font-bold">{season}</div>
+          <div className="font-bold">
+            <TournamentNameLink name={season} />
+          </div>
         </div>
         <div>
           <div className="text-sm text-gray-500">Match Date</div>
@@ -1576,7 +1579,7 @@ function FinishedMatchHero({
           <div className="mt-9 border-t border-[#263244] pt-6">
             <div className="text-center">
               <div className="font-bold text-slate-300">
-                {season}
+                <TournamentNameLink name={season} />
               </div>
               <div className="mt-1 text-sm text-slate-500">
                 {formatDateTime(date)}
@@ -2202,7 +2205,7 @@ function MatchPage() {
                   </div>
 
                   <div className="mt-4 text-gray-400">
-                    {displaySeason}
+                    <TournamentNameLink name={displaySeason} />
                   </div>
 
                   <div className="mt-1 text-sm text-gray-500">
@@ -2586,7 +2589,7 @@ function MatchPage() {
                 </div>
 
                 <div className="text-lg font-bold">
-                  {displaySeason}
+                  <TournamentNameLink name={displaySeason} />
                 </div>
               </div>
 

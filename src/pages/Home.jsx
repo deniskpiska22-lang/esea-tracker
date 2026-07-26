@@ -7,6 +7,7 @@ import teams from "../data/teams";
 import tournaments from "../data/tournaments";
 import { supabase } from "../lib/supabaseClient";
 import { getTournamentStatus } from "../utils/tournaments";
+import TournamentNameLink from "../components/TournamentNameLink";
 
 
 const LIVE_STATUSES = new Set([
@@ -854,10 +855,11 @@ function TournamentTierBadge({ tier }) {
 }
 
 function TournamentRow({ tournament, isLive }) {
-  const dateRange =
-    tournament.startDate && tournament.endDate
-      ? `${formatDate(tournament.startDate)} – ${formatDate(tournament.endDate)}`
-      : "Date TBD";
+  const dateRange = !tournament.startDate
+    ? "Date TBD"
+    : !tournament.endDate || tournament.endDate === tournament.startDate
+      ? formatDate(tournament.startDate)
+      : `${formatDate(tournament.startDate)} – ${formatDate(tournament.endDate)}`;
 
   const content = (
     <>
@@ -1022,7 +1024,7 @@ function HeroMatch({ match }) {
             )}
 
             <div className="mt-4 text-xs font-semibold text-slate-500">
-              {match.season || "ESEA League"}
+              <TournamentNameLink name={match.season || "ESEA League"} />
             </div>
           </Link>
 
@@ -1224,7 +1226,7 @@ function MatchCard({ match }) {
       </div>
 
       <div className="mt-4 truncate border-t border-white/[0.06] pt-3 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">
-        {match.season || "ESEA League"}
+        <TournamentNameLink name={match.season || "ESEA League"} />
       </div>
     </Link>
   );
@@ -1244,7 +1246,7 @@ function ResultCard({ match }) {
     >
       <div className="flex items-center justify-between text-xs">
         <div className="truncate text-slate-600">
-          {match.season || "ESEA League"}
+          <TournamentNameLink name={match.season || "ESEA League"} />
         </div>
         <div className="shrink-0 text-slate-600">
           {formatRelative(match.date)}

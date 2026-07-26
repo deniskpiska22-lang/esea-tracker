@@ -6,6 +6,7 @@ import {
 import teams from "../data/teams";
 import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
+import TournamentNameLink from "../components/TournamentNameLink";
 
 const MAP_IMAGE_ALIASES = {
   ancient: "ancient",
@@ -317,7 +318,12 @@ function StatsPage() {
                             </div>
                             <div className="mt-1 truncate text-xs text-[#587094]">
                               {formatDate(match.date)}
-                              {match.season ? ` · ${match.season}` : ""}
+                              {match.season && (
+                                <>
+                                  {" · "}
+                                  <TournamentNameLink name={match.season} />
+                                </>
+                              )}
                             </div>
                           </div>
 

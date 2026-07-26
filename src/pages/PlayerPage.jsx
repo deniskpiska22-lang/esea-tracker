@@ -20,6 +20,7 @@ import matchesData from "../data/matches.js";
 import { normalizeNickname } from "../utils/normalizeNickname";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { supabase } from "../lib/supabaseClient";
+import TournamentNameLink from "../components/TournamentNameLink";
 
 
 const FINISHED_STATUSES = [
@@ -1635,7 +1636,7 @@ const currentTeam =
                           </div>
 
                           <div className="mt-1 truncate text-xs text-slate-500">
-                            {match.season}
+                            <TournamentNameLink name={match.season} />
                           </div>
                         </div>
 

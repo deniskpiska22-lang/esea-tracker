@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 
 import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";
+import TournamentNameLink from "../components/TournamentNameLink";
 
 const FINISHED_STATUSES = ["FINISHED", "MATCH_STATUS_FINISHED"];
 
@@ -396,7 +397,9 @@ function MatchesPage() {
           groupedMatches.map(({ season, matches }) => (
             <div key={season} className="mb-10">
               <div className="mb-4 rounded-xl bg-[#1a2330] p-4">
-                <h2 className="text-xl font-bold">{season}</h2>
+                <h2 className="text-xl font-bold">
+                  <TournamentNameLink name={season} />
+                </h2>
               </div>
 
               <div className="space-y-3">
