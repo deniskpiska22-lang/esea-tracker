@@ -67,19 +67,15 @@ function formatDateRange(startDate, endDate) {
   return `${formatDate(startDate)} – ${formatDate(endDate)}`;
 }
 
-const TIER_STYLES = {
-  S: "border-orange-500/20 bg-orange-500/10 text-orange-400",
-  A: "border-sky-500/20 bg-sky-500/10 text-sky-400",
-  B: "border-emerald-500/20 bg-emerald-500/10 text-emerald-400",
-};
+
 
 function InfoPill({ label, value }) {
   if (!value) return null;
 
   return (
-    <div className="rounded-xl border border-[#2a3546] bg-[#111923] px-4 py-2">
-      <span className="text-xs text-slate-500">{label}</span>
-      <span className="ml-2 text-sm font-bold text-slate-200">{value}</span>
+    <div className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.035] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-sm transition hover:border-orange-400/20 hover:bg-white/[0.05]">
+      <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
+      <span className="mt-1 block text-sm font-black text-slate-100">{value}</span>
     </div>
   );
 }
@@ -88,29 +84,29 @@ function Accordion({ title, subtitle, defaultOpen = true, children }) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+    <section className="group overflow-hidden rounded-[28px] border border-white/[0.07] bg-[#0d141e]/95 shadow-[0_18px_55px_rgba(0,0,0,0.22)] backdrop-blur-xl">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
+        className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition hover:bg-white/[0.025] sm:px-7"
       >
         <div>
-          <h2 className="text-xl font-black">{title}</h2>
+          <div className="flex items-center gap-3"><span className="h-6 w-1 rounded-full bg-gradient-to-b from-orange-400 to-orange-600" /><h2 className="text-xl font-black tracking-tight text-white sm:text-[22px]">{title}</h2></div>
           {subtitle && (
-            <p className="mt-1 text-xs text-slate-500">{subtitle}</p>
+            <p className="mt-1.5 pl-4 text-xs font-semibold text-slate-500">{subtitle}</p>
           )}
         </div>
 
         <span
-          className={`shrink-0 text-slate-500 transition-transform ${
-            open ? "rotate-180" : ""
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.035] text-slate-400 transition-all duration-300 ${
+            open ? "rotate-180 border-orange-400/20 text-orange-400" : ""
           }`}
         >
           ▾
         </span>
       </button>
 
-      {open && <div className="border-t border-[#263244]">{children}</div>}
+      {open && <div className="border-t border-white/[0.06]">{children}</div>}
     </section>
   );
 }
@@ -118,7 +114,7 @@ function Accordion({ title, subtitle, defaultOpen = true, children }) {
 function EmptyState({ children }) {
   return (
     <div className="p-6">
-      <div className="rounded-2xl border border-dashed border-[#2a3546] bg-[#0b1119] p-6 text-center text-sm text-slate-500">
+      <div className="rounded-2xl border border-dashed border-white/[0.09] bg-black/20 p-8 text-center text-sm font-semibold text-slate-500">
         {children}
       </div>
     </div>
@@ -132,7 +128,7 @@ function TeamAttendingCard({ team }) {
   const isTbd = !team?.name;
 
   const content = (
-    <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#1d2634] bg-[#0b1119] p-4 text-center transition hover:border-orange-500/30">
+    <div className="group/card relative flex min-h-[184px] flex-col items-center gap-3 overflow-hidden rounded-[22px] border border-white/[0.065] bg-gradient-to-b from-white/[0.04] to-black/10 p-4 text-center shadow-[0_12px_30px_rgba(0,0,0,0.14)] transition duration-300 hover:-translate-y-1 hover:border-orange-400/25 hover:shadow-[0_18px_40px_rgba(0,0,0,0.24)]">
       <div className="flex w-full items-center justify-between text-[10px] font-black">
         {team?.rank ? (
           <span className="rounded bg-sky-500/15 px-1.5 py-0.5 text-sky-400">
@@ -157,7 +153,7 @@ function TeamAttendingCard({ team }) {
         <img
           src={logo}
           alt=""
-          className="h-16 w-16 rounded-xl bg-[#0b0f14] object-contain p-2"
+          className="h-16 w-16 rounded-2xl border border-white/[0.06] bg-black/25 object-contain p-2 shadow-lg transition duration-300 group-hover/card:scale-105"
         />
       ) : (
         <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-[#243041] bg-[#0b0f14] text-lg font-black text-slate-600">
@@ -202,7 +198,7 @@ function TeamAttendingCard({ team }) {
 function PrizeDistributionCard({ entry }) {
   return (
     <div
-      className={`rounded-2xl border border-[#1d2634] bg-[#0b1119] p-4 text-center ${
+      className={`relative overflow-hidden rounded-[22px] border border-white/[0.065] bg-gradient-to-b from-white/[0.045] to-black/10 p-5 text-center shadow-[0_12px_30px_rgba(0,0,0,0.14)] transition duration-300 hover:-translate-y-1 hover:border-orange-400/20 ${
         entry.wide ? "sm:col-span-2" : ""
       }`}
     >
@@ -231,7 +227,7 @@ function PrizeDistributionCard({ entry }) {
 
 function MapPoolGrid({ maps }) {
   return (
-    <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-3 sm:p-6 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-3 sm:gap-4 sm:p-7 lg:grid-cols-4 xl:grid-cols-5">
       {maps.map((map) => {
         const name = formatMapName(map);
         const slug = String(map || "")
@@ -242,18 +238,18 @@ function MapPoolGrid({ maps }) {
         return (
           <div
             key={map}
-            className="relative flex h-20 items-end overflow-hidden rounded-xl border border-[#1d2634] bg-[#0b1119]"
+            className="group/map relative flex h-28 items-end overflow-hidden rounded-[20px] border border-white/[0.07] bg-[#0b1119] shadow-[0_12px_28px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-1 hover:border-orange-400/30"
           >
             <img
               src={`/maps/${slug}.png`}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              className="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-500 group-hover/map:scale-110 group-hover/map:opacity-75"
               onError={(event) => {
                 event.currentTarget.style.display = "none";
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-            <div className="relative w-full px-3 py-2 text-sm font-black text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+            <div className="relative w-full px-4 py-3 text-sm font-black tracking-wide text-white">
               {name}
             </div>
           </div>
@@ -265,10 +261,10 @@ function MapPoolGrid({ maps }) {
 
 function RelatedEventsList({ events }) {
   return (
-    <div className="divide-y divide-[#1d2634]">
+    <div className="divide-y divide-white/[0.06]">
       {events.map((event, index) => {
         const content = (
-          <div className="px-5 py-3 text-sm font-semibold text-slate-300 transition hover:text-orange-400 sm:px-6">
+          <div className="flex items-center justify-between px-5 py-4 text-sm font-bold text-slate-300 transition hover:bg-white/[0.025] hover:text-orange-400 sm:px-7">
             {event.name}
           </div>
         );
@@ -308,7 +304,7 @@ function MatchScheduleRow({ match }) {
   const team2Won = played && match.score2 > match.score1;
 
   const content = (
-    <div className="grid grid-cols-[minmax(0,1fr)_64px_minmax(0,1fr)] items-center gap-2 rounded-xl border border-[#1d2634] bg-[#0b1119] px-4 py-3 transition hover:border-orange-500/30">
+    <div className="group/match grid grid-cols-[minmax(0,1fr)_74px_minmax(0,1fr)] items-center gap-3 rounded-[20px] border border-white/[0.065] bg-gradient-to-r from-white/[0.035] via-white/[0.02] to-white/[0.035] px-4 py-4 shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-0.5 hover:border-orange-400/25 hover:bg-white/[0.045] sm:px-5">
       <div className="flex items-center justify-end gap-2 text-right">
         <span
           className={`truncate text-sm font-bold ${
@@ -321,12 +317,12 @@ function MatchScheduleRow({ match }) {
           <img
             src={team1.logo}
             alt=""
-            className="h-6 w-6 shrink-0 rounded-sm object-contain"
+            className="h-8 w-8 shrink-0 rounded-lg border border-white/[0.05] bg-black/20 object-contain p-1"
           />
         )}
       </div>
 
-      <div className="text-center text-sm font-black text-white">
+      <div className="rounded-xl border border-white/[0.07] bg-black/25 px-2 py-2 text-center text-sm font-black text-white shadow-inner">
         {played ? `${match.score1} : ${match.score2}` : "vs"}
       </div>
 
@@ -335,7 +331,7 @@ function MatchScheduleRow({ match }) {
           <img
             src={team2.logo}
             alt=""
-            className="h-6 w-6 shrink-0 rounded-sm object-contain"
+            className="h-8 w-8 shrink-0 rounded-lg border border-white/[0.05] bg-black/20 object-contain p-1"
           />
         )}
         <span
@@ -370,10 +366,10 @@ function MatchesSchedule({ matches }) {
   });
 
   return (
-    <div className="space-y-5 p-5 sm:p-6">
+    <div className="space-y-7 p-5 sm:p-7">
       {[...groups.entries()].map(([date, items]) => (
         <div key={date}>
-          <div className="mb-2 text-xs font-black uppercase tracking-wide text-slate-500">
+          <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">
             {date}
           </div>
           <div className="space-y-2">
@@ -392,7 +388,7 @@ function GroupSection({ group }) {
 
   return (
     <div className="p-5 sm:p-6">
-      <div className="mb-2 text-xs font-black uppercase tracking-wide text-slate-500">
+      <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">
         Upper Bracket
       </div>
       <Bracket rounds={group.upper} />
@@ -408,7 +404,7 @@ function GroupSection({ group }) {
 
       {group.final && (
         <div className="mt-6">
-          <div className="mb-2 text-xs font-black uppercase tracking-wide text-slate-500">
+          <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">
             Group Final
           </div>
           <div className="max-w-[220px]">
@@ -619,64 +615,59 @@ function TournamentPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1200px]">
+    <div className="relative min-h-screen overflow-hidden bg-[#070c12] px-4 py-6 text-white sm:px-6 lg:px-8 lg:py-8">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-12rem] top-20 h-[34rem] w-[34rem] rounded-full bg-orange-500/[0.055] blur-[110px]" />
+        <div className="absolute right-[-14rem] top-[28rem] h-[38rem] w-[38rem] rounded-full bg-sky-500/[0.045] blur-[120px]" />
+        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:42px_42px]" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-[1320px]">
         <Link
           to="/calendar"
-          className="text-orange-400 hover:text-orange-300"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2 text-sm font-bold text-orange-400 transition hover:border-orange-400/20 hover:bg-orange-500/[0.06] hover:text-orange-300"
         >
           ← Back to Calendar
         </Link>
 
         {/* HERO */}
-        <section className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#0f1620] p-6 shadow-2xl shadow-black/20 md:p-10">
+        <section className="relative mt-5 overflow-hidden rounded-[34px] border border-white/[0.08] bg-gradient-to-br from-[#121b27] via-[#0d141e] to-[#0a1018] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.42)] md:p-10 lg:p-12">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/80 to-transparent" />
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-28 -top-32 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
-            <div className="absolute -right-28 -bottom-36 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />
+            <div className="absolute inset-0 opacity-[0.05] [background-image:radial-gradient(circle_at_center,white_1px,transparent_1px)] [background-size:22px_22px]" />
+            <div className="absolute -left-28 -top-32 h-96 w-96 rounded-full bg-orange-500/15 blur-3xl" />
+            <div className="absolute -right-28 -bottom-36 h-96 w-96 rounded-full bg-sky-500/12 blur-3xl" />
           </div>
 
-          <div className="relative flex flex-col items-center gap-6 md:flex-row md:items-center">
-            {tournament.logo ? (
-              <img
-                src={tournament.logo}
-                alt=""
-                className="h-28 w-28 shrink-0 rounded-2xl bg-[#0b0f14] object-contain p-3"
-              />
-            ) : (
-              <div
-                className={`flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl border text-3xl font-black ${
-                  TIER_STYLES[tournament.tier] ||
-                  "border-slate-600/30 bg-slate-500/10 text-slate-400"
-                }`}
-              >
-                {tournament.tier || "?"}
-              </div>
-            )}
+          <div className="relative flex flex-col items-center gap-8 md:flex-row md:items-center lg:gap-12">
+            {tournament.logo && (
+  <img
+    src={tournament.logo}
+    alt=""
+    className="h-32 w-32 shrink-0 rounded-[28px] border border-white/[0.08] bg-black/25 object-contain p-4 shadow-[0_22px_55px_rgba(0,0,0,0.35)] md:h-40 md:w-40"
+  />
+)}
 
             <div className="min-w-0 text-center md:text-left">
               <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
-                <span
-                  className={`rounded-lg border px-3 py-1 text-xs font-black uppercase tracking-[0.18em] ${
-                    TIER_STYLES[tournament.tier] ||
-                    "border-slate-600/30 bg-slate-500/10 text-slate-400"
-                  }`}
-                >
-                  {tournament.tier || "?"}
-                </span>
+                
 
-                {isLive && (
+                {isLive ? (
                   <span className="flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/15 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-red-400">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
                     Live
                   </span>
+                ) : (
+                  <span className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+                    {status || "upcoming"}
+                  </span>
                 )}
               </div>
 
-              <h1 className="mt-3 truncate text-3xl font-black tracking-tight text-white md:text-5xl">
+              <h1 className="mt-4 max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.035em] text-white sm:text-4xl md:text-6xl">
                 {tournament.name}
               </h1>
 
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                 <InfoPill label="Location" value={tournament.location} />
                 <InfoPill
                   label="Dates"
@@ -694,7 +685,7 @@ function TournamentPage() {
                   href={tournament.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-flex rounded-xl bg-orange-500 px-5 py-2.5 text-sm font-bold transition hover:bg-orange-600"
+                  className="mt-7 inline-flex items-center rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-3 text-sm font-black text-white shadow-[0_12px_30px_rgba(249,115,22,0.25)] transition hover:-translate-y-0.5 hover:from-orange-400 hover:to-orange-500"
                 >
                   View source →
                 </a>
@@ -708,7 +699,7 @@ function TournamentPage() {
           <div className="mt-6">
             <Accordion title="Overview">
               <div className="p-5 sm:p-6">
-                <p className="leading-7 text-slate-300">
+                <p className="max-w-4xl text-[15px] leading-8 text-slate-300">
                   {tournament.description}
                 </p>
               </div>
@@ -763,7 +754,7 @@ function TournamentPage() {
             }
           >
             {teamsList.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-3 sm:p-6 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-3 sm:gap-4 sm:p-7 lg:grid-cols-4 xl:grid-cols-5">
                 {teamsList.map((team, index) => (
                   <TeamAttendingCard
                     key={`${team.name}-${index}`}
@@ -783,7 +774,7 @@ function TournamentPage() {
         {prizeDistribution.length > 0 && (
           <div className="mt-6">
             <Accordion title="Prize distribution">
-              <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-4 sm:p-6">
+              <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-4 sm:gap-4 sm:p-7">
                 {prizeDistribution.map((entry, index) => (
                   <PrizeDistributionCard key={index} entry={entry} />
                 ))}
@@ -796,7 +787,7 @@ function TournamentPage() {
         {hasFormats && (
           <div className="mt-6">
             <Accordion title="Formats">
-              <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-2 sm:p-6">
+              <div className="grid grid-cols-1 gap-5 p-5 sm:grid-cols-2 sm:p-7">
                 {tournament.formats.groupStage?.length > 0 && (
                   <div>
                     <div className="text-xs font-black uppercase tracking-wide text-slate-500">
