@@ -318,8 +318,8 @@ function App() {
       label: "Rankings",
     },
     {
-      path: "/media",
-      label: "Media",
+      path: "/calendar",
+      label: "Events",
     },
     {
       path: "/about",
