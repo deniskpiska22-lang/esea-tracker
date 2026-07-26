@@ -18,6 +18,7 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
+import { countHeadToHeadMapWins } from "../utils/headToHead";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
@@ -2151,38 +2152,12 @@ function MatchPage() {
     ).values(),
   ];
 
-  let leftTeamWins = 0;
-  let rightTeamWins = 0;
-
-  uniqueH2HMatches.forEach(
-    (item) => {
-      const [teamScore, opponentScore] =
-        String(item.boScore)
-          .split(":")
-          .map(Number);
-
-      const itemIsLeftTeam =
-        item.teamSlug ===
-        leftLocalTeam?.slug;
-
-      if (itemIsLeftTeam) {
-        if (
-          teamScore >
-          opponentScore
-        ) {
-          leftTeamWins += 1;
-        } else {
-          rightTeamWins += 1;
-        }
-      } else if (
-        teamScore >
-        opponentScore
-      ) {
-        rightTeamWins += 1;
-      } else {
-        leftTeamWins += 1;
-      }
-    }
+  const {
+    leftWins: leftTeamWins,
+    rightWins: rightTeamWins,
+  } = countHeadToHeadMapWins(
+    uniqueH2HMatches,
+    leftLocalTeam?.slug
   );
 
   const formatH2HScore = (
