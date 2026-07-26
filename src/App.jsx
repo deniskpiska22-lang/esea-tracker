@@ -574,14 +574,14 @@ function App() {
                     to="/login"
                     className="hidden h-11 items-center rounded-2xl px-3 text-sm font-bold text-gray-400 transition hover:bg-white/[0.04] hover:text-white sm:flex"
                   >
-                    {tr("Войти", "Log in")}
+                    Log in
                   </Link>
 
                   <Link
                     to="/register"
                     className="flex h-11 items-center rounded-2xl border border-orange-400/20 bg-orange-500/10 px-4 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
                   >
-                    {tr("Регистрация", "Sign up")}
+                    Sign up
                   </Link>
                 </>
               )}
