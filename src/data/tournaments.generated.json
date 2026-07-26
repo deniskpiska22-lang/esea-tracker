@@ -1,0 +1,1055 @@
+[
+  {
+    "id": "esea-finals-s57",
+    "championshipId": "cb6bfac6-dc14-4995-a170-909392cec298",
+    "name": "ESEA Finals S57",
+    "logo": null,
+    "tier": "A",
+    "location": "Online",
+    "startDate": "2026-06-16",
+    "endDate": "2026-06-21",
+    "url": null,
+    "prizePool": null,
+    "description": "Season 57 finals bracket, imported from FACEIT — matches only, no team roster import. Teams already tracked in the rating are automatically affected by these results.",
+    "formats": null,
+    "teams": [
+      {
+        "name": "Arch",
+        "logo": "https://distribution.faceit-cdn.net/images/28b1d153-aaa4-4b67-9a5e-c5bfa3215c1c.jpeg",
+        "slug": "arch-3cb28ef5"
+      },
+      {
+        "name": "ReThink",
+        "logo": "https://distribution.faceit-cdn.net/images/9d3a2374-d32b-4de5-8b8d-70cdc82c11a3.jpg",
+        "slug": "rethink-eb87f9fb"
+      },
+      {
+        "name": "Fire Flux TitanSeat",
+        "logo": "https://distribution.faceit-cdn.net/images/e082b246-ff19-4db3-9a22-6528be533ab1.jpg",
+        "slug": "fire-flux-titanseat-523a3f42"
+      },
+      {
+        "name": "QUAZAR",
+        "logo": "https://distribution.faceit-cdn.net/images/427bd8f9-38d9-4200-afc3-972a9e32f7ba.jpeg",
+        "slug": "quazar-27eab7ad"
+      },
+      {
+        "name": "IC Academy",
+        "logo": "https://distribution.faceit-cdn.net/images/3b56e8a7-9286-41ac-b2a6-57b93de39ef2.jpg",
+        "slug": "ic-academy-ecdc2723"
+      },
+      {
+        "name": "Banda chuya",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "banda-chuya-lfo-3f0342b6"
+      },
+      {
+        "name": "Sangal 1XALTERS",
+        "logo": "https://distribution.faceit-cdn.net/images/5a115548-a272-4e8e-8ef9-b14de3287ee8.jpg",
+        "slug": "sangal-1xalters-91756434"
+      },
+      {
+        "name": "NAVI Junior",
+        "logo": "https://distribution.faceit-cdn.net/images/5b8e6f96-826c-4bed-a1a5-c5bbcdf2cf72.jpg",
+        "slug": "navi-junior-05eaa5ef"
+      },
+      {
+        "name": "EsportBERG",
+        "logo": "https://distribution.faceit-cdn.net/images/38087eac-f357-4401-87ef-d1e30757c3e4.jpg",
+        "slug": "esportberg-7536d4f2"
+      },
+      {
+        "name": "SNITKO Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/48946c7a-8100-4db4-97fc-963b7a1910cb.jpg",
+        "slug": "lfo-ukraine-1c495a25"
+      },
+      {
+        "name": "WBT Academy",
+        "logo": "https://distribution.faceit-cdn.net/images/ad1cb945-797d-49fb-bc5e-5f50e169f076.jpg",
+        "slug": "wbt-01c6e989"
+      },
+      {
+        "name": "WeClear",
+        "logo": "https://distribution.faceit-cdn.net/images/71083f6f-958c-45ac-9c0b-6d5f601afdbe.jpg",
+        "slug": "weclear-3c0c71e3"
+      },
+      {
+        "name": "unknowns",
+        "logo": "https://distribution.faceit-cdn.net/images/c79c0142-8e54-4ecc-ab5a-7f08ee8684cc.jpg",
+        "slug": "unknowns-15cf1709"
+      },
+      {
+        "name": "BAKS Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/b0dcb6d9-fe0c-45d5-bc94-d402f530cfc0.jpg",
+        "slug": "baks-esports-3afba5b9"
+      },
+      {
+        "name": "Diamonds",
+        "logo": "https://distribution.faceit-cdn.net/images/f444f300-1114-4f29-a4fe-667d789a4a20.jpg",
+        "slug": "diamonds-deca51d6"
+      },
+      {
+        "name": "de verdwaalde honden",
+        "logo": "https://distribution.faceit-cdn.net/images/a53f8cd6-3e94-415f-a78e-5ebff9e08b2b.jpg",
+        "slug": "verdwaalde-senshi-4bedc37d"
+      },
+      {
+        "name": "Spectrum",
+        "logo": "https://distribution.faceit-cdn.net/images/66a1c54b-66fe-4159-85fd-7af60553c6e5.jpg",
+        "slug": "spectrum-4f3beb64"
+      },
+      {
+        "name": "Arthrose Peek",
+        "logo": "https://distribution.faceit-cdn.net/images/29d6ee0e-ed7e-4e2a-a8d2-4592581551f5.jpg",
+        "slug": "arthrose-peek-be234f2d"
+      },
+      {
+        "name": "PENSIONERS",
+        "logo": "https://distribution.faceit-cdn.net/images/110f4708-fea5-49f9-9fa2-bae9d76d2079.jpg",
+        "slug": "pensioners-334ded4b"
+      },
+      {
+        "name": "Hermine Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/46ebd171-da24-4402-ac92-630dcd443351.jpeg",
+        "slug": "hermine-esports-40ee7839"
+      }
+    ],
+    "bracket": {
+      "rounds": [
+        {
+          "name": "Round 1",
+          "matches": [
+            {
+              "team1": {
+                "name": "unknowns",
+                "logo": "https://distribution.faceit-cdn.net/images/c79c0142-8e54-4ecc-ab5a-7f08ee8684cc.jpg"
+              },
+              "team2": {
+                "name": "Arthrose Peek",
+                "logo": "https://distribution.faceit-cdn.net/images/29d6ee0e-ed7e-4e2a-a8d2-4592581551f5.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-66ec6f73-a9fd-4650-a339-8afbc016e964"
+            },
+            {
+              "team1": {
+                "name": "BAKS Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/b0dcb6d9-fe0c-45d5-bc94-d402f530cfc0.jpg"
+              },
+              "team2": {
+                "name": "Diamonds",
+                "logo": "https://distribution.faceit-cdn.net/images/f444f300-1114-4f29-a4fe-667d789a4a20.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-303ede98-8f28-439d-9d9e-71449ba5ab4f"
+            },
+            {
+              "team1": {
+                "name": "WeClear",
+                "logo": "https://distribution.faceit-cdn.net/images/71083f6f-958c-45ac-9c0b-6d5f601afdbe.jpg"
+              },
+              "team2": {
+                "name": "de verdwaalde honden",
+                "logo": "https://distribution.faceit-cdn.net/images/8e2443d4-8266-4996-95cb-3d5ae88a1306.jpeg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-ab43bc52-838d-4863-9a6b-2a046e905aab"
+            },
+            {
+              "team1": {
+                "name": "WBT Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/6225f15f-88bc-4372-8d6d-c45ec6995483.jpg"
+              },
+              "team2": {
+                "name": "Spectrum",
+                "logo": "https://distribution.faceit-cdn.net/images/66a1c54b-66fe-4159-85fd-7af60553c6e5.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-b5bc4bb8-d06f-4613-a419-20203c540e2c"
+            }
+          ]
+        },
+        {
+          "name": "Round 2",
+          "matches": [
+            {
+              "team1": {
+                "name": "SNITKO Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/9e8607b7-25d3-4289-9264-917006fe9073.jpeg"
+              },
+              "team2": {
+                "name": "unknowns",
+                "logo": "https://distribution.faceit-cdn.net/images/c79c0142-8e54-4ecc-ab5a-7f08ee8684cc.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-25413bd2-042d-428a-89c4-0483400980c2"
+            },
+            {
+              "team1": {
+                "name": "PENSIONERS",
+                "logo": "https://distribution.faceit-cdn.net/images/110f4708-fea5-49f9-9fa2-bae9d76d2079.jpg"
+              },
+              "team2": {
+                "name": "BAKS Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/b0dcb6d9-fe0c-45d5-bc94-d402f530cfc0.jpg"
+              },
+              "score1": 0,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-d836be43-9a41-4cc5-a57c-6a1fcb0bf611"
+            },
+            {
+              "team1": {
+                "name": "Banda chuya",
+                "logo": "https://distribution.faceit-cdn.net/images/663693e6-951c-4732-87d4-226fbb89769f.jpg"
+              },
+              "team2": {
+                "name": "WeClear",
+                "logo": "https://distribution.faceit-cdn.net/images/71083f6f-958c-45ac-9c0b-6d5f601afdbe.jpg"
+              },
+              "score1": 1,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-b1dc5f65-2e5c-4e72-9270-11572693cbdb"
+            },
+            {
+              "team1": {
+                "name": "Sangal 1XALTERS",
+                "logo": "https://distribution.faceit-cdn.net/images/5a115548-a272-4e8e-8ef9-b14de3287ee8.jpg"
+              },
+              "team2": {
+                "name": "WBT Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/6225f15f-88bc-4372-8d6d-c45ec6995483.jpg"
+              },
+              "score1": 0,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-626c338e-1b16-4c58-9817-08880e221f7f"
+            }
+          ]
+        },
+        {
+          "name": "Round 3",
+          "matches": [
+            {
+              "team1": {
+                "name": "Hermine Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/46ebd171-da24-4402-ac92-630dcd443351.jpeg"
+              },
+              "team2": {
+                "name": "SNITKO Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/9e8607b7-25d3-4289-9264-917006fe9073.jpeg"
+              },
+              "score1": 2,
+              "score2": 1,
+              "winner": 1,
+              "matchId": "1-e671e35c-0de8-45af-8856-12ce61804c31"
+            },
+            {
+              "team1": {
+                "name": "IC Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/3b56e8a7-9286-41ac-b2a6-57b93de39ef2.jpg"
+              },
+              "team2": {
+                "name": "BAKS Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/b0dcb6d9-fe0c-45d5-bc94-d402f530cfc0.jpg"
+              },
+              "score1": 0,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-8ba7539e-94fe-4019-86c4-9b28aba09882"
+            },
+            {
+              "team1": {
+                "name": "NAVI Junior",
+                "logo": "https://distribution.faceit-cdn.net/images/5b8e6f96-826c-4bed-a1a5-c5bbcdf2cf72.jpg"
+              },
+              "team2": {
+                "name": "WeClear",
+                "logo": "https://distribution.faceit-cdn.net/images/71083f6f-958c-45ac-9c0b-6d5f601afdbe.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-418df5cf-289b-4352-b33e-602493a4b136"
+            },
+            {
+              "team1": {
+                "name": "EsportBERG",
+                "logo": "https://distribution.faceit-cdn.net/images/38087eac-f357-4401-87ef-d1e30757c3e4.jpg"
+              },
+              "team2": {
+                "name": "WBT Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/6225f15f-88bc-4372-8d6d-c45ec6995483.jpg"
+              },
+              "score1": 0,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-79a35907-976e-4e0d-b9b0-cb408797d4b3"
+            }
+          ]
+        },
+        {
+          "name": "Quarter-finals",
+          "matches": [
+            {
+              "team1": {
+                "name": "QUAZAR",
+                "logo": "https://distribution.faceit-cdn.net/images/427bd8f9-38d9-4200-afc3-972a9e32f7ba.jpeg"
+              },
+              "team2": {
+                "name": "Hermine Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/46ebd171-da24-4402-ac92-630dcd443351.jpeg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-42c10456-3106-4421-a6d3-ead43e299c10"
+            },
+            {
+              "team1": {
+                "name": "ReThink",
+                "logo": "https://distribution.faceit-cdn.net/images/9d3a2374-d32b-4de5-8b8d-70cdc82c11a3.jpg"
+              },
+              "team2": {
+                "name": "BAKS Esports",
+                "logo": "https://distribution.faceit-cdn.net/images/b0dcb6d9-fe0c-45d5-bc94-d402f530cfc0.jpg"
+              },
+              "score1": 2,
+              "score2": 1,
+              "winner": 1,
+              "matchId": "1-73bbeda0-6442-4a89-b35e-3e652800a046"
+            },
+            {
+              "team1": {
+                "name": "Fire Flux TitanSeat",
+                "logo": "https://distribution.faceit-cdn.net/images/e082b246-ff19-4db3-9a22-6528be533ab1.jpg"
+              },
+              "team2": {
+                "name": "NAVI Junior",
+                "logo": "https://distribution.faceit-cdn.net/images/5b8e6f96-826c-4bed-a1a5-c5bbcdf2cf72.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-52c04702-d700-44c8-bb18-76b067ebf5ba"
+            },
+            {
+              "team1": {
+                "name": "Arch",
+                "logo": "https://distribution.faceit-cdn.net/images/28b1d153-aaa4-4b67-9a5e-c5bfa3215c1c.jpeg"
+              },
+              "team2": {
+                "name": "WBT Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/6225f15f-88bc-4372-8d6d-c45ec6995483.jpg"
+              },
+              "score1": 0,
+              "score2": 2,
+              "winner": 2,
+              "matchId": "1-deafb932-b02f-4449-b81b-ab0c5b7a043d"
+            }
+          ]
+        },
+        {
+          "name": "Semi-finals",
+          "matches": [
+            {
+              "team1": {
+                "name": "QUAZAR",
+                "logo": "https://distribution.faceit-cdn.net/images/427bd8f9-38d9-4200-afc3-972a9e32f7ba.jpeg"
+              },
+              "team2": {
+                "name": "ReThink",
+                "logo": "https://distribution.faceit-cdn.net/images/9d3a2374-d32b-4de5-8b8d-70cdc82c11a3.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-44450f67-201e-45a7-9a57-3f140c769997"
+            },
+            {
+              "team1": {
+                "name": "Fire Flux TitanSeat",
+                "logo": "https://distribution.faceit-cdn.net/images/e082b246-ff19-4db3-9a22-6528be533ab1.jpg"
+              },
+              "team2": {
+                "name": "WBT Academy",
+                "logo": "https://distribution.faceit-cdn.net/images/6225f15f-88bc-4372-8d6d-c45ec6995483.jpg"
+              },
+              "score1": 2,
+              "score2": 0,
+              "winner": 1,
+              "matchId": "1-98b839a0-c7db-4628-957a-16c2f2437faa"
+            }
+          ]
+        },
+        {
+          "name": "Grand final",
+          "matches": [
+            {
+              "team1": {
+                "name": "QUAZAR",
+                "logo": "https://distribution.faceit-cdn.net/images/427bd8f9-38d9-4200-afc3-972a9e32f7ba.jpeg"
+              },
+              "team2": {
+                "name": "Fire Flux TitanSeat",
+                "logo": "https://distribution.faceit-cdn.net/images/e082b246-ff19-4db3-9a22-6528be533ab1.jpg"
+              },
+              "score1": 2,
+              "score2": 1,
+              "winner": 1,
+              "matchId": "1-a5a21a45-b3a0-48ef-8c12-7b099d54db46"
+            }
+          ]
+        }
+      ]
+    },
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-contenders-europe-8-oq2",
+    "championshipId": "32ec8b41-63f6-4c4e-b093-cb6e4c38cee3",
+    "name": "CCT 2026 Contenders Europe 8 - Open Qualifier 2",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-08-09",
+    "endDate": "2026-08-09",
+    "url": "https://www.faceit.com/en/championship/32ec8b41-63f6-4c4e-b093-cb6e4c38cee3/",
+    "prizePool": null,
+    "description": "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 8.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 8.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in Europe Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": {
+      "groupStage": null,
+      "playoffs": [
+        "Single elimination Bo1"
+      ]
+    },
+    "teams": [
+      {
+        "name": "Logic Fire",
+        "logo": "https://distribution.faceit-cdn.net/images/f743f5be-5626-4ab3-964c-4ff6504332d7.jpg",
+        "slug": null
+      },
+      {
+        "name": "Flamehard",
+        "logo": "https://distribution.faceit-cdn.net/images/e3dc28b5-ddcd-4af1-b0a1-9f578aa39586.jpg",
+        "slug": "flamehard-48600b02"
+      },
+      {
+        "name": "Sostes",
+        "logo": "https://distribution.faceit-cdn.net/images/32c2de68-6cd4-4659-93d6-e3464fe11291.jpeg",
+        "slug": "sostes-0f7d1c7a"
+      },
+      {
+        "name": "TEAM GELO",
+        "logo": "https://distribution.faceit-cdn.net/images/1526d1c3-0120-4782-aa8a-5b0234f2d986.jpeg",
+        "slug": "team-gelo-5fcba3d0"
+      },
+      {
+        "name": "Arch",
+        "logo": "https://distribution.faceit-cdn.net/images/28b1d153-aaa4-4b67-9a5e-c5bfa3215c1c.jpeg",
+        "slug": "arch-3cb28ef5"
+      },
+      {
+        "name": "TSA White",
+        "logo": "https://distribution.faceit-cdn.net/images/e61028c1-4a8b-46f8-be35-6aa465998318.jpg",
+        "slug": null
+      },
+      {
+        "name": "iWonderChild",
+        "logo": "https://distribution.faceit-cdn.net/images/ae5c9f9a-653c-4b68-982c-df3052d7275c.jpg",
+        "slug": "iwonderchild-5df7a97f"
+      },
+      {
+        "name": "Agency of Violence",
+        "logo": "https://distribution.faceit-cdn.net/images/b2789d4e-ab80-4e05-b96c-a4c5668f7189.jpg",
+        "slug": "agency-of-violence-ff47b2ea"
+      },
+      {
+        "name": "Critical",
+        "logo": "https://distribution.faceit-cdn.net/images/02596565-797e-4f29-813a-d07b98e82f65.jpg",
+        "slug": "critical-73bc0074"
+      },
+      {
+        "name": "GOODY GOAT",
+        "logo": "https://distribution.faceit-cdn.net/images/ea3bdce9-1bb1-4567-9281-1a4246757902.jpg",
+        "slug": null
+      },
+      {
+        "name": "Yelets Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/1b296b12-9079-4b2a-b36b-d701d3fbff5c.jpg",
+        "slug": "yelets-esports-1ca93e1d"
+      },
+      {
+        "name": "LUCH",
+        "logo": "https://distribution.faceit-cdn.net/images/edaf32df-7c6b-47bc-8def-939a8fe01258.jpg",
+        "slug": "luch-bfeed6d0"
+      },
+      {
+        "name": "team_nic1rezz",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "M33 x AvanMarket",
+        "logo": "https://distribution.faceit-cdn.net/images/641ff022-021e-4a61-adac-7789ace2d233.jpg",
+        "slug": "m33-x-avanmarket-bc0caca5"
+      },
+      {
+        "name": "Blind Peekers",
+        "logo": "https://distribution.faceit-cdn.net/images/a01cf97c-64ae-4e3e-bda4-1738e5b19003.jpg",
+        "slug": "blind-peekers-d1bdb6e9"
+      },
+      {
+        "name": "Force Syndicate",
+        "logo": "https://distribution.faceit-cdn.net/images/6058c4c8-b40f-438a-a42d-99912fcdd782.jpg",
+        "slug": "force-syndicate-bdc870bc"
+      },
+      {
+        "name": "Midland",
+        "logo": "https://distribution.faceit-cdn.net/images/f924b829-e53d-4643-a8f5-c0bbec8d6694.jpg",
+        "slug": "midland-21c008e9"
+      },
+      {
+        "name": "xyster",
+        "logo": "https://distribution.faceit-cdn.net/images/15d5bdcf-3ed5-4b7f-8627-708e6b2cf2cb.jpg",
+        "slug": "xyster-0b3dfaca"
+      },
+      {
+        "name": "HysK",
+        "logo": "https://distribution.faceit-cdn.net/images/df62492c-3e81-4930-a67e-c8548ad2aad7.jpg",
+        "slug": "hysk-6c46e45c"
+      },
+      {
+        "name": "Papillon",
+        "logo": "https://distribution.faceit-cdn.net/images/6b2f35d1-87a2-41b6-8f99-945e577e2a25.jpg",
+        "slug": "papillon-03d0fb44"
+      },
+      {
+        "name": "SLOCKO",
+        "logo": "https://distribution.faceit-cdn.net/images/0c8dce2a-47b6-4e80-af57-f818fede8227.jpg",
+        "slug": null
+      },
+      {
+        "name": "CTAK_SOBAK",
+        "logo": "https://distribution.faceit-cdn.net/images/ed9ac1dd-a7c8-4cca-939b-e0e7e2446d92.jpeg",
+        "slug": "ctak-sobak-dae1f142"
+      },
+      {
+        "name": "NoScope eSports",
+        "logo": "https://distribution.faceit-cdn.net/images/73453523-04f4-42f7-a12e-c17151c62def.jpg",
+        "slug": "noscope-esports-d2f2cb28"
+      },
+      {
+        "name": "Acvitania",
+        "logo": "https://distribution.faceit-cdn.net/images/2336bb7c-0b08-4e4b-a81f-40229c4dbe3d.jpg",
+        "slug": "acvitania-ab7071bb"
+      },
+      {
+        "name": "TEAM 67",
+        "logo": "https://distribution.faceit-cdn.net/images/0c2c0a89-343f-410b-9251-64e91f1111f1.jpg",
+        "slug": null
+      },
+      {
+        "name": "LALAYLALAY",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "KEKIS",
+        "logo": "https://distribution.faceit-cdn.net/images/0239fc7e-ea61-4526-8594-fcecc6e6066c.jpg",
+        "slug": "kekis-fdaf36d3"
+      },
+      {
+        "name": "Borealis",
+        "logo": "https://distribution.faceit-cdn.net/images/3b89639c-1f24-4471-8c90-57eca9ab1119.jpg",
+        "slug": "borealis-2ff9f219"
+      },
+      {
+        "name": "Overlooked Entertainment",
+        "logo": "https://distribution.faceit-cdn.net/images/e7574a8b-df30-4933-8c2c-6d6abffea2e9.jpg",
+        "slug": "inputparty-695c6867"
+      },
+      {
+        "name": "Aurora Young Blud",
+        "logo": "https://distribution.faceit-cdn.net/images/b27546d4-0ac9-4da2-8158-4a26199a1212.jpg",
+        "slug": "aurora-young-blud-0c06fb32"
+      },
+      {
+        "name": "Team Voxim",
+        "logo": "https://distribution.faceit-cdn.net/images/22a887a0-504e-4eae-bb6c-aa625b9c7f45.jpg",
+        "slug": null
+      },
+      {
+        "name": "SASAGEYO RAMPA",
+        "logo": "https://distribution.faceit-cdn.net/images/dc0d47c7-7eea-4b0c-94b8-1d90bfd04ca1.jpg",
+        "slug": null
+      },
+      {
+        "name": "EAC Extra",
+        "logo": "https://distribution.faceit-cdn.net/images/4025e3ab-fbfc-4730-a90f-fd0f483516e4.jpg",
+        "slug": "eac-extra-b293056e"
+      },
+      {
+        "name": "Way In Future",
+        "logo": "https://distribution.faceit-cdn.net/images/e94d35c9-1eb3-415d-97e0-5a8ac08fc9c3.jpg",
+        "slug": "way-in-future-3147b7dc"
+      },
+      {
+        "name": "Laccer",
+        "logo": "https://distribution.faceit-cdn.net/images/35b6d132-75df-4da4-adb5-6e3d94f89793.jpg",
+        "slug": null
+      },
+      {
+        "name": "Wait Vurdalak",
+        "logo": "https://distribution.faceit-cdn.net/images/5a00330e-0b3f-477a-989e-073378a682fe.jpg",
+        "slug": null
+      },
+      {
+        "name": "Team-Shadow",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "NewEra_LFO",
+        "logo": "https://distribution.faceit-cdn.net/images/000092d3-d5d4-4619-b9c4-1c1232909541.jpg",
+        "slug": "newera-92935b59"
+      },
+      {
+        "name": "47-FPS",
+        "logo": "https://distribution.faceit-cdn.net/images/6b543fec-a734-475e-913d-ce4f87b8fc4b.jpg",
+        "slug": null
+      },
+      {
+        "name": "Xcity",
+        "logo": "https://distribution.faceit-cdn.net/images/a4ff6f84-aaa3-4d64-a7fe-acb6f9c46151.jpg",
+        "slug": "xcity-7d4d681f"
+      },
+      {
+        "name": "i2K Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/e7cda06f-ed34-449b-b039-599ae9ed36fa.jpg",
+        "slug": "i2k-esports-80b4da73"
+      },
+      {
+        "name": "MADMANgg",
+        "logo": "https://distribution.faceit-cdn.net/images/4c577457-9162-4601-8318-79bbb20f203e.jpg",
+        "slug": "madmangg-fc0baf05"
+      },
+      {
+        "name": "VPProdigy",
+        "logo": "https://distribution.faceit-cdn.net/images/78e77c97-fe0e-4289-ba4f-24b5e56ae861.jpg",
+        "slug": "vpprodigy-91416841"
+      },
+      {
+        "name": "FLANK",
+        "logo": "https://distribution.faceit-cdn.net/images/a2c6de6a-c085-41bf-9543-d800cdf65e07.jpg",
+        "slug": null
+      },
+      {
+        "name": "picburgLV",
+        "logo": "https://distribution.faceit-cdn.net/images/8fbe8aa5-3168-4c9a-8386-59c6fbe1ea8e.jpg",
+        "slug": "picburglv-731922be"
+      },
+      {
+        "name": "KittaDiena",
+        "logo": "https://distribution.faceit-cdn.net/images/b19c5905-d35b-4596-adcb-9e3366c29848.jpg",
+        "slug": "kittadiena-49286233"
+      },
+      {
+        "name": "Jumbo team",
+        "logo": "https://distribution.faceit-cdn.net/images/04c9de26-d1bc-4fff-a0f1-eb8b310b126c.jpg",
+        "slug": "jumbo-team-934a2bd0"
+      },
+      {
+        "name": "PARTIZAN",
+        "logo": "https://distribution.faceit-cdn.net/images/2392e0b9-537c-4322-9286-3114b67ca350.jpg",
+        "slug": "partizan-d73ef5c5"
+      },
+      {
+        "name": "LeeK NXT",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "leek-nxt-01d54ae9"
+      },
+      {
+        "name": "singular",
+        "logo": "https://distribution.faceit-cdn.net/images/1f7f1e9d-7c99-44cb-8653-f078a1d8deaa.jpg",
+        "slug": "singular-a4d6810c"
+      },
+      {
+        "name": "herobrins",
+        "logo": "https://distribution.faceit-cdn.net/images/2aa26359-fa67-4fec-9569-302194a3a462.jpg",
+        "slug": "herobrins-40bd3530"
+      },
+      {
+        "name": "Royal Foxes",
+        "logo": "https://distribution.faceit-cdn.net/images/5d3ac140-dccd-49a6-9208-0efd8299a8d7.jpg",
+        "slug": "royal-foxes-194bf6d5"
+      },
+      {
+        "name": "BCGame Academy",
+        "logo": "https://distribution.faceit-cdn.net/images/0d71dec0-84c4-4f69-b344-528938ae053f.jpg",
+        "slug": "bcgame-academy-4569b790"
+      },
+      {
+        "name": "golovastiki",
+        "logo": "https://distribution.faceit-cdn.net/images/85633b47-1d84-4ef5-9087-635bd791bf58.jpg",
+        "slug": "golovastiki-1791f69f"
+      },
+      {
+        "name": "Monument Esport",
+        "logo": "https://distribution.faceit-cdn.net/images/17d60586-0334-4c6c-bc59-8d0d3b49171a.jpg",
+        "slug": null
+      },
+      {
+        "name": "KDA Team",
+        "logo": "https://distribution.faceit-cdn.net/images/4d8b0b77-c0cb-4895-9e5b-d8b8f6e2eba5.jpg",
+        "slug": "kda-team-e3a351ac"
+      },
+      {
+        "name": "Anaba",
+        "logo": "https://distribution.faceit-cdn.net/images/a316bb0a-f941-4e47-8342-a0aca5a5ada2.jpg",
+        "slug": "anaba-85e00a91"
+      },
+      {
+        "name": "Pokolenie 4udes",
+        "logo": "https://distribution.faceit-cdn.net/images/939fec6e-01f1-4afe-a164-17ff3db02b00.jpg",
+        "slug": null
+      },
+      {
+        "name": "BOJONG",
+        "logo": "https://distribution.faceit-cdn.net/images/c59db20e-19a1-4523-9043-a68f7bc19529.jpg",
+        "slug": "bojong-f618f1aa"
+      },
+      {
+        "name": "Sicarios",
+        "logo": "https://distribution.faceit-cdn.net/images/fee947bf-7d69-4a80-8100-0afee725d6e6.jpg",
+        "slug": "sicarios-77e24596"
+      },
+      {
+        "name": "Vombo Combo",
+        "logo": "https://distribution.faceit-cdn.net/images/60ddeadc-0e6b-4657-8c27-e24b64f2e8f8.jpg",
+        "slug": "vombo-combo-a4043aa3"
+      },
+      {
+        "name": "Vandals Clan",
+        "logo": "https://distribution.faceit-cdn.net/images/1e47d4bd-f565-4ae9-8aef-e5fbed2e96e9.jpg",
+        "slug": "vandals-clan-3641e2be"
+      },
+      {
+        "name": "Team Eosthra",
+        "logo": "https://distribution.faceit-cdn.net/images/f985185a-1977-4675-b264-c620b91921b8.jpg",
+        "slug": null
+      },
+      {
+        "name": "MyHUD",
+        "logo": "https://distribution.faceit-cdn.net/images/b03398b5-b3b1-4e9c-a3fa-b69f8e81eb8d.jpg",
+        "slug": "myhud-311b0c6d"
+      },
+      {
+        "name": "Jpd",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "jpd-078978a5"
+      },
+      {
+        "name": "Wolves Hill",
+        "logo": "https://distribution.faceit-cdn.net/images/52f33a07-502f-4d7c-85e9-a564ab43b402.jpeg",
+        "slug": "wolves-hill-da924a67"
+      },
+      {
+        "name": "bzrs",
+        "logo": "https://distribution.faceit-cdn.net/images/1bad9335-2911-4c72-9749-bcd0b885218e.jpg",
+        "slug": null
+      },
+      {
+        "name": "EXSAD",
+        "logo": "https://distribution.faceit-cdn.net/images/30a96f03-022e-4561-984b-ea93b86ce9e7.jpg",
+        "slug": "exsad-7248fdf5"
+      },
+      {
+        "name": "MISTERYA",
+        "logo": "https://distribution.faceit-cdn.net/images/2b9d8eec-82e9-498d-b7fb-33521a83670e.jpg",
+        "slug": "misterya-2e8b07c4"
+      },
+      {
+        "name": "BHE",
+        "logo": "https://distribution.faceit-cdn.net/images/90feff35-4249-4aaf-89c2-d05ad3d64e8b.jpg",
+        "slug": null
+      },
+      {
+        "name": "MELLSTROY GAMING",
+        "logo": "https://distribution.faceit-cdn.net/images/847a517e-e6f1-459f-9384-5a562b2b9a12.jpg",
+        "slug": "mellstroy-gaming-e25f7906"
+      },
+      {
+        "name": "EndlessFlow",
+        "logo": "https://distribution.faceit-cdn.net/images/4def782e-a8e0-4f07-8966-9ae495f762d6.jpg",
+        "slug": "endlessflow-122c0e89"
+      },
+      {
+        "name": "TRUPPEN",
+        "logo": "https://distribution.faceit-cdn.net/images/49eeaa63-6d70-4234-9707-6a34c918cecd.jpg",
+        "slug": "truppen-d522614b"
+      },
+      {
+        "name": "A Great Chaos",
+        "logo": "https://distribution.faceit-cdn.net/images/53e3fb61-db9a-43e1-8aa2-27bd07ff337e.jpg",
+        "slug": "a-great-chaos-fe66f943"
+      },
+      {
+        "name": "Premkowicze",
+        "logo": "https://distribution.faceit-cdn.net/images/6fda473c-9a08-49bd-82c3-557952be8a89.jpg",
+        "slug": null
+      },
+      {
+        "name": "TBA",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "tba-d8a15da9"
+      },
+      {
+        "name": "Cyber Park Arena",
+        "logo": "https://distribution.faceit-cdn.net/images/2c3e7029-dd6f-4433-9a6b-c9e7797f7d09.jpg",
+        "slug": "cyber-park-arena-b85210d5"
+      },
+      {
+        "name": "Shells of Victory",
+        "logo": "https://distribution.faceit-cdn.net/images/a9c1f581-465f-4c7d-87da-d0bab2a625e9.jpg",
+        "slug": "shells-of-victory-58e12cd4"
+      },
+      {
+        "name": "LABUBU TEAM",
+        "logo": "https://distribution.faceit-cdn.net/images/913605eb-818a-4daa-b8ed-a4ee8dbab131.jpg",
+        "slug": null
+      },
+      {
+        "name": "NextUP",
+        "logo": "https://distribution.faceit-cdn.net/images/872457c1-20af-4df4-8a03-6c745bf5492a.jpg",
+        "slug": "nextup-bc6b07ec"
+      },
+      {
+        "name": "ELITE_Esport",
+        "logo": "https://distribution.faceit-cdn.net/images/0802e643-0dcd-42e3-81ba-d08c9e1d94b7.jpg",
+        "slug": null
+      },
+      {
+        "name": "GSQ",
+        "logo": "https://distribution.faceit-cdn.net/images/dd31e924-7180-42bd-89e5-3112aa18e162.jpg",
+        "slug": null
+      },
+      {
+        "name": "GameSport",
+        "logo": "https://distribution.faceit-cdn.net/images/3032731c-3aa5-4092-9b0a-1d5a6e535952.jpg",
+        "slug": null
+      },
+      {
+        "name": "Worzy Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/bc7095d9-bdb7-4005-a316-7b15bcf07dda.jpg",
+        "slug": null
+      },
+      {
+        "name": "K2 Cyberclub",
+        "logo": "https://distribution.faceit-cdn.net/images/62c8c256-336f-4429-8d82-9a84c0aa5d09.jpg",
+        "slug": "k2-cyberclub-3cf62aa3"
+      },
+      {
+        "name": "META",
+        "logo": "https://distribution.faceit-cdn.net/images/6a215439-f2d2-48ba-b791-c532c86cd787.jpg",
+        "slug": "meta-90ff31e2"
+      },
+      {
+        "name": "Family",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "family-ae8d7558"
+      },
+      {
+        "name": "Tigin",
+        "logo": "https://distribution.faceit-cdn.net/images/f0cabf12-3e19-427b-b8a9-e1ce3bc38805.jpg",
+        "slug": null
+      },
+      {
+        "name": "aokigahara",
+        "logo": "https://distribution.faceit-cdn.net/images/1ded826a-b93f-4002-817f-bc793e10e2d6.jpg",
+        "slug": "aokigahara-e159ad02"
+      },
+      {
+        "name": "OKSUCC",
+        "logo": "https://distribution.faceit-cdn.net/images/f868b86a-cf50-4d37-83a4-5a36dd73e6b0.jpeg",
+        "slug": "oksucc-24449ca6"
+      },
+      {
+        "name": "4Z",
+        "logo": "https://distribution.faceit-cdn.net/images/6c499815-06a2-4ba0-8b46-cc568cade9be.jpg",
+        "slug": "4z-195410f5"
+      },
+      {
+        "name": "EXTENSION",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "Teletubisie sialala",
+        "logo": "https://distribution.faceit-cdn.net/images/2d5c8b56-9328-4a6f-8aab-62ce8abdf36a.jpg",
+        "slug": null
+      },
+      {
+        "name": "Vael",
+        "logo": "https://distribution.faceit-cdn.net/images/75ad39a8-1099-4f69-9b72-9c7fdb494543.jpg",
+        "slug": "vael-42e31fa9"
+      },
+      {
+        "name": "gribo4ki",
+        "logo": "https://distribution.faceit-cdn.net/images/0157ec33-611c-4dd3-97bb-36d48e71d3bf.jpeg",
+        "slug": null
+      },
+      {
+        "name": "Sylvar Esports CORE",
+        "logo": "https://distribution.faceit-cdn.net/images/cdbdc33e-adf6-4897-a894-d962ddb20e59.jpg",
+        "slug": null
+      },
+      {
+        "name": "FeedTheEgo",
+        "logo": "https://distribution.faceit-cdn.net/images/e190225a-b623-40b5-8f70-95d2bbe9eb54.jpg",
+        "slug": "feedtheego-742c96f0"
+      },
+      {
+        "name": "BEE x SargeeTrade",
+        "logo": "https://distribution.faceit-cdn.net/images/30bd9ca2-ef0b-4483-8776-d73053a0aa2b.jpg",
+        "slug": "bee-x-sargeetrade-a3aad7ca"
+      },
+      {
+        "name": "Talent Project",
+        "logo": "https://distribution.faceit-cdn.net/images/a992ff87-9041-4678-9c99-0947465a5cdc.jpg",
+        "slug": null
+      },
+      {
+        "name": "Echo Unit",
+        "logo": "https://distribution.faceit-cdn.net/images/d5d68208-ddd3-4dd9-9754-2c0f35ccd6a9.jpg",
+        "slug": "echo-unit-c392085a"
+      },
+      {
+        "name": "LODED DIPER",
+        "logo": "https://distribution.faceit-cdn.net/images/195a3d45-45d3-4907-b23a-616717e815b5.jpg",
+        "slug": null
+      },
+      {
+        "name": "The Craziest",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "LUDOMANI",
+        "logo": "https://distribution.faceit-cdn.net/images/44ff32cc-3951-414f-8f57-0dc49013eb79.jpg",
+        "slug": "ludomani-df108ee5"
+      },
+      {
+        "name": "Voidra E-sports",
+        "logo": "https://distribution.faceit-cdn.net/images/f3c05ced-36c3-4d90-a7a2-713e1bf82199.jpg",
+        "slug": null
+      },
+      {
+        "name": "Voidra Black",
+        "logo": "https://distribution.faceit-cdn.net/images/792d9d9a-e491-454a-ad7b-ec060df257f9.jpg",
+        "slug": null
+      },
+      {
+        "name": "team silents",
+        "logo": "https://distribution.faceit-cdn.net/images/45f1eee3-b53b-476d-b7bf-8b2466936290.jpg",
+        "slug": null
+      },
+      {
+        "name": "3DMAX ACA",
+        "logo": "https://distribution.faceit-cdn.net/images/a39b9d6d-48e2-4b60-84ff-50b6221cfa09.jpg",
+        "slug": "3dmax-aca-edc7aa92"
+      },
+      {
+        "name": "Team Spirit Academy",
+        "logo": "https://distribution.faceit-cdn.net/images/a85ce97e-cc0f-49bd-bdf9-8706e567ded0.jpg",
+        "slug": null
+      },
+      {
+        "name": "TRCS Bokluluk",
+        "logo": "https://distribution.faceit-cdn.net/images/7d1b99d3-f82a-4794-acfc-6695f6031aa9.jpg",
+        "slug": null
+      },
+      {
+        "name": "Team Wacy",
+        "logo": "https://distribution.faceit-cdn.net/images/d20cc67a-e1a8-4892-a345-82e1d68e7e50.jpg",
+        "slug": null
+      },
+      {
+        "name": "95VIKINGS",
+        "logo": "https://distribution.faceit-cdn.net/images/3e9fc741-3b35-447a-abe1-c67b92ad3a40.jpg",
+        "slug": "95vikings-7a777498"
+      },
+      {
+        "name": "ExertioN",
+        "logo": "https://distribution.faceit-cdn.net/images/6c330238-4aba-460a-80d6-d12f02ddae8f.jpg",
+        "slug": null
+      },
+      {
+        "name": "FAST LAYNERS LFO",
+        "logo": "https://distribution.faceit-cdn.net/images/ace853ae-3a03-40be-9e9a-7ae42df53a17.jpg",
+        "slug": "fast-layners-lfo-c4ac0af1"
+      },
+      {
+        "name": "W1NKS",
+        "logo": "https://distribution.faceit-cdn.net/images/d062c6ee-36c8-4bdf-a04d-34c1d46a7fd2.jpg",
+        "slug": null
+      },
+      {
+        "name": "Perpetual",
+        "logo": "https://distribution.faceit-cdn.net/images/444915d8-5f22-4de4-9e51-af3df931847b.jpg",
+        "slug": "perpetual-c9621556"
+      },
+      {
+        "name": "Fearless_Junior",
+        "logo": "https://distribution.faceit-cdn.net/images/aab9b62c-588c-4000-8448-c3fe914f1705.jpg",
+        "slug": null
+      },
+      {
+        "name": "Astrum",
+        "logo": "https://distribution.faceit-cdn.net/images/6b32bfa8-bd39-4440-a6d3-4c62a1516d68.jpg",
+        "slug": "astrum-9a0154fd"
+      },
+      {
+        "name": "FaZeUpNext",
+        "logo": "https://distribution.faceit-cdn.net/images/91c575a4-cee7-4475-95b3-534769b85b65.jpg",
+        "slug": "fazeupnext-4881bd59"
+      },
+      {
+        "name": "DevL33T",
+        "logo": "https://distribution.faceit-cdn.net/images/8d921278-8376-40f3-8d00-ed480934bfb1.jpg",
+        "slug": "devl33t-6ceee39e"
+      },
+      {
+        "name": "Sera Esports DK",
+        "logo": "https://distribution.faceit-cdn.net/images/00829965-aaf0-456a-966b-c85f7b39d83e.jpg",
+        "slug": "sera-esports-dk-047a143c"
+      },
+      {
+        "name": "LFO",
+        "logo": "https://distribution.faceit-cdn.net/images/542ad32e-4f29-4b5c-ad8d-1d57143eb596.jpg",
+        "slug": "istanbul-contra-e7602bff"
+      }
+    ],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  }
+]

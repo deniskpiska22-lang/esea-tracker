@@ -32,6 +32,8 @@ import VerificationRequestPage from "./pages/VerificationRequestPage";
 import AdminVerificationPage from "./pages/AdminVerificationPage";
 import DataStatusPage from "./pages/DataStatusPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
+import CalendarPage from "./pages/CalendarPage";
+import TournamentPage from "./pages/TournamentPage";
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -49,6 +51,8 @@ ReactDOM.createRoot(
             <Route path="/auth/callback" element={<AuthCallbackPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/data-status" element={<DataStatusPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/calendar/:id" element={<TournamentPage />} />
             <Route
               path="/rankings"
               element={<RankingsPage />}

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import upcomingMatches from "../data/upcomingMatches";
 import matchesData from "../data/matches";
 import teams from "../data/teams";
+import tournaments from "../data/tournaments";
 import { supabase } from "../lib/supabaseClient";
+import { getTournamentStatus } from "../utils/tournaments";
 
 
 const LIVE_STATUSES = new Set([
@@ -833,6 +835,68 @@ function TeamLink({ team, className = "" }) {
   );
 }
 
+function TournamentTierBadge({ tier }) {
+  const tierStyles = {
+    S: "bg-orange-500/10 text-orange-400",
+    A: "bg-sky-500/10 text-sky-400",
+    B: "bg-emerald-500/10 text-emerald-400",
+  };
+
+  return (
+    <div
+      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-black ${
+        tierStyles[tier] || "bg-slate-500/10 text-slate-400"
+      }`}
+    >
+      {tier || "?"}
+    </div>
+  );
+}
+
+function TournamentRow({ tournament, isLive }) {
+  const dateRange =
+    tournament.startDate && tournament.endDate
+      ? `${formatDate(tournament.startDate)} – ${formatDate(tournament.endDate)}`
+      : "Date TBD";
+
+  const content = (
+    <>
+      {tournament.logo ? (
+        <img
+          src={tournament.logo}
+          alt=""
+          className="h-10 w-10 shrink-0 rounded-xl bg-[#0b0f14] object-contain p-1.5"
+        />
+      ) : (
+        <TournamentTierBadge tier={tournament.tier} />
+      )}
+
+      <div className="min-w-0 flex-1">
+        <div className="truncate text-sm font-black">{tournament.name}</div>
+        <div className="mt-1 truncate text-xs text-slate-600">
+          {tournament.location || "Location TBD"} · {dateRange}
+        </div>
+      </div>
+
+      {isLive && (
+        <div className="flex shrink-0 items-center gap-1.5 text-xs font-black uppercase tracking-wide text-red-400">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
+          Live
+        </div>
+      )}
+    </>
+  );
+
+  return (
+    <Link
+      to={`/calendar/${tournament.id}`}
+      className="flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.03]"
+    >
+      {content}
+    </Link>
+  );
+}
+
 function SectionTitle({ title, action }) {
   return (
     <div className="mb-4 flex items-center justify-between gap-4">
@@ -1478,20 +1542,6 @@ function Home() {
   const upcomingSectionRef = useRef(null);
   const recentResultsSectionRef = useRef(null);
 
-  function scrollToUpcomingMatches() {
-    upcomingSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
-  function scrollToRecentResults() {
-    recentResultsSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
   useEffect(() => {
     let cancelled = false;
     let channel = null;
@@ -1865,6 +1915,28 @@ function Home() {
     (match) => !isLiveStatus(match.status)
   );
 
+  const liveTournament = useMemo(
+    () =>
+      tournaments.find(
+        (tournament) => getTournamentStatus(tournament) === "live"
+      ) || null,
+    []
+  );
+
+  const upcomingTournaments = useMemo(
+    () =>
+      tournaments
+        .filter(
+          (tournament) => getTournamentStatus(tournament) === "upcoming"
+        )
+        .sort(
+          (first, second) =>
+            new Date(first.startDate) - new Date(second.startDate)
+        )
+        .slice(0, 4),
+    []
+  );
+
   const featuredBase =
     selectFeaturedMatch(liveMatches) ||
     selectFeaturedMatch(upcoming);
@@ -1964,83 +2036,36 @@ function Home() {
             </section>
 
             <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
-              <div className="border-b border-white/[0.06] px-5 py-4">
+              <Link
+                to="/calendar"
+                className="group block border-b border-white/[0.06] px-5 py-4 transition hover:bg-white/[0.03]"
+              >
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
-                  Trending
+                  Event Calendar
                 </div>
-                <h2 className="mt-1 text-xl font-black">
-                  Trending Now
+                <h2 className="mt-1 text-xl font-black transition group-hover:text-orange-400">
+                  Upcoming Tournaments
                 </h2>
-              </div>
+              </Link>
 
-              <div className="divide-y divide-white/[0.06]">
-                <Link
-                  to={topTeams[0]?.slug ? `/teams/${topTeams[0].slug}` : "/rankings"}
-                  className="flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.03]"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-sm font-black text-orange-400">
-                    01
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-black">
-                      {topTeams[0]?.name || "Ranking leader"}
-                    </div>
-                    <div className="mt-1 text-xs text-slate-600">
-                      Top team in the overall ranking
-                    </div>
-                  </div>
-                  <div className="text-xs font-black text-emerald-400">
-                    ↑
-                  </div>
-                </Link>
+              {liveTournament || upcomingTournaments.length > 0 ? (
+                <div className="divide-y divide-white/[0.06]">
+                  {liveTournament && (
+                    <TournamentRow tournament={liveTournament} isLive />
+                  )}
 
-                <button
-                  type="button"
-                  onClick={scrollToUpcomingMatches}
-                  className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-white/[0.03]"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10 text-sm font-black text-red-400">
-                    02
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-black">
-                      {liveMatches.length > 0
-                        ? `${liveMatches.length} matches are live now`
-                        : "Upcoming matches are already scheduled"}
-                    </div>
-                    <div className="mt-1 text-xs text-slate-600">
-                      Match statuses update automatically
-                    </div>
-                  </div>
-                  <div className="text-xs font-black text-red-400">
-                    ●
-                  </div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={scrollToRecentResults}
-                  className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-white/[0.03]"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sm font-black text-sky-400">
-                    03
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-black">
-                      {results.length} recent results
-                    </div>
-
-                    <div className="mt-1 text-xs text-slate-600">
-                      Latest completed matches
-                    </div>
-                  </div>
-
-                  <div className="text-xs font-black text-sky-400">
-                    ↓
-                  </div>
-                </button>
-              </div>
+                  {upcomingTournaments.map((tournament) => (
+                    <TournamentRow
+                      key={tournament.id}
+                      tournament={tournament}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex min-h-[260px] items-center justify-center px-6 text-center text-sm text-slate-600">
+                  No tournaments scheduled yet
+                </div>
+              )}
             </section>
           </div>
         </div>
