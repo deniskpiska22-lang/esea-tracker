@@ -1,4 +1,6 @@
 import {
+  Suspense,
+  lazy,
   useEffect,
   useMemo,
   useState,
@@ -10,9 +12,20 @@ import matchesData from "../data/matches";
 import upcomingMatches from "../data/upcomingMatches";
 import { supabase } from "../lib/supabaseClient";
 
-import UpcomingMatchPage from "./UpcomingMatchPage";
-import LiveMatchPage from "./LiveMatchPage";
-import MatchPage from "./MatchPage";
+// Each of these is ~2600 lines on its own — lazy so a visitor only ever
+// downloads the one variant their match status actually needs, instead of
+// all three bundled together just because MatchPageRouter picks between them.
+const UpcomingMatchPage = lazy(() => import("./UpcomingMatchPage"));
+const LiveMatchPage = lazy(() => import("./LiveMatchPage"));
+const MatchPage = lazy(() => import("./MatchPage"));
+
+function MatchLoading() {
+  return (
+    <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
+      Loading match...
+    </div>
+  );
+}
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -106,11 +119,7 @@ function MatchPageRouter() {
       : null;
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        Loading match...
-      </div>
-    );
+    return <MatchLoading />;
   }
 
   if (!finishedMatch && !upcomingMatch && !dbRow) {
@@ -133,14 +142,26 @@ function MatchPageRouter() {
     Boolean(finishedMatch) || apiSaysFinished;
 
   if (isLive) {
-    return <LiveMatchPage />;
+    return (
+      <Suspense fallback={<MatchLoading />}>
+        <LiveMatchPage />
+      </Suspense>
+    );
   }
 
   if (showFinishedSections) {
-    return <MatchPage />;
+    return (
+      <Suspense fallback={<MatchLoading />}>
+        <MatchPage />
+      </Suspense>
+    );
   }
 
-  return <UpcomingMatchPage />;
+  return (
+    <Suspense fallback={<MatchLoading />}>
+      <UpcomingMatchPage />
+    </Suspense>
+  );
 }
 
 export default MatchPageRouter;

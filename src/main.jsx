@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
 import {
@@ -10,30 +11,42 @@ import {
 import "./index.css";
 
 import App from "./App";
-import Home from "./pages/Home";
-import RankingsPage from "./pages/RankingsPage";
-import TeamPage from "./pages/TeamPage";
-import About from "./pages/About";
-import MediaPage from "./pages/MediaPage";
-import MatchesPage from "./pages/MatchesPage";
 import ScrollToTop from "./components/ScrollToTop";
-import StatsPage from "./pages/StatsPage";
-import MatchPageRouter from "./pages/MatchPageRouter";
-import PlayerPage from "./pages/PlayerPage";
-import TopPlayersPage from "./pages/TopPlayersPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
-import UserProfilePage from "./pages/UserProfilePage";
-import EditProfilePage from "./pages/EditProfilePage";
-import VerificationRequestPage from "./pages/VerificationRequestPage";
-import AdminVerificationPage from "./pages/AdminVerificationPage";
-import DataStatusPage from "./pages/DataStatusPage";
-import AnalyticsPage from "./pages/AnalyticsPage";
-import CalendarPage from "./pages/CalendarPage";
-import TournamentPage from "./pages/TournamentPage";
+
+// Every page is its own chunk, fetched only when that route is actually
+// visited — without this the whole site (every page, including the ~2600
+// line match-page trio) shipped as one bundle on the very first load.
+const Home = lazy(() => import("./pages/Home"));
+const RankingsPage = lazy(() => import("./pages/RankingsPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
+const About = lazy(() => import("./pages/About"));
+const MediaPage = lazy(() => import("./pages/MediaPage"));
+const MatchesPage = lazy(() => import("./pages/MatchesPage"));
+const StatsPage = lazy(() => import("./pages/StatsPage"));
+const MatchPageRouter = lazy(() => import("./pages/MatchPageRouter"));
+const PlayerPage = lazy(() => import("./pages/PlayerPage"));
+const TopPlayersPage = lazy(() => import("./pages/TopPlayersPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const AuthCallbackPage = lazy(() => import("./pages/AuthCallbackPage"));
+const UserProfilePage = lazy(() => import("./pages/UserProfilePage"));
+const EditProfilePage = lazy(() => import("./pages/EditProfilePage"));
+const VerificationRequestPage = lazy(() => import("./pages/VerificationRequestPage"));
+const AdminVerificationPage = lazy(() => import("./pages/AdminVerificationPage"));
+const DataStatusPage = lazy(() => import("./pages/DataStatusPage"));
+const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
+const CalendarPage = lazy(() => import("./pages/CalendarPage"));
+const TournamentPage = lazy(() => import("./pages/TournamentPage"));
+
+function RouteLoading() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-[#05070a] text-sm font-semibold text-slate-500">
+      Loading...
+    </div>
+  );
+}
 
 ReactDOM.createRoot(
   document.getElementById("root")
@@ -44,111 +57,112 @@ ReactDOM.createRoot(
       <AuthProvider>
         <ScrollToTop />
 
-        <Routes>
-          <Route element={<App />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/auth/callback" element={<AuthCallbackPage />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/data-status" element={<DataStatusPage />} />
-            <Route path="/calendar" element={<CalendarPage />} />
-            <Route path="/calendar/:id" element={<TournamentPage />} />
-            <Route
-              path="/rankings"
-              element={<RankingsPage />}
-            />
+        <Suspense fallback={<RouteLoading />}>
+          <Routes>
+            <Route element={<App />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/auth/callback" element={<AuthCallbackPage />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/data-status" element={<DataStatusPage />} />
+              <Route path="/calendar" element={<CalendarPage />} />
+              <Route path="/calendar/:id" element={<TournamentPage />} />
+              <Route
+                path="/rankings"
+                element={<RankingsPage />}
+              />
 
-            <Route
-              path="/teams/:slug"
-              element={<TeamPage />}
-            />
+              <Route
+                path="/teams/:slug"
+                element={<TeamPage />}
+              />
 
-            <Route
-              path="/team/:slug"
-              element={<TeamPage />}
-            />
+              <Route
+                path="/team/:slug"
+                element={<TeamPage />}
+              />
 
-            <Route
-              path="/about"
-              element={<About />}
-            />
+              <Route
+                path="/about"
+                element={<About />}
+              />
 
-            <Route
-              path="/media"
-              element={<MediaPage />}
-            />
+              <Route
+                path="/media"
+                element={<MediaPage />}
+              />
 
-            <Route
-              path="/matches"
-              element={<MatchesPage />}
-            />
+              <Route
+                path="/matches"
+                element={<MatchesPage />}
+              />
 
-            <Route
-              path="/match/:id"
-              element={<MatchPageRouter />}
-            />
+              <Route
+                path="/match/:id"
+                element={<MatchPageRouter />}
+              />
 
-            <Route
-              path="/teams/:slug/matches"
-              element={<MatchesPage />}
-            />
+              <Route
+                path="/teams/:slug/matches"
+                element={<MatchesPage />}
+              />
 
-            <Route
-              path="/team/:slug/matches"
-              element={<MatchesPage />}
-            />
+              <Route
+                path="/team/:slug/matches"
+                element={<MatchesPage />}
+              />
 
-            <Route
-              path="/teams/:slug/stats"
-              element={<StatsPage />}
-            />
+              <Route
+                path="/teams/:slug/stats"
+                element={<StatsPage />}
+              />
 
-            <Route
-              path="/team/:slug/stats"
-              element={<StatsPage />}
-            />
+              <Route
+                path="/team/:slug/stats"
+                element={<StatsPage />}
+              />
 
-            <Route
-              path="/teams/:slug/analytics"
-              element={<AnalyticsPage />}
-            />
+              <Route
+                path="/teams/:slug/analytics"
+                element={<AnalyticsPage />}
+              />
 
-            <Route
-              path="/team/:slug/analytics"
-              element={<AnalyticsPage />}
-            />
+              <Route
+                path="/team/:slug/analytics"
+                element={<AnalyticsPage />}
+              />
 
-            <Route
-              path="/teams/:slug/matches/:matchId"
-              element={<MatchPageRouter />}
-            />
+              <Route
+                path="/teams/:slug/matches/:matchId"
+                element={<MatchPageRouter />}
+              />
 
-            <Route
-              path="/team/:slug/matches/:matchId"
-              element={<MatchPageRouter />}
-            />
+              <Route
+                path="/team/:slug/matches/:matchId"
+                element={<MatchPageRouter />}
+              />
 
-            <Route
-              path="/player/:playerId"
-              element={<PlayerPage />}
-            />
+              <Route
+                path="/player/:playerId"
+                element={<PlayerPage />}
+              />
 
-            <Route
-              path="/players/:playerId"
-              element={<PlayerPage />}
-            />
+              <Route
+                path="/players/:playerId"
+                element={<PlayerPage />}
+              />
 
-            <Route
-              path="/matches/:matchId"
-              element={<MatchPageRouter />}
-            />
+              <Route
+                path="/matches/:matchId"
+                element={<MatchPageRouter />}
+              />
 
-            <Route
-              path="/players"
-              element={<TopPlayersPage />}
-            />
+              <Route
+                path="/players"
+                element={<TopPlayersPage />}
+              />
 
-            <Route
+              <Route
   path="/profile/:username"
   element={<UserProfilePage />}
 />
@@ -168,8 +182,9 @@ ReactDOM.createRoot(
   element={<AdminVerificationPage />}
 />
 
-          </Route>
-        </Routes>
+            </Route>
+          </Routes>
+        </Suspense>
 
         <Analytics />
       </AuthProvider>

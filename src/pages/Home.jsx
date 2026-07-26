@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import upcomingMatches from "../data/upcomingMatches";
-import matchesData from "../data/matches";
 import teams from "../data/teams";
 import tournaments from "../data/tournaments";
 import { supabase } from "../lib/supabaseClient";
@@ -705,7 +704,12 @@ function getStaticUpcoming() {
     );
 }
 
-function getStaticResults(limit = RESULTS_LIMIT) {
+// matches.js is ~7MB of historical data used only as a fallback when
+// Supabase itself has nothing to show — dynamic import keeps it out of
+// every normal page load and only fetches it if that fallback path
+// actually runs.
+async function getStaticResults(limit = RESULTS_LIMIT) {
+  const { default: matchesData } = await import("../data/matches");
   const unique = new Map();
 
   for (const match of matchesData) {
@@ -1757,9 +1761,32 @@ function Home() {
       );
   }, [databaseReady, databaseRows]);
 
+  const [staticResults, setStaticResults] = useState([]);
+
+  useEffect(() => {
+    // Only reached once Supabase has actually responded with nothing
+    // usable — never during the brief initial loading window, so the
+    // ~7MB fallback chunk isn't fetched on a normal, working page load.
+    if (!databaseReady || databaseRows.length > 0) {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    getStaticResults().then((data) => {
+      if (!cancelled) {
+        setStaticResults(data);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [databaseReady, databaseRows]);
+
   const results = useMemo(() => {
     if (!databaseReady || databaseRows.length === 0) {
-      return getStaticResults();
+      return staticResults;
     }
 
     return databaseRows
@@ -1767,7 +1794,7 @@ function Home() {
       .map(dbRowToResult)
       .sort((first, second) => new Date(second.date) - new Date(first.date))
       .slice(0, RESULTS_LIMIT);
-  }, [databaseReady, databaseRows]);
+  }, [databaseReady, databaseRows, staticResults]);
 
 
   useEffect(() => {
