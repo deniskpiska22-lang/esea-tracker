@@ -840,65 +840,210 @@ function TeamLink({ team, className = "" }) {
   );
 }
 
-function TournamentTierBadge({ tier }) {
-  const tierStyles = {
-    S: "bg-orange-500/10 text-orange-400",
-    A: "bg-sky-500/10 text-sky-400",
-    B: "bg-emerald-500/10 text-emerald-400",
-  };
 
+function CalendarIcon({ className = "h-5 w-5" }) {
   return (
-    <div
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-black ${
-        tierStyles[tier] || "bg-slate-500/10 text-slate-400"
-      }`}
-    >
-      {tier || "?"}
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M7 3v3M17 3v3M4.5 8.5h15" />
+      <rect x="3.5" y="5" width="17" height="15.5" rx="3" />
+      <path d="M8 12h3M13 12h3M8 16h3" />
+    </svg>
   );
 }
 
-function TournamentRow({ tournament, isLive }) {
+function LocationIcon({ className = "h-4 w-4" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
+
+function ArrowIcon({ className = "h-4 w-4" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+function TrophyIcon({ className = "h-7 w-7" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M8 4h8v4a4 4 0 0 1-8 0V4Z" />
+      <path d="M8 6H5a2 2 0 0 0 2 3M16 6h3a2 2 0 0 1-2 3" />
+      <path d="M12 12v4M8.5 20h7M10 16h4" />
+    </svg>
+  );
+}
+
+function TournamentCard({ tournament, isLive, index = 0 }) {
+  const startDate = tournament.startDate ? new Date(tournament.startDate) : null;
+  const validStartDate = startDate && !Number.isNaN(startDate.getTime());
+
+  const day = validStartDate
+    ? new Intl.DateTimeFormat("en-GB", { day: "2-digit" }).format(startDate)
+    : "—";
+
+  const month = validStartDate
+    ? new Intl.DateTimeFormat("en-GB", { month: "short" }).format(startDate).toUpperCase()
+    : "TBD";
+
   const dateRange = !tournament.startDate
-    ? "Date TBD"
+    ? "Date to be announced"
     : !tournament.endDate || tournament.endDate === tournament.startDate
       ? formatDate(tournament.startDate)
       : `${formatDate(tournament.startDate)} – ${formatDate(tournament.endDate)}`;
 
-  const content = (
-    <>
-      {tournament.logo ? (
-        <img
-          src={tournament.logo}
-          alt=""
-          className="h-10 w-10 shrink-0 rounded-xl bg-[#0b0f14] object-contain p-1.5"
-        />
-      ) : (
-        <TournamentTierBadge tier={tournament.tier} />
-      )}
-
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-black">{tournament.name}</div>
-        <div className="mt-1 truncate text-xs text-slate-600">
-          {tournament.location || "Location TBD"} · {dateRange}
-        </div>
-      </div>
-
-      {isLive && (
-        <div className="flex shrink-0 items-center gap-1.5 text-xs font-black uppercase tracking-wide text-red-400">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
-          Live
-        </div>
-      )}
-    </>
-  );
+  const accent =
+    index % 3 === 0
+      ? "from-orange-500/20 via-orange-500/[0.05] to-transparent"
+      : index % 3 === 1
+        ? "from-sky-500/15 via-sky-500/[0.04] to-transparent"
+        : "from-violet-500/15 via-violet-500/[0.04] to-transparent";
 
   return (
     <Link
       to={`/calendar/${tournament.id}`}
-      className="flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.03]"
+      className="group relative block overflow-hidden rounded-[22px] border border-white/[0.075] bg-[#0b1118] transition duration-300 hover:-translate-y-1 hover:border-orange-500/30 hover:shadow-[0_20px_55px_rgba(0,0,0,0.38)]"
     >
-      {content}
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent} opacity-80 transition duration-300 group-hover:opacity-100`} />
+      <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full border border-white/[0.04]" />
+      <div className="pointer-events-none absolute -right-5 -top-7 h-24 w-24 rounded-full border border-white/[0.04]" />
+
+      <div className="relative p-4">
+        <div className="flex items-start gap-4">
+          <div className="flex w-[58px] shrink-0 flex-col items-center overflow-hidden rounded-2xl border border-white/[0.08] bg-black/25 shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
+            <div className="w-full border-b border-white/[0.07] bg-white/[0.035] py-1.5 text-center text-[9px] font-black uppercase tracking-[0.18em] text-orange-400">
+              {month}
+            </div>
+            <div className="py-2 text-2xl font-black leading-none text-white">
+              {day}
+            </div>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.16em] ${isLive ? "border-red-500/25 bg-red-500/10 text-red-400" : "border-white/[0.08] bg-white/[0.035] text-slate-400"}`}>
+                  <span className={`h-1.5 w-1.5 rounded-full ${isLive ? "animate-pulse bg-red-500" : "bg-orange-400"}`} />
+                  {isLive ? "Live now" : "Upcoming"}
+                </div>
+
+                <h3 className="mt-2 line-clamp-2 text-[15px] font-black leading-5 text-white transition group-hover:text-orange-400">
+                  {tournament.name}
+                </h3>
+              </div>
+
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/[0.08] bg-black/25">
+                {tournament.logo ? (
+                  <img src={tournament.logo} alt="" className="h-full w-full object-contain p-2" loading="lazy" />
+                ) : (
+                  <TrophyIcon className="h-6 w-6 text-orange-400" />
+                )}
+              </div>
+            </div>
+
+            <div className="mt-3 space-y-2 text-[11px] font-semibold text-slate-500">
+              <div className="flex min-w-0 items-center gap-2">
+                <LocationIcon className="h-3.5 w-3.5 shrink-0 text-slate-600" />
+                <span className="truncate">{tournament.location || "Location to be announced"}</span>
+              </div>
+
+              <div className="flex min-w-0 items-center gap-2">
+                <CalendarIcon className="h-3.5 w-3.5 shrink-0 text-slate-600" />
+                <span className="truncate">{dateRange}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
+          <span className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-600">
+            Tournament page
+          </span>
+
+          <span className="flex items-center gap-2 text-[11px] font-black text-orange-400">
+            View event
+            <ArrowIcon className="h-3.5 w-3.5 transition duration-300 group-hover:translate-x-1" />
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+
+
+function CompactTournamentCard({ tournament, isLive = false }) {
+  const startDate = tournament.startDate ? new Date(tournament.startDate) : null;
+  const validStartDate = startDate && !Number.isNaN(startDate.getTime());
+
+  const day = validStartDate
+    ? new Intl.DateTimeFormat("en-GB", { day: "2-digit" }).format(startDate)
+    : "—";
+
+  const month = validStartDate
+    ? new Intl.DateTimeFormat("en-GB", { month: "short" })
+        .format(startDate)
+        .toUpperCase()
+    : "TBD";
+
+  return (
+    <Link
+      to={`/calendar/${tournament.id}`}
+      className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-[#0b1118] px-3 py-3 transition duration-200 hover:border-orange-500/25 hover:bg-[#0e151d]"
+    >
+      <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl border border-white/[0.08] bg-black/20">
+        <span className="text-[8px] font-black uppercase tracking-[0.16em] text-orange-400">
+          {month}
+        </span>
+        <span className="mt-0.5 text-lg font-black leading-none text-white">
+          {day}
+        </span>
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span
+            className={`h-1.5 w-1.5 shrink-0 rounded-full ${
+              isLive ? "animate-pulse bg-red-500" : "bg-orange-400"
+            }`}
+          />
+          <span
+            className={`text-[8px] font-black uppercase tracking-[0.16em] ${
+              isLive ? "text-red-400" : "text-slate-500"
+            }`}
+          >
+            {isLive ? "Live now" : "Upcoming"}
+          </span>
+        </div>
+
+        <div className="mt-1 truncate text-[13px] font-black text-white transition group-hover:text-orange-400">
+          {tournament.name}
+        </div>
+
+        <div className="mt-1 flex items-center gap-1.5 truncate text-[10px] font-semibold text-slate-600">
+          <LocationIcon className="h-3 w-3 shrink-0" />
+          <span className="truncate">
+            {tournament.location || "Location TBD"}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.025] text-slate-600 transition group-hover:border-orange-500/20 group-hover:text-orange-400">
+        {tournament.logo ? (
+          <img
+            src={tournament.logo}
+            alt=""
+            className="h-full w-full object-contain p-2"
+            loading="lazy"
+          />
+        ) : (
+          <ArrowIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
+        )}
+      </div>
     </Link>
   );
 }
@@ -937,7 +1082,7 @@ function HeroMatch({ match }) {
   const matchPath = `/match/${match.matchId || match.id}`;
 
   return (
-    <section className="group relative overflow-hidden rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-6 shadow-2xl shadow-black/25 md:p-10">
+    <section className="group relative self-start overflow-hidden rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-6 shadow-2xl shadow-black/25 md:p-10">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_20%_50%,rgba(249,115,22,0.18),transparent_60%)]" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_50%,rgba(56,189,248,0.12),transparent_60%)]" />
@@ -2027,10 +2172,38 @@ function Home() {
           </div>
         )}
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_420px]">
-          <HeroMatch match={featured} />
+        <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1.5fr)_420px]">
+          {/* LEFT COLUMN — independent height */}
+          <div className="grid min-w-0 gap-6">
+            <HeroMatch match={featured} />
 
-          <div className="grid gap-6">
+            <section
+              ref={upcomingSectionRef}
+              className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
+            >
+              <SectionTitle title="Upcoming Matches" />
+
+              {upcoming.length > 0 ? (
+                <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {upcoming.map((match) => (
+                      <MatchCard
+                        key={match.matchId || match.id}
+                        match={match}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">
+                  No matches scheduled in the next 24 hours
+                </div>
+              )}
+            </section>
+          </div>
+
+          {/* RIGHT COLUMN — independent height */}
+          <div className="grid min-w-0 gap-6">
             <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
               <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
                 <div>
@@ -2049,7 +2222,7 @@ function Home() {
               </div>
 
               {liveMatches.length > 0 ? (
-                <div className="max-h-[360px] space-y-2 overflow-y-auto overflow-x-hidden p-2.5 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.12)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent">
+                <div className="max-h-[300px] space-y-2 overflow-y-auto overflow-x-hidden p-2.5 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.12)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent">
                   {liveMatches.map((match) => (
                     <LiveCard
                       key={match.id}
@@ -2058,89 +2231,98 @@ function Home() {
                   ))}
                 </div>
               ) : (
-                <div className="flex min-h-[260px] items-center justify-center px-6 text-center text-sm text-slate-600">
+                <div className="flex min-h-[150px] items-center justify-center px-6 text-center text-sm text-slate-600">
                   No live matches right now
                 </div>
               )}
             </section>
 
-            <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
+            <section className="relative overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#10171f] p-3 shadow-[0_20px_55px_rgba(0,0,0,0.2)]">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-orange-500/[0.05] blur-3xl" />
+
               <Link
                 to="/calendar"
-                className="group block border-b border-white/[0.06] px-5 py-4 transition hover:bg-white/[0.03]"
+                className="group relative flex items-center justify-between gap-4 rounded-[18px] border border-white/[0.06] bg-black/15 px-4 py-3.5 transition hover:border-orange-500/20 hover:bg-white/[0.025]"
               >
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
-                  Event Calendar
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-orange-500/20 bg-orange-500/10 text-orange-400">
+                    <CalendarIcon className="h-4.5 w-4.5" />
+                  </div>
+
+                  <div>
+                    <div className="text-[8px] font-black uppercase tracking-[0.22em] text-orange-400">
+                      Event Calendar
+                    </div>
+                    <h2 className="mt-1 text-[17px] font-black tracking-tight text-white transition group-hover:text-orange-400">
+                      Upcoming Tournaments
+                    </h2>
+                  </div>
                 </div>
-                <h2 className="mt-1 text-xl font-black transition group-hover:text-orange-400">
-                  Upcoming Tournaments
-                </h2>
+
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.07] bg-white/[0.025] text-slate-600 transition group-hover:text-orange-400">
+                  <ArrowIcon className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                </div>
               </Link>
 
               {liveTournament || upcomingTournaments.length > 0 ? (
-                <div className="divide-y divide-white/[0.06]">
+                <div className="relative mt-3 space-y-2.5">
                   {liveTournament && (
-                    <TournamentRow tournament={liveTournament} isLive />
+                    <CompactTournamentCard
+                      tournament={liveTournament}
+                      isLive
+                    />
                   )}
 
-                  {upcomingTournaments.map((tournament) => (
-                    <TournamentRow
-                      key={tournament.id}
-                      tournament={tournament}
-                    />
-                  ))}
+                  {upcomingTournaments
+                    .slice(0, liveTournament ? 3 : 4)
+                    .map((tournament) => (
+                      <CompactTournamentCard
+                        key={tournament.id}
+                        tournament={tournament}
+                      />
+                    ))}
+
+                  <Link
+                    to="/calendar"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.07] py-2.5 text-[10px] font-black uppercase tracking-[0.16em] text-slate-600 transition hover:border-orange-500/20 hover:text-orange-400"
+                  >
+                    View full calendar
+                    <ArrowIcon className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               ) : (
-                <div className="flex min-h-[260px] items-center justify-center px-6 text-center text-sm text-slate-600">
-                  No tournaments scheduled yet
+                <div className="relative mt-3 flex min-h-[190px] flex-col items-center justify-center rounded-[18px] border border-dashed border-white/[0.08] bg-black/10 px-6 text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-600">
+                    <TrophyIcon className="h-6 w-6" />
+                  </div>
+                  <div className="mt-3 text-sm font-black text-slate-400">
+                    No tournaments scheduled
+                  </div>
+                  <div className="mt-1 text-xs text-slate-600">
+                    New events will appear here automatically
+                  </div>
                 </div>
               )}
             </section>
-          </div>
-        </div>
 
-        <div className="mt-8 grid gap-6 xl:grid-cols-2">
-          <section
-            ref={upcomingSectionRef}
-            className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
-          >
-            <SectionTitle title="Upcoming Matches" />
+            <section
+              ref={recentResultsSectionRef}
+              className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-4"
+            >
+              <SectionTitle title="Recent Results" />
 
-            {upcoming.length > 0 ? (
-              <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {upcoming.map((match) => (
-                  <MatchCard
-                    key={match.matchId || match.id}
-                    match={match}
-                  />
+              <div className="home-scrollbar max-h-[320px] overflow-y-auto pr-2">
+                <div className="grid gap-3">
+                  {results.map((match) => (
+                    <ResultCard
+                      key={match.matchId || match.id}
+                      match={match}
+                    />
                   ))}
                 </div>
               </div>
-            ) : (
-              <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">
-                No matches scheduled in the next 24 hours
-              </div>
-            )}
-          </section>
-
-          <section
-            ref={recentResultsSectionRef}
-            className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
-          >
-            <SectionTitle title="Recent Results" />
-
-            <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {results.map((match) => (
-                  <ResultCard
-                    key={match.matchId || match.id}
-                    match={match}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
 
         <section className="mt-8">
