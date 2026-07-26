@@ -97,6 +97,7 @@ export function buildHeadToHeadMapRows(matches, leftTeamSlug) {
         key: `${item.matchId}-${index}`,
         matchId: item.matchId,
         date: item.date,
+        season: item.season,
         mapName: entry.mapName,
         leftWon: itemIsLeftTeam
           ? entry.teamWon

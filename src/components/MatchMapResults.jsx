@@ -17,11 +17,41 @@ function getMapBackgroundUrl(mapName) {
   return slug ? `/maps/${slug}.png` : null;
 }
 
-function MapResultRow({ map, index, team1, team2, demoUrl }) {
+function TeamBadge({ team, align }) {
+  return (
+    <div
+      className={`flex min-w-0 items-center gap-1.5 sm:gap-2 ${
+        align === "right" ? "flex-row-reverse" : ""
+      }`}
+    >
+      {team.logo && (
+        <img
+          src={team.logo}
+          alt=""
+          className="h-5 w-5 shrink-0 rounded-sm object-contain sm:h-6 sm:w-6"
+        />
+      )}
+      <span className="truncate text-xs font-bold text-slate-200 sm:text-sm">
+        {team.name}
+      </span>
+    </div>
+  );
+}
+
+function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
   const formattedName = formatMapName(map.map);
   const leftScore = toNumber(map.teamScore);
   const rightScore = toNumber(map.opponentScore);
   const backgroundUrl = getMapBackgroundUrl(map.map);
+
+  const pickLabel =
+    pickedBy === "team1"
+      ? `${team1.name} pick`
+      : pickedBy === "team2"
+        ? `${team2.name} pick`
+        : pickedBy === "decider"
+          ? "Decider"
+          : null;
 
   return (
     <div className="relative overflow-hidden rounded-xl border border-[#222e3f] bg-[#0b1119]">
@@ -35,9 +65,7 @@ function MapResultRow({ map, index, team1, team2, demoUrl }) {
 
       <div className="relative grid grid-cols-[minmax(0,1fr)_88px_minmax(0,1fr)] items-center gap-2 px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_120px_minmax(0,1fr)] sm:gap-3 sm:px-5 sm:py-3.5">
         <div className="flex items-center justify-end gap-2 sm:gap-3">
-          <div className="truncate text-xs font-bold text-slate-200 sm:text-sm">
-            {team1.name}
-          </div>
+          <TeamBadge team={team1} align="right" />
           <div
             className={`text-lg font-black sm:text-2xl ${
               leftScore > rightScore ? "text-emerald-400" : "text-white"
@@ -54,6 +82,11 @@ function MapResultRow({ map, index, team1, team2, demoUrl }) {
           <div className="truncate text-sm font-black text-white sm:text-base">
             {formattedName}
           </div>
+          {pickLabel && (
+            <div className="mt-0.5 truncate text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+              {pickLabel}
+            </div>
+          )}
           {demoUrl && (
             <a
               href={demoUrl}
@@ -74,16 +107,21 @@ function MapResultRow({ map, index, team1, team2, demoUrl }) {
           >
             {rightScore}
           </div>
-          <div className="truncate text-xs font-bold text-slate-200 sm:text-sm">
-            {team2.name}
-          </div>
+          <TeamBadge team={team2} align="left" />
         </div>
       </div>
     </div>
   );
 }
 
-function FinishedMapsPanel({ maps, team1, team2, demoUrls, demoUnavailable }) {
+function FinishedMapsPanel({
+  maps,
+  team1,
+  team2,
+  demoUrls,
+  demoUnavailable,
+  pickedTeamByMap,
+}) {
   const demos = Array.isArray(demoUrls) ? demoUrls : [];
 
   if (!Array.isArray(maps) || maps.length === 0) {
@@ -131,6 +169,9 @@ function FinishedMapsPanel({ maps, team1, team2, demoUrls, demoUnavailable }) {
             team1={team1}
             team2={team2}
             demoUrl={demos[index]}
+            pickedBy={pickedTeamByMap?.get(
+              formatMapName(map.map).toLowerCase()
+            )}
           />
         ))}
       </div>
@@ -170,42 +211,32 @@ function parseVetoSteps(payload, team1, team2) {
     }));
 }
 
-function MapVetoCard({ matchId, team1, team2 }) {
-  const [steps, setSteps] = useState(null);
+// team1/team2/"decider" keyed by lowercased map name, built from the
+// veto's "Picked" entries — used to badge each played map with who
+// chose it (a map left over after every ban has no pick entry, so it
+// reads as a decider).
+function buildPickedTeamByMap(steps, team1, team2) {
+  const lookup = new Map();
 
-  useEffect(() => {
-    if (!matchId) {
-      return;
-    }
+  steps
+    .filter((step) => step.action === "Picked")
+    .forEach((step) => {
+      const key = step.map.toLowerCase();
 
-    let cancelled = false;
-    setSteps(null);
+      if (step.team === team1) {
+        lookup.set(key, "team1");
+      } else if (step.team === team2) {
+        lookup.set(key, "team2");
+      } else {
+        lookup.set(key, "decider");
+      }
+    });
 
-    fetch(`/api/veto?matchId=${encodeURIComponent(matchId)}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Veto request failed");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (!cancelled) {
-          setSteps(parseVetoSteps(data, team1, team2));
-        }
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setSteps([]);
-        }
-      });
+  return lookup;
+}
 
-    return () => {
-      cancelled = true;
-    };
-  }, [matchId, team1, team2]);
-
+function MapVetoCard({ steps, isLoading }) {
   const hasSteps = Array.isArray(steps) && steps.length > 0;
-  const isLoading = Boolean(matchId) && steps === null;
 
   return (
     <section className="flex h-full flex-col overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
@@ -275,6 +306,45 @@ export default function MatchMapResultsSection({
   demoUrls,
   demoUnavailable,
 }) {
+  const [steps, setSteps] = useState(null);
+
+  useEffect(() => {
+    if (!matchId) {
+      return;
+    }
+
+    let cancelled = false;
+    setSteps(null);
+
+    fetch(`/api/veto?matchId=${encodeURIComponent(matchId)}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Veto request failed");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!cancelled) {
+          setSteps(parseVetoSteps(data, team1, team2));
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setSteps([]);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [matchId, team1, team2]);
+
+  const pickedTeamByMap = buildPickedTeamByMap(
+    steps || [],
+    team1,
+    team2
+  );
+
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(0,1.9fr)_minmax(280px,1fr)]">
       <FinishedMapsPanel
@@ -283,9 +353,10 @@ export default function MatchMapResultsSection({
         team2={team2}
         demoUrls={demoUrls}
         demoUnavailable={demoUnavailable}
+        pickedTeamByMap={pickedTeamByMap}
       />
 
-      <MapVetoCard matchId={matchId} team1={team1} team2={team2} />
+      <MapVetoCard steps={steps} isLoading={Boolean(matchId) && steps === null} />
     </div>
   );
 }
