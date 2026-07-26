@@ -18,10 +18,10 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
-import { countHeadToHeadMapWins } from "../utils/headToHead";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
+import HeadToHeadCard from "../components/HeadToHeadCard";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -2152,32 +2152,6 @@ function MatchPage() {
     ).values(),
   ];
 
-  const {
-    leftWins: leftTeamWins,
-    rightWins: rightTeamWins,
-  } = countHeadToHeadMapWins(
-    uniqueH2HMatches,
-    leftLocalTeam?.slug
-  );
-
-  const formatH2HScore = (
-    item
-  ) => {
-    if (
-      item.teamSlug ===
-      leftLocalTeam?.slug
-    ) {
-      return item.boScore;
-    }
-
-    return String(
-      item.boScore
-    )
-      .split(":")
-      .reverse()
-      .join(":");
-  };
-
   const showFinishedSections =
     Boolean(finishedMatch) ||
     apiSaysFinished;
@@ -2585,113 +2559,12 @@ function MatchPage() {
           rightLocalTeam &&
           uniqueH2HMatches.length >
             0 && (
-            <div className="mt-8">
-              <h2 className="mb-4 text-2xl font-black tracking-tight">
-                Head to Head
-              </h2>
-
-              <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
-                <div className="grid grid-cols-3 items-center border-b border-[#243041] p-6 text-center">
-                  <div className="flex flex-col items-center">
-                    {displayTeam1.logo && (
-                      <img
-                        src={
-                          displayTeam1.logo
-                        }
-                        alt={
-                          displayTeam1.name
-                        }
-                        className="mb-2 h-12 w-12 object-contain"
-                      />
-                    )}
-
-                    <div className="text-lg text-gray-400">
-                      {
-                        displayTeam1.name
-                      }
-                    </div>
-
-                    <div className="text-5xl font-black text-green-400">
-                      {leftTeamWins}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm text-gray-500">
-                      H2H Record
-                    </div>
-
-                    <div className="text-xl font-bold">
-                      Matches:{" "}
-                      {
-                        uniqueH2HMatches.length
-                      }
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center">
-                    {displayTeam2.logo && (
-                      <img
-                        src={
-                          displayTeam2.logo
-                        }
-                        alt={
-                          displayTeam2.name
-                        }
-                        className="mb-2 h-12 w-12 object-contain"
-                      />
-                    )}
-
-                    <div className="text-lg text-gray-400">
-                      {
-                        displayTeam2.name
-                      }
-                    </div>
-
-                    <div className="text-5xl font-black text-red-400">
-                      {rightTeamWins}
-                    </div>
-                  </div>
-                </div>
-
-                {uniqueH2HMatches.map(
-                  (item) => (
-                    <Link
-                      key={`${item.matchId}-${item.teamSlug}`}
-                      to={`/match/${item.matchId}`}
-                      className="relative flex items-center justify-between border-b border-[#1d2634] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#151e2b]"
-                    >
-                      <div className="font-medium">
-                        {item.teamSlug ===
-                        leftLocalTeam.slug
-                          ? `${item.teamName} vs ${item.opponentName}`
-                          : `${item.opponentName} vs ${item.teamName}`}
-                      </div>
-
-                      <div className="hidden text-center md:block">
-                        <div className="text-sm font-medium text-gray-300">
-                          {
-                            item.season
-                          }
-                        </div>
-
-                        <div className="mt-1 text-xs text-gray-500">
-                          {
-                            item.date
-                          }
-                        </div>
-                      </div>
-
-                      <div className="font-black text-orange-400">
-                        {formatH2HScore(
-                          item
-                        )}
-                      </div>
-                    </Link>
-                  )
-                )}
-              </div>
-            </div>
+            <HeadToHeadCard
+              matches={uniqueH2HMatches}
+              team1={displayTeam1}
+              team2={displayTeam2}
+              leftTeamSlug={leftLocalTeam.slug}
+            />
           )}
 
         {/* MATCH INFORMATION */}

@@ -36,3 +36,78 @@ export function countHeadToHeadMapWins(matches, leftTeamSlug) {
 
   return { leftWins, rightWins };
 }
+
+function parseBoScore(boScore) {
+  const [teamScore, opponentScore] = String(boScore)
+    .split(":")
+    .map((part) => Number(part.trim()));
+
+  return {
+    teamScore: Number.isFinite(teamScore) ? teamScore : 0,
+    opponentScore: Number.isFinite(opponentScore) ? opponentScore : 0,
+  };
+}
+
+// One row per map (HLTV-style), newest series first. Falls back to a
+// single series-level row when map scores aren't synced yet.
+export function buildHeadToHeadMapRows(matches, leftTeamSlug) {
+  const sortedMatches = [...matches].sort((a, b) =>
+    String(b.date).localeCompare(String(a.date))
+  );
+
+  const rows = [];
+
+  sortedMatches.forEach((item, seriesIndex) => {
+    const itemIsLeftTeam = item.teamSlug === leftTeamSlug;
+    const maps = Array.isArray(item.mapScores) ? item.mapScores : [];
+
+    const mapEntries =
+      maps.length > 0
+        ? maps.map((map) => ({
+            mapName: map.map,
+            teamScore: Number(map.teamScore) || 0,
+            opponentScore: Number(map.opponentScore) || 0,
+            teamWon: Boolean(map.won),
+          }))
+        : (() => {
+            const { teamScore, opponentScore } = parseBoScore(
+              item.boScore
+            );
+
+            return [
+              {
+                mapName: null,
+                teamScore,
+                opponentScore,
+                teamWon: teamScore > opponentScore,
+              },
+            ];
+          })();
+
+    mapEntries.forEach((entry, index) => {
+      const leftScore = itemIsLeftTeam
+        ? entry.teamScore
+        : entry.opponentScore;
+
+      const rightScore = itemIsLeftTeam
+        ? entry.opponentScore
+        : entry.teamScore;
+
+      rows.push({
+        key: `${item.matchId}-${index}`,
+        matchId: item.matchId,
+        date: item.date,
+        mapName: entry.mapName,
+        leftWon: itemIsLeftTeam
+          ? entry.teamWon
+          : !entry.teamWon,
+        leftScore,
+        rightScore,
+        overtime: Math.min(leftScore, rightScore) >= 13,
+        stripe: seriesIndex % 2 === 1,
+      });
+    });
+  });
+
+  return rows;
+}

@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { formatMapName } from "../utils/formatMapName";
+
 function toNumber(value, fallback = 0) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
-}
-
-function formatMapName(value) {
-  const rawName = String(value || "Unknown").replace(/^de_/i, "");
-
-  if (!rawName) {
-    return "Unknown";
-  }
-
-  return rawName.charAt(0).toUpperCase() + rawName.slice(1);
 }
 
 function getMapBackgroundUrl(mapName) {
