@@ -20,6 +20,7 @@ import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
+import MatchMapResultsSection from "../components/MatchMapResults";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -1663,114 +1664,6 @@ function FinishedMatchHero({
   );
 }
 
-function FinishedMapsPanel({
-  maps,
-  team1,
-  team2,
-}) {
-  if (!Array.isArray(maps) || maps.length === 0) {
-    return (
-      <section className="mt-8 overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
-        <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
-          <h2 className="text-xl font-black">Maps</h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Match result synchronization
-          </p>
-        </div>
-
-        <div className="p-6">
-          <div className="rounded-2xl border border-dashed border-[#2a3546] bg-[#0b1119] p-6 text-center">
-            <div className="font-bold text-slate-300">
-              Map scores are being processed
-            </div>
-            <div className="mt-2 text-sm text-slate-500">
-              The final series score is available. Detailed map results will appear automatically.
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="mt-8 overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
-      <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
-        <h2 className="text-xl font-black">Map results</h2>
-        <p className="mt-1 text-xs text-slate-500">
-          Full series breakdown
-        </p>
-      </div>
-
-      <div>
-        {maps.map((map, index) => {
-          const formattedName =
-            formatMapName(map.map);
-          const leftScore =
-            toNumber(map.teamScore);
-          const rightScore =
-            toNumber(map.opponentScore);
-
-          return (
-            <div
-              key={`${map.map}-${index}`}
-              className="relative overflow-hidden border-b border-[#222e3f] last:border-0"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center opacity-[0.12]"
-                style={{
-                  backgroundImage: `url(/maps/${formattedName.toLowerCase()}.png)`,
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#101722] via-[#101722]/95 to-[#101722]" />
-
-              <div className="relative grid items-center gap-4 px-5 py-5 sm:grid-cols-[minmax(0,1fr)_140px_minmax(0,1fr)] sm:px-6">
-                <div className="flex items-center gap-3 sm:justify-end">
-                  <div className="truncate text-sm font-bold text-slate-300">
-                    {team1.name}
-                  </div>
-                  <div
-                    className={`text-3xl font-black ${
-                      leftScore > rightScore
-                        ? "text-emerald-400"
-                        : "text-white"
-                    }`}
-                  >
-                    {leftScore}
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                    Map {index + 1}
-                  </div>
-                  <div className="mt-1 text-xl font-black text-white">
-                    {formattedName}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-end gap-3 sm:justify-start">
-                  <div
-                    className={`text-3xl font-black ${
-                      rightScore > leftScore
-                        ? "text-emerald-400"
-                        : "text-white"
-                    }`}
-                  >
-                    {rightScore}
-                  </div>
-                  <div className="truncate text-sm font-bold text-slate-300">
-                    {team2.name}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 function LiveMatchPage() {
   const location = useLocation();
 
@@ -2416,11 +2309,14 @@ function LiveMatchPage() {
         {/* MAPS */}
 
         {showFinishedSections && (
-          <FinishedMapsPanel
-            maps={displayedMapScores}
-            team1={displayTeam1}
-            team2={displayTeam2}
-          />
+          <div className="mt-8">
+            <MatchMapResultsSection
+              matchId={matchId}
+              maps={displayedMapScores}
+              team1={displayTeam1}
+              team2={displayTeam2}
+            />
+          </div>
         )}
 
         {/* PLAYER STATISTICS */}
