@@ -2249,7 +2249,7 @@ function LiveMatchPage() {
 
         {/* MAPS */}
 
-        {showFinishedSections && (
+        {(showFinishedSections || isLive) && (
           <div className="mt-8">
             <MatchMapResultsSection
               matchId={matchId}
