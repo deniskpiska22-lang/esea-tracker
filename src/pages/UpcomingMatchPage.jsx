@@ -22,6 +22,7 @@ import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
+import { useTeamStats } from "../hooks/useTeamStats";
 
 const LIVE_STATUSES = new Set([
   "LIVE",
@@ -424,21 +425,16 @@ function normalizeDisplayedMapScore(map, displayTeam1, displayTeam2) {
   };
 }
 
-function getRecentMatchesForTeam(team) {
-  if (!team?.slug) {
-    return [];
-  }
-
+function filterRecentMatches(matches) {
   const threeMonthsAgo = new Date();
 
   threeMonthsAgo.setMonth(
     threeMonthsAgo.getMonth() - 3
   );
 
-  return matchesData
+  return matches
     .filter(
       (item) =>
-        item.teamSlug === team.slug &&
         new Date(item.date) >= threeMonthsAgo
     )
     .sort(
@@ -1840,39 +1836,6 @@ function UpcomingMatchPage() {
     };
   }, [isLive, loadLiveMatch]);
 
-  if (
-    !finishedMatch &&
-    !upcomingMatch &&
-    !liveData &&
-    loadingLive
-  ) {
-    return (
-      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        Loading match...
-      </div>
-    );
-  }
-
-  if (
-    !finishedMatch &&
-    !upcomingMatch &&
-    !liveData
-  ) {
-    return (
-      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        <div className="text-xl font-bold">
-          Match not found
-        </div>
-
-        {liveError && (
-          <div className="mt-2 text-sm text-red-400">
-            {liveError}
-          </div>
-        )}
-      </div>
-    );
-  }
-
   const finishedTeam = teams.find(
     (team) =>
       team.slug ===
@@ -1948,15 +1911,27 @@ function UpcomingMatchPage() {
     displayTeam2.name
   );
 
-  const leftRecentMatches =
-    getRecentMatchesForTeam(
-      leftLocalTeam
-    );
+  const leftFallbackMatches = matchesData.filter(
+    (match) => match.teamSlug === leftLocalTeam?.slug
+  );
 
-  const rightRecentMatches =
-    getRecentMatchesForTeam(
-      rightLocalTeam
-    );
+  const rightFallbackMatches = matchesData.filter(
+    (match) => match.teamSlug === rightLocalTeam?.slug
+  );
+
+  const { matches: leftAllMatches = [] } = useTeamStats(
+    leftLocalTeam?.slug,
+    leftFallbackMatches
+  );
+
+  const { matches: rightAllMatches = [] } = useTeamStats(
+    rightLocalTeam?.slug,
+    rightFallbackMatches
+  );
+
+  const leftRecentMatches = filterRecentMatches(leftAllMatches);
+
+  const rightRecentMatches = filterRecentMatches(rightAllMatches);
 
   const displayScore = liveData
     ? `${liveData.team1Score} : ${liveData.team2Score}`
@@ -2085,41 +2060,25 @@ function UpcomingMatchPage() {
   );
 
   /*
-   * H2H пока оставляем на старых matchesData.
-   * Он строится только если обе команды есть
-   * в локальном рейтинге.
+   * H2H строится из тех же live-подгруженных
+   * матчей (useTeamStats), что и Recent Matches,
+   * только если обе команды есть в локальном рейтинге.
    */
   const h2hMatches =
     leftLocalTeam &&
     rightLocalTeam
-      ? matchesData.filter(
-          (item) => {
-            const directMatch =
-              item.teamSlug ===
-                leftLocalTeam.slug &&
-              normalizeName(
-                item.opponentName
-              ) ===
-                normalizeName(
-                  rightLocalTeam.name
-                );
-
-            const reverseMatch =
-              item.teamSlug ===
-                rightLocalTeam.slug &&
-              normalizeName(
-                item.opponentName
-              ) ===
-                normalizeName(
-                  leftLocalTeam.name
-                );
-
-            return (
-              directMatch ||
-              reverseMatch
-            );
-          }
-        )
+      ? [
+          ...leftAllMatches.filter(
+            (item) =>
+              normalizeName(item.opponentName) ===
+              normalizeName(rightLocalTeam.name)
+          ),
+          ...rightAllMatches.filter(
+            (item) =>
+              normalizeName(item.opponentName) ===
+              normalizeName(leftLocalTeam.name)
+          ),
+        ]
       : [];
 
   const uniqueH2HMatches = [
@@ -2136,6 +2095,39 @@ function UpcomingMatchPage() {
   const showFinishedSections =
     Boolean(finishedMatch) ||
     apiSaysFinished;
+
+  if (
+    !finishedMatch &&
+    !upcomingMatch &&
+    !liveData &&
+    loadingLive
+  ) {
+    return (
+      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
+        Loading match...
+      </div>
+    );
+  }
+
+  if (
+    !finishedMatch &&
+    !upcomingMatch &&
+    !liveData
+  ) {
+    return (
+      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
+        <div className="text-xl font-bold">
+          Match not found
+        </div>
+
+        {liveError && (
+          <div className="mt-2 text-sm text-red-400">
+            {liveError}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">

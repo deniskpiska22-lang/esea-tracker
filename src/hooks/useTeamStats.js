@@ -369,8 +369,11 @@ function normalizeDatabaseMatch(
       "Unknown",
 
     date:
-      row.finished_at ||
-      row.scheduled_at ||
+      String(
+        row.finished_at ||
+        row.scheduled_at ||
+        ""
+      ).slice(0, 10) ||
       null,
 
     season:
