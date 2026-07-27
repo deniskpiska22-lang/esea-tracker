@@ -36,6 +36,11 @@ const NAV_ITEMS = [
     icon: "◆",
   },
   {
+    value: "team-profiles",
+    label: "Team Profiles",
+    icon: "🖼",
+  },
+  {
     value: "activity",
     label: "History",
     icon: "↺",
@@ -90,6 +95,18 @@ const ACCOUNT_TYPE_LABELS = {
   player: "Player",
   staff: "Team Staff",
 };
+
+const SOCIAL_PLATFORM_OPTIONS = [
+  "FACEIT",
+  "HLTV",
+  "Liquipedia",
+  "Website",
+  "Twitter/X",
+  "Instagram",
+  "Discord",
+  "Telegram",
+  "Other",
+];
 
 function formatDate(value, withTime = true) {
   if (!value) {
@@ -276,6 +293,74 @@ function EmptyState({
   );
 }
 
+function PlayerPhotoRow({
+  row,
+  draft,
+  saving,
+  onChange,
+  onSave,
+}) {
+  const preview =
+    draft.url || row.avatar;
+
+  return (
+    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/[0.06] bg-[#0c121b] p-3">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/[0.05] font-black text-orange-300">
+        {preview ? (
+          <img
+            src={preview}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          String(row.nickname || "?")
+            .slice(0, 2)
+            .toUpperCase()
+        )}
+      </div>
+
+      <div className="min-w-[120px] shrink-0 truncate text-sm font-black text-white">
+        {row.nickname}
+      </div>
+
+      <input
+        value={draft.url}
+        onChange={(event) =>
+          onChange({
+            ...draft,
+            url: event.target.value,
+          })
+        }
+        placeholder="Photo URL"
+        className="min-w-[200px] flex-1 rounded-xl border border-white/[0.07] bg-[#080d14] px-3 py-2 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
+      />
+
+      <label className="flex shrink-0 items-center gap-2 text-xs font-bold text-gray-400">
+        <input
+          type="checkbox"
+          checked={draft.verified}
+          onChange={(event) =>
+            onChange({
+              ...draft,
+              verified: event.target.checked,
+            })
+          }
+        />
+        Verified
+      </label>
+
+      <button
+        type="button"
+        disabled={saving}
+        onClick={onSave}
+        className="shrink-0 rounded-xl border border-orange-500/30 bg-orange-500/10 px-3 py-2 text-xs font-black text-orange-300 transition hover:bg-orange-500 hover:text-white disabled:opacity-50"
+      >
+        {saving ? "Saving..." : "Save"}
+      </button>
+    </div>
+  );
+}
+
 export default function AdminVerificationPage() {
   const {
     profile,
@@ -310,6 +395,31 @@ export default function AdminVerificationPage() {
   const [rejectionReason, setRejectionReason] =
     useState("");
 
+  const [teamSearch, setTeamSearch] =
+    useState("");
+  const [selectedTeamSlug, setSelectedTeamSlug] =
+    useState(null);
+  const [teamProfileLoading, setTeamProfileLoading] =
+    useState(false);
+  const [teamDescriptionDraft, setTeamDescriptionDraft] =
+    useState("");
+  const [teamProfileSaving, setTeamProfileSaving] =
+    useState(false);
+  const [teamProfileError, setTeamProfileError] =
+    useState("");
+  const [teamProfileSuccess, setTeamProfileSuccess] =
+    useState("");
+  const [teamRoster, setTeamRoster] =
+    useState([]);
+  const [photoDrafts, setPhotoDrafts] =
+    useState({});
+  const [photoSavingId, setPhotoSavingId] =
+    useState(null);
+  const [socialLinksDraft, setSocialLinksDraft] =
+    useState([]);
+  const [socialLinksSaving, setSocialLinksSaving] =
+    useState(false);
+
   const teamBySlug = useMemo(
     () =>
       new Map(
@@ -331,6 +441,42 @@ export default function AdminVerificationPage() {
       ),
     [profiles]
   );
+
+  const sortedAllTeams = useMemo(
+    () =>
+      [...teams].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      ),
+    []
+  );
+
+  const filteredAllTeams = useMemo(() => {
+    const normalized =
+      teamSearch.trim().toLowerCase();
+
+    if (!normalized) {
+      return sortedAllTeams;
+    }
+
+    return sortedAllTeams.filter((row) =>
+      String(row.name || "")
+        .toLowerCase()
+        .includes(normalized)
+    );
+  }, [sortedAllTeams, teamSearch]);
+
+  const selectedTeam = useMemo(
+    () =>
+      sortedAllTeams.find(
+        (row) => row.slug === selectedTeamSlug
+      ) || null,
+    [sortedAllTeams, selectedTeamSlug]
+  );
+
+  const selectedTeamId =
+    selectedTeam?.faceitTeamId ||
+    selectedTeam?.faceit_team_id ||
+    null;
 
   const loadDashboard = useCallback(
     async ({ silent = false } = {}) => {
@@ -503,6 +649,105 @@ export default function AdminVerificationPage() {
     profile?.is_admin,
     loadDashboard,
   ]);
+
+  useEffect(() => {
+    if (!selectedTeamId) {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    async function loadTeamContent() {
+      setTeamProfileLoading(true);
+      setTeamProfileError("");
+      setTeamProfileSuccess("");
+
+      const [profileResponse, rosterResponse] =
+        await Promise.all([
+          supabase
+            .from("team_profiles")
+            .select("description,social_links")
+            .eq("team_id", selectedTeamId)
+            .maybeSingle(),
+          supabase
+            .from("team_players")
+            .select(
+              "player_id,official_photo_url,official_photo_verified,players!team_players_player_id_fkey(id,nickname,avatar)"
+            )
+            .eq("team_id", selectedTeamId),
+        ]);
+
+      if (cancelled) {
+        return;
+      }
+
+      if (profileResponse.error) {
+        console.error(
+          "Team profile load failed:",
+          profileResponse.error
+        );
+      }
+
+      if (rosterResponse.error) {
+        console.error(
+          "Team roster load failed:",
+          rosterResponse.error
+        );
+      }
+
+      setTeamDescriptionDraft(
+        profileResponse.data?.description || ""
+      );
+
+      setSocialLinksDraft(
+        Array.isArray(
+          profileResponse.data?.social_links
+        )
+          ? profileResponse.data.social_links
+          : []
+      );
+
+      const rosterRows = (
+        rosterResponse.data || []
+      ).map((row) => {
+        const player = Array.isArray(row.players)
+          ? row.players[0]
+          : row.players;
+
+        return {
+          playerId: row.player_id,
+          nickname: player?.nickname || "Unknown",
+          avatar: player?.avatar || null,
+          officialPhotoUrl:
+            row.official_photo_url || "",
+          officialPhotoVerified: Boolean(
+            row.official_photo_verified
+          ),
+        };
+      });
+
+      setTeamRoster(rosterRows);
+      setPhotoDrafts(
+        Object.fromEntries(
+          rosterRows.map((row) => [
+            row.playerId,
+            {
+              url: row.officialPhotoUrl,
+              verified: row.officialPhotoVerified,
+            },
+          ])
+        )
+      );
+
+      setTeamProfileLoading(false);
+    }
+
+    loadTeamContent();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedTeamId]);
 
   const counts = useMemo(() => {
     const result = {
@@ -825,6 +1070,178 @@ export default function AdminVerificationPage() {
       );
     } finally {
       setProcessingId(null);
+    }
+  }
+
+  async function saveTeamDescription() {
+    if (!selectedTeamId) {
+      return;
+    }
+
+    setTeamProfileSaving(true);
+    setTeamProfileError("");
+    setTeamProfileSuccess("");
+
+    try {
+      const { error } = await supabase.rpc(
+        "upsert_team_profile",
+        {
+          p_team_id: selectedTeamId,
+          p_description:
+            teamDescriptionDraft.trim() || null,
+        }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      setTeamProfileSuccess(
+        "Description saved."
+      );
+    } catch (error) {
+      console.error(
+        "Failed to save team description:",
+        error
+      );
+
+      setTeamProfileError(
+        error.message ||
+          "Could not save the description."
+      );
+    } finally {
+      setTeamProfileSaving(false);
+    }
+  }
+
+  function addSocialLinkRow() {
+    setSocialLinksDraft((current) => [
+      ...current,
+      { platform: SOCIAL_PLATFORM_OPTIONS[0], url: "" },
+    ]);
+  }
+
+  function updateSocialLinkRow(index, patch) {
+    setSocialLinksDraft((current) =>
+      current.map((row, rowIndex) =>
+        rowIndex === index
+          ? { ...row, ...patch }
+          : row
+      )
+    );
+  }
+
+  function removeSocialLinkRow(index) {
+    setSocialLinksDraft((current) =>
+      current.filter(
+        (_, rowIndex) => rowIndex !== index
+      )
+    );
+  }
+
+  async function saveSocialLinks() {
+    if (!selectedTeamId) {
+      return;
+    }
+
+    setSocialLinksSaving(true);
+    setTeamProfileError("");
+    setTeamProfileSuccess("");
+
+    const cleaned = socialLinksDraft
+      .map((row) => ({
+        platform: row.platform || "Other",
+        url: String(row.url || "").trim(),
+      }))
+      .filter((row) => row.url);
+
+    try {
+      const { error } = await supabase.rpc(
+        "set_team_social_links",
+        {
+          p_team_id: selectedTeamId,
+          p_social_links: cleaned,
+        }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      setSocialLinksDraft(cleaned);
+      setTeamProfileSuccess("Social links saved.");
+    } catch (error) {
+      console.error(
+        "Failed to save social links:",
+        error
+      );
+
+      setTeamProfileError(
+        error.message ||
+          "Could not save the social links."
+      );
+    } finally {
+      setSocialLinksSaving(false);
+    }
+  }
+
+  async function savePlayerPhoto(playerId) {
+    if (!selectedTeamId) {
+      return;
+    }
+
+    const draft =
+      photoDrafts[playerId] || {
+        url: "",
+        verified: false,
+      };
+
+    setPhotoSavingId(playerId);
+    setTeamProfileError("");
+    setTeamProfileSuccess("");
+
+    try {
+      const { error } = await supabase.rpc(
+        "set_official_team_photo",
+        {
+          p_team_id: selectedTeamId,
+          p_player_id: playerId,
+          p_photo_url: draft.url.trim() || null,
+          p_verified: Boolean(draft.verified),
+        }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      setTeamRoster((current) =>
+        current.map((row) =>
+          row.playerId === playerId
+            ? {
+                ...row,
+                officialPhotoUrl: draft.url.trim(),
+                officialPhotoVerified: Boolean(
+                  draft.verified
+                ),
+              }
+            : row
+        )
+      );
+
+      setTeamProfileSuccess("Photo updated.");
+    } catch (error) {
+      console.error(
+        "Failed to save player photo:",
+        error
+      );
+
+      setTeamProfileError(
+        error.message ||
+          "Could not update the photo."
+      );
+    } finally {
+      setPhotoSavingId(null);
     }
   }
 
@@ -1941,62 +2358,359 @@ export default function AdminVerificationPage() {
             )}
 
             {section === "teams" && (
-              <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
-                <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                  Team coverage
-                </div>
-                <h2 className="mt-2 text-2xl font-black">
-                  Teams on the platform
-                </h2>
+                <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
+                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
+                    Team coverage
+                  </div>
+                  <h2 className="mt-2 text-2xl font-black">
+                    Teams on the platform
+                  </h2>
 
-                <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-                  {teamRows.map(
-                    (row) => (
-                      <Link
-                        key={row.slug}
-                        to={`/team/${row.slug}`}
-                        className="group rounded-[24px] border border-white/[0.06] bg-[#080d14] p-5 transition hover:border-orange-500/25 hover:bg-orange-500/[0.035]"
-                      >
-                        <div className="flex items-center gap-4">
-                          <TeamMark
-                            team={row.team}
-                            size="h-16 w-16"
-                          />
+                  <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
+                    {teamRows.map(
+                      (row) => (
+                        <Link
+                          key={row.slug}
+                          to={`/team/${row.slug}`}
+                          className="group rounded-[24px] border border-white/[0.06] bg-[#080d14] p-5 transition hover:border-orange-500/25 hover:bg-orange-500/[0.035]"
+                        >
+                          <div className="flex items-center gap-4">
+                            <TeamMark
+                              team={row.team}
+                              size="h-16 w-16"
+                            />
 
-                          <div className="min-w-0">
-                            <div className="truncate text-lg font-black text-white transition group-hover:text-orange-300">
-                              {row.team.name}
+                            <div className="min-w-0">
+                              <div className="truncate text-lg font-black text-white transition group-hover:text-orange-300">
+                                {row.team.name}
+                              </div>
+                              <div className="mt-1 text-xs text-gray-600">
+                                {row.total} verified members
+                              </div>
                             </div>
-                            <div className="mt-1 text-xs text-gray-600">
-                              {row.total} verified members
+                          </div>
+
+                          <div className="mt-5 grid grid-cols-2 gap-3">
+                            <div className="rounded-xl bg-white/[0.035] p-3">
+                              <div className="text-xs text-gray-600">
+                                Players
+                              </div>
+                              <div className="mt-1 text-xl font-black">
+                                {row.players}
+                              </div>
                             </div>
+
+                            <div className="rounded-xl bg-white/[0.035] p-3">
+                              <div className="text-xs text-gray-600">
+                                Staff
+                              </div>
+                              <div className="mt-1 text-xl font-black">
+                                {row.staff}
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      )
+                    )}
+                  </div>
+                </section>
+            )}
+
+            {section === "team-profiles" && (
+                <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
+                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
+                    Team content
+                  </div>
+                  <h2 className="mt-2 text-2xl font-black">
+                    Team profiles
+                  </h2>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Edit a team's public description, social links, and its players' official photos — each section publishes independently as soon as you save it.
+                  </p>
+
+                  <div className="mt-6 grid gap-5 2xl:grid-cols-[380px_minmax(0,1fr)]">
+                    <div className="overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#080d14]">
+                      <div className="border-b border-white/[0.06] p-4">
+                        <input
+                          value={teamSearch}
+                          onChange={(event) =>
+                            setTeamSearch(
+                              event.target.value
+                            )
+                          }
+                          placeholder="Search teams..."
+                          className="w-full rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="max-h-[640px] overflow-y-auto p-2">
+                        {filteredAllTeams.length === 0 && (
+                          <div className="p-6 text-center text-sm text-gray-600">
+                            No teams found
+                          </div>
+                        )}
+
+                        {filteredAllTeams
+                          .slice(0, 200)
+                          .map((row) => {
+                            const active =
+                              row.slug ===
+                              selectedTeamSlug;
+
+                            return (
+                              <button
+                                key={row.slug}
+                                type="button"
+                                onClick={() =>
+                                  setSelectedTeamSlug(
+                                    row.slug
+                                  )
+                                }
+                                className={`mb-1 flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-left transition ${
+                                  active
+                                    ? "bg-orange-500/10 text-orange-300"
+                                    : "text-gray-300 hover:bg-white/[0.04]"
+                                }`}
+                              >
+                                <TeamMark
+                                  team={row}
+                                  size="h-8 w-8"
+                                />
+                                <span className="min-w-0 flex-1 truncate text-sm font-bold">
+                                  {row.name}
+                                </span>
+                              </button>
+                            );
+                          })}
+                      </div>
+                    </div>
+
+                    <div className="rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5 md:p-6">
+                      {!selectedTeam ? (
+                        <EmptyState
+                          title="Select a team"
+                          text="Pick a team on the left to edit its description and official player photos."
+                        />
+                      ) : (
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-4">
+                            <TeamMark
+                              team={selectedTeam}
+                              size="h-14 w-14"
+                            />
+                            <div>
+                              <div className="text-xl font-black">
+                                {selectedTeam.name}
+                              </div>
+                              <div className="mt-1 text-xs text-gray-600">
+                                {selectedTeam.division || ""}
+                              </div>
+                            </div>
+                          </div>
+
+                          {teamProfileError && (
+                            <div className="rounded-2xl border border-red-500/25 bg-red-500/10 p-4 text-sm text-red-300">
+                              {teamProfileError}
+                            </div>
+                          )}
+
+                          {teamProfileSuccess && (
+                            <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+                              {teamProfileSuccess}
+                            </div>
+                          )}
+
+                          <div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
+                              Description
+                            </div>
+
+                            <textarea
+                              rows={5}
+                              maxLength={2000}
+                              value={teamDescriptionDraft}
+                              disabled={teamProfileLoading}
+                              onChange={(event) =>
+                                setTeamDescriptionDraft(
+                                  event.target.value
+                                )
+                              }
+                              placeholder="Team description shown on the public team page..."
+                              className="mt-3 w-full resize-y rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500 disabled:opacity-60"
+                            />
+
+                            <button
+                              type="button"
+                              disabled={
+                                teamProfileSaving ||
+                                teamProfileLoading
+                              }
+                              onClick={saveTeamDescription}
+                              className="mt-3 rounded-2xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400 disabled:opacity-50"
+                            >
+                              {teamProfileSaving
+                                ? "Saving..."
+                                : "Save description"}
+                            </button>
+                          </div>
+
+                          <div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
+                              Social links
+                            </div>
+
+                            <div className="mt-3 space-y-2">
+                              {socialLinksDraft.map(
+                                (row, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex flex-wrap items-center gap-2"
+                                  >
+                                    <select
+                                      value={
+                                        row.platform ||
+                                        SOCIAL_PLATFORM_OPTIONS[0]
+                                      }
+                                      onChange={(event) =>
+                                        updateSocialLinkRow(
+                                          index,
+                                          {
+                                            platform:
+                                              event.target
+                                                .value,
+                                          }
+                                        )
+                                      }
+                                      className="shrink-0 rounded-xl border border-white/[0.07] bg-[#0c121b] px-3 py-2 text-sm outline-none focus:border-orange-500"
+                                    >
+                                      {SOCIAL_PLATFORM_OPTIONS.map(
+                                        (option) => (
+                                          <option
+                                            key={option}
+                                            value={option}
+                                          >
+                                            {option}
+                                          </option>
+                                        )
+                                      )}
+                                    </select>
+
+                                    <input
+                                      value={row.url || ""}
+                                      onChange={(event) =>
+                                        updateSocialLinkRow(
+                                          index,
+                                          {
+                                            url: event.target
+                                              .value,
+                                          }
+                                        )
+                                      }
+                                      placeholder="https://..."
+                                      className="min-w-[200px] flex-1 rounded-xl border border-white/[0.07] bg-[#0c121b] px-3 py-2 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
+                                    />
+
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        removeSocialLinkRow(
+                                          index
+                                        )
+                                      }
+                                      className="shrink-0 rounded-xl border border-red-500/25 bg-red-500/10 px-3 py-2 text-xs font-black text-red-300 transition hover:bg-red-500 hover:text-white"
+                                    >
+                                      Remove
+                                    </button>
+                                  </div>
+                                )
+                              )}
+
+                              {socialLinksDraft.length === 0 && (
+                                <div className="text-sm text-gray-600">
+                                  No social links yet.
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="mt-3 flex flex-wrap gap-3">
+                              <button
+                                type="button"
+                                onClick={addSocialLinkRow}
+                                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
+                              >
+                                + Add link
+                              </button>
+
+                              <button
+                                type="button"
+                                disabled={
+                                  socialLinksSaving ||
+                                  teamProfileLoading
+                                }
+                                onClick={saveSocialLinks}
+                                className="rounded-2xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400 disabled:opacity-50"
+                              >
+                                {socialLinksSaving
+                                  ? "Saving..."
+                                  : "Save social links"}
+                              </button>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
+                              Official player photos
+                            </div>
+
+                            {teamProfileLoading ? (
+                              <div className="mt-3 text-sm text-gray-600">
+                                Loading roster...
+                              </div>
+                            ) : teamRoster.length === 0 ? (
+                              <div className="mt-3 text-sm text-gray-600">
+                                No roster found for this team yet.
+                              </div>
+                            ) : (
+                              <div className="mt-3 space-y-3">
+                                {teamRoster.map((row) => (
+                                  <PlayerPhotoRow
+                                    key={row.playerId}
+                                    row={row}
+                                    draft={
+                                      photoDrafts[
+                                        row.playerId
+                                      ] || {
+                                        url: "",
+                                        verified: false,
+                                      }
+                                    }
+                                    saving={
+                                      photoSavingId ===
+                                      row.playerId
+                                    }
+                                    onChange={(next) =>
+                                      setPhotoDrafts(
+                                        (current) => ({
+                                          ...current,
+                                          [row.playerId]: next,
+                                        })
+                                      )
+                                    }
+                                    onSave={() =>
+                                      savePlayerPhoto(
+                                        row.playerId
+                                      )
+                                    }
+                                  />
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
-
-                        <div className="mt-5 grid grid-cols-2 gap-3">
-                          <div className="rounded-xl bg-white/[0.035] p-3">
-                            <div className="text-xs text-gray-600">
-                              Players
-                            </div>
-                            <div className="mt-1 text-xl font-black">
-                              {row.players}
-                            </div>
-                          </div>
-
-                          <div className="rounded-xl bg-white/[0.035] p-3">
-                            <div className="text-xs text-gray-600">
-                              Staff
-                            </div>
-                            <div className="mt-1 text-xl font-black">
-                              {row.staff}
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    )
-                  )}
-                </div>
-              </section>
+                      )}
+                    </div>
+                  </div>
+                </section>
             )}
 
             {section === "activity" && (

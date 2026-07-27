@@ -69,7 +69,7 @@ function getRatingStyle(rating) {
   };
 }
 
-function PlayerPortrait({
+function PlayerPortraitFrame({
   player,
   team,
 }) {
@@ -155,7 +155,7 @@ function PlayerCard({
       />
 
       <div className="-mt-3 mb-3">
-  <PlayerPortrait
+  <PlayerPortraitFrame
     player={player}
     team={team}
   />

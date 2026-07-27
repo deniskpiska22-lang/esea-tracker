@@ -23,6 +23,11 @@ import {
 // Flip to true once the Analytics page has real content to show.
 const SHOW_ANALYTICS_TAB = false;
 
+// Public intake form for team descriptions/player photos — reviewed and
+// published by an admin via /admin/verifications (Teams tab), not automatic.
+const TEAM_VERIFICATION_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfWHCf0KLD7z49ds6j4Ua-H_aTDiUOYZdAhlNmH5jc2aTUxvg/viewform";
+
 const COUNTRY_NAMES = {
   RU: "Russia",
   US: "United States",
@@ -319,6 +324,11 @@ function TeamPage() {
     setRatingHistoryLoading,
   ] = useState(true);
 
+  const [teamDescription, setTeamDescription] =
+    useState(null);
+  const [teamSocialLinks, setTeamSocialLinks] =
+    useState([]);
+
   useEffect(() => {
     let cancelled = false;
 
@@ -420,6 +430,59 @@ function TeamPage() {
     }
 
     loadRatingHistory();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, team]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadTeamProfile() {
+      const teamId =
+        team?.faceitTeamId ||
+        team?.faceit_team_id ||
+        team?.teamId ||
+        team?.id ||
+        null;
+
+      if (!teamId) {
+        setTeamDescription(null);
+        setTeamSocialLinks([]);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("team_profiles")
+        .select("description,social_links")
+        .eq("team_id", String(teamId))
+        .maybeSingle();
+
+      if (cancelled) {
+        return;
+      }
+
+      if (error) {
+        console.warn(
+          "Team profile load failed:",
+          error.message
+        );
+        setTeamDescription(null);
+        setTeamSocialLinks([]);
+      } else {
+        setTeamDescription(
+          data?.description?.trim() || null
+        );
+        setTeamSocialLinks(
+          Array.isArray(data?.social_links)
+            ? data.social_links
+            : []
+        );
+      }
+    }
+
+    loadTeamProfile();
 
     return () => {
       cancelled = true;
@@ -686,6 +749,15 @@ function TeamPage() {
                     {team.name}
                   </h1>
 
+                  <a
+                    href={TEAM_VERIFICATION_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-orange-300 transition hover:bg-orange-500 hover:text-white"
+                  >
+                    Verification
+                  </a>
+
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
                       <span className="text-sm text-slate-500">
@@ -885,6 +957,44 @@ function TeamPage() {
             )}
           </div>
         </nav>
+
+        {/* ABOUT */}
+        {(teamDescription || teamSocialLinks.length > 0) && (
+          <section className="mt-7 rounded-3xl border border-[#29384a] bg-[#0a1018] p-5 md:p-6">
+            {teamDescription && (
+              <>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
+                  About
+                </div>
+                <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-gray-300">
+                  {teamDescription}
+                </p>
+              </>
+            )}
+
+            {teamSocialLinks.length > 0 && (
+              <div
+                className={
+                  teamDescription
+                    ? "mt-5 flex flex-wrap gap-2 border-t border-white/[0.06] pt-5"
+                    : "flex flex-wrap gap-2"
+                }
+              >
+                {teamSocialLinks.map((link, index) => (
+                  <a
+                    key={`${link.platform}-${index}`}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
+                  >
+                    {link.platform || "Link"} ↗
+                  </a>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* PLAYERS */}
         <TeamRosterSection
