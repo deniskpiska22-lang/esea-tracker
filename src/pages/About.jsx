@@ -1,6 +1,3 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
 function About() {
   return (
     <div className="min-h-screen text-white bg-[#05070a]">

@@ -732,23 +732,6 @@ function PlayerPage() {
     ] || [];
 
   /*
-   * PlayerPage и TeamPage используют
-   * одну и ту же запись players.avatar.
-   * Локальные картинки по нику больше
-   * не участвуют в выборе изображения.
-   */
-  const identityPlayer =
-    databasePlayer ||
-    localPlayerInfo ||
-    {
-      faceit_id:
-        resolvedPlayerId,
-      nickname:
-        decodedNickname,
-      avatar: null,
-    };
-
-  /*
    * В FACEIT URL нельзя подставлять UUID.
    * Сначала сопоставляем players.faceit_id с players.nickname,
    * затем строим ссылку только из nickname.

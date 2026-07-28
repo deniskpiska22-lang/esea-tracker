@@ -17,7 +17,6 @@ const MAP_IMAGE_ALIASES = {
   inferno: "inferno",
   mirage: "mirage",
   nuke: "nuke",
-  cache: "cache",
   train: "train",
   vertigo: "vertigo",
 };

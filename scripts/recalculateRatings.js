@@ -593,8 +593,6 @@ async function main() {
 
   let resolvedTeam1ByName = 0;
   let resolvedTeam2ByName = 0;
-  let historicalTeam1Created = 0;
-let historicalTeam2Created = 0;
 
   let skippedPlaceholder = 0;
   let skippedUnknownTeam = 0;

@@ -27,12 +27,6 @@ const supabase = createClient(
   }
 );
 
-const LIVE_STATUSES = new Set([
-  "LIVE",
-  "ONGOING",
-  "MATCH_STATUS_ONGOING",
-]);
-
 const FINISHED_STATUSES = new Set([
   "FINISHED",
   "MATCH_STATUS_FINISHED",

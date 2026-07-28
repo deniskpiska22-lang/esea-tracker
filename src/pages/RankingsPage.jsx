@@ -410,36 +410,6 @@ function getRatingValue(row) {
     : null;
 }
 
-function getInitialRatingValue(row) {
-  const value =
-    row?.initial_points ??
-    row?.initial_rating ??
-    row?.initialPoints ??
-    row?.initialRating ??
-    row?.starting_rating ??
-    row?.startingRating;
-
-  const number = Number(value);
-
-  return Number.isFinite(number)
-    ? Math.round(number)
-    : null;
-}
-
-function getPreviousRatingValue(row) {
-  const value =
-    row?.previous_points ??
-    row?.previous_rating ??
-    row?.previousPoints ??
-    row?.previousRating;
-
-  const number = Number(value);
-
-  return Number.isFinite(number)
-    ? Math.round(number)
-    : null;
-}
-
 function getPointsChange(
   row,
   period = "update"
@@ -936,46 +906,6 @@ const openedRegionCountries = useMemo(() => {
   );
 }, [openRegion, teamCountByCountry]);
 
-const visibleCountryGroups = useMemo(() => {
-  const regions =
-    selectedRegion === "All"
-      ? [
-          "North America",
-          "South America",
-          "Europe",
-          "Asia",
-          "Oceania",
-          "Africa",
-        ]
-      : [selectedRegion];
-
-  return regions
-    .map((region) => {
-      const countries =
-        POPULAR_COUNTRIES_BY_REGION[region] || [];
-
-      const availablePopularCountries =
-        countries.filter(
-          (countryCode) =>
-            Number(
-              teamCountByCountry[countryCode]
-            ) > 0
-        );
-
-      return {
-        region,
-        countries:
-          availablePopularCountries,
-      };
-    })
-    .filter(
-      (group) =>
-        group.countries.length > 0
-    );
-}, [
-  selectedRegion,
-  teamCountByCountry,
-]);
 
 useEffect(() => {
   if (selectedCountry === "All") {
