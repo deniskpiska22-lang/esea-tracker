@@ -35,4 +35,6 @@ jobs:
           LIVE_LOOKBACK_HOURS: 8
           LIVE_LOOKAHEAD_HOURS: 24
           MAP_STATS_BATCH_SIZE: 100
+          RUN_WEEKLY_RATING_SNAPSHOT: "1"
+          WEEKLY_RATING_SNAPSHOT_DAY_UTC: "1"
         run: npm run sync:live

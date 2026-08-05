@@ -6,6 +6,7 @@ import teams from "../data/teams";
 import tournaments from "../data/tournaments";
 import { supabase } from "../lib/supabaseClient";
 import { getTournamentStatus } from "../utils/tournaments";
+import { resolveRatingRow } from "../utils/resolveTeamRating";
 import TournamentNameLink from "../components/TournamentNameLink";
 
 
@@ -203,31 +204,25 @@ function mergeRatingTeams(ratingRows) {
 function applyRatingToTeam(team, rankedTeams) {
   if (!team) return team;
 
-  const teamId = String(
-    team.id ??
-      team.faceitTeamId ??
-      team.faceit_team_id ??
-      ""
-  ).trim();
+  const rowIdentities = rankedTeams.map((item) => ({
+    row: item,
+    ids: [item.id, item.faceitTeamId, item.faceit_team_id]
+      .filter(Boolean)
+      .map((value) => String(value)),
+    slug: normalizeSlug(item.slug) || null,
+    name: item.name ? normalizeName(item.name) : null,
+    division: item.division || null,
+  }));
 
-  const teamSlug = normalizeSlug(team.slug);
-  const teamName = normalizeName(team.name);
-
-  const ratingTeam =
-    rankedTeams.find((item) => {
-      const itemId = String(
-        item.id ??
-          item.faceitTeamId ??
-          item.faceit_team_id ??
-          ""
-      ).trim();
-
-      return (
-        (teamId && itemId && teamId === itemId) ||
-        (teamSlug && normalizeSlug(item.slug) === teamSlug) ||
-        (teamName && normalizeName(item.name) === teamName)
-      );
-    }) || null;
+  const ratingTeam = resolveRatingRow(
+    {
+      ids: [team.id, team.faceitTeamId, team.faceit_team_id],
+      slug: normalizeSlug(team.slug) || null,
+      name: team.name ? normalizeName(team.name) : null,
+      division: team.division || null,
+    },
+    rowIdentities
+  );
 
   if (!ratingTeam) {
     return {

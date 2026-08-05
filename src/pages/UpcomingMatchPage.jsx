@@ -18,6 +18,7 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
+import { resolveRatingRow } from "../utils/resolveTeamRating";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
@@ -990,93 +991,61 @@ function getRatingMatchesPlayed(row) {
   );
 }
 
-function getTeamLookupCandidates(team) {
-  const localTeam = findLocalTeam(
-    team?.id,
-    team?.name
-  );
-
-  return {
-    ids: new Set(
-      [
-        team?.id,
-        team?.teamId,
-        team?.faceitTeamId,
-        team?.faceit_team_id,
-        localTeam?.id,
-        localTeam?.teamId,
-        localTeam?.faceitTeamId,
-        localTeam?.faceit_team_id,
-      ]
-        .filter(Boolean)
-        .map((value) => String(value))
-    ),
-    slugs: new Set(
-      [
-        team?.slug,
-        localTeam?.slug,
-      ]
-        .filter(Boolean)
-        .map((value) => String(value).toLowerCase())
-    ),
-    names: new Set(
-      [
-        team?.name,
-        localTeam?.name,
-      ]
-        .filter(Boolean)
-        .map(normalizeName)
-    ),
-  };
-}
-
 function findTeamRating(rows, team) {
   if (!Array.isArray(rows) || !team) {
     return null;
   }
 
-  const candidates =
-    getTeamLookupCandidates(team);
+  // Only trust a locally-resolved team's id/slug when it was matched by
+  // FACEIT team id — a name-matched local team could be a different real
+  // team (duplicate names), and folding its id into the candidate set
+  // would let that wrong team win an "id match" below.
+  const localTeamById = team?.id
+    ? teams.find(
+        (candidate) => candidate.faceitTeamId === team.id
+      )
+    : null;
 
-  return (
-    rows.find((row) => {
-      const rowIds = [
-        row.team_id,
-        row.faceit_team_id,
-        row.faceitTeamId,
-        row.id,
-      ]
+  const rowIdentities = rows.map((row) => ({
+    row,
+    ids: [
+      row.team_id,
+      row.faceit_team_id,
+      row.faceitTeamId,
+      row.id,
+    ]
+      .filter(Boolean)
+      .map((value) => String(value)),
+    slug:
+      [row.team_slug, row.slug]
         .filter(Boolean)
-        .map((value) => String(value));
-
-      const rowSlugs = [
-        row.team_slug,
-        row.slug,
-      ]
+        .map((value) => String(value).toLowerCase())[0] ||
+      null,
+    name:
+      [row.team_name, row.name]
         .filter(Boolean)
-        .map((value) =>
-          String(value).toLowerCase()
-        );
+        .map(normalizeName)[0] || null,
+    division: row.division || null,
+  }));
 
-      const rowNames = [
-        row.team_name,
-        row.name,
-      ]
-        .filter(Boolean)
-        .map(normalizeName);
-
-      return (
-        rowIds.some((id) =>
-          candidates.ids.has(id)
-        ) ||
-        rowSlugs.some((slug) =>
-          candidates.slugs.has(slug)
-        ) ||
-        rowNames.some((name) =>
-          candidates.names.has(name)
-        )
-      );
-    }) || null
+  return resolveRatingRow(
+    {
+      ids: [
+        team?.id,
+        team?.teamId,
+        team?.faceitTeamId,
+        team?.faceit_team_id,
+        localTeamById?.faceitTeamId,
+      ],
+      slug: team?.slug
+        ? String(team.slug).toLowerCase()
+        : localTeamById?.slug
+        ? String(localTeamById.slug).toLowerCase()
+        : null,
+      name: team?.name ? normalizeName(team.name) : null,
+      division: team?.division || localTeamById?.division || null,
+    },
+    rowIdentities
   );
 }
 

@@ -9,6 +9,7 @@ import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TeamRosterSection from "../components/TeamRosterSection";
 import { supabase } from "../lib/supabaseClient";
+import { resolveRatingRow } from "../utils/resolveTeamRating";
 
 import {
   LineChart,
@@ -195,29 +196,8 @@ function getRankingCountry(row) {
   );
 }
 
-function rankingRowMatchesTeam(row, team) {
-  const teamIds = [
-    team?.faceitTeamId,
-    team?.faceit_team_id,
-    team?.teamId,
-    team?.id,
-  ]
-    .filter(Boolean)
-    .map(String);
-
-  const rowId = getRankingTeamId(row);
-
-  if (
-    rowId &&
-    teamIds.includes(String(rowId))
-  ) {
-    return true;
-  }
-
-  return (
-    normalizeText(getRankingTeamName(row)) ===
-    normalizeText(team?.name)
-  );
+function getRankingRowDivision(row) {
+  return normalizeText(row?.division || "");
 }
 
 function getRankChange(row, type) {
@@ -598,9 +578,35 @@ function TeamPage() {
           getRatingValue(first)
       );
 
-    const currentRow = sortedWorld.find(
-      (row) =>
-        rankingRowMatchesTeam(row, team)
+    const rowIdentities = sortedWorld.map(
+      (row) => ({
+        row,
+        ids: [getRankingTeamId(row)]
+          .filter(Boolean)
+          .map(String),
+        slug: normalizeText(row?.slug || ""),
+        name: normalizeText(
+          getRankingTeamName(row)
+        ),
+        division: getRankingRowDivision(row),
+      })
+    );
+
+    const currentRow = resolveRatingRow(
+      {
+        ids: [
+          team?.faceitTeamId,
+          team?.faceit_team_id,
+          team?.teamId,
+          team?.id,
+        ],
+        slug: normalizeText(team?.slug || ""),
+        name: normalizeText(team?.name),
+        division: normalizeText(
+          team?.division || ""
+        ),
+      },
+      rowIdentities
     );
 
     const worldIndex =

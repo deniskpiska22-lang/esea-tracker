@@ -145,7 +145,7 @@ async function writeSnapshots(rows) {
     const { error } = await supabase
       .from("team_rating_history")
       .upsert(batch, {
-        onConflict: "team_id,week_start",
+        onConflict: "team_id,week_start,snapshot_type",
       });
 
     if (error) {

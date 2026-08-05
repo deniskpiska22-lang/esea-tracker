@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";
+import { resolveRatingRow } from "../utils/resolveTeamRating";
 
 
 const DIVISIONS = [
@@ -721,41 +722,25 @@ function RankingsPage() {
     []
   );
 
-  const staticTeamIndexes = useMemo(() => {
-    const bySlug = new Map();
-    const byId = new Map();
-    const byName = new Map();
-
-    staticTeams.forEach((team) => {
-      const slug = normalizeSlug(team?.slug);
-      const id = String(
-        team?.id ??
-          team?.teamId ??
-          team?.faceitTeamId ??
-          team?.faceit_team_id ??
-          ""
-      ).trim();
-      const name = normalizeText(team?.name);
-
-      if (slug) {
-        bySlug.set(slug, team);
-      }
-
-      if (id) {
-        byId.set(id, team);
-      }
-
-      if (name) {
-        byName.set(name, team);
-      }
-    });
-
-    return {
-      bySlug,
-      byId,
-      byName,
-    };
-  }, [staticTeams]);
+  const staticTeamIdentities = useMemo(
+    () =>
+      staticTeams.map((team) => ({
+        row: team,
+        ids: [
+          team?.id,
+          team?.teamId,
+          team?.faceitTeamId,
+          team?.faceit_team_id,
+        ]
+          .filter(Boolean)
+          .map((value) => String(value)),
+        slug: normalizeSlug(team?.slug) || null,
+        name: normalizeText(team?.name) || null,
+        division:
+          normalizeText(team?.division) || null,
+      })),
+    [staticTeams]
+  );
 
   const mergedTeams = useMemo(() => {
     const fromRatings = ratingRows
@@ -772,17 +757,17 @@ function RankingsPage() {
           getRatingRowName(ratingRow)
         );
 
-        const staticTeam =
-          staticTeamIndexes.bySlug.get(
-            ratingSlug
-          ) ??
-          staticTeamIndexes.byId.get(
-            ratingId
-          ) ??
-          staticTeamIndexes.byName.get(
-            ratingName
-          ) ??
-          null;
+        const staticTeam = resolveRatingRow(
+          {
+            ids: [ratingId],
+            slug: ratingSlug || null,
+            name: ratingName || null,
+            division:
+              normalizeText(ratingRow?.division) ||
+              null,
+          },
+          staticTeamIdentities
+        );
 
         const name =
           staticTeam?.name ??
@@ -837,7 +822,7 @@ function RankingsPage() {
     return fromRatings;
   }, [
     ratingRows,
-    staticTeamIndexes,
+    staticTeamIdentities,
   ]);
 
   const sortedTeams = useMemo(() => {
