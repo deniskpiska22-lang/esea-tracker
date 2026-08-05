@@ -22,8 +22,12 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   );
 }
 
-const WEEK_START = process.argv.includes("--week-start")
-  ? process.argv[process.argv.indexOf("--week-start") + 1]
+const weekStartArg = process.argv.find((arg) =>
+  arg.startsWith("--week-start=")
+);
+
+const WEEK_START = weekStartArg
+  ? weekStartArg.slice("--week-start=".length)
   : null;
 
 if (!WEEK_START || !/^\d{4}-\d{2}-\d{2}$/.test(WEEK_START)) {
