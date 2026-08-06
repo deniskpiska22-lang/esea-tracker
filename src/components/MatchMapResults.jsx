@@ -218,30 +218,43 @@ function parseVetoSteps(payload, team1, team2) {
     return [];
   }
 
-  return entities
+  const sorted = entities
     .slice()
-    .sort((a, b) => toNumber(a.round) - toNumber(b.round))
-    .map((entity) => ({
-      map: formatMapName(entity.guid),
-      action: entity.status === "pick" ? "Picked" : "Banned",
-      team:
-        entity.selected_by === "faction1"
+    .sort((a, b) => toNumber(a.round) - toNumber(b.round));
+
+  // FACEIT still stamps the last remaining map with status "pick" and a
+  // selected_by faction, as if a team chose it — but nobody did, it's just
+  // whatever was left after every ban/pick. Always treat the highest-round
+  // entry as the decider instead of trusting that attribution.
+  const deciderIndex = sorted.length - 1;
+
+  return sorted.map((entity, index) => ({
+    map: formatMapName(entity.guid),
+    action:
+      index === deciderIndex
+        ? "Decider"
+        : entity.status === "pick"
+          ? "Picked"
+          : "Banned",
+    team:
+      index === deciderIndex
+        ? null
+        : entity.selected_by === "faction1"
           ? team1
           : entity.selected_by === "faction2"
             ? team2
             : null,
-    }));
+  }));
 }
 
 // team1/team2/"decider" keyed by lowercased map name, built from the
-// veto's "Picked" entries — used to badge each played map with who
-// chose it (a map left over after every ban has no pick entry, so it
-// reads as a decider).
+// veto's "Picked"/"Decider" entries — used to badge each played map with
+// who chose it.
 function buildPickedTeamByMap(steps, team1, team2) {
   const lookup = new Map();
 
   steps
-    .filter((step) => step.action === "Picked")
+    .filter((step) => step.action === "Picked" || step.action === "Decider")
     .forEach((step) => {
       const key = step.map.toLowerCase();
 
@@ -292,7 +305,9 @@ function MapVetoCard({ steps, isLoading }) {
                   className={`text-xs font-black uppercase tracking-wide ${
                     step.action === "Picked"
                       ? "text-emerald-400"
-                      : "text-rose-400"
+                      : step.action === "Decider"
+                        ? "text-amber-400"
+                        : "text-rose-400"
                   }`}
                 >
                   {step.action}
@@ -325,13 +340,13 @@ function MapVetoCard({ steps, isLoading }) {
 // the play order before a single round is fired: in a BO1 the last map left
 // standing after every ban IS the map, and in a BO3 the two picked maps plus
 // the leftover decider ARE map 1/2/3, in the order they were picked. Build
-// that predicted order from the veto's "Picked" steps (round order already
+// that predicted order from the veto's "Picked"/"Decider" steps (round order already
 // comes out of parseVetoSteps) so the panel can show map names immediately
 // and fill in real scores as FACEIT reports them, instead of waiting on the
 // synced match result.
 function buildExpectedMapOrder(steps) {
   return steps
-    .filter((step) => step.action === "Picked")
+    .filter((step) => step.action === "Picked" || step.action === "Decider")
     .map((step) => step.map);
 }
 
