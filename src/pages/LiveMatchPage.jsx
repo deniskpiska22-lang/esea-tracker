@@ -274,6 +274,47 @@ function formatDateTime(value) {
   ).format(parsed);
 }
 
+function formatMatchTime(value) {
+  if (!value) {
+    return "--:--";
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    return "--:--";
+  }
+
+  return new Intl.DateTimeFormat(
+    "ru-RU",
+    {
+      hour: "2-digit",
+      minute: "2-digit",
+    }
+  ).format(parsed);
+}
+
+function formatMatchDate(value) {
+  if (!value) {
+    return "Date TBD";
+  }
+
+  const parsed = new Date(value);
+
+  if (Number.isNaN(parsed.getTime())) {
+    return String(value);
+  }
+
+  return new Intl.DateTimeFormat(
+    "ru-RU",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  ).format(parsed);
+}
+
 function formatMapName(value) {
   const rawName = String(
     value || "Unknown"
@@ -2224,7 +2265,7 @@ function LiveMatchPage() {
                   </div>
 
                   <div className="text-5xl font-black tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
-                    {displayScore}
+                    {formatMatchTime(displayDate)}
                   </div>
 
                   <div className="mt-4 text-gray-400">
@@ -2232,11 +2273,7 @@ function LiveMatchPage() {
                   </div>
 
                   <div className="mt-1 text-sm text-gray-500">
-                    {formatDateTime(displayDate)}
-                  </div>
-
-                  <div className="mt-3 text-sm font-semibold text-orange-400">
-                    Upcoming match
+                    {formatMatchDate(displayDate)}
                   </div>
                 </div>
 
