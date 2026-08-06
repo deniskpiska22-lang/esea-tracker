@@ -22,6 +22,7 @@ import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
+import MatchLineups from "../components/MatchLineups";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
 
@@ -2134,7 +2135,7 @@ function LiveMatchPage() {
 
   return (
     <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-[1100px]">
         <div className="flex items-center justify-between gap-4">
           <Link
             to={
@@ -2204,6 +2205,12 @@ function LiveMatchPage() {
                 />
               </div>
             </div>
+          </div>
+        )}
+
+        {!showFinishedSections && (
+          <div className="mt-8">
+            <MatchLineups team1={displayTeam1} team2={displayTeam2} />
           </div>
         )}
 
