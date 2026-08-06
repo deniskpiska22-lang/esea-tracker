@@ -1499,42 +1499,6 @@ function RatingForecastCard({
 }
 
 
-function getMatchMvp(stats) {
-  const teamsList = Array.isArray(stats?.teams)
-    ? stats.teams
-    : [];
-
-  const candidates = teamsList.flatMap((team) =>
-    (Array.isArray(team.players) ? team.players : []).map((player) => ({
-      ...player,
-      teamName: team.teamName,
-      teamScore: toNumber(team.score),
-      opponentScore: toNumber(
-        teamsList.find((item) => item !== team)?.score
-      ),
-    }))
-  );
-
-  if (candidates.length === 0) {
-    return null;
-  }
-
-  return candidates
-    .map((player) => ({
-      ...player,
-      calculatedRating: calculatePlayerMatchRating(
-        player,
-        player.teamScore,
-        player.opponentScore
-      ),
-    }))
-    .sort(
-      (first, second) =>
-        second.calculatedRating -
-        first.calculatedRating
-    )[0];
-}
-
 function FinishedMatchHero({
   team1,
   team2,
@@ -1543,14 +1507,10 @@ function FinishedMatchHero({
   bestOf,
   date,
   maps,
-  stats,
   isLive,
+  team1FlagUrl,
+  team2FlagUrl,
 }) {
-  const mvp = useMemo(
-    () => getMatchMvp(stats),
-    [stats]
-  );
-
   const [team1Score, team2Score] = String(score)
     .split(":")
     .map((value) => toNumber(value.trim()));
@@ -1568,7 +1528,33 @@ function FinishedMatchHero({
         <div className="absolute -right-28 -bottom-36 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />
       </div>
 
-      <div className="relative grid gap-0 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {team1FlagUrl && (
+          <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+            <img
+              src={team1FlagUrl}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover opacity-40 blur-[2px]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0f1620]/10 via-[#0f1620]/70 to-[#0f1620]" />
+          </div>
+        )}
+
+        {team2FlagUrl && (
+          <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+            <img
+              src={team2FlagUrl}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover opacity-40 blur-[2px]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-[#0f1620]/10 via-[#0f1620]/70 to-[#0f1620]" />
+          </div>
+        )}
+      </div>
+
+      <div className="relative">
         <div className="p-6 md:p-9 lg:p-11">
           <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
             <span className="rounded-full border border-[#2a3546] bg-[#151e2a] px-4 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
@@ -1607,7 +1593,7 @@ function FinishedMatchHero({
             </div>
           </div>
 
-          <div className="mt-9 border-t border-[#263244] pt-6">
+          <div className="mt-9">
             <div className="text-center">
               <div className="font-bold text-slate-300">
                 <TournamentNameLink name={season} />
@@ -1642,73 +1628,6 @@ function FinishedMatchHero({
             )}
           </div>
         </div>
-
-        <aside className="border-t border-[#263244] bg-[#0b1119]/70 p-6 xl:border-l xl:border-t-0">
-          <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-            Match spotlight
-          </div>
-
-          {mvp ? (
-            <div className="mt-6">
-              <div className="text-sm font-semibold text-orange-400">
-                MVP
-              </div>
-              <div className="mt-1 truncate text-3xl font-black text-white">
-                {mvp.nickname || "Unknown"}
-              </div>
-              <div className="mt-1 text-sm text-slate-500">
-                {mvp.teamName}
-              </div>
-
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
-                  <div className="text-xs uppercase tracking-wider text-slate-500">
-                    Rating
-                  </div>
-                  <div className="mt-1 text-2xl font-black text-emerald-400">
-                    {toNumber(mvp.calculatedRating).toFixed(2)}
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
-                  <div className="text-xs uppercase tracking-wider text-slate-500">
-                    K / D
-                  </div>
-                  <div className="mt-1 text-2xl font-black text-white">
-                    {toNumber(mvp.kills)} / {toNumber(mvp.deaths)}
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
-                  <div className="text-xs uppercase tracking-wider text-slate-500">
-                    ADR
-                  </div>
-                  <div className="mt-1 text-xl font-black text-white">
-                    {toNumber(mvp.adr).toFixed(1)}
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-[#263244] bg-[#111923] p-4">
-                  <div className="text-xs uppercase tracking-wider text-slate-500">
-                    HS
-                  </div>
-                  <div className="mt-1 text-xl font-black text-white">
-                    {toNumber(mvp.hsRate).toFixed(0)}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="mt-6 rounded-2xl border border-dashed border-[#2a3546] bg-[#111923] p-5">
-              <div className="font-bold text-slate-300">
-                Player statistics are processing
-              </div>
-              <div className="mt-2 text-sm leading-6 text-slate-500">
-                The result and map scores are already available. Individual player data will appear automatically after synchronization.
-              </div>
-            </div>
-          )}
-        </aside>
       </div>
     </section>
   );
@@ -2227,6 +2146,8 @@ function LiveMatchPage() {
             maps={displayedMapScores}
             stats={stats}
             isLive={isLive}
+            team1FlagUrl={team1FlagUrl}
+            team2FlagUrl={team2FlagUrl}
           />
         ) : (
           <div className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#101722] shadow-2xl shadow-black/20">
@@ -2283,6 +2204,19 @@ function LiveMatchPage() {
           </div>
         )}
 
+        {/* MAPS */}
+
+        {(showFinishedSections || isLive) && (
+          <div className="mt-8">
+            <MatchMapResultsSection
+              matchId={matchId}
+              maps={displayedMapScores}
+              team1={displayTeam1}
+              team2={displayTeam2}
+            />
+          </div>
+        )}
+
         {!showFinishedSections && (
           <div className="mt-8">
             <MatchLineups team1={displayTeam1} team2={displayTeam2} />
@@ -2329,19 +2263,6 @@ function LiveMatchPage() {
               faceitUrl={displayFaceitUrl}
             />
             </div>
-          </div>
-        )}
-
-        {/* MAPS */}
-
-        {(showFinishedSections || isLive) && (
-          <div className="mt-8">
-            <MatchMapResultsSection
-              matchId={matchId}
-              maps={displayedMapScores}
-              team1={displayTeam1}
-              team2={displayTeam2}
-            />
           </div>
         )}
 

@@ -40,6 +40,7 @@ function TeamBadge({ team, align }) {
 
 function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
   const formattedName = formatMapName(map.map);
+  const isPending = Boolean(map.pending);
   const leftScore = toNumber(map.teamScore);
   const rightScore = toNumber(map.opponentScore);
   const backgroundUrl = getMapBackgroundUrl(map.map);
@@ -66,13 +67,17 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
       <div className="relative grid grid-cols-[minmax(0,1fr)_88px_minmax(0,1fr)] items-center gap-2 px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_120px_minmax(0,1fr)] sm:gap-3 sm:px-5 sm:py-3.5">
         <div className="flex items-center justify-end gap-2 sm:gap-3">
           <TeamBadge team={team1} align="right" />
-          <div
-            className={`text-lg font-black sm:text-2xl ${
-              leftScore > rightScore ? "text-emerald-400" : "text-white"
-            }`}
-          >
-            {leftScore}
-          </div>
+          {isPending ? (
+            <div className="text-lg font-black text-slate-600 sm:text-2xl">–</div>
+          ) : (
+            <div
+              className={`text-lg font-black sm:text-2xl ${
+                leftScore > rightScore ? "text-emerald-400" : "text-white"
+              }`}
+            >
+              {leftScore}
+            </div>
+          )}
         </div>
 
         <div className="text-center">
@@ -87,26 +92,36 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
               {pickLabel}
             </div>
           )}
-          {demoUrl && (
-            <a
-              href={demoUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 hidden rounded-lg border border-orange-500/40 px-2 py-0.5 text-[10px] font-bold text-orange-400 transition hover:bg-orange-500/10 sm:inline-block"
-            >
-              Demo
-            </a>
+          {isPending ? (
+            <div className="mt-0.5 truncate text-[10px] font-semibold uppercase tracking-wide text-amber-400">
+              Awaiting result
+            </div>
+          ) : (
+            demoUrl && (
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 hidden rounded-lg border border-orange-500/40 px-2 py-0.5 text-[10px] font-bold text-orange-400 transition hover:bg-orange-500/10 sm:inline-block"
+              >
+                Demo
+              </a>
+            )
           )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div
-            className={`text-lg font-black sm:text-2xl ${
-              rightScore > leftScore ? "text-emerald-400" : "text-white"
-            }`}
-          >
-            {rightScore}
-          </div>
+          {isPending ? (
+            <div className="text-lg font-black text-slate-600 sm:text-2xl">–</div>
+          ) : (
+            <div
+              className={`text-lg font-black sm:text-2xl ${
+                rightScore > leftScore ? "text-emerald-400" : "text-white"
+              }`}
+            >
+              {rightScore}
+            </div>
+          )}
           <TeamBadge team={team2} align="left" />
         </div>
       </div>
@@ -118,11 +133,12 @@ function FinishedMapsPanel({
   maps,
   team1,
   team2,
-  demoUrls,
+  demoByMap,
   demoUnavailable,
   pickedTeamByMap,
+  isPredicted,
 }) {
-  const demos = Array.isArray(demoUrls) ? demoUrls : [];
+  const demos = demoByMap instanceof Map ? demoByMap : new Map();
 
   if (!Array.isArray(maps) || maps.length === 0) {
     return (
@@ -152,8 +168,12 @@ function FinishedMapsPanel({
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#263244] px-5 py-3 sm:px-6">
         <h2 className="text-xl font-black">Map results</h2>
-        <p className="mt-1 text-xs text-slate-500">Full series breakdown</p>
-        {demos.length === 0 && !demoUnavailable && (
+        <p className="mt-1 text-xs text-slate-500">
+          {isPredicted
+            ? "Map order from the veto — results fill in as FACEIT reports them"
+            : "Full series breakdown"}
+        </p>
+        {!isPredicted && demos.size === 0 && !demoUnavailable && (
           <p className="mt-1 text-xs text-slate-500">
             Demo is processing, it will appear here automatically
           </p>
@@ -161,19 +181,21 @@ function FinishedMapsPanel({
       </div>
 
       <div className="space-y-2 p-3 sm:p-4">
-        {maps.map((map, index) => (
-          <MapResultRow
-            key={`${map.map}-${index}`}
-            map={map}
-            index={index}
-            team1={team1}
-            team2={team2}
-            demoUrl={demos[index]}
-            pickedBy={pickedTeamByMap?.get(
-              formatMapName(map.map).toLowerCase()
-            )}
-          />
-        ))}
+        {maps.map((map, index) => {
+          const mapKey = formatMapName(map.map).toLowerCase();
+
+          return (
+            <MapResultRow
+              key={`${map.map}-${index}`}
+              map={map}
+              index={index}
+              team1={team1}
+              team2={team2}
+              demoUrl={demos.get(mapKey)}
+              pickedBy={pickedTeamByMap?.get(mapKey)}
+            />
+          );
+        })}
       </div>
     </section>
   );
@@ -298,6 +320,63 @@ function MapVetoCard({ steps, isLoading }) {
   );
 }
 
+// FACEIT only hands back a map's score once the map itself is finished, so a
+// live series shows nothing here until then. But the veto already reveals
+// the play order before a single round is fired: in a BO1 the last map left
+// standing after every ban IS the map, and in a BO3 the two picked maps plus
+// the leftover decider ARE map 1/2/3, in the order they were picked. Build
+// that predicted order from the veto's "Picked" steps (round order already
+// comes out of parseVetoSteps) so the panel can show map names immediately
+// and fill in real scores as FACEIT reports them, instead of waiting on the
+// synced match result.
+function buildExpectedMapOrder(steps) {
+  return steps
+    .filter((step) => step.action === "Picked")
+    .map((step) => step.map);
+}
+
+function normalizeMapKey(name) {
+  return formatMapName(name).toLowerCase();
+}
+
+function buildDisplayMaps(maps, expectedMapOrder) {
+  const realMaps = Array.isArray(maps) ? maps : [];
+  const realByKey = new Map(
+    realMaps.map((map) => [normalizeMapKey(map.map), map])
+  );
+
+  if (expectedMapOrder.length === 0) {
+    return realMaps;
+  }
+
+  const usedKeys = new Set();
+
+  const merged = expectedMapOrder.map((mapName) => {
+    const key = normalizeMapKey(mapName);
+    const real = realByKey.get(key);
+
+    usedKeys.add(key);
+
+    if (real) {
+      return real;
+    }
+
+    return { map: mapName, pending: true };
+  });
+
+  // Safety net: a real synced map the veto order didn't account for
+  // (mismatch between veto data and match data) still gets shown.
+  realMaps.forEach((map) => {
+    const key = normalizeMapKey(map.map);
+
+    if (!usedKeys.has(key)) {
+      merged.push(map);
+    }
+  });
+
+  return merged;
+}
+
 export default function MatchMapResultsSection({
   matchId,
   maps,
@@ -345,15 +424,31 @@ export default function MatchMapResultsSection({
     team2
   );
 
+  const expectedMapOrder = buildExpectedMapOrder(steps || []);
+
+  const displayMaps = buildDisplayMaps(maps, expectedMapOrder);
+
+  const isPredicted = displayMaps.some((map) => map.pending);
+
+  const realMaps = Array.isArray(maps) ? maps : [];
+  const demos = Array.isArray(demoUrls) ? demoUrls : [];
+  const demoByMap = new Map(
+    realMaps.map((map, index) => [
+      normalizeMapKey(map.map),
+      demos[index],
+    ])
+  );
+
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(0,1.9fr)_minmax(280px,1fr)]">
       <FinishedMapsPanel
-        maps={maps}
+        maps={displayMaps}
         team1={team1}
         team2={team2}
-        demoUrls={demoUrls}
+        demoByMap={demoByMap}
         demoUnavailable={demoUnavailable}
         pickedTeamByMap={pickedTeamByMap}
+        isPredicted={isPredicted}
       />
 
       <MapVetoCard steps={steps} isLoading={Boolean(matchId) && steps === null} />
