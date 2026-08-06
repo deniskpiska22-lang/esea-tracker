@@ -169,8 +169,8 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
     roster.lineupSource !== "match_history";
 
   return (
-    <div className="rounded-2xl border border-[#263244] bg-[#0c1219] p-4">
-      <div className="mb-3 flex items-center gap-2.5">
+    <div className="rounded-2xl border border-[#263244] bg-[#0c1219] p-3">
+      <div className="mb-2 flex items-center gap-2.5">
         <TeamMark team={team} />
         <div className="truncate text-sm font-black text-white">
           {team?.name || "TBD"}
@@ -178,7 +178,7 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
       </div>
 
       {roster.loading && (
-        <div className="grid grid-cols-5 gap-1.5 sm:gap-2.5">
+        <div className="grid grid-cols-5 gap-2 sm:gap-3">
           {Array.from({ length: 5 }).map((_, index) => (
             <PlayerCardSkeleton key={index} />
           ))}
@@ -186,7 +186,7 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
       )}
 
       {!roster.loading && roster.starting.length > 0 && (
-        <div className="grid grid-cols-5 gap-1.5 sm:gap-2.5">
+        <div className="grid grid-cols-5 gap-2 sm:gap-3">
           {roster.starting.map((player) => (
             <PlayerCard
               key={getPlayerId(player) || player.nickname}
@@ -219,7 +219,7 @@ function CompareSidePlayer({ player, team }) {
   const playerId = getPlayerId(player);
 
   return (
-    <div className="mx-auto flex w-full max-w-[220px] flex-col gap-2">
+    <div className="mx-auto flex w-full max-w-[150px] flex-col gap-1.5">
       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-[#263244]">
         <PlayerTileBody player={player} team={team} />
       </div>
@@ -241,7 +241,7 @@ function CompareStatRow({ label, value1, value2, decimals }) {
   };
 
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-[#182231] bg-[#0f1720] px-3 py-2 sm:px-4">
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-lg border border-[#182231] bg-[#0f1720] px-2.5 py-1.5 sm:px-3">
       <div className="text-right text-sm font-black text-white">
         {format(value1)}
       </div>
@@ -269,11 +269,11 @@ function ComparePanel({ player1, player2, team1, team2 }) {
   }
 
   return (
-    <div className="rounded-2xl border border-[#263244] bg-[#0c1219] p-4 sm:p-5">
-      <div className="grid grid-cols-[1fr_minmax(0,360px)_1fr] items-stretch gap-3 sm:gap-6">
+    <div className="rounded-2xl border border-[#263244] bg-[#0c1219] p-3 sm:p-4">
+      <div className="grid grid-cols-[1fr_minmax(0,320px)_1fr] items-stretch gap-3 sm:gap-5">
         <CompareSidePlayer player={player1} team={team1} />
 
-        <div className="flex h-full flex-col justify-center gap-2.5">
+        <div className="flex h-full flex-col justify-center gap-2">
           <CompareStatRow
             label={tr("Рейтинг", "Rating")}
             value1={player1.rating}
@@ -322,12 +322,12 @@ export default function MatchLineups({ team1, team2 }) {
   const activePlayer2 = pickActivePlayer(roster2.starting, selectedId2);
 
   return (
-    <div className="rounded-[30px] border border-[#263244] bg-[#101722] p-6 shadow-2xl shadow-black/20 md:p-8">
-      <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-orange-300">
+    <div>
+      <div className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-orange-300">
         {tr("Составы", "Lineups")}
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         <TeamLineupRow
           team={team1}
           roster={roster1}

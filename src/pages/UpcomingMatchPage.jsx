@@ -447,9 +447,14 @@ function filterRecentMatches(matches) {
     );
 }
 
+function getCountryFlagUrl(countryCode) {
+  return countryCode && countryCode.length === 2
+    ? `https://flagcdn.com/w640/${countryCode.toLowerCase()}.png`
+    : null;
+}
+
 function TeamHero({
   team,
-  align = "left",
 }) {
   const localTeam = findLocalTeam(team?.id, team?.name);
 
@@ -458,41 +463,44 @@ function TeamHero({
     team?.slug ||
     null;
 
-  const content = (
-    <>
-      {team.logo || localTeam?.logo ? (
-        <img
-          src={localTeam?.logo || team.logo}
-          alt={localTeam?.name || team.name}
-          className="h-20 w-20 rounded-xl bg-[#0b0f14] object-contain p-2 transition group-hover:scale-[1.04] md:h-24 md:w-24"
-        />
-      ) : (
-        <div className="flex h-20 w-20 items-center justify-center rounded-xl border border-[#243041] bg-[#0b0f14] text-2xl font-black text-gray-500 md:h-24 md:w-24">
-          ?
-        </div>
-      )}
+  const name = localTeam?.name || team.name;
+  const logo = localTeam?.logo || team.logo;
 
-      <div className={`min-w-0 ${align==="right"?"md:text-right":"md:text-left"}`}>
-        <div className="truncate text-center text-2xl font-black transition-colors group-hover:text-orange-400 md:text-4xl">
-          {localTeam?.name || team.name}
+  const panel = (
+    <div className="group relative z-10 flex h-full flex-col items-center justify-center gap-3">
+      <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-[#243041] bg-[#0b0f14] md:h-24 md:w-24">
+        {logo ? (
+          <img
+            src={logo}
+            alt={name}
+            className="h-full w-full object-contain p-2 transition group-hover:scale-[1.04]"
+          />
+        ) : (
+          <div className="text-2xl font-black text-gray-500">
+            ?
+          </div>
+        )}
+      </div>
+
+      <div className="min-w-0 text-center">
+        <div className="truncate text-lg font-bold transition-colors group-hover:text-orange-400 md:text-xl">
+          {name}
         </div>
       </div>
-    </>
+    </div>
   );
 
-  const cls=`group flex flex-col items-center gap-4 ${align==="right"?"md:flex-row-reverse md:justify-start":"md:flex-row"}`;
-
   if(!navigationSlug){
-    return <div className={cls}>{content}</div>;
+    return panel;
   }
 
   return (
     <Link
       to={`/teams/${navigationSlug}`}
       state={{from:window.location.pathname,label:"← Back to Match"}}
-      className={cls}
+      className="block h-full"
     >
-      {content}
+      {panel}
     </Link>
   );
 }
@@ -1884,6 +1892,18 @@ function UpcomingMatchPage() {
     displayTeam2.name
   );
 
+  const team1FlagUrl = getCountryFlagUrl(
+    leftLocalTeam?.country ||
+      displayTeam1?.country ||
+      displayTeam1?.countryCode
+  );
+
+  const team2FlagUrl = getCountryFlagUrl(
+    rightLocalTeam?.country ||
+      displayTeam2?.country ||
+      displayTeam2?.countryCode
+  );
+
   const leftFallbackMatches = matchesData.filter(
     (match) => match.teamSlug === leftLocalTeam?.slug
   );
@@ -2104,7 +2124,7 @@ function UpcomingMatchPage() {
 
   return (
     <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1100px]">
+      <div className="mx-auto max-w-[900px]">
         <div className="flex items-center justify-between gap-4">
           <Link
             to={
@@ -2138,15 +2158,36 @@ function UpcomingMatchPage() {
           />
         ) : (
           <div className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#101722] shadow-2xl shadow-black/20">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute -left-24 -top-28 h-80 w-80 rounded-full bg-orange-500/10 blur-3xl" />
-              <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-sky-500/5 blur-3xl" />
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {team1FlagUrl && (
+                <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+                  <img
+                    src={team1FlagUrl}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-cover opacity-40 blur-[2px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#101722]/10 via-[#101722]/70 to-[#101722]" />
+                </div>
+              )}
+
+              {team2FlagUrl && (
+                <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+                  <img
+                    src={team2FlagUrl}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-cover opacity-40 blur-[2px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-[#101722]/10 via-[#101722]/70 to-[#101722]" />
+                </div>
+              )}
             </div>
             <div className="relative p-6 md:p-10 lg:p-12">
-              <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px_minmax(0,1fr)] lg:items-center">
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px_minmax(0,1fr)] lg:items-stretch">
                 <TeamHero team={displayTeam1} />
 
-                <div className="text-center">
+                <div className="flex flex-col items-center justify-center text-center">
                   <div className="mb-5 inline-flex rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-orange-300">
                     BO{displayBestOf}
                   </div>
@@ -2168,10 +2209,7 @@ function UpcomingMatchPage() {
                   </div>
                 </div>
 
-                <TeamHero
-                  team={displayTeam2}
-                  align="right"
-                />
+                <TeamHero team={displayTeam2} />
               </div>
             </div>
           </div>
