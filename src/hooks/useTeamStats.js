@@ -65,6 +65,64 @@ function cleanMapName(value) {
     .join("");
 }
 
+// Faction-relative veto_steps ({ map, action, selectedBy, round }, written
+// by scripts/backfillMatchVeto.js) resolved to this team's perspective —
+// faction1 = team1 by the same convention parseVetoSteps() in
+// MatchMapResults.jsx already relies on for the single-match veto card.
+function resolveVetoSteps(row, matchTeamIsFirst) {
+  const rawSteps = parseJsonValue(row.veto_steps, []);
+
+  if (!Array.isArray(rawSteps)) {
+    return [];
+  }
+
+  return rawSteps
+    .map((step) => {
+      const mapName = cleanMapName(step?.map);
+
+      if (!mapName) {
+        return null;
+      }
+
+      let side = null;
+
+      if (step.selectedBy === "faction1") {
+        side = matchTeamIsFirst ? "team" : "opponent";
+      } else if (step.selectedBy === "faction2") {
+        side = matchTeamIsFirst ? "opponent" : "team";
+      }
+
+      return {
+        map: mapName,
+        action: step.action,
+        side,
+      };
+    })
+    .filter(Boolean);
+}
+
+// "Picked"/"Decider" veto steps keyed by lowercased map name, so a played
+// map can be tagged with who chose it — "team"/"opponent" for a pick,
+// "decider" for the leftover map. Mirrors buildPickedTeamByMap() in
+// MatchMapResults.jsx.
+function buildPickedBySideByMap(vetoSteps) {
+  const lookup = new Map();
+
+  vetoSteps
+    .filter(
+      (step) => step.action === "Picked" || step.action === "Decider"
+    )
+    .forEach((step) => {
+      const key = step.map.toLowerCase();
+      lookup.set(
+        key,
+        step.action === "Decider" ? "decider" : step.side
+      );
+    });
+
+  return lookup;
+}
+
 function rowBelongsToTeam(row, team) {
   if (!row || !team) {
     return false;
@@ -149,6 +207,24 @@ function teamIsFirstInMatch(
   return true;
 }
 
+// Some older import passes wrote matches.map_scores entries in a
+// simplified { teamScore, opponentScore, won } shape instead of the
+// neutral { team1_score, team2_score } shape autoSyncMatches.js writes.
+// Checked against team1_score/team2_score on every row where both exist
+// (100% match across a large sample) — teamScore/opponentScore always
+// alias team1/team2 respectively, so it's safe to fall back to them
+// rather than silently reading undefined and defaulting every score to 0.
+function resolveMapScorePair(map) {
+  return {
+    team1Score:
+      map.team1_score !== undefined ? map.team1_score : map.teamScore,
+    team2Score:
+      map.team2_score !== undefined
+        ? map.team2_score
+        : map.opponentScore,
+  };
+}
+
 function teamIsFirstOnMap(
   map,
   team,
@@ -199,7 +275,8 @@ function buildMapScoresFromDatabase(
   team,
   matchTeamIsFirst,
   teamScore,
-  opponentScore
+  opponentScore,
+  pickedBySideByMap
 ) {
   const rawMapScores =
     parseJsonValue(
@@ -227,18 +304,21 @@ function buildMapScoresFromDatabase(
                 matchTeamIsFirst
               );
 
+            const { team1Score, team2Score } =
+              resolveMapScorePair(map);
+
             const currentTeamScore =
               toNumber(
                 mapTeamIsFirst
-                  ? map.team1_score
-                  : map.team2_score
+                  ? team1Score
+                  : team2Score
               );
 
             const currentOpponentScore =
               toNumber(
                 mapTeamIsFirst
-                  ? map.team2_score
-                  : map.team1_score
+                  ? team2Score
+                  : team1Score
               );
 
             return {
@@ -253,6 +333,11 @@ function buildMapScoresFromDatabase(
               won:
                 currentTeamScore >
                 currentOpponentScore,
+
+              pickedBy:
+                pickedBySideByMap?.get(
+                  mapName.toLowerCase()
+                ) || null,
             };
           })
           .filter(Boolean)
@@ -298,6 +383,11 @@ function buildMapScoresFromDatabase(
         won:
           teamScore >
           opponentScore,
+
+        pickedBy:
+          pickedBySideByMap?.get(
+            mapNames[0].toLowerCase()
+          ) || null,
       },
     ];
   }
@@ -339,13 +429,22 @@ function normalizeDatabaseMatch(
       ? row.team2_name
       : row.team1_name;
 
+  const vetoSteps = resolveVetoSteps(
+    row,
+    matchTeamIsFirst
+  );
+
+  const pickedBySideByMap =
+    buildPickedBySideByMap(vetoSteps);
+
   const mapScores =
     buildMapScoresFromDatabase(
       row,
       team,
       matchTeamIsFirst,
       teamScore,
-      opponentScore
+      opponentScore,
+      pickedBySideByMap
     );
 
   return {
@@ -410,6 +509,11 @@ function normalizeDatabaseMatch(
 
     demoSynced:
       Boolean(row.demo_synced),
+
+    vetoSteps,
+
+    vetoSynced:
+      Boolean(row.veto_synced),
 
     source:
       "supabase",
@@ -748,6 +852,187 @@ function buildMapStats(matches) {
     );
 }
 
+// Per-map pick/ban aggregation across a team's whole veto history —
+// mirrors buildMapStats() above, but reading vetoSteps instead of
+// mapScores. pickRate/banRate are relative to matchesWithVeto (how many
+// finished matches actually have veto data backfilled yet), not to the
+// team's total match count, since coverage starts partial.
+export function buildVetoStats(matches) {
+  const mapsByName = {};
+  let matchesWithVeto = 0;
+
+  matches.forEach((match) => {
+    const vetoSteps = Array.isArray(match.vetoSteps)
+      ? match.vetoSteps
+      : [];
+
+    if (vetoSteps.length === 0) {
+      return;
+    }
+
+    matchesWithVeto += 1;
+
+    const mapScoreByName = new Map(
+      (Array.isArray(match.mapScores) ? match.mapScores : []).map(
+        (map) => [String(map.map || "").toLowerCase(), map]
+      )
+    );
+
+    vetoSteps.forEach((step) => {
+      const mapName = step.map;
+      if (!mapName) return;
+
+      if (!mapsByName[mapName]) {
+        mapsByName[mapName] = {
+          name: mapName,
+          picked: 0,
+          banned: 0,
+          decider: 0,
+          pickedByOpponent: 0,
+          bannedByOpponent: 0,
+          winsWhenPicked: 0,
+          lossesWhenPicked: 0,
+        };
+      }
+
+      const entry = mapsByName[mapName];
+
+      if (step.action === "Picked" && step.side === "team") {
+        entry.picked += 1;
+
+        const played = mapScoreByName.get(mapName.toLowerCase());
+        if (played) {
+          if (played.won) entry.winsWhenPicked += 1;
+          else entry.lossesWhenPicked += 1;
+        }
+      } else if (
+        step.action === "Picked" &&
+        step.side === "opponent"
+      ) {
+        entry.pickedByOpponent += 1;
+      } else if (step.action === "Banned" && step.side === "team") {
+        entry.banned += 1;
+      } else if (
+        step.action === "Banned" &&
+        step.side === "opponent"
+      ) {
+        entry.bannedByOpponent += 1;
+      } else if (step.action === "Decider") {
+        entry.decider += 1;
+      }
+    });
+  });
+
+  return Object.values(mapsByName)
+    .map((map) => {
+      const decidedGames =
+        map.winsWhenPicked + map.lossesWhenPicked;
+
+      return {
+        ...map,
+        pickRate:
+          matchesWithVeto > 0
+            ? Math.round((map.picked / matchesWithVeto) * 100)
+            : 0,
+        banRate:
+          matchesWithVeto > 0
+            ? Math.round((map.banned / matchesWithVeto) * 100)
+            : 0,
+        winrateWhenPicked:
+          decidedGames > 0
+            ? Math.round(
+                (map.winsWhenPicked / decidedGames) * 100
+              )
+            : 0,
+      };
+    })
+    .sort(
+      (first, second) =>
+        second.picked + second.banned - (first.picked + first.banned) ||
+        first.name.localeCompare(second.name)
+    );
+}
+
+// Which map an opponent bans 1st, 2nd, 3rd... across a team's veto
+// history — not the global veto round number, but the opponent's own
+// ban sequence position (their bans only, alternating turns skipped).
+// match.vetoSteps is already round-ordered (backfillMatchVeto.js stores
+// it sorted, resolveVetoSteps() preserves that order), so array position
+// among the opponent's own "Banned" steps is exactly this.
+// Which map gets banned 1st, 2nd, 3rd... by a given side ("team" or
+// "opponent") across a set of matches — shared by
+// buildOpponentBanOrderStats (their bans against this team) and
+// buildTeamBanOrderStats (this team's own ban order).
+function buildBanOrderStats(matches, side) {
+  const countsByMapAndOrder = {};
+  const totalsByOrder = {};
+  let maxOrder = 0;
+
+  matches.forEach((match) => {
+    const vetoSteps = Array.isArray(match.vetoSteps)
+      ? match.vetoSteps
+      : [];
+
+    const sideBans = vetoSteps.filter(
+      (step) => step.action === "Banned" && step.side === side
+    );
+
+    sideBans.forEach((step, index) => {
+      const order = index + 1;
+      maxOrder = Math.max(maxOrder, order);
+
+      if (!countsByMapAndOrder[step.map]) {
+        countsByMapAndOrder[step.map] = {};
+      }
+
+      countsByMapAndOrder[step.map][order] =
+        (countsByMapAndOrder[step.map][order] || 0) + 1;
+
+      totalsByOrder[order] = (totalsByOrder[order] || 0) + 1;
+    });
+  });
+
+  const orders = Array.from(
+    { length: maxOrder },
+    (_, index) => index + 1
+  );
+
+  const rows = Object.keys(countsByMapAndOrder)
+    .map((name) => {
+      const byOrder = orders.map((order) => {
+        const count = countsByMapAndOrder[name]?.[order] || 0;
+        const total = totalsByOrder[order] || 0;
+
+        return {
+          order,
+          count,
+          percent:
+            total > 0 ? Math.round((count / total) * 100) : 0,
+        };
+      });
+
+      return {
+        name,
+        byOrder,
+        totalBans: byOrder.reduce(
+          (sum, cell) => sum + cell.count,
+          0
+        ),
+      };
+    })
+    .sort((first, second) => second.totalBans - first.totalBans);
+
+  return { orders, totalsByOrder, rows };
+}
+
+export function buildOpponentBanOrderStats(matches) {
+  return buildBanOrderStats(matches, "opponent");
+}
+
+export function buildTeamBanOrderStats(matches) {
+  return buildBanOrderStats(matches, "team");
+}
+
 export function useTeamStats(
   slug,
   fallbackMatches = []
@@ -801,10 +1086,7 @@ export function useTeamStats(
           );
         }
 
-        const {
-          data,
-          error: queryError,
-        } = await supabase
+        let matchesQuery = supabase
           .from("matches")
           .select(
             [
@@ -827,12 +1109,38 @@ export function useTeamStats(
               "map_scores",
               "stats_synced",
               "demo_synced",
+              "veto_steps",
+              "veto_synced",
             ].join(",")
           )
           .in(
             "status",
             FINISHED_STATUSES
-          )
+          );
+
+        /*
+         * Матчи фильтруются по faceitTeamId
+         * прямо на стороне Supabase, а не
+         * вырезаются из общего среза "3000
+         * самых свежих матчей по всему сайту".
+         *
+         * Без этого фильтра у активных/старых
+         * команд часть их же матчей просто не
+         * попадала в этот общий срез по мере
+         * роста сайта — и статистика (включая
+         * вето) выглядела неполной, хотя данные
+         * в базе были.
+         */
+        if (team?.faceitTeamId) {
+          matchesQuery = matchesQuery.or(
+            `team1_id.eq.${team.faceitTeamId},team2_id.eq.${team.faceitTeamId}`
+          );
+        }
+
+        const {
+          data,
+          error: queryError,
+        } = await matchesQuery
           .order(
             "finished_at",
             {

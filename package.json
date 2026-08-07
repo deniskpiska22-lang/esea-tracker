@@ -34,6 +34,7 @@
     "ratings:init": "node --env-file=.env.local scripts/initTeamRatings.js",
     "sync:rosters": "node --env-file=.env.local scripts/syncTeamRosters.js",
     "stats:backfill": "node --env-file=.env.local scripts/backfillMissingMatchStats.js",
+    "veto:backfill": "node --env-file=.env.local scripts/backfillMatchVeto.js",
     "import:json": "node --env-file=.env.local scripts/importJsonToSupabase.js",
     "matches:supabase": "node --env-file=.env.local scripts/updateMatchesToSupabase.js",
     "stats:supabase": "node --env-file=.env.local scripts/updateMatchStatsV3ToSupabase.js",

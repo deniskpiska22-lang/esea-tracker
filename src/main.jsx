@@ -37,6 +37,7 @@ const VerificationRequestPage = lazy(() => import("./pages/VerificationRequestPa
 const AdminVerificationPage = lazy(() => import("./pages/AdminVerificationPage"));
 const DataStatusPage = lazy(() => import("./pages/DataStatusPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
+const VetoPage = lazy(() => import("./pages/VetoPage"));
 const CalendarPage = lazy(() => import("./pages/CalendarPage"));
 const TournamentPage = lazy(() => import("./pages/TournamentPage"));
 
@@ -130,6 +131,16 @@ ReactDOM.createRoot(
               <Route
                 path="/team/:slug/analytics"
                 element={<AnalyticsPage />}
+              />
+
+              <Route
+                path="/teams/:slug/veto"
+                element={<VetoPage />}
+              />
+
+              <Route
+                path="/team/:slug/veto"
+                element={<VetoPage />}
               />
 
               <Route

@@ -953,6 +953,13 @@ function TeamPage() {
               Statistics
             </Link>
 
+            <Link
+              to={`/teams/${slug}/veto`}
+              className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
+            >
+              Veto
+            </Link>
+
             {SHOW_ANALYTICS_TAB && (
               <Link
                 to={`/teams/${slug}/analytics`}
