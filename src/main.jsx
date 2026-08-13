@@ -12,8 +12,14 @@ import "./index.css";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
+import MaintenancePage from "./pages/MaintenancePage";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
+
+// Supabase org hit its free-tier quota; site is closed to avoid showing
+// broken/stale data until the next billing cycle resets it.
+const MAINTENANCE_UNTIL = new Date("2026-08-15T00:00:00");
+const MAINTENANCE_ACTIVE = new Date() < MAINTENANCE_UNTIL;
 
 // Every page is its own chunk, fetched only when that route is actually
 // visited — without this the whole site (every page, including the ~2600
@@ -53,6 +59,9 @@ ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
   <React.StrictMode>
+    {MAINTENANCE_ACTIVE ? (
+      <MaintenancePage />
+    ) : (
     <BrowserRouter>
       <LanguageProvider>
       <AuthProvider>
@@ -201,5 +210,6 @@ ReactDOM.createRoot(
       </AuthProvider>
       </LanguageProvider>
     </BrowserRouter>
+    )}
   </React.StrictMode>
 );

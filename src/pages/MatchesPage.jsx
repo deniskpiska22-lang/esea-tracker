@@ -192,8 +192,6 @@ function MatchesPage() {
 
     loadMatches();
 
-    const intervalId = window.setInterval(loadMatches, 30000);
-
     const channel = supabase
       ? supabase
           .channel(`team-matches-${slug}`)
@@ -211,7 +209,6 @@ function MatchesPage() {
 
     return () => {
       cancelled = true;
-      window.clearInterval(intervalId);
 
       if (channel && supabase) {
         supabase.removeChannel(channel);

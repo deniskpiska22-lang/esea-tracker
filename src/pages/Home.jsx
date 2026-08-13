@@ -1778,8 +1778,6 @@ function Home() {
 
     loadMatches();
 
-    const intervalId = window.setInterval(loadMatches, 30000);
-
     if (supabase) {
       channel = supabase
         .channel("home-card-layout")
@@ -1797,7 +1795,6 @@ function Home() {
 
     return () => {
       cancelled = true;
-      window.clearInterval(intervalId);
 
       if (supabase && channel) {
         supabase.removeChannel(channel);
