@@ -60,7 +60,9 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     {MAINTENANCE_ACTIVE ? (
-      <MaintenancePage />
+      <LanguageProvider>
+        <MaintenancePage />
+      </LanguageProvider>
     ) : (
     <BrowserRouter>
       <LanguageProvider>
