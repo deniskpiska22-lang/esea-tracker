@@ -17,9 +17,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
 // Supabase org hit its free-tier quota; site is closed to avoid showing
-// broken/stale data until the next billing cycle resets it.
-const MAINTENANCE_UNTIL = new Date("2026-08-15T00:00:00");
-const MAINTENANCE_ACTIVE = new Date() < MAINTENANCE_UNTIL;
+// broken/stale data. Indefinite until manually turned off (worker fixes
+// still awaiting verification against live Supabase before redeploy).
+const MAINTENANCE_ACTIVE = true;
 
 // Every page is its own chunk, fetched only when that route is actually
 // visited — without this the whole site (every page, including the ~2600
