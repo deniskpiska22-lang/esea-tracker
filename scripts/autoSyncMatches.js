@@ -2939,6 +2939,25 @@ async function fetchMatchRoomPayload(
   );
 }
 
+// Mirrors how syncFinishedMapStats() flags stats_synced — narrow, dedicated
+// UPDATE rather than folding into a larger patch object, since (unlike map
+// stats) nothing else in this function already builds one.
+async function markLineupsSynced(matchId) {
+  const { error } = await supabase
+    .from("matches")
+    .update({
+      lineups_synced: true,
+      lineups_synced_at: new Date().toISOString(),
+    })
+    .eq("id", matchId);
+
+  if (error) {
+    console.warn(
+      `Failed to flag lineups_synced for ${matchId}: ${error.message}`
+    );
+  }
+}
+
 async function syncFinishedLineups() {
   const from =
     new Date(
@@ -2971,6 +2990,7 @@ async function syncFinishedLineups() {
       "MATCH_STATUS_FINISHED",
     ])
     .gte("finished_at", from)
+    .eq("lineups_synced", false)
     .order(
       "finished_at",
       {
@@ -3013,6 +3033,7 @@ async function syncFinishedLineups() {
           fromRawData += 1;
           appearances +=
             result.appearances;
+          await markLineupsSynced(match.id);
           return;
         }
 
@@ -3036,6 +3057,7 @@ async function syncFinishedLineups() {
           fromMatchApi += 1;
           appearances +=
             result.appearances;
+          await markLineupsSynced(match.id);
         } else {
           empty += 1;
 
