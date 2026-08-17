@@ -70,6 +70,153 @@ const FACEIT_FETCH_TIMEOUT_MS = Number(
   process.env.FACEIT_FETCH_TIMEOUT_MS || 20000
 );
 
+// --- Supabase call budget: caching, buffering, backoff, circuit breaker ---
+// Everything below governs how often/how much this process talks to
+// Supabase specifically. It never touches FACEIT polling frequency or
+// retry logic (fetchJson() above) — that stays exactly as it was.
+
+// How often the Supabase-backed candidate list itself is refreshed. The
+// FACEIT poll tick (TICK_INTERVAL_MS, still 7s) runs against whatever list
+// is currently cached in memory — the two are independent now.
+const CANDIDATES_REFRESH_MS = Number(
+  process.env.LIVE_WORKER_CANDIDATES_REFRESH_MS || 30000
+);
+
+// live_worker_log heartbeat rows are buffered in memory and flushed as one
+// multi-row insert, instead of one INSERT per 7s tick.
+const LOG_FLUSH_INTERVAL_MS = Number(
+  process.env.LIVE_WORKER_LOG_FLUSH_INTERVAL_MS || 60000
+);
+const LOG_FLUSH_MAX_BUFFER = Number(
+  process.env.LIVE_WORKER_LOG_MAX_BUFFER || 20
+);
+
+// worker_status is only rewritten when the coarse status actually flips
+// (online <-> error), or at most this often otherwise — last_ping staleness
+// is still a useful liveness signal at 30-60s resolution.
+const WORKER_STATUS_MIN_INTERVAL_MS = Number(
+  process.env.WORKER_STATUS_MIN_INTERVAL_MS || 30000
+);
+
+// Backoff/circuit breaker for Supabase calls only (FACEIT keeps its own
+// retry logic in fetchJson()). Base backoff defaults to the normal tick
+// interval — the first failure just costs one extra tick's wait, not a
+// jump straight to some arbitrary longer number.
+const SUPABASE_BASE_BACKOFF_MS = Number(
+  process.env.SUPABASE_BASE_BACKOFF_MS || TICK_INTERVAL_MS
+);
+const SUPABASE_MAX_BACKOFF_MS = Number(
+  process.env.SUPABASE_MAX_BACKOFF_MS || 300000 // 5 min ceiling
+);
+const SUPABASE_CIRCUIT_BREAKER_THRESHOLD = Number(
+  process.env.SUPABASE_CIRCUIT_BREAKER_THRESHOLD || 5
+);
+const SUPABASE_CIRCUIT_BREAKER_COOLDOWN_MS = Number(
+  process.env.SUPABASE_CIRCUIT_BREAKER_COOLDOWN_MS || 600000 // 10 min
+);
+
+// Without this, a Supabase call that hangs (DNS not resolving, connection
+// never completing — as opposed to a fast rejection like the 402s we
+// actually see in production) would block callSupabase() forever: backoff
+// and the circuit breaker only react to a promise settling, so a stuck
+// promise means neither ever kicks in. Same idea as FACEIT_FETCH_TIMEOUT_MS
+// above, applied to the Supabase side.
+const SUPABASE_CALL_TIMEOUT_MS = Number(
+  process.env.SUPABASE_CALL_TIMEOUT_MS || 15000
+);
+
+let supabaseConsecutiveErrors = 0;
+let supabaseBackoffMs = SUPABASE_BASE_BACKOFF_MS;
+let supabaseCircuitOpenUntil = 0;
+let supabaseRequestsInWindow = 0;
+
+function supabaseCircuitBreakerOpen() {
+  return Date.now() < supabaseCircuitOpenUntil;
+}
+
+function recordSupabaseSuccess() {
+  supabaseConsecutiveErrors = 0;
+  supabaseBackoffMs = SUPABASE_BASE_BACKOFF_MS;
+}
+
+function recordSupabaseFailure() {
+  supabaseConsecutiveErrors += 1;
+  supabaseBackoffMs = Math.min(supabaseBackoffMs * 2, SUPABASE_MAX_BACKOFF_MS);
+
+  // Visible on every single failure (not just when the circuit breaker
+  // trips) — otherwise the backoff climbing 7s -> 14s -> 28s -> ... is
+  // invisible in Railway logs, since most individual Supabase calls
+  // (worker_status/live_worker_log) fail silently by design elsewhere.
+  console.warn(
+    `[worker] Supabase call failed (${supabaseConsecutiveErrors} in a row), ` +
+      `next backoff ${supabaseBackoffMs}ms`
+  );
+
+  if (supabaseConsecutiveErrors >= SUPABASE_CIRCUIT_BREAKER_THRESHOLD) {
+    supabaseCircuitOpenUntil = Date.now() + SUPABASE_CIRCUIT_BREAKER_COOLDOWN_MS;
+    console.warn(
+      `[worker] Supabase circuit breaker OPEN after ${supabaseConsecutiveErrors} ` +
+        `consecutive errors — pausing all Supabase/FACEIT activity for ` +
+        `${Math.round(SUPABASE_CIRCUIT_BREAKER_COOLDOWN_MS / 1000)}s`
+    );
+  }
+}
+
+// Every outgoing Supabase call goes through this: counts it (for the
+// once-a-minute request log), bounds it to SUPABASE_CALL_TIMEOUT_MS, and
+// feeds success/failure into the backoff + circuit breaker above.
+// supabase-js query builders resolve to {data, error} instead of throwing,
+// so both that shape and a thrown exception (network failure, timeout,
+// etc.) count as a failure the same way.
+async function callSupabase(fn) {
+  supabaseRequestsInWindow += 1;
+
+  // Promise.race() below doesn't cancel the loser — if fn() eventually
+  // rejects after the timeout has already won, that rejection needs
+  // somewhere to go or Node logs/crashes on an unhandled rejection.
+  const callPromise = Promise.resolve().then(fn);
+  callPromise.catch(() => {});
+
+  let timeoutId;
+
+  try {
+    const result = await Promise.race([
+      callPromise,
+      new Promise((_, reject) => {
+        timeoutId = setTimeout(() => {
+          reject(
+            new Error(
+              `Supabase call timed out after ${SUPABASE_CALL_TIMEOUT_MS}ms`
+            )
+          );
+        }, SUPABASE_CALL_TIMEOUT_MS);
+      }),
+    ]);
+
+    if (result && typeof result === "object" && result.error) {
+      recordSupabaseFailure();
+    } else {
+      recordSupabaseSuccess();
+    }
+
+    return result;
+  } catch (error) {
+    recordSupabaseFailure();
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+function startSupabaseRequestCounterLog() {
+  setInterval(() => {
+    console.log(
+      `[worker] ${supabaseRequestsInWindow} requests to Supabase in the last 60s`
+    );
+    supabaseRequestsInWindow = 0;
+  }, 60000).unref();
+}
+
 const FINISHED_STATUSES = new Set([
   "FINISHED",
   "MATCH_STATUS_FINISHED",
@@ -384,11 +531,13 @@ function sleep(ms) {
 
 async function loadCandidates() {
   if (SINGLE_MATCH_ID) {
-    const { data, error } = await supabase
-      .from("matches")
-      .select(COMPARE_FIELDS.concat("id").join(","))
-      .eq("id", SINGLE_MATCH_ID)
-      .limit(1);
+    const { data, error } = await callSupabase(() =>
+      supabase
+        .from("matches")
+        .select(COMPARE_FIELDS.concat("id").join(","))
+        .eq("id", SINGLE_MATCH_ID)
+        .limit(1)
+    );
 
     if (error) {
       throw error;
@@ -401,20 +550,65 @@ async function loadCandidates() {
   const from = new Date(now - LIVE_LOOKBACK_HOURS * 3600000).toISOString();
   const to = new Date(now + LIVE_LOOKAHEAD_HOURS * 3600000).toISOString();
 
-  const { data, error } = await supabase
-    .from("matches")
-    .select(COMPARE_FIELDS.concat("id").join(","))
-    .in("status", ACTIVE_STATUSES)
-    .gte("scheduled_at", from)
-    .lte("scheduled_at", to)
-    .order("scheduled_at", { ascending: true })
-    .limit(300);
+  const { data, error } = await callSupabase(() =>
+    supabase
+      .from("matches")
+      .select(COMPARE_FIELDS.concat("id").join(","))
+      .in("status", ACTIVE_STATUSES)
+      .gte("scheduled_at", from)
+      .lte("scheduled_at", to)
+      .order("scheduled_at", { ascending: true })
+      .limit(300)
+  );
 
   if (error) {
     throw error;
   }
 
   return data || [];
+}
+
+// --- In-memory candidate cache -------------------------------------------
+// loadCandidates() above is the only place that reads `matches` from
+// Supabase. Without this cache it ran on every 7s FACEIT-poll tick; the set
+// of "matches worth watching" changes far less often than that, so the two
+// are now decoupled: the candidate list is refreshed at most every
+// CANDIDATES_REFRESH_MS, and every tick in between reuses it from memory.
+let cachedCandidates = [];
+let candidatesLoadedAt = 0;
+
+async function getCandidates() {
+  if (SINGLE_MATCH_ID) {
+    // Manual/debug single-match mode is low-volume by construction —
+    // caching it would just be one more thing to reason about for no
+    // meaningful savings, so it always reads fresh.
+    return loadCandidates();
+  }
+
+  const isStale =
+    candidatesLoadedAt === 0 ||
+    Date.now() - candidatesLoadedAt >= CANDIDATES_REFRESH_MS;
+
+  if (isStale) {
+    cachedCandidates = await loadCandidates();
+    candidatesLoadedAt = Date.now();
+  }
+
+  return cachedCandidates;
+}
+
+// After a match is actually updated in Supabase, patch the cached snapshot
+// in place so the next tick's changed() diff compares against the fresh
+// values instead of a stale one — otherwise every tick between candidate
+// refreshes would see the same "change" again and re-issue the same UPDATE.
+function patchCachedCandidate(matchId, patch) {
+  const index = cachedCandidates.findIndex(
+    (candidate) => candidate.id === matchId
+  );
+
+  if (index !== -1) {
+    cachedCandidates[index] = { ...cachedCandidates[index], ...patch };
+  }
 }
 
 // Matches worth fetching stats for — narrower than FINISHED_STATUSES, which
@@ -437,15 +631,17 @@ async function createStatJobIfFinished(matchId, status) {
   }
 
   try {
-    const { error } = await supabase.from("match_stat_jobs").upsert(
-      {
-        match_id: matchId,
-        job_type: "stats_sync",
-      },
-      {
-        onConflict: "match_id,job_type",
-        ignoreDuplicates: true,
-      }
+    const { error } = await callSupabase(() =>
+      supabase.from("match_stat_jobs").upsert(
+        {
+          match_id: matchId,
+          job_type: "stats_sync",
+        },
+        {
+          onConflict: "match_id,job_type",
+          ignoreDuplicates: true,
+        }
+      )
     );
 
     if (error) {
@@ -464,16 +660,18 @@ async function createStatJobIfFinished(matchId, status) {
   // once the demo-analysis pipeline is ready to consume the backlog again.
   if (process.env.DEMO_SYNC_ENABLED === "true") {
     try {
-      const { error } = await supabase.from("match_stat_jobs").upsert(
-        {
-          match_id: matchId,
-          job_type: "demo_sync",
-          max_attempts: 20,
-        },
-        {
-          onConflict: "match_id,job_type",
-          ignoreDuplicates: true,
-        }
+      const { error } = await callSupabase(() =>
+        supabase.from("match_stat_jobs").upsert(
+          {
+            match_id: matchId,
+            job_type: "demo_sync",
+            max_attempts: 20,
+          },
+          {
+            onConflict: "match_id,job_type",
+            ignoreDuplicates: true,
+          }
+        )
       );
 
       if (error) {
@@ -487,31 +685,97 @@ async function createStatJobIfFinished(matchId, status) {
   }
 }
 
-async function logHeartbeat(row) {
-  // Best-effort: если миграция 0002_live_worker_log.sql ещё не применена к
-  // этой базе, просто молча пропускаем — воркер не должен падать из-за
-  // отсутствия необязательной таблицы наблюдаемости.
+// --- live_worker_log: buffered, flushed periodically ---------------------
+// Was one INSERT per 7s tick before. Rows are now queued in memory and
+// flushed as a single multi-row insert either every LOG_FLUSH_INTERVAL_MS
+// or as soon as the buffer hits LOG_FLUSH_MAX_BUFFER, whichever comes
+// first — so a burst of activity still flushes promptly instead of sitting
+// in memory for up to a minute.
+let logBuffer = [];
+let lastLogFlushAt = Date.now();
+
+function queueHeartbeat(row) {
+  logBuffer.push({ tick_at: new Date().toISOString(), ...row });
+
+  if (logBuffer.length >= LOG_FLUSH_MAX_BUFFER) {
+    // Fire-and-forget on purpose: this is a rare safety valve (20 queued
+    // rows means the time-based flush below — checked every tick — has
+    // somehow not fired in 60s+ of ticking), not the normal path, so it's
+    // not worth threading an await through queueHeartbeat() (a sync
+    // function called from several places) just for this edge case.
+    flushLogBuffer();
+  }
+}
+
+async function flushLogBuffer() {
+  if (logBuffer.length === 0) {
+    lastLogFlushAt = Date.now();
+    return;
+  }
+
+  const rows = logBuffer;
+  logBuffer = [];
+  lastLogFlushAt = Date.now();
+
+  // Best-effort, same as before the buffer existed: if migration
+  // 0002_live_worker_log.sql isn't applied, or the write fails outright,
+  // the buffered rows are dropped rather than blocking the tick loop —
+  // this is diagnostic data, not something matches/state depends on.
   try {
-    await supabase.from("live_worker_log").insert(row);
+    await callSupabase(() => supabase.from("live_worker_log").insert(rows));
   } catch {
     // no-op
   }
 }
 
-// Best-effort, как и logHeartbeat выше — отсутствие миграции
-// 0008_worker_status.sql не должно останавливать живой тик.
-async function pingWorkerStatus(detail) {
+// Awaited (unlike the size-triggered flush above) so its success/failure
+// lands in the same sequential chain as every other Supabase call this tick
+// made — a background, un-awaited flush racing the main loop's backoff
+// sleep would let its failures increment supabaseConsecutiveErrors on their
+// own schedule, outside the tick cadence the backoff timing is supposed to
+// reflect.
+async function flushLogBufferIfDue() {
+  if (Date.now() - lastLogFlushAt >= LOG_FLUSH_INTERVAL_MS) {
+    await flushLogBuffer();
+  }
+}
+
+// --- worker_status: only written on a real change -------------------------
+// Previously upserted on every single tick regardless of outcome, and the
+// `status` column was hardcoded to "online" even on the error path (only
+// `detail` said otherwise) — fixed here too, since "write only when status
+// changed" needs a real status value to compare against. Still throttled to
+// at most once per WORKER_STATUS_MIN_INTERVAL_MS even when nothing changes,
+// so last_ping doesn't go stale for longer than that.
+let lastWorkerStatusValue = null;
+let lastWorkerStatusWrittenAt = 0;
+
+async function pingWorkerStatus(status, detail) {
+  const now = Date.now();
+  const statusChanged = status !== lastWorkerStatusValue;
+  const dueForRefresh =
+    now - lastWorkerStatusWrittenAt >= WORKER_STATUS_MIN_INTERVAL_MS;
+
+  if (!statusChanged && !dueForRefresh) {
+    return;
+  }
+
   try {
-    await supabase.from("worker_status").upsert(
-      {
-        worker_name: "live-worker",
-        last_ping: new Date().toISOString(),
-        status: "online",
-        detail,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "worker_name" }
+    await callSupabase(() =>
+      supabase.from("worker_status").upsert(
+        {
+          worker_name: "live-worker",
+          last_ping: new Date().toISOString(),
+          status,
+          detail,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "worker_name" }
+      )
     );
+
+    lastWorkerStatusValue = status;
+    lastWorkerStatusWrittenAt = now;
   } catch {
     // no-op
   }
@@ -519,117 +783,164 @@ async function pingWorkerStatus(detail) {
 
 async function tick() {
   const startedAt = Date.now();
-  let candidates;
 
   try {
-    candidates = await loadCandidates();
-  } catch (error) {
-    console.error(`[worker] failed to load candidates: ${formatFetchError(error)}`);
-    await logHeartbeat({
-      matches_polled: 0,
-      matches_updated: 0,
-      error: formatFetchError(error),
-    });
-    await pingWorkerStatus(`error: ${formatFetchError(error)}`);
-    return;
-  }
+    let candidates;
 
-  let updated = 0;
-  let unchanged = 0;
-  let failed = 0;
+    try {
+      candidates = await getCandidates();
+    } catch (error) {
+      console.error(`[worker] failed to load candidates: ${formatFetchError(error)}`);
+      queueHeartbeat({
+        matches_polled: 0,
+        matches_updated: 0,
+        error: formatFetchError(error),
+      });
+      await pingWorkerStatus("error", formatFetchError(error));
+      return;
+    }
 
-  await runPool(
-    candidates,
-    async (match) => {
-      try {
-        await sleep(50 + Math.floor(Math.random() * 150));
+    let updated = 0;
+    let unchanged = 0;
+    let failed = 0;
 
-        const payload = await fetchJson(
-          `https://open.faceit.com/data/v4/matches/${encodeURIComponent(match.id)}`,
-          {
-            headers: {
-              Authorization: `Bearer ${faceitApiKey}`,
-              Accept: "application/json",
-            },
+    await runPool(
+      candidates,
+      async (match) => {
+        try {
+          await sleep(50 + Math.floor(Math.random() * 150));
+
+          const payload = await fetchJson(
+            `https://open.faceit.com/data/v4/matches/${encodeURIComponent(match.id)}`,
+            {
+              headers: {
+                Authorization: `Bearer ${faceitApiKey}`,
+                Accept: "application/json",
+              },
+            }
+          );
+
+          const patch = publicApiToPatch(payload);
+          if (!patch) {
+            return;
           }
-        );
 
-        const patch = publicApiToPatch(payload);
-        if (!patch) {
-          return;
-        }
+          const clean = Object.fromEntries(
+            Object.entries(patch).filter(([, value]) => value !== undefined)
+          );
 
-        const clean = Object.fromEntries(
-          Object.entries(patch).filter(([, value]) => value !== undefined)
-        );
+          if (!changed(match, clean)) {
+            unchanged += 1;
+            return;
+          }
 
-        if (!changed(match, clean)) {
-          unchanged += 1;
-          return;
-        }
+          if (DRY_RUN) {
+            console.log(`[dry-run] would update ${match.id}:`, clean);
+            updated += 1;
+            return;
+          }
 
-        if (DRY_RUN) {
-          console.log(`[dry-run] would update ${match.id}:`, clean);
+          clean.updated_at = new Date().toISOString();
+
+          const { error } = await callSupabase(() =>
+            supabase.from("matches").update(clean).eq("id", match.id)
+          );
+
+          if (error) {
+            throw error;
+          }
+
           updated += 1;
-          return;
+          patchCachedCandidate(match.id, clean);
+
+          console.log(
+            `[worker] ${match.id}: ${match.status} -> ${clean.status} ` +
+            `(${clean.team1_score ?? match.team1_score}:${clean.team2_score ?? match.team2_score})`
+          );
+
+          await createStatJobIfFinished(match.id, clean.status);
+        } catch (error) {
+          failed += 1;
+          console.warn(`[worker] refresh failed ${match.id}: ${formatFetchError(error)}`);
         }
+      },
+      REFRESH_CONCURRENCY
+    );
 
-        clean.updated_at = new Date().toISOString();
+    const durationMs = Date.now() - startedAt;
 
-        const { error } = await supabase
-          .from("matches")
-          .update(clean)
-          .eq("id", match.id);
+    console.log(
+      `[worker] tick: polled=${candidates.length} updated=${updated} ` +
+      `unchanged=${unchanged} failed=${failed} duration=${durationMs}ms` +
+      (DRY_RUN ? " (dry-run)" : "")
+    );
 
-        if (error) {
-          throw error;
-        }
+    queueHeartbeat({
+      matches_polled: candidates.length,
+      matches_updated: updated,
+      error: failed > 0 ? `${failed} match(es) failed to refresh` : null,
+    });
 
-        updated += 1;
-        console.log(
-          `[worker] ${match.id}: ${match.status} -> ${clean.status} ` +
-          `(${clean.team1_score ?? match.team1_score}:${clean.team2_score ?? match.team2_score})`
-        );
-
-        await createStatJobIfFinished(match.id, clean.status);
-      } catch (error) {
-        failed += 1;
-        console.warn(`[worker] refresh failed ${match.id}: ${formatFetchError(error)}`);
-      }
-    },
-    REFRESH_CONCURRENCY
-  );
-
-  const durationMs = Date.now() - startedAt;
-
-  console.log(
-    `[worker] tick: polled=${candidates.length} updated=${updated} ` +
-    `unchanged=${unchanged} failed=${failed} duration=${durationMs}ms` +
-    (DRY_RUN ? " (dry-run)" : "")
-  );
-
-  await logHeartbeat({
-    matches_polled: candidates.length,
-    matches_updated: updated,
-    error: failed > 0 ? `${failed} match(es) failed to refresh` : null,
-  });
-
-  await pingWorkerStatus(
-    `polled=${candidates.length} updated=${updated} failed=${failed}`
-  );
+    await pingWorkerStatus(
+      "online",
+      `polled=${candidates.length} updated=${updated} failed=${failed}`
+    );
+  } finally {
+    await flushLogBufferIfDue();
+  }
 }
 
 async function main() {
   console.log(
     `[worker] starting — interval=${TICK_INTERVAL_MS}ms ` +
-    `dry_run=${DRY_RUN} single_match=${SINGLE_MATCH_ID || "none"}`
+    `dry_run=${DRY_RUN} single_match=${SINGLE_MATCH_ID || "none"} ` +
+    `candidates_refresh=${CANDIDATES_REFRESH_MS}ms`
   );
 
+  startSupabaseRequestCounterLog();
+
   while (true) {
+    if (supabaseCircuitBreakerOpen()) {
+      const remainingMs = Math.max(supabaseCircuitOpenUntil - Date.now(), 0);
+
+      console.warn(
+        `[worker] circuit breaker open — skipping tick, ` +
+        `${Math.round(remainingMs / 1000)}s remaining`
+      );
+
+      await sleep(Math.max(remainingMs, 1000));
+      continue;
+    }
+
     await tick();
-    await sleep(TICK_INTERVAL_MS);
+
+    if (supabaseCircuitBreakerOpen()) {
+      // tick() itself just tripped the breaker — let the top-of-loop check
+      // above own the wait next time around (it sleeps exactly the
+      // remaining cooldown) instead of ALSO sleeping the accumulated
+      // backoff on top of it, which can legitimately be longer than the
+      // cooldown itself (backoff caps at SUPABASE_MAX_BACKOFF_MS
+      // independently of SUPABASE_CIRCUIT_BREAKER_COOLDOWN_MS).
+      continue;
+    }
+
+    await sleep(
+      supabaseConsecutiveErrors > 0 ? supabaseBackoffMs : TICK_INTERVAL_MS
+    );
   }
 }
+
+// Railway sends SIGTERM on redeploy/restart — flush whatever's still
+// buffered in memory instead of silently dropping it, now that
+// live_worker_log writes are no longer immediate.
+async function shutdown(signal) {
+  console.log(`[worker] received ${signal}, flushing log buffer before exit`);
+  await flushLogBuffer();
+  process.exit(0);
+}
+
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));
 
 main().catch((error) => {
   console.error("[worker] fatal error:", error);
