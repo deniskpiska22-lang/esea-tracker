@@ -57,6 +57,28 @@ const DEMO_JOBS_CONCURRENCY = Number(
   process.env.DEMO_JOBS_CONCURRENCY || 5
 );
 
+// Visibility only, not a behavior change — this process is short-lived
+// (spawned fresh per cycle by statsWorker.js), so a "log every 60s" pattern
+// mostly won't fire before it exits. The interval is a safety net for the
+// rare long run; the total printed at the end of main() is what actually
+// answers "how many Supabase requests per job run" in the common case.
+let supabaseRequestCount = 0;
+let supabaseRequestsInWindow = 0;
+
+function countSupabaseCall() {
+  supabaseRequestCount += 1;
+  supabaseRequestsInWindow += 1;
+}
+
+setInterval(() => {
+  if (supabaseRequestsInWindow > 0) {
+    console.log(
+      `[processMatchStatJobs] ${supabaseRequestsInWindow} requests to Supabase in the last 60s`
+    );
+  }
+  supabaseRequestsInWindow = 0;
+}, 60000).unref();
+
 function backoffMs(attempts, baseMs = BASE_BACKOFF_MS) {
   return Math.min(
     baseMs * 2 ** Math.max(attempts - 1, 0),
@@ -71,6 +93,7 @@ function backoffMs(attempts, baseMs = BASE_BACKOFF_MS) {
 // This is defense in depth alongside the workflow's own concurrency group.
 // Not filtered by job_type — claims whatever is due, of any type.
 async function claimDueJobs() {
+  countSupabaseCall();
   const { data: dueJobs, error } = await supabase.rpc(
     "claim_match_stat_jobs",
     { p_batch_size: BATCH_SIZE }
@@ -167,6 +190,7 @@ async function resolveJobGroup(
 
   const matchIds = [...new Set(jobs.map((job) => job.match_id))];
 
+  countSupabaseCall();
   const { data: rows, error } = await supabase
     .from("matches")
     .select(`id,${column}`)
@@ -189,6 +213,7 @@ async function resolveJobGroup(
     const nowIso = new Date().toISOString();
 
     if (synced) {
+      countSupabaseCall();
       const { error: updateError } = await supabase
         .from("match_stat_jobs")
         .update({
@@ -211,6 +236,7 @@ async function resolveJobGroup(
     const errorMessage = errorMessageFor(job);
 
     if (nextAttempts >= job.max_attempts) {
+      countSupabaseCall();
       const { error: updateError } = await supabase
         .from("match_stat_jobs")
         .update({
@@ -232,6 +258,7 @@ async function resolveJobGroup(
       // forfeited match with no demo, etc). Best-effort: the job itself is
       // already marked failed above regardless of whether this write
       // succeeds.
+      countSupabaseCall();
       const { error: matchUpdateError } = await supabase
         .from("matches")
         .update({ [unavailableColumn]: true })
@@ -251,6 +278,7 @@ async function resolveJobGroup(
       Date.now() + backoffMs(nextAttempts, baseBackoffMs)
     ).toISOString();
 
+    countSupabaseCall();
     const { error: updateError } = await supabase
       .from("match_stat_jobs")
       .update({
@@ -272,11 +300,18 @@ async function resolveJobGroup(
   return { done, retried, failedPermanently };
 }
 
+function logSupabaseRequestTotal() {
+  console.log(
+    `[processMatchStatJobs] ${supabaseRequestCount} requests to Supabase this run`
+  );
+}
+
 async function main() {
   const jobs = await claimDueJobs();
 
   if (jobs.length === 0) {
     console.log(JSON.stringify({ ok: true, claimed: 0, message: "no due jobs" }));
+    logSupabaseRequestTotal();
     return;
   }
 
@@ -342,9 +377,12 @@ async function main() {
       demo: demoSummary,
     })
   );
+
+  logSupabaseRequestTotal();
 }
 
 main().catch((error) => {
   console.error("[stat-jobs] fatal error:", error);
+  logSupabaseRequestTotal();
   process.exit(1);
 });
