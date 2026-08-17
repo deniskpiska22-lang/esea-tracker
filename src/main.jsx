@@ -16,10 +16,9 @@ import MaintenancePage from "./pages/MaintenancePage";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
-// Supabase org hit its free-tier quota; site is closed to avoid showing
-// broken/stale data. Indefinite until manually turned off (worker fixes
-// still awaiting verification against live Supabase before redeploy).
-const MAINTENANCE_ACTIVE = true;
+// Supabase egress-quota incident (Aug 2026) resolved — worker fixes
+// verified against live Supabase and confirmed clean in Railway prod logs.
+const MAINTENANCE_ACTIVE = false;
 
 // Every page is its own chunk, fetched only when that route is actually
 // visited — without this the whole site (every page, including the ~2600
