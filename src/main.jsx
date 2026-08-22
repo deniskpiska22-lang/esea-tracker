@@ -18,7 +18,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 
 // Supabase egress-quota incident (Aug 2026) resolved — worker fixes
 // verified against live Supabase and confirmed clean in Railway prod logs.
-const MAINTENANCE_ACTIVE = false;
+const MAINTENANCE_ACTIVE = true;
 
 // Every page is its own chunk, fetched only when that route is actually
 // visited — without this the whole site (every page, including the ~2600
