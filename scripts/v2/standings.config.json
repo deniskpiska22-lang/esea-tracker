@@ -3,7 +3,7 @@
   "seasonId": "ec187700-30e2-4245-b5e2-daa762db12fc",
   "seasonHierarchyUrl": "",
   "regions": [
-    "Europe"
+    "*"
   ],
   "divisions": [
     "Entry",

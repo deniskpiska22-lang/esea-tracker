@@ -157,25 +157,27 @@ function championshipsFromSeasonTree() {
 
     const payload = cached.payload?.payload ?? cached.payload;
     const allowedDivisions = new Set(
-      (config.divisions || []).map(normalize)
+      (config.divisions || ["*"]).map(normalize)
     );
     const allowedRegions = new Set(
-      (config.regions || ["Europe"]).map(normalize)
+      (config.regions || ["*"]).map(normalize)
     );
+    const allDivisions = allowedDivisions.has("*");
+    const allRegions = allowedRegions.has("*");
     const result = [];
 
     for (const region of payload?.regions || []) {
-      if (!allowedRegions.has(normalize(region.name))) continue;
+      if (!allRegions && !allowedRegions.has(normalize(region.name))) continue;
 
       for (const division of region.divisions || []) {
-        if (!allowedDivisions.has(normalize(division.name))) continue;
+        if (!allDivisions && !allowedDivisions.has(normalize(division.name))) continue;
 
         for (const stage of division.stages || []) {
           for (const conference of stage.conferences || []) {
             if (!conference.championship_id) continue;
             result.push({
               id: conference.championship_id,
-              name: `S${config.season} EU ${division.name} ${conference.name || "Central"} - ${stage.name}`,
+              name: `S${config.season} ${region.name} ${division.name} ${conference.name || "Central"} - ${stage.name}`,
             });
           }
         }

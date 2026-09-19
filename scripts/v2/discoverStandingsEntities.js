@@ -13,11 +13,16 @@ export function extractStandingsEntities(tree, config) {
   const payload = tree?.payload ?? tree;
   const regions = Array.isArray(payload?.regions) ? payload.regions : [];
   const allowed = new Set((config.divisions || []).map(normalize));
+  const allowedRegions = new Set((config.regions || ["*"]).map(normalize));
+  const allDivisions = allowed.has("*");
+  const allRegions = allowedRegions.has("*");
   const entities = [];
 
   for (const region of regions) {
+    if (!allRegions && !allowedRegions.has(normalize(region.name))) continue;
+
     for (const division of region.divisions || []) {
-      if (!allowed.has(normalize(division.name))) continue;
+      if (!allDivisions && !allowed.has(normalize(division.name))) continue;
 
       for (const stage of division.stages || []) {
         // Team discovery must use the active regular-season table. Playoffs contain
@@ -87,7 +92,7 @@ export async function discoverEntities({ configPath = DEFAULT_CONFIG, write = tr
 
   const entities = extractStandingsEntities(hierarchy, config);
   if (!entities.length) {
-    throw new Error(`No Regular Season stages found for: ${config.divisions.join(", ")}`);
+    throw new Error(`No Regular Season stages found for: ${(config.divisions || ["*"]).join(", ")}`);
   }
 
   const report = {
