@@ -100,6 +100,17 @@ const FINISHED_DAYS_BACK = Number(
   process.env.FINISHED_DAYS_BACK || 7
 );
 
+// Normal scheduled discovery only needs a small recent slice. A manual
+// backfill can raise this (up to the FACEIT endpoint maximum) so a team with
+// more than ten matches in the requested period does not lose older games.
+const FINISHED_MATCH_LIMIT = Math.min(
+  100,
+  Math.max(
+    10,
+    Number(process.env.FINISHED_MATCH_LIMIT || 10)
+  )
+);
+
 const LIVE_LOOKBACK_HOURS = Number(
   process.env.LIVE_LOOKBACK_HOURS || 8
 );
@@ -1966,7 +1977,7 @@ async function discoverMatches() {
           team,
           status:
             "MATCH_STATUS_FINISHED",
-          limit: 10,
+          limit: FINISHED_MATCH_LIMIT,
         },
       ]
     );

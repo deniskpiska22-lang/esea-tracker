@@ -1,0 +1,52 @@
+name: Backfill FACEIT matches
+
+on:
+  workflow_dispatch:
+    inputs:
+      finished_days_back:
+        description: "How many days of finished matches to restore"
+        required: true
+        default: "45"
+      finished_match_limit:
+        description: "Maximum finished matches fetched per team (10-100)"
+        required: true
+        default: "50"
+
+concurrency:
+  group: backfill-matches
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh teams from standings
+        run: npm run v2:sync
+
+      - name: Restore historical matches
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+          MATCH_SYNC_CONCURRENCY: 5
+          DISCOVERY_DAYS_AHEAD: 7
+          FINISHED_DAYS_BACK: ${{ inputs.finished_days_back }}
+          FINISHED_MATCH_LIMIT: ${{ inputs.finished_match_limit }}
+          LIVE_LOOKBACK_HOURS: 8
+          LIVE_LOOKAHEAD_HOURS: 24
+          RUN_POST_MATCH_PIPELINE: "0"
+          RUN_WEEKLY_RATING_SNAPSHOT: "0"
+        run: npm run sync:auto
