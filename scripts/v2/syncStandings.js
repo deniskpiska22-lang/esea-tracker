@@ -114,7 +114,12 @@ function toRuntimeTeam(team, season) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const config = JSON.parse(await fs.readFile(CONFIG_PATH, "utf8"));
-  const discovery = await discoverEntities({ configPath: CONFIG_PATH });
+  // Refresh the season tree so newly opened playoff/finals stages are also
+  // available to match discovery in the next workflow step.
+  const discovery = await discoverEntities({
+    configPath: CONFIG_PATH,
+    refresh: true,
+  });
   const entities = discovery.entities;
   if (!entities.length) throw new Error("No Entry/Intermediate/Main/Advanced standings entities discovered");
 

@@ -1,4 +1,7 @@
-export const CHAMPIONSHIPS = [
+import fs from "node:fs";
+import path from "node:path";
+
+const LEGACY_CHAMPIONSHIPS = [
   {
     "id": "6c713b0c-dd31-4bd8-9571-484f84a5272d",
     "name": "EU ECL S52 Cup 1 - Playoffs"
@@ -132,3 +135,67 @@ export const CHAMPIONSHIPS = [
     "name": "S57 EU Entry D - Playoffs"
   }
 ];
+
+function normalize(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function championshipsFromSeasonTree() {
+  try {
+    const configPath = path.resolve(
+      process.cwd(),
+      "scripts/v2/standings.config.json"
+    );
+    const hierarchyPath = path.resolve(
+      process.cwd(),
+      "data/v2/season-hierarchy.json"
+    );
+    const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    const cached = JSON.parse(fs.readFileSync(hierarchyPath, "utf8"));
+
+    if (cached.seasonId !== config.seasonId) return [];
+
+    const payload = cached.payload?.payload ?? cached.payload;
+    const allowedDivisions = new Set(
+      (config.divisions || []).map(normalize)
+    );
+    const allowedRegions = new Set(
+      (config.regions || ["Europe"]).map(normalize)
+    );
+    const result = [];
+
+    for (const region of payload?.regions || []) {
+      if (!allowedRegions.has(normalize(region.name))) continue;
+
+      for (const division of region.divisions || []) {
+        if (!allowedDivisions.has(normalize(division.name))) continue;
+
+        for (const stage of division.stages || []) {
+          for (const conference of stage.conferences || []) {
+            if (!conference.championship_id) continue;
+            result.push({
+              id: conference.championship_id,
+              name: `S${config.season} EU ${division.name} ${conference.name || "Central"} - ${stage.name}`,
+            });
+          }
+        }
+      }
+    }
+
+    return result;
+  } catch (error) {
+    console.warn(
+      `Could not load current championships from season hierarchy: ${error.message}`
+    );
+    return [];
+  }
+}
+
+const byId = new Map(
+  [...LEGACY_CHAMPIONSHIPS, ...championshipsFromSeasonTree()].map((item) => [
+    item.id,
+    item,
+  ])
+);
+
+export const CHAMPIONSHIPS = [...byId.values()];
