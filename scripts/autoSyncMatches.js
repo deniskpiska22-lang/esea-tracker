@@ -29,6 +29,26 @@ const postMatchOnly = process.argv.includes(
   "--post-match-only"
 );
 
+// processMatchStatJobs.js claims a concrete batch atomically. Restrict the
+// post-match stats scan to that same batch so claimed jobs never consume an
+// attempt while autoSyncMatches.js is working on unrelated older matches.
+const targetedPostMatchIds = (() => {
+  const raw = String(process.env.POST_MATCH_IDS || "").trim();
+
+  if (!raw) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed)
+      ? [...new Set(parsed.map(String).filter(Boolean))]
+      : [];
+  } catch {
+    return [...new Set(raw.split(",").map((value) => value.trim()).filter(Boolean))];
+  }
+})();
+
 if (!supabaseUrl || !supabaseSecretKey) {
   throw new Error(
     "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY " +
@@ -3289,7 +3309,7 @@ async function fetchFinishedMatchStats(
 }
 
 async function syncFinishedMapStats() {
-  const { data: matches, error } = await supabase
+  let query = supabase
     .from("matches")
     .select(
       [
@@ -3313,12 +3333,20 @@ async function syncFinishedMapStats() {
       "MATCH_STATUS_FINISHED",
     ])
     .eq("stats_synced", false)
-    .eq("stats_unavailable", false)
+    .eq("stats_unavailable", false);
+
+  if (postMatchOnly && targetedPostMatchIds.length > 0) {
+    query = query.in("id", targetedPostMatchIds);
+  }
+
+  const { data: matches, error } = await query
     .order("finished_at", {
       ascending: true,
       nullsFirst: false,
     })
-    .limit(MAP_STATS_BATCH_SIZE);
+    .limit(
+      Math.max(MAP_STATS_BATCH_SIZE, targetedPostMatchIds.length)
+    );
 
   if (error) {
     throw error;

@@ -106,7 +106,7 @@ async function claimDueJobs() {
   return dueJobs || [];
 }
 
-function runPostMatchOnly() {
+function runPostMatchOnly(matchIds) {
   return new Promise((resolve) => {
     const child = spawn(
       process.execPath,
@@ -114,7 +114,10 @@ function runPostMatchOnly() {
       {
         stdio: "inherit",
         shell: false,
-        env: process.env,
+        env: {
+          ...process.env,
+          POST_MATCH_IDS: JSON.stringify(matchIds),
+        },
       }
     );
 
@@ -328,7 +331,10 @@ async function main() {
   let demoSummary = { done: 0, retried: 0, failedPermanently: 0 };
 
   if (statsJobs.length > 0) {
-    const runResult = await runPostMatchOnly();
+    const statsMatchIds = [
+      ...new Set(statsJobs.map((job) => job.match_id)),
+    ];
+    const runResult = await runPostMatchOnly(statsMatchIds);
 
     if (runResult.code !== 0) {
       console.warn(
