@@ -271,6 +271,13 @@ const COMPARE_FIELDS = [
   "faceit_url",
 ];
 
+// raw_data is intentionally not part of COMPARE_FIELDS: comparing an
+// arbitrary object as a string would either miss every nested change or
+// rewrite the row for unrelated FACEIT metadata.  We still need the stored
+// payload in the candidate snapshot, however, because detailed_results is
+// where FACEIT exposes the round score of the map currently in progress.
+const CANDIDATE_FIELDS = [...COMPARE_FIELDS, "raw_data", "id"];
+
 const normalizeName = (value = "") => value.replace(/\s+/g, "").toLowerCase();
 
 function localTeam(id, name) {
@@ -407,13 +414,34 @@ function changed(existing, incoming) {
   // publicApiToPatch() never sets championship_id/faceit_url (Data API v4
   // doesn't carry them) — only compare fields the incoming patch actually
   // touches, not every COMPARE_FIELDS entry unconditionally.
-  return COMPARE_FIELDS.filter((field) =>
+  const scalarChanged = COMPARE_FIELDS.filter((field) =>
     Object.prototype.hasOwnProperty.call(incoming, field)
   ).some((field) => {
     const before = normalizeCompareValue(existing[field] ?? null);
     const after = normalizeCompareValue(incoming[field] ?? null);
     return before !== after;
   });
+
+  if (scalarChanged) {
+    return true;
+  }
+
+  // In a BO3/BO5, results.score only changes when a map finishes.  The
+  // active map's round score changes inside detailed_results, so ignoring
+  // raw_data here left Supabase (and the site) frozen for an entire map.
+  const detailedResults = (rawData) =>
+    Array.isArray(rawData?.detailed_results)
+      ? rawData.detailed_results.map((result) => ({
+          winner: result?.winner || "",
+          faction1: Number(result?.factions?.faction1?.score ?? 0),
+          faction2: Number(result?.factions?.faction2?.score ?? 0),
+        }))
+      : [];
+
+  return (
+    JSON.stringify(detailedResults(existing.raw_data)) !==
+    JSON.stringify(detailedResults(incoming.raw_data))
+  );
 }
 
 function formatFetchError(error) {
@@ -534,7 +562,7 @@ async function loadCandidates() {
     const { data, error } = await callSupabase(() =>
       supabase
         .from("matches")
-        .select(COMPARE_FIELDS.concat("id").join(","))
+        .select(CANDIDATE_FIELDS.join(","))
         .eq("id", SINGLE_MATCH_ID)
         .limit(1)
     );
@@ -553,7 +581,7 @@ async function loadCandidates() {
   const { data, error } = await callSupabase(() =>
     supabase
       .from("matches")
-      .select(COMPARE_FIELDS.concat("id").join(","))
+      .select(CANDIDATE_FIELDS.join(","))
       .in("status", ACTIVE_STATUSES)
       .gte("scheduled_at", from)
       .lte("scheduled_at", to)

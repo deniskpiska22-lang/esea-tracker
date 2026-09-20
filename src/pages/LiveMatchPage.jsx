@@ -161,6 +161,24 @@ function normalizeDatabaseMatch(row) {
     row.player_stats
   );
 
+  const detailedResults = Array.isArray(row.raw_data?.detailed_results)
+    ? row.raw_data.detailed_results
+    : [];
+
+  const currentMapResult = detailedResults.at(-1) || null;
+
+  const liveMapProgress = currentMapResult
+    ? {
+        team1Score: toNumber(
+          currentMapResult?.factions?.faction1?.score
+        ),
+        team2Score: toNumber(
+          currentMapResult?.factions?.faction2?.score
+        ),
+        mapNumber: detailedResults.length,
+      }
+    : null;
+
   return {
     id: row.id,
     matchId: row.id,
@@ -230,6 +248,8 @@ function normalizeDatabaseMatch(row) {
 
     team2Score:
       toNumber(row.team2_score),
+
+    liveMapProgress,
 
     mapScores:
       Array.isArray(rawMapScores)
@@ -1510,6 +1530,7 @@ function FinishedMatchHero({
   isLive,
   team1FlagUrl,
   team2FlagUrl,
+  scoreLabel = "Series score",
 }) {
   const [team1Score, team2Score] = String(score)
     .split(":")
@@ -1579,7 +1600,7 @@ function FinishedMatchHero({
                 {score}
               </div>
               <div className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                Series score
+                {scoreLabel}
               </div>
             </div>
 
@@ -1808,6 +1829,38 @@ function LiveMatchPage() {
     };
   }, [isLive, loadLiveMatch]);
 
+  useEffect(() => {
+    if (!supabase || !matchId) {
+      return undefined;
+    }
+
+    // Realtime delivers a new row as soon as the Railway worker records a
+    // round.  The 15/30 second interval above remains as a fallback for
+    // browsers or networks where the websocket cannot stay connected.
+    const channel = supabase
+      .channel(`live-match-${matchId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "matches",
+          filter: `id=eq.${matchId}`,
+        },
+        (payload) => {
+          if (payload.new) {
+            setLiveData(normalizeDatabaseMatch(payload.new));
+            setLiveError("");
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [matchId]);
+
   const finishedTeam = teams.find(
     (team) =>
       team.slug ===
@@ -1917,10 +1970,20 @@ function LiveMatchPage() {
 
   const rightRecentMatches = filterRecentMatches(rightAllMatches);
 
-  const displayScore = liveData
+  const liveMapProgress = isLive
+    ? liveData?.liveMapProgress
+    : null;
+
+  const displayScore = liveMapProgress
+    ? `${liveMapProgress.team1Score} : ${liveMapProgress.team2Score}`
+    : liveData
     ? `${liveData.team1Score} : ${liveData.team2Score}`
     : finishedMatch?.boScore ||
       "- : -";
+
+  const displayScoreLabel = liveMapProgress
+    ? `Map ${liveMapProgress.mapNumber} · series ${liveData.team1Score}:${liveData.team2Score}`
+    : "Series score";
 
   const displaySeason =
     liveData?.season ||
@@ -2148,6 +2211,7 @@ function LiveMatchPage() {
             isLive={isLive}
             team1FlagUrl={team1FlagUrl}
             team2FlagUrl={team2FlagUrl}
+            scoreLabel={displayScoreLabel}
           />
         ) : (
           <div className="relative mt-5 overflow-hidden rounded-[30px] border border-[#263244] bg-[#101722] shadow-2xl shadow-black/20">
