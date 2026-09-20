@@ -26,7 +26,7 @@ function getPlayerUrl(player) {
     getPlayerFaceitId(player);
 
   return playerId
-    ? `/player/${encodeURIComponent(
+    ? `/players/${encodeURIComponent(
         playerId
       )}`
     : "#";

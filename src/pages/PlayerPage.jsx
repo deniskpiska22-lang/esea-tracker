@@ -7,6 +7,7 @@ import {
 import {
   Link,
   useLocation,
+  useNavigate,
   useParams,
 } from "react-router-dom";
 
@@ -15,12 +16,17 @@ import teams from "../data/teams";
 import players from "../data/players";
 import playerTransfers from "../data/playerTransfers.json";
 import playerAverageRatings from "../data/playerAverageRatings.json";
+import playerAliases from "../data/playerAliases";
 import matchesData from "../data/matches.js";
 
 import { normalizeNickname } from "../utils/normalizeNickname";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { supabase } from "../lib/supabaseClient";
 import TournamentNameLink from "../components/TournamentNameLink";
+import {
+  getPlayerSeoMetadata,
+  isFaceitPlayerId,
+} from "../utils/playerSeo";
 
 
 const FINISHED_STATUSES = [
@@ -30,12 +36,6 @@ const FINISHED_STATUSES = [
 
 const MATCH_LIMIT = 1000;
 const RECENT_MATCH_LIMIT = 10;
-
-function isFaceitPlayerId(value) {
-  return /^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(
-    String(value || "").trim()
-  );
-}
 
 function normalizeName(value = "") {
   return String(value || "")
@@ -649,6 +649,7 @@ function PlayerPage() {
 
   const location =
     useLocation();
+  const navigate = useNavigate();
 
   const decodedRouteValue =
     String(
@@ -812,6 +813,15 @@ function PlayerPage() {
 
           ratingRow = data || null;
         } else {
+          const normalizedRequestedNickname = decodedRouteValue.toLowerCase();
+          const aliasEntry = Object.entries(playerAliases).find(
+            ([canonicalNickname, aliases]) =>
+              canonicalNickname.toLowerCase() === normalizedRequestedNickname ||
+              aliases.some(
+                (alias) => String(alias).toLowerCase() === normalizedRequestedNickname
+              )
+          );
+          const lookupNickname = aliasEntry?.[0] || decodedRouteValue;
           const {
             data,
             error,
@@ -835,7 +845,7 @@ function PlayerPage() {
             )
             .ilike(
               "nickname",
-              decodedRouteValue
+              lookupNickname
             )
             .limit(1)
             .maybeSingle();
@@ -1006,6 +1016,28 @@ function PlayerPage() {
   }, [
     routePlayerKey,
     decodedRouteValue,
+  ]);
+
+  useEffect(() => {
+    if (
+      loadingStats ||
+      !isFaceitPlayerId(resolvedPlayerId) ||
+      location.pathname.toLowerCase() ===
+        `/players/${resolvedPlayerId}`.toLowerCase()
+    ) {
+      return;
+    }
+
+    navigate(`/players/${resolvedPlayerId}`, {
+      replace: true,
+      state: location.state,
+    });
+  }, [
+    loadingStats,
+    location.pathname,
+    location.state,
+    navigate,
+    resolvedPlayerId,
   ]);
 
   const supabasePlayerMatches =
@@ -1193,6 +1225,41 @@ const currentTeam =
       databaseRating?.maps_played,
       totalMatches
     );
+
+  useEffect(() => {
+    if (!decodedNickname) return;
+
+    const metadata = getPlayerSeoMetadata(
+      {
+        playerId: resolvedPlayerId,
+        nickname: decodedNickname,
+        avatar: databasePlayer?.avatar,
+        teamName: currentTeam?.name,
+        rating: averageRating,
+        mapsPlayed,
+        adr: avgAdr,
+        kd: avgKd,
+      },
+      playerAliases
+    );
+    window.dispatchEvent(
+      new CustomEvent("player-seo-update", {
+        detail: {
+          ...metadata,
+          routePath: metadata.canonicalPath,
+        },
+      })
+    );
+  }, [
+    averageRating,
+    avgAdr,
+    avgKd,
+    currentTeam?.name,
+    databasePlayer?.avatar,
+    decodedNickname,
+    mapsPlayed,
+    resolvedPlayerId,
+  ]);
 
   const wins =
     playerMatches.filter(

@@ -1,13 +1,56 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import teams from "../data/teams";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 import { normalizeNickname } from "../utils/normalizeNickname";
+import { supabase } from "../lib/supabaseClient";
 
 
 function TopPlayersPage() {
   const [visiblePlayers, setVisiblePlayers] = useState(100);
+  const [playerIdsByNickname, setPlayerIdsByNickname] = useState({});
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadPlayerIds() {
+      if (!supabase) return;
+
+      const nextIds = {};
+      const pageSize = 1000;
+
+      for (let from = 0; ; from += pageSize) {
+        const { data, error } = await supabase
+          .from("player_ratings")
+          .select("player_id,nickname")
+          .range(from, from + pageSize - 1);
+
+        if (error) {
+          console.warn("Player profile links unavailable:", error.message);
+          return;
+        }
+
+        for (const row of data || []) {
+          nextIds[String(row.nickname || "").toLowerCase()] = row.player_id;
+        }
+
+        if (!data || data.length < pageSize) break;
+      }
+
+      if (!cancelled) setPlayerIdsByNickname(nextIds);
+    }
+
+    loadPlayerIds();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const getPlayerPath = (nickname) => {
+    const playerId = playerIdsByNickname[String(nickname).toLowerCase()];
+    return `/players/${encodeURIComponent(playerId || nickname)}`;
+  };
  const players = Object.entries(playerAverageRatings)
   .map(([nickname, rating]) => {
     const teamInfo = teams.find(
@@ -106,7 +149,7 @@ const top3 = players.slice(0, 3);
           {top3.map((player, index) => (
             <Link
               key={player.nickname}
-              to={`/players/${player.nickname}`}
+              to={getPlayerPath(player.nickname)}
 state={{
   from: "/players",
   label: "← Back to Top Players"
@@ -185,7 +228,7 @@ state={{
           {players.slice(0, visiblePlayers).map((player, index) => (
             <Link
               key={player.nickname}
-              to={`/players/${player.nickname}`}
+              to={getPlayerPath(player.nickname)}
 state={{
   from: "/players",
   label: "← Back to Top Players"

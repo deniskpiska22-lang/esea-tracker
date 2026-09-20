@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import teams from "../data/teams";
@@ -132,7 +132,25 @@ function getMetadata(pathname) {
 
 export default function RouteSeo() {
   const { pathname } = useLocation();
-  const metadata = useMemo(() => getMetadata(pathname), [pathname]);
+  const [dynamicMetadata, setDynamicMetadata] = useState(null);
+  const metadata = useMemo(
+    () =>
+      dynamicMetadata?.routePath === pathname
+        ? dynamicMetadata
+        : getMetadata(pathname),
+    [dynamicMetadata, pathname]
+  );
+
+  useEffect(() => {
+    const handlePlayerMetadata = (event) => {
+      if (event.detail) setDynamicMetadata(event.detail);
+    };
+
+    window.addEventListener("player-seo-update", handlePlayerMetadata);
+    return () => {
+      window.removeEventListener("player-seo-update", handlePlayerMetadata);
+    };
+  }, []);
 
   useEffect(() => {
     const canonicalUrl = new URL(

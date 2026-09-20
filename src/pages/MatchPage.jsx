@@ -2375,7 +2375,7 @@ function MatchPage() {
                                       >
                                         <td className="p-3 font-semibold">
                                           <Link
-                                            to={`/player/${encodeURIComponent(
+                                            to={`/players/${encodeURIComponent(
                                               player.playerId ||
                                                 player.nickname ||
                                                 "Unknown"

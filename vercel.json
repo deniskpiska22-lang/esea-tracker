@@ -2,6 +2,8 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/teams/([^/]+)/?", "dest": "/teams/$1.html" },
+    { "src": "/players/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?", "dest": "/players/$1.html" },
+    { "src": "/player/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?", "dest": "/players/$1.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
