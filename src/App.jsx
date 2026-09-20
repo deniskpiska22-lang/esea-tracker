@@ -16,6 +16,7 @@ import { useLanguage } from "./context/LanguageContext";
 import teams from "./data/teams";
 import playerTeams from "./data/playerTeams.json";
 import playerAverageRatings from "./data/playerAverageRatings.json";
+import PariSideRails from "./components/PariSideRails";
 
 function App() {
   const location = useLocation();
@@ -356,9 +357,13 @@ function App() {
               className="group flex shrink-0 items-center gap-3"
               onClick={closeMenu}
             >
-              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl border border-orange-400/25 bg-[linear-gradient(145deg,#ff8a1f,#d94b09)] text-sm font-black text-white shadow-[0_8px_24px_rgba(249,115,22,0.28)]">
-                ET
-                <span className="absolute inset-x-1 top-0 h-px bg-white/60" />
+              <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#080d12] shadow-[0_8px_26px_rgba(249,115,22,0.18)] transition duration-300 group-hover:border-cyan-300/25 group-hover:shadow-[0_8px_30px_rgba(34,211,238,0.2)]">
+                <img
+                  src="/logo.png"
+                  alt=""
+                  className="h-full w-full scale-[1.12] object-cover transition duration-300 group-hover:scale-[1.18]"
+                  aria-hidden="true"
+                />
               </span>
 
               <span className="hidden sm:block">
@@ -913,16 +918,12 @@ function App() {
         </div>
       )}
 
-      <Outlet />
+      <PariSideRails />
+      <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
+        <Outlet />
+      </div>
 
-      <a
-        href="https://t.me/LisssTzz1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-4 right-4 z-50 rounded-full bg-orange-500 px-4 py-3 font-bold text-white shadow-lg transition-colors hover:bg-orange-600"
-      >
-        💬 Feedback
-      </a>
+      
     </div>
   );
 }

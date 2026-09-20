@@ -778,7 +778,7 @@ function Logo({ team, size = "md" }) {
     xs: "h-7 w-7",
     sm: "h-10 w-10",
     md: "h-14 w-14",
-    lg: "h-24 w-24 md:h-32 md:w-32",
+    lg: "h-24 w-24 md:h-28 md:w-28",
     // Live Center scoreboard rows — 40px on tablet/desktop, shrinks on mobile
     // so cards stay compact without breaking the row's fixed height.
     card: "h-8 w-8 sm:h-10 sm:w-10",
@@ -1015,7 +1015,7 @@ function CompactTournamentCard({ tournament, isLive = false }) {
           </span>
         </div>
 
-        <div className="mt-1 truncate text-[13px] font-black text-white transition group-hover:text-orange-400">
+        <div className="mt-1 line-clamp-2 text-[12px] font-black leading-4 text-white transition group-hover:text-orange-400">
           {tournament.name}
         </div>
 
@@ -1045,8 +1045,8 @@ function CompactTournamentCard({ tournament, isLive = false }) {
 
 function SectionTitle({ title, action }) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-4">
-      <h2 className="text-xl font-black tracking-tight text-white md:text-2xl">
+    <div className="mb-4 flex items-center justify-between gap-3">
+      <h2 className="text-xl font-black tracking-[-0.025em] text-white md:text-[22px]">
         {title}
       </h2>
       {action}
@@ -1057,7 +1057,7 @@ function SectionTitle({ title, action }) {
 function HeroMatch({ match }) {
   if (!match) {
     return (
-      <section className="flex min-h-[430px] items-center justify-center rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-8 text-center">
+      <section className="flex min-h-[390px] items-center justify-center rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-7 text-center">
         <div>
           <div className="text-xl font-black text-white">
             No matches available
@@ -1077,7 +1077,7 @@ function HeroMatch({ match }) {
   const matchPath = `/match/${match.matchId || match.id}`;
 
   return (
-    <section className="group relative self-start overflow-hidden rounded-[30px] border border-white/[0.08] bg-[#0c1117] p-6 shadow-2xl shadow-black/25 md:p-10">
+    <section className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:p-7">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_20%_50%,rgba(249,115,22,0.18),transparent_60%)]" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_50%,rgba(56,189,248,0.12),transparent_60%)]" />
@@ -1116,13 +1116,13 @@ function HeroMatch({ match }) {
           </div>
         </div>
 
-        <div className="mt-8 grid items-center gap-8 md:grid-cols-[1fr_180px_1fr]">
+        <div className="mt-6 grid items-center gap-5 md:grid-cols-[minmax(0,1fr)_150px_minmax(0,1fr)]">
           <Link
             to={match.team1?.slug ? `/teams/${match.team1.slug}` : matchPath}
             className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-start md:text-left"
           >
             <Logo team={match.team1} size="lg" />
-            <div className="mt-5 max-w-full truncate text-3xl font-black tracking-tight transition hover:text-orange-400 md:text-5xl">
+            <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
               {match.team1?.name || "TBD"}
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-start">
@@ -1149,7 +1149,7 @@ function HeroMatch({ match }) {
           >
             {live ? (
               <>
-                <div className="text-6xl font-black tracking-[-0.08em]">
+                <div className="text-5xl font-black tracking-[-0.07em]">
                   {match.team1Score}:{match.team2Score}
                 </div>
                 <div className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-red-400">
@@ -1158,7 +1158,7 @@ function HeroMatch({ match }) {
               </>
             ) : (
               <>
-                <div className="text-6xl font-black tracking-[-0.08em]">
+                <div className="text-5xl font-black tracking-[-0.07em]">
                   {formatTime(match.scheduledAt)}
                 </div>
                 <div className="mt-2 text-sm font-semibold text-slate-500">
@@ -1177,7 +1177,7 @@ function HeroMatch({ match }) {
             className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-end md:text-right"
           >
             <Logo team={match.team2} size="lg" />
-            <div className="mt-5 max-w-full truncate text-3xl font-black tracking-tight transition hover:text-orange-400 md:text-5xl">
+            <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
               {match.team2?.name || "TBD"}
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-end">
@@ -1201,7 +1201,7 @@ function HeroMatch({ match }) {
         <Link
           to={matchPath}
           state={{ from: "/", label: "← Back to Home" }}
-          className="mt-9 flex items-center justify-center border-t border-white/[0.07] pt-6 text-sm font-black text-orange-400 transition hover:text-orange-300"
+          className="mt-7 flex items-center justify-center border-t border-white/[0.07] pt-5 text-sm font-black text-orange-400 transition hover:text-orange-300"
         >
           Open Match Center →
         </Link>
@@ -2157,21 +2157,21 @@ function Home() {
           background: rgba(249, 115, 22, 0.48);
         }
       `}</style>
-      <div className="mx-auto max-w-[1500px] px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6">
         {databaseError && (
           <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">
             Supabase is temporarily unavailable. Local data is being shown.
           </div>
         )}
 
-        <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1.5fr)_420px]">
+        <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_320px] min-[1850px]:grid-cols-[minmax(0,1fr)_340px]">
           {/* LEFT COLUMN — independent height */}
-          <div className="grid min-w-0 gap-6">
+          <div className="grid min-w-0 gap-5">
             <HeroMatch match={featured} />
 
             <section
               ref={upcomingSectionRef}
-              className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-5"
+              className="scroll-mt-24 rounded-[22px] border border-white/[0.07] bg-[#111820] p-4 md:p-5"
             >
               <SectionTitle title="Upcoming Matches" />
 
@@ -2195,14 +2195,14 @@ function Home() {
           </div>
 
           {/* RIGHT COLUMN — independent height */}
-          <div className="grid min-w-0 gap-6">
-            <section className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#111820]">
-              <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
+          <div className="grid min-w-0 gap-5">
+            <section className="overflow-hidden rounded-[22px] border border-white/[0.07] bg-[#111820]">
+              <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-4">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
                     Live matches
                   </div>
-                  <h2 className="mt-1 text-xl font-black">
+                  <h2 className="mt-1 text-lg font-black tracking-tight">
                     Live Center
                   </h2>
                 </div>
@@ -2229,12 +2229,12 @@ function Home() {
               )}
             </section>
 
-            <section className="relative overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#10171f] p-3 shadow-[0_20px_55px_rgba(0,0,0,0.2)]">
+            <section className="relative overflow-hidden rounded-[22px] border border-white/[0.07] bg-[#10171f] p-3 shadow-[0_20px_55px_rgba(0,0,0,0.2)]">
               <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-orange-500/[0.05] blur-3xl" />
 
               <Link
                 to="/calendar"
-                className="group relative flex items-center justify-between gap-4 rounded-[18px] border border-white/[0.06] bg-black/15 px-4 py-3.5 transition hover:border-orange-500/20 hover:bg-white/[0.025]"
+                className="group relative flex items-center justify-between gap-3 rounded-[18px] border border-white/[0.06] bg-black/15 px-3 py-3.5 transition hover:border-orange-500/20 hover:bg-white/[0.025]"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-orange-500/20 bg-orange-500/10 text-orange-400">
@@ -2245,7 +2245,7 @@ function Home() {
                     <div className="text-[8px] font-black uppercase tracking-[0.22em] text-orange-400">
                       Event Calendar
                     </div>
-                    <h2 className="mt-1 text-[17px] font-black tracking-tight text-white transition group-hover:text-orange-400">
+                    <h2 className="mt-1 text-[15px] font-black tracking-tight text-white transition group-hover:text-orange-400 min-[1850px]:text-base">
                       Upcoming Tournaments
                     </h2>
                   </div>
@@ -2299,7 +2299,7 @@ function Home() {
 
             <section
               ref={recentResultsSectionRef}
-              className="scroll-mt-24 rounded-[24px] border border-white/[0.07] bg-[#111820] p-4"
+              className="scroll-mt-24 rounded-[22px] border border-white/[0.07] bg-[#111820] p-4"
             >
               <SectionTitle title="Recent Results" />
 
