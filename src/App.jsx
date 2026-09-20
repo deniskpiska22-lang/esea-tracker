@@ -620,16 +620,6 @@ function App() {
               ⌕
             </button>
 
-            <button
-              type="button"
-              onClick={() => setShowSubmitTeam(true)}
-              className="flex h-10 shrink-0 items-center gap-1.5 rounded-xl bg-[linear-gradient(135deg,#ff8a1f,#ea580c)] px-3 text-xs font-black text-white shadow-[0_8px_20px_rgba(249,115,22,0.2)]"
-            >
-              <span className="text-base">+</span>
-              <span className="hidden min-[420px]:inline">
-                Team
-              </span>
-            </button>
           </div>
         </div>
       </nav>
