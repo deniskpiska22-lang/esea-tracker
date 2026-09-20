@@ -2,6 +2,7 @@ import "dotenv/config";
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
+import { aggregateMatchPlayerStats } from "./lib/aggregateMatchPlayerStats.js";
 import teams from "../src/data/teams.generated.js";
 import { CHAMPIONSHIPS } from "./matchSyncConfig.js";
 
@@ -782,6 +783,64 @@ function normalizeStatsTeam(team = {}) {
   };
 }
 
+function statsEntryMapName(entry = {}) {
+  const stats =
+    entry.round_stats ||
+    entry.roundStats ||
+    entry.stats ||
+    {};
+
+  return cleanMapName(
+    entry.map ||
+    entry.mapName ||
+    entry.map_name ||
+    stats.Map ||
+    stats.map ||
+    stats.MapName ||
+    stats.map_name
+  );
+}
+
+function aggregatePlayerStatsEntries(
+  entries,
+  matchId
+) {
+  const normalizedEntries = (Array.isArray(entries) ? entries : [])
+    .filter(
+      (entry) =>
+        Array.isArray(entry?.teams) &&
+        entry.teams.some(
+          (team) =>
+            Array.isArray(team?.players) &&
+            team.players.length > 0
+        )
+    )
+    .map((entry) => ({
+      map: statsEntryMapName(entry),
+      teams: entry.teams
+        .slice(0, 2)
+        .map(normalizeStatsTeam),
+    }));
+
+  const perMapEntries = normalizedEntries.filter(
+    (entry) => Boolean(entry.map)
+  );
+
+  // FACEIT's match_round=0 is the first map, not a whole-match summary.
+  // Prefer every named map so a BO2/BO3/BO5 cannot silently become map 1.
+  // Some legacy responses contain only one unnamed whole-match summary;
+  // keep supporting that shape as a fallback.
+  const entriesToAggregate =
+    perMapEntries.length > 0
+      ? perMapEntries
+      : normalizedEntries;
+
+  return aggregateMatchPlayerStats(
+    entriesToAggregate,
+    matchId
+  );
+}
+
 
 function normalizeScoreboardSummaryPlayer(player = {}) {
   return normalizePlayer({
@@ -1020,54 +1079,6 @@ async function fetchScoreboardSummaries(
   return payloads;
 }
 
-// Shared by the internal stats/v3 payload (entry.matchRound) and the
-// official data/v4/.../stats payload (entry.match_round) — both sometimes
-// carry a whole-match summary entry (round index 0) alongside per-map
-// entries; prefer that summary, else fall back to the first entry that
-// actually has player data. Not new aggregation logic — this is the exact
-// selection this file already used for the internal payload, only reused
-// instead of duplicated so the official-API path behaves identically.
-function findMatchSummaryEntry(entries) {
-  return (
-    entries.find((entry) => {
-      const roundIndex = Number(
-        entry?.matchRound ??
-        entry?.match_round
-      );
-
-      if (roundIndex !== 0) {
-        return false;
-      }
-
-      if (
-        !Array.isArray(entry?.teams)
-      ) {
-        return false;
-      }
-
-      return entry.teams.some(
-        (team) =>
-          Array.isArray(team?.players) &&
-          team.players.length > 0
-      );
-    }) ||
-    entries.find((entry) => {
-      if (
-        !Array.isArray(entry?.teams)
-      ) {
-        return false;
-      }
-
-      return entry.teams.some(
-        (team) =>
-          Array.isArray(team?.players) &&
-          team.players.length > 0
-      );
-    }) ||
-    null
-  );
-}
-
 function normalizeInternalPlayerStats(
   payload,
   matchId
@@ -1080,25 +1091,10 @@ function normalizeInternalPlayerStats(
         ? payload.rounds
         : [];
 
-  const summary =
-    findMatchSummaryEntry(entries);
-
-  if (!summary) {
-    return null;
-  }
-
-  return {
-    matchId,
-
-    map:
-      summary.map ||
-      summary.mapName ||
-      null,
-
-    teams: summary.teams
-      .slice(0, 2)
-      .map(normalizeStatsTeam),
-  };
+  return aggregatePlayerStatsEntries(
+    entries,
+    matchId
+  );
 }
 
 function normalizeInternalMatchStats(
@@ -1212,23 +1208,11 @@ function normalizeOfficialMatchStats(
       ? payload.rounds
       : [];
 
-  // Whole-match player stats (kills/deaths/assists/ADR/KD/HS/MVP —
-  // everything normalizeStatsTeam()/normalizePlayer() already know how to
-  // read, since data/v4's team_stats/player_stats keys match what those
-  // functions were already written for). Reuses the same summary-entry
-  // selection as the internal stats/v3 path — no new aggregation.
-  const summaryEntry =
-    findMatchSummaryEntry(rounds);
-
-  const playerStats = summaryEntry
-    ? {
-        matchId,
-        map: null,
-        teams: summaryEntry.teams
-          .slice(0, 2)
-          .map(normalizeStatsTeam),
-      }
-    : null;
+  const playerStats =
+    aggregatePlayerStatsEntries(
+      rounds,
+      matchId
+    );
 
   // All maps are kept below — a BO3 has one entry per map here, never
   // truncated to the first.
