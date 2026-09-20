@@ -17,6 +17,7 @@ import teams from "./data/teams";
 import playerTeams from "./data/playerTeams.json";
 import playerAverageRatings from "./data/playerAverageRatings.json";
 import PariSideRails from "./components/PariSideRails";
+import RouteSeo from "./components/RouteSeo";
 
 function App() {
   const location = useLocation();
@@ -347,7 +348,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#05070a] text-white">
-      
+      <RouteSeo />
 
       <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#070b11]/90 shadow-[0_14px_40px_rgba(0,0,0,0.22)] backdrop-blur-2xl">
         <div className="mx-auto max-w-[1440px] px-4 md:px-6 xl:px-8">

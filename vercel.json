@@ -1,6 +1,7 @@
 {
   "routes": [
     { "handle": "filesystem" },
+    { "src": "/teams/([^/]+)/?", "dest": "/teams/$1.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
