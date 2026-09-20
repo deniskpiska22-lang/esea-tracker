@@ -13,6 +13,16 @@ function normalizeName(value = "") {
     .toLowerCase();
 }
 
+function normalizeCompetitionKey(value = "") {
+  return String(value || "ESEA League")
+    .normalize("NFKC")
+    .trim()
+    .replace(/[\u2010-\u2015\u2212]/g, "-")
+    .replace(/\s*-\s*/g, " - ")
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
 
 
 function formatDate(value) {
@@ -236,16 +246,21 @@ function MatchesPage() {
 
   const groupedMatches = useMemo(() => {
     const groups = teamMatches.reduce((result, match) => {
-      if (!result[match.season]) {
-        result[match.season] = [];
+      const competitionKey = normalizeCompetitionKey(match.season);
+
+      if (!result[competitionKey]) {
+        result[competitionKey] = {
+          season: String(match.season || "ESEA League").trim(),
+          matches: [],
+        };
       }
 
-      result[match.season].push(match);
+      result[competitionKey].matches.push(match);
       return result;
     }, {});
 
-    return Object.entries(groups)
-      .map(([season, matches]) => ({
+    return Object.values(groups)
+      .map(({ season, matches }) => ({
         season,
         matches: [...matches].sort(
           (first, second) =>
