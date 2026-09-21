@@ -38,6 +38,32 @@ const FINISHED_STATUSES = new Set([
 const UPCOMING_WINDOW_HOURS = 24;
 const RESULTS_LIMIT = 12;
 
+function scheduleAfterFirstPaint(callback) {
+  if (typeof window === "undefined") {
+    callback();
+    return () => {};
+  }
+
+  let cancelled = false;
+  let idleId = null;
+  let timeoutId = null;
+  const run = () => {
+    if (!cancelled) callback();
+  };
+
+  if (typeof window.requestIdleCallback === "function") {
+    idleId = window.requestIdleCallback(run, { timeout: 1800 });
+  } else {
+    timeoutId = window.setTimeout(run, 600);
+  }
+
+  return () => {
+    cancelled = true;
+    if (idleId !== null) window.cancelIdleCallback(idleId);
+    if (timeoutId !== null) window.clearTimeout(timeoutId);
+  };
+}
+
 function toNumber(value, fallback = 0) {
   const number = Number(value);
   return Number.isFinite(number) ? number : fallback;
@@ -771,7 +797,7 @@ async function getStaticResults(limit = RESULTS_LIMIT) {
     .slice(0, limit);
 }
 
-function Logo({ team, size = "md" }) {
+function Logo({ team, size = "md", priority = false }) {
   const [imageError, setImageError] = useState(false);
 
   const sizes = {
@@ -783,6 +809,15 @@ function Logo({ team, size = "md" }) {
     // so cards stay compact without breaking the row's fixed height.
     card: "h-8 w-8 sm:h-10 sm:w-10",
   };
+
+  const dimensions = {
+    xs: 28,
+    sm: 40,
+    md: 56,
+    lg: 112,
+    card: 40,
+  };
+  const dimension = dimensions[size] || dimensions.md;
 
   const initials =
     team?.name
@@ -807,8 +842,12 @@ function Logo({ team, size = "md" }) {
     <img
       src={team.logo}
       alt={team.name}
+      width={dimension}
+      height={dimension}
       className={`${sizes[size] || sizes.md} shrink-0 object-contain`}
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding={priority ? "sync" : "async"}
       referrerPolicy="no-referrer"
       onError={() => setImageError(true)}
     />
@@ -1077,7 +1116,7 @@ function HeroMatch({ match }) {
   const matchPath = `/match/${match.matchId || match.id}`;
 
   return (
-    <section className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:p-7">
+    <section className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:min-h-[420px] md:p-7">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_20%_50%,rgba(249,115,22,0.18),transparent_60%)]" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_50%,rgba(56,189,248,0.12),transparent_60%)]" />
@@ -1121,7 +1160,7 @@ function HeroMatch({ match }) {
             to={match.team1?.slug ? `/teams/${match.team1.slug}` : matchPath}
             className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-start md:text-left"
           >
-            <Logo team={match.team1} size="lg" />
+            <Logo team={match.team1} size="lg" priority />
             <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
               {match.team1?.name || "TBD"}
             </div>
@@ -1176,7 +1215,7 @@ function HeroMatch({ match }) {
             to={match.team2?.slug ? `/teams/${match.team2.slug}` : matchPath}
             className="flex min-w-0 flex-col items-center text-center transition hover:-translate-y-1 md:items-end md:text-right"
           >
-            <Logo team={match.team2} size="lg" />
+            <Logo team={match.team2} size="lg" priority />
             <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
               {match.team2?.name || "TBD"}
             </div>
@@ -1848,25 +1887,28 @@ function Home() {
       setRatingsReady(true);
     }
 
-    loadRatings();
+    const cancelScheduledStart = scheduleAfterFirstPaint(() => {
+      loadRatings();
 
-    if (supabase) {
-      ratingsChannel = supabase
-        .channel("home-team-ratings")
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "team_ratings",
-          },
-          loadRatings
-        )
-        .subscribe();
-    }
+      if (supabase) {
+        ratingsChannel = supabase
+          .channel("home-team-ratings")
+          .on(
+            "postgres_changes",
+            {
+              event: "*",
+              schema: "public",
+              table: "team_ratings",
+            },
+            loadRatings
+          )
+          .subscribe();
+      }
+    });
 
     return () => {
       cancelled = true;
+      cancelScheduledStart();
 
       if (supabase && ratingsChannel) {
         supabase.removeChannel(ratingsChannel);
@@ -2011,25 +2053,28 @@ function Home() {
       }
     }
 
-    loadTopPlayers();
+    const cancelScheduledStart = scheduleAfterFirstPaint(() => {
+      loadTopPlayers();
 
-    if (supabase) {
-      playerRatingsChannel = supabase
-        .channel("home-player-ratings")
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "player_ratings",
-          },
-          loadTopPlayers
-        )
-        .subscribe();
-    }
+      if (supabase) {
+        playerRatingsChannel = supabase
+          .channel("home-player-ratings")
+          .on(
+            "postgres_changes",
+            {
+              event: "*",
+              schema: "public",
+              table: "player_ratings",
+            },
+            loadTopPlayers
+          )
+          .subscribe();
+      }
+    });
 
     return () => {
       cancelled = true;
+      cancelScheduledStart();
 
       if (supabase && playerRatingsChannel) {
         supabase.removeChannel(playerRatingsChannel);
