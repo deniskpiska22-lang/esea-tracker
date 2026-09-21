@@ -1,5 +1,33 @@
 {
   "routes": [
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "esea-tracker\\.vercel\\.app"
+        }
+      ],
+      "status": 308,
+      "headers": {
+        "Location": "https://eseatracker.ru/$1"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "www\\.eseatracker\\.ru"
+        }
+      ],
+      "status": 308,
+      "headers": {
+        "Location": "https://eseatracker.ru/$1"
+      }
+    },
     { "handle": "filesystem" },
     { "src": "/teams/([^/]+)/?", "dest": "/teams/$1.html" },
     { "src": "/players/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?", "dest": "/players/$1.html" },
