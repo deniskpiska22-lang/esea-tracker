@@ -12,6 +12,7 @@ import "./index.css";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
+import Home from "./pages/Home";
 import MaintenancePage from "./pages/MaintenancePage";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -23,7 +24,6 @@ const MAINTENANCE_ACTIVE = false
 // Every page is its own chunk, fetched only when that route is actually
 // visited — without this the whole site (every page, including the ~2600
 // line match-page trio) shipped as one bundle on the very first load.
-const Home = lazy(() => import("./pages/Home"));
 const RankingsPage = lazy(() => import("./pages/RankingsPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
 const About = lazy(() => import("./pages/About"));
