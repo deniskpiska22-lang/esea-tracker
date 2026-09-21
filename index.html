@@ -2,14 +2,6 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "x523q79gkt");
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05070a" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -23,6 +15,7 @@
     />
     <link rel="canonical" href="https://eseatracker.ru/" />
     <link rel="icon" href="/logo.png" />
+    <link rel="preload" href="/logo.png" as="image" fetchpriority="high" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ESEA Tracker" />
     <meta property="og:title" content="ESEA Tracker — команды, матчи и рейтинг ESEA CS2" />
@@ -48,8 +41,141 @@
         "description": "Матчи, результаты, составы, статистика игроков и рейтинг команд ESEA CS2 со всего мира."
       }
     </script>
+
+    <style>
+      #app-boot-shell {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        overflow: hidden;
+        background: #090d12;
+        color: #fff;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      .boot-nav {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 24px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        background: #070b11;
+      }
+      .boot-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        object-fit: cover;
+      }
+      .boot-brand {
+        font-size: 17px;
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: -.02em;
+      }
+      .boot-main {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px 24px;
+      }
+      .boot-card {
+        min-height: 390px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 20% 50%, rgba(249,115,22,.12), transparent 38%),
+          radial-gradient(circle at 80% 50%, rgba(56,189,248,.08), transparent 38%),
+          #0c1117;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .boot-center {
+        text-align: center;
+        padding: 28px;
+      }
+      .boot-title {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 46px);
+        font-weight: 900;
+        letter-spacing: -.04em;
+      }
+      .boot-subtitle {
+        margin: 12px 0 0;
+        color: #64748b;
+        font-size: 14px;
+      }
+      #boot-recovery {
+        display: none;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #94a3b8;
+      }
+      #boot-recovery a {
+        display: inline-block;
+        margin-top: 10px;
+        border-radius: 12px;
+        background: #f97316;
+        color: #fff;
+        padding: 10px 16px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      @media (max-width: 640px) {
+        .boot-nav { padding: 0 16px; }
+        .boot-main { padding: 16px; }
+        .boot-card { min-height: 330px; }
+      }
+    </style>
+
+    <script>
+      // Clarity is analytics, not a rendering dependency. Start it after the
+      // page has loaded so it cannot compete with the application bundle.
+      window.addEventListener("load", function () {
+        var startClarity = function () {
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "x523q79gkt");
+        };
+
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(startClarity, { timeout: 2500 });
+        } else {
+          window.setTimeout(startClarity, 1200);
+        }
+      });
+
+      // If the JS bundle is blocked or fails on a user's network, do not leave
+      // them staring at a blank dark page forever.
+      window.setTimeout(function () {
+        var shell = document.getElementById("app-boot-shell");
+        var recovery = document.getElementById("boot-recovery");
+        if (shell && recovery) recovery.style.display = "block";
+      }, 8000);
+    </script>
   </head>
   <body>
+    <div id="app-boot-shell" aria-hidden="true">
+      <div class="boot-nav">
+        <img class="boot-logo" src="/logo.png" width="44" height="44" alt="" />
+        <div class="boot-brand">ESEA Tracker</div>
+      </div>
+      <main class="boot-main">
+        <section class="boot-card">
+          <div class="boot-center">
+            <h1 class="boot-title">ESEA Tracker</h1>
+            <p class="boot-subtitle">Матчи, рейтинги и статистика ESEA CS2</p>
+            <div id="boot-recovery">
+              Загрузка заняла слишком много времени. Возможно, сеть заблокировала один из файлов сайта.
+              <br />
+              <a href="/" onclick="location.reload(); return false;">Перезагрузить сайт</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
