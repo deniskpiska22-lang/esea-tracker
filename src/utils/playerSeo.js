@@ -33,7 +33,11 @@ export function getPlayerAliases(player, aliasesByNickname = {}) {
 
 export function getPlayerSeoMetadata(player, aliasesByNickname = {}) {
   const playerId = String(player?.playerId || player?.player_id || "").trim();
-  const nickname = String(player?.nickname || "Игрок").trim();
+  const rawNickname = String(player?.nickname || "").trim();
+  // UUID is an internal FACEIT identifier, not a searchable player name.
+  // Never expose it as a title/description fallback while identity data loads.
+  const nickname =
+    rawNickname && !isFaceitPlayerId(rawNickname) ? rawNickname : "Игрок";
   const teamName = String(player?.teamName || player?.team_name || "").trim();
   const rating = compactNumber(player?.rating);
   const mapsPlayed = finiteNumber(player?.mapsPlayed ?? player?.maps_played);

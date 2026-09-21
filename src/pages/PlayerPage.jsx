@@ -665,7 +665,11 @@ function PlayerPage() {
 
   const decodedNickname =
     resolvedNickname ||
-    decodedRouteValue;
+    (
+      isFaceitPlayerId(decodedRouteValue)
+        ? ""
+        : decodedRouteValue
+    );
 
   const [databaseMatches, setDatabaseMatches] =
     useState([]);
@@ -974,7 +978,11 @@ function PlayerPage() {
 
           setResolvedNickname(
             resolvedProfileNickname ||
-            decodedRouteValue
+            (
+              isFaceitPlayerId(decodedRouteValue)
+                ? ""
+                : decodedRouteValue
+            )
           );
 
           setResolvedPlayerId(
@@ -992,7 +1000,9 @@ function PlayerPage() {
           setDatabaseRating(null);
           setDatabasePlayer(null);
           setResolvedNickname(
-            decodedRouteValue
+            isFaceitPlayerId(decodedRouteValue)
+              ? ""
+              : decodedRouteValue
           );
           setResolvedPlayerId(
             routePlayerKey
