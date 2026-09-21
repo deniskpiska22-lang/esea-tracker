@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
 import {
@@ -44,18 +44,6 @@ const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const VetoPage = lazy(() => import("./pages/VetoPage"));
 const CalendarPage = lazy(() => import("./pages/CalendarPage"));
 const TournamentPage = lazy(() => import("./pages/TournamentPage"));
-
-function BootShellCleanup() {
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      document.getElementById("app-boot-shell")?.remove();
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
-  return null;
-}
 
 function RouteLoading() {
   return (
@@ -115,7 +103,6 @@ class AppErrorBoundary extends React.Component {
 function Application() {
   return (
     <AppErrorBoundary>
-      <BootShellCleanup />
       <React.StrictMode>
         {MAINTENANCE_ACTIVE ? (
           <LanguageProvider>
