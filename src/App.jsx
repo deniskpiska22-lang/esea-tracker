@@ -18,6 +18,19 @@ import PariSideRails from "./components/PariSideRails";
 import RouteSeo from "./components/RouteSeo";
 
 function App() {
+  useEffect(() => {
+    const shell = document.getElementById("app-boot-shell");
+    if (!shell) return undefined;
+
+    // App has committed successfully. Wait one frame so the real layout is
+    // painted underneath, then remove the static boot shell.
+    const frame = window.requestAnimationFrame(() => {
+      shell.remove();
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage, tr } = useLanguage();
