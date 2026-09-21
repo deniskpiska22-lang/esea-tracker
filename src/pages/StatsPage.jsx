@@ -7,6 +7,7 @@ import teams from "../data/teams";
 import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TournamentNameLink from "../components/TournamentNameLink";
+import { ACTIVE_MAP_POOL, normalizeMapKey } from "../utils/activeMapPool";
 
 const MAP_IMAGE_ALIASES = {
   ancient: "ancient",
@@ -131,10 +132,31 @@ function StatsPage() {
         first.name.localeCompare(second.name)
     );
 
-  const mapStats =
+  const selectedMapStats =
     Array.isArray(liveMapStats) && liveMapStats.length > 0
       ? liveMapStats
       : fallbackMapStats;
+
+  const mapStatsByName = new Map(
+    selectedMapStats.map((map) => [normalizeMapKey(map.name), map])
+  );
+
+  const mapStats = ACTIVE_MAP_POOL.map((name) => {
+    const existing = mapStatsByName.get(normalizeMapKey(name));
+
+    return existing ? { ...existing, name } : {
+      name,
+      played: 0,
+      wins: 0,
+      losses: 0,
+      winrate: 0,
+    };
+  }).sort(
+    (first, second) =>
+      second.winrate - first.winrate ||
+      second.played - first.played ||
+      ACTIVE_MAP_POOL.indexOf(first.name) - ACTIVE_MAP_POOL.indexOf(second.name)
+  );
 
   const sortedMatches = [...teamMatches].sort(
     (first, second) =>

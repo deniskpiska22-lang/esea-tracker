@@ -18,6 +18,7 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
+import { ACTIVE_MAP_POOL, isActiveMap } from "../utils/activeMapPool";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
@@ -579,18 +580,6 @@ function RecentMatchesCard({
 }
 
 
-const MAP_ORDER = [
-  "Mirage",
-  "Inferno",
-  "Nuke",
-  "Ancient",
-  "Anubis",
-  "Dust2",
-  "Train",
-  "Cache",
-  "Vertigo",
-];
-
 function getTeamMapStatistics(team) {
   if (!team?.slug) {
     return new Map();
@@ -607,6 +596,8 @@ function getTeamMapStatistics(team) {
 
       maps.forEach((map) => {
         const mapName = formatMapName(map.map);
+        if (!isActiveMap(mapName)) return;
+
         const current = statsByMap.get(mapName) || {
           wins: 0,
           losses: 0,
@@ -656,28 +647,7 @@ function MapStatisticsCard({
     [rightLocalTeam]
   );
 
-  const maps = useMemo(() => {
-    const availableMaps = new Set([
-      ...leftStats.keys(),
-      ...rightStats.keys(),
-    ]);
-
-    return [...availableMaps]
-      .sort((first, second) => {
-        const firstIndex = MAP_ORDER.indexOf(first);
-        const secondIndex = MAP_ORDER.indexOf(second);
-
-        if (firstIndex === -1 && secondIndex === -1) {
-          return first.localeCompare(second);
-        }
-
-        if (firstIndex === -1) return 1;
-        if (secondIndex === -1) return -1;
-
-        return firstIndex - secondIndex;
-      })
-      .slice(0, 7);
-  }, [leftStats, rightStats]);
+  const maps = ACTIVE_MAP_POOL;
 
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">

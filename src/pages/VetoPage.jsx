@@ -10,6 +10,7 @@ import {
   useTeamStats,
 } from "../hooks/useTeamStats";
 import { formatMapName } from "../utils/formatMapName";
+import { isActiveMap } from "../utils/activeMapPool";
 import TournamentNameLink from "../components/TournamentNameLink";
 
 // This tab is scoped to recent form rather than full team history — veto
@@ -27,19 +28,14 @@ function isWithinVetoWindow(match) {
   return matchTime >= cutoff;
 }
 
-// Overpass is out of the active map pool — kept out of every veto
-// aggregation (flow, opponent tendencies, map pool cards) below so it
-// doesn't skew percentages for a map nobody can actually play anymore.
+// Only the current active map pool is used by forward-looking veto
+// aggregation, so retired maps do not skew percentages.
 // Match History is left untouched since it's a factual log of what
 // actually happened in each past match, not a forward-looking stat.
-const EXCLUDED_MAPS = ["overpass"];
-
-function stripExcludedMapSteps(matches) {
+function stripInactiveMapSteps(matches) {
   return matches.map((match) => {
     const vetoSteps = Array.isArray(match.vetoSteps)
-      ? match.vetoSteps.filter(
-          (step) => !EXCLUDED_MAPS.includes(String(step.map).toLowerCase())
-        )
+      ? match.vetoSteps.filter((step) => isActiveMap(step.map))
       : match.vetoSteps;
 
     return { ...match, vetoSteps };
@@ -515,10 +511,10 @@ function VetoPage() {
     [teamMatches]
   );
 
-  // Same 90-day matches, but with Overpass steps stripped out before any
-  // veto aggregation — see EXCLUDED_MAPS above.
+  // Same 90-day matches, but limited to the current active map pool before
+  // any veto aggregation.
   const vetoEligibleMatches = useMemo(
-    () => stripExcludedMapSteps(recentMatches),
+    () => stripInactiveMapSteps(recentMatches),
     [recentMatches]
   );
 
