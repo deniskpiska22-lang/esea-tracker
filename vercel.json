@@ -1,37 +1,22 @@
 {
-  "routes": [
+  "redirects": [
     {
-      "src": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "esea-tracker\\.vercel\\.app"
-        }
-      ],
-      "status": 308,
-      "headers": {
-        "Location": "https://eseatracker.ru/$1"
-      }
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "esea-tracker.vercel.app" }],
+      "destination": "https://eseatracker.ru/:path*",
+      "permanent": true
     },
     {
-      "src": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "www\\.eseatracker\\.ru"
-        }
-      ],
-      "status": 308,
-      "headers": {
-        "Location": "https://eseatracker.ru/$1"
-      }
-    },
-    { "handle": "filesystem" },
-    { "src": "/teams/([^/]+)/?", "dest": "/teams/$1.html" },
-    { "src": "/players/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?", "dest": "/players/$1.html" },
-    { "src": "/player/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?", "dest": "/players/$1.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.eseatracker.ru" }],
+      "destination": "https://eseatracker.ru/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/teams/:slug", "destination": "/teams/:slug.html" },
+    { "source": "/players/:id", "destination": "/players/:id.html" },
+    { "source": "/player/:id", "destination": "/players/:id.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
