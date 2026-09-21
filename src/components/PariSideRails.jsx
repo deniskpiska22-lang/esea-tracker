@@ -67,6 +67,8 @@ function SideRail({ side, imageSrc }) {
         <img
           src={imageSrc}
           alt="PARI — фрибет 5×1000 рублей новым игрокам"
+          width="640"
+          height="1800"
           className="block h-full w-full object-cover object-top transition duration-300 group-hover:brightness-110"
           loading="lazy"
           decoding="async"
