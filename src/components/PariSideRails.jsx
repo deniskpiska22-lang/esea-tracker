@@ -12,7 +12,9 @@ function sendAnalyticsEvent(eventName, placement) {
     placement,
     creative: "pari_cs2_side_rail",
   };
-  const metrikaId = Number(import.meta.env.VITE_YANDEX_METRIKA_ID);
+  const metrikaId = Number(
+    window.__YANDEX_METRIKA_ID__ || import.meta.env.VITE_YANDEX_METRIKA_ID
+  );
 
   if (Number.isFinite(metrikaId) && metrikaId > 0 && typeof window.ym === "function") {
     window.ym(metrikaId, "reachGoal", eventName, eventData);

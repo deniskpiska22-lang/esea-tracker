@@ -12,6 +12,7 @@ import "./index.css";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
+import YandexMetrika from "./components/YandexMetrika";
 import Home from "./pages/Home";
 import MaintenancePage from "./pages/MaintenancePage";
 import { AuthProvider } from "./context/AuthContext";
@@ -113,6 +114,7 @@ function Application() {
             <LanguageProvider>
               <AuthProvider>
                 <ScrollToTop />
+                <YandexMetrika />
 
                 <Suspense fallback={<RouteLoading />}>
                   <Routes>
