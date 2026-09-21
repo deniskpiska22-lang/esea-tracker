@@ -14,8 +14,6 @@ import {
 import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";
 import teams from "./data/teams";
-import playerTeams from "./data/playerTeams.json";
-import playerAverageRatings from "./data/playerAverageRatings.json";
 import PariSideRails from "./components/PariSideRails";
 import RouteSeo from "./components/RouteSeo";
 
@@ -41,6 +39,10 @@ function App() {
     useState(false);
   const [search, setSearch] =
     useState("");
+  const [searchablePlayers, setSearchablePlayers] =
+    useState([]);
+  const [playerSearchLoaded, setPlayerSearchLoaded] =
+    useState(false);
 
   const [showSubmitTeam, setShowSubmitTeam] =
     useState(false);
@@ -55,20 +57,40 @@ function App() {
   const [submittingTeam, setSubmittingTeam] =
     useState(false);
 
-  const searchablePlayers = useMemo(
-    () =>
-      Object.keys(playerTeams).map(
-        (nickname) => ({
-          nickname,
-          team: playerTeams[nickname],
-          rating:
-            playerAverageRatings[
-              nickname
-            ] ?? null,
-        })
-      ),
-    []
-  );
+  useEffect(() => {
+    if (!showSearch || playerSearchLoaded) {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    Promise.all([
+      import("./data/playerTeams.json"),
+      import("./data/playerAverageRatings.json"),
+    ])
+      .then(([teamsModule, ratingsModule]) => {
+        if (cancelled) return;
+
+        const playerTeams = teamsModule.default || {};
+        const playerAverageRatings = ratingsModule.default || {};
+
+        setSearchablePlayers(
+          Object.keys(playerTeams).map((nickname) => ({
+            nickname,
+            team: playerTeams[nickname],
+            rating: playerAverageRatings[nickname] ?? null,
+          }))
+        );
+        setPlayerSearchLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Failed to load player search index:", error);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [showSearch, playerSearchLoaded]);
 
   const normalizedSearch =
     search.trim().toLowerCase();
@@ -362,6 +384,8 @@ function App() {
                 <img
                   src="/logo.png"
                   alt=""
+                  width="44"
+                  height="44"
                   className="h-full w-full scale-[1.12] object-cover transition duration-300 group-hover:scale-[1.18]"
                   aria-hidden="true"
                 />
