@@ -2,6 +2,20 @@ import fs from "node:fs";
 import path from "node:path";
 
 const LEGACY_CHAMPIONSHIPS = [
+  // Season Finals are seeded explicitly so match discovery works immediately
+  // even before the cached season hierarchy is refreshed on Railway.
+  {
+    "id": "18433de2-4f68-4b76-b9f1-2ab5252eeb86",
+    "name": "S58 Europe Season Finals Central - Finals"
+  },
+  {
+    "id": "1b591d01-c096-400d-b4bb-6bb2aec9d9cb",
+    "name": "S58 North America Season Finals Central - Finals"
+  },
+  {
+    "id": "d04aeea8-b780-4415-a74a-6522d17dbdf2",
+    "name": "S58 Oceania Season Finals Central - Finals"
+  },
   {
     "id": "6c713b0c-dd31-4bd8-9571-484f84a5272d",
     "name": "EU ECL S52 Cup 1 - Playoffs"
@@ -170,7 +184,11 @@ function championshipsFromSeasonTree() {
       if (!allRegions && !allowedRegions.has(normalize(region.name))) continue;
 
       for (const division of region.divisions || []) {
-        if (!allDivisions && !allowedDivisions.has(normalize(division.name))) continue;
+        const divisionName = normalize(division.name);
+        const isSeasonFinals = divisionName === "season finals";
+        // Finals are match sources, not standings sources. Always include them
+        // here even when standings.config.json only lists league divisions.
+        if (!allDivisions && !allowedDivisions.has(divisionName) && !isSeasonFinals) continue;
 
         for (const stage of division.stages || []) {
           for (const conference of stage.conferences || []) {
