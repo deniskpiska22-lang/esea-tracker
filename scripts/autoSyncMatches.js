@@ -1959,8 +1959,147 @@ async function runPool(
   await Promise.all(runners);
 }
 
+function isSeasonFinalsChampionship(item) {
+  return /season finals/i.test(String(item?.name || ""));
+}
+
+function buildChampionshipMatchesUrl(
+  championshipId
+) {
+  const params =
+    new URLSearchParams({
+      type: "all",
+      offset: "0",
+      limit: "100",
+    });
+
+  return (
+    "https://open.faceit.com/data/v4/championships/" +
+    encodeURIComponent(championshipId) +
+    "/matches?" +
+    params.toString()
+  );
+}
+
+function publicChampionshipMatchToRow(
+  match,
+  championship
+) {
+  const id =
+    match?.match_id ||
+    match?.id ||
+    null;
+
+  if (!id) {
+    return null;
+  }
+
+  const patch =
+    publicApiToPatch(match);
+
+  if (!patch) {
+    return null;
+  }
+
+  return {
+    id,
+    ...patch,
+
+    championship_id:
+      championship.id,
+
+    competition_name:
+      patch.competition_name ||
+      championship.name,
+
+    faceit_url:
+      match?.faceit_url ||
+      `https://www.faceit.com/en/cs2/room/${id}`,
+
+    raw_data: match,
+  };
+}
+
+async function discoverSeasonFinalsByChampionship(
+  rows
+) {
+  const finals =
+    CHAMPIONSHIPS.filter(
+      isSeasonFinalsChampionship
+    );
+
+  await runPool(
+    finals,
+    async (championship) => {
+      try {
+        const data =
+          await fetchJson(
+            buildChampionshipMatchesUrl(
+              championship.id
+            ),
+            {
+              headers: {
+                Authorization:
+                  `Bearer ${faceitApiKey}`,
+                Accept:
+                  "application/json",
+                "User-Agent":
+                  "ESEA-Tracker/1.0 championship-discovery",
+              },
+            }
+          );
+
+        const payload =
+          Array.isArray(data?.items)
+            ? data.items
+            : [];
+
+        let accepted = 0;
+
+        for (const match of payload) {
+          const row =
+            publicChampionshipMatchToRow(
+              match,
+              championship
+            );
+
+          if (
+            row &&
+            insideDiscoveryWindow(row)
+          ) {
+            rows.set(row.id, row);
+            accepted += 1;
+          }
+        }
+
+        console.log(
+          `Finals discovery ${championship.name}: ` +
+          `${accepted}/${payload.length} match(es) in window`
+        );
+      } catch (error) {
+        console.warn(
+          `Finals discovery failed for ` +
+          `${championship.name}: ` +
+          error.message
+        );
+      }
+    },
+    Math.min(
+      3,
+      Math.max(finals.length, 1)
+    )
+  );
+}
+
 async function discoverMatches() {
   const rows = new Map();
+
+  // Season Finals are global and may contain teams that are not yet present
+  // in teams.generated.js (especially NA/OCE). Enumerate those championships
+  // directly first, so discovery does not depend on already knowing a team.
+  await discoverSeasonFinalsByChampionship(
+    rows
+  );
 
   const trackedTeams =
     teams.filter(
