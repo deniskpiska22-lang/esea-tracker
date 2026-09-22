@@ -1584,15 +1584,54 @@ function internalToRow(match) {
 }
 
 function publicApiToPatch(data) {
-  const teams = data?.teams || {};
-  // Keyed by the faction key itself (always "faction1"/"faction2" on this
-  // endpoint), NOT by Object.entries() iteration order — FACEIT's response
-  // has been observed to list faction2 before faction1, and reading
-  // entries[0]/entries[1] positionally meant team1/team2 could silently
-  // swap identity between polls, flipping which side each team appeared on
-  // every time that ordering changed.
-  const firstRaw = teams.faction1;
-  const secondRaw = teams.faction2;
+  const teamsObject =
+    data?.teams &&
+    typeof data.teams === "object" &&
+    !Array.isArray(data.teams)
+      ? data.teams
+      : {};
+
+  /*
+   * FACEIT match payloads are not consistent about the keys inside
+   * `teams`. Match-details commonly uses faction1/faction2, while the
+   * championship-matches endpoint may key the same two team objects by
+   * other faction identifiers. Requiring literal faction1/faction2 made
+   * championship discovery silently drop valid Finals rooms.
+   *
+   * Preserve faction1/faction2 when available. Otherwise use the two
+   * returned entries and retain their real keys so results.score/winner can
+   * still be mapped to the correct team.
+   */
+  const entries =
+    Object.entries(teamsObject);
+
+  if (entries.length < 2) {
+    return null;
+  }
+
+  let firstKey;
+  let firstRaw;
+  let secondKey;
+  let secondRaw;
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      teamsObject,
+      "faction1"
+    ) &&
+    Object.prototype.hasOwnProperty.call(
+      teamsObject,
+      "faction2"
+    )
+  ) {
+    firstKey = "faction1";
+    firstRaw = teamsObject.faction1;
+    secondKey = "faction2";
+    secondRaw = teamsObject.faction2;
+  } else {
+    [firstKey, firstRaw] = entries[0];
+    [secondKey, secondRaw] = entries[1];
+  }
 
   if (!firstRaw || !secondRaw) {
     return null;
@@ -1604,14 +1643,21 @@ function publicApiToPatch(data) {
   const second =
     normalizeFaction(secondRaw);
 
+  const score =
+    data?.results?.score || {};
+
   const firstScore = Number(
-    data.results?.score?.faction1 ??
+    score?.[firstKey] ??
+    score?.[firstRaw?.faction_id] ??
+    score?.[firstRaw?.team_id] ??
     firstRaw?.score ??
     0
   );
 
   const secondScore = Number(
-    data.results?.score?.faction2 ??
+    score?.[secondKey] ??
+    score?.[secondRaw?.faction_id] ??
+    score?.[secondRaw?.team_id] ??
     secondRaw?.score ??
     0
   );
@@ -1625,8 +1671,20 @@ function publicApiToPatch(data) {
       status.toUpperCase()
     );
 
-  const winnerFactionKey =
+  const winnerKey =
     data.results?.winner;
+
+  const firstIsWinner =
+    winnerKey === firstKey ||
+    winnerKey === firstRaw?.faction_id ||
+    winnerKey === firstRaw?.team_id ||
+    winnerKey === first.id;
+
+  const secondIsWinner =
+    winnerKey === secondKey ||
+    winnerKey === secondRaw?.faction_id ||
+    winnerKey === secondRaw?.team_id ||
+    winnerKey === second.id;
 
   return {
     status,
@@ -1668,14 +1726,10 @@ function publicApiToPatch(data) {
     team2_logo: second.logo,
     team2_score: secondScore,
 
-    // data.results.winner is a faction key ("faction1"/"faction2"), not a
-    // team id — must be translated before use.
     winner_id:
-      winnerFactionKey ===
-      "faction1"
+      firstIsWinner
         ? first.id
-        : winnerFactionKey ===
-          "faction2"
+        : secondIsWinner
           ? second.id
           : (
               finished
