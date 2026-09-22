@@ -2161,6 +2161,44 @@ async function discoverSeasonFinalsByChampionship(
   );
 }
 
+async function loadSeasonFinalsParticipantTeams() {
+  const finalsIds = CHAMPIONSHIPS
+    .filter(isSeasonFinalsChampionship)
+    .map((item) => item.id);
+
+  if (finalsIds.length === 0) return [];
+
+  const { data, error } = await supabase
+    .from("matches")
+    .select("team1_id,team1_name,team2_id,team2_name")
+    .in("championship_id", finalsIds)
+    .limit(1000);
+
+  if (error) {
+    console.warn("Finals participant lookup failed: " + error.message);
+    return [];
+  }
+
+  const participants = new Map();
+
+  for (const match of data || []) {
+    if (match.team1_id) {
+      participants.set(match.team1_id, {
+        faceitTeamId: match.team1_id,
+        name: match.team1_name || match.team1_id,
+      });
+    }
+    if (match.team2_id) {
+      participants.set(match.team2_id, {
+        faceitTeamId: match.team2_id,
+        name: match.team2_name || match.team2_id,
+      });
+    }
+  }
+
+  return [...participants.values()];
+}
+
 async function discoverMatches() {
   const rows = new Map();
 
@@ -2177,23 +2215,42 @@ async function discoverMatches() {
         team.faceitTeamId
     );
 
-  const jobs =
-    trackedTeams.flatMap(
+  const finalsParticipants =
+    await loadSeasonFinalsParticipantTeams();
+
+  const jobs = [
+    ...trackedTeams.flatMap(
       (team) => [
         {
           team,
-          status:
-            "MATCH_STATUS_SCHEDULED",
+          status: "MATCH_STATUS_SCHEDULED",
           limit: 40,
         },
         {
           team,
-          status:
-            "MATCH_STATUS_FINISHED",
+          status: "MATCH_STATUS_FINISHED",
           limit: FINISHED_MATCH_LIMIT,
         },
       ]
-    );
+    ),
+    // Playoff rooms are often generated only after the previous round ends.
+    // Query every team already seen in Finals directly, including live states,
+    // so a new room cannot depend on teams.generated.js or the championship
+    // endpoint exposing it in time.
+    ...finalsParticipants.flatMap(
+      (team) => [
+        "MATCH_STATUS_SCHEDULED",
+        "MATCH_STATUS_READY",
+        "MATCH_STATUS_VOTING",
+        "MATCH_STATUS_CONFIGURING",
+        "MATCH_STATUS_ONGOING",
+      ].map((status) => ({
+        team,
+        status,
+        limit: 40,
+      }))
+    ),
+  ];
 
   await runPool(
     jobs,
