@@ -1935,8 +1935,26 @@ async function fetchJson(
 function insideDiscoveryWindow(
   row
 ) {
+  const normalizedStatus =
+    String(
+      row?.status || ""
+    ).toUpperCase();
+
+  // A newly generated playoff room can enter READY/VOTING/ONGOING before
+  // FACEIT exposes a usable scheduled_at value. It is nevertheless the most
+  // important room to discover, so active matches must not be rejected by
+  // the date-window guard.
+  if (
+    LIVE_STATUSES.includes(
+      normalizedStatus
+    )
+  ) {
+    return true;
+  }
+
   const value =
     row.finished_at ||
+    row.started_at ||
     row.scheduled_at;
 
   if (!value) {
@@ -1954,9 +1972,7 @@ function insideDiscoveryWindow(
 
   if (
     FINISHED_STATUSES.has(
-      String(
-        row.status
-      ).toUpperCase()
+      normalizedStatus
     )
   ) {
     return (

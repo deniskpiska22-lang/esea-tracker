@@ -2202,7 +2202,7 @@ function Home() {
           background: rgba(249, 115, 22, 0.48);
         }
       `}</style>
-      <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6">
+      <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6 min-[1600px]:pl-1 min-[1600px]:pr-11">
         {databaseError && (
           <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">
             Supabase is temporarily unavailable. Local data is being shown.
