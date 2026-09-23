@@ -1774,10 +1774,12 @@ function buildDiscoveryUrl(
     "PREMADE_TEAM"
   );
 
-  params.set(
-    "status",
-    status
-  );
+  if (status) {
+    params.set(
+      "status",
+      status
+    );
+  }
 
   params.set(
     "offset",
@@ -2239,6 +2241,10 @@ async function discoverMatches() {
     // endpoint exposing it in time.
     ...finalsParticipants.flatMap(
       (team) => [
+        null,
+        "MATCH_STATUS_CREATED",
+        "MATCH_STATUS_CHECKIN",
+        "MATCH_STATUS_SUBSTITUTION",
         "MATCH_STATUS_SCHEDULED",
         "MATCH_STATUS_READY",
         "MATCH_STATUS_VOTING",
