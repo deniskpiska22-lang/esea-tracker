@@ -2254,6 +2254,7 @@ async function discoverMatches() {
   "PAUSED",
   "MATCH_STATUS_PAUSED",
         "MATCH_STATUS_ONGOING",
+        "MATCH_STATUS_FINISHED",
       ].map((status) => ({
         team,
         status,
