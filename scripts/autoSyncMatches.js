@@ -104,6 +104,8 @@ const LIVE_STATUSES = [
   "MATCH_STATUS_ONGOING",
   "MATCH_STATUS_VOTING",
   "MATCH_STATUS_CONFIGURING",
+  "PAUSED",
+  "MATCH_STATUS_PAUSED",
   "MATCH_STATUS_SUBSTITUTION",
 ];
 
@@ -2249,6 +2251,8 @@ async function discoverMatches() {
         "MATCH_STATUS_READY",
         "MATCH_STATUS_VOTING",
         "MATCH_STATUS_CONFIGURING",
+  "PAUSED",
+  "MATCH_STATUS_PAUSED",
         "MATCH_STATUS_ONGOING",
       ].map((status) => ({
         team,
