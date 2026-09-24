@@ -2281,6 +2281,12 @@ async function discoverMatches() {
                   "application/json",
                 "user-agent":
                   "Mozilla/5.0 ESEA-Tracker/1.0",
+                ...(faceitSessionCookie
+                  ? {
+                      Cookie:
+                        faceitSessionCookie,
+                    }
+                  : {}),
               },
             }
           );
