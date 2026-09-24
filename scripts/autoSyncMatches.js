@@ -2414,6 +2414,26 @@ async function discoverMatches() {
     finalsParticipants
   );
 
+  // Persist Finals immediately. The full all-division discovery below can
+  // take many minutes (or hit the worker timeout); holding these high-priority
+  // rooms in memory until it finishes made the homepage look empty even though
+  // the rooms had already been found.
+  const finalsDiscovered = [
+    ...rows.values(),
+  ];
+
+  if (finalsDiscovered.length > 0) {
+    const earlyFinals =
+      await upsertOnlyChanged(
+        finalsDiscovered
+      );
+
+    console.log(
+      `Finals early save: ${finalsDiscovered.length} found, ` +
+        `${earlyFinals.insertedOrChanged} inserted/changed`
+    );
+  }
+
   const jobs = [
     ...trackedTeams.flatMap(
       (team) => [
