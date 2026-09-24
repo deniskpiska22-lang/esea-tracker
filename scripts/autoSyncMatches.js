@@ -2203,6 +2203,190 @@ async function loadSeasonFinalsParticipantTeams() {
   return [...participants.values()];
 }
 
+async function discoverSeasonFinalsByPlayerHistory(
+  rows,
+  participants
+) {
+  const teamIds = participants
+    .map((team) => team.faceitTeamId)
+    .filter(Boolean);
+
+  if (teamIds.length === 0) {
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("team_players")
+    .select("team_id,is_active,players!inner(faceit_id)")
+    .in("team_id", teamIds)
+    .eq("is_active", true)
+    .limit(1000);
+
+  if (error) {
+    console.warn(
+      "Finals player-history lookup failed: " +
+        error.message
+    );
+    return;
+  }
+
+  const playersByTeam = new Map();
+
+  for (const relation of data || []) {
+    const playerId =
+      relation?.players?.faceit_id;
+
+    if (!playerId) {
+      continue;
+    }
+
+    const current =
+      playersByTeam.get(
+        relation.team_id
+      ) || [];
+
+    if (
+      current.length < 2 &&
+      !current.includes(playerId)
+    ) {
+      current.push(playerId);
+      playersByTeam.set(
+        relation.team_id,
+        current
+      );
+    }
+  }
+
+  const playerIds = [
+    ...new Set(
+      [...playersByTeam.values()]
+        .flat()
+    ),
+  ];
+
+  const finalsIds = new Set(
+    CHAMPIONSHIPS
+      .filter(isSeasonFinalsChampionship)
+      .map((item) => item.id)
+  );
+
+  const from = Math.floor(
+    (
+      Date.now() -
+      FINISHED_DAYS_BACK * 86400000
+    ) / 1000
+  );
+
+  const to = Math.floor(
+    (
+      Date.now() +
+      DISCOVERY_DAYS_AHEAD * 86400000
+    ) / 1000
+  );
+
+  await runPool(
+    playerIds,
+    async (playerId) => {
+      try {
+        const params =
+          new URLSearchParams({
+            game: "cs2",
+            from: String(from),
+            to: String(to),
+            offset: "0",
+            limit: "100",
+          });
+
+        const data =
+          await fetchJson(
+            "https://open.faceit.com/data/v4/players/" +
+              encodeURIComponent(playerId) +
+              "/history?" +
+              params.toString(),
+            {
+              headers: {
+                Authorization:
+                  `Bearer ${faceitApiKey}`,
+                Accept:
+                  "application/json",
+                "User-Agent":
+                  "ESEA-Tracker/1.0 finals-player-history",
+              },
+            }
+          );
+
+        for (const match of data?.items || []) {
+          const matchId =
+            match?.match_id ||
+            match?.id;
+
+          const competitionId =
+            match?.championship_id ||
+            match?.competition_id ||
+            null;
+
+          const competitionName =
+            String(
+              match?.competition_name ||
+              match?.competition?.name ||
+              ""
+            );
+
+          if (
+            !matchId ||
+            !(
+              finalsIds.has(
+                competitionId
+              ) ||
+              /s58 .*finals|season finals/i.test(
+                competitionName
+              )
+            )
+          ) {
+            continue;
+          }
+
+          const patch =
+            publicApiToPatch(match);
+
+          if (!patch) {
+            continue;
+          }
+
+          const row = {
+            id: matchId,
+            ...patch,
+            championship_id:
+              competitionId,
+            competition_name:
+              patch.competition_name ||
+              competitionName ||
+              "ESEA Season Finals",
+            faceit_url:
+              match?.faceit_url ||
+              `https://www.faceit.com/en/cs2/room/${matchId}`,
+            raw_data: match,
+          };
+
+          if (
+            insideDiscoveryWindow(row)
+          ) {
+            rows.set(matchId, row);
+          }
+        }
+      } catch (error) {
+        console.warn(
+          `Finals player history failed for ${playerId}: ${error.message}`
+        );
+      }
+    },
+    Math.min(
+      3,
+      Math.max(playerIds.length, 1)
+    )
+  );
+}
+
 async function discoverMatches() {
   const rows = new Map();
 
@@ -2221,6 +2405,14 @@ async function discoverMatches() {
 
   const finalsParticipants =
     await loadSeasonFinalsParticipantTeams();
+
+  // The new team-leagues endpoint can be blocked by Cloudflare on a server.
+  // Player history is an official Data API fallback that still discovers
+  // completed playoff rooms generated after the opening round.
+  await discoverSeasonFinalsByPlayerHistory(
+    rows,
+    finalsParticipants
+  );
 
   const jobs = [
     ...trackedTeams.flatMap(
