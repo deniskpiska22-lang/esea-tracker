@@ -28,6 +28,8 @@ const LIVE_STATUSES = new Set([
   "MATCH_STATUS_ONGOING",
   "MATCH_STATUS_VOTING",
   "MATCH_STATUS_CONFIGURING",
+  "PAUSED",
+  "MATCH_STATUS_PAUSED",
 ]);
 
 const FINISHED_STATUSES = new Set([
@@ -1760,6 +1762,8 @@ function Home() {
         "status.eq.MATCH_STATUS_ONGOING",
         "status.eq.MATCH_STATUS_VOTING",
         "status.eq.MATCH_STATUS_CONFIGURING",
+        "status.eq.PAUSED",
+        "status.eq.MATCH_STATUS_PAUSED",
       ].join(",");
 
       const upcomingStatusFilter = [
