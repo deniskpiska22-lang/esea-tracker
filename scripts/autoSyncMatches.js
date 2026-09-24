@@ -2346,26 +2346,56 @@ async function discoverSeasonFinalsByPlayerHistory(
             continue;
           }
 
+          // Player history contains a per-map result (for example 13:7)
+          // and often omits scheduled_at. It is useful only for discovering
+          // the room id. Always hydrate the full room before persisting so
+          // the database receives the BO3/BO5 series score and timestamps.
+          if (rows.has(matchId)) {
+            continue;
+          }
+
+          let room;
+
+          try {
+            room =
+              await fetchMatchRoomPayload(
+                matchId
+              );
+          } catch (error) {
+            console.warn(
+              `Finals room hydration failed for ${matchId}: ${error.message}`
+            );
+            continue;
+          }
+
           const patch =
-            publicApiToPatch(match);
+            publicApiToPatch(room);
 
           if (!patch) {
             continue;
           }
 
+          const resolvedChampionshipId =
+            room?.championship_id ||
+            competitionId;
+
           const row = {
             id: matchId,
             ...patch,
             championship_id:
-              competitionId,
+              resolvedChampionshipId,
             competition_name:
               patch.competition_name ||
               competitionName ||
+              championshipName.get(
+                resolvedChampionshipId
+              ) ||
               "ESEA Season Finals",
             faceit_url:
+              room?.faceit_url ||
               match?.faceit_url ||
               `https://www.faceit.com/en/cs2/room/${matchId}`,
-            raw_data: match,
+            raw_data: room,
           };
 
           if (
