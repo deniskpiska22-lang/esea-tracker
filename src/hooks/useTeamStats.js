@@ -1064,8 +1064,10 @@ export function useTeamStats(
 
   useEffect(() => {
     let cancelled = false;
+    let channel = null;
+    let reloadTimer = null;
 
-    async function loadTeamStats() {
+    async function loadTeamStats(showLoading = true) {
       if (!slug || !team) {
         setDatabaseMatches(
           []
@@ -1076,7 +1078,9 @@ export function useTeamStats(
         return;
       }
 
-      setLoading(true);
+      if (showLoading) {
+        setLoading(true);
+      }
       setError("");
 
       try {
@@ -1201,8 +1205,66 @@ export function useTeamStats(
 
     loadTeamStats();
 
+    if (supabase && slug && team) {
+      channel = supabase
+        .channel(
+          `team-stats-${slug}-${Math.random()
+            .toString(36)
+            .slice(2)}`
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "matches",
+          },
+          (payload) => {
+            const changedRow =
+              payload?.new &&
+              Object.keys(payload.new).length > 0
+                ? payload.new
+                : payload?.old;
+
+            const status =
+              String(
+                changedRow?.status || ""
+              ).toUpperCase();
+
+            if (
+              !changedRow ||
+              !rowBelongsToTeam(
+                changedRow,
+                team
+              ) ||
+              !FINISHED_STATUSES.includes(
+                status
+              )
+            ) {
+              return;
+            }
+
+            clearTimeout(reloadTimer);
+
+            reloadTimer = setTimeout(
+              () =>
+                loadTeamStats(false),
+              300
+            );
+          }
+        )
+        .subscribe();
+    }
+
     return () => {
       cancelled = true;
+      clearTimeout(reloadTimer);
+
+      if (supabase && channel) {
+        supabase.removeChannel(
+          channel
+        );
+      }
     };
   }, [
     slug,
