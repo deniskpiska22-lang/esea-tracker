@@ -582,45 +582,39 @@ function RecentMatchesCard({
 }
 
 
-function getTeamMapStatistics(team) {
-  if (!team?.slug) {
-    return new Map();
-  }
-
+function getTeamMapStatistics(matches = []) {
   const statsByMap = new Map();
 
-  matchesData
-    .filter((item) => item.teamSlug === team.slug)
-    .forEach((item) => {
-      const maps = Array.isArray(item.mapScores)
-        ? item.mapScores
-        : [];
+  matches.forEach((item) => {
+    const maps = Array.isArray(item.mapScores)
+      ? item.mapScores
+      : [];
 
-      maps.forEach((map) => {
-        const mapName = formatMapName(map.map);
-        if (!isActiveMap(mapName)) return;
+    maps.forEach((map) => {
+      const mapName = formatMapName(map.map);
+      if (!isActiveMap(mapName)) return;
 
-        const current = statsByMap.get(mapName) || {
-          wins: 0,
-          losses: 0,
-        };
+      const current = statsByMap.get(mapName) || {
+        wins: 0,
+        losses: 0,
+      };
 
-        const teamScore = toNumber(map.teamScore);
-        const opponentScore = toNumber(map.opponentScore);
-        const won =
-          typeof map.won === "boolean"
-            ? map.won
-            : teamScore > opponentScore;
+      const teamScore = toNumber(map.teamScore);
+      const opponentScore = toNumber(map.opponentScore);
+      const won =
+        typeof map.won === "boolean"
+          ? map.won
+          : teamScore > opponentScore;
 
-        if (won) {
-          current.wins += 1;
-        } else {
-          current.losses += 1;
-        }
+      if (won) {
+        current.wins += 1;
+      } else {
+        current.losses += 1;
+      }
 
-        statsByMap.set(mapName, current);
-      });
+      statsByMap.set(mapName, current);
     });
+  });
 
   return statsByMap;
 }
@@ -636,17 +630,17 @@ function getMapWinrate(record) {
 function MapStatisticsCard({
   leftTeam,
   rightTeam,
-  leftLocalTeam,
-  rightLocalTeam,
+  leftMatches,
+  rightMatches,
 }) {
   const leftStats = useMemo(
-    () => getTeamMapStatistics(leftLocalTeam),
-    [leftLocalTeam]
+    () => getTeamMapStatistics(leftMatches),
+    [leftMatches]
   );
 
   const rightStats = useMemo(
-    () => getTeamMapStatistics(rightLocalTeam),
-    [rightLocalTeam]
+    () => getTeamMapStatistics(rightMatches),
+    [rightMatches]
   );
 
   const maps = ACTIVE_MAP_POOL;
@@ -2158,8 +2152,8 @@ function MatchPage() {
               <MapStatisticsCard
                 leftTeam={displayTeam1}
                 rightTeam={displayTeam2}
-                leftLocalTeam={leftLocalTeam}
-                rightLocalTeam={rightLocalTeam}
+                leftMatches={leftRecentMatches}
+                rightMatches={rightRecentMatches}
               />
             </div>
 
