@@ -1369,6 +1369,130 @@ function mapsForMatch(
   });
 }
 
+function statsTeamMatchesMatchTeam(
+  statsTeam,
+  expectedId,
+  expectedName
+) {
+  if (!statsTeam) {
+    return false;
+  }
+
+  if (
+    statsTeam.teamId &&
+    expectedId &&
+    String(statsTeam.teamId) === String(expectedId)
+  ) {
+    return true;
+  }
+
+  return Boolean(
+    statsTeam.teamName &&
+    expectedName &&
+    normalizeName(statsTeam.teamName) ===
+      normalizeName(expectedName)
+  );
+}
+
+function assertStatsBelongToMatch({
+  match,
+  mapScores,
+  statsTeams,
+}) {
+  const expectedTeams = [
+    {
+      id: match.team1_id,
+      name: match.team1_name,
+    },
+    {
+      id: match.team2_id,
+      name: match.team2_name,
+    },
+  ];
+
+  const mapTeams = Array.isArray(mapScores) && mapScores.length > 0
+    ? [
+        {
+          teamId: mapScores[0].team1_id,
+          teamName: mapScores[0].team1_name,
+        },
+        {
+          teamId: mapScores[0].team2_id,
+          teamName: mapScores[0].team2_name,
+        },
+      ]
+    : [];
+
+  const sources = [
+    ["map scores", mapTeams],
+    ["player stats", Array.isArray(statsTeams) ? statsTeams : []],
+  ];
+
+  for (const [source, teams] of sources) {
+    if (teams.length === 0) {
+      continue;
+    }
+
+    const hasBothExpectedTeams = expectedTeams.every(
+      (expected) =>
+        teams.some((team) =>
+          statsTeamMatchesMatchTeam(
+            team,
+            expected.id,
+            expected.name
+          )
+        )
+    );
+
+    if (!hasBothExpectedTeams) {
+      const received = teams
+        .map((team) => team.teamName || team.teamId || "unknown")
+        .join(" vs ");
+
+      throw new Error(
+        `Rejected foreign ${source}: expected ` +
+          `${match.team1_name} vs ${match.team2_name}, received ${received}`
+      );
+    }
+  }
+
+  const expectedTeam1Wins = Number(match.team1_score);
+  const expectedTeam2Wins = Number(match.team2_score);
+  const expectedPlayedMaps = expectedTeam1Wins + expectedTeam2Wins;
+  const bestOf = Number(match.best_of || 0);
+
+  /*
+   * Some legacy BO1 rows store round scores (13:10) in the match-level
+   * columns. Only compare map wins when the match score is a real series
+   * score and all played maps are present.
+   */
+  if (
+    expectedPlayedMaps > 0 &&
+    bestOf > 0 &&
+    expectedPlayedMaps <= bestOf &&
+    mapScores.length >= expectedPlayedMaps
+  ) {
+    const playedMaps = mapScores.slice(0, expectedPlayedMaps);
+    const actualTeam1Wins = playedMaps.filter(
+      (map) => Number(map.team1_score) > Number(map.team2_score)
+    ).length;
+    const actualTeam2Wins = playedMaps.filter(
+      (map) => Number(map.team2_score) > Number(map.team1_score)
+    ).length;
+
+    if (
+      actualTeam1Wins !== expectedTeam1Wins ||
+      actualTeam2Wins !== expectedTeam2Wins
+    ) {
+      throw new Error(
+        `Rejected map scores inconsistent with series: expected ` +
+          `${expectedTeam1Wins}:${expectedTeam2Wins}, received ` +
+          `${actualTeam1Wins}:${actualTeam2Wins}`
+      );
+    }
+  }
+}
+
 const sleep = (milliseconds) =>
   new Promise((resolve) =>
     setTimeout(resolve, milliseconds)
@@ -3823,6 +3947,7 @@ async function syncFinishedMapStats() {
     .select(
       [
         "id",
+        "best_of",
         "team1_id",
         "team1_name",
         "team1_slug",
@@ -3892,6 +4017,18 @@ async function syncFinishedMapStats() {
       )
         ? statsResult.playerStats.teams
         : [];
+
+      /*
+       * FACEIT can keep statistics from an abandoned server instance when
+       * an ESEA playoff room is restarted or its opponent is replaced.
+       * Never attach those maps/players to the current room: besides showing
+       * the wrong winner, they also poison H2H and team map statistics.
+       */
+      assertStatsBelongToMatch({
+        match,
+        mapScores,
+        statsTeams,
+      });
 
       /*
        * Определяем первую команду.
