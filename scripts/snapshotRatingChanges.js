@@ -191,7 +191,7 @@ function findWeeklyBaseline(history, cutoff) {
   ) || null;
 }
 
-async function updateRatings(rows) {
+async function updateRatings(rows, season) {
   for (
     let index = 0;
     index < rows.length;
@@ -203,10 +203,7 @@ async function updateRatings(rows) {
     );
 
     const { error } = await supabase
-      .from("team_ratings")
-      .upsert(batch, {
-        onConflict: "team_id",
-      });
+      .rpc("publish_season_rating_deltas", { p_season: season, p_rows: batch });
 
     if (error) {
       throw new Error(
@@ -249,8 +246,14 @@ async function insertHistory(rows) {
 }
 
 async function main() {
+  const { data: settings, error: settingsError } = await supabase
+    .from("rating_season_settings").select("active_season").single();
+  if (settingsError) throw settingsError;
+  const { data: period, error: periodError } = await supabase
+    .from("rating_seasons").select("rating_from").eq("season",settings.active_season).single();
+  if (periodError) throw periodError;
   const currentRows = await fetchAll(
-    "team_ratings",
+    "current_team_ratings",
     `
       team_id,
       team_name,
@@ -281,7 +284,7 @@ async function main() {
       created_at
     `,
     (query) =>
-      query.order("created_at", {
+      (period.rating_from ? query.gte("created_at",period.rating_from) : query).order("created_at", {
         ascending: false,
       })
   );
@@ -364,7 +367,7 @@ async function main() {
     };
   });
 
-  await updateRatings(updates);
+  await updateRatings(updates, settings.active_season);
 
   await insertHistory(
     rankedRows.map((row) => ({

@@ -73,7 +73,7 @@ async function fetchAllRatings() {
 
   while (true) {
     const { data, error } = await supabase
-      .from("team_ratings")
+      .from("current_team_ratings")
       .select(
         [
           "team_id",

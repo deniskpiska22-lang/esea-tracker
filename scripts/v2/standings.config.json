@@ -1,6 +1,8 @@
 {
-  "season": 58,
-  "seasonId": "ec187700-30e2-4245-b5e2-daa762db12fc",
+  "season": 59,
+  "seasonId": "71f19bf6-4032-4b65-8b4a-6f98a6d271d3",
+  "syncSeasonParticipants": true,
+  "seasonHierarchyCache": "data/v2/season59-hierarchy.json",
   "seasonHierarchyUrl": "",
   "regions": [
     "*"

@@ -473,7 +473,7 @@ function getLogo(staticTeam, ratingRow) {
 
 function getCountry(staticTeam, ratingRow) {
   return normalizeCountry(
-    staticTeam?.country ??
+    ratingRow?.country ?? staticTeam?.country ??
       staticTeam?.countryCode ??
       staticTeam?.country_code ??
       ratingRow?.country ??
@@ -484,7 +484,7 @@ function getCountry(staticTeam, ratingRow) {
 
 function getDivision(staticTeam, ratingRow) {
   return normalizeDivision(
-    staticTeam?.division ??
+    ratingRow?.division ?? staticTeam?.division ??
       staticTeam?.leagueDivision ??
       ratingRow?.division ??
       ratingRow?.league_division ??
@@ -584,6 +584,9 @@ function CountryFlag({
 }
 
 function RankingsPage() {
+  const [selectedSeason, setSelectedSeason] = useState("");
+  const [seasonOptions, setSeasonOptions] = useState([]);
+  const [activeSeason, setActiveSeason] = useState(null);
   const [ratingRows, setRatingRows] =
     useState([]);
   const [loading, setLoading] =
@@ -616,6 +619,19 @@ function RankingsPage() {
     useState("update");
 
   useEffect(() => {
+    let cancelled = false;
+    if (supabase) Promise.all([
+      supabase.from("rating_seasons").select("season").order("season", { ascending: false }),
+      supabase.from("rating_season_settings").select("active_season").single(),
+    ]).then(([seasons, settings]) => {
+      if (cancelled) return;
+      if (!seasons.error) setSeasonOptions(seasons.data || []);
+      if (!settings.error) setActiveSeason(settings.data.active_season);
+    });
+    return () => { cancelled = true; };
+  }, [ratingRows]);
+
+  useEffect(() => {
     let mounted = true;
 
     async function loadRatings() {
@@ -644,8 +660,10 @@ function RankingsPage() {
       for (let from = 0; ; from += PAGE_SIZE) {
         const { data, error: pageError } =
           await supabase
-            .from("team_ratings")
-            .select("*")
+            .from(selectedSeason ? "team_season_rating_archive" : "current_team_ratings")
+            .select(selectedSeason ? "team_id,rating" : "*")
+            .order("team_id")
+            .match(selectedSeason ? { season: Number(selectedSeason) } : {})
             .range(from, from + PAGE_SIZE - 1);
 
         if (pageError) {
@@ -654,7 +672,7 @@ function RankingsPage() {
         }
 
         const page = Array.isArray(data) ? data : [];
-        allRows.push(...page);
+        allRows.push(...(selectedSeason ? page.map((row) => row.rating) : page));
 
         if (page.length < PAGE_SIZE) {
           break;
@@ -685,6 +703,7 @@ function RankingsPage() {
     }
 
     loadRatings();
+    const refreshTimer = setInterval(loadRatings, 60000);
 
     let channel = null;
 
@@ -707,12 +726,13 @@ function RankingsPage() {
 
     return () => {
       mounted = false;
+      clearInterval(refreshTimer);
 
       if (channel && supabase) {
         supabase.removeChannel(channel);
       }
     };
-  }, []);
+  }, [selectedSeason]);
 
   const staticTeams = useMemo(
     () =>
@@ -770,8 +790,7 @@ function RankingsPage() {
         );
 
         const name =
-          staticTeam?.name ??
-          getRatingRowName(ratingRow) ??
+          getRatingRowName(ratingRow) || staticTeam?.name ||
           "Unknown team";
 
         const slug =
@@ -809,7 +828,7 @@ function RankingsPage() {
           ),
           country,
           region:
-            REGION_BY_COUNTRY[country] ??
+            ratingRow.region ?? REGION_BY_COUNTRY[country] ??
             "Other",
           division,
           points: rating,
@@ -823,6 +842,7 @@ function RankingsPage() {
   }, [
     ratingRows,
     staticTeamIdentities,
+    changePeriod,
   ]);
 
   const sortedTeams = useMemo(() => {
@@ -1001,6 +1021,15 @@ useEffect(() => {
               ESEA team ranking based on match results
             </p>
           </div>
+
+          <select aria-label="Rating season" value={selectedSeason}
+            onChange={(event) => setSelectedSeason(event.target.value)}
+            className="rounded-lg border border-white/10 bg-[#0c1016] px-3 py-2 text-sm text-gray-300">
+            <option value="">Current season{activeSeason ? ` — S${activeSeason}` : ""}</option>
+            {seasonOptions.filter((item) => item.season !== activeSeason).map((item) => (
+              <option key={item.season} value={item.season}>S{item.season} — Final rankings</option>
+            ))}
+          </select>
 
           <div className="rounded-lg border border-white/5 bg-[#0c1016] px-4 py-2 text-sm text-gray-400">
             Teams:{" "}

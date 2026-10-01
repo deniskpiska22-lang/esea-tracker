@@ -61,6 +61,7 @@ async function loadConfig(configPath) {
 
 export async function discoverEntities({ configPath = DEFAULT_CONFIG, write = true, refresh = false } = {}) {
   const config = await loadConfig(configPath);
+  const cachePath = config.seasonHierarchyCache ? path.resolve(ROOT, config.seasonHierarchyCache) : DEFAULT_CACHE;
   if (!config.seasonId) throw new Error("standings.config.json must contain seasonId");
 
   let hierarchy;
@@ -68,7 +69,7 @@ export async function discoverEntities({ configPath = DEFAULT_CONFIG, write = tr
 
   if (!refresh) {
     try {
-      const cached = JSON.parse(await fs.readFile(DEFAULT_CACHE, "utf8"));
+      const cached = JSON.parse(await fs.readFile(cachePath, "utf8"));
       if ((cached.seasonId || cached.payload?.payload?.season_id || cached.payload?.season_id) === config.seasonId) {
         hierarchy = cached.payload;
         source = cached.source || "data/v2/season-hierarchy.json";
@@ -81,8 +82,8 @@ export async function discoverEntities({ configPath = DEFAULT_CONFIG, write = tr
     const loaded = await client.getSeason(config.seasonId, config.seasonHierarchyUrl || "");
     hierarchy = loaded.payload;
     source = loaded.url;
-    await fs.mkdir(path.dirname(DEFAULT_CACHE), { recursive: true });
-    await fs.writeFile(DEFAULT_CACHE, JSON.stringify({
+    await fs.mkdir(path.dirname(cachePath), { recursive: true });
+    await fs.writeFile(cachePath, JSON.stringify({
       fetched_at: new Date().toISOString(),
       seasonId: config.seasonId,
       source,
@@ -90,6 +91,10 @@ export async function discoverEntities({ configPath = DEFAULT_CONFIG, write = tr
     }, null, 2) + "\n");
   }
 
+  const seasonPayload = hierarchy?.payload ?? hierarchy;
+  if (seasonPayload?.id !== config.seasonId || seasonPayload?.number !== config.season) {
+    throw new Error("FACEIT season tree does not match configured season identity");
+  }
   const entities = extractStandingsEntities(hierarchy, config);
   if (!entities.length) {
     throw new Error(`No Regular Season stages found for: ${(config.divisions || ["*"]).join(", ")}`);

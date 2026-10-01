@@ -1735,8 +1735,9 @@ function LiveMatchPage() {
 
         for (let from = 0; ; from += PAGE_SIZE) {
           const { data, error } = await supabase
-            .from("team_ratings")
+            .from("current_team_ratings")
             .select("*")
+            .order("team_id")
             .range(from, from + PAGE_SIZE - 1);
 
           if (error) throw error;

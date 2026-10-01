@@ -77,9 +77,10 @@ export class FaceitStandingsClient {
 
         const json = JSON.parse(bodyText);
         const payload = json?.payload ?? json;
-        const standings = Array.isArray(payload?.standings)
-          ? payload.standings
-          : [];
+        if (!Array.isArray(payload?.standings)) {
+          throw new Error("FACEIT returned a malformed standings response");
+        }
+        const standings = payload.standings;
 
         return {
           url: url.toString(),
@@ -105,6 +106,7 @@ export class FaceitStandingsClient {
 
   async getAll({ entityId, entityType }) {
     const all = [];
+    const seen = new Set();
     let offset = 0;
 
     while (true) {
@@ -115,7 +117,13 @@ export class FaceitStandingsClient {
         limit: this.limit,
       });
 
-      all.push(...page.standings);
+      for (const row of page.standings) {
+        if (row.premade_team_id && seen.has(row.premade_team_id)) {
+          throw new Error("FACEIT standings pagination repeated a team");
+        }
+        if (row.premade_team_id) seen.add(row.premade_team_id);
+        all.push(row);
+      }
 
       // В текущих группах меньше 100 команд, поэтому обычно цикл завершится
       // после первого запроса. Пагинация оставлена на будущее.
@@ -129,6 +137,7 @@ export class FaceitStandingsClient {
       }
 
       offset += this.limit;
+      if (offset >= 10000) throw new Error("FACEIT standings pagination exceeded safety limit");
     }
   }
 }

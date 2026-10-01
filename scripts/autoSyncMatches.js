@@ -2554,7 +2554,7 @@ async function discoverMatches() {
   const trackedTeams =
     teams.filter(
       (team) =>
-        team.faceitTeamId
+        team.faceitTeamId && team.activeSeasonParticipant !== false
     );
 
   const finalsParticipants =

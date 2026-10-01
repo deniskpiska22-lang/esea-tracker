@@ -4,7 +4,8 @@ import {
   useState,
 } from "react";
 import { useParams, Link } from "react-router-dom";
-import teams from "../data/teams";
+import staticTeams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TeamRosterSection from "../components/TeamRosterSection";
@@ -151,7 +152,7 @@ function findLocalTeamForRankingRow(row) {
     getRankingTeamName(row)
   );
 
-  return teams.find((candidate) => {
+  return staticTeams.find((candidate) => {
     const candidateIds = [
       candidate?.faceitTeamId,
       candidate?.faceit_team_id,
@@ -282,6 +283,7 @@ function RankCard({
 
 function TeamPage() {
   const { slug } = useParams();
+  const { teams, catalogLoading } = useTeamCatalog();
 
   const team = teams?.find(
     (item) => item.slug === slug
@@ -325,8 +327,9 @@ function TeamPage() {
 
       for (let from = 0; ; from += PAGE_SIZE) {
         const { data, error: pageError } = await supabase
-          .from("team_ratings")
+          .from("current_team_ratings")
           .select("*")
+          .order("team_id")
           .range(from, from + PAGE_SIZE - 1);
 
         if (pageError) {
@@ -469,29 +472,6 @@ function TeamPage() {
     };
   }, [slug, team]);
 
-  if (!team) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#080b10] px-4 text-white">
-        <div className="rounded-3xl border border-white/[0.06] bg-[#101720] px-10 py-14 text-center">
-          <div className="text-xs font-black uppercase tracking-[0.22em] text-orange-400">
-            ESEA Tracker
-          </div>
-
-          <h1 className="mt-3 text-3xl font-black text-white">
-            Team not found
-          </h1>
-
-          <Link
-            to="/rankings"
-            className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-2.5 font-black text-white transition hover:bg-orange-400"
-          >
-            Back to rankings
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   const teamHistory =
     ratingHistoryRows.map((row) => {
       const dateValue =
@@ -617,10 +597,10 @@ function TeamPage() {
     const teamCountry =
       getRankingCountry(currentRow) ||
       normalizeCountry(
-        team.country ||
-        team.countryCode ||
-        team.country_code ||
-        team.nationality
+        team?.country ||
+        team?.countryCode ||
+        team?.country_code ||
+        team?.nationality
       );
 
     const countryRows = teamCountry
@@ -669,8 +649,14 @@ function TeamPage() {
 
   const currentRating =
     rankingData.rating ||
-    Number(team.points) ||
+    Number(team?.points) ||
     0;
+
+  if (!team) return (
+    <div className="flex min-h-screen items-center justify-center text-white">
+      {catalogLoading ? "Loading team…" : <Link to="/rankings">Team not found — Back to rankings</Link>}
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-[#080b10] px-4 py-8 text-white md:px-8">

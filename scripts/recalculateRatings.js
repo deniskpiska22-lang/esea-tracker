@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import process from "node:process";
+import { belongsToRatingPeriod } from "./lib/seasonParticipants.js";
 
 import {
   calculateMatchRating,
@@ -31,7 +33,6 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 });
 
 const PAGE_SIZE = 1000;
-const WRITE_BATCH_SIZE = 200;
 
 const APPLY_CHANGES = process.argv.includes("--apply");
 
@@ -246,17 +247,17 @@ function normalizeSeriesScore(match) {
   };
 }
 
-function createInitialRatingState(row) {
+function createInitialRatingState(row, seed, isCurrentTeam = true) {
   const division = normalizeDivisionName(
     row.division,
   );
 
   const initialPoints =
-    getInitialPoints(division);
+    seed?.points ?? getInitialPoints(division);
 
   return {
   teamId: normalizeTeamId(row.team_id),
-  isCurrentTeam: true,
+  isCurrentTeam,
     teamName: row.team_name,
     normalizedName: normalizeTeamName(
       row.team_name,
@@ -268,8 +269,8 @@ function createInitialRatingState(row) {
     points: initialPoints,
     previousPoints: initialPoints,
     pointsChange: 0,
-    matchesPlayed: 0,
-    rankingStatus: "unranked",
+    matchesPlayed: seed?.matches_played ?? 0,
+    rankingStatus: seed?.ranking_status ?? "unranked",
 
     wins: 0,
     losses: 0,
@@ -457,38 +458,6 @@ function resolveTeam({
   };
 }
 
-async function writeRatings(rows) {
-  for (
-    let index = 0;
-    index < rows.length;
-    index += WRITE_BATCH_SIZE
-  ) {
-    const batch = rows.slice(
-      index,
-      index + WRITE_BATCH_SIZE,
-    );
-
-    const { error } = await supabase
-      .from("team_ratings")
-      .upsert(batch, {
-        onConflict: "team_id",
-      });
-
-    if (error) {
-      throw new Error(
-        `Ошибка записи team_ratings: ${error.message}`,
-      );
-    }
-
-    console.log(
-      `Записано ${Math.min(
-        index + batch.length,
-        rows.length,
-      )}/${rows.length}`,
-    );
-  }
-}
-
 async function main() {
   console.log(
     APPLY_CHANGES
@@ -497,6 +466,20 @@ async function main() {
   );
 
   console.log("\nЗагружаю команды...");
+  const { data: settings, error: settingsError } = await supabase
+    .from("rating_season_settings").select("active_season").single();
+  if (settingsError) throw settingsError;
+  const { data: activeSeason, error: seasonError } = await supabase
+    .from("rating_seasons").select("*").eq("season", settings.active_season).single();
+  if (seasonError) throw seasonError;
+  const seeds = activeSeason.rating_from ? await fetchAllRows({
+    table: "team_season_rating_seeds", select: "*", orderColumn: "team_id",
+    filters: [{ type: "eq", column: "season", value: activeSeason.season }],
+  }) : [];
+  const seedsById = new Map(seeds.map((seed) => [seed.team_id, seed]));
+  const currentIds = new Set((await fetchAllRows({
+    table: "current_team_ratings", select: "team_id", orderColumn: "team_id",
+  })).map((row) => row.team_id));
 
   const ratingRows = await fetchAllRows({
     table: "team_ratings",
@@ -518,7 +501,7 @@ async function main() {
 
   for (const row of ratingRows) {
     const state =
-      createInitialRatingState(row);
+      createInitialRatingState(row, seedsById.get(row.team_id), currentIds.has(row.team_id));
 
     if (state.teamId) {
       ratingsById.set(
@@ -546,7 +529,7 @@ async function main() {
     "\nЗагружаю завершенные матчи...",
   );
 
-  const matches = await fetchAllRows({
+  const allMatches = await fetchAllRows({
     table: "matches",
     select: `
       id,
@@ -579,6 +562,7 @@ async function main() {
     ],
   });
 
+  const matches = allMatches.filter((match) => belongsToRatingPeriod(match, activeSeason));
   matches.sort(
     (first, second) =>
       getMatchTimestamp(first) -
@@ -586,7 +570,7 @@ async function main() {
   );
 
   console.log(
-    `Завершенных матчей S58 найдено: ${matches.length}`,
+    `Матчей рейтингового периода S${activeSeason.season}: ${matches.length}`,
   );
 
   let processed = 0;
@@ -929,7 +913,10 @@ const finalRows = Array.from(
     "\nЗаписываю итоговый рейтинг в Supabase...",
   );
 
-  await writeRatings(finalRows);
+  const { error: publishError } = await supabase.rpc("publish_season_ratings", {
+    p_season: activeSeason.season, p_rows: finalRows,
+  });
+  if (publishError) throw publishError;
 
   console.log(
     `\nГотово. Обновлено команд: ${finalRows.length}`,

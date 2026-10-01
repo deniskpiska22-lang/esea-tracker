@@ -160,11 +160,8 @@ function championshipsFromSeasonTree() {
       process.cwd(),
       "scripts/v2/standings.config.json"
     );
-    const hierarchyPath = path.resolve(
-      process.cwd(),
-      "data/v2/season-hierarchy.json"
-    );
     const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    const hierarchyPath = path.resolve(process.cwd(), config.seasonHierarchyCache || "data/v2/season-hierarchy.json");
     const cached = JSON.parse(fs.readFileSync(hierarchyPath, "utf8"));
 
     if (cached.seasonId !== config.seasonId) return [];
