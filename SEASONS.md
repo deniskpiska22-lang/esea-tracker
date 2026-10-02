@@ -12,6 +12,11 @@ teams; if standings are not published it checks season registrations. Empty,
 malformed, incomplete or conflicting imports do not alter the active roster or
 the last good bundled team list. A same-season roster drop over 20% is rejected
 for manual review, not automatically accepted.
+S59's Asia, Oceania and South America stages were reviewed on October 2: both
+stage/conference standings and registrations returned empty lists. Their IDs are
+explicitly allowlisted in `verifiedEmptyStages`; each run must still successfully
+check registrations before allowing an empty stage. Any teams later appearing
+there are included normally. Errors and empty unreviewed stages still block sync.
 
 Once a complete roster is available, the importer recalculates the old period,
 then calls the service-role-only `sync_season_participants` RPC. In one transaction
@@ -20,8 +25,8 @@ freezes rating seeds, and switches the active season. Existing team IDs, URLs,
 points, match history and player pages are preserved; no team is deleted.
 
 `current_team_ratings` exposes only registered current participants. Rankings,
-Home, match ranks and weekly snapshots use that view. Rankings includes an archive
-season selector. Old team pages remain accessible; new team pages load their
+Home, match ranks and weekly snapshots use that view. Rankings shows one continuous
+current ranking without a season selector. Old team pages remain accessible; new team pages load their
 metadata from `team_catalog` without waiting for a Vercel rebuild.
 
 The rating replay starts from immutable season seeds. Earlier-season matches

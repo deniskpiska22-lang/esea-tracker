@@ -137,10 +137,13 @@ async function main() {
   for (const entity of entities) {
     console.log(`Standings: ${entity.division} ${entity.conference || entity.stage} (${entity.entityType})`);
     const result = await standingsClient.getAll(entity);
+    let registrationsChecked = false;
     if (!result.standings.length && config.syncSeasonParticipants) {
       result.standings = await getRegistrations(config.seasonId, entity);
+      registrationsChecked = true;
     }
     imports.push({ ...entity, rows: result.standings.length,
+      verifiedEmpty: entity.allowVerifiedEmpty && registrationsChecked && !result.standings.length,
       invalidRows: result.standings.filter((row) => !row.premade_team_id).length,
       tournamentType: result.tournamentType });
     for (const row of result.standings) {

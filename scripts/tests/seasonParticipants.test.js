@@ -23,6 +23,17 @@ test("S59 has all 10 regular stages across 5 regions and 28 match championships,
 test("complete registration report accepted, including teams with zero games", () => {
   assert.doesNotThrow(() => validateSeasonReport(report(), entities));
 });
+test("only explicitly reviewed empty stages with a successful registration check are allowed", () => {
+  const r = report();
+  r.imports[0].rows = 0;
+  assert.throws(() => validateSeasonReport(r, entities));
+  r.imports[0].verifiedEmpty = true;
+  assert.doesNotThrow(() => validateSeasonReport(r, entities));
+  const regular = entities.findIndex((e) => !e.allowVerifiedEmpty);
+  r.imports[regular].rows = 0;
+  r.imports[regular].verifiedEmpty = true;
+  assert.throws(() => validateSeasonReport(r, entities));
+});
 test("empty, missing, invalid, duplicate and conflicting imports cannot activate", () => {
   for (const mutate of [
     (r) => { r.imports[0].rows=0; },

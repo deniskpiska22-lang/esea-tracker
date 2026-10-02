@@ -45,6 +45,7 @@ export function extractStandingsEntities(tree, config) {
           })),
           entityId: stage.id,
           entityType: "stage",
+          allowVerifiedEmpty: (config.verifiedEmptyStages || []).includes(stage.id),
         });
       }
     }

@@ -9,7 +9,9 @@ export function validateSeasonReport(report, entities) {
   const imported = new Map(report.imports.map((item) => [item.entityId, item]));
   for (const entity of entities) {
     const item = imported.get(entity.entityId);
-    if (!item || item.rows < 1) throw new Error(`Season switch deferred: empty ${entity.region} / ${entity.division}`);
+    if (!item || (item.rows < 1 && !(entity.allowVerifiedEmpty && item.verifiedEmpty))) {
+      throw new Error(`Season switch deferred: empty ${entity.region} / ${entity.division}`);
+    }
     if (item.invalidRows) throw new Error(`Invalid team identities in ${entity.entityId}`);
   }
   const seen = new Set();
@@ -55,8 +57,10 @@ export async function syncSeasonParticipants(report, entities) {
   });
   const { data, error } = await db.rpc("sync_season_participants", {
     p_season: report.season, p_season_id: report.seasonId,
-    p_teams: rows, p_imports: report.imports,
-    p_expected_groups: entities.map((e) => e.entityId),
+    p_teams: rows, p_imports: report.imports.filter((item) => item.rows > 0),
+    p_expected_groups: entities.filter((entity) =>
+      report.imports.find((item) => item.entityId === entity.entityId)?.rows > 0
+    ).map((e) => e.entityId),
   });
   if (error) throw new Error(`Season participants were not applied: ${error.message}`);
   console.log("Season participants:", JSON.stringify(data));
