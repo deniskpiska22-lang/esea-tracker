@@ -23,6 +23,8 @@ export function extractStandingsEntities(tree, config) {
 
     for (const division of region.divisions || []) {
       if (!allDivisions && !allowed.has(normalize(division.name))) continue;
+      const divisionRegions = config.divisionRegions?.[division.name];
+      if (divisionRegions && !divisionRegions.map(normalize).includes(normalize(region.name))) continue;
 
       for (const stage of division.stages || []) {
         // Team discovery must use the active regular-season table. Playoffs contain

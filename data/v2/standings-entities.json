@@ -1,33 +1,16 @@
 {
-  "generated_at": "2026-10-01T19:51:37.280Z",
+  "generated_at": "2026-10-02T11:19:08.055Z",
   "season": 59,
   "seasonId": "71f19bf6-4032-4b65-8b4a-6f98a6d271d3",
-  "source": "provided-season-59-tree",
+  "source": "https://www.faceit.com/api/team-leagues/v2/seasons/tree?entityType=season&entityId=71f19bf6-4032-4b65-8b4a-6f98a6d271d3",
   "divisions": [
     "Entry",
     "Intermediate",
     "Main",
-    "Advanced"
+    "Advanced",
+    "Open10"
   ],
   "entities": [
-    {
-      "region": "Asia",
-      "regionId": "a3fa5353-1471-4c7c-b324-8c7190bc43e0",
-      "division": "Intermediate",
-      "divisionId": "3254af73-493a-46f3-b487-10e1176b2ce7",
-      "stage": "Regular Season",
-      "stageId": "34efa3e8-9671-49f6-b090-27de16e4ebf6",
-      "conference": null,
-      "conferences": [
-        {
-          "id": "d32cbf18-d356-46ef-bc33-0a515c8ca16c",
-          "name": "Central",
-          "championshipId": "95cde847-56e2-4c94-b396-c318204d7a43"
-        }
-      ],
-      "entityId": "34efa3e8-9671-49f6-b090-27de16e4ebf6",
-      "entityType": "stage"
-    },
     {
       "region": "Europe",
       "regionId": "54a8eefb-a02e-4ba8-8ad5-9c82f676ce84",
@@ -40,11 +23,12 @@
         {
           "id": "bdba2683-577f-4f27-935a-1e8d9f39439c",
           "name": "Central",
-          "championshipId": "9798621e-a0b2-4e1a-9c2f-ea12fbdf6de0"
+          "championshipId": "75967955-d150-40d4-a663-a57fbc159994"
         }
       ],
       "entityId": "a19b48ce-a247-4351-aa70-d5634cf0b1d4",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "Europe",
@@ -58,26 +42,27 @@
         {
           "id": "423652f3-b32f-451b-8edc-6c9af1832f10",
           "name": "A",
-          "championshipId": "4b780f2b-447d-45e1-85fe-7daad48d313a"
+          "championshipId": "3cbe8c10-8a93-434d-a98e-abb6e2a30945"
         },
         {
           "id": "aab82d5e-bd91-4b19-8d3f-acfe65244238",
           "name": "B",
-          "championshipId": "ebcc0585-7bbe-4e43-9474-440a5277481a"
+          "championshipId": "7fae1d2f-e14b-4c99-9a24-11466f83d767"
         },
         {
           "id": "2b50384d-3d99-4262-86a7-4a31e3f64603",
           "name": "C",
-          "championshipId": "6a96cc4a-d63c-4a5f-a28a-63e1223069ce"
+          "championshipId": "30498975-32e5-4283-b67f-03bbfe4135bc"
         },
         {
           "id": "f5c04b02-f91e-4c3d-b288-727c362ca9c3",
           "name": "D",
-          "championshipId": "8fa312c7-7c36-470f-b0eb-2544a2fdd176"
+          "championshipId": "5ccd5df6-e0a0-4716-b0ee-3226b0103718"
         }
       ],
       "entityId": "f5af412a-fcf2-451a-b631-6a6bdbe9ce89",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "Europe",
@@ -91,16 +76,17 @@
         {
           "id": "82a619d9-e30b-4918-a990-ec6e911430c9",
           "name": "A",
-          "championshipId": "261734ee-97af-4e9f-bf4c-841afe753548"
+          "championshipId": "947f6c74-f496-4d43-b0f6-fb613ea4b3d3"
         },
         {
           "id": "a24d2b08-e2f0-475c-b35b-189b4dfc7ff3",
           "name": "B",
-          "championshipId": "772b75fc-6c01-4990-9f2c-acd719732055"
+          "championshipId": "356b69d9-32ec-4632-8408-f740161e21b0"
         }
       ],
       "entityId": "e2e666a3-63a3-45c9-960a-f25370a255b8",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "Europe",
@@ -114,16 +100,51 @@
         {
           "id": "59b0dbcd-d775-41d9-bfc0-06eb55fad119",
           "name": "A",
-          "championshipId": "8f5f8c2b-8e13-41cc-bb4d-1171a9f8ae98"
+          "championshipId": "7cd8fc43-f0fb-4633-ab6d-bb29374fe200"
         },
         {
           "id": "90f2ee50-2475-402f-b740-d6f6dbaac104",
           "name": "B",
-          "championshipId": "6e3df28b-00ac-4c68-b4be-31d0bd84990b"
+          "championshipId": "cfd0f3b2-b245-4e7b-b3d3-689199b205ae"
         }
       ],
       "entityId": "e8afe22c-098f-4e34-b78b-7fe5a5202073",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
+    },
+    {
+      "region": "Europe",
+      "regionId": "54a8eefb-a02e-4ba8-8ad5-9c82f676ce84",
+      "division": "Open10",
+      "divisionId": "789b12dd-47fb-4d7b-a65c-da644fa70b7a",
+      "stage": "Regular Season",
+      "stageId": "029aa619-2abc-4d5e-aa33-443ca69fbe40",
+      "conference": null,
+      "conferences": [
+        {
+          "id": "9c511b36-9e93-4045-8d81-bb8dcfc57cc9",
+          "name": "A",
+          "championshipId": "39711cea-16f6-4add-b164-cd17d10747e4"
+        },
+        {
+          "id": "ca726206-26aa-443b-83b8-1f6460c4072c",
+          "name": "B",
+          "championshipId": "3b1873c0-4401-4a4e-8aef-111138b9a3c4"
+        },
+        {
+          "id": "d80553c8-a9d9-4c50-978a-420c80abeed2",
+          "name": "C",
+          "championshipId": "6051ea06-27bb-407d-97e9-56c155f12aba"
+        },
+        {
+          "id": "7e4f9a1d-e077-4889-bf58-3ea34808460c",
+          "name": "D",
+          "championshipId": "e6065693-7da0-4b1b-aa8c-afdcc2dafe16"
+        }
+      ],
+      "entityId": "029aa619-2abc-4d5e-aa33-443ca69fbe40",
+      "entityType": "stage",
+      "allowVerifiedEmpty": true
     },
     {
       "region": "North America",
@@ -141,7 +162,8 @@
         }
       ],
       "entityId": "753a3077-274a-4f8c-92e3-8314627d9d96",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "North America",
@@ -159,7 +181,8 @@
         }
       ],
       "entityId": "7d74e85d-e453-4364-ae3a-bc8e825e3fd0",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "North America",
@@ -182,25 +205,8 @@
         }
       ],
       "entityId": "5efe0695-d22f-4a6c-b491-a7c3e498b4f2",
-      "entityType": "stage"
-    },
-    {
-      "region": "Oceania",
-      "regionId": "912cbee5-0ba9-4822-a886-f3ff33127b28",
-      "division": "Intermediate",
-      "divisionId": "1076e1f6-c77b-4db2-b8c4-ce781b053105",
-      "stage": "Regular Season",
-      "stageId": "af3858af-5871-4ef0-b4a5-6eeabf0d1ebb",
-      "conference": null,
-      "conferences": [
-        {
-          "id": "fd269e60-4327-4fd7-8a6b-a920d2e6f6b5",
-          "name": "Central",
-          "championshipId": "841ab0a4-24ed-47df-8fe2-ef9e4d6aed39"
-        }
-      ],
-      "entityId": "af3858af-5871-4ef0-b4a5-6eeabf0d1ebb",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": false
     },
     {
       "region": "South America",
@@ -218,7 +224,8 @@
         }
       ],
       "entityId": "c37f3ce6-fc9c-4128-a610-46206ebf2a2d",
-      "entityType": "stage"
+      "entityType": "stage",
+      "allowVerifiedEmpty": true
     }
   ]
 }

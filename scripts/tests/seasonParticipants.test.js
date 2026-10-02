@@ -5,6 +5,7 @@ import { validateSeasonReport, belongsToRatingPeriod } from "../lib/seasonPartic
 import { extractStandingsEntities } from "../v2/discoverStandingsEntities.js";
 import { FaceitStandingsClient } from "../v2/faceitStandingsClient.js";
 import { CHAMPIONSHIPS } from "../matchSyncConfig.js";
+import { getInitialPoints, getDivisionKFactor } from "../../src/utils/teamRating.js";
 
 const config = JSON.parse(fs.readFileSync("scripts/v2/standings.config.json"));
 const tree = JSON.parse(fs.readFileSync(config.seasonHierarchyCache)).payload;
@@ -14,20 +15,35 @@ function report() {
     imports: entities.map((e) => ({ ...e, rows: 1, invalidRows: 0 })),
     teams: entities.map((e, i) => ({ team_id: `team-${i}`, sources: [{ region: e.region, division: e.division }] })) };
 }
-test("S59 has all 10 regular stages across 5 regions and 28 match championships, no Open", () => {
-  assert.equal(entities.length, 10);
-  assert.equal(new Set(entities.map((e) => e.region)).size, 5);
-  assert.equal(CHAMPIONSHIPS.filter((c) => c.name.startsWith("S59")).length, 28);
+test("S59 includes only European Open10 and excludes Asia/Oceania", () => {
+  assert.equal(entities.length, 9);
+  assert.equal(new Set(entities.map((e) => e.region)).size, 3);
+  assert.equal(CHAMPIONSHIPS.filter((c) => c.name.startsWith("S59")).length, 33);
   assert.ok(entities.every((e) => config.divisions.includes(e.division)));
+  assert.ok(entities.filter((e) => e.division.startsWith("Open")).every((e) => e.division === "Open10" && e.region === "Europe"));
+  assert.ok(CHAMPIONSHIPS.every((c) => !/\b(?:Asia|Oceania|OCE)\b/i.test(c.name)));
+  assert.ok(!CHAMPIONSHIPS.some((c) => /Open(?:9|1-4|5-8)\b/.test(c.name)));
+  assert.equal(getInitialPoints("Open10"), 130);
+  assert.equal(getDivisionKFactor("Open10"), 12);
+});
+test("Open10 cannot be discovered outside Europe even if the tree gains it", () => {
+  const synthetic = structuredClone(tree);
+  const payload = synthetic.payload ?? synthetic;
+  const eu = payload.regions.find((r) => r.name === "Europe");
+  payload.regions.find((r) => r.name === "North America").divisions.push(
+    structuredClone(eu.divisions.find((d) => d.name === "Open10"))
+  );
+  assert.equal(extractStandingsEntities(synthetic, config).filter((e) => e.division === "Open10").length, 1);
 });
 test("complete registration report accepted, including teams with zero games", () => {
   assert.doesNotThrow(() => validateSeasonReport(report(), entities));
 });
 test("only explicitly reviewed empty stages with a successful registration check are allowed", () => {
   const r = report();
-  r.imports[0].rows = 0;
+  const reviewed = entities.findIndex((e) => e.allowVerifiedEmpty);
+  r.imports[reviewed].rows = 0;
   assert.throws(() => validateSeasonReport(r, entities));
-  r.imports[0].verifiedEmpty = true;
+  r.imports[reviewed].verifiedEmpty = true;
   assert.doesNotThrow(() => validateSeasonReport(r, entities));
   const regular = entities.findIndex((e) => !e.allowVerifiedEmpty);
   r.imports[regular].rows = 0;

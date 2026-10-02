@@ -16,6 +16,7 @@ const DIVISIONS = [
   "Main",
   "Intermediate",
   "Entry",
+  "Open10",
 ];
 
 const REGIONS = [
@@ -23,8 +24,6 @@ const REGIONS = [
   "Europe",
   "North America",
   "South America",
-  "Asia",
-  "Oceania",
   "Africa",
 ];
 

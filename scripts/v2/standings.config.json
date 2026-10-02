@@ -3,19 +3,23 @@
   "seasonId": "71f19bf6-4032-4b65-8b4a-6f98a6d271d3",
   "syncSeasonParticipants": true,
   "verifiedEmptyStages": [
-    "34efa3e8-9671-49f6-b090-27de16e4ebf6",
-    "af3858af-5871-4ef0-b4a5-6eeabf0d1ebb",
+    "029aa619-2abc-4d5e-aa33-443ca69fbe40",
     "c37f3ce6-fc9c-4128-a610-46206ebf2a2d"
   ],
   "seasonHierarchyCache": "data/v2/season59-hierarchy.json",
   "seasonHierarchyUrl": "",
   "regions": [
-    "*"
+    "Europe",
+    "North America",
+    "South America",
+    "Africa"
   ],
   "divisions": [
     "Entry",
     "Intermediate",
     "Main",
-    "Advanced"
-  ]
+    "Advanced",
+    "Open10"
+  ],
+  "divisionRegions": { "Open10": ["Europe"] }
 }

@@ -1,9 +1,11 @@
 # Season registration and rating transition
 
-`scripts/v2/standings.config.json` selects S59 and exactly Entry, Intermediate,
-Main and Advanced across all regions present in the supplied tree. The seeded
-tree has 10 regular-season stages and 28 match championships (16 regular, 12
-playoff). Open divisions are excluded. Championship IDs are read from conference
+`scripts/v2/standings.config.json` selects S59: Entry, Intermediate,
+Main and Advanced in Europe, North America, South America and Africa when present,
+plus Open10 in Europe only. Asia and Oceania are excluded, including legacy match
+discovery sources. The October 2 tree has 9 selected regular-season stages and
+33 match championships, including 8 European Open10 championships (4 regular,
+4 playoff). Other Open divisions are excluded. Championship IDs are read from conference
 fields, never synthesized from division IDs.
 
 Railway's existing `automationWorker.js` runs `syncStandings.js` every six hours.
@@ -12,7 +14,7 @@ teams; if standings are not published it checks season registrations. Empty,
 malformed, incomplete or conflicting imports do not alter the active roster or
 the last good bundled team list. A same-season roster drop over 20% is rejected
 for manual review, not automatically accepted.
-S59's Asia, Oceania and South America stages were reviewed on October 2: both
+S59's European Open10 and South America stages were reviewed on October 2: both
 stage/conference standings and registrations returned empty lists. Their IDs are
 explicitly allowlisted in `verifiedEmptyStages`; each run must still successfully
 check registrations before allowing an empty stage. Any teams later appearing

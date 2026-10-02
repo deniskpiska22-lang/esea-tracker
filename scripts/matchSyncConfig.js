@@ -186,6 +186,8 @@ function championshipsFromSeasonTree() {
         // Finals are match sources, not standings sources. Always include them
         // here even when standings.config.json only lists league divisions.
         if (!allDivisions && !allowedDivisions.has(divisionName) && !isSeasonFinals) continue;
+        const divisionRegions = config.divisionRegions?.[division.name];
+        if (divisionRegions && !divisionRegions.map(normalize).includes(normalize(region.name))) continue;
 
         for (const stage of division.stages || []) {
           for (const conference of stage.conferences || []) {
@@ -215,4 +217,6 @@ const byId = new Map(
   ])
 );
 
-export const CHAMPIONSHIPS = [...byId.values()];
+export const CHAMPIONSHIPS = [...byId.values()].filter((item) =>
+  !/\b(?:Asia|Oceania|OCE)\b/i.test(item.name)
+);

@@ -125,7 +125,7 @@ async function main() {
     refresh: true,
   });
   const entities = discovery.entities;
-  if (!entities.length) throw new Error("No Entry/Intermediate/Main/Advanced standings entities discovered");
+  if (!entities.length) throw new Error("No configured standings entities discovered");
 
   const standingsClient = new FaceitStandingsClient({
     userId: process.env.FACEIT_USER_ID || "",
