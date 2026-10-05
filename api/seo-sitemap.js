@@ -9,9 +9,8 @@ export default async function handler(req,res) {
     const client=seoClient();
     let entries;
     if(kind==='index') {
-      const counts=await Promise.all(['team_catalog','players'].map((table,i)=>client.from(table).select(i?'faceit_id':'team_id',{count:'exact'}).limit(1)));
-      counts.forEach(r=>{if(r.error) throw r.error;});
-      entries=counts.flatMap((r,i)=>Array.from({length:Math.max(1,Math.ceil(r.count/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${i?'players':'teams'}-${p}.xml`})));
+      const counts=await result(client.rpc("seo_sitemap_counts"));
+      entries=[counts.teams,counts.players].flatMap((count,i)=>Array.from({length:Math.max(1,Math.ceil(count/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${i?'players':'teams'}-${p}.xml`})));
     } else {
       const rows=await result(kind==='teams'?client.from('team_catalog').select('team,updated_at').order('team_id').range(page*PAGE_SIZE,(page+1)*PAGE_SIZE-1):client.from('players').select('faceit_id,nickname,updated_at').order('faceit_id').range(page*PAGE_SIZE,(page+1)*PAGE_SIZE-1));
       entries=rows.filter(r=>kind==='teams'?r.team?.slug:r.faceit_id && r.nickname).map(r=>({url:`${ORIGIN}/${kind}/${encodeURIComponent(kind==='teams'?r.team.slug:r.faceit_id)}`,updatedAt:r.updated_at}));

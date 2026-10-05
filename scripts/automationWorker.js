@@ -85,11 +85,18 @@ function runNodeScript(name, scriptPath, args = [], extraEnv = {}) {
 
     const child = spawn(process.execPath, [scriptPath, ...args], {
       cwd: process.cwd(),
-      stdio: "inherit",
+      stdio: ["ignore", "pipe", "pipe"],
       shell: false,
       env: { ...process.env, ...extraEnv },
     });
     activeChild = child;
+    let lastErrorLine = "";
+    child.stdout.on("data", chunk => process.stdout.write(chunk));
+    child.stderr.on("data", chunk => {
+      process.stderr.write(chunk);
+      const lines = chunk.toString().trim().split("\n");
+      lastErrorLine = lines.at(-1)?.slice(0,300) || lastErrorLine;
+    });
 
     let settled = false;
     const finish = (result) => {
@@ -110,7 +117,7 @@ function runNodeScript(name, scriptPath, args = [], extraEnv = {}) {
 
     child.on("error", (error) => finish({ code: null, error: error.message }));
     child.on("exit", (code, signal) =>
-      finish({ code, error: signal ? `signal ${signal}` : null })
+      finish({ code, error: signal ? `signal ${signal}` : code ? lastErrorLine || `exit ${code}` : null })
     );
   });
 }
