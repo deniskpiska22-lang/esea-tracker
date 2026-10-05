@@ -312,8 +312,15 @@ export default function MatchLineups({ team1, team2 }) {
   const team1Id = getTeamId(team1);
   const team2Id = getTeamId(team2);
 
-  const roster1 = useTeamRoster(team1Id);
-  const roster2 = useTeamRoster(team2Id);
+  const currentRoster1 = useTeamRoster(team1Id);
+  const currentRoster2 = useTeamRoster(team2Id);
+  const withMatchRoster = (team, current) => {
+    if (!team.matchRoster?.length) return current;
+    const known = new Map([...current.starting, ...current.bench, ...current.former].map(p => [getPlayerId(p), p]));
+    return {...current, loading:false, starting:team.matchRoster.map(p => ({...known.get(getPlayerId(p)), ...p})), lineupSource:"match_roster"};
+  };
+  const roster1 = withMatchRoster(team1, currentRoster1);
+  const roster2 = withMatchRoster(team2, currentRoster2);
 
   const [selectedId1, setSelectedId1] = useState(null);
   const [selectedId2, setSelectedId2] = useState(null);

@@ -40,6 +40,7 @@ let activeChild = null;
 let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
+let lastRosterAt = 0;
 let lastWeeklySnapshotKey = null;
 
 function sleep(ms) {
@@ -146,6 +147,11 @@ async function runDueTasks() {
       RUN_POST_MATCH_PIPELINE: "0",
       RUN_WEEKLY_RATING_SNAPSHOT: "0",
     });
+  }
+
+  if (lastRosterAt === 0 || now - lastRosterAt >= DISCOVERY_INTERVAL_MS) {
+    lastRosterAt = now;
+    await runTask("roster-discovery", "scripts/syncTeamRosters.js");
   }
 
   if (lastBackfillAt === 0 || now - lastBackfillAt >= BACKFILL_INTERVAL_MS) {

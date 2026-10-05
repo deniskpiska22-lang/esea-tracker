@@ -13,11 +13,14 @@ import {
 
 import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";
-import teams from "./data/teams";
+import { useTeamCatalog } from "./hooks/useTeamCatalog";
+import { supabase } from "./lib/supabaseClient";
 import PariSideRails from "./components/PariSideRails";
 import RouteSeo from "./components/RouteSeo";
 
 function App() {
+  const { teams } = useTeamCatalog();
+  const [liveSearchPlayers, setLiveSearchPlayers] = useState([]);
   useEffect(() => {
     const shell = document.getElementById("app-boot-shell");
     if (!shell) return undefined;
@@ -108,6 +111,17 @@ function App() {
   const normalizedSearch =
     search.trim().toLowerCase();
 
+  useEffect(() => {
+    if (!showSearch || normalizedSearch.length < 2 || !supabase) return;
+    let cancelled = false;
+    const timer = window.setTimeout(async () => {
+      const escaped = normalizedSearch.replace(/[\\%_]/g, "\\$&");
+      const {data,error} = await supabase.from("players").select("faceit_id,nickname").ilike("nickname", `%${escaped}%`).limit(6);
+      if (!cancelled && !error) setLiveSearchPlayers((data || []).map(p => ({...p,query:normalizedSearch})));
+    }, 250);
+    return () => {cancelled = true; window.clearTimeout(timer);};
+  }, [normalizedSearch,showSearch]);
+
   const filteredTeams = useMemo(() => {
     if (!normalizedSearch) {
       return [];
@@ -120,7 +134,7 @@ function App() {
           .includes(normalizedSearch)
       )
       .slice(0, 6);
-  }, [normalizedSearch]);
+  }, [normalizedSearch, teams]);
 
   const filteredPlayers =
     useMemo(() => {
@@ -128,7 +142,12 @@ function App() {
         return [];
       }
 
-      return searchablePlayers
+      const byId = new Map();
+      for (const p of [...liveSearchPlayers.filter(p=>p.query===normalizedSearch), ...teams.flatMap(t=>(t.players || []).map((nickname,i)=>({nickname,faceit_id:t.playerIds?.[i],team:t.name}))), ...searchablePlayers]) {
+        const key = String(p.nickname || "").toLowerCase();
+        if (!byId.has(key)) byId.set(key,p);
+      }
+      return [...byId.values()]
         .filter((player) =>
           player.nickname
             .toLowerCase()
@@ -138,6 +157,8 @@ function App() {
     }, [
       normalizedSearch,
       searchablePlayers,
+      liveSearchPlayers,
+      teams,
     ]);
 
   function closeSearch() {
@@ -162,7 +183,7 @@ function App() {
     closeSearch();
     navigate(
       `/players/${encodeURIComponent(
-        player.nickname
+        player.faceit_id || player.nickname
       )}`
     );
   }

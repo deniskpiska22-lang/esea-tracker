@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog";
 
 const SITE_ORIGIN = "https://eseatracker.ru";
 const DEFAULT_TITLE =
@@ -59,7 +59,7 @@ function setMeta(selector, attributes, content) {
   element.setAttribute("content", content);
 }
 
-function getTeamMetadata(pathname) {
+function getTeamMetadata(pathname, teams) {
   const match = pathname.match(/^\/(?:teams|team)\/([^/]+)(?:\/(matches|stats|analytics|veto))?/);
 
   if (!match) {
@@ -94,11 +94,12 @@ function getTeamMetadata(pathname) {
     description: `${team.name} — ${sectionLabels[section]} ESEA CS2.${suffix}`,
     canonicalPath: `/teams/${team.slug}${canonicalSection}`,
     image: team.logo || `${SITE_ORIGIN}/logo.png`,
+    schema: { "@context":"https://schema.org", "@type":"SportsTeam", name:team.name, sport:"Counter-Strike 2", url:`${SITE_ORIGIN}/teams/${team.slug}${canonicalSection}` },
   };
 }
 
-function getMetadata(pathname) {
-  const teamMetadata = getTeamMetadata(pathname);
+function getMetadata(pathname, teams) {
+  const teamMetadata = getTeamMetadata(pathname, teams);
 
   if (teamMetadata) {
     return teamMetadata;
@@ -132,13 +133,14 @@ function getMetadata(pathname) {
 
 export default function RouteSeo() {
   const { pathname } = useLocation();
+  const { teams } = useTeamCatalog();
   const [dynamicMetadata, setDynamicMetadata] = useState(null);
   const metadata = useMemo(
     () =>
       dynamicMetadata?.routePath === pathname
         ? dynamicMetadata
-        : getMetadata(pathname),
-    [dynamicMetadata, pathname]
+        : getMetadata(pathname, teams),
+    [dynamicMetadata, pathname, teams]
   );
 
   useEffect(() => {
@@ -157,8 +159,11 @@ export default function RouteSeo() {
       metadata.canonicalPath || pathname,
       SITE_ORIGIN
     ).toString();
-    const image = metadata.image || `${SITE_ORIGIN}/logo.png`;
+    const image = new URL(metadata.image || "/logo.png", SITE_ORIGIN).toString();
 
+    let structured = document.head.querySelector('script[type="application/ld+json"]');
+    if (!structured) { structured = document.createElement("script"); structured.type = "application/ld+json"; document.head.appendChild(structured); }
+    structured.textContent = JSON.stringify(metadata.schema || { "@context":"https://schema.org", "@type":"WebSite", name:"ESEA Tracker", url:SITE_ORIGIN });
     document.title = metadata.title;
     document.documentElement.lang = "ru";
 

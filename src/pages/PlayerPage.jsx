@@ -1,3 +1,4 @@
+import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import {
   useEffect,
   useMemo,
@@ -639,6 +640,7 @@ function StatCard({
 }
 
 function PlayerPage() {
+  const { teams } = useTeamCatalog();
   const {
     playerId,
     nickname,
@@ -873,18 +875,12 @@ function PlayerPage() {
         let playerRow = null;
 
         if (playerIdFromRating) {
-          const {
-            data,
-            error,
-          } = await supabase
-            .from("players")
-            .select(
-              "id,faceit_id,nickname,avatar,country,faceit_elo,faceit_level"
-            )
-            .eq(
-              "faceit_id",
-              playerIdFromRating
-            )
+          let identityQuery = supabase.from("players")
+            .select("id,faceit_id,nickname,avatar,country,faceit_elo,faceit_level");
+          identityQuery = isFaceitPlayerId(playerIdFromRating)
+            ? identityQuery.eq("faceit_id", playerIdFromRating)
+            : identityQuery.ilike("nickname", decodedRouteValue).limit(1);
+          const { data, error } = await identityQuery
             .maybeSingle();
 
           if (
@@ -986,7 +982,7 @@ function PlayerPage() {
           );
 
           setResolvedPlayerId(
-            playerIdFromRating
+            playerRow?.faceit_id || playerIdFromRating
           );
         }
       } catch (error) {
@@ -1245,10 +1241,10 @@ const currentTeam =
         nickname: decodedNickname,
         avatar: databasePlayer?.avatar,
         teamName: currentTeam?.name,
-        rating: averageRating,
+        rating: mapsPlayed ? averageRating : null,
         mapsPlayed,
-        adr: avgAdr,
-        kd: avgKd,
+        adr: mapsPlayed ? avgAdr : null,
+        kd: mapsPlayed ? avgKd : null,
       },
       playerAliases
     );
@@ -1256,6 +1252,7 @@ const currentTeam =
       new CustomEvent("player-seo-update", {
         detail: {
           ...metadata,
+          schema: { "@context":"https://schema.org", "@type":"Person", name:decodedNickname, identifier:resolvedPlayerId, url:metadata.canonicalUrl },
           routePath: metadata.canonicalPath,
         },
       })

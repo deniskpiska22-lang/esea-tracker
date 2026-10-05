@@ -1,25 +1,12 @@
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
-import teams from "../src/data/teams.generated.js";
+import { runDiscoveryScan, retryAfterMs } from "./lib/discoveryScan.js";
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY =
   process.env.SUPABASE_SERVICE_ROLE_KEY ||
   process.env.SUPABASE_SERVICE_KEY ||
   process.env.SUPABASE_SECRET_KEY;
-
-const FACEIT_BATCH_URL =
-  "https://www.faceit.com/api/teams/v3/teams/batch-get";
-
-const FACEIT_SESSION_COOKIE =
-  process.env.FACEIT_SESSION_COOKIE ||
-  process.env.FACEIT_STATS_COOKIE ||
-  "";
-
-const BATCH_SIZE = Math.max(
-  1,
-  Math.min(100, Number(process.env.ROSTER_BATCH_SIZE || 50)),
-);
 
 const REQUEST_DELAY_MS = Math.max(
   0,
@@ -29,11 +16,6 @@ const REQUEST_DELAY_MS = Math.max(
 const REQUEST_TIMEOUT_MS = Math.max(
   5000,
   Number(process.env.ROSTER_REQUEST_TIMEOUT_MS || 30000),
-);
-
-const MAX_ATTEMPTS = Math.max(
-  1,
-  Number(process.env.ROSTER_REQUEST_ATTEMPTS || 4),
 );
 
 if (!SUPABASE_URL) {
@@ -53,8 +35,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   },
 });
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 function cleanString(value) {
   const result = String(value ?? "").trim();
   return result || null;
@@ -66,22 +46,13 @@ function normalizeCountry(value) {
 }
 
 function numberOrNull(value) {
+  if (value == null || value === "") return null;
   const number = Number(value);
   return Number.isFinite(number) ? Math.round(number) : null;
 }
 
-function splitIntoChunks(items, size) {
-  const chunks = [];
-
-  for (let index = 0; index < items.length; index += size) {
-    chunks.push(items.slice(index, index + size));
-  }
-
-  return chunks;
-}
-
 function normalizeMember(raw) {
-  const faceitId = cleanString(raw?.id ?? raw?.player_id ?? raw?.playerId);
+  const faceitId = cleanString(raw?.user_id ?? raw?.id ?? raw?.player_id ?? raw?.playerId);
 
   if (!faceitId) {
     return null;
@@ -106,69 +77,25 @@ function normalizeMember(raw) {
           cs2?.skillLevel ??
           raw?.skill_level ??
           raw?.level,
-      ) ?? 1,
+      ),
     updated_at: new Date().toISOString(),
   };
 }
 
-async function fetchBatch(ids) {
-  let lastError = null;
-
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-    try {
-      const headers = {
-        accept: "application/json, text/plain, */*",
-        "content-type": "application/json",
-        origin: "https://www.faceit.com",
-        referer: "https://www.faceit.com/",
-        "user-agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-          "AppleWebKit/537.36 (KHTML, like Gecko) " +
-          "Chrome/142.0.0.0 Safari/537.36",
-      };
-
-      if (FACEIT_SESSION_COOKIE) {
-        headers.cookie = FACEIT_SESSION_COOKIE;
-      }
-
-      const response = await fetch(FACEIT_BATCH_URL, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ ids }),
-        signal: controller.signal,
-      });
-
-      const text = await response.text();
-
-      if (!response.ok) {
-        throw new Error(
-          `${response.status} ${response.statusText}: ${text.slice(0, 500)}`,
-        );
-      }
-
-      const json = text ? JSON.parse(text) : {};
-      const payload = Array.isArray(json?.payload) ? json.payload : [];
-
-      return payload;
-    } catch (error) {
-      lastError = error;
-
-      if (attempt < MAX_ATTEMPTS) {
-        const waitMs = 1000 * attempt;
-        console.warn(
-          `FACEIT batch attempt ${attempt}/${MAX_ATTEMPTS} failed: ${error.message}. Retry in ${waitMs} ms`,
-        );
-        await sleep(waitMs);
-      }
-    } finally {
-      clearTimeout(timeout);
-    }
+async function fetchTeam(id) {
+  const response = await fetch(`https://open.faceit.com/data/v4/teams/${encodeURIComponent(id)}`, {
+    headers: { Authorization: `Bearer ${process.env.FACEIT_API_KEY}`, accept: "application/json" },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  });
+  if (!response.ok) {
+    const error = new Error(`${response.status} ${response.statusText}`);
+    error.status = response.status;
+    error.retryAfterMs = retryAfterMs(response.headers.get("retry-after"));
+    throw error;
   }
-
-  throw lastError || new Error("FACEIT batch request failed");
+  const team = await response.json();
+  if (!Array.isArray(team.members) || !team.members.length) return null;
+  return { id: team.team_id || id, members: team.members };
 }
 
 async function upsertPlayers(members) {
@@ -185,6 +112,15 @@ async function upsertPlayers(members) {
     return [];
   }
 
+  const { data: known, error: readError } = await supabase.from("players").select("*").in("faceit_id", uniqueRows.map(p => p.faceit_id));
+  if (readError) throw readError;
+  const knownById = new Map((known || []).map(p => [p.faceit_id, p]));
+  for (const row of uniqueRows) {
+    const previous = knownById.get(row.faceit_id);
+    for (const field of ["avatar", "country", "steam_id", "faceit_elo", "faceit_level"]) {
+      if (row[field] == null && previous?.[field] != null) row[field] = previous[field];
+    }
+  }
   const { data, error } = await supabase
     .from("players")
     .upsert(uniqueRows, { onConflict: "faceit_id" })
@@ -208,6 +144,7 @@ async function syncOneTeam(faceitTeam) {
     ? faceitTeam.members
     : [];
 
+  if (!members.length) return { skipped: true, reason: "empty_roster" };
   const databasePlayers = await upsertPlayers(members);
   const activePlayerIds = databasePlayers.map((player) => player.id);
   const now = new Date().toISOString();
@@ -274,6 +211,16 @@ async function syncOneTeam(faceitTeam) {
     }
   }
 
+  const { data: catalog, error: catalogReadError } = await supabase.from("team_catalog").select("team").eq("team_id", teamId).maybeSingle();
+  if (catalogReadError) throw catalogReadError;
+  if (catalog) {
+    const playerIds = databasePlayers.map(p => p.faceit_id);
+    const players = databasePlayers.map(p => p.nickname);
+    if (JSON.stringify(catalog.team.playerIds) !== JSON.stringify(playerIds) || JSON.stringify(catalog.team.players) !== JSON.stringify(players)) {
+      const { error } = await supabase.from("team_catalog").update({team:{...catalog.team,playerIds,players},updated_at:now}).eq("team_id",teamId);
+      if (error) throw error;
+    }
+  }
   return {
     skipped: false,
     members: databasePlayers.length,
@@ -282,94 +229,26 @@ async function syncOneTeam(faceitTeam) {
 }
 
 async function main() {
-  const startedAt = Date.now();
-
-  const localTeams = Array.from(
-    new Map(
-      teams
-        .filter((team) => cleanString(team?.faceitTeamId))
-        .map((team) => [team.faceitTeamId, team]),
-    ).values(),
-  );
-
-  const ids = localTeams.map((team) => team.faceitTeamId);
-  const chunks = splitIntoChunks(ids, BATCH_SIZE);
-
-  console.log(`Local teams with faceitTeamId: ${ids.length}`);
-  console.log(`Batch size: ${BATCH_SIZE}; requests planned: ${chunks.length}`);
-
-  let receivedTeams = 0;
-  let syncedTeams = 0;
-  let failedTeams = 0;
-  let missingTeams = 0;
-  let playersSynced = 0;
-  let playersDeactivated = 0;
-
-  for (let batchIndex = 0; batchIndex < chunks.length; batchIndex += 1) {
-    const batchIds = chunks[batchIndex];
-
-    try {
-      const payload = await fetchBatch(batchIds);
-      const returnedIds = new Set(payload.map((team) => cleanString(team?.id)));
-
-      receivedTeams += payload.length;
-      missingTeams += batchIds.filter((id) => !returnedIds.has(id)).length;
-
-      for (const faceitTeam of payload) {
-        try {
-          const result = await syncOneTeam(faceitTeam);
-
-          if (!result.skipped) {
-            syncedTeams += 1;
-            playersSynced += result.members;
-            playersDeactivated += result.deactivated;
-          }
-        } catch (error) {
-          failedTeams += 1;
-          console.warn(
-            `TEAM FAIL ${faceitTeam?.id || "unknown"}: ${error.message}`,
-          );
-        }
-      }
-
-      console.log(
-        `[${batchIndex + 1}/${chunks.length}] ` +
-          `requested=${batchIds.length}, returned=${payload.length}, ` +
-          `teamsSynced=${syncedTeams}, players=${playersSynced}`,
-      );
-    } catch (error) {
-      failedTeams += batchIds.length;
-      console.error(
-        `[${batchIndex + 1}/${chunks.length}] BATCH FAIL: ${error.message}`,
-      );
-    }
-
-    if (REQUEST_DELAY_MS && batchIndex < chunks.length - 1) {
-      await sleep(REQUEST_DELAY_MS);
-    }
+  if (!process.env.FACEIT_API_KEY) throw new Error("FACEIT_API_KEY is required");
+  const rows = [];
+  for (let offset=0;;offset+=1000) {
+    const {data,error}=await supabase.from("team_catalog").select("team_id,team").order("team_id").range(offset,offset+999);
+    if(error) throw error;
+    rows.push(...(data || []));
+    if((data || []).length<1000) break;
   }
-
-  const summary = {
-    ok: failedTeams === 0,
-    localTeams: ids.length,
-    batches: chunks.length,
-    receivedTeams,
-    syncedTeams,
-    missingTeams,
-    failedTeams,
-    playersSynced,
-    playersDeactivated,
-    durationMs: Date.now() - startedAt,
-  };
-
-  console.log(JSON.stringify(summary, null, 2));
-
-  if (failedTeams > 0) {
-    process.exitCode = 1;
-  }
+  const jobs=rows.filter(r=>r.team.activeSeasonParticipant).map(r=>({id:r.team_id}));
+  const worker_name="roster-discovery";
+  const {data:previous,error}=await supabase.from("worker_status").select("detail").eq("worker_name",worker_name).maybeSingle();
+  if(error) throw error;
+  let state={};
+  try {state=JSON.parse(previous?.detail || "{}");} catch { /* older human-readable status */ }
+  const summary=await runDiscoveryScan({jobs,state,intervalMs:Math.max(500,REQUEST_DELAY_MS),budgetMs:180000,maxRequests:160,
+    fetchPage:async job=>{const team=await fetchTeam(job.id);return {rows:team?[team]:[],done:true};},
+    saveRows:async teams=>{for(const team of teams) await syncOneTeam(team);},
+    checkpoint:async progress=>{const now=new Date().toISOString();const {error}=await supabase.from("worker_status").upsert({worker_name,last_ping:now,updated_at:now,status:progress.retryAt?"cooldown":"online",detail:JSON.stringify(progress)},{onConflict:"worker_name"});if(error) throw error;},
+    onError:(job,error)=>console.warn(`Roster discovery ${job.id}: ${error.message}`),
+  });
+  console.log("Roster discovery",JSON.stringify(summary));
 }
-
-main().catch((error) => {
-  console.error("Roster sync failed:", error);
-  process.exitCode = 1;
-});
+main().catch(error=>{console.error("Roster sync failed:",error);process.exitCode=1;});

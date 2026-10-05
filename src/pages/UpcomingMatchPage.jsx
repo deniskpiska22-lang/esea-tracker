@@ -14,6 +14,7 @@ import {
 import matchesData from "../data/matches";
 import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
@@ -138,14 +139,14 @@ function normalizePlayerStatsPayload(value) {
   };
 }
 
-function findLocalTeam(faceitTeamId, fallbackName) {
+function findLocalTeam(faceitTeamId, fallbackName, catalog = teams) {
   return (
-    teams.find(
+    catalog.find(
       (team) =>
         faceitTeamId &&
         team.faceitTeamId === faceitTeamId
     ) ||
-    teams.find(
+    catalog.find(
       (team) =>
         fallbackName &&
         normalizeName(team.name) ===
@@ -156,6 +157,9 @@ function findLocalTeam(faceitTeamId, fallbackName) {
 }
 
 function normalizeDatabaseMatch(row) {
+  const rawMatch = parseJsonValue(row.raw_data, {});
+  const factions = Object.values(rawMatch.teams || {});
+  const matchRoster = (id) => (factions.find(t => t.faction_id === id)?.roster || []).map(p => ({...p, faceit_id:p.player_id}));
   const rawMapScores = parseJsonValue(
     row.map_scores,
     []
@@ -194,6 +198,7 @@ function normalizeDatabaseMatch(row) {
       null,
 
     team1: {
+      matchRoster: matchRoster(row.team1_id),
       id:
         row.team1_id ||
         null,
@@ -212,6 +217,7 @@ function normalizeDatabaseMatch(row) {
     },
 
     team2: {
+      matchRoster: matchRoster(row.team2_id),
       id:
         row.team2_id ||
         null,
@@ -500,7 +506,8 @@ function getCountryFlagUrl(countryCode) {
 function TeamHero({
   team,
 }) {
-  const localTeam = findLocalTeam(team?.id, team?.name);
+  const { teams: catalog } = useTeamCatalog();
+  const localTeam = findLocalTeam(team?.id, team?.name, catalog);
 
   const navigationSlug =
     localTeam?.slug ||
@@ -1650,6 +1657,7 @@ function FinishedMatchHero({
 }
 
 function UpcomingMatchPage() {
+  const { teams } = useTeamCatalog();
   const location = useLocation();
 
   const {
@@ -1892,12 +1900,14 @@ function UpcomingMatchPage() {
    */
   const leftLocalTeam = findLocalTeam(
     displayTeam1.id,
-    displayTeam1.name
+    displayTeam1.name,
+    teams
   );
 
   const rightLocalTeam = findLocalTeam(
     displayTeam2.id,
-    displayTeam2.name
+    displayTeam2.name,
+    teams
   );
 
   const team1FlagUrl = getCountryFlagUrl(

@@ -2,14 +2,34 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "esea-tracker.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "esea-tracker.vercel.app"
+        }
+      ],
       "destination": "https://eseatracker.ru/:path*",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.eseatracker.ru" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.eseatracker.ru"
+        }
+      ],
       "destination": "https://eseatracker.ru/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/player/:key",
+      "destination": "/players/:key",
+      "permanent": true
+    },
+    {
+      "source": "/team/:path*",
+      "destination": "/teams/:path*",
       "permanent": true
     }
   ],
@@ -43,9 +63,38 @@
     }
   ],
   "rewrites": [
-    { "source": "/teams/:slug", "destination": "/teams/:slug.html" },
-    { "source": "/players/:id", "destination": "/players/:id.html" },
-    { "source": "/player/:id", "destination": "/players/:id.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/seo-sitemap"
+    },
+    {
+      "source": "/sitemaps/:kind(teams|players)-:page(\\d+).xml",
+      "destination": "/api/seo-sitemap?kind=:kind&page=:page"
+    },
+    {
+      "source": "/teams/:key/:section(matches|stats|analytics|veto)",
+      "destination": "/api/seo-profile?kind=team&key=:key&section=:section"
+    },
+    {
+      "source": "/teams/:key",
+      "destination": "/api/seo-profile?kind=team&key=:key"
+    },
+    {
+      "source": "/players/:key",
+      "destination": "/api/seo-profile?kind=player&key=:key"
+    },
+    {
+      "source": "/player/:key",
+      "destination": "/api/seo-profile?kind=player&key=:key"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/seo-profile.js": {
+      "includeFiles": "dist/index.html"
+    }
+  }
 }

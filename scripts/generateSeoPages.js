@@ -54,7 +54,7 @@ function replaceMeta(html, team) {
   ].filter(Boolean);
   const detailText = details.length > 0 ? ` ${details.join(", ")}.` : "";
   const description = `${team.name} — матчи, результаты, состав, статистика игроков и рейтинг команды ESEA CS2.${detailText}`;
-  const image = team.logo || `${SITE_ORIGIN}/logo.png`;
+  const image = new URL(team.logo || "/logo.png", SITE_ORIGIN).toString();
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SportsTeam",
@@ -137,6 +137,14 @@ async function fetchAllRows(client, table, columns, configure = (query) => query
   return rows;
 }
 
+async function loadCatalogForSeo() {
+  const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) return [];
+  const client = createClient(url, key, {auth:{persistSession:false,autoRefreshToken:false}});
+  return (await fetchAllRows(client, "team_catalog", "team_id,team,updated_at", q => q.order("team_id"))).map(row => ({...row.team, updatedAt:row.updated_at}));
+}
+
 async function loadPlayersForSeo() {
   const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
   const supabaseKey =
@@ -196,8 +204,11 @@ async function loadPlayersForSeo() {
     }
   }
 
-  return ratings
-    .map((rating) => {
+  const ratingById = new Map(ratings.map(r => [String(r.player_id), r]));
+  const allIds = new Set([...ratingById.keys(), ...identityByFaceitId.keys()]);
+  return [...allIds]
+    .map((id) => {
+      const rating = ratingById.get(id) || {player_id:id};
       const playerId = String(rating.player_id || "");
       const identity = identityByFaceitId.get(playerId);
       const nickname = String(identity?.nickname || rating.nickname || "").trim();
@@ -275,14 +286,17 @@ async function writeInBatches(jobs) {
 
 async function main() {
   const template = await readFile(templatePath, "utf8");
+  // Vercel serves fresh profiles through API routes; static hosts need snapshots.
+  const dynamicProfiles = process.env.VERCEL === "1";
+  const catalog = dynamicProfiles ? [] : await loadCatalogForSeo();
   const uniqueTeams = [
     ...new Map(
-      teams
+      [...teams, ...catalog]
         .filter((team) => team?.slug && team?.name)
         .map((team) => [team.slug, team])
     ).values(),
   ];
-  const players = await loadPlayersForSeo();
+  const players = dynamicProfiles ? [] : await loadPlayersForSeo();
 
   await mkdir(teamsDirectory, { recursive: true });
   await mkdir(playersDirectory, { recursive: true });
@@ -304,7 +318,6 @@ async function main() {
     ),
   ]);
 
-  const lastModified = new Date().toISOString().slice(0, 10);
   const urls = [
     ...staticPages.map((route) => `${SITE_ORIGIN}${route || "/"}`),
     ...uniqueTeams.map(
@@ -320,7 +333,6 @@ ${urls
   .map(
     (url) => `  <url>
     <loc>${escapeXml(url)}</loc>
-    <lastmod>${lastModified}</lastmod>
   </url>`
   )
   .join("\n")}
@@ -336,7 +348,7 @@ Sitemap: ${SITE_ORIGIN}/sitemap.xml
 `;
 
   await Promise.all([
-    writeFile(path.join(distDirectory, "sitemap.xml"), sitemap, "utf8"),
+    writeFile(path.join(distDirectory, "sitemap-static.xml"), sitemap, "utf8"),
     writeFile(path.join(distDirectory, "robots.txt"), robots, "utf8"),
   ]);
 
