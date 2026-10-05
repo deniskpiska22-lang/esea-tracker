@@ -692,17 +692,11 @@ function PlayerPage() {
     useState("");
 
   const playerTeam =
-    teams.find((team) =>
-      team.players?.some(
-        (player) =>
-          normalizePlayerName(
-            player
-          ) ===
-          normalizePlayerName(
-            decodedNickname
-          )
-      )
-    ) || null;
+    teams.find((team) => team.activeSeasonParticipant !== false &&
+      team.playerIds?.includes(resolvedPlayerId)) ||
+    teams.find((team) => team.activeSeasonParticipant !== false &&
+      team.players?.some((player) => normalizePlayerName(player) === normalizePlayerName(decodedNickname))) ||
+    teams.find((team) => team.players?.some((player) => normalizePlayerName(player) === normalizePlayerName(decodedNickname))) || null;
 
   const backLink =
     location.state?.from ||
@@ -916,7 +910,7 @@ function PlayerPage() {
         const {
           data: matchRows,
           error: matchesError,
-        } = await supabase
+        } = ratingRow ? await supabase
           .from("matches")
           .select(
             [
@@ -952,7 +946,7 @@ function PlayerPage() {
               nullsFirst: false,
             }
           )
-          .limit(MATCH_LIMIT);
+          .limit(MATCH_LIMIT) : {data:[], error:null};
 
         if (matchesError) {
           throw matchesError;

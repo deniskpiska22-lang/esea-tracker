@@ -34,7 +34,7 @@ export async function loadProfile(client,kind,key) {
   if(identity && !uuid) rating = await result(client.from('player_ratings').select('*').eq('player_id',playerId).maybeSingle());
   let team = null;
   if(identity) {
-    const links = await result(client.from('team_players').select('team_id').eq('player_id',identity.id).eq('is_active',true).order('joined_at',{ascending:false}).limit(1));
+    const links = await result(client.from('team_players').select('team_id').eq('player_id',identity.id).eq('is_active',true).order('joined_at',{ascending:false,nullsFirst:false}).limit(1));
     if(links[0]) team = (await result(client.from('team_catalog').select('team').eq('team_id',links[0].team_id).maybeSingle()))?.team;
   }
   return { entity:{playerId,nickname:identity?.nickname || rating?.nickname,avatar:identity?.avatar,country:identity?.country,

@@ -98,134 +98,12 @@ async function fetchTeam(id) {
   return { id: team.team_id || id, members: team.members };
 }
 
-async function upsertPlayers(members) {
-  const uniqueRows = Array.from(
-    new Map(
-      members
-        .map(normalizeMember)
-        .filter(Boolean)
-        .map((player) => [player.faceit_id, player]),
-    ).values(),
-  );
-
-  if (!uniqueRows.length) {
-    return [];
-  }
-
-  const { data: known, error: readError } = await supabase.from("players").select("*").in("faceit_id", uniqueRows.map(p => p.faceit_id));
-  if (readError) throw readError;
-  const knownById = new Map((known || []).map(p => [p.faceit_id, p]));
-  for (const row of uniqueRows) {
-    const previous = knownById.get(row.faceit_id);
-    for (const field of ["avatar", "country", "steam_id", "faceit_elo", "faceit_level"]) {
-      if (row[field] == null && previous?.[field] != null) row[field] = previous[field];
-    }
-  }
-  const { data, error } = await supabase
-    .from("players")
-    .upsert(uniqueRows, { onConflict: "faceit_id" })
-    .select("id,faceit_id,nickname");
-
-  if (error) {
-    throw new Error(`players upsert failed: ${error.message}`);
-  }
-
-  return data || [];
-}
-
-async function syncOneTeam(faceitTeam) {
-  const teamId = cleanString(faceitTeam?.id);
-
-  if (!teamId) {
-    return { skipped: true, reason: "missing_team_id" };
-  }
-
-  const members = Array.isArray(faceitTeam?.members)
-    ? faceitTeam.members
-    : [];
-
-  if (!members.length) return { skipped: true, reason: "empty_roster" };
-  const databasePlayers = await upsertPlayers(members);
-  const activePlayerIds = databasePlayers.map((player) => player.id);
-  const now = new Date().toISOString();
-
-  const { data: existingLinks, error: linksReadError } = await supabase
-    .from("team_players")
-    .select("id,player_id,joined_at,is_active")
-    .eq("team_id", teamId);
-
-  if (linksReadError) {
-    throw new Error(
-      `team_players read failed for ${teamId}: ${linksReadError.message}`,
-    );
-  }
-
-  const existingByPlayerId = new Map(
-    (existingLinks || []).map((link) => [link.player_id, link]),
-  );
-
-  if (databasePlayers.length) {
-    const relationRows = databasePlayers.map((player) => {
-      const existing = existingByPlayerId.get(player.id);
-
-      return {
-        team_id: teamId,
-        player_id: player.id,
-        joined_at: existing?.joined_at || now,
-        left_at: null,
-        is_active: true,
-      };
-    });
-
-    const { error: relationError } = await supabase
-      .from("team_players")
-      .upsert(relationRows, { onConflict: "team_id,player_id" });
-
-    if (relationError) {
-      throw new Error(
-        `team_players upsert failed for ${teamId}: ${relationError.message}`,
-      );
-    }
-  }
-
-  const staleLinkIds = (existingLinks || [])
-    .filter(
-      (link) =>
-        link.is_active === true && !activePlayerIds.includes(link.player_id),
-    )
-    .map((link) => link.id);
-
-  if (staleLinkIds.length) {
-    const { error: deactivateError } = await supabase
-      .from("team_players")
-      .update({
-        is_active: false,
-        left_at: now,
-      })
-      .in("id", staleLinkIds);
-
-    if (deactivateError) {
-      throw new Error(
-        `Could not deactivate old players for ${teamId}: ${deactivateError.message}`,
-      );
-    }
-  }
-
-  const { data: catalog, error: catalogReadError } = await supabase.from("team_catalog").select("team").eq("team_id", teamId).maybeSingle();
-  if (catalogReadError) throw catalogReadError;
-  if (catalog) {
-    const playerIds = databasePlayers.map(p => p.faceit_id);
-    const players = databasePlayers.map(p => p.nickname);
-    if (JSON.stringify(catalog.team.playerIds) !== JSON.stringify(playerIds) || JSON.stringify(catalog.team.players) !== JSON.stringify(players)) {
-      const { error } = await supabase.from("team_catalog").update({team:{...catalog.team,playerIds,players},updated_at:now}).eq("team_id",teamId);
-      if (error) throw error;
-    }
-  }
-  return {
-    skipped: false,
-    members: databasePlayers.length,
-    deactivated: staleLinkIds.length,
-  };
+async function syncOneTeam(team) {
+  const members=[...new Map((team.members || []).map(normalizeMember).filter(Boolean).map(p=>[p.faceit_id,p])).values()];
+  if (!members.length) return;
+  const {data,error}=await supabase.rpc("sync_registered_team_roster",{p_team_id:team.id,p_members:members});
+  if(error) throw new Error(`Roster ${team.id}: ${error.message}`);
+  if(data?.skipped) console.warn(`Roster ${team.id} skipped: ${data.reason || "incomplete"}`);
 }
 
 async function main() {
@@ -237,7 +115,9 @@ async function main() {
     rows.push(...(data || []));
     if((data || []).length<1000) break;
   }
-  const jobs=rows.filter(r=>r.team.activeSeasonParticipant).map(r=>({id:r.team_id}));
+  const active=rows.filter(r=>r.team.activeSeasonParticipant);
+  const missing=active.filter(r=>!r.team.playerIds?.length);
+  const jobs=(missing.length?missing:active).map(r=>({id:r.team_id}));
   const worker_name="roster-discovery";
   const {data:previous,error}=await supabase.from("worker_status").select("detail").eq("worker_name",worker_name).maybeSingle();
   if(error) throw error;
