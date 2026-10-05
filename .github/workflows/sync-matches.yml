@@ -2,8 +2,7 @@ name: Discover FACEIT matches
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
+  # Railway automation-worker owns scheduled discovery; this is a manual backup.
 
 concurrency:
   group: discover-matches
@@ -12,7 +11,7 @@ concurrency:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,12 +26,15 @@ jobs:
         run: npm ci
 
       - name: Refresh teams from standings
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
         run: npm run v2:sync
 
       - name: Discover and sync matches
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
           FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
           MATCH_SYNC_CONCURRENCY: 5
           DISCOVERY_DAYS_AHEAD: 7

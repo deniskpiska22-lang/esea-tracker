@@ -1,10 +1,11 @@
 import "dotenv/config";
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import fs, { existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 import { aggregateMatchPlayerStats } from "./lib/aggregateMatchPlayerStats.js";
 import teams from "../src/data/teams.generated.js";
 import { CHAMPIONSHIPS } from "./matchSyncConfig.js";
+import { retryAfterMs, runDiscoveryScan } from "./lib/discoveryScan.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseSecretKey =
@@ -2008,6 +2009,9 @@ async function fetchJson(
 
       httpError.status =
         response.status;
+      httpError.retryAfterMs = retryAfterMs(response.headers.get("retry-after"));
+      // A discovery scan handles 429 once for the entire endpoint, across runs.
+      if (response.status === 429) throw httpError;
 
       if (
         response.status < 500 &&
@@ -2028,6 +2032,7 @@ async function fetchJson(
         Number(error?.status) >= 500;
 
       if (
+        error?.status === 429 ||
         !retryable ||
         attempt === attempts
       ) {
@@ -2162,12 +2167,13 @@ function isSeasonFinalsChampionship(item) {
 }
 
 function buildChampionshipMatchesUrl(
-  championshipId
+  championshipId,
+  offset = 0
 ) {
   const params =
     new URLSearchParams({
       type: "all",
-      offset: "0",
+      offset: String(offset),
       limit: "100",
     });
 
@@ -2541,8 +2547,53 @@ async function discoverSeasonFinalsByPlayerHistory(
   );
 }
 
+async function scanDiscoverySources(workerName, jobs, fetchPage, rows, intervalMs) {
+  const { data, error } = await supabase.from("worker_status")
+    .select("detail").eq("worker_name", workerName).maybeSingle();
+  if (error) throw error;
+  let state = {};
+  if (data?.detail) {
+    try { state = JSON.parse(data.detail); } catch { /* First run after upgrade. */ }
+  }
+  const result = await runDiscoveryScan({
+    jobs, state, fetchPage, intervalMs,
+    saveRows: async (pageRows) => {
+      await upsertOnlyChanged(pageRows);
+      for (const row of pageRows) rows.set(row.id, row);
+    },
+    checkpoint: async (nextState) => {
+      const at = new Date().toISOString();
+      const { error: saveError } = await supabase.from("worker_status").upsert({
+        worker_name: workerName, detail: JSON.stringify(nextState),
+        status: nextState.retryAt ? "rate-limited" : "online", last_ping: at, updated_at: at,
+      }, { onConflict: "worker_name" });
+      if (saveError) throw saveError;
+    },
+    onError: (job, failure) => console.warn(`${workerName}: ${job.name || job.team?.name || job.id}: ${failure.message}`),
+  });
+  console.log(`${workerName}: ${JSON.stringify(result)}`);
+}
+
+async function discoverCurrentSeasonByChampionship(rows) {
+  const config = JSON.parse(fs.readFileSync("scripts/v2/standings.config.json", "utf8"));
+  const sources = CHAMPIONSHIPS.filter((item) => item.name.startsWith(`S${config.season} `));
+  await scanDiscoverySources("match-discovery-public", sources, async (championship, offset) => {
+    const data = await fetchJson(buildChampionshipMatchesUrl(championship.id, offset), {
+      headers: { Authorization: `Bearer ${faceitApiKey}`, Accept: "application/json" },
+    }, 2);
+    if (!Array.isArray(data.items)) throw new Error("Invalid championship match payload");
+    return {
+      rows: data.items.map((match) => publicChampionshipMatchToRow(match, championship))
+        .filter((row) => row && insideDiscoveryWindow(row)),
+      done: data.items.length < 100, nextOffset: offset + 100,
+    };
+  }, rows, 500);
+}
+
 async function discoverMatches() {
   const rows = new Map();
+
+  await discoverCurrentSeasonByChampionship(rows);
 
   // Season Finals are global and may contain teams that are not yet present
   // in teams.generated.js (especially NA/OCE). Enumerate those championships
@@ -2629,69 +2680,19 @@ async function discoverMatches() {
     ),
   ];
 
-  await runPool(
-    jobs,
-    async (job) => {
-      try {
-        const data =
-          await fetchJson(
-            buildDiscoveryUrl(
-              job.team
-                .faceitTeamId,
-              job.status,
-              job.limit
-            ),
-            {
-              headers: {
-                accept:
-                  "application/json",
-                "user-agent":
-                  "Mozilla/5.0 ESEA-Tracker/1.0",
-                ...(faceitSessionCookie
-                  ? {
-                      Cookie:
-                        faceitSessionCookie,
-                    }
-                  : {}),
-              },
-            }
-          );
-
-        const payload =
-          Array.isArray(
-            data.payload
-          )
-            ? data.payload
-            : [];
-
-        for (
-          const match of payload
-        ) {
-          const row =
-            internalToRow(match);
-
-          if (
-            row &&
-            insideDiscoveryWindow(
-              row
-            )
-          ) {
-            rows.set(
-              row.id,
-              row
-            );
-          }
-        }
-      } catch (error) {
-        console.warn(
-          `Discovery failed for ` +
-          `${job.team.name} ` +
-          `(${job.status}): ` +
-          error.message
-        );
-      }
-    }
-  );
+  // Only one request at a time, bounded work, and a durable round-robin cursor.
+  // Never restart all 1,400+ team requests after an endpoint-wide rate limit.
+  await scanDiscoverySources("match-discovery-internal", jobs.map((job) => ({
+    ...job, id: `${job.team.faceitTeamId}:${job.status || "all"}`,
+  })), async (job) => {
+    const data = await fetchJson(
+      buildDiscoveryUrl(job.team.faceitTeamId, job.status, job.limit),
+      { headers: { accept: "application/json", "user-agent": "Mozilla/5.0 ESEA-Tracker/1.0",
+        ...(faceitSessionCookie ? { Cookie: faceitSessionCookie } : {}) } }, 2
+    );
+    if (!Array.isArray(data.payload)) throw new Error("Invalid team match payload");
+    return { rows: data.payload.map(internalToRow).filter((row) => row && insideDiscoveryWindow(row)), done: true };
+  }, rows, 1500);
 
   return [...rows.values()];
 }
