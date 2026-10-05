@@ -3,7 +3,8 @@ import process from 'node:process';
 import staticTeams from '../src/data/teams.js';
 import aliases from '../src/data/playerAliases.js';
 export function seoClient() {
-  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const rawUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const url = rawUrl ? new URL(rawUrl.trim()).origin : null;
   const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key) throw new Error('Public Supabase SEO configuration is missing');
   return createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false},global:{fetch:(input,init)=>fetch(input,{...init,signal:AbortSignal.timeout(30000)})}});
