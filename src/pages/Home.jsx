@@ -8,6 +8,7 @@ import { supabase } from "../lib/supabaseClient";
 import { getTournamentStatus } from "../utils/tournaments";
 import { resolveRatingRow } from "../utils/resolveTeamRating";
 import TournamentNameLink from "../components/TournamentNameLink";
+import { createRefreshQueue } from "../utils/refreshQueue.js";
 
 
 const LIVE_STATUSES = new Set([
@@ -39,6 +40,14 @@ const FINISHED_STATUSES = new Set([
 
 const UPCOMING_WINDOW_HOURS = 24;
 const RESULTS_LIMIT = 12;
+// Cards do not need the complete FACEIT response or player statistics.
+const MATCH_CARD_COLUMNS = [
+  "id", "competition_name", "status", "best_of", "scheduled_at",
+  "started_at", "finished_at", "team1_id", "team1_name", "team1_slug",
+  "team1_logo", "team1_score", "team2_id", "team2_name", "team2_slug",
+  "team2_logo", "team2_score", "maps", "map_scores", "stats_synced",
+  "detailed_results:raw_data->detailed_results",
+].join(",");
 
 function scheduleAfterFirstPaint(callback) {
   if (typeof window === "undefined") {
@@ -601,9 +610,8 @@ function selectPopularCompletedMatch(matches) {
 // finished); comparing every entry's own faction scores gives the map-win
 // tally without needing any extra data.
 function getMapProgress(row) {
-  const detailedResults = Array.isArray(row.raw_data?.detailed_results)
-    ? row.raw_data.detailed_results
-    : [];
+  const details = row.detailed_results ?? row.raw_data?.detailed_results;
+  const detailedResults = Array.isArray(details) ? details : [];
 
   if (detailedResults.length === 0) {
     return null;
@@ -1780,7 +1788,7 @@ function Home() {
       const [activeResponse, finishedResponse] = await Promise.all([
         supabase
           .from("matches")
-          .select("*")
+          .select(MATCH_CARD_COLUMNS)
           .or(`${liveStatusFilter},and(${upcomingTimeFilter})`)
           .order("scheduled_at", {
             ascending: true,
@@ -1790,7 +1798,7 @@ function Home() {
 
         supabase
           .from("matches")
-          .select("*")
+          .select(MATCH_CARD_COLUMNS)
           .in("status", [
             "FINISHED",
             "MATCH_STATUS_FINISHED",
@@ -1819,7 +1827,8 @@ function Home() {
       setDatabaseReady(true);
     }
 
-    loadMatches();
+    const matchRefresh = createRefreshQueue(loadMatches);
+    matchRefresh.request();
 
     if (supabase) {
       channel = supabase
@@ -1831,13 +1840,14 @@ function Home() {
             schema: "public",
             table: "matches",
           },
-          loadMatches
+          matchRefresh.request
         )
         .subscribe();
     }
 
     return () => {
       cancelled = true;
+      matchRefresh.dispose();
 
       if (supabase && channel) {
         supabase.removeChannel(channel);
@@ -1892,8 +1902,9 @@ function Home() {
       setRatingsReady(true);
     }
 
+    const ratingsRefresh = createRefreshQueue(loadRatings, 15000);
     const cancelScheduledStart = scheduleAfterFirstPaint(() => {
-      loadRatings();
+      ratingsRefresh.request();
 
       if (supabase) {
         ratingsChannel = supabase
@@ -1905,7 +1916,7 @@ function Home() {
               schema: "public",
               table: "team_ratings",
             },
-            loadRatings
+            ratingsRefresh.request
           )
           .subscribe();
       }
@@ -1914,6 +1925,7 @@ function Home() {
     return () => {
       cancelled = true;
       cancelScheduledStart();
+      ratingsRefresh.dispose();
 
       if (supabase && ratingsChannel) {
         supabase.removeChannel(ratingsChannel);
@@ -2058,8 +2070,9 @@ function Home() {
       }
     }
 
+    const playersRefresh = createRefreshQueue(loadTopPlayers, 15000);
     const cancelScheduledStart = scheduleAfterFirstPaint(() => {
-      loadTopPlayers();
+      playersRefresh.request();
 
       if (supabase) {
         playerRatingsChannel = supabase
@@ -2071,7 +2084,7 @@ function Home() {
               schema: "public",
               table: "player_ratings",
             },
-            loadTopPlayers
+            playersRefresh.request
           )
           .subscribe();
       }
@@ -2080,6 +2093,7 @@ function Home() {
     return () => {
       cancelled = true;
       cancelScheduledStart();
+      playersRefresh.dispose();
 
       if (supabase && playerRatingsChannel) {
         supabase.removeChannel(playerRatingsChannel);
