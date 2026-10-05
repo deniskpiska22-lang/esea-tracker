@@ -9,11 +9,11 @@ export default async function handler(req,res) {
     const client=seoClient();
     let entries;
     if(kind==='index') {
-      const counts=await result(client.rpc("seo_sitemap_counts"));
-      entries=[counts.teams,counts.players].flatMap((count,i)=>Array.from({length:Math.max(1,Math.ceil(count/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${i?'players':'teams'}-${p}.xml`})));
+      const bounds=await Promise.all(["teams","players"].map(kind=>result(client.from("seo_profile_urls").select("position").eq("kind",kind).order("position",{ascending:false}).limit(1))));
+      entries=bounds.flatMap((rows,i)=>Array.from({length:Math.max(1,Math.ceil((rows[0]?.position || 0)/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${i?'players':'teams'}-${p}.xml`})));
     } else {
-      const rows=await result(kind==='teams'?client.from('team_catalog').select('team,updated_at').order('team_id').range(page*PAGE_SIZE,(page+1)*PAGE_SIZE-1):client.from('players').select('faceit_id,nickname,updated_at').order('faceit_id').range(page*PAGE_SIZE,(page+1)*PAGE_SIZE-1));
-      entries=rows.filter(r=>kind==='teams'?r.team?.slug:r.faceit_id && r.nickname).map(r=>({url:`${ORIGIN}/${kind}/${encodeURIComponent(kind==='teams'?r.team.slug:r.faceit_id)}`,updatedAt:r.updated_at}));
+      const rows=await result(client.from("seo_profile_urls").select("url,updated_at").eq("kind",kind).gt("position",page*PAGE_SIZE).lte("position",(page+1)*PAGE_SIZE).order("position"));
+      entries=rows.map(r=>({url:`${ORIGIN}${r.url}`,updatedAt:r.updated_at}));
       if(kind==='teams' && page===0) entries.unshift(...staticRoutes.map(route=>({url:`${ORIGIN}${route}`})));
     }
     res.setHeader('Content-Type','application/xml; charset=utf-8');
