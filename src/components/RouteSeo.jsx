@@ -1,3 +1,4 @@
+import { getSiteSeoMetadata } from '../utils/siteSeo.js';
 import { getTeamSeoMetadata } from '../utils/teamSeo.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -5,46 +6,9 @@ import { useLocation } from "react-router-dom";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 
 const SITE_ORIGIN = "https://eseatracker.ru";
-const DEFAULT_TITLE =
-  "ESEA Tracker — команды, матчи и рейтинг ESEA CS2";
 const DEFAULT_DESCRIPTION =
   "Матчи, результаты, составы, статистика игроков и рейтинг команд ESEA CS2 со всего мира.";
 
-const pageMetadata = {
-  "/": {
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
-  },
-  "/rankings": {
-    title: "Рейтинг команд ESEA CS2 | ESEA Tracker",
-    description:
-      "Актуальный мировой рейтинг команд ESEA CS2: позиции, изменения рейтинга, дивизионы и регионы.",
-  },
-  "/matches": {
-    title: "Матчи ESEA CS2 — расписание и результаты | ESEA Tracker",
-    description:
-      "Предстоящие и завершённые матчи ESEA CS2, результаты серий и подробная статистика.",
-  },
-  "/players": {
-    title: "Игроки ESEA CS2 — статистика и рейтинг | ESEA Tracker",
-    description:
-      "Статистика, команды и рейтинг игроков ESEA CS2 со всего мира.",
-  },
-  "/calendar": {
-    title: "Календарь турниров ESEA CS2 | ESEA Tracker",
-    description:
-      "Календарь турниров и событий ESEA CS2: даты, матчи и участники.",
-  },
-  "/about": {
-    title: "О проекте | ESEA Tracker",
-    description:
-      "ESEA Tracker — независимый трекер команд, матчей, игроков и рейтингов ESEA Counter-Strike 2.",
-  },
-  "/media": {
-    title: "Медиа ESEA CS2 | ESEA Tracker",
-    description: "Новости и материалы сообщества ESEA Counter-Strike 2.",
-  },
-};
 
 function setMeta(selector, attributes, content) {
   let element = document.head.querySelector(selector);
@@ -104,18 +68,23 @@ function getMetadata(pathname, teams) {
     };
   }
 
-  const metadata = pageMetadata[pathname] || pageMetadata["/"];
-
-  return {
-    ...metadata,
-    canonicalPath: pathname in pageMetadata ? pathname : "/",
-  };
+  return getSiteSeoMetadata(pathname);
 }
 
 export default function RouteSeo() {
   const { pathname } = useLocation();
   const { teams } = useTeamCatalog();
-  const [dynamicMetadata, setDynamicMetadata] = useState(null);
+  const [dynamicMetadata, setDynamicMetadata] = useState(() => {
+    const canonical = document.head.querySelector('link[rel="canonical"]')?.href;
+    if (!canonical || new URL(canonical).pathname !== pathname) return null;
+    try { return { routePath: pathname, canonicalPath: pathname, title: document.title,
+      description: document.head.querySelector('meta[name="description"]')?.content || DEFAULT_DESCRIPTION,
+      language: document.documentElement.lang,
+      image: document.head.querySelector('meta[property="og:image"]')?.content,
+      robots: document.head.querySelector('meta[name="robots"]')?.content,
+      schema: JSON.parse(document.head.querySelector('script[type="application/ld+json"]')?.textContent || '{}'),
+    }; } catch { return null; }
+  });
   const metadata = useMemo(
     () =>
       dynamicMetadata?.routePath === pathname
@@ -130,8 +99,10 @@ export default function RouteSeo() {
     };
 
     window.addEventListener("player-seo-update", handlePlayerMetadata);
+    window.addEventListener("match-seo-update", handlePlayerMetadata);
     return () => {
       window.removeEventListener("player-seo-update", handlePlayerMetadata);
+      window.removeEventListener("match-seo-update", handlePlayerMetadata);
     };
   }, []);
 

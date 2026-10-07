@@ -31,6 +31,16 @@
       "source": "/team/:path*",
       "destination": "/teams/:path*",
       "permanent": true
+    },
+    {
+      "source": "/matches/:key",
+      "destination": "/match/:key",
+      "permanent": true
+    },
+    {
+      "source": "/teams/:slug/matches/:key",
+      "destination": "/match/:key",
+      "permanent": true
     }
   ],
   "headers": [
@@ -60,6 +70,60 @@
           "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
+    },
+    {
+      "source": "/login",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/register",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/auth/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/profile/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/admin/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/data-status",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -68,7 +132,7 @@
       "destination": "/api/seo-sitemap"
     },
     {
-      "source": "/sitemaps/:kind(teams|players)-:page(\\d+).xml",
+      "source": "/sitemaps/:kind(teams|players|matches)-:page(\\d+).xml",
       "destination": "/api/seo-sitemap?kind=:kind&page=:page"
     },
     {
@@ -86,6 +150,38 @@
     {
       "source": "/player/:key",
       "destination": "/api/seo-profile?kind=player&key=:key"
+    },
+    {
+      "source": "/match/:key",
+      "destination": "/api/seo-profile?kind=match&key=:key"
+    },
+    {
+      "source": "/",
+      "destination": "/api/seo-profile?kind=page&key=home"
+    },
+    {
+      "source": "/rankings",
+      "destination": "/api/seo-profile?kind=page&key=rankings"
+    },
+    {
+      "source": "/matches",
+      "destination": "/api/seo-profile?kind=page&key=matches"
+    },
+    {
+      "source": "/players",
+      "destination": "/api/seo-profile?kind=page&key=players"
+    },
+    {
+      "source": "/calendar",
+      "destination": "/api/seo-profile?kind=page&key=calendar"
+    },
+    {
+      "source": "/about",
+      "destination": "/api/seo-profile?kind=page&key=about"
+    },
+    {
+      "source": "/media",
+      "destination": "/api/seo-profile?kind=page&key=media"
     },
     {
       "source": "/(.*)",

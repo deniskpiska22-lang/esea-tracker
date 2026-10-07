@@ -1,20 +1,37 @@
 import { getTeamSeoMetadata, getTeamContext } from '../src/utils/teamSeo.js';
 import { getPlayerSeoMetadata } from '../src/utils/playerSeo.js';
 import aliases from '../src/data/playerAliases.js';
+import { getMatchSeoMetadata, parseMaps } from '../src/utils/matchSeo.js';
 export const ORIGIN = 'https://eseatracker.ru';
 export const staticRoutes = ['/', '/rankings', '/matches', '/players', '/calendar', '/about', '/media'];
 export const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const link = (url, name) => `<a href="${escapeHtml(url)}">${escapeHtml(name)}</a>`;
 export function profileMetadata(kind, entity, roster = [], section = '', recentMatches = []) {
+  if (kind === 'match') {
+    const metadata = getMatchSeoMetadata(entity);
+    const date = entity.scheduled_at || entity.started_at || entity.finished_at;
+    const facts = [['Tournament',entity.competition_name],['Format',entity.best_of ? `BO${entity.best_of}` : null],['Status',entity.status],['Date (UTC)',date && !Number.isNaN(new Date(date).getTime()) ? new Date(date).toISOString() : null]];
+    const teamLinks = roster.teams || [];
+    const participants = roster.players || [];
+    const maps = parseMaps(entity.map_scores);
+    return { ...metadata, body: `<dl>${facts.filter(([,value])=>value).map(([label,value])=>`<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>
+      <h2>Teams</h2><ul>${[1,2].map(n=>{const team=teamLinks.find(t=>t.team_id===entity[`team${n}_id`])?.team;return `<li>${team?.slug ? link(`/teams/${encodeURIComponent(team.slug)}`,entity[`team${n}_name`] || team.name) : escapeHtml(entity[`team${n}_name`] || 'TBD')}</li>`;}).join('')}</ul>
+      <h2>Map results</h2>${maps.length ? `<ul>${maps.map(map=>{const reversed=map.team1_id && map.team1_id===entity.team2_id;const one=reversed ? map.team2_score : map.team1_score ?? map.teamScore;const two=reversed ? map.team1_score : map.team2_score ?? map.opponentScore;return `<li>${escapeHtml(map.map || map.mapName || 'Map')}${one!=null && two!=null ? `: ${escapeHtml(one)}–${escapeHtml(two)}` : ''}</li>`;}).join('')}</ul>` : '<p>Map results are not available yet.</p>'}
+      <h2>Player statistics</h2>${participants.length ? `<table><thead><tr><th>Player</th><th>Kills</th><th>Deaths</th><th>ADR</th><th>Rating</th></tr></thead><tbody>${participants.filter(p=>p.faceit_player_id && p.nickname).map(p=>`<tr><td>${link(`/players/${encodeURIComponent(p.faceit_player_id)}`,p.nickname)}</td>${[p.kills,p.deaths,p.adr,p.rating].map(v=>`<td>${escapeHtml(v ?? '—')}</td>`).join('')}</tr>`).join('')}</tbody></table>` : '<p>Player statistics are not available yet.</p>'}` };
+  }
   if (kind === 'player') {
     const metadata = getPlayerSeoMetadata(entity, aliases);
+    const facts = [['Country',entity.country],['FACEIT Elo',entity.faceitElo],['FACEIT level',entity.faceitLevel],['Maps played',entity.mapsPlayed],['Matches played',entity.matchesPlayed],['Rating',entity.rating],['ADR',entity.adr],['K/D',entity.kd]];
     return { ...metadata, canonicalPath: new URL(metadata.canonicalUrl).pathname,
-      heading: `${entity.nickname} — игрок ESEA CS2`,
-      body: `${entity.teamName ? `<p>Команда: ${link(`/teams/${encodeURIComponent(entity.teamSlug)}`, entity.teamName)}</p>` : ''}<p>${entity.mapsPlayed ? `Сыграно карт: ${escapeHtml(entity.mapsPlayed)}.` : 'Статистика появится после первых сыгранных матчей.'}</p>`,
+      heading: `${entity.nickname} — CS2 player statistics`,
+      body: `${entity.teamName && entity.teamSlug ? `<p>Team: ${link(`/teams/${encodeURIComponent(entity.teamSlug)}`, entity.teamName)}</p>` : ''}
+      ${metadata.aliases.length ? `<p>Aliases: ${metadata.aliases.map(escapeHtml).join(', ')}</p>` : ''}
+      <dl>${facts.filter(([,v])=>v!=null && v!=='').map(([label,v])=>`<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(v)}</dd>`).join('')}</dl>
+      <h2>Recent tracked matches</h2>${recentMatches.length ? `<ul>${recentMatches.map(match=>`<li>${link(`/match/${encodeURIComponent(match.id)}`,`${match.team1_name} vs ${match.team2_name}: ${match.team1_score}–${match.team2_score}`)}${match.competition_name ? ` — ${escapeHtml(match.competition_name)}` : ''}</li>`).join('')}</ul>` : '<p>Statistics will appear after the first tracked matches.</p>'}`,
       schema: { '@context':'https://schema.org', '@type':'Person', name:entity.nickname, identifier:entity.playerId,
         alternateName:metadata.aliases.length ? metadata.aliases : undefined, url:metadata.canonicalUrl,
         image:entity.avatar || undefined, nationality:entity.country || undefined,
-        memberOf:entity.teamName ? { '@type':'SportsTeam',name:entity.teamName,url:`${ORIGIN}/teams/${encodeURIComponent(entity.teamSlug)}` } : undefined } };
+        memberOf:entity.teamName && entity.teamSlug ? { '@type':'SportsTeam',name:entity.teamName,url:`${ORIGIN}/teams/${encodeURIComponent(entity.teamSlug)}` } : undefined } };
   }
   const metadata = getTeamSeoMetadata(entity, section, roster);
   const base = `/teams/${encodeURIComponent(entity.slug)}`;

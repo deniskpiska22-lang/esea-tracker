@@ -38,7 +38,7 @@ export function getPlayerSeoMetadata(player, aliasesByNickname = {}) {
   // UUID is an internal FACEIT identifier, not a searchable player name.
   // Never expose it as a title/description fallback while identity data loads.
   const nickname =
-    rawNickname && !isFaceitPlayerId(rawNickname) ? rawNickname : "Игрок";
+    rawNickname && !isFaceitPlayerId(rawNickname) ? rawNickname : "Player";
   const teamName = String(player?.teamName || player?.team_name || "").trim();
   const rating = compactNumber(player?.rating);
   const mapsPlayed = finiteNumber(player?.mapsPlayed ?? player?.maps_played);
@@ -49,23 +49,24 @@ export function getPlayerSeoMetadata(player, aliasesByNickname = {}) {
     ? `/players/${playerId}`
     : "/players";
   const facts = [
-    teamName ? `команда ${teamName}` : null,
-    rating ? `рейтинг ${rating}` : null,
-    mapsPlayed !== null ? `${mapsPlayed} карт` : null,
+    teamName ? `team ${teamName}` : null,
+    rating ? `rating ${rating}` : null,
+    mapsPlayed !== null ? `${mapsPlayed} maps` : null,
     kd ? `K/D ${kd}` : null,
     adr ? `ADR ${adr}` : null,
   ].filter(Boolean);
-  const description = `${nickname} — профиль игрока ESEA CS2${
+  const description = `${nickname} — ESEA CS2 player profile${
     facts.length ? `: ${facts.join(", ")}` : ""
-  }. Матчи, команда и индивидуальная статистика на ESEA Tracker.`;
+  }. Match results, team and individual statistics on ESEA Tracker.`;
 
   return {
-    title: `${nickname} — статистика игрока ESEA CS2 | ESEA Tracker`,
+    title: `${nickname} CS2 — Stats, Team & Results | ESEA Tracker`,
     description,
     canonicalPath,
     canonicalUrl: `${SITE_ORIGIN}${canonicalPath}`,
     image: player?.avatar || `${SITE_ORIGIN}/logo.png`,
     aliases,
+    language: "en",
   };
 }
 

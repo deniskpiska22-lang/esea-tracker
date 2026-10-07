@@ -8,6 +8,9 @@ import {
 
 import { useParams } from "react-router-dom";
 
+import { useLocation } from "react-router-dom";
+import { getMatchSeoMetadata, MATCH_SEO_COLUMNS } from "../utils/matchSeo.js";
+
 import matchesData from "../data/matches";
 import upcomingMatches from "../data/upcomingMatches";
 import { supabase } from "../lib/supabaseClient";
@@ -54,6 +57,7 @@ const FINISHED_STATUSES = new Set([
  * re-decide after the initial pick.
  */
 function MatchPageRouter() {
+  const { pathname } = useLocation();
   const {
     matchId: routeMatchId,
     id: routeId,
@@ -92,12 +96,13 @@ function MatchPageRouter() {
 
     supabase
       .from("matches")
-      .select("status")
+      .select(MATCH_SEO_COLUMNS)
       .eq("id", matchId)
       .maybeSingle()
       .then(({ data }) => {
         if (!cancelled) {
           setResolved({ matchId, row: data || null });
+          if (data) window.dispatchEvent(new CustomEvent("match-seo-update", { detail: { ...getMatchSeoMetadata(data), routePath: pathname } }));
         }
       })
       .catch(() => {
@@ -109,7 +114,7 @@ function MatchPageRouter() {
     return () => {
       cancelled = true;
     };
-  }, [matchId]);
+  }, [matchId, pathname]);
 
   const loading =
     Boolean(supabase) &&

@@ -12,7 +12,7 @@ test('unrated player gets an indexable identity and team link',()=>{
 });
 test('registered team renders crawlable roster links and structured data',()=>{
  const m=profileMetadata('team',{name:'K21',slug:'k21-48064213',division:'Open10',season:59,logo:'/logo.png'},[{faceit_id:id,nickname:'Player'}]);
- const html=renderProfile(template,m);assert.match(html,new RegExp(`href="/players/${id}"`));assert.equal(m.image,'https://eseatracker.ru/logo.png');assert.equal(m.schema.athlete.length,1);
+ const html=renderProfile(template,m);assert.match(html,new RegExp(`href="/players/${id}"`));assert.equal(m.image,'https://eseatracker.ru/logo.png');assert.equal(m.schema['@graph'].find(node=>node['@type']==='SportsTeam').athlete.length,1);
 });
 test('untrusted nicknames cannot close scripts or inject HTML',()=>{
  const m=profileMetadata('player',{playerId:id,nickname:'</script><script>alert(1)</script> & " $&'});
