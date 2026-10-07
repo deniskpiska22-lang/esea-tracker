@@ -1,3 +1,4 @@
+import { findCatalogTeam } from "../utils/teamIdentity.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -291,24 +292,11 @@ function normalizeLogoUrl(value) {
 }
 
 function findTeamByName(name) {
-  if (!name) return null;
-
-  return (
-    teams.find(
-      (team) => normalizeName(team.name) === normalizeName(name)
-    ) || null
-  );
+  return findCatalogTeam(teams, null, name);
 }
 
 function findTeamById(faceitTeamId) {
-  if (!faceitTeamId) return null;
-
-  return (
-    teams.find(
-      (team) =>
-        String(team.faceitTeamId || "") === String(faceitTeamId)
-    ) || null
-  );
+  return findCatalogTeam(teams, faceitTeamId, null);
 }
 
 function normalizeTeam(team) {
@@ -325,8 +313,7 @@ function normalizeTeam(team) {
   }
 
   const localTeam =
-    findTeamById(team.id || team.faceitTeamId) ||
-    findTeamByName(team.name);
+    findCatalogTeam(teams, team.id || team.faceitTeamId, team.name);
 
   return {
     id:

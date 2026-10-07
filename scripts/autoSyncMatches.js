@@ -1,3 +1,4 @@
+import { findCatalogTeam } from "../src/utils/teamIdentity.js";
 import "dotenv/config";
 import { spawn } from "node:child_process";
 import fs, { existsSync } from "node:fs";
@@ -1524,19 +1525,7 @@ function asIso(value) {
 }
 
 function localTeam(id, name) {
-  return (
-    teams.find(
-      (team) =>
-        team.faceitTeamId === id
-    ) ||
-    teams.find(
-      (team) =>
-        name &&
-        normalizeName(team.name) ===
-          normalizeName(name)
-    ) ||
-    null
-  );
+  return findCatalogTeam(teams, id, name);
 }
 
 function normalizeFaction(

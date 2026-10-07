@@ -1,3 +1,5 @@
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
+import { findCatalogTeam } from "../utils/teamIdentity.js";
 import {
   useCallback,
   useEffect,
@@ -136,21 +138,8 @@ function normalizePlayerStatsPayload(value) {
   };
 }
 
-function findLocalTeam(faceitTeamId, fallbackName) {
-  return (
-    teams.find(
-      (team) =>
-        faceitTeamId &&
-        team.faceitTeamId === faceitTeamId
-    ) ||
-    teams.find(
-      (team) =>
-        fallbackName &&
-        normalizeName(team.name) ===
-          normalizeName(fallbackName)
-    ) ||
-    null
-  );
+function findLocalTeam(faceitTeamId, fallbackName, catalog = teams) {
+  return findCatalogTeam(catalog, faceitTeamId, fallbackName);
 }
 
 function normalizeDatabaseMatch(row) {
@@ -476,7 +465,8 @@ function getCountryFlagUrl(countryCode) {
 function TeamHero({
   team,
 }) {
-  const localTeam = findLocalTeam(team?.id, team?.name);
+  const { teams: catalog } = useTeamCatalog();
+  const localTeam = findLocalTeam(team?.id, team?.name, catalog);
 
   const navigationSlug =
     localTeam?.slug ||
@@ -1058,6 +1048,10 @@ function findTeamRating(rows, team) {
         .filter(Boolean)
         .map(normalizeName);
 
+      if (candidates.ids.size > 0 && rowIds.length > 0) {
+        return rowIds.some((id) => candidates.ids.has(id));
+      }
+      if (candidates.ids.size > 0) return false;
       return (
         rowIds.some((id) =>
           candidates.ids.has(id)

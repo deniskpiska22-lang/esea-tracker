@@ -1,3 +1,4 @@
+import { findCatalogTeam } from "../utils/teamIdentity.js";
 import {
   useCallback,
   useEffect,
@@ -140,20 +141,7 @@ function normalizePlayerStatsPayload(value) {
 }
 
 function findLocalTeam(faceitTeamId, fallbackName, catalog = teams) {
-  return (
-    catalog.find(
-      (team) =>
-        faceitTeamId &&
-        team.faceitTeamId === faceitTeamId
-    ) ||
-    catalog.find(
-      (team) =>
-        fallbackName &&
-        normalizeName(team.name) ===
-          normalizeName(fallbackName)
-    ) ||
-    null
-  );
+  return findCatalogTeam(catalog, faceitTeamId, fallbackName);
 }
 
 function normalizeDatabaseMatch(row) {
