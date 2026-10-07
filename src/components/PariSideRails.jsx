@@ -1,3 +1,4 @@
+import AdGeoGate from "./AdGeoGate.jsx";
 import { useEffect, useRef } from "react";
 
 const PARI_OFFER_URL =
@@ -98,4 +99,6 @@ function PariSideRails() {
   );
 }
 
-export default PariSideRails;
+export default function GeoRestrictedPariSideRails(props) {
+  return <AdGeoGate><PariSideRails {...props} /></AdGeoGate>;
+}

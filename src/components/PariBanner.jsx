@@ -1,3 +1,4 @@
+import AdGeoGate from "./AdGeoGate.jsx";
 import { useEffect, useMemo, useRef } from "react";
 
 const PARI_OFFER_URL =
@@ -105,4 +106,6 @@ function PariBanner({ placement, className = "" }) {
   );
 }
 
-export default PariBanner;
+export default function GeoRestrictedPariBanner(props) {
+  return <AdGeoGate><PariBanner {...props} /></AdGeoGate>;
+}
