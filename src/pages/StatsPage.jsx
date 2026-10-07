@@ -3,7 +3,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TournamentNameLink from "../components/TournamentNameLink";
@@ -78,6 +78,7 @@ function getStreak(matches) {
 }
 
 function StatsPage() {
+  const { teams } = useTeamCatalog();
   const { slug } = useParams();
 
   const team = teams.find((item) => item.slug === slug) || null;

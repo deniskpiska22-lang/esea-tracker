@@ -19,8 +19,14 @@ export async function loadProfile(client,kind,key) {
     let row = await result(client.from('team_catalog').select('team_id,team,updated_at').eq('team->>slug',key).maybeSingle());
     if (!row) { const team=staticTeams.find(t=>t.slug===key);if(team) row={team_id:team.faceitTeamId,team}; }
     if (!row) return null;
-    const links = await result(client.from('team_players').select('players!team_players_player_id_fkey(faceit_id,nickname)').eq('team_id',row.team_id).eq('is_active',true));
-    return {entity:row.team,roster:links.map(l => Array.isArray(l.players)?l.players[0]:l.players).filter(Boolean)};
+    const [links, recentMatches] = await Promise.all([
+      result(client.from('team_players').select('players!team_players_player_id_fkey(faceit_id,nickname)').eq('team_id',row.team_id).eq('is_active',true)),
+      result(client.from('matches').select('id,team1_id,team1_name,team1_score,team2_id,team2_name,team2_score,competition_name,finished_at,scheduled_at,map_scores,veto_steps')
+        .or(`team1_id.eq.${row.team_id},team2_id.eq.${row.team_id}`).in('status',['FINISHED','MATCH_STATUS_FINISHED'])
+        .order('finished_at',{ascending:false,nullsFirst:false}).limit(8))
+        .catch(error => { console.warn('[seo-matches]', error.message); return []; }),
+    ]);
+    return {entity:{...row.team,faceitTeamId:row.team_id},roster:links.map(l => Array.isArray(l.players)?l.players[0]:l.players).filter(Boolean),recentMatches};
   }
   const aliasEntry=Object.entries(aliases).find(([name,old])=>name.toLowerCase()===key.toLowerCase() || old.some(n=>n.toLowerCase()===key.toLowerCase()));
   if(aliasEntry) key=aliasEntry[0];

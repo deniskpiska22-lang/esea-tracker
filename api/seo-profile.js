@@ -17,7 +17,7 @@ export default async function handler(req,res) {
       res.setHeader('X-Robots-Tag','noindex');
       return res.status(404).send(renderProfile(template,{title:'Профиль не найден | ESEA Tracker',description:'Этот профиль пока не найден.',heading:'Профиль не найден',canonicalPath:`/${kind==='team'?'teams':'players'}/${encodeURIComponent(key)}`},404));
     }
-    const metadata = profileMetadata(kind,profile.entity,profile.roster,section);
+    const metadata = profileMetadata(kind,profile.entity,profile.roster,section,profile.recentMatches);
     const requestedPath = kind==='team'?`/teams/${encodeURIComponent(key)}${section?`/${section}`:''}`:`/players/${encodeURIComponent(key)}`;
     if(requestedPath!==metadata.canonicalPath) return res.redirect(308,metadata.canonicalPath);
     res.setHeader('Content-Type','text/html; charset=utf-8');

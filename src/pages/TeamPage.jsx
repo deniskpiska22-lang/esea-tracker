@@ -1,3 +1,4 @@
+import { getTeamIntro } from '../utils/teamSeo.js';
 import {
   useEffect,
   useMemo,
@@ -956,6 +957,8 @@ function TeamPage() {
             )}
           </div>
         </nav>
+
+        <p className="mt-6 text-sm leading-6 text-slate-400">{getTeamIntro(team)}</p>
 
         {/* ABOUT */}
         {(teamDescription || teamSocialLinks.length > 0) && (

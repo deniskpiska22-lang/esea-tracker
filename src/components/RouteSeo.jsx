@@ -1,3 +1,4 @@
+import { getTeamSeoMetadata } from '../utils/teamSeo.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -74,28 +75,8 @@ function getTeamMetadata(pathname, teams) {
     return null;
   }
 
-  const sectionLabels = {
-    overview: "матчи, состав, статистика и рейтинг",
-    matches: "матчи и результаты",
-    stats: "статистика",
-    analytics: "аналитика",
-    veto: "карты и вето",
-  };
-  const details = [
-    team.division ? `${team.division} Division` : null,
-    team.country || null,
-    team.season ? `сезон ${team.season}` : null,
-  ].filter(Boolean);
-  const suffix = details.length > 0 ? ` ${details.join(", ")}.` : "";
-  const canonicalSection = section === "overview" ? "" : `/${section}`;
+  return getTeamSeoMetadata(team, section === 'overview' ? '' : section, team.players || []);
 
-  return {
-    title: `${team.name}: ${sectionLabels[section]} CS2 | ESEA Tracker`,
-    description: `${team.name} — ${sectionLabels[section]} ESEA CS2.${suffix}`,
-    canonicalPath: `/teams/${team.slug}${canonicalSection}`,
-    image: team.logo || `${SITE_ORIGIN}/logo.png`,
-    schema: { "@context":"https://schema.org", "@type":"SportsTeam", name:team.name, sport:"Counter-Strike 2", url:`${SITE_ORIGIN}/teams/${team.slug}${canonicalSection}` },
-  };
 }
 
 function getMetadata(pathname, teams) {
@@ -165,8 +146,10 @@ export default function RouteSeo() {
     if (!structured) { structured = document.createElement("script"); structured.type = "application/ld+json"; document.head.appendChild(structured); }
     structured.textContent = JSON.stringify(metadata.schema || { "@context":"https://schema.org", "@type":"WebSite", name:"ESEA Tracker", url:SITE_ORIGIN });
     document.title = metadata.title;
-    document.documentElement.lang = "ru";
+    document.documentElement.lang = metadata.language || "ru";
 
+    setMeta('meta[name="robots"]', { name: "robots" }, metadata.robots || 'index,follow,max-image-preview:large');
+    setMeta('meta[property="og:locale"]', { property: "og:locale" }, metadata.language === 'en' ? 'en_US' : 'ru_RU');
     setMeta('meta[name="description"]', { name: "description" }, metadata.description);
     setMeta('meta[property="og:title"]', { property: "og:title" }, metadata.title);
     setMeta(
@@ -175,7 +158,13 @@ export default function RouteSeo() {
       metadata.description
     );
     setMeta('meta[property="og:url"]', { property: "og:url" }, canonicalUrl);
-    setMeta('meta[property="og:image"]', { property: "og:image" }, image);
+    if (metadata.language === 'en' && !metadata.image) {
+      document.head.querySelector('meta[property="og:image"]')?.remove();
+      document.head.querySelector('meta[name="twitter:image"]')?.remove();
+    } else {
+      setMeta('meta[property="og:image"]', { property: "og:image" }, image);
+      setMeta('meta[name="twitter:image"]', { name: "twitter:image" }, image);
+    }
     setMeta('meta[name="twitter:title"]', { name: "twitter:title" }, metadata.title);
     setMeta(
       'meta[name="twitter:description"]',

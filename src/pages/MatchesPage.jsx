@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { supabase } from "../lib/supabaseClient";
 import TournamentNameLink from "../components/TournamentNameLink";
 
@@ -115,6 +115,7 @@ function rowToTeamMatch(row, team) {
 }
 
 function MatchesPage() {
+  const { teams } = useTeamCatalog();
   const { slug } = useParams();
   const location = useLocation();
 

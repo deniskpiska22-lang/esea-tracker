@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import matchesData from "../data/matches";
 import {
   buildOpponentBanOrderStats,
@@ -490,6 +490,7 @@ function MapCard({ map, form, slug }) {
 }
 
 function VetoPage() {
+  const { teams } = useTeamCatalog();
   const { slug } = useParams();
 
   const team = teams.find((item) => item.slug === slug) || null;

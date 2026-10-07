@@ -1,3 +1,5 @@
+import { TEAM_SECTIONS, teamSitemapEntries } from '../src/utils/teamSeo.js';
+import { profileMetadata, renderProfile } from '../server/profileSeo.js';
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -44,76 +46,9 @@ function escapeXml(value) {
   return escapeHtml(value);
 }
 
-function replaceMeta(html, team) {
-  const canonicalUrl = `${SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`;
-  const title = `${team.name}: матчи, состав, статистика и рейтинг CS2 | ESEA Tracker`;
-  const details = [
-    team.division ? `${team.division} Division` : null,
-    team.country || null,
-    team.season ? `сезон ${team.season}` : null,
-  ].filter(Boolean);
-  const detailText = details.length > 0 ? ` ${details.join(", ")}.` : "";
-  const description = `${team.name} — матчи, результаты, состав, статистика игроков и рейтинг команды ESEA CS2.${detailText}`;
-  const image = new URL(team.logo || "/logo.png", SITE_ORIGIN).toString();
-  const structuredData = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "SportsTeam",
-    name: team.name,
-    sport: "Counter-Strike 2",
-    url: canonicalUrl,
-    logo: image,
-    description,
-  }).replaceAll("<", "\\u003c");
-  const initialContent = `
-    <main style="min-height:100vh;background:#05070a;color:#fff;font-family:Arial,sans-serif;padding:48px 24px">
-      <article style="max-width:900px;margin:0 auto">
-        <p style="color:#f97316;font-weight:700">ESEA Tracker</p>
-        <h1>${escapeHtml(team.name)} — команда ESEA CS2</h1>
-        <p>${escapeHtml(description)}</p>
-        <p><a href="/rankings" style="color:#fb923c">Рейтинг команд</a> · <a href="/matches" style="color:#fb923c">Матчи ESEA CS2</a></p>
-      </article>
-    </main>`;
-
-  return html
-    .replace(/<html\b[^>]*>/i, '<html lang="ru">')
-    .replace(/<title>[^<]*<\/title>/i, `<title>${escapeHtml(title)}</title>`)
-    .replace(
-      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="description" content="${escapeHtml(description)}" />`
-    )
-    .replace(
-      /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
-      `<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />`
-    )
-    .replace(
-      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
-      `<meta property="og:title" content="${escapeHtml(title)}" />`
-    )
-    .replace(
-      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
-      `<meta property="og:description" content="${escapeHtml(description)}" />`
-    )
-    .replace(
-      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
-      `<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />`
-    )
-    .replace(
-      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i,
-      `<meta property="og:image" content="${escapeHtml(image)}" />`
-    )
-    .replace(
-      /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="twitter:title" content="${escapeHtml(title)}" />`
-    )
-    .replace(
-      /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="twitter:description" content="${escapeHtml(description)}" />`
-    )
-    .replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/i,
-      `<script type="application/ld+json">${structuredData}</script>`
-    )
-    .replace('<div id="root"></div>', `<div id="root">${initialContent}</div>`);
+function replaceMeta(html, team, section = '') {
+  const roster = (team.players || []).filter(player => player?.nickname && player?.faceit_id);
+  return renderProfile(html, profileMetadata('team', team, roster, section));
 }
 
 async function fetchAllRows(client, table, columns, configure = (query) => query) {
@@ -302,13 +237,11 @@ async function main() {
   await mkdir(playersDirectory, { recursive: true });
 
   await writeInBatches([
-    ...uniqueTeams.map((team) => () =>
-      writeFile(
-        path.join(teamsDirectory, `${team.slug}.html`),
-        replaceMeta(template, team),
-        "utf8"
-      )
-    ),
+    ...uniqueTeams.flatMap((team) => ['', ...TEAM_SECTIONS].map(section => async () => {
+      const directory = section ? path.join(teamsDirectory, team.slug) : teamsDirectory;
+      await mkdir(directory, { recursive: true });
+      await writeFile(path.join(directory, section ? `${section}.html` : `${team.slug}.html`), replaceMeta(template, team, section), 'utf8');
+    })),
     ...players.map((player) => () =>
       writeFile(
         path.join(playersDirectory, `${player.playerId}.html`),
@@ -320,9 +253,7 @@ async function main() {
 
   const urls = [
     ...staticPages.map((route) => `${SITE_ORIGIN}${route || "/"}`),
-    ...uniqueTeams.map(
-      (team) => `${SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`
-    ),
+    ...uniqueTeams.flatMap(team => teamSitemapEntries(`${SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`).map(entry => entry.url)),
     ...players.map(
       (player) => `${SITE_ORIGIN}/players/${encodeURIComponent(player.playerId)}`
     ),
