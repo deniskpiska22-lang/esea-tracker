@@ -15,7 +15,6 @@ import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";
 import { useTeamCatalog } from "./hooks/useTeamCatalog";
 import { supabase } from "./lib/supabaseClient";
-import PariSideRails from "./components/PariSideRails";
 import RouteSeo from "./components/RouteSeo";
 
 function App() {
@@ -967,7 +966,6 @@ function App() {
         </div>
       )}
 
-      <PariSideRails />
       <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
         <Outlet />
       </div>
