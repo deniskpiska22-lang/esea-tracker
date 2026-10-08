@@ -2183,12 +2183,12 @@ function Home() {
           background: rgba(249, 115, 22, 0.48);
         }
       `}</style>
-      <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6 min-[1600px]:-translate-x-5">
+      <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6 min-[1600px]:w-[calc(100%+32px)] min-[1600px]:-translate-x-5">
         {databaseError && (
           <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">{tx(" Supabase is temporarily unavailable. Local data is being shown. ")}</div>
         )}
 
-        <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_320px] min-[1850px]:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_352px] min-[1850px]:grid-cols-[minmax(0,1fr)_372px]">
           {/* LEFT COLUMN — independent height */}
           <div className="grid min-w-0 gap-5">
             <HeroMatch match={featured} />
