@@ -219,7 +219,7 @@ async function main() {
     ),
   ];
   const urls = baseUrls.flatMap(url=>LANGUAGE_CODES.map(language=>SITE_ORIGIN+localizedPath(new URL(url).pathname,language)));
-  await writeInBatches(LANGUAGE_CODES.flatMap(language=>staticPages.map(route=>async()=>{
+  await writeInBatches((dynamicProfiles ? [] : LANGUAGE_CODES).flatMap(language=>staticPages.map(route=>async()=>{
     const pathname=route || '/';
     const localized=localizedPath(pathname,language);
     if (localized === '/') return; // Keep dist/index.html as the clean API/SPA template.
