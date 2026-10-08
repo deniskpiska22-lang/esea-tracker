@@ -13,7 +13,9 @@ test('reported duplicate match has its own canonical, title, scores and readable
  assert.match(html,/Ancient: 11–13/);assert.match(html,/href="\/teams\/uk-ripper-one"/);assert.match(html,/href="\/players\/player-id"/);
  assert.match(html,new RegExp(`rel="canonical" href="https://eseatracker.ru/match/${match.id}"`));
  assert.equal((html.match(/<h1/g)||[]).length,1);assert.match(html,/<html lang="en">/);
- assert.equal(metadata.schema['@graph'].find(node=>node['@type']==='SportsEvent').startDate,'2026-07-21T18:00:00.000Z');
+ assert.deepEqual(metadata.schema['@graph'].find(node=>node['@type']==='WebPage').about.map(team=>team.identifier),['one','two']);
+ assert.doesNotMatch(JSON.stringify(metadata.schema), /SportsEvent|EventScheduled|EventCancelled/);
+ assert.match(metadata.description,/2026-07-21/);
 });
 test('scheduled matches do not claim a 0–0 result or invent a date',()=>{
  const m=getMatchSeoMetadata({...match,status:'SCHEDULED',scheduled_at:null});

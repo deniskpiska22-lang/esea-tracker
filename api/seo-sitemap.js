@@ -3,7 +3,7 @@ import { seoClient, result } from '../server/seoData.js';
 import { ORIGIN, staticRoutes, sitemapXml } from '../server/profileSeo.js';
 const PAGE_SIZE=1000;
 // These pages' rendered SEO content changed in this release, even when match data did not.
-const SEO_CONTENT_UPDATED_AT='2026-10-07T23:06:00.000Z';
+const SEO_CONTENT_UPDATED_AT='2026-10-08T19:45:00.000Z';
 const contentUpdatedAt = value => value && new Date(value).getTime()>new Date(SEO_CONTENT_UPDATED_AT).getTime() ? value : SEO_CONTENT_UPDATED_AT;
 export default async function handler(req,res) {
   const kind=String(req.query.kind || 'index');

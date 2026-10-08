@@ -18,16 +18,11 @@ export function getMatchSeoMetadata(match) {
   const canonicalPath = `/match/${encodeURIComponent(match.id)}`;
   const title = `${first} vs ${second}${score ? ` ${score}` : ''} — ${label} | ${competition}`;
   const description = `${first} vs ${second}${score ? `: ${score}` : ''} in ${competition}${isoDate ? ` on ${isoDate.slice(0, 10)}` : ''}${match.best_of ? ` (BO${match.best_of})` : ''}. CS2 ${finished ? 'match results' : live ? 'live match' : 'match schedule'}, maps and player statistics on ESEA Tracker.`;
-  // SportsEvent requires a known date. Undated records use a WebPage instead.
-  const event = isoDate ? { '@type': 'SportsEvent', '@id': `${ORIGIN}${canonicalPath}#match`, name: `${first} vs ${second}`, sport: 'Counter-Strike 2', startDate: isoDate, url: `${ORIGIN}${canonicalPath}`, description,
-    eventStatus: cancelled ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
-    competitor: [first, second].map(name => ({ '@type': 'SportsTeam', name })),
-    ...(finished && match.finished_at && !Number.isNaN(new Date(match.finished_at).getTime()) ? { endDate: new Date(match.finished_at).toISOString() } : {}),
-  } : null;
+  // Online matches are result pages, not physical events eligible for Google's
+  // event listings. Describe the page and its teams without inventing a venue.
   return { title, description, heading: `${first} vs ${second}${score ? ` — ${score}` : ''}`, canonicalPath, canonicalUrl: `${ORIGIN}${canonicalPath}`, language: 'en', robots: cancelled ? 'noindex,follow' : 'index,follow,max-image-preview:large',
     schema: { '@context': 'https://schema.org', '@graph': [
-      { '@type': 'WebPage', '@id': `${ORIGIN}${canonicalPath}#page`, url: `${ORIGIN}${canonicalPath}`, name: title, description, inLanguage: 'en', ...(event ? { mainEntity: { '@id': event['@id'] } } : {}) },
-      ...(event ? [event] : []),
+      { '@type': 'WebPage', '@id': `${ORIGIN}${canonicalPath}#page`, url: `${ORIGIN}${canonicalPath}`, name: title, description, inLanguage: 'en', about: [1,2].map(n => ({ '@type': 'SportsTeam', name: match[`team${n}_name`] || 'TBD', ...(match[`team${n}_id`] ? { identifier: match[`team${n}_id`] } : {}) })) },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'ESEA Tracker', item: ORIGIN + '/' },
         { '@type': 'ListItem', position: 2, name: 'CS2 matches', item: ORIGIN + '/matches' },
