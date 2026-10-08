@@ -1,3 +1,4 @@
+import { tx } from "./i18n/translate.js";
 /* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
@@ -9,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import "./index.css";
+import { currentLanguage, LANGUAGE_CODES, localizedPath } from "./i18n/languages.js";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
@@ -48,9 +50,7 @@ const TournamentPage = lazy(() => import("./pages/TournamentPage"));
 
 function RouteLoading() {
   return (
-    <div className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-[#05070a] text-sm font-semibold text-slate-500">
-      Loading...
-    </div>
+    <div className="flex min-h-[calc(100vh-72px)] items-center justify-center bg-[#05070a] text-sm font-semibold text-slate-500">{tx(" Loading... ")}</div>
   );
 }
 
@@ -80,18 +80,13 @@ class AppErrorBoundary extends React.Component {
               height="56"
               className="mx-auto h-14 w-14 rounded-2xl"
             />
-            <h1 className="mt-5 text-2xl font-black">ESEA Tracker не загрузился</h1>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              Похоже, один из файлов сайта не загрузился или произошла ошибка в браузере.
-              Перезагрузка обычно решает проблему.
-            </p>
+            <h1 className="mt-5 text-2xl font-black">{tx("ESEA Tracker не загрузился")}</h1>
+            <p className="mt-3 text-sm leading-6 text-slate-400">{tx(" Похоже, один из файлов сайта не загрузился или произошла ошибка в браузере. Перезагрузка обычно решает проблему. ")}</p>
             <button
               type="button"
               onClick={() => window.location.reload()}
               className="mt-5 rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-            >
-              Перезагрузить
-            </button>
+            >{tx(" Перезагрузить ")}</button>
           </div>
         </main>
       );
@@ -110,7 +105,7 @@ function Application() {
             <MaintenancePage />
           </LanguageProvider>
         ) : (
-          <BrowserRouter>
+          <BrowserRouter basename={currentLanguage() === "ru" ? "/" : `/${currentLanguage()}`}>
             <LanguageProvider>
               <AuthProvider>
                 <ScrollToTop />
@@ -165,4 +160,10 @@ function Application() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Application />);
+let preferredLanguage;
+try { preferredLanguage = window.localStorage.getItem('esea-tracker-language'); } catch { /* Storage may be disabled. */ }
+if (window.location.pathname === '/' && preferredLanguage !== 'ru' && LANGUAGE_CODES.includes(preferredLanguage)) {
+  window.location.replace(localizedPath('/', preferredLanguage) + window.location.search + window.location.hash);
+} else {
+  ReactDOM.createRoot(document.getElementById("root")).render(<Application />);
+}

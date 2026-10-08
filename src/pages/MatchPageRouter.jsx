@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import {
   Suspense,
   lazy,
@@ -24,9 +25,7 @@ const MatchPage = lazy(() => import("./MatchPage"));
 
 function MatchLoading() {
   return (
-    <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-      Loading match...
-    </div>
+    <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">{tx(" Loading match... ")}</div>
   );
 }
 
@@ -132,9 +131,7 @@ function MatchPageRouter() {
   if (!finishedMatch && !upcomingMatch && !dbRow) {
     return (
       <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        <div className="text-xl font-bold">
-          Match not found
-        </div>
+        <div className="text-xl font-bold">{tx(" Match not found ")}</div>
       </div>
     );
   }

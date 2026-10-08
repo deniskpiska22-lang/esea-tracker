@@ -1,3 +1,5 @@
+import { tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
@@ -26,7 +28,7 @@ function normalizeCompetitionKey(value = "") {
 
 
 function formatDate(value) {
-  if (!value) return "Unknown date";
+  if (!value) return tx("Unknown date");
 
   const date = new Date(value);
 
@@ -34,7 +36,7 @@ function formatDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -110,7 +112,7 @@ function rowToTeamMatch(row, team) {
     maps: getMapNames(row),
     mapScores: getMapScores(row),
     boScore: hasScores ? `${ownScore}:${opponentScore}` : "-:-",
-    result: !hasScores ? "-" : draw ? "D" : won ? "W" : "L",
+    result: !hasScores ? "-" : draw ? "D" : won ? tx("W") : tx("L"),
   };
 }
 
@@ -211,7 +213,7 @@ function MatchesPage() {
             {
               event: "*",
               schema: "public",
-              table: "matches",
+              table: tx("matches"),
             },
             loadMatches
           )
@@ -282,13 +284,10 @@ function MatchesPage() {
         <Link
           to={`/team/${slug}`}
           className="text-orange-400 hover:text-orange-300"
-        >
-          ← Back to Team
-        </Link>
+        >{tx(" ← Back to Team ")}</Link>
 
         <h1 className="mb-8 mt-4 text-4xl font-black">
-          {team?.name || "Team"} Matches
-        </h1>
+          {team?.name || tx("Team")}{tx(" Matches ")}</h1>
 
         {mapFilter && (
           <div className="mb-6 flex items-center gap-3">
@@ -299,28 +298,21 @@ function MatchesPage() {
             <Link
               to={`/team/${slug}/matches`}
               className="text-gray-400 hover:text-white"
-            >
-              Clear Filter
-            </Link>
+            >{tx(" Clear Filter ")}</Link>
           </div>
         )}
 
         {loading && (
-          <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">
-            Loading matches...
-          </div>
+          <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">{tx(" Loading matches... ")}</div>
         )}
 
         {!loading && errorMessage && (
-          <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">
-            Could not load matches from Supabase: {errorMessage}
+          <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">{tx(" Could not load matches from Supabase: ")}{errorMessage}
           </div>
         )}
 
         {!loading && !errorMessage && teamMatches.length === 0 && (
-          <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">
-            This team does not have any completed matches in the database yet.
-          </div>
+          <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">{tx(" This team does not have any completed matches in the database yet. ")}</div>
         )}
 
         {!loading &&
@@ -364,7 +356,7 @@ function MatchesPage() {
                       <div className="text-sm text-gray-400">
                         {match.maps.length > 0
                           ? match.maps.join(" • ")
-                          : "Maps unavailable"}
+                          : tx("Maps unavailable")}
                       </div>
                     </div>
 

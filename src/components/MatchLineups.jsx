@@ -1,3 +1,4 @@
+import { tx, tf } from "../i18n/translate.js";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -83,7 +84,7 @@ function PlayerPortraitLayers({ player, team }) {
 
       <img
         src={PLAYER_SILHOUETTE}
-        alt={`Player silhouette for ${player?.nickname || ""}`}
+        alt={tf("Player silhouette for {0}", player?.nickname || "")}
         className="absolute inset-0 z-10 h-full w-full scale-[1.03] object-contain object-bottom"
       />
 
@@ -173,7 +174,7 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
       <div className="mb-2 flex items-center gap-2.5">
         <TeamMark team={team} />
         <div className="truncate text-sm font-black text-white">
-          {team?.name || "TBD"}
+          {team?.name || tx("TBD")}
         </div>
       </div>
 

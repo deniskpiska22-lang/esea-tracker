@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { Link } from "react-router-dom";
 
 import {
@@ -89,9 +90,7 @@ export default function HeadToHeadCard({
 
   return (
     <div className="mt-8">
-      <h2 className="mb-4 text-2xl font-black tracking-tight">
-        Head to Head
-      </h2>
+      <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Head to Head ")}</h2>
 
       <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
         <div className="grid grid-cols-3 items-center border-b border-[#243041] p-6 text-center">
@@ -110,9 +109,7 @@ export default function HeadToHeadCard({
               {leftWins}
             </div>
 
-            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">
-              Wins
-            </div>
+            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">{tx(" Wins ")}</div>
           </div>
 
           <div>
@@ -120,9 +117,7 @@ export default function HeadToHeadCard({
               {overtimeCount}
             </div>
 
-            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">
-              Overtimes
-            </div>
+            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">{tx(" Overtimes ")}</div>
           </div>
 
           <div className="flex flex-col items-center">
@@ -140,9 +135,7 @@ export default function HeadToHeadCard({
               {rightWins}
             </div>
 
-            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">
-              Wins
-            </div>
+            <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">{tx(" Wins ")}</div>
           </div>
         </div>
 

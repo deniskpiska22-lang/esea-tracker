@@ -1,3 +1,5 @@
+import { tf, tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import {
   useCallback,
   useEffect,
@@ -24,7 +26,7 @@ function formatCommentDate(value) {
     return "";
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -107,7 +109,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Could not load comments."
+        tx("Could not load comments.")
       );
     } finally {
       setLoading(false);
@@ -183,7 +185,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Could not post the comment."
+        tx("Could not post the comment.")
       );
     } finally {
       setSubmitting(false);
@@ -196,7 +198,7 @@ export default function MatchComments({ matchId }) {
     }
 
     const shouldDelete = window.confirm(
-      "Delete this comment?"
+      tx("Delete this comment?")
     );
 
     if (!shouldDelete) return;
@@ -225,7 +227,7 @@ export default function MatchComments({ matchId }) {
       );
 
       setError(
-        "Could not delete the comment."
+        tx("Could not delete the comment.")
       );
     } finally {
       setDeletingId(null);
@@ -236,23 +238,21 @@ export default function MatchComments({ matchId }) {
     const count = comments.length;
 
     if (count === 1) {
-      return "1 comment";
+      return tx("1 comment");
     }
 
     if (count >= 2 && count <= 4) {
-      return `${count} comments`;
+      return tf("{0} comments", count);
     }
 
-    return `${count} comments`;
+    return tf("{0} comments", count);
   }, [comments.length]);
 
   return (
     <section className="mt-10 overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#243041] px-5 py-4">
         <div>
-          <h2 className="text-2xl font-black">
-            Comments
-          </h2>
+          <h2 className="text-2xl font-black">{tx(" Comments ")}</h2>
 
           <p className="mt-1 text-sm text-gray-500">
             {commentCountLabel}
@@ -262,9 +262,7 @@ export default function MatchComments({ matchId }) {
 
       <div className="p-5 md:p-6">
         {authLoading ? (
-          <div className="rounded-xl border border-[#243041] bg-[#0b0f14] p-4 text-sm text-gray-500">
-            Checking authentication...
-          </div>
+          <div className="rounded-xl border border-[#243041] bg-[#0b0f14] p-4 text-sm text-gray-500">{tx(" Checking authentication... ")}</div>
         ) : user ? (
           <form
             onSubmit={handleSubmit}
@@ -287,7 +285,7 @@ export default function MatchComments({ matchId }) {
                 <div className="font-bold">
                   {profile?.display_name ||
                     profile?.username ||
-                    "User"}
+                    tx("User")}
                 </div>
 
                 {profile?.username && (
@@ -310,7 +308,7 @@ export default function MatchComments({ matchId }) {
               }
               rows={4}
               maxLength={MAX_COMMENT_LENGTH}
-              placeholder="Write a comment about the match..."
+              placeholder={tx("Write a comment about the match...")}
               className="w-full resize-y rounded-xl border border-[#2b3748] bg-[#111823] px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
             />
 
@@ -322,8 +320,7 @@ export default function MatchComments({ matchId }) {
                     : "text-gray-500"
                 }`}
               >
-                {remainingCharacters} characters remaining
-              </div>
+                {remainingCharacters}{tx(" characters remaining ")}</div>
 
               <button
                 type="submit"
@@ -331,8 +328,8 @@ export default function MatchComments({ matchId }) {
                 className="rounded-xl bg-orange-500 px-5 py-2.5 text-sm font-black text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitting
-                  ? "Posting..."
-                  : "Post"}
+                  ? tx("Posting...")
+                  : tx("Post")}
               </button>
             </div>
           </form>
@@ -342,19 +339,12 @@ export default function MatchComments({ matchId }) {
               to="/login"
               state={{ from: location }}
               className="font-bold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
-            >
-              Log in
-            </Link>{" "}
-            or{" "}
+            >{tx(" Log in ")}</Link>{" "}{tx(" or")}{" "}
             <Link
               to="/register"
               state={{ from: location }}
               className="font-bold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
-            >
-              sign up
-            </Link>
-            , to leave a comment.
-          </div>
+            >{tx(" sign up ")}</Link>{tx(" , to leave a comment. ")}</div>
         )}
 
         {error && (
@@ -365,18 +355,12 @@ export default function MatchComments({ matchId }) {
 
         <div className="mt-6">
           {loading ? (
-            <div className="py-8 text-center text-sm text-gray-500">
-              Loading comments...
-            </div>
+            <div className="py-8 text-center text-sm text-gray-500">{tx(" Loading comments... ")}</div>
           ) : comments.length === 0 ? (
             <div className="rounded-xl border border-dashed border-[#2b3748] px-5 py-10 text-center">
-              <div className="font-bold">
-                No comments yet
-              </div>
+              <div className="font-bold">{tx(" No comments yet ")}</div>
 
-              <div className="mt-1 text-sm text-gray-500">
-                Be the first to discuss this match.
-              </div>
+              <div className="mt-1 text-sm text-gray-500">{tx(" Be the first to discuss this match. ")}</div>
             </div>
           ) : (
             <div className="space-y-4">
@@ -385,7 +369,7 @@ export default function MatchComments({ matchId }) {
                 const authorName =
                   author?.display_name ||
                   author?.username ||
-                  "Deleted user";
+                  tx("Deleted user");
                 const isOwnComment =
                   user?.id === comment.user_id;
 
@@ -442,8 +426,8 @@ export default function MatchComments({ matchId }) {
                               className="text-xs font-semibold text-gray-500 transition-colors hover:text-red-400 disabled:cursor-wait disabled:opacity-50"
                             >
                               {deletingId === comment.id
-                                ? "Deleting..."
-                                : "Delete"}
+                                ? tx("Deleting...")
+                                : tx("Delete")}
                             </button>
                           )}
                         </div>

@@ -1,3 +1,4 @@
+import { tx } from "./i18n/translate.js";
 import {
   useEffect,
   useMemo,
@@ -16,6 +17,7 @@ import { useLanguage } from "./context/LanguageContext";
 import { useTeamCatalog } from "./hooks/useTeamCatalog";
 import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 function App() {
   const { teams } = useTeamCatalog();
@@ -35,7 +37,7 @@ function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { language, setLanguage, tr } = useLanguage();
+  const { tr } = useLanguage();
 
   const {
     user,
@@ -368,19 +370,19 @@ function App() {
   const navigation = [
     {
       path: "/",
-      label: "Home",
+      label: tx("Home"),
     },
     {
       path: "/rankings",
-      label: "Rankings",
+      label: tx("Rankings"),
     },
     {
       path: "/calendar",
-      label: "Events",
+      label: tx("Events"),
     },
     {
       path: "/about",
-      label: "About",
+      label: tx("About"),
     },
   ];
 
@@ -428,9 +430,7 @@ function App() {
                 <span className="block text-[17px] font-black leading-none tracking-[-0.02em] text-white transition group-hover:text-orange-300">
                   ESEA Tracker
                 </span>
-                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-600">
-                  Community Hub
-                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-600">{tx(" Community Hub ")}</span>
               </span>
             </Link>
 
@@ -453,6 +453,7 @@ function App() {
             </div>
 
             <div className="ml-auto flex shrink-0 items-center gap-2">
+              <LanguageSwitcher />
               <button
                 type="button"
                 onClick={() => {
@@ -465,9 +466,7 @@ function App() {
                   ⌕
                 </span>
 
-                <span className="min-w-0 flex-1 truncate text-gray-500 transition group-hover:text-gray-300">
-                  Search teams & players
-                </span>
+                <span className="min-w-0 flex-1 truncate text-gray-500 transition group-hover:text-gray-300">{tx(" Search teams & players ")}</span>
 
                 <span className="rounded-md border border-white/[0.08] bg-white/[0.04] px-2 py-1 text-[10px] font-black text-gray-600">
                   Ctrl K
@@ -484,9 +483,7 @@ function App() {
                       ? "border-orange-500/50 bg-orange-500/10 text-orange-300"
                       : "border-white/[0.08] bg-white/[0.03] text-gray-400 hover:border-orange-500/30 hover:text-orange-300"
                   }`}
-                >
-                  Admin
-                </Link>
+                >{tx(" Admin ")}</Link>
               )}
 
               {loading ? (
@@ -547,42 +544,8 @@ function App() {
                         </div>
 
                         {profile?.is_admin && (
-                          <div className="mt-3 inline-flex rounded-lg border border-orange-500/25 bg-orange-500/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-orange-300">
-                            Administrator
-                          </div>
+                          <div className="mt-3 inline-flex rounded-lg border border-orange-500/25 bg-orange-500/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-orange-300">{tx(" Administrator ")}</div>
                         )}
-                      </div>
-
-                      <div className="mt-2 flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2">
-                        <span className="text-xs font-bold text-gray-500">
-                          {tr("Язык", "Language")}
-                        </span>
-
-                        <div className="flex rounded-lg border border-white/[0.08] bg-black/20 p-0.5">
-                          <button
-                            type="button"
-                            onClick={() => setLanguage("en")}
-                            className={`rounded-md px-2 py-1 text-[11px] font-black transition ${
-                              language === "en"
-                                ? "bg-orange-500 text-white"
-                                : "text-gray-500 hover:text-white"
-                            }`}
-                          >
-                            EN
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => setLanguage("ru")}
-                            className={`rounded-md px-2 py-1 text-[11px] font-black transition ${
-                              language === "ru"
-                                ? "bg-orange-500 text-white"
-                                : "text-gray-500 hover:text-white"
-                            }`}
-                          >
-                            RU
-                          </button>
-                        </div>
                       </div>
 
                       <div className="mt-2 space-y-1">
@@ -636,16 +599,12 @@ function App() {
                   <Link
                     to="/login"
                     className="hidden h-11 items-center rounded-2xl px-3 text-sm font-bold text-gray-400 transition hover:bg-white/[0.04] hover:text-white sm:flex"
-                  >
-                    Log in
-                  </Link>
+                  >{tx(" Log in ")}</Link>
 
                   <Link
                     to="/register"
                     className="flex h-11 items-center rounded-2xl border border-orange-400/20 bg-orange-500/10 px-4 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
-                  >
-                    Sign up
-                  </Link>
+                  >{tx(" Sign up ")}</Link>
                 </>
               )}
             </div>
@@ -672,7 +631,7 @@ function App() {
               type="button"
               onClick={() => setShowSearch(true)}
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
-              aria-label="Search"
+              aria-label={tx("Search")}
             >
               ⌕
             </button>
@@ -705,7 +664,7 @@ function App() {
                 onKeyDown={
                   handleSearchKey
                 }
-                placeholder="Search teams or players..."
+                placeholder={tx("Search teams or players...")}
                 className="min-w-0 flex-1 bg-transparent py-2 text-white outline-none placeholder:text-gray-600"
               />
 
@@ -738,9 +697,7 @@ function App() {
               {filteredTeams.length >
                 0 && (
                 <div>
-                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">
-                    Teams
-                  </div>
+                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">{tx(" Teams ")}</div>
 
                   {filteredTeams.map(
                     (team) => (
@@ -780,7 +737,7 @@ function App() {
 
                           <div className="mt-1 text-xs text-gray-500">
                             {team.division ||
-                              "Team"}
+                              tx("Team")}
                           </div>
                         </div>
                       </button>
@@ -792,9 +749,7 @@ function App() {
               {filteredPlayers.length >
                 0 && (
                 <div>
-                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">
-                    Players
-                  </div>
+                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">{tx(" Players ")}</div>
 
                   {filteredPlayers.map(
                     (player) => (
@@ -819,7 +774,7 @@ function App() {
 
                           <div className="mt-1 truncate text-xs text-gray-500">
                             {player.team ||
-                              "Free agent"}
+                              tx("Free agent")}
                           </div>
                         </div>
 
@@ -873,9 +828,7 @@ function App() {
 
             <div className="space-y-4 p-6">
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-gray-300">
-                  Team name *
-                </span>
+                <span className="mb-2 block text-sm font-bold text-gray-300">{tx(" Team name * ")}</span>
 
                 <input
                   value={teamName}
@@ -886,14 +839,12 @@ function App() {
                   }
                   maxLength={100}
                   className="w-full rounded-xl border border-[#293548] bg-[#111823] px-4 py-3 outline-none transition focus:border-orange-500"
-                  placeholder="Team name"
+                  placeholder={tx("Team name")}
                 />
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-gray-300">
-                  FACEIT link *
-                </span>
+                <span className="mb-2 block text-sm font-bold text-gray-300">{tx(" FACEIT link * ")}</span>
 
                 <input
                   type="url"
@@ -909,9 +860,7 @@ function App() {
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-gray-300">
-                  Contact *
-                </span>
+                <span className="mb-2 block text-sm font-bold text-gray-300">{tx(" Contact * ")}</span>
 
                 <input
                   value={contact}
@@ -922,14 +871,12 @@ function App() {
                   }
                   maxLength={150}
                   className="w-full rounded-xl border border-[#293548] bg-[#111823] px-4 py-3 outline-none transition focus:border-orange-500"
-                  placeholder="Telegram, Discord or email"
+                  placeholder={tx("Telegram, Discord or email")}
                 />
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-gray-300">
-                  Note
-                </span>
+                <span className="mb-2 block text-sm font-bold text-gray-300">{tx(" Note ")}</span>
 
                 <textarea
                   value={note}
@@ -941,7 +888,7 @@ function App() {
                   rows={4}
                   maxLength={500}
                   className="w-full resize-y rounded-xl border border-[#293548] bg-[#111823] px-4 py-3 outline-none transition focus:border-orange-500"
-                  placeholder="Division, roster or additional information..."
+                  placeholder={tx("Division, roster or additional information...")}
                 />
               </label>
             </div>
@@ -956,9 +903,7 @@ function App() {
                   submittingTeam
                 }
                 className="rounded-xl border border-white/10 px-5 py-3 font-bold text-gray-300 transition hover:bg-white/5 disabled:opacity-50"
-              >
-                Cancel
-              </button>
+              >{tx(" Cancel ")}</button>
 
               
             </div>

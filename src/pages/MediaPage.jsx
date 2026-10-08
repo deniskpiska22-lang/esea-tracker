@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import posts from "../data/posts"
 
 function MediaPage() {
@@ -53,14 +54,14 @@ function MediaPage() {
               <div className="p-4">
 
                 <p className="text-gray-300 leading-7 mb-4 text-base">
-                  {post.text}
+                  {tx(post.text)}
                 </p>
 
                 {/* IMAGE — NO HOVER EFFECT AT ALL */}
                 <div className="overflow-hidden rounded-lg border border-white/5">
                   <img
                     src={post.image}
-                    alt="post"
+                    alt={tx("post")}
                     className="w-full block"
                   />
                 </div>
@@ -82,9 +83,7 @@ function MediaPage() {
                       transition
                       shadow-[0_0_15px_rgba(255,140,0,0.10)]
                     "
-                  >
-                    Open Post
-                  </a>
+                  >{tx(" Open Post ")}</a>
 
                 </div>
 

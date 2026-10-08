@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { useEffect, useState } from "react";
 
 import { formatMapName } from "../utils/formatMapName";
@@ -51,7 +52,7 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
       : pickedBy === "team2"
         ? `${team2.name} pick`
         : pickedBy === "decider"
-          ? "Decider"
+          ? tx("Decider")
           : null;
 
   return (
@@ -81,8 +82,7 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
         </div>
 
         <div className="text-center">
-          <div className="text-[9px] font-black uppercase tracking-[0.16em] text-orange-400 sm:text-xs">
-            Map {index + 1}
+          <div className="text-[9px] font-black uppercase tracking-[0.16em] text-orange-400 sm:text-xs">{tx(" Map ")}{index + 1}
           </div>
           <div className="truncate text-sm font-black text-white sm:text-base">
             {formattedName}
@@ -93,9 +93,7 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
             </div>
           )}
           {isPending ? (
-            <div className="mt-0.5 truncate text-[10px] font-semibold uppercase tracking-wide text-amber-400">
-              Awaiting result
-            </div>
+            <div className="mt-0.5 truncate text-[10px] font-semibold uppercase tracking-wide text-amber-400">{tx(" Awaiting result ")}</div>
           ) : (
             demoUrl && (
               <a
@@ -103,9 +101,7 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
                 target="_blank"
                 rel="noreferrer"
                 className="mt-1 hidden rounded-lg border border-orange-500/40 px-2 py-0.5 text-[10px] font-bold text-orange-400 transition hover:bg-orange-500/10 sm:inline-block"
-              >
-                Demo
-              </a>
+              >{tx(" Demo ")}</a>
             )
           )}
         </div>
@@ -144,20 +140,14 @@ function FinishedMapsPanel({
     return (
       <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
         <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
-          <h2 className="text-xl font-black">Maps</h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Match result synchronization
-          </p>
+          <h2 className="text-xl font-black">{tx("Maps")}</h2>
+          <p className="mt-1 text-xs text-slate-500">{tx(" Match result synchronization ")}</p>
         </div>
 
         <div className="p-6">
           <div className="rounded-2xl border border-dashed border-[#2a3546] bg-[#0b1119] p-6 text-center">
-            <div className="font-bold text-slate-300">
-              Map scores are being processed
-            </div>
-            <div className="mt-2 text-sm text-slate-500">
-              The final series score is available. Detailed map results will appear automatically.
-            </div>
+            <div className="font-bold text-slate-300">{tx(" Map scores are being processed ")}</div>
+            <div className="mt-2 text-sm text-slate-500">{tx(" The final series score is available. Detailed map results will appear automatically. ")}</div>
           </div>
         </div>
       </section>
@@ -167,16 +157,14 @@ function FinishedMapsPanel({
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#263244] px-5 py-3 sm:px-6">
-        <h2 className="text-xl font-black">Map results</h2>
+        <h2 className="text-xl font-black">{tx("Map results")}</h2>
         <p className="mt-1 text-xs text-slate-500">
           {isPredicted
-            ? "Map order from the veto — results fill in as FACEIT reports them"
-            : "Full series breakdown"}
+            ? tx("Map order from the veto — results fill in as FACEIT reports them")
+            : tx("Full series breakdown")}
         </p>
         {!isPredicted && demos.size === 0 && !demoUnavailable && (
-          <p className="mt-1 text-xs text-slate-500">
-            Demo is processing, it will appear here automatically
-          </p>
+          <p className="mt-1 text-xs text-slate-500">{tx(" Demo is processing, it will appear here automatically ")}</p>
         )}
       </div>
 
@@ -232,7 +220,7 @@ function parseVetoSteps(payload, team1, team2) {
     map: formatMapName(entity.guid),
     action:
       index === deciderIndex
-        ? "Decider"
+        ? tx("Decider")
         : entity.status === "pick"
           ? "Picked"
           : "Banned",
@@ -276,8 +264,8 @@ function MapVetoCard({ steps, isLoading }) {
   return (
     <section className="flex h-full flex-col overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#263244] px-5 py-3 sm:px-6">
-        <h2 className="text-xl font-black">Map Veto</h2>
-        <p className="mt-1 text-xs text-slate-500">Pick &amp; ban process</p>
+        <h2 className="text-xl font-black">{tx("Map Veto")}</h2>
+        <p className="mt-1 text-xs text-slate-500">{tx("Pick & ban process")}</p>
       </div>
 
       {hasSteps ? (
@@ -296,7 +284,7 @@ function MapVetoCard({ steps, isLoading }) {
                   />
                 )}
                 <span className="truncate font-semibold text-slate-300">
-                  {step.team?.name || "Decider"}
+                  {step.team?.name || tx("Decider")}
                 </span>
               </div>
 
@@ -321,12 +309,12 @@ function MapVetoCard({ steps, isLoading }) {
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="w-full rounded-2xl border border-dashed border-[#2a3546] bg-[#0b1119] p-6 text-center">
             <div className="font-bold text-slate-300">
-              {isLoading ? "Loading veto…" : "Coming soon"}
+              {isLoading ? tx("Loading veto…") : tx("Coming soon")}
             </div>
             <div className="mt-2 text-sm text-slate-500">
               {isLoading
-                ? "Fetching pick & ban history."
-                : "No veto data available for this match yet."}
+                ? tx("Fetching pick & ban history.")
+                : tx("No veto data available for this match yet.")}
             </div>
           </div>
         </div>
@@ -413,7 +401,7 @@ export default function MatchMapResultsSection({
     fetch(`/api/veto?matchId=${encodeURIComponent(matchId)}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Veto request failed");
+          throw new Error(tx("Veto request failed"));
         }
         return response.json();
       })

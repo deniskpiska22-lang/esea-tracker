@@ -1,4 +1,8 @@
-import { getTeamIntro } from '../utils/teamSeo.js';
+import { tx, tf } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
+import { getTeamSeoMetadata } from '../utils/teamSeo.js';
+import { localizeSeo } from '../i18n/seo.js';
+import { currentLanguage } from '../i18n/languages.js';
 import {
   useEffect,
   useMemo,
@@ -487,7 +491,7 @@ function TeamPage() {
           Number.isNaN(date.getTime())
             ? String(dateValue || "")
             : date.toLocaleDateString(
-                "en-US",
+                currentLocale(),
                 {
                   month: "short",
                   day: "numeric",
@@ -632,7 +636,7 @@ function TeamPage() {
           : null,
       countryCode: teamCountry,
       countryName:
-        COUNTRY_NAMES[teamCountry] ||
+        localizedCountry(teamCountry) ||
         teamCountry ||
         "Country",
       worldRankChange:
@@ -655,7 +659,7 @@ function TeamPage() {
 
   if (!team) return (
     <div className="flex min-h-screen items-center justify-center text-white">
-      {catalogLoading ? "Loading team…" : <Link to="/rankings">Team not found — Back to rankings</Link>}
+      {catalogLoading ? tx("Loading team…") : <Link to="/rankings">{tx("Team not found — Back to rankings")}</Link>}
     </div>
   );
 
@@ -734,7 +738,7 @@ function TeamPage() {
                     )}
 
                     <span className="rounded-lg border border-orange-500/15 bg-orange-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                      {team.division || "Division"}
+                      {team.division || tx("Division")}
                     </span>
                   </div>
 
@@ -747,15 +751,11 @@ function TeamPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-orange-300 transition hover:bg-orange-500 hover:text-white"
-                  >
-                    Verification
-                  </a>
+                  >{tx(" Verification ")}</a>
 
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
-                      <span className="text-sm text-slate-500">
-                        Site rating
-                      </span>
+                      <span className="text-sm text-slate-500">{tx(" Site rating ")}</span>
 
                       <span className="ml-2 text-lg font-black text-orange-400">
                         {rankingLoading
@@ -765,9 +765,7 @@ function TeamPage() {
                     </div>
 
                     <div className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.07] px-4 py-2">
-                      <span className="text-sm text-slate-500">
-                        Win rate
-                      </span>
+                      <span className="text-sm text-slate-500">{tx(" Win rate ")}</span>
 
                       <span className="ml-2 text-lg font-black text-emerald-400">
                         {winrate}%
@@ -780,7 +778,7 @@ function TeamPage() {
               <div>
                 <div className="grid grid-cols-2 gap-3">
                   <RankCard
-                    eyebrow="World rank"
+                    eyebrow={tx("World rank")}
                     rank={
                       rankingLoading
                         ? null
@@ -792,7 +790,7 @@ function TeamPage() {
                   />
 
                   <RankCard
-                    eyebrow={`${rankingData.countryName} rank`}
+                    eyebrow={tf("{0} rank", rankingData.countryName)}
                     rank={
                       rankingLoading
                         ? null
@@ -808,23 +806,17 @@ function TeamPage() {
                 </div>
 
                 {rankingError && (
-                  <div className="mt-2 text-right text-[10px] text-rose-400">
-                    Ranking data unavailable
-                  </div>
+                  <div className="mt-2 text-right text-[10px] text-rose-400">{tx(" Ranking data unavailable ")}</div>
                 )}
 
                 <div className="mt-3 rounded-2xl border border-white/[0.06] bg-black/10 p-4 backdrop-blur-sm">
                   <div className="flex items-center justify-between gap-4">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
-                      Last 5
-                    </div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">{tx(" Last 5 ")}</div>
 
                     <Link
                       to="/rankings"
                       className="text-[10px] font-black uppercase tracking-[0.15em] text-orange-400 transition hover:text-orange-300"
-                    >
-                      Full rankings
-                    </Link>
+                    >{tx(" Full rankings ")}</Link>
                   </div>
 
                   <div className="mt-3 flex gap-2">
@@ -851,15 +843,13 @@ function TeamPage() {
                                   : "border-rose-500/25 bg-rose-500/10 text-rose-400",
                               ].join(" ")}
                             >
-                              {won ? "W" : "L"}
+                              {won ? tx("W") : tx("L")}
                             </div>
                           );
                         }
                       )
                     ) : (
-                      <span className="text-sm text-slate-600">
-                        No matches
-                      </span>
+                      <span className="text-sm text-slate-600">{tx(" No matches ")}</span>
                     )}
                   </div>
                 </div>
@@ -869,22 +859,22 @@ function TeamPage() {
             <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4">
               {[
                 {
-                  label: "Wins",
+                  label: tx("Wins"),
                   value: wins,
                   cls: "text-emerald-400",
                 },
                 {
-                  label: "Losses",
+                  label: tx("Losses"),
                   value: losses,
                   cls: "text-rose-400",
                 },
                 {
-                  label: "Win rate",
+                  label: tx("Win rate"),
                   value: `${winrate}%`,
                   cls: "text-orange-400",
                 },
                 {
-                  label: "Site rating",
+                  label: tx("Site rating"),
                   value:
                     rankingLoading
                       ? "..."
@@ -919,55 +909,43 @@ function TeamPage() {
             <Link
               to={`/teams/${slug}`}
               className="relative pb-4 text-sm font-black text-white"
-            >
-              Overview
-              <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-orange-500" />
+            >{tx(" Overview ")}<span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-orange-500" />
             </Link>
 
             <Link
               to={`/teams/${slug}/matches`}
               className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
-            >
-              Matches
-            </Link>
+            >{tx(" Matches ")}</Link>
 
             
 
             <Link
               to={`/teams/${slug}/stats`}
               className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
-            >
-              Statistics
-            </Link>
+            >{tx(" Statistics ")}</Link>
 
             <Link
               to={`/teams/${slug}/veto`}
               className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
-            >
-              Veto
-            </Link>
+            >{tx(" Veto ")}</Link>
 
             {SHOW_ANALYTICS_TAB && (
               <Link
                 to={`/teams/${slug}/analytics`}
                 className="pb-4 text-sm font-bold text-slate-500 transition hover:text-white"
-              >
-                Analytics
-              </Link>
+              >{tx(" Analytics ")}</Link>
             )}
           </div>
         </nav>
 
-        <p className="mt-6 text-sm leading-6 text-slate-400">{getTeamIntro(team)}</p>
+        <p className="mt-6 text-sm leading-6 text-slate-400">{localizeSeo(getTeamSeoMetadata(team),currentLanguage(),{kind:'team',entity:team}).intro}</p>
 
         {/* ABOUT */}
         {(teamDescription || teamSocialLinks.length > 0) && (
           <section className="mt-7 rounded-3xl border border-[#29384a] bg-[#0a1018] p-5 md:p-6">
             {teamDescription && (
               <>
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                  About
-                </div>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">{tx(" About ")}</div>
                 <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-gray-300">
                   {teamDescription}
                 </p>
@@ -990,7 +968,7 @@ function TeamPage() {
                     rel="noopener noreferrer"
                     className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
                   >
-                    {link.platform || "Link"} ↗
+                    {link.platform || tx("Link")} ↗
                   </a>
                 ))}
               </div>
@@ -1010,18 +988,12 @@ function TeamPage() {
             <section className="mt-10 rounded-[28px] border border-white/[0.06] bg-[#101720] p-5 md:p-7">
               <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">
-                    Progress
-                  </div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">{tx(" Progress ")}</div>
 
-                  <h2 className="mt-1 text-2xl font-black text-white">
-                    Rating history
-                  </h2>
+                  <h2 className="mt-1 text-2xl font-black text-white">{tx(" Rating history ")}</h2>
                 </div>
 
-                <div className="rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-xs font-bold text-slate-500">
-                  Weekly snapshots
-                </div>
+                <div className="rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-xs font-bold text-slate-500">{tx(" Weekly snapshots ")}</div>
               </div>
 
               <div className="h-96">
@@ -1137,3 +1109,5 @@ function TeamPage() {
 }
 
 export default TeamPage;
+
+function localizedCountry(code) { try { return new Intl.DisplayNames([currentLocale()], {type:"region"}).of(code); } catch { return COUNTRY_NAMES[code] || code; } }

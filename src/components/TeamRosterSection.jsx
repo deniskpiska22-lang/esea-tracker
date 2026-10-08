@@ -1,3 +1,4 @@
+import { tx, tf } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
@@ -89,7 +90,7 @@ function PlayerPortraitFrame({
 
       <img
         src={SILHOUETTE}
-        alt={`Player silhouette for ${player.nickname}`}
+        alt={tf("Player silhouette for {0}", player.nickname)}
         className="absolute inset-0 z-10 h-full w-full object-contain object-bottom scale-[1.03]"
       />
 
@@ -179,9 +180,7 @@ function PlayerCard({
           : "—"}
       </div>
 
-      <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#7185a0]">
-        Rating
-      </div>
+      <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#7185a0]">{tx(" Rating ")}</div>
 
       <div className="mx-auto mt-6 h-px w-full bg-[#2c3b4e]" />
 
@@ -330,17 +329,12 @@ export default function TeamRosterSection({
   return (
     <section className="mt-8">
       {roster.loading && (
-        <div className="rounded-2xl border border-white/[0.06] bg-[#101720] p-8 text-center text-slate-500">
-          Loading current
-          lineup…
-        </div>
+        <div className="rounded-2xl border border-white/[0.06] bg-[#101720] p-8 text-center text-slate-500">{tx(" Loading current lineup… ")}</div>
       )}
 
       {!roster.loading &&
         roster.error && (
-          <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5 text-sm text-rose-300">
-            Could not load the
-            lineup: {roster.error}
+          <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5 text-sm text-rose-300">{tx(" Could not load the lineup: ")}{roster.error}
           </div>
         )}
 
@@ -386,11 +380,7 @@ export default function TeamRosterSection({
         !roster.error &&
         visiblePlayers.length ===
           0 && (
-          <div className="rounded-2xl border border-white/[0.06] bg-[#101720] p-8 text-center text-slate-500">
-            No lineup has been
-            calculated for this
-            team yet.
-          </div>
+          <div className="rounded-2xl border border-white/[0.06] bg-[#101720] p-8 text-center text-slate-500">{tx(" No lineup has been calculated for this team yet. ")}</div>
         )}
     </section>
   );

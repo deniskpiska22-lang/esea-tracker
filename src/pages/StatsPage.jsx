@@ -1,3 +1,5 @@
+import { currentLocale } from "../i18n/languages.js";
+import { tx, tf } from "../i18n/translate.js";
 import {
   Link,
   useParams,
@@ -44,7 +46,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -71,9 +73,9 @@ function getStreak(matches) {
   }
 
   return {
-    type: firstResult ? "W" : "L",
+    type: firstResult ? tx("W") : tx("L"),
     count,
-    label: `${firstResult ? "W" : "L"}${count}`,
+    label: `${firstResult ? tx("W") : tx("L")}${count}`,
   };
 }
 
@@ -191,13 +193,11 @@ function StatsPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#080d13] p-8 text-white">
         <div className="text-center">
-          <h1 className="text-3xl font-black">Team not found</h1>
+          <h1 className="text-3xl font-black">{tx("Team not found")}</h1>
           <Link
             to="/"
             className="mt-4 inline-block text-orange-400 transition hover:text-orange-300"
-          >
-            ← Back Home
-          </Link>
+          >{tx(" ← Back Home ")}</Link>
         </div>
       </div>
     );
@@ -209,70 +209,50 @@ function StatsPage() {
         <Link
           to={`/team/${slug}`}
           className="text-sm font-bold text-orange-400 transition hover:text-orange-300"
-        >
-          ← Back to Team
-        </Link>
+        >{tx(" ← Back to Team ")}</Link>
 
         <div className="mb-7 mt-3">
-          <div className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
-            Team performance
-          </div>
+          <div className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">{tx(" Team performance ")}</div>
           <h1 className="mt-1 text-3xl font-black sm:text-4xl">
-            {team.name} Statistics
-          </h1>
+            {team.name}{tx(" Statistics ")}</h1>
         </div>
 
         {loading && (
-          <div className="mb-5 text-sm text-slate-500">
-            Loading automatic match and map statistics...
-          </div>
+          <div className="mb-5 text-sm text-slate-500">{tx(" Loading automatic match and map statistics... ")}</div>
         )}
 
         {error && (
           <div className="mb-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5 px-4 py-3 text-sm text-yellow-300">
-            {error}. Saved match data is shown.
-          </div>
+            {error}{tx(". Saved match data is shown. ")}</div>
         )}
 
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <div className="rounded-2xl border border-[#202c3a] bg-[#111923] p-5">
-            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">
-              Matches
-            </div>
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">{tx(" Matches ")}</div>
             <div className="mt-3 text-3xl font-black">{sortedMatches.length}</div>
             <div className="mt-1 text-sm text-[#6e87ad]">
-              {matchWins} wins · {matchLosses} losses
-            </div>
+              {matchWins}{tx(" wins · ")}{matchLosses}{tx(" losses ")}</div>
           </div>
 
           <div className="rounded-2xl border border-[#202c3a] bg-[#111923] p-5">
-            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">
-              Match win rate
-            </div>
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">{tx(" Match win rate ")}</div>
             <div className={`mt-3 text-3xl font-black ${getWinrateTextClass(matchWinrate)}`}>
               {matchWinrate}%
             </div>
-            <div className="mt-1 text-sm text-[#6e87ad]">
-              Across all completed matches
-            </div>
+            <div className="mt-1 text-sm text-[#6e87ad]">{tx(" Across all completed matches ")}</div>
           </div>
 
           <div className="rounded-2xl border border-[#202c3a] bg-[#111923] p-5">
-            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">
-              Map win rate
-            </div>
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">{tx(" Map win rate ")}</div>
             <div className={`mt-3 text-3xl font-black ${getWinrateTextClass(mapWinrate)}`}>
               {mapWinrate}%
             </div>
             <div className="mt-1 text-sm text-[#6e87ad]">
-              {mapsPlayed} maps played
-            </div>
+              {mapsPlayed}{tx(" maps played ")}</div>
           </div>
 
           <div className="rounded-2xl border border-[#202c3a] bg-[#111923] p-5">
-            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">
-              Current streak
-            </div>
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-[#587094]">{tx(" Current streak ")}</div>
             <div
               className={`mt-3 text-3xl font-black ${
                 streak.type === "W"
@@ -284,8 +264,7 @@ function StatsPage() {
             >
               {streak.label}
             </div>
-            <div className="mt-1 text-sm text-[#6e87ad]">
-              Best map: {bestMap ? formatMapName(bestMap.name) : "-"}
+            <div className="mt-1 text-sm text-[#6e87ad]">{tx(" Best map: ")}{bestMap ? formatMapName(bestMap.name) : "-"}
             </div>
           </div>
         </section>
@@ -294,14 +273,11 @@ function StatsPage() {
           <div className="overflow-hidden rounded-3xl border border-[#202c3a] bg-[#111923]">
             <div className="flex flex-col gap-3 border-b border-white/5 px-5 py-5 sm:flex-row sm:items-end sm:justify-between sm:px-6">
               <div>
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                  Form
-                </div>
-                <h2 className="mt-1 text-2xl font-black">Last 10 matches</h2>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">{tx(" Form ")}</div>
+                <h2 className="mt-1 text-2xl font-black">{tx("Last 10 matches")}</h2>
               </div>
               <div className="text-sm font-bold text-[#6e87ad]">
-                {matchWins}W · {matchLosses}L overall
-              </div>
+                {matchWins}{tx("W · ")}{matchLosses}{tx("L overall ")}</div>
             </div>
 
             <div className="p-5 sm:p-6">
@@ -319,7 +295,7 @@ function StatsPage() {
                             : "border-rose-500/35 bg-rose-500/10 text-rose-400 hover:border-rose-400/60"
                         }`}
                       >
-                        {match.won ? "W" : "L"}
+                        {match.won ? tx("W") : tx("L")}
                       </Link>
                     ))}
                   </div>
@@ -336,7 +312,7 @@ function StatsPage() {
                         >
                           <div className="min-w-0">
                             <div className="truncate font-black text-slate-100 transition group-hover:text-white">
-                              vs {match.opponentName || "Unknown"}
+                              vs {match.opponentName || tx("Unknown")}
                             </div>
                             <div className="mt-1 truncate text-xs text-[#587094]">
                               {formatDate(match.date)}
@@ -361,7 +337,7 @@ function StatsPage() {
                                   : "bg-rose-500/10 text-rose-400"
                               }`}
                             >
-                              {match.won ? "Win" : "Loss"}
+                              {match.won ? tx("Win") : tx("Loss")}
                             </div>
                           </div>
                         </Link>
@@ -371,9 +347,7 @@ function StatsPage() {
                 </>
               ) : (
                 !loading && (
-                  <div className="py-14 text-center text-slate-500">
-                    No completed matches found
-                  </div>
+                  <div className="py-14 text-center text-slate-500">{tx(" No completed matches found ")}</div>
                 )
               )}
             </div>
@@ -382,17 +356,15 @@ function StatsPage() {
           <div className="overflow-hidden rounded-3xl border border-[#202c3a] bg-[#111923]">
             <div className="flex items-end justify-between gap-4 border-b border-white/5 px-5 py-5 sm:px-6">
               <div>
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
-                  Map record
-                </div>
-                <h2 className="mt-1 text-2xl font-black">Win rates by map</h2>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">{tx(" Map record ")}</div>
+                <h2 className="mt-1 text-2xl font-black">{tx("Win rates by map")}</h2>
               </div>
 
               <div className="hidden text-right sm:block">
                 <div className="text-sm font-black text-slate-200">
                   {mapWins}-{mapLosses}
                 </div>
-                <div className="text-xs text-[#587094]">Overall map balance</div>
+                <div className="text-xs text-[#587094]">{tx("Overall map balance")}</div>
               </div>
             </div>
 
@@ -418,7 +390,7 @@ function StatsPage() {
                       <div className="relative mb-3 h-20 overflow-hidden rounded-xl border border-white/10 sm:mb-0 sm:h-16">
                         <img
                           src={`/maps/${imageName}.png`}
-                          alt={`${formatMapName(map.name)} map`}
+                          alt={tf("{0} map", formatMapName(map.name))}
                           loading="lazy"
                           className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                           onError={(event) => {
@@ -434,12 +406,12 @@ function StatsPage() {
                       <div className="relative min-w-0">
                         <div className="flex items-center justify-between gap-3">
                           <div className="text-sm font-bold text-slate-200">
-                            {map.played} {Number(map.played) === 1 ? "map" : "maps"}
+                            {map.played} {Number(map.played) === 1 ? tx("map") : tx("maps")}
                           </div>
                           <div className="text-xs text-[#6e87ad]">
-                            <span className="text-emerald-400">{map.wins}W</span>
+                            <span className="text-emerald-400">{map.wins}{tx("W")}</span>
                             {" · "}
-                            <span className="text-rose-400">{map.losses}L</span>
+                            <span className="text-rose-400">{map.losses}{tx("L")}</span>
                           </div>
                         </div>
 
@@ -455,9 +427,7 @@ function StatsPage() {
                         <div className={`text-2xl font-black ${getWinrateTextClass(safeWinrate)}`}>
                           {safeWinrate}%
                         </div>
-                        <div className="text-xs font-semibold text-[#587094] transition group-hover:text-orange-300">
-                          View matches →
-                        </div>
+                        <div className="text-xs font-semibold text-[#587094] transition group-hover:text-orange-300">{tx(" View matches → ")}</div>
                       </div>
                     </Link>
                   );
@@ -465,9 +435,7 @@ function StatsPage() {
               </div>
             ) : (
               !loading && (
-                <div className="px-6 py-16 text-center text-slate-500">
-                  Map statistics will appear after completed matches with map data.
-                </div>
+                <div className="px-6 py-16 text-center text-slate-500">{tx(" Map statistics will appear after completed matches with map data. ")}</div>
               )
             )}
           </div>

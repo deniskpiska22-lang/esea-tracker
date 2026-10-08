@@ -1,9 +1,10 @@
+import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
 import { teamSitemapEntries } from '../src/utils/teamSeo.js';
 import { seoClient, result } from '../server/seoData.js';
 import { ORIGIN, staticRoutes, sitemapXml } from '../server/profileSeo.js';
 const PAGE_SIZE=1000;
 // These pages' rendered SEO content changed in this release, even when match data did not.
-const SEO_CONTENT_UPDATED_AT='2026-10-08T19:45:00.000Z';
+const SEO_CONTENT_UPDATED_AT='2026-10-08T20:58:00.000Z';
 const contentUpdatedAt = value => value && new Date(value).getTime()>new Date(SEO_CONTENT_UPDATED_AT).getTime() ? value : SEO_CONTENT_UPDATED_AT;
 export default async function handler(req,res) {
   const kind=String(req.query.kind || 'index');
@@ -22,7 +23,7 @@ export default async function handler(req,res) {
     }
     res.setHeader('Content-Type','application/xml; charset=utf-8');
     res.setHeader('Cache-Control','public, max-age=0, s-maxage=60, stale-while-revalidate=60');
-    return res.status(200).send(sitemapXml(entries,kind==='index'));
+    return res.status(200).send(sitemapXml(kind==='index' ? entries : entries.flatMap(entry=>LANGUAGE_CODES.map(language=>({...entry,url:ORIGIN+localizedPath(new URL(entry.url).pathname,language)}))),kind==='index'));
   } catch(error) {
     console.error('[seo-sitemap]',error.message);
     res.setHeader('Cache-Control','no-store');

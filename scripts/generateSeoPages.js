@@ -1,3 +1,6 @@
+import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
+import { localizeSeo } from '../src/i18n/seo.js';
+import { getSiteSeoMetadata } from '../src/utils/siteSeo.js';
 import { TEAM_SECTIONS, teamSitemapEntries } from '../src/utils/teamSeo.js';
 import { profileMetadata, renderProfile } from '../server/profileSeo.js';
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -46,7 +49,7 @@ function escapeXml(value) {
 
 function replaceMeta(html, team, section = '') {
   const roster = (team.players || []).filter(player => player?.nickname && player?.faceit_id);
-  return renderProfile(html, profileMetadata('team', team, roster, section));
+  return renderProfile(html, localizeSeo(profileMetadata('team', team, roster, section), 'ru', {kind:'team',entity:team,section}));
 }
 
 async function fetchAllRows(client, table, columns, configure = (query) => query) {
@@ -167,7 +170,7 @@ async function loadPlayersForSeo() {
 }
 
 function replacePlayerMeta(html, player) {
-  return renderProfile(html, profileMetadata('player', player));
+  return renderProfile(html, localizeSeo(profileMetadata('player', player), 'ru', {kind:'player',entity:player}));
 }
 
 async function writeInBatches(jobs) {
@@ -208,13 +211,22 @@ async function main() {
     ),
   ]);
 
-  const urls = [
+  const baseUrls = [
     ...staticPages.map((route) => `${SITE_ORIGIN}${route || "/"}`),
     ...uniqueTeams.flatMap(team => teamSitemapEntries(`${SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`).map(entry => entry.url)),
     ...players.map(
       (player) => `${SITE_ORIGIN}/players/${encodeURIComponent(player.playerId)}`
     ),
   ];
+  const urls = baseUrls.flatMap(url=>LANGUAGE_CODES.map(language=>SITE_ORIGIN+localizedPath(new URL(url).pathname,language)));
+  await writeInBatches((dynamicProfiles ? [] : LANGUAGE_CODES).flatMap(language=>staticPages.map(route=>async()=>{
+    const pathname=route || '/';
+    const localized=localizedPath(pathname,language);
+    if (localized === '/') return; // Keep dist/index.html as the clean API/SPA template.
+    const directory=localized==='/' ? distDirectory : path.join(distDirectory,localized);
+    await mkdir(directory,{recursive:true});
+    await writeFile(path.join(directory,'index.html'),renderProfile(template,localizeSeo(getSiteSeoMetadata(pathname),language)), 'utf8');
+  })));
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls

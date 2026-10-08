@@ -1,3 +1,5 @@
+import { tf, tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import {
   useCallback,
   useEffect,
@@ -17,51 +19,51 @@ import teams from "../data/teams";
 const NAV_ITEMS = [
   {
     value: "overview",
-    label: "Overview",
+    label: tx("Overview"),
     icon: "◫",
   },
   {
     value: "verification",
-    label: "Verification",
+    label: tx("Verification"),
     icon: "✓",
   },
   {
     value: "users",
-    label: "Users",
+    label: tx("Users"),
     icon: "◎",
   },
   {
     value: "teams",
-    label: "Teams",
+    label: tx("Teams"),
     icon: "◆",
   },
   {
     value: "team-profiles",
-    label: "Team Profiles",
+    label: tx("Team Profiles"),
     icon: "🖼",
   },
   {
     value: "activity",
-    label: "History",
+    label: tx("History"),
     icon: "↺",
   },
 ];
 
 const STATUS_META = {
   pending: {
-    label: "Pending",
+    label: tx("Pending"),
     badge:
       "border-amber-500/30 bg-amber-500/10 text-amber-300",
     dot: "bg-amber-400",
   },
   approved: {
-    label: "Approved",
+    label: tx("Approved"),
     badge:
       "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
     dot: "bg-emerald-400",
   },
   rejected: {
-    label: "Rejected",
+    label: tx("Rejected"),
     badge:
       "border-red-500/30 bg-red-500/10 text-red-300",
     dot: "bg-red-400",
@@ -70,15 +72,15 @@ const STATUS_META = {
 
 const REQUEST_TYPE_META = {
   join_team: {
-    label: "Initial verification",
+    label: tx("Initial verification"),
     short: "Join",
   },
   change_team: {
-    label: "Profile update",
+    label: tx("Profile update"),
     short: "Change",
   },
   leave_team: {
-    label: "Leave team",
+    label: tx("Leave team"),
     short: "Leave",
   },
 };
@@ -110,16 +112,16 @@ const SOCIAL_PLATFORM_OPTIONS = [
 
 function formatDate(value, withTime = true) {
   if (!value) {
-    return "Unknown";
+    return tx("Unknown");
   }
 
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return "Unknown";
+    return tx("Unknown");
   }
 
-  return new Intl.DateTimeFormat("ru-RU", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -151,11 +153,11 @@ function relativeTime(value) {
   );
 
   if (minutes < 1) {
-    return "just now";
+    return tx("just now");
   }
 
   if (minutes < 60) {
-    return `${minutes} min ago`;
+    return tf("{0} min ago", minutes);
   }
 
   const hours = Math.floor(
@@ -163,14 +165,14 @@ function relativeTime(value) {
   );
 
   if (hours < 24) {
-    return `${hours} hr ago`;
+    return tf("{0} hr ago", hours);
   }
 
   const days = Math.floor(
     hours / 24
   );
 
-  return `${days} days ago`;
+  return tf("{0} days ago", days);
 }
 
 function getInitials(profile) {
@@ -331,7 +333,7 @@ function PlayerPhotoRow({
             url: event.target.value,
           })
         }
-        placeholder="Photo URL"
+        placeholder={tx("Photo URL")}
         className="min-w-[200px] flex-1 rounded-xl border border-white/[0.07] bg-[#080d14] px-3 py-2 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
       />
 
@@ -345,9 +347,7 @@ function PlayerPhotoRow({
               verified: event.target.checked,
             })
           }
-        />
-        Verified
-      </label>
+        />{tx(" Verified ")}</label>
 
       <button
         type="button"
@@ -355,7 +355,7 @@ function PlayerPhotoRow({
         onClick={onSave}
         className="shrink-0 rounded-xl border border-orange-500/30 bg-orange-500/10 px-3 py-2 text-xs font-black text-orange-300 transition hover:bg-orange-500 hover:text-white disabled:opacity-50"
       >
-        {saving ? "Saving..." : "Save"}
+        {saving ? tx("Saving...") : tx("Save")}
       </button>
     </div>
   );
@@ -596,7 +596,7 @@ export default function AdminVerificationPage() {
 
         setError(
           loadError.message ||
-            "Could not load the admin dashboard."
+            tx("Could not load the admin dashboard.")
         );
       } finally {
         setLoading(false);
@@ -1002,7 +1002,7 @@ export default function AdminVerificationPage() {
       !normalizedReason
     ) {
       setError(
-        "Enter a rejection reason."
+        tx("Enter a rejection reason.")
       );
       return;
     }
@@ -1054,8 +1054,8 @@ export default function AdminVerificationPage() {
 
       setSuccess(
         decision === "approved"
-          ? "Request approved successfully."
-          : "Request rejected."
+          ? tx("Request approved successfully.")
+          : tx("Request rejected.")
       );
       setRejectionReason("");
     } catch (reviewError) {
@@ -1066,7 +1066,7 @@ export default function AdminVerificationPage() {
 
       setError(
         reviewError.message ||
-          "Could not process the request."
+          tx("Could not process the request.")
       );
     } finally {
       setProcessingId(null);
@@ -1248,9 +1248,7 @@ export default function AdminVerificationPage() {
   if (authLoading || loading) {
     return (
       <main className="min-h-screen bg-[#070b11] px-4 py-14 text-white">
-        <div className="mx-auto max-w-7xl text-center text-gray-500">
-          Loading Admin Center...
-        </div>
+        <div className="mx-auto max-w-7xl text-center text-gray-500">{tx(" Loading Admin Center... ")}</div>
       </main>
     );
   }
@@ -1272,12 +1270,8 @@ export default function AdminVerificationPage() {
             <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">
               ESEA Tracker
             </div>
-            <div className="mt-2 text-xl font-black">
-              Admin Center
-            </div>
-            <div className="mt-1 text-xs text-gray-600">
-              Operations dashboard
-            </div>
+            <div className="mt-2 text-xl font-black">{tx(" Admin Center ")}</div>
+            <div className="mt-1 text-xs text-gray-600">{tx(" Operations dashboard ")}</div>
           </div>
 
           <nav className="mt-8 space-y-1">
@@ -1316,23 +1310,17 @@ export default function AdminVerificationPage() {
           </nav>
 
           <div className="mt-8 rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4">
-            <div className="text-xs font-black text-gray-300">
-              Quick status
-            </div>
+            <div className="text-xs font-black text-gray-300">{tx(" Quick status ")}</div>
 
             <div className="mt-3 flex items-center justify-between text-sm">
-              <span className="text-gray-600">
-                Pending
-              </span>
+              <span className="text-gray-600">{tx(" Pending ")}</span>
               <span className="font-black text-amber-300">
                 {counts.pending}
               </span>
             </div>
 
             <div className="mt-2 flex items-center justify-between text-sm">
-              <span className="text-gray-600">
-                Users
-              </span>
+              <span className="text-gray-600">{tx(" Users ")}</span>
               <span className="font-black text-white">
                 {profiles.length}
               </span>
@@ -1342,18 +1330,14 @@ export default function AdminVerificationPage() {
           <Link
             to="/"
             className="mt-6 flex items-center justify-center rounded-2xl border border-white/[0.07] px-4 py-3 text-sm font-black text-gray-400 transition hover:border-orange-500/25 hover:text-orange-300"
-          >
-            ← Back to site
-          </Link>
+          >{tx(" ← Back to site ")}</Link>
         </aside>
 
         <div className="min-w-0 flex-1">
           <header className="sticky top-0 z-30 border-b border-white/[0.06] bg-[#070b11]/90 px-4 py-4 backdrop-blur-2xl md:px-7">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-gray-600">
-                  Admin workspace
-                </div>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-gray-600">{tx(" Admin workspace ")}</div>
 
                 <h1 className="mt-1 text-2xl font-black tracking-tight">
                   {
@@ -1378,16 +1362,14 @@ export default function AdminVerificationPage() {
                   className="rounded-2xl border border-white/[0.08] bg-white/[0.035] px-4 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300 disabled:opacity-50"
                 >
                   {refreshing
-                    ? "Refreshing..."
-                    : "↻ Refresh"}
+                    ? tx("Refreshing...")
+                    : tx("↻ Refresh")}
                 </button>
 
                 <Link
                   to="/"
                   className="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-black text-white transition hover:bg-orange-400 xl:hidden"
-                >
-                  Open site
-                </Link>
+                >{tx(" Open site ")}</Link>
               </div>
             </div>
 
@@ -1430,32 +1412,32 @@ export default function AdminVerificationPage() {
               <div className="space-y-6">
                 <section className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-4">
                   <MetricCard
-                    label="Awaiting review"
+                    label={tx("Awaiting review")}
                     value={counts.pending}
-                    hint="Action required"
+                    hint={tx("Action required")}
                     icon="✓"
                     tone="amber"
                   />
                   <MetricCard
-                    label="Verified"
+                    label={tx("Verified")}
                     value={
                       verifiedProfiles.length
                     }
-                    hint="Professional profiles"
+                    hint={tx("Professional profiles")}
                     icon="◎"
                     tone="green"
                   />
                   <MetricCard
-                    label="Users"
+                    label={tx("Users")}
                     value={profiles.length}
-                    hint="Total accounts"
+                    hint={tx("Total accounts")}
                     icon="◫"
                     tone="blue"
                   />
                   <MetricCard
-                    label="Active teams"
+                    label={tx("Active teams")}
                     value={activeTeamCount}
-                    hint="Represented in profiles"
+                    hint={tx("Represented in profiles")}
                     icon="◆"
                     tone="orange"
                   />
@@ -1465,12 +1447,8 @@ export default function AdminVerificationPage() {
                   <div className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                          Verification activity
-                        </div>
-                        <h2 className="mt-2 text-xl font-black">
-                          Latest requests
-                        </h2>
+                        <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Verification activity ")}</div>
+                        <h2 className="mt-2 text-xl font-black">{tx(" Latest requests ")}</h2>
                       </div>
 
                       <button
@@ -1481,9 +1459,7 @@ export default function AdminVerificationPage() {
                           )
                         }
                         className="text-sm font-black text-orange-400 hover:text-orange-300"
-                      >
-                        View all →
-                      </button>
+                      >{tx(" View all → ")}</button>
                     </div>
 
                     <div className="mt-5 space-y-2">
@@ -1532,7 +1508,7 @@ export default function AdminVerificationPage() {
                                 <div className="truncate font-black text-white">
                                   {userProfile?.display_name ||
                                     userProfile?.username ||
-                                    "Unknown"}
+                                    tx("Unknown")}
                                 </div>
                                 <div className="mt-1 truncate text-xs text-gray-600">
                                   {
@@ -1559,18 +1535,14 @@ export default function AdminVerificationPage() {
                   </div>
 
                   <div className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
-                    <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                      Platform health
-                    </div>
-                    <h2 className="mt-2 text-xl font-black">
-                      Platform status
-                    </h2>
+                    <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Platform health ")}</div>
+                    <h2 className="mt-2 text-xl font-black">{tx(" Platform status ")}</h2>
 
                     <div className="mt-6 space-y-5">
                       {[
                         {
                           label:
-                            "Approval rate",
+                            tx("Approval rate"),
                           value:
                             counts.approved +
                               counts.rejected >
@@ -1585,7 +1557,7 @@ export default function AdminVerificationPage() {
                         },
                         {
                           label:
-                            "Professional users",
+                            tx("Professional users"),
                           value:
                             profiles.length >
                             0
@@ -1598,7 +1570,7 @@ export default function AdminVerificationPage() {
                         },
                         {
                           label:
-                            "Verified profiles",
+                            tx("Verified profiles"),
                           value:
                             profiles.length >
                             0
@@ -1642,12 +1614,8 @@ export default function AdminVerificationPage() {
                 <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                        New accounts
-                      </div>
-                      <h2 className="mt-2 text-xl font-black">
-                        New users
-                      </h2>
+                      <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" New accounts ")}</div>
+                      <h2 className="mt-2 text-xl font-black">{tx(" New users ")}</h2>
                     </div>
 
                     <button
@@ -1656,9 +1624,7 @@ export default function AdminVerificationPage() {
                         setSection("users")
                       }
                       className="text-sm font-black text-orange-400 hover:text-orange-300"
-                    >
-                      Open users →
-                    </button>
+                    >{tx(" Open users → ")}</button>
                   </div>
 
                   <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -1713,7 +1679,7 @@ export default function AdminVerificationPage() {
                           event.target.value
                         )
                       }
-                      placeholder="Search by username, team, or email..."
+                      placeholder={tx("Search by username, team, or email...")}
                       className="w-full rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
                     />
 
@@ -1726,18 +1692,10 @@ export default function AdminVerificationPage() {
                       }
                       className="rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm font-bold outline-none focus:border-orange-500"
                     >
-                      <option value="all">
-                        All statuses
-                      </option>
-                      <option value="pending">
-                        Pending
-                      </option>
-                      <option value="approved">
-                        Approved
-                      </option>
-                      <option value="rejected">
-                        Rejected
-                      </option>
+                      <option value="all">{tx(" All statuses ")}</option>
+                      <option value="pending">{tx(" Pending ")}</option>
+                      <option value="approved">{tx(" Approved ")}</option>
+                      <option value="rejected">{tx(" Rejected ")}</option>
                     </select>
 
                     <select
@@ -1749,18 +1707,10 @@ export default function AdminVerificationPage() {
                       }
                       className="rounded-2xl border border-white/[0.07] bg-[#080d14] px-4 py-3.5 text-sm font-bold outline-none focus:border-orange-500"
                     >
-                      <option value="all">
-                        All types
-                      </option>
-                      <option value="join_team">
-                        Initial
-                      </option>
-                      <option value="change_team">
-                        Update
-                      </option>
-                      <option value="leave_team">
-                        Leave team
-                      </option>
+                      <option value="all">{tx(" All types ")}</option>
+                      <option value="join_team">{tx(" Initial ")}</option>
+                      <option value="change_team">{tx(" Update ")}</option>
+                      <option value="leave_team">{tx(" Leave team ")}</option>
                     </select>
                   </div>
                 </section>
@@ -1769,11 +1719,8 @@ export default function AdminVerificationPage() {
                   <div className="overflow-hidden rounded-[28px] border border-white/[0.07] bg-[#0c121b]">
                     <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
                       <div>
-                        <div className="font-black">
-                          Requests
-                        </div>
-                        <div className="mt-1 text-xs text-gray-600">
-                          Found: {
+                        <div className="font-black">{tx(" Requests ")}</div>
+                        <div className="mt-1 text-xs text-gray-600">{tx(" Found: ")}{
                             filteredClaims.length
                           }
                         </div>
@@ -1787,9 +1734,7 @@ export default function AdminVerificationPage() {
                     <div className="max-h-[680px] overflow-y-auto p-2">
                       {filteredClaims.length ===
                       0 ? (
-                        <div className="p-10 text-center text-sm text-gray-600">
-                          No requests found
-                        </div>
+                        <div className="p-10 text-center text-sm text-gray-600">{tx(" No requests found ")}</div>
                       ) : (
                         filteredClaims.map(
                           (claim) => {
@@ -1850,7 +1795,7 @@ export default function AdminVerificationPage() {
                                         <div className="truncate font-black text-white">
                                           {userProfile?.display_name ||
                                             userProfile?.username ||
-                                            "Unknown"}
+                                            tx("Unknown")}
                                         </div>
                                         <div className="mt-1 truncate text-xs text-gray-600">
                                           @{userProfile?.username ||
@@ -1870,7 +1815,7 @@ export default function AdminVerificationPage() {
                                         {currentTeam?.name ||
                                           (claim.previous_team_slug
                                             ? claim.previous_team_slug
-                                            : "No team")}
+                                            : tx("No team"))}
                                       </span>
                                       <span className="text-orange-400">
                                         →
@@ -1878,10 +1823,10 @@ export default function AdminVerificationPage() {
                                       <span className="truncate text-gray-300">
                                         {claim.request_type ===
                                         "leave_team"
-                                          ? "Free Agent"
+                                          ? tx("Free Agent")
                                           : requestedTeam?.name ||
                                             claim.team_slug ||
-                                            "Not specified"}
+                                            tx("Not specified")}
                                       </span>
                                     </div>
 
@@ -1912,8 +1857,8 @@ export default function AdminVerificationPage() {
                   <div className="rounded-[28px] border border-white/[0.07] bg-[#0c121b]">
                     {!selectedClaim ? (
                       <EmptyState
-                        title="Select a request"
-                        text="The user profile, proposed changes, and moderation tools will appear on the right."
+                        title={tx("Select a request")}
+                        text={tx("The user profile, proposed changes, and moderation tools will appear on the right.")}
                       />
                     ) : (
                       <div>
@@ -1940,7 +1885,7 @@ export default function AdminVerificationPage() {
                                 <div className="text-2xl font-black">
                                   {selectedProfile?.display_name ||
                                     selectedProfile?.username ||
-                                    "Unknown"}
+                                    tx("Unknown")}
                                 </div>
                                 <div className="mt-1 text-sm text-gray-600">
                                   @{selectedProfile?.username ||
@@ -1969,9 +1914,7 @@ export default function AdminVerificationPage() {
                                   selectedProfile.username
                                 )}`}
                                 className="rounded-2xl border border-white/[0.08] px-4 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
-                              >
-                                Open profile ↗
-                              </Link>
+                              >{tx(" Open profile ↗ ")}</Link>
                             )}
                           </div>
                         </div>
@@ -1979,9 +1922,7 @@ export default function AdminVerificationPage() {
                         <div className="p-5 md:p-6">
                           <div className="grid gap-5 xl:grid-cols-2">
                             <div className="rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5">
-                              <div className="text-[11px] font-black uppercase tracking-[0.17em] text-gray-600">
-                                Current
-                              </div>
+                              <div className="text-[11px] font-black uppercase tracking-[0.17em] text-gray-600">{tx(" Current ")}</div>
 
                               <div className="mt-5 flex items-center gap-4">
                                 <TeamMark
@@ -2003,14 +1944,14 @@ export default function AdminVerificationPage() {
                                       selectedClaim.previous_team_slug
                                     )?.name ||
                                       selectedClaim.previous_team_slug ||
-                                      "No team"}
+                                      tx("No team")}
                                   </div>
                                   <div className="mt-2 text-sm font-bold text-gray-500">
                                     {ROLE_LABELS[
                                       selectedClaim.previous_team_role
                                     ] ||
                                       selectedClaim.previous_team_role ||
-                                      "Role not specified"}
+                                      tx("Role not specified")}
                                   </div>
                                 </div>
                               </div>
@@ -2021,9 +1962,7 @@ export default function AdminVerificationPage() {
                                 →
                               </div>
 
-                              <div className="text-[11px] font-black uppercase tracking-[0.17em] text-orange-400">
-                                Requested
-                              </div>
+                              <div className="text-[11px] font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Requested ")}</div>
 
                               <div className="mt-5 flex items-center gap-4">
                                 <TeamMark
@@ -2049,22 +1988,22 @@ export default function AdminVerificationPage() {
                                   <div className="text-xl font-black">
                                     {selectedClaim.request_type ===
                                     "leave_team"
-                                      ? "Free Agent"
+                                      ? tx("Free Agent")
                                       : teamBySlug.get(
                                           selectedClaim.team_slug
                                         )?.name ||
                                         selectedClaim.team_slug ||
-                                        "Not specified"}
+                                        tx("Not specified")}
                                   </div>
                                   <div className="mt-2 text-sm font-bold text-orange-300">
                                     {selectedClaim.request_type ===
                                     "leave_team"
-                                      ? "Leaving team"
+                                      ? tx("Leaving team")
                                       : ROLE_LABELS[
                                           selectedClaim.team_role
                                         ] ||
                                         selectedClaim.team_role ||
-                                        "Role not specified"}
+                                        tx("Role not specified")}
                                   </div>
                                 </div>
                               </div>
@@ -2073,9 +2012,7 @@ export default function AdminVerificationPage() {
 
                           <div className="mt-5 grid gap-4 md:grid-cols-2">
                             <div className="rounded-2xl border border-white/[0.06] bg-[#080d14] p-4">
-                              <div className="text-xs text-gray-600">
-                                Contact email
-                              </div>
+                              <div className="text-xs text-gray-600">{tx(" Contact email ")}</div>
                               <a
                                 href={`mailto:${selectedClaim.contact_email}`}
                                 className="mt-2 block break-all font-black text-white hover:text-orange-400"
@@ -2090,7 +2027,7 @@ export default function AdminVerificationPage() {
                               </div>
                               <div className="mt-2 break-all font-black text-white">
                                 {selectedClaim.contact_handle ||
-                                  "Not specified"}
+                                  tx("Not specified")}
                               </div>
                             </div>
                           </div>
@@ -2098,12 +2035,8 @@ export default function AdminVerificationPage() {
                           <div className="mt-5 rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5">
                             <div className="flex flex-wrap items-center justify-between gap-4">
                               <div>
-                                <div className="text-xs text-gray-600">
-                                  Proof
-                                </div>
-                                <div className="mt-2 text-sm font-black text-white">
-                                  Proof of team affiliation
-                                </div>
+                                <div className="text-xs text-gray-600">{tx(" Proof ")}</div>
+                                <div className="mt-2 text-sm font-black text-white">{tx(" Proof of team affiliation ")}</div>
                               </div>
 
                               <a
@@ -2113,9 +2046,7 @@ export default function AdminVerificationPage() {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-                              >
-                                Open proof ↗
-                              </a>
+                              >{tx(" Open proof ↗ ")}</a>
                             </div>
 
                             <div className="mt-4 break-all rounded-2xl bg-white/[0.025] p-4 text-sm text-gray-500">
@@ -2124,12 +2055,10 @@ export default function AdminVerificationPage() {
                           </div>
 
                           <div className="mt-5 rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5">
-                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
-                              User message
-                            </div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">{tx(" User message ")}</div>
                             <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-gray-300">
                               {selectedClaim.message ||
-                                "The user did not leave a comment."}
+                                tx("The user did not leave a comment.")}
                             </p>
                           </div>
 
@@ -2147,7 +2076,7 @@ export default function AdminVerificationPage() {
                                     )
                                   }
                                   rows={4}
-                                  placeholder="Rejection reason — required only when rejecting..."
+                                  placeholder={tx("Rejection reason — required only when rejecting...")}
                                   className="w-full resize-y rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-red-500"
                                 />
 
@@ -2167,8 +2096,8 @@ export default function AdminVerificationPage() {
                                   >
                                     {processingId ===
                                     selectedClaim.id
-                                      ? "Processing..."
-                                      : "✓ Approve"}
+                                      ? tx("Processing...")
+                                      : tx("✓ Approve")}
                                   </button>
 
                                   <button
@@ -2183,9 +2112,7 @@ export default function AdminVerificationPage() {
                                       )
                                     }
                                     className="rounded-2xl border border-red-500/30 bg-red-500/10 px-5 py-3.5 text-sm font-black text-red-300 transition hover:bg-red-500 hover:text-white disabled:opacity-50"
-                                  >
-                                    Reject
-                                  </button>
+                                  >{tx(" Reject ")}</button>
                                 </div>
                               </div>
                             </div>
@@ -2193,9 +2120,7 @@ export default function AdminVerificationPage() {
                             <div className="mt-5 rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5">
                               <div className="flex items-center justify-between gap-4">
                                 <div>
-                                  <div className="text-xs text-gray-600">
-                                    Decision recorded
-                                  </div>
+                                  <div className="text-xs text-gray-600">{tx(" Decision recorded ")}</div>
                                   <div className="mt-2 font-black">
                                     {formatDate(
                                       selectedClaim.reviewed_at
@@ -2230,36 +2155,20 @@ export default function AdminVerificationPage() {
             {section === "users" && (
               <section className="overflow-hidden rounded-[30px] border border-white/[0.07] bg-[#0c121b]">
                 <div className="border-b border-white/[0.06] p-5 md:p-6">
-                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                    User directory
-                  </div>
-                  <h2 className="mt-2 text-2xl font-black">
-                    All users
-                  </h2>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Profiles, roles, teams, and verification status.
-                  </p>
+                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" User directory ")}</div>
+                  <h2 className="mt-2 text-2xl font-black">{tx(" All users ")}</h2>
+                  <p className="mt-2 text-sm text-gray-600">{tx(" Profiles, roles, teams, and verification status. ")}</p>
                 </div>
 
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[900px] text-left">
                     <thead className="border-b border-white/[0.06] text-[11px] font-black uppercase tracking-[0.13em] text-gray-600">
                       <tr>
-                        <th className="px-6 py-4">
-                          User
-                        </th>
-                        <th className="px-6 py-4">
-                          Type
-                        </th>
-                        <th className="px-6 py-4">
-                          Team
-                        </th>
-                        <th className="px-6 py-4">
-                          Verification
-                        </th>
-                        <th className="px-6 py-4">
-                          Joined
-                        </th>
+                        <th className="px-6 py-4">{tx(" User ")}</th>
+                        <th className="px-6 py-4">{tx(" Type ")}</th>
+                        <th className="px-6 py-4">{tx(" Team ")}</th>
+                        <th className="px-6 py-4">{tx(" Verification ")}</th>
+                        <th className="px-6 py-4">{tx(" Joined ")}</th>
                         <th className="px-6 py-4" />
                       </tr>
                     </thead>
@@ -2307,7 +2216,7 @@ export default function AdminVerificationPage() {
                               ] ||
                                 item.account_type}
                               {item.is_admin
-                                ? " · Admin"
+                                ? tx(" · Admin")
                                 : ""}
                             </td>
 
@@ -2344,9 +2253,7 @@ export default function AdminVerificationPage() {
                                   item.username || ""
                                 )}`}
                                 className="text-sm font-black text-orange-400 hover:text-orange-300"
-                              >
-                                Open →
-                              </Link>
+                              >{tx(" Open → ")}</Link>
                             </td>
                           </tr>
                         )
@@ -2359,12 +2266,8 @@ export default function AdminVerificationPage() {
 
             {section === "teams" && (
                 <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
-                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                    Team coverage
-                  </div>
-                  <h2 className="mt-2 text-2xl font-black">
-                    Teams on the platform
-                  </h2>
+                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Team coverage ")}</div>
+                  <h2 className="mt-2 text-2xl font-black">{tx(" Teams on the platform ")}</h2>
 
                   <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
                     {teamRows.map(
@@ -2385,25 +2288,20 @@ export default function AdminVerificationPage() {
                                 {row.team.name}
                               </div>
                               <div className="mt-1 text-xs text-gray-600">
-                                {row.total} verified members
-                              </div>
+                                {row.total}{tx(" verified members ")}</div>
                             </div>
                           </div>
 
                           <div className="mt-5 grid grid-cols-2 gap-3">
                             <div className="rounded-xl bg-white/[0.035] p-3">
-                              <div className="text-xs text-gray-600">
-                                Players
-                              </div>
+                              <div className="text-xs text-gray-600">{tx(" Players ")}</div>
                               <div className="mt-1 text-xl font-black">
                                 {row.players}
                               </div>
                             </div>
 
                             <div className="rounded-xl bg-white/[0.035] p-3">
-                              <div className="text-xs text-gray-600">
-                                Staff
-                              </div>
+                              <div className="text-xs text-gray-600">{tx(" Staff ")}</div>
                               <div className="mt-1 text-xl font-black">
                                 {row.staff}
                               </div>
@@ -2418,15 +2316,9 @@ export default function AdminVerificationPage() {
 
             {section === "team-profiles" && (
                 <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
-                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                    Team content
-                  </div>
-                  <h2 className="mt-2 text-2xl font-black">
-                    Team profiles
-                  </h2>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Edit a team's public description, social links, and its players' official photos — each section publishes independently as soon as you save it.
-                  </p>
+                  <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Team content ")}</div>
+                  <h2 className="mt-2 text-2xl font-black">{tx(" Team profiles ")}</h2>
+                  <p className="mt-2 text-sm text-gray-600">{tx(" Edit a team's public description, social links, and its players' official photos — each section publishes independently as soon as you save it. ")}</p>
 
                   <div className="mt-6 grid gap-5 2xl:grid-cols-[380px_minmax(0,1fr)]">
                     <div className="overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#080d14]">
@@ -2438,16 +2330,14 @@ export default function AdminVerificationPage() {
                               event.target.value
                             )
                           }
-                          placeholder="Search teams..."
+                          placeholder={tx("Search teams...")}
                           className="w-full rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500"
                         />
                       </div>
 
                       <div className="max-h-[640px] overflow-y-auto p-2">
                         {filteredAllTeams.length === 0 && (
-                          <div className="p-6 text-center text-sm text-gray-600">
-                            No teams found
-                          </div>
+                          <div className="p-6 text-center text-sm text-gray-600">{tx(" No teams found ")}</div>
                         )}
 
                         {filteredAllTeams
@@ -2488,8 +2378,8 @@ export default function AdminVerificationPage() {
                     <div className="rounded-[26px] border border-white/[0.07] bg-[#080d14] p-5 md:p-6">
                       {!selectedTeam ? (
                         <EmptyState
-                          title="Select a team"
-                          text="Pick a team on the left to edit its description and official player photos."
+                          title={tx("Select a team")}
+                          text={tx("Pick a team on the left to edit its description and official player photos.")}
                         />
                       ) : (
                         <div className="space-y-6">
@@ -2521,9 +2411,7 @@ export default function AdminVerificationPage() {
                           )}
 
                           <div>
-                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
-                              Description
-                            </div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">{tx(" Description ")}</div>
 
                             <textarea
                               rows={5}
@@ -2535,7 +2423,7 @@ export default function AdminVerificationPage() {
                                   event.target.value
                                 )
                               }
-                              placeholder="Team description shown on the public team page..."
+                              placeholder={tx("Team description shown on the public team page...")}
                               className="mt-3 w-full resize-y rounded-2xl border border-white/[0.07] bg-[#0c121b] px-4 py-3.5 text-sm outline-none placeholder:text-gray-700 focus:border-orange-500 disabled:opacity-60"
                             />
 
@@ -2549,15 +2437,13 @@ export default function AdminVerificationPage() {
                               className="mt-3 rounded-2xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400 disabled:opacity-50"
                             >
                               {teamProfileSaving
-                                ? "Saving..."
-                                : "Save description"}
+                                ? tx("Saving...")
+                                : tx("Save description")}
                             </button>
                           </div>
 
                           <div>
-                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
-                              Social links
-                            </div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">{tx(" Social links ")}</div>
 
                             <div className="mt-3 space-y-2">
                               {socialLinksDraft.map(
@@ -2618,17 +2504,13 @@ export default function AdminVerificationPage() {
                                         )
                                       }
                                       className="shrink-0 rounded-xl border border-red-500/25 bg-red-500/10 px-3 py-2 text-xs font-black text-red-300 transition hover:bg-red-500 hover:text-white"
-                                    >
-                                      Remove
-                                    </button>
+                                    >{tx(" Remove ")}</button>
                                   </div>
                                 )
                               )}
 
                               {socialLinksDraft.length === 0 && (
-                                <div className="text-sm text-gray-600">
-                                  No social links yet.
-                                </div>
+                                <div className="text-sm text-gray-600">{tx(" No social links yet. ")}</div>
                               )}
                             </div>
 
@@ -2637,9 +2519,7 @@ export default function AdminVerificationPage() {
                                 type="button"
                                 onClick={addSocialLinkRow}
                                 className="rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-3 text-sm font-black text-gray-300 transition hover:border-orange-500/30 hover:text-orange-300"
-                              >
-                                + Add link
-                              </button>
+                              >{tx(" + Add link ")}</button>
 
                               <button
                                 type="button"
@@ -2651,25 +2531,19 @@ export default function AdminVerificationPage() {
                                 className="rounded-2xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400 disabled:opacity-50"
                               >
                                 {socialLinksSaving
-                                  ? "Saving..."
-                                  : "Save social links"}
+                                  ? tx("Saving...")
+                                  : tx("Save social links")}
                               </button>
                             </div>
                           </div>
 
                           <div>
-                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">
-                              Official player photos
-                            </div>
+                            <div className="text-xs font-black uppercase tracking-[0.15em] text-gray-600">{tx(" Official player photos ")}</div>
 
                             {teamProfileLoading ? (
-                              <div className="mt-3 text-sm text-gray-600">
-                                Loading roster...
-                              </div>
+                              <div className="mt-3 text-sm text-gray-600">{tx(" Loading roster... ")}</div>
                             ) : teamRoster.length === 0 ? (
-                              <div className="mt-3 text-sm text-gray-600">
-                                No roster found for this team yet.
-                              </div>
+                              <div className="mt-3 text-sm text-gray-600">{tx(" No roster found for this team yet. ")}</div>
                             ) : (
                               <div className="mt-3 space-y-3">
                                 {teamRoster.map((row) => (
@@ -2715,12 +2589,8 @@ export default function AdminVerificationPage() {
 
             {section === "activity" && (
               <section className="rounded-[30px] border border-white/[0.07] bg-[#0c121b] p-5 md:p-6">
-                <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">
-                  Audit timeline
-                </div>
-                <h2 className="mt-2 text-2xl font-black">
-                  Request history
-                </h2>
+                <div className="text-xs font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Audit timeline ")}</div>
+                <h2 className="mt-2 text-2xl font-black">{tx(" Request history ")}</h2>
 
                 <div className="mt-7 space-y-3">
                   {claims.map(
@@ -2759,7 +2629,7 @@ export default function AdminVerificationPage() {
                             <div className="truncate font-black text-white">
                               {userProfile?.display_name ||
                                 userProfile?.username ||
-                                "Unknown"}
+                                tx("Unknown")}
                             </div>
                             <div className="mt-1 truncate text-xs text-gray-600">
                               {

@@ -41,6 +41,36 @@
       "source": "/teams/:slug/matches/:key",
       "destination": "/match/:key",
       "permanent": true
+    },
+    {
+      "source": "/ru",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ru/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/player/:key",
+      "destination": "/:lang/players/:key",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/team/:path*",
+      "destination": "/:lang/teams/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/matches/:key",
+      "destination": "/:lang/match/:key",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/teams/:slug/matches/:key",
+      "destination": "/:lang/match/:key",
+      "permanent": true
     }
   ],
   "headers": [
@@ -124,9 +154,111 @@
           "value": "noindex,follow"
         }
       ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/login",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/register",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/auth/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/profile/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/admin/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/data-status",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
     }
   ],
   "rewrites": [
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/teams/:key/:section(matches|stats|analytics|veto)",
+      "destination": "/api/seo-profile?kind=team&key=:key&section=:section&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/teams/:key",
+      "destination": "/api/seo-profile?kind=team&key=:key&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/players/:key",
+      "destination": "/api/seo-profile?kind=player&key=:key&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/player/:key",
+      "destination": "/api/seo-profile?kind=player&key=:key&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/match/:key",
+      "destination": "/api/seo-profile?kind=match&key=:key&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)",
+      "destination": "/api/seo-profile?kind=page&key=home&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/rankings",
+      "destination": "/api/seo-profile?kind=page&key=rankings&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/matches",
+      "destination": "/api/seo-profile?kind=page&key=matches&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/players",
+      "destination": "/api/seo-profile?kind=page&key=players&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/calendar",
+      "destination": "/api/seo-profile?kind=page&key=calendar&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/about",
+      "destination": "/api/seo-profile?kind=page&key=about&lang=:lang"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/media",
+      "destination": "/api/seo-profile?kind=page&key=media&lang=:lang"
+    },
     {
       "source": "/sitemap.xml",
       "destination": "/api/seo-sitemap"

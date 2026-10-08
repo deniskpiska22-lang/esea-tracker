@@ -1,3 +1,5 @@
+import { currentLocale } from "../i18n/languages.js";
+import { tx } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
@@ -17,31 +19,31 @@ import teams from "../data/teams";
 
 const ROLE_OPTIONS = {
   player: [
-    { value: "player", label: "Player" },
+    { value: "player", label: tx("Player") },
   ],
   staff: [
-    { value: "coach", label: "Coach" },
-    { value: "manager", label: "Manager" },
-    { value: "analyst", label: "Analyst" },
+    { value: "coach", label: tx("Coach") },
+    { value: "manager", label: tx("Manager") },
+    { value: "analyst", label: tx("Analyst") },
   ],
 };
 
 const STATUS_META = {
   pending: {
-    title: "Request under review",
-    text: "We will review the provided contact details and proof.",
+    title: tx("Request under review"),
+    text: tx("We will review the provided contact details and proof."),
     classes:
       "border-amber-500/25 bg-amber-500/10 text-amber-300",
   },
   approved: {
-    title: "Request approved",
-    text: "The professional profile has been verified.",
+    title: tx("Request approved"),
+    text: tx("The professional profile has been verified."),
     classes:
       "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
   },
   rejected: {
-    title: "Request rejected",
-    text: "Correct the information and submit a new request.",
+    title: tx("Request rejected"),
+    text: tx("Correct the information and submit a new request."),
     classes:
       "border-red-500/25 bg-red-500/10 text-red-300",
   },
@@ -51,7 +53,7 @@ export default function VerificationRequestPage() {
   const { username } = useParams();
   const { user, profile, loading, refreshProfile } =
     useAuth();
-  const { tr, language } = useLanguage();
+  const { tr } = useLanguage();
 
   const [requestType, setRequestType] =
     useState("join_team");
@@ -737,7 +739,7 @@ export default function VerificationRequestPage() {
                         <div className="mt-1 text-xs text-gray-600">
                           {tr("Дата рождения", "Birth date")}:{" "}
                           {new Intl.DateTimeFormat(
-                            language === "ru" ? "ru-RU" : "en-US"
+                            currentLocale()
                           ).format(
                             new Date(
                               `${birthDate}T00:00:00`
