@@ -6014,5 +6014,925 @@
     "es": "Páginas del sitio",
     "fr": "Pages du site",
     "it": "Pagine del sito"
+  },
+  "Season 57 finals bracket, imported from FACEIT — matches only, no team roster import. Teams already tracked in the rating are automatically affected by these results.": {
+    "ru": "Сетка финала сезона 57 импортирована с FACEIT: только матчи, без составов команд. Результаты автоматически учитываются для команд, уже включённых в рейтинг.",
+    "de": "Finalraster der Saison 57, aus FACEIT importiert: nur Matches, keine Kader. Ergebnisse werden für bereits erfasste Teams automatisch im Ranking berücksichtigt.",
+    "pt": "Chave das finais da temporada 57 importada do FACEIT: apenas partidas, sem elencos. Os resultados afetam automaticamente as equipes já acompanhadas no ranking.",
+    "es": "Cuadro de las finales de la temporada 57 importado de FACEIT: solo partidos, sin plantillas. Los resultados afectan automáticamente a los equipos ya incluidos en el ranking.",
+    "fr": "Tableau des finales de la saison 57 importé de FACEIT : matchs uniquement, sans effectifs. Les résultats comptent automatiquement pour les équipes déjà suivies au classement.",
+    "it": "Tabellone delle finali della stagione 57 importato da FACEIT: solo partite, senza rose. I risultati incidono automaticamente sulle squadre già presenti in classifica."
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 8.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 8.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 8.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 8.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 8.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 8.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 8."
+  },
+  "Match Format: All matches will be played in Best-of-1 format.": {
+    "ru": "Формат матчей: все матчи проводятся в формате BO1.",
+    "de": "Matchformat: Alle Matches werden als BO1 gespielt.",
+    "pt": "Formato: todas as partidas são disputadas em BO1.",
+    "es": "Formato: todos los partidos se disputan en BO1.",
+    "fr": "Format : tous les matchs se jouent en BO1.",
+    "it": "Formato: tutte le partite si giocano in BO1."
+  },
+  "Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 8.": {
+    "ru": "Фиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 8.",
+    "de": "Kadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 8 dieselbe Startformation einsetzen.",
+    "pt": "Elencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 8.",
+    "es": "Plantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 8.",
+    "fr": "Effectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 8.",
+    "it": "Rose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 8."
+  },
+  "Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).": {
+    "ru": "Доступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).",
+    "de": "Verfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).",
+    "pt": "Disponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).",
+    "es": "Disponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).",
+    "fr": "Disponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).",
+    "it": "Disponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing)."
+  },
+  "Eligibility Compliance: - Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform. - All players must reside in Europe Region. Failure to comply may result in team disqualification.": {
+    "ru": "Требования к участию:\n- У игроков не должно быть действующих игровых блокировок FACEIT, иначе матчи не запустятся.\n- Все игроки должны проживать в Европе. Нарушение может привести к дисквалификации.",
+    "de": "Teilnahmebedingungen:\n- Spieler dürfen keine aktiven FACEIT-Spielsperren haben, sonst starten die Matches nicht.\n- Alle Spieler müssen in Europa wohnen. Verstöße können zur Disqualifikation führen.",
+    "pt": "Requisitos:\n- Os jogadores não podem ter banimentos ativos no FACEIT; caso contrário, as partidas não iniciam.\n- Todos devem residir na Europa. O descumprimento pode causar desclassificação.",
+    "es": "Requisitos:\n- Los jugadores no deben tener bloqueos activos en FACEIT; de lo contrario, los partidos no se iniciarán.\n- Todos deben residir en Europa. El incumplimiento puede causar descalificación.",
+    "fr": "Conditions :\n- Les joueurs ne doivent avoir aucun bannissement de jeu FACEIT actif, sinon les matchs ne démarrent pas.\n- Tous doivent résider en Europe. Un manquement peut entraîner une disqualification.",
+    "it": "Requisiti:\n- I giocatori non devono avere ban di gioco FACEIT attivi, altrimenti le partite non partiranno.\n- Tutti devono risiedere in Europa. Le violazioni possono comportare la squalifica."
+  },
+  "Any team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes: - The core roster, for all matches, must currently reside in the region they are competing in. - The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event. - Any changes to the qualified roster must be pre-approved by Tournament Officials. Teams that don’t meet these requirements may be disqualified or replaced without further notice.": {
+    "ru": "Команды из открытых квалификаций должны соответствовать требованиям Valve и регламенту CCT:\n- Основной состав должен проживать в регионе участия на протяжении всех матчей.\n- На всех стартовых матчах регионального турнира сохраняется квалифицировавшееся ядро: минимум 3 из 5 игроков.\n- Изменения состава требуют предварительного согласования с организаторами.\nНесоответствующие команды могут быть дисквалифицированы или заменены без дополнительного уведомления.",
+    "de": "Teams aus offenen Qualifikationen müssen die Valve-Vorgaben und das CCT-Regelwerk erfüllen:\n- Der Kernkader muss bei allen Matches in der jeweiligen Wettbewerbsregion wohnen.\n- In allen ersten Matches des regionalen Events muss der qualifizierte Kern mit mindestens 3 von 5 Spielern bestehen bleiben.\n- Kaderänderungen benötigen vorherige Genehmigung der Turnierleitung.\nBei Verstößen können Teams ohne weitere Ankündigung disqualifiziert oder ersetzt werden.",
+    "pt": "Equipes das classificatórias abertas devem cumprir as exigências da Valve e o regulamento do CCT:\n- O núcleo do elenco deve residir na região em que compete em todas as partidas.\n- O núcleo classificado, com pelo menos 3 dos 5 jogadores, deve ser mantido em todas as partidas iniciais do evento regional.\n- Mudanças exigem aprovação prévia da organização.\nEquipes que não cumpram os requisitos podem ser desclassificadas ou substituídas sem aviso adicional.",
+    "es": "Los equipos de clasificatorios abiertos deben cumplir los requisitos de Valve y el reglamento de CCT:\n- El núcleo de la plantilla debe residir en la región en la que compite durante todos los partidos.\n- Debe mantenerse el núcleo clasificado, al menos 3 de 5 jugadores, en todos los primeros partidos del evento regional.\n- Los cambios requieren aprobación previa de la organización.\nLos equipos que incumplan pueden ser descalificados o sustituidos sin previo aviso adicional.",
+    "fr": "Les équipes issues des qualifications ouvertes doivent respecter les exigences de Valve et le règlement CCT :\n- Le noyau de l’effectif doit résider dans la région où il joue pendant tous les matchs.\n- Le noyau qualifié, au moins 3 joueurs sur 5, doit être conservé pour tous les premiers matchs de l’événement régional.\n- Toute modification nécessite l’accord préalable des organisateurs.\nLes équipes non conformes peuvent être disqualifiées ou remplacées sans autre préavis.",
+    "it": "Le squadre provenienti dalle qualificazioni aperte devono rispettare i requisiti Valve e il regolamento CCT:\n- Il nucleo della rosa deve risiedere nella regione in cui compete durante tutte le partite.\n- Il nucleo qualificato, almeno 3 giocatori su 5, deve essere mantenuto in tutte le prime partite dell’evento regionale.\n- Le modifiche richiedono l’approvazione preventiva degli organizzatori.\nLe squadre non conformi possono essere squalificate o sostituite senza ulteriore preavviso."
+  },
+  "Welcome to the Galaxy Battle LAN-STATION 1 Open Qualifiers! 🌌 Your journey to the grand LAN Final in Portugal starts here. The winning team of this qualifier secures a direct slot into the closed Online Stage (Group Stage).": {
+    "ru": "Добро пожаловать на открытые квалификации Galaxy Battle LAN-STATION 1! 🌌\nПуть к LAN-финалу в Португалии начинается здесь. Победитель получает место в закрытом онлайн-этапе (групповой этап).",
+    "de": "Willkommen zur offenen Qualifikation für Galaxy Battle LAN-STATION 1! 🌌\nDer Weg zum LAN-Finale in Portugal beginnt hier. Der Sieger erhält einen Platz in der geschlossenen Online-Gruppenphase.",
+    "pt": "Bem-vindos às classificatórias abertas do Galaxy Battle LAN-STATION 1! 🌌\nA jornada para a final LAN em Portugal começa aqui. O vencedor garante uma vaga na fase de grupos online fechada.",
+    "es": "¡Bienvenidos a los clasificatorios abiertos de Galaxy Battle LAN-STATION 1! 🌌\nEl camino a la final LAN en Portugal comienza aquí. El ganador obtiene una plaza en la fase de grupos online cerrada.",
+    "fr": "Bienvenue aux qualifications ouvertes de Galaxy Battle LAN-STATION 1 ! 🌌\nLa route vers la finale LAN au Portugal commence ici. Le vainqueur obtient une place dans la phase de groupes fermée en ligne.",
+    "it": "Benvenuti alle qualificazioni aperte di Galaxy Battle LAN-STATION 1! 🌌\nIl percorso verso la finale LAN in Portogallo inizia qui. Il vincitore ottiene un posto nella fase a gironi online chiusa."
+  },
+  "📌 Tournament Overview:": {
+    "ru": "📌 Обзор турнира:",
+    "de": "📌 Turnierübersicht:",
+    "pt": "📌 Visão geral do torneio:",
+    "es": "📌 Resumen del torneo:",
+    "fr": "📌 Présentation du tournoi :",
+    "it": "📌 Panoramica del torneo:"
+  },
+  "Bracket Format: Single-Elimination.": {
+    "ru": "Формат сетки: на выбывание после одного поражения.",
+    "de": "Turnierformat: Ausscheiden nach einer Niederlage.",
+    "pt": "Formato da chave: eliminação simples.",
+    "es": "Formato del cuadro: eliminación directa.",
+    "fr": "Format du tableau : élimination directe.",
+    "it": "Formato del tabellone: eliminazione diretta."
+  },
+  "Match Format: All matches leading to the Grand Final are BO1. The Grand Final for the slot is BO3.": {
+    "ru": "Формат матчей: до гранд-финала все матчи BO1. Гранд-финал за место в турнире — BO3.",
+    "de": "Matchformat: Bis zum großen Finale werden alle Matches als BO1 gespielt. Das Finale um den Turnierplatz ist BO3.",
+    "pt": "Formato: todas as partidas até a grande final são BO1. A grande final pela vaga é BO3.",
+    "es": "Formato: todos los partidos hasta la gran final son BO1. La gran final por la plaza es BO3.",
+    "fr": "Format : tous les matchs avant la grande finale se jouent en BO1. La grande finale pour la place se joue en BO3.",
+    "it": "Formato: tutte le partite fino alla finale sono BO1. La finale per il posto nel torneo è BO3."
+  },
+  "Regional Rule: This is the European Qualifier. The active roster for every match must contain a minimum of 3 players from Europe. Players from other regions with artificially high ping may be disqualified at the Admin's discretion.": {
+    "ru": "Региональное правило: это европейская квалификация. В каждом матче должны участвовать минимум 3 игрока из Европы. Игроки из других регионов с искусственно высоким пингом могут быть дисквалифицированы по решению администратора.",
+    "de": "Regionsregel: Dies ist eine europäische Qualifikation. In jedem Match müssen mindestens 3 Spieler aus Europa antreten. Spieler aus anderen Regionen mit künstlich erhöhtem Ping können nach Ermessen der Administration disqualifiziert werden.",
+    "pt": "Regra regional: esta é a classificatória europeia. Cada partida exige pelo menos 3 jogadores da Europa. Jogadores de outras regiões com ping artificialmente elevado podem ser desclassificados a critério da administração.",
+    "es": "Regla regional: este es el clasificatorio europeo. Cada partido requiere al menos 3 jugadores de Europa. Los jugadores de otras regiones con ping artificialmente alto pueden ser descalificados a criterio de la administración.",
+    "fr": "Règle régionale : cette qualification est européenne. Chaque match doit compter au moins 3 joueurs d’Europe. Les joueurs d’autres régions ayant un ping artificiellement élevé peuvent être disqualifiés à la discrétion de l’administration.",
+    "it": "Regola regionale: questa è la qualificazione europea. Ogni partita richiede almeno 3 giocatori europei. I giocatori di altre regioni con ping artificialmente elevato possono essere squalificati a discrezione dell’amministrazione."
+  },
+  "Age Limit: 16+.": {
+    "ru": "Возрастное ограничение: 16+.",
+    "de": "Altersgrenze: 16+.",
+    "pt": "Idade mínima: 16+.",
+    "es": "Edad mínima: 16+.",
+    "fr": "Âge minimum : 16+.",
+    "it": "Età minima: 16+."
+  },
+  "Anti-Cheat: FACEIT Anti-Cheat is strictly mandatory. You will not be able to join the server without it.": {
+    "ru": "Античит FACEIT обязателен. Без него подключиться к серверу нельзя.",
+    "de": "FACEIT Anti-Cheat ist verpflichtend. Ohne ihn ist kein Serverbeitritt möglich.",
+    "pt": "O FACEIT Anti-Cheat é obrigatório. Sem ele, não é possível entrar no servidor.",
+    "es": "FACEIT Anti-Cheat es obligatorio. Sin él no es posible entrar al servidor.",
+    "fr": "FACEIT Anti-Cheat est obligatoire. Sans lui, vous ne pouvez pas rejoindre le serveur.",
+    "it": "FACEIT Anti-Cheat è obbligatorio. Senza di esso non è possibile entrare nel server."
+  },
+  "🔗 Support: If you have any disputes with your opponent or face server issues, please contact our Head Admin immediately.": {
+    "ru": "🔗 Поддержка:\nПри спорах с соперником или проблемах с сервером сразу обращайтесь к главному администратору.",
+    "de": "🔗 Support:\nBei Streitigkeiten mit Gegnern oder Serverproblemen sofort die Hauptadministration kontaktieren.",
+    "pt": "🔗 Suporte:\nEm caso de disputas com o adversário ou problemas no servidor, contate imediatamente o administrador principal.",
+    "es": "🔗 Soporte:\nSi hay disputas con el rival o problemas en el servidor, contacte de inmediato con el administrador principal.",
+    "fr": "🔗 Assistance :\nEn cas de litige avec l’adversaire ou de problème de serveur, contactez immédiatement l’administrateur principal.",
+    "it": "🔗 Assistenza:\nIn caso di dispute con l’avversario o problemi al server, contattate subito l’amministratore principale."
+  },
+  "Head Admin Discord: comeblack_. Please include the link to your FACEIT match room in your direct message.": {
+    "ru": "Discord главного администратора: comeblack_. В личном сообщении приложите ссылку на комнату матча FACEIT.",
+    "de": "Discord der Hauptadministration: comeblack_. Der Direktnachricht bitte den Link zum FACEIT-Matchraum beifügen.",
+    "pt": "Discord do administrador principal: comeblack_. Inclua o link da sala da partida FACEIT na mensagem direta.",
+    "es": "Discord del administrador principal: comeblack_. Incluya el enlace de la sala del partido FACEIT en el mensaje directo.",
+    "fr": "Discord de l’administrateur principal : comeblack_. Joignez le lien du salon du match FACEIT à votre message privé.",
+    "it": "Discord dell’amministratore principale: comeblack_. Includete il link della stanza della partita FACEIT nel messaggio privato."
+  },
+  "Prepare for a tough battle and show your best CS2. GL & HF! 🏆": {
+    "ru": "Готовьтесь к трудной борьбе и покажите свой лучший CS2. Удачи и хорошей игры! 🏆",
+    "de": "Bereitet euch auf harte Kämpfe vor und zeigt euer bestes CS2. Viel Glück und viel Spaß! 🏆",
+    "pt": "Preparem-se para uma batalha difícil e mostrem seu melhor CS2. Boa sorte e divirtam-se! 🏆",
+    "es": "Prepárense para una batalla difícil y muestren su mejor CS2. ¡Buena suerte y a disfrutar! 🏆",
+    "fr": "Préparez-vous à une bataille difficile et montrez votre meilleur CS2. Bonne chance et amusez-vous ! 🏆",
+    "it": "Preparatevi a una dura battaglia e mostrate il vostro miglior CS2. Buona fortuna e buon divertimento! 🏆"
+  },
+  "Single Elimination": {
+    "ru": "На выбывание после одного поражения",
+    "de": "Ausscheiden nach einer Niederlage",
+    "pt": "Eliminação simples",
+    "es": "Eliminación directa",
+    "fr": "Élimination directe",
+    "it": "Eliminazione diretta"
+  },
+  "The Open Qualifier will be hosted online on FACEIT, with unlimited signups.": {
+    "ru": "Открытая квалификация проходит онлайн на FACEIT, число регистраций не ограничено.",
+    "de": "Die offene Qualifikation findet online auf FACEIT statt, ohne Teilnehmerlimit.",
+    "pt": "A classificatória aberta acontece online no FACEIT, sem limite de inscrições.",
+    "es": "El clasificatorio abierto se disputa online en FACEIT, sin límite de inscripciones.",
+    "fr": "La qualification ouverte se déroule en ligne sur FACEIT, sans limite d’inscriptions.",
+    "it": "La qualificazione aperta si svolge online su FACEIT, senza limite di iscrizioni."
+  },
+  "Servers for Open Qualifier: Moscow, Netherlands, Germany, Sweden, Finland": {
+    "ru": "Серверы открытой квалификации: Москва, Нидерланды, Германия, Швеция, Финляндия.",
+    "de": "Server der offenen Qualifikation: Moskau, Niederlande, Deutschland, Schweden, Finnland.",
+    "pt": "Servidores: Moscou, Países Baixos, Alemanha, Suécia e Finlândia.",
+    "es": "Servidores: Moscú, Países Bajos, Alemania, Suecia y Finlandia.",
+    "fr": "Serveurs : Moscou, Pays-Bas, Allemagne, Suède et Finlande.",
+    "it": "Server: Mosca, Paesi Bassi, Germania, Svezia e Finlandia."
+  },
+  "Starting at 16:00 am CEST on August 12th.": {
+    "ru": "Начало: 12 августа в 16:00 CEST.",
+    "de": "Beginn: 12. August um 16:00 CEST.",
+    "pt": "Início: 12 de agosto às 16:00 CEST.",
+    "es": "Inicio: 12 de agosto a las 16:00 CEST.",
+    "fr": "Début : le 12 août à 16:00 CEST.",
+    "it": "Inizio: 12 agosto alle 16:00 CEST."
+  },
+  "All matches are Bo1, Semi-final is BO3": {
+    "ru": "Все матчи BO1, полуфинал — BO3.",
+    "de": "Alle Matches BO1, das Halbfinale BO3.",
+    "pt": "Todas as partidas são BO1; a semifinal é BO3.",
+    "es": "Todos los partidos son BO1; la semifinal es BO3.",
+    "fr": "Tous les matchs sont en BO1 ; la demi-finale est en BO3.",
+    "it": "Tutte le partite sono BO1; la semifinale è BO3."
+  },
+  "The exact schedule of matches is pending the total number of teams signed up.": {
+    "ru": "Точное расписание будет определено после подсчёта зарегистрированных команд.",
+    "de": "Der genaue Zeitplan wird nach Feststellung der Teilnehmerzahl bestimmt.",
+    "pt": "O calendário exato será definido conforme o número total de equipes inscritas.",
+    "es": "El calendario exacto se definirá según el número total de equipos inscritos.",
+    "fr": "Le calendrier exact sera fixé selon le nombre total d’équipes inscrites.",
+    "it": "Il calendario esatto sarà definito in base al numero totale di squadre iscritte."
+  },
+  "Top 2 teams advance to the Closed Qualifier": {
+    "ru": "Две лучшие команды проходят в закрытую квалификацию.",
+    "de": "Die besten 2 Teams erreichen die geschlossene Qualifikation.",
+    "pt": "As 2 melhores equipes avançam à classificatória fechada.",
+    "es": "Los 2 mejores equipos avanzan al clasificatorio cerrado.",
+    "fr": "Les 2 meilleures équipes accèdent à la qualification fermée.",
+    "it": "Le migliori 2 squadre accedono alla qualificazione chiusa."
+  },
+  "Starting at 16:00 am CEST on August 13th.": {
+    "ru": "Начало: 13 августа в 16:00 CEST.",
+    "de": "Beginn: 13. August um 16:00 CEST.",
+    "pt": "Início: 13 de agosto às 16:00 CEST.",
+    "es": "Inicio: 13 de agosto a las 16:00 CEST.",
+    "fr": "Début : le 13 août à 16:00 CEST.",
+    "it": "Inizio: 13 agosto alle 16:00 CEST."
+  },
+  "Starting at 16:00 am CEST on August 14th.": {
+    "ru": "Начало: 14 августа в 16:00 CEST.",
+    "de": "Beginn: 14. August um 16:00 CEST.",
+    "pt": "Início: 14 de agosto às 16:00 CEST.",
+    "es": "Inicio: 14 de agosto a las 16:00 CEST.",
+    "fr": "Début : le 14 août à 16:00 CEST.",
+    "it": "Inizio: 14 agosto alle 16:00 CEST."
+  },
+  "Starting at 16:00 am CEST on August 15th.": {
+    "ru": "Начало: 15 августа в 16:00 CEST.",
+    "de": "Beginn: 15. August um 16:00 CEST.",
+    "pt": "Início: 15 de agosto às 16:00 CEST.",
+    "es": "Inicio: 15 de agosto a las 16:00 CEST.",
+    "fr": "Début : le 15 août à 16:00 CEST.",
+    "it": "Inizio: 15 agosto alle 16:00 CEST."
+  },
+  "**Global Qualifier is open to participants from anywhere in the world; however, please note that all matches will be played exclusively on European servers**": {
+    "ru": "Глобальная квалификация открыта для участников со всего мира, но все матчи проходят исключительно на европейских серверах.",
+    "de": "Die globale Qualifikation steht Teilnehmern weltweit offen, doch alle Matches werden ausschließlich auf europäischen Servern gespielt.",
+    "pt": "A classificatória global é aberta a participantes do mundo inteiro, mas todas as partidas ocorrem exclusivamente em servidores europeus.",
+    "es": "El clasificatorio global está abierto a participantes de todo el mundo, pero todos los partidos se juegan exclusivamente en servidores europeos.",
+    "fr": "La qualification mondiale est ouverte aux participants du monde entier, mais tous les matchs se jouent exclusivement sur des serveurs européens.",
+    "it": "La qualificazione globale è aperta ai partecipanti di tutto il mondo, ma tutte le partite si giocano esclusivamente sui server europei."
+  },
+  "- **Participants must be FACEIT Verified in order to compete** - **Participants must be able to provide two operational webcam feeds upon request for competitive integrity checks. Failure to do so may result in disqualification**": {
+    "ru": "- Для участия требуется верификация FACEIT.\n- По запросу участники должны предоставить два работающих видеопотока с веб-камер для проверки честной игры. Невыполнение может привести к дисквалификации.",
+    "de": "- Zur Teilnahme ist FACEIT-Verifizierung erforderlich.\n- Auf Anfrage müssen Teilnehmer zwei funktionierende Webcam-Übertragungen für Integritätsprüfungen bereitstellen. Bei Nichterfüllung droht Disqualifikation.",
+    "pt": "- É obrigatório ter verificação FACEIT.\n- Quando solicitado, os participantes devem fornecer duas transmissões funcionais de webcam para verificações de integridade. O descumprimento pode causar desclassificação.",
+    "es": "- Se requiere verificación FACEIT.\n- A petición, los participantes deben proporcionar dos transmisiones funcionales de webcam para controles de integridad. El incumplimiento puede causar descalificación.",
+    "fr": "- La vérification FACEIT est obligatoire.\n- Sur demande, les participants doivent fournir deux flux vidéo de webcam fonctionnels pour les contrôles d’intégrité. Un manquement peut entraîner une disqualification.",
+    "it": "- È richiesta la verifica FACEIT.\n- Su richiesta, i partecipanti devono fornire due flussi webcam funzionanti per i controlli di integrità. Il mancato rispetto può comportare la squalifica."
+  },
+  "Open Qualifier Provisional Schedule (Timezone CET):": {
+    "ru": "Предварительное расписание открытой квалификации (часовой пояс CET):",
+    "de": "Vorläufiger Zeitplan der offenen Qualifikation (Zeitzone CET):",
+    "pt": "Calendário provisório da classificatória aberta (fuso CET):",
+    "es": "Calendario provisional del clasificatorio abierto (zona horaria CET):",
+    "fr": "Calendrier provisoire de la qualification ouverte (fuseau CET) :",
+    "it": "Calendario provvisorio della qualificazione aperta (fuso CET):"
+  },
+  "Day 1 - Timeslot #1: 18:00 - Ro512 (256 matches) [Bo1] - Timeslot #2: 19:10 - Ro256 (128 matches) [Bo1] - Timeslot #3: 20:10 - Ro128 (64 matches) [Bo1] - Timeslot #4: 21:10 - Ro64 (32 matches) [Bo1] - Timeslot #5: 22:10 - Ro32 (16 matches) [Bo1]": {
+    "ru": "День 1\n- Слот №1: 18:00 — 1/256 финала (256 матчей), BO1\n- Слот №2: 19:10 — 1/128 финала (128 матчей), BO1\n- Слот №3: 20:10 — 1/64 финала (64 матча), BO1\n- Слот №4: 21:10 — 1/32 финала (32 матча), BO1\n- Слот №5: 22:10 — 1/16 финала (16 матчей), BO1",
+    "de": "Tag 1\n- Zeitfenster 1: 18:00 — Runde der 512 (256 Matches), BO1\n- Zeitfenster 2: 19:10 — Runde der 256 (128 Matches), BO1\n- Zeitfenster 3: 20:10 — Runde der 128 (64 Matches), BO1\n- Zeitfenster 4: 21:10 — Runde der 64 (32 Matches), BO1\n- Zeitfenster 5: 22:10 — Runde der 32 (16 Matches), BO1",
+    "pt": "Dia 1\n- Horário 1: 18:00 — fase de 512 (256 partidas), BO1\n- Horário 2: 19:10 — fase de 256 (128 partidas), BO1\n- Horário 3: 20:10 — fase de 128 (64 partidas), BO1\n- Horário 4: 21:10 — fase de 64 (32 partidas), BO1\n- Horário 5: 22:10 — fase de 32 (16 partidas), BO1",
+    "es": "Día 1\n- Horario 1: 18:00 — ronda de 512 (256 partidos), BO1\n- Horario 2: 19:10 — ronda de 256 (128 partidos), BO1\n- Horario 3: 20:10 — ronda de 128 (64 partidos), BO1\n- Horario 4: 21:10 — ronda de 64 (32 partidos), BO1\n- Horario 5: 22:10 — ronda de 32 (16 partidos), BO1",
+    "fr": "Jour 1\n- Créneau 1 : 18:00 — tour des 512 (256 matchs), BO1\n- Créneau 2 : 19:10 — tour des 256 (128 matchs), BO1\n- Créneau 3 : 20:10 — tour des 128 (64 matchs), BO1\n- Créneau 4 : 21:10 — tour des 64 (32 matchs), BO1\n- Créneau 5 : 22:10 — tour des 32 (16 matchs), BO1",
+    "it": "Giorno 1\n- Orario 1: 18:00 — turno di 512 (256 partite), BO1\n- Orario 2: 19:10 — turno di 256 (128 partite), BO1\n- Orario 3: 20:10 — turno di 128 (64 partite), BO1\n- Orario 4: 21:10 — turno di 64 (32 partite), BO1\n- Orario 5: 22:10 — turno di 32 (16 partite), BO1"
+  },
+  "Day 2 - Timeslot #1: 18:00 - Ro16 (8 matches) [Bo1] - Timeslot #2: 19:10 - Deciders (4 matches) [Bo3]": {
+    "ru": "День 2\n- Слот №1: 18:00 — 1/8 финала (8 матчей), BO1\n- Слот №2: 19:10 — решающие матчи (4 матча), BO3",
+    "de": "Tag 2\n- Zeitfenster 1: 18:00 — Achtelfinale (8 Matches), BO1\n- Zeitfenster 2: 19:10 — Entscheidungsmatches (4 Matches), BO3",
+    "pt": "Dia 2\n- Horário 1: 18:00 — oitavas de final (8 partidas), BO1\n- Horário 2: 19:10 — partidas decisivas (4 partidas), BO3",
+    "es": "Día 2\n- Horario 1: 18:00 — octavos de final (8 partidos), BO1\n- Horario 2: 19:10 — partidos decisivos (4 partidos), BO3",
+    "fr": "Jour 2\n- Créneau 1 : 18:00 — huitièmes de finale (8 matchs), BO1\n- Créneau 2 : 19:10 — matchs décisifs (4 matchs), BO3",
+    "it": "Giorno 2\n- Orario 1: 18:00 — ottavi di finale (8 partite), BO1\n- Orario 2: 19:10 — partite decisive (4 partite), BO3"
+  },
+  "Open Qualifier Format:": {
+    "ru": "Формат открытой квалификации:",
+    "de": "Format der offenen Qualifikation:",
+    "pt": "Formato da classificatória aberta:",
+    "es": "Formato del clasificatorio abierto:",
+    "fr": "Format de la qualification ouverte :",
+    "it": "Formato della qualificazione aperta:"
+  },
+  "- One open qualifier for 4 slots - Unlimited SE best-of-one bracket - Decider matches Bo3 - The qualifier determines four teams": {
+    "ru": "- Одна открытая квалификация на 4 места\n- Неограниченная сетка на выбывание, BO1\n- Решающие матчи BO3\n- Квалификация определяет четыре команды",
+    "de": "- Eine offene Qualifikation für 4 Plätze\n- Unbegrenztes Turnierraster mit Ausscheiden nach einer Niederlage, BO1\n- Entscheidungsmatches BO3\n- Vier Teams qualifizieren sich",
+    "pt": "- Uma classificatória aberta para 4 vagas\n- Chave sem limite de equipes, eliminação simples, BO1\n- Partidas decisivas BO3\n- Quatro equipes se classificam",
+    "es": "- Un clasificatorio abierto para 4 plazas\n- Cuadro sin límite de equipos, eliminación directa, BO1\n- Partidos decisivos BO3\n- Se clasifican cuatro equipos",
+    "fr": "- Une qualification ouverte pour 4 places\n- Tableau sans limite d’équipes, élimination directe, BO1\n- Matchs décisifs BO3\n- Quatre équipes se qualifient",
+    "it": "- Una qualificazione aperta per 4 posti\n- Tabellone senza limite di squadre, eliminazione diretta, BO1\n- Partite decisive BO3\n- Si qualificano quattro squadre"
+  },
+  "Closed Qualifier Format - 16 Teams - DE best-of-three bracket - 12 invites & 4 qualifying from open qualifiers - Two teams advance to the main event - Date: 2 - 4 September": {
+    "ru": "Формат закрытой квалификации\n- 16 команд\n- Сетка на выбывание после двух поражений, BO3\n- 12 приглашённых команд и 4 из открытой квалификации\n- Две команды проходят в основной турнир\n- Даты: 2–4 сентября",
+    "de": "Format der geschlossenen Qualifikation\n- 16 Teams\n- Ausscheiden nach zwei Niederlagen, BO3\n- 12 eingeladene Teams und 4 aus der offenen Qualifikation\n- Zwei Teams erreichen das Hauptevent\n- Datum: 2.–4. September",
+    "pt": "Formato da classificatória fechada\n- 16 equipes\n- Eliminação dupla, BO3\n- 12 convidadas e 4 da classificatória aberta\n- Duas equipes avançam ao evento principal\n- Datas: 2 a 4 de setembro",
+    "es": "Formato del clasificatorio cerrado\n- 16 equipos\n- Doble eliminación, BO3\n- 12 invitados y 4 del clasificatorio abierto\n- Dos equipos avanzan al evento principal\n- Fechas: del 2 al 4 de septiembre",
+    "fr": "Format de la qualification fermée\n- 16 équipes\n- Double élimination, BO3\n- 12 invitées et 4 issues de la qualification ouverte\n- Deux équipes accèdent à l’événement principal\n- Dates : du 2 au 4 septembre",
+    "it": "Formato della qualificazione chiusa\n- 16 squadre\n- Doppia eliminazione, BO3\n- 12 invitate e 4 dalla qualificazione aperta\n- Due squadre accedono all’evento principale\n- Date: 2–4 settembre"
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 9.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 9.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 9.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 9.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 9.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 9.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 9."
+  },
+  "Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 9.": {
+    "ru": "Фиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 9.",
+    "de": "Kadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 9 dieselbe Startformation einsetzen.",
+    "pt": "Elencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 9.",
+    "es": "Plantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 9.",
+    "fr": "Effectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 9.",
+    "it": "Rose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 9."
+  },
+  "Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).": {
+    "ru": "Доступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).",
+    "de": "Verfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).",
+    "pt": "Disponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).",
+    "es": "Disponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).",
+    "fr": "Disponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).",
+    "it": "Disponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing)."
+  },
+  "The Open Qualifier for Stake Ranked Ep.4, the fourth tournament of the Tier 2 CS2 LAN circuit by Stake and StarLadder. Teams will compete for 4 spots in the Closed Qualifier, where they will join VRS-invited rosters on the road to the LAN Finals.": {
+    "ru": "Открытая квалификация Stake Ranked Ep.4 — четвёртого LAN-турнира серии Tier 2 CS2 от Stake и StarLadder.\nКоманды борются за 4 места в закрытой квалификации, где присоединятся к приглашённым по VRS составам на пути к LAN-финалу.",
+    "de": "Offene Qualifikation für Stake Ranked Ep.4, das vierte LAN-Turnier der Tier-2-CS2-Serie von Stake und StarLadder.\nTeams kämpfen um 4 Plätze in der geschlossenen Qualifikation und treffen dort auf über VRS eingeladene Kader auf dem Weg zum LAN-Finale.",
+    "pt": "Classificatória aberta do Stake Ranked Ep.4, quarto torneio LAN do circuito Tier 2 de CS2 da Stake e StarLadder.\nAs equipes disputam 4 vagas na classificatória fechada, onde se juntam aos elencos convidados pelo VRS rumo às finais LAN.",
+    "es": "Clasificatorio abierto de Stake Ranked Ep.4, cuarto torneo LAN del circuito Tier 2 de CS2 de Stake y StarLadder.\nLos equipos compiten por 4 plazas en el clasificatorio cerrado, donde se unen a plantillas invitadas por VRS rumbo a las finales LAN.",
+    "fr": "Qualification ouverte de Stake Ranked Ep.4, quatrième tournoi LAN du circuit Tier 2 CS2 de Stake et StarLadder.\nLes équipes disputent 4 places dans la qualification fermée et y rejoignent les effectifs invités via VRS sur la route des finales LAN.",
+    "it": "Qualificazione aperta di Stake Ranked Ep.4, quarto torneo LAN del circuito Tier 2 CS2 di Stake e StarLadder.\nLe squadre competono per 4 posti nella qualificazione chiusa, dove si uniranno alle rose invitate tramite VRS verso le finali LAN."
+  },
+  "Open Qualifier:": {
+    "ru": "Открытая квалификация:",
+    "de": "Offene Qualifikation:",
+    "pt": "Classificatória aberta:",
+    "es": "Clasificatorio abierto:",
+    "fr": "Qualification ouverte :",
+    "it": "Qualificazione aperta:"
+  },
+  "Day 1 (29th of August) - all matches until Quarterfinals / Bo1": {
+    "ru": "День 1 (29 августа): все матчи до четвертьфинала, BO1.",
+    "de": "Tag 1 (29. August): alle Matches vor dem Viertelfinale, BO1.",
+    "pt": "Dia 1 (29 de agosto): todas as partidas antes das quartas de final, BO1.",
+    "es": "Día 1 (29 de agosto): todos los partidos anteriores a los cuartos de final, BO1.",
+    "fr": "Jour 1 (29 août) : tous les matchs avant les quarts de finale, BO1.",
+    "it": "Giorno 1 (29 agosto): tutte le partite prima dei quarti di finale, BO1."
+  },
+  "Day 2 (30th of August) - Decider matches - Quarterfinals / Bo3:": {
+    "ru": "День 2 (30 августа): решающие матчи — четвертьфиналы, BO3.",
+    "de": "Tag 2 (30. August): Entscheidungsmatches im Viertelfinale, BO3.",
+    "pt": "Dia 2 (30 de agosto): partidas decisivas nas quartas de final, BO3.",
+    "es": "Día 2 (30 de agosto): partidos decisivos de cuartos de final, BO3.",
+    "fr": "Jour 2 (30 août) : matchs décisifs des quarts de finale, BO3.",
+    "it": "Giorno 2 (30 agosto): partite decisive dei quarti di finale, BO3."
+  },
+  "Quarterfinal Match #1-2: 16:00 CEST": {
+    "ru": "Четвертьфинальные матчи №1–2: 16:00 CEST.",
+    "de": "Viertelfinalmatches 1–2: 16:00 CEST.",
+    "pt": "Quartas de final, partidas 1–2: 16:00 CEST.",
+    "es": "Cuartos de final, partidos 1–2: 16:00 CEST.",
+    "fr": "Quarts de finale, matchs 1–2 : 16:00 CEST.",
+    "it": "Quarti di finale, partite 1–2: 16:00 CEST."
+  },
+  "Quarterfinal Match #3-4: 19:00 CEST": {
+    "ru": "Четвертьфинальные матчи №3–4: 19:00 CEST.",
+    "de": "Viertelfinalmatches 3–4: 19:00 CEST.",
+    "pt": "Quartas de final, partidas 3–4: 19:00 CEST.",
+    "es": "Cuartos de final, partidos 3–4: 19:00 CEST.",
+    "fr": "Quarts de finale, matchs 3–4 : 19:00 CEST.",
+    "it": "Quarti di finale, partite 3–4: 19:00 CEST."
+  },
+  "**The matches will be played on European servers.**": {
+    "ru": "Матчи проходят на европейских серверах.",
+    "de": "Die Matches werden auf europäischen Servern gespielt.",
+    "pt": "As partidas são disputadas em servidores europeus.",
+    "es": "Los partidos se juegan en servidores europeos.",
+    "fr": "Les matchs se jouent sur des serveurs européens.",
+    "it": "Le partite si giocano sui server europei."
+  },
+  "To avoid smurfing, registration requires FACEIT Verification to join. Make sure your FACEIT account is verified.": {
+    "ru": "Для борьбы со смурфингом регистрация требует верификации FACEIT. Убедитесь, что ваш аккаунт FACEIT подтверждён.",
+    "de": "Zur Vermeidung von Smurfing ist FACEIT-Verifizierung zur Anmeldung erforderlich. Prüft, ob euer FACEIT-Konto verifiziert ist.",
+    "pt": "Para evitar contas secundárias abusivas, a inscrição exige verificação FACEIT. Certifique-se de que sua conta está verificada.",
+    "es": "Para evitar cuentas secundarias abusivas, la inscripción exige verificación FACEIT. Asegúrese de que su cuenta esté verificada.",
+    "fr": "Pour éviter les comptes secondaires abusifs, l’inscription exige la vérification FACEIT. Assurez-vous que votre compte est vérifié.",
+    "it": "Per evitare account secondari abusivi, l’iscrizione richiede la verifica FACEIT. Assicuratevi che il vostro account sia verificato."
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 10.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 10.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 10.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 10.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 10.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 10.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 10."
+  },
+  "Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 10.": {
+    "ru": "Фиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 10.",
+    "de": "Kadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 10 dieselbe Startformation einsetzen.",
+    "pt": "Elencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 10.",
+    "es": "Plantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 10.",
+    "fr": "Effectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 10.",
+    "it": "Rose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 10."
+  },
+  "Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).": {
+    "ru": "Доступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).",
+    "de": "Verfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).",
+    "pt": "Disponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).",
+    "es": "Disponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).",
+    "fr": "Disponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).",
+    "it": "Disponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing)."
+  },
+  "Welcome to the Stake Pulse Beat II - Open Qualifier I, taking place on August 20, 2026.": {
+    "ru": "Добро пожаловать на Stake Pulse Beat II — Open Qualifier I, который пройдёт 20 августа 2026 года.",
+    "de": "Willkommen zur offenen Qualifikation I für Stake Pulse Beat II am 20. August 2026.",
+    "pt": "Bem-vindos à classificatória aberta I do Stake Pulse Beat II, em 20 de agosto de 2026.",
+    "es": "Bienvenidos al clasificatorio abierto I de Stake Pulse Beat II, el 20 de agosto de 2026.",
+    "fr": "Bienvenue à la qualification ouverte I de Stake Pulse Beat II, le 20 août 2026.",
+    "it": "Benvenuti alla qualificazione aperta I di Stake Pulse Beat II, il 20 agosto 2026."
+  },
+  "One team will qualify from this tournament to compete at the Stake Pulse Beat II Main Event — a $60,000 LAN tournament.": {
+    "ru": "Одна команда из этой квалификации проходит в основной LAN-турнир Stake Pulse Beat II с призовым фондом 60 000 долларов.",
+    "de": "Ein Team aus dieser Qualifikation erreicht das LAN-Hauptevent Stake Pulse Beat II mit 60.000 Dollar Preisgeld.",
+    "pt": "Uma equipe desta classificatória avança ao evento principal LAN do Stake Pulse Beat II, com premiação de 60.000 dólares.",
+    "es": "Un equipo de este clasificatorio avanza al evento principal LAN de Stake Pulse Beat II, con 60.000 dólares en premios.",
+    "fr": "Une équipe issue de cette qualification accède à l’événement principal LAN de Stake Pulse Beat II, doté de 60 000 dollars.",
+    "it": "Una squadra di questa qualificazione accede all’evento principale LAN di Stake Pulse Beat II, con un montepremi di 60.000 dollari."
+  },
+  "The qualifier follows a Single Elimination format with Best-of-One matches throughout, and a Best-of-Three Grand Final. All matches are played on Counter-Strike 2 using the Active Duty map pool.": {
+    "ru": "Квалификация проводится на выбывание после одного поражения: все матчи BO1, гранд-финал BO3. Игра — Counter-Strike 2, актуальный соревновательный набор карт.",
+    "de": "Die Qualifikation erfolgt mit Ausscheiden nach einer Niederlage: alle Matches BO1, großes Finale BO3. Gespielt wird Counter-Strike 2 mit dem aktuellen Wettkampfkartenpool.",
+    "pt": "A classificatória usa eliminação simples: partidas BO1 e grande final BO3. O jogo é Counter-Strike 2, com o conjunto atual de mapas competitivos.",
+    "es": "El clasificatorio usa eliminación directa: partidos BO1 y gran final BO3. Se juega Counter-Strike 2 con el conjunto vigente de mapas competitivos.",
+    "fr": "La qualification se joue en élimination directe : matchs BO1 et grande finale BO3. Le jeu est Counter-Strike 2, avec les cartes compétitives actuelles.",
+    "it": "La qualificazione usa l’eliminazione diretta: partite BO1 e finale BO3. Si gioca a Counter-Strike 2 con l’attuale selezione di mappe competitive."
+  },
+  "Please note: teams that qualify through Open Qualifier I are not eligible to participate in Open Qualifier II (August 21).": {
+    "ru": "Команды, прошедшие через Open Qualifier I, не могут участвовать в Open Qualifier II (21 августа).",
+    "de": "Teams, die sich über die offene Qualifikation I qualifizieren, dürfen nicht an Qualifikation II am 21. August teilnehmen.",
+    "pt": "Equipes classificadas pela etapa aberta I não podem participar da etapa aberta II (21 de agosto).",
+    "es": "Los equipos clasificados mediante la etapa abierta I no pueden participar en la etapa abierta II (21 de agosto).",
+    "fr": "Les équipes qualifiées via l’étape ouverte I ne peuvent pas participer à l’étape ouverte II (21 août).",
+    "it": "Le squadre qualificate tramite la fase aperta I non possono partecipare alla fase aperta II (21 agosto)."
+  },
+  "Any team that has already successfully secured a spot at Stake Pulse Beat II through the registration system is not eligible to participate in either Open Qualifier. This rule has been further reinforced for Stake Pulse Beat II.": {
+    "ru": "Команды, уже получившие место на Stake Pulse Beat II через систему регистрации, не могут участвовать ни в одной открытой квалификации. Для Stake Pulse Beat II это правило дополнительно усилено.",
+    "de": "Teams, die bereits über das Anmeldesystem einen Platz bei Stake Pulse Beat II erhalten haben, dürfen an keiner offenen Qualifikation teilnehmen. Diese Regel wurde für Stake Pulse Beat II zusätzlich verschärft.",
+    "pt": "Equipes que já garantiram vaga no Stake Pulse Beat II pelo sistema de inscrição não podem participar de nenhuma classificatória aberta. A regra foi reforçada para o Stake Pulse Beat II.",
+    "es": "Los equipos que ya obtuvieron una plaza en Stake Pulse Beat II mediante el sistema de inscripción no pueden participar en ningún clasificatorio abierto. La norma se ha reforzado para Stake Pulse Beat II.",
+    "fr": "Les équipes ayant déjà obtenu une place à Stake Pulse Beat II via le système d’inscription ne peuvent participer à aucune qualification ouverte. Cette règle a été renforcée pour Stake Pulse Beat II.",
+    "it": "Le squadre che hanno già ottenuto un posto a Stake Pulse Beat II tramite il sistema d’iscrizione non possono partecipare a nessuna qualificazione aperta. La regola è stata rafforzata per Stake Pulse Beat II."
+  },
+  "📋 Official Rulebook: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing": {
+    "ru": "📋 Официальный регламент: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing",
+    "de": "📋 Offizielles Regelwerk: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing",
+    "pt": "📋 Regulamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing",
+    "es": "📋 Reglamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing",
+    "fr": "📋 Règlement officiel : https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing",
+    "it": "📋 Regolamento ufficiale: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing"
+  },
+  "By registering, you confirm that you have read and accepted all rules outlined in the rulebook. All participants must have the FACEIT Anti-Cheat installed before the tournament begins.": {
+    "ru": "Регистрируясь, вы подтверждаете, что прочитали и приняли все правила регламента. У всех участников должен быть установлен FACEIT Anti-Cheat до начала турнира.",
+    "de": "Mit der Anmeldung bestätigt ihr, alle Regeln gelesen und akzeptiert zu haben. Alle Teilnehmer müssen FACEIT Anti-Cheat vor Turnierbeginn installiert haben.",
+    "pt": "Ao se inscrever, você confirma que leu e aceitou todas as regras. Todos devem instalar o FACEIT Anti-Cheat antes do início do torneio.",
+    "es": "Al inscribirse, confirma que ha leído y aceptado todas las reglas. Todos deben instalar FACEIT Anti-Cheat antes del inicio del torneo.",
+    "fr": "En vous inscrivant, vous confirmez avoir lu et accepté toutes les règles. Tous les participants doivent installer FACEIT Anti-Cheat avant le début du tournoi.",
+    "it": "Iscrivendovi, confermate di aver letto e accettato tutte le regole. Tutti devono installare FACEIT Anti-Cheat prima dell’inizio del torneo."
+  },
+  "For support, reach out via a ticket to the Tournament Discord (https://discord.gg/yyYDmjYkEM) or contact us at pulse@bme.nu.": {
+    "ru": "Для поддержки создайте обращение в Discord турнира (https://discord.gg/yyYDmjYkEM) или напишите на pulse@bme.nu.",
+    "de": "Für Unterstützung ein Ticket im Turnier-Discord (https://discord.gg/yyYDmjYkEM) erstellen oder an pulse@bme.nu schreiben.",
+    "pt": "Para obter suporte, abra um chamado no Discord do torneio (https://discord.gg/yyYDmjYkEM) ou escreva para pulse@bme.nu.",
+    "es": "Para recibir soporte, abra un ticket en el Discord del torneo (https://discord.gg/yyYDmjYkEM) o escriba a pulse@bme.nu.",
+    "fr": "Pour obtenir de l’aide, ouvrez un ticket sur le Discord du tournoi (https://discord.gg/yyYDmjYkEM) ou écrivez à pulse@bme.nu.",
+    "it": "Per assistenza, aprite un ticket nel Discord del torneo (https://discord.gg/yyYDmjYkEM) o scrivete a pulse@bme.nu."
+  },
+  "Welcome to the Stake Pulse Beat II - Open Qualifier II, taking place on August 21, 2026.": {
+    "ru": "Добро пожаловать на Stake Pulse Beat II — Open Qualifier II, который пройдёт 21 августа 2126 года.",
+    "de": "Willkommen zur offenen Qualifikation II für Stake Pulse Beat II am 21. August 2126.",
+    "pt": "Bem-vindos à classificatória aberta II do Stake Pulse Beat II, em 21 de agosto de 2126.",
+    "es": "Bienvenidos al clasificatorio abierto II de Stake Pulse Beat II, el 21 de agosto de 2126.",
+    "fr": "Bienvenue à la qualification ouverte II de Stake Pulse Beat II, le 21 août 2126.",
+    "it": "Benvenuti alla qualificazione aperta II di Stake Pulse Beat II, il 21 agosto 2126."
+  },
+  "Learn more about tournament: https://github.com/cisesportsleague/CyberClash-Open Rules of the Open Qualifiers: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md": {
+    "ru": "Подробнее о турнире: https://github.com/cisesportsleague/CyberClash-Open\nПравила открытой квалификации: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md",
+    "de": "Mehr zum Turnier: https://github.com/cisesportsleague/CyberClash-Open\nRegeln der offenen Qualifikation: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md",
+    "pt": "Mais sobre o torneio: https://github.com/cisesportsleague/CyberClash-Open\nRegras da classificatória aberta: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md",
+    "es": "Más sobre el torneo: https://github.com/cisesportsleague/CyberClash-Open\nReglas del clasificatorio abierto: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md",
+    "fr": "Plus d’informations sur le tournoi : https://github.com/cisesportsleague/CyberClash-Open\nRègles de la qualification ouverte : https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md",
+    "it": "Informazioni sul torneo: https://github.com/cisesportsleague/CyberClash-Open\nRegole della qualificazione aperta: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md"
+  },
+  "Top-2 Teams from each Qualifier advance to the Main event Main Event Prize Pool: 25 495 USD Main Event Group Stage: Best 8 teams from Open Qualifiers (Online - 26 - 28th of August 2026 - 2 GSL BO3 Groups. Best 2 teams from each group advance to the play-off stage) Main Event Play-off Stage: Best 4 teams from Main Event Group Stage (Online - 29th of August 2026 - 30th of August - Single Elimination BO3 with 3rd place decider).": {
+    "ru": "Две лучшие команды каждой квалификации проходят в основной турнир.\nПризовой фонд: 25 495 долларов.\nГрупповой этап: 8 лучших команд открытых квалификаций; онлайн 26–28 августа 2026 года; 2 группы GSL BO3. Две лучшие команды каждой группы проходят в плей-офф.\nПлей-офф: 4 лучшие команды группового этапа; онлайн 29–30 августа; на выбывание после одного поражения, BO3, с матчем за третье место.",
+    "de": "Die besten 2 Teams jeder Qualifikation erreichen das Hauptevent.\nPreisgeld: 25.495 Dollar.\nGruppenphase: die besten 8 Teams aus offenen Qualifikationen; online vom 26.–28. August 2026; 2 GSL-Gruppen mit BO3. Die besten 2 jeder Gruppe erreichen die Playoffs.\nPlayoffs: die besten 4 Teams der Gruppenphase; online am 29.–30. August; Ausscheiden nach einer Niederlage, BO3, mit Spiel um Platz 3.",
+    "pt": "As 2 melhores equipes de cada classificatória avançam ao evento principal.\nPremiação: 25.495 dólares.\nGrupos: as 8 melhores equipes das classificatórias abertas; online de 26 a 28 de agosto de 2026; 2 grupos GSL BO3. As 2 melhores de cada grupo avançam às eliminatórias.\nEliminatórias: as 4 melhores equipes dos grupos; online em 29 e 30 de agosto; eliminação simples BO3, com disputa do terceiro lugar.",
+    "es": "Los 2 mejores equipos de cada clasificatorio avanzan al evento principal.\nPremios: 25.495 dólares.\nGrupos: los 8 mejores equipos de los clasificatorios abiertos; online del 26 al 28 de agosto de 2026; 2 grupos GSL BO3. Los 2 mejores de cada grupo avanzan a la fase final.\nFase final: los 4 mejores equipos de grupos; online el 29 y 30 de agosto; eliminación directa BO3, con partido por el tercer puesto.",
+    "fr": "Les 2 meilleures équipes de chaque qualification accèdent à l’événement principal.\nDotation : 25 495 dollars.\nGroupes : les 8 meilleures équipes des qualifications ouvertes ; en ligne du 26 au 28 août 2026 ; 2 groupes GSL BO3. Les 2 meilleures de chaque groupe accèdent aux phases finales.\nPhases finales : les 4 meilleures équipes des groupes ; en ligne les 29 et 30 août ; élimination directe BO3, avec match pour la troisième place.",
+    "it": "Le migliori 2 squadre di ogni qualificazione accedono all’evento principale.\nMontepremi: 25.495 dollari.\nGironi: le migliori 8 squadre delle qualificazioni aperte; online dal 26 al 28 agosto 2026; 2 gironi GSL BO3. Le migliori 2 di ogni girone accedono alla fase finale.\nFase finale: le migliori 4 squadre dei gironi; online il 29–30 agosto; eliminazione diretta BO3, con partita per il terzo posto."
+  },
+  "Visa/Location: Europe (Online)": {
+    "ru": "Виза / место проведения: Европа (онлайн).",
+    "de": "Visum / Austragungsort: Europa (online).",
+    "pt": "Visto / local: Europa (online).",
+    "es": "Visado / lugar: Europa (online).",
+    "fr": "Visa / lieu : Europe (en ligne).",
+    "it": "Visto / luogo: Europa (online)."
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 8. Match Format: All matches will be played in Best-of-1 format. Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 8. Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing). Eligibility Compliance: - Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform. - All players must reside in Europe Region. Failure to comply may result in team disqualification. Any team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes: - The core roster, for all matches, must currently reside in the region they are competing in. - The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event. - Any changes to the qualified roster must be pre-approved by Tournament Officials. Teams that don’t meet these requirements may be disqualified or replaced without further notice.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 8.\n\nФормат матчей: все матчи проводятся в формате BO1.\n\nФиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 8.\n\nДоступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nТребования к участию:\n- У игроков не должно быть действующих игровых блокировок FACEIT, иначе матчи не запустятся.\n- Все игроки должны проживать в Европе. Нарушение может привести к дисквалификации.\n\nКоманды из открытых квалификаций должны соответствовать требованиям Valve и регламенту CCT:\n- Основной состав должен проживать в регионе участия на протяжении всех матчей.\n- На всех стартовых матчах регионального турнира сохраняется квалифицировавшееся ядро: минимум 3 из 5 игроков.\n- Изменения состава требуют предварительного согласования с организаторами.\nНесоответствующие команды могут быть дисквалифицированы или заменены без дополнительного уведомления.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 8.\n\nMatchformat: Alle Matches werden als BO1 gespielt.\n\nKadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 8 dieselbe Startformation einsetzen.\n\nVerfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nTeilnahmebedingungen:\n- Spieler dürfen keine aktiven FACEIT-Spielsperren haben, sonst starten die Matches nicht.\n- Alle Spieler müssen in Europa wohnen. Verstöße können zur Disqualifikation führen.\n\nTeams aus offenen Qualifikationen müssen die Valve-Vorgaben und das CCT-Regelwerk erfüllen:\n- Der Kernkader muss bei allen Matches in der jeweiligen Wettbewerbsregion wohnen.\n- In allen ersten Matches des regionalen Events muss der qualifizierte Kern mit mindestens 3 von 5 Spielern bestehen bleiben.\n- Kaderänderungen benötigen vorherige Genehmigung der Turnierleitung.\nBei Verstößen können Teams ohne weitere Ankündigung disqualifiziert oder ersetzt werden.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 8.\n\nFormato: todas as partidas são disputadas em BO1.\n\nElencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 8.\n\nDisponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nRequisitos:\n- Os jogadores não podem ter banimentos ativos no FACEIT; caso contrário, as partidas não iniciam.\n- Todos devem residir na Europa. O descumprimento pode causar desclassificação.\n\nEquipes das classificatórias abertas devem cumprir as exigências da Valve e o regulamento do CCT:\n- O núcleo do elenco deve residir na região em que compete em todas as partidas.\n- O núcleo classificado, com pelo menos 3 dos 5 jogadores, deve ser mantido em todas as partidas iniciais do evento regional.\n- Mudanças exigem aprovação prévia da organização.\nEquipes que não cumpram os requisitos podem ser desclassificadas ou substituídas sem aviso adicional.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 8.\n\nFormato: todos los partidos se disputan en BO1.\n\nPlantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 8.\n\nDisponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nRequisitos:\n- Los jugadores no deben tener bloqueos activos en FACEIT; de lo contrario, los partidos no se iniciarán.\n- Todos deben residir en Europa. El incumplimiento puede causar descalificación.\n\nLos equipos de clasificatorios abiertos deben cumplir los requisitos de Valve y el reglamento de CCT:\n- El núcleo de la plantilla debe residir en la región en la que compite durante todos los partidos.\n- Debe mantenerse el núcleo clasificado, al menos 3 de 5 jugadores, en todos los primeros partidos del evento regional.\n- Los cambios requieren aprobación previa de la organización.\nLos equipos que incumplan pueden ser descalificados o sustituidos sin previo aviso adicional.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 8.\n\nFormat : tous les matchs se jouent en BO1.\n\nEffectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 8.\n\nDisponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nConditions :\n- Les joueurs ne doivent avoir aucun bannissement de jeu FACEIT actif, sinon les matchs ne démarrent pas.\n- Tous doivent résider en Europe. Un manquement peut entraîner une disqualification.\n\nLes équipes issues des qualifications ouvertes doivent respecter les exigences de Valve et le règlement CCT :\n- Le noyau de l’effectif doit résider dans la région où il joue pendant tous les matchs.\n- Le noyau qualifié, au moins 3 joueurs sur 5, doit être conservé pour tous les premiers matchs de l’événement régional.\n- Toute modification nécessite l’accord préalable des organisateurs.\nLes équipes non conformes peuvent être disqualifiées ou remplacées sans autre préavis.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 8.\n\nFormato: tutte le partite si giocano in BO1.\n\nRose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 8.\n\nDisponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/19HIMuPh06bOqFhtOTg9ujJofha_QXAaXTDT384YQSDI/edit?usp=sharing).\n\nRequisiti:\n- I giocatori non devono avere ban di gioco FACEIT attivi, altrimenti le partite non partiranno.\n- Tutti devono risiedere in Europa. Le violazioni possono comportare la squalifica.\n\nLe squadre provenienti dalle qualificazioni aperte devono rispettare i requisiti Valve e il regolamento CCT:\n- Il nucleo della rosa deve risiedere nella regione in cui compete durante tutte le partite.\n- Il nucleo qualificato, almeno 3 giocatori su 5, deve essere mantenuto in tutte le prime partite dell’evento regionale.\n- Le modifiche richiedono l’approvazione preventiva degli organizzatori.\nLe squadre non conformi possono essere squalificate o sostituite senza ulteriore preavviso."
+  },
+  "Welcome to the Galaxy Battle LAN-STATION 1 Open Qualifiers! 🌌 Your journey to the grand LAN Final in Portugal starts here. The winning team of this qualifier secures a direct slot into the closed Online Stage (Group Stage). 📌 Tournament Overview: Bracket Format: Single-Elimination. Match Format: All matches leading to the Grand Final are BO1. The Grand Final for the slot is BO3. Regional Rule: This is the European Qualifier. The active roster for every match must contain a minimum of 3 players from Europe. Players from other regions with artificially high ping may be disqualified at the Admin's discretion. Age Limit: 16+. Anti-Cheat: FACEIT Anti-Cheat is strictly mandatory. You will not be able to join the server without it. 🔗 Support: If you have any disputes with your opponent or face server issues, please contact our Head Admin immediately. Head Admin Discord: comeblack_. Please include the link to your FACEIT match room in your direct message. Prepare for a tough battle and show your best CS2. GL & HF! 🏆": {
+    "ru": "Добро пожаловать на открытые квалификации Galaxy Battle LAN-STATION 1! 🌌\nПуть к LAN-финалу в Португалии начинается здесь. Победитель получает место в закрытом онлайн-этапе (групповой этап).\n\n📌 Обзор турнира:\n\nФормат сетки: на выбывание после одного поражения.\n\nФормат матчей: до гранд-финала все матчи BO1. Гранд-финал за место в турнире — BO3.\n\nРегиональное правило: это европейская квалификация. В каждом матче должны участвовать минимум 3 игрока из Европы. Игроки из других регионов с искусственно высоким пингом могут быть дисквалифицированы по решению администратора.\n\nВозрастное ограничение: 16+.\n\nАнтичит FACEIT обязателен. Без него подключиться к серверу нельзя.\n\n🔗 Поддержка:\nПри спорах с соперником или проблемах с сервером сразу обращайтесь к главному администратору.\n\nDiscord главного администратора: comeblack_. В личном сообщении приложите ссылку на комнату матча FACEIT.\n\nГотовьтесь к трудной борьбе и покажите свой лучший CS2. Удачи и хорошей игры! 🏆",
+    "de": "Willkommen zur offenen Qualifikation für Galaxy Battle LAN-STATION 1! 🌌\nDer Weg zum LAN-Finale in Portugal beginnt hier. Der Sieger erhält einen Platz in der geschlossenen Online-Gruppenphase.\n\n📌 Turnierübersicht:\n\nTurnierformat: Ausscheiden nach einer Niederlage.\n\nMatchformat: Bis zum großen Finale werden alle Matches als BO1 gespielt. Das Finale um den Turnierplatz ist BO3.\n\nRegionsregel: Dies ist eine europäische Qualifikation. In jedem Match müssen mindestens 3 Spieler aus Europa antreten. Spieler aus anderen Regionen mit künstlich erhöhtem Ping können nach Ermessen der Administration disqualifiziert werden.\n\nAltersgrenze: 16+.\n\nFACEIT Anti-Cheat ist verpflichtend. Ohne ihn ist kein Serverbeitritt möglich.\n\n🔗 Support:\nBei Streitigkeiten mit Gegnern oder Serverproblemen sofort die Hauptadministration kontaktieren.\n\nDiscord der Hauptadministration: comeblack_. Der Direktnachricht bitte den Link zum FACEIT-Matchraum beifügen.\n\nBereitet euch auf harte Kämpfe vor und zeigt euer bestes CS2. Viel Glück und viel Spaß! 🏆",
+    "pt": "Bem-vindos às classificatórias abertas do Galaxy Battle LAN-STATION 1! 🌌\nA jornada para a final LAN em Portugal começa aqui. O vencedor garante uma vaga na fase de grupos online fechada.\n\n📌 Visão geral do torneio:\n\nFormato da chave: eliminação simples.\n\nFormato: todas as partidas até a grande final são BO1. A grande final pela vaga é BO3.\n\nRegra regional: esta é a classificatória europeia. Cada partida exige pelo menos 3 jogadores da Europa. Jogadores de outras regiões com ping artificialmente elevado podem ser desclassificados a critério da administração.\n\nIdade mínima: 16+.\n\nO FACEIT Anti-Cheat é obrigatório. Sem ele, não é possível entrar no servidor.\n\n🔗 Suporte:\nEm caso de disputas com o adversário ou problemas no servidor, contate imediatamente o administrador principal.\n\nDiscord do administrador principal: comeblack_. Inclua o link da sala da partida FACEIT na mensagem direta.\n\nPreparem-se para uma batalha difícil e mostrem seu melhor CS2. Boa sorte e divirtam-se! 🏆",
+    "es": "¡Bienvenidos a los clasificatorios abiertos de Galaxy Battle LAN-STATION 1! 🌌\nEl camino a la final LAN en Portugal comienza aquí. El ganador obtiene una plaza en la fase de grupos online cerrada.\n\n📌 Resumen del torneo:\n\nFormato del cuadro: eliminación directa.\n\nFormato: todos los partidos hasta la gran final son BO1. La gran final por la plaza es BO3.\n\nRegla regional: este es el clasificatorio europeo. Cada partido requiere al menos 3 jugadores de Europa. Los jugadores de otras regiones con ping artificialmente alto pueden ser descalificados a criterio de la administración.\n\nEdad mínima: 16+.\n\nFACEIT Anti-Cheat es obligatorio. Sin él no es posible entrar al servidor.\n\n🔗 Soporte:\nSi hay disputas con el rival o problemas en el servidor, contacte de inmediato con el administrador principal.\n\nDiscord del administrador principal: comeblack_. Incluya el enlace de la sala del partido FACEIT en el mensaje directo.\n\nPrepárense para una batalla difícil y muestren su mejor CS2. ¡Buena suerte y a disfrutar! 🏆",
+    "fr": "Bienvenue aux qualifications ouvertes de Galaxy Battle LAN-STATION 1 ! 🌌\nLa route vers la finale LAN au Portugal commence ici. Le vainqueur obtient une place dans la phase de groupes fermée en ligne.\n\n📌 Présentation du tournoi :\n\nFormat du tableau : élimination directe.\n\nFormat : tous les matchs avant la grande finale se jouent en BO1. La grande finale pour la place se joue en BO3.\n\nRègle régionale : cette qualification est européenne. Chaque match doit compter au moins 3 joueurs d’Europe. Les joueurs d’autres régions ayant un ping artificiellement élevé peuvent être disqualifiés à la discrétion de l’administration.\n\nÂge minimum : 16+.\n\nFACEIT Anti-Cheat est obligatoire. Sans lui, vous ne pouvez pas rejoindre le serveur.\n\n🔗 Assistance :\nEn cas de litige avec l’adversaire ou de problème de serveur, contactez immédiatement l’administrateur principal.\n\nDiscord de l’administrateur principal : comeblack_. Joignez le lien du salon du match FACEIT à votre message privé.\n\nPréparez-vous à une bataille difficile et montrez votre meilleur CS2. Bonne chance et amusez-vous ! 🏆",
+    "it": "Benvenuti alle qualificazioni aperte di Galaxy Battle LAN-STATION 1! 🌌\nIl percorso verso la finale LAN in Portogallo inizia qui. Il vincitore ottiene un posto nella fase a gironi online chiusa.\n\n📌 Panoramica del torneo:\n\nFormato del tabellone: eliminazione diretta.\n\nFormato: tutte le partite fino alla finale sono BO1. La finale per il posto nel torneo è BO3.\n\nRegola regionale: questa è la qualificazione europea. Ogni partita richiede almeno 3 giocatori europei. I giocatori di altre regioni con ping artificialmente elevato possono essere squalificati a discrezione dell’amministrazione.\n\nEtà minima: 16+.\n\nFACEIT Anti-Cheat è obbligatorio. Senza di esso non è possibile entrare nel server.\n\n🔗 Assistenza:\nIn caso di dispute con l’avversario o problemi al server, contattate subito l’amministratore principale.\n\nDiscord dell’amministratore principale: comeblack_. Includete il link della stanza della partita FACEIT nel messaggio privato.\n\nPreparatevi a una dura battaglia e mostrate il vostro miglior CS2. Buona fortuna e buon divertimento! 🏆"
+  },
+  "Single Elimination The Open Qualifier will be hosted online on FACEIT, with unlimited signups. Servers for Open Qualifier: Moscow, Netherlands, Germany, Sweden, Finland Starting at 16:00 am CEST on August 12th. All matches are Bo1, Semi-final is BO3 The exact schedule of matches is pending the total number of teams signed up. Top 2 teams advance to the Closed Qualifier": {
+    "ru": "На выбывание после одного поражения\n\nОткрытая квалификация проходит онлайн на FACEIT, число регистраций не ограничено.\n\nСерверы открытой квалификации: Москва, Нидерланды, Германия, Швеция, Финляндия.\n\nНачало: 12 августа в 16:00 CEST.\n\nВсе матчи BO1, полуфинал — BO3.\n\nТочное расписание будет определено после подсчёта зарегистрированных команд.\n\nДве лучшие команды проходят в закрытую квалификацию.",
+    "de": "Ausscheiden nach einer Niederlage\n\nDie offene Qualifikation findet online auf FACEIT statt, ohne Teilnehmerlimit.\n\nServer der offenen Qualifikation: Moskau, Niederlande, Deutschland, Schweden, Finnland.\n\nBeginn: 12. August um 16:00 CEST.\n\nAlle Matches BO1, das Halbfinale BO3.\n\nDer genaue Zeitplan wird nach Feststellung der Teilnehmerzahl bestimmt.\n\nDie besten 2 Teams erreichen die geschlossene Qualifikation.",
+    "pt": "Eliminação simples\n\nA classificatória aberta acontece online no FACEIT, sem limite de inscrições.\n\nServidores: Moscou, Países Baixos, Alemanha, Suécia e Finlândia.\n\nInício: 12 de agosto às 16:00 CEST.\n\nTodas as partidas são BO1; a semifinal é BO3.\n\nO calendário exato será definido conforme o número total de equipes inscritas.\n\nAs 2 melhores equipes avançam à classificatória fechada.",
+    "es": "Eliminación directa\n\nEl clasificatorio abierto se disputa online en FACEIT, sin límite de inscripciones.\n\nServidores: Moscú, Países Bajos, Alemania, Suecia y Finlandia.\n\nInicio: 12 de agosto a las 16:00 CEST.\n\nTodos los partidos son BO1; la semifinal es BO3.\n\nEl calendario exacto se definirá según el número total de equipos inscritos.\n\nLos 2 mejores equipos avanzan al clasificatorio cerrado.",
+    "fr": "Élimination directe\n\nLa qualification ouverte se déroule en ligne sur FACEIT, sans limite d’inscriptions.\n\nServeurs : Moscou, Pays-Bas, Allemagne, Suède et Finlande.\n\nDébut : le 12 août à 16:00 CEST.\n\nTous les matchs sont en BO1 ; la demi-finale est en BO3.\n\nLe calendrier exact sera fixé selon le nombre total d’équipes inscrites.\n\nLes 2 meilleures équipes accèdent à la qualification fermée.",
+    "it": "Eliminazione diretta\n\nLa qualificazione aperta si svolge online su FACEIT, senza limite di iscrizioni.\n\nServer: Mosca, Paesi Bassi, Germania, Svezia e Finlandia.\n\nInizio: 12 agosto alle 16:00 CEST.\n\nTutte le partite sono BO1; la semifinale è BO3.\n\nIl calendario esatto sarà definito in base al numero totale di squadre iscritte.\n\nLe migliori 2 squadre accedono alla qualificazione chiusa."
+  },
+  "Single Elimination The Open Qualifier will be hosted online on FACEIT, with unlimited signups. Servers for Open Qualifier: Moscow, Netherlands, Germany, Sweden, Finland Starting at 16:00 am CEST on August 13th. All matches are Bo1, Semi-final is BO3 The exact schedule of matches is pending the total number of teams signed up. Top 2 teams advance to the Closed Qualifier": {
+    "ru": "На выбывание после одного поражения\n\nОткрытая квалификация проходит онлайн на FACEIT, число регистраций не ограничено.\n\nСерверы открытой квалификации: Москва, Нидерланды, Германия, Швеция, Финляндия.\n\nНачало: 13 августа в 16:00 CEST.\n\nВсе матчи BO1, полуфинал — BO3.\n\nТочное расписание будет определено после подсчёта зарегистрированных команд.\n\nДве лучшие команды проходят в закрытую квалификацию.",
+    "de": "Ausscheiden nach einer Niederlage\n\nDie offene Qualifikation findet online auf FACEIT statt, ohne Teilnehmerlimit.\n\nServer der offenen Qualifikation: Moskau, Niederlande, Deutschland, Schweden, Finnland.\n\nBeginn: 13. August um 16:00 CEST.\n\nAlle Matches BO1, das Halbfinale BO3.\n\nDer genaue Zeitplan wird nach Feststellung der Teilnehmerzahl bestimmt.\n\nDie besten 2 Teams erreichen die geschlossene Qualifikation.",
+    "pt": "Eliminação simples\n\nA classificatória aberta acontece online no FACEIT, sem limite de inscrições.\n\nServidores: Moscou, Países Baixos, Alemanha, Suécia e Finlândia.\n\nInício: 13 de agosto às 16:00 CEST.\n\nTodas as partidas são BO1; a semifinal é BO3.\n\nO calendário exato será definido conforme o número total de equipes inscritas.\n\nAs 2 melhores equipes avançam à classificatória fechada.",
+    "es": "Eliminación directa\n\nEl clasificatorio abierto se disputa online en FACEIT, sin límite de inscripciones.\n\nServidores: Moscú, Países Bajos, Alemania, Suecia y Finlandia.\n\nInicio: 13 de agosto a las 16:00 CEST.\n\nTodos los partidos son BO1; la semifinal es BO3.\n\nEl calendario exacto se definirá según el número total de equipos inscritos.\n\nLos 2 mejores equipos avanzan al clasificatorio cerrado.",
+    "fr": "Élimination directe\n\nLa qualification ouverte se déroule en ligne sur FACEIT, sans limite d’inscriptions.\n\nServeurs : Moscou, Pays-Bas, Allemagne, Suède et Finlande.\n\nDébut : le 13 août à 16:00 CEST.\n\nTous les matchs sont en BO1 ; la demi-finale est en BO3.\n\nLe calendrier exact sera fixé selon le nombre total d’équipes inscrites.\n\nLes 2 meilleures équipes accèdent à la qualification fermée.",
+    "it": "Eliminazione diretta\n\nLa qualificazione aperta si svolge online su FACEIT, senza limite di iscrizioni.\n\nServer: Mosca, Paesi Bassi, Germania, Svezia e Finlandia.\n\nInizio: 13 agosto alle 16:00 CEST.\n\nTutte le partite sono BO1; la semifinale è BO3.\n\nIl calendario esatto sarà definito in base al numero totale di squadre iscritte.\n\nLe migliori 2 squadre accedono alla qualificazione chiusa."
+  },
+  "Single Elimination The Open Qualifier will be hosted online on FACEIT, with unlimited signups. Servers for Open Qualifier: Moscow, Netherlands, Germany, Sweden, Finland Starting at 16:00 am CEST on August 14th. All matches are Bo1, Semi-final is BO3 The exact schedule of matches is pending the total number of teams signed up. Top 2 teams advance to the Closed Qualifier": {
+    "ru": "На выбывание после одного поражения\n\nОткрытая квалификация проходит онлайн на FACEIT, число регистраций не ограничено.\n\nСерверы открытой квалификации: Москва, Нидерланды, Германия, Швеция, Финляндия.\n\nНачало: 14 августа в 16:00 CEST.\n\nВсе матчи BO1, полуфинал — BO3.\n\nТочное расписание будет определено после подсчёта зарегистрированных команд.\n\nДве лучшие команды проходят в закрытую квалификацию.",
+    "de": "Ausscheiden nach einer Niederlage\n\nDie offene Qualifikation findet online auf FACEIT statt, ohne Teilnehmerlimit.\n\nServer der offenen Qualifikation: Moskau, Niederlande, Deutschland, Schweden, Finnland.\n\nBeginn: 14. August um 16:00 CEST.\n\nAlle Matches BO1, das Halbfinale BO3.\n\nDer genaue Zeitplan wird nach Feststellung der Teilnehmerzahl bestimmt.\n\nDie besten 2 Teams erreichen die geschlossene Qualifikation.",
+    "pt": "Eliminação simples\n\nA classificatória aberta acontece online no FACEIT, sem limite de inscrições.\n\nServidores: Moscou, Países Baixos, Alemanha, Suécia e Finlândia.\n\nInício: 14 de agosto às 16:00 CEST.\n\nTodas as partidas são BO1; a semifinal é BO3.\n\nO calendário exato será definido conforme o número total de equipes inscritas.\n\nAs 2 melhores equipes avançam à classificatória fechada.",
+    "es": "Eliminación directa\n\nEl clasificatorio abierto se disputa online en FACEIT, sin límite de inscripciones.\n\nServidores: Moscú, Países Bajos, Alemania, Suecia y Finlandia.\n\nInicio: 14 de agosto a las 16:00 CEST.\n\nTodos los partidos son BO1; la semifinal es BO3.\n\nEl calendario exacto se definirá según el número total de equipos inscritos.\n\nLos 2 mejores equipos avanzan al clasificatorio cerrado.",
+    "fr": "Élimination directe\n\nLa qualification ouverte se déroule en ligne sur FACEIT, sans limite d’inscriptions.\n\nServeurs : Moscou, Pays-Bas, Allemagne, Suède et Finlande.\n\nDébut : le 14 août à 16:00 CEST.\n\nTous les matchs sont en BO1 ; la demi-finale est en BO3.\n\nLe calendrier exact sera fixé selon le nombre total d’équipes inscrites.\n\nLes 2 meilleures équipes accèdent à la qualification fermée.",
+    "it": "Eliminazione diretta\n\nLa qualificazione aperta si svolge online su FACEIT, senza limite di iscrizioni.\n\nServer: Mosca, Paesi Bassi, Germania, Svezia e Finlandia.\n\nInizio: 14 agosto alle 16:00 CEST.\n\nTutte le partite sono BO1; la semifinale è BO3.\n\nIl calendario esatto sarà definito in base al numero totale di squadre iscritte.\n\nLe migliori 2 squadre accedono alla qualificazione chiusa."
+  },
+  "Single Elimination The Open Qualifier will be hosted online on FACEIT, with unlimited signups. Servers for Open Qualifier: Moscow, Netherlands, Germany, Sweden, Finland Starting at 16:00 am CEST on August 15th. All matches are Bo1, Semi-final is BO3 The exact schedule of matches is pending the total number of teams signed up. Top 2 teams advance to the Closed Qualifier": {
+    "ru": "На выбывание после одного поражения\n\nОткрытая квалификация проходит онлайн на FACEIT, число регистраций не ограничено.\n\nСерверы открытой квалификации: Москва, Нидерланды, Германия, Швеция, Финляндия.\n\nНачало: 15 августа в 16:00 CEST.\n\nВсе матчи BO1, полуфинал — BO3.\n\nТочное расписание будет определено после подсчёта зарегистрированных команд.\n\nДве лучшие команды проходят в закрытую квалификацию.",
+    "de": "Ausscheiden nach einer Niederlage\n\nDie offene Qualifikation findet online auf FACEIT statt, ohne Teilnehmerlimit.\n\nServer der offenen Qualifikation: Moskau, Niederlande, Deutschland, Schweden, Finnland.\n\nBeginn: 15. August um 16:00 CEST.\n\nAlle Matches BO1, das Halbfinale BO3.\n\nDer genaue Zeitplan wird nach Feststellung der Teilnehmerzahl bestimmt.\n\nDie besten 2 Teams erreichen die geschlossene Qualifikation.",
+    "pt": "Eliminação simples\n\nA classificatória aberta acontece online no FACEIT, sem limite de inscrições.\n\nServidores: Moscou, Países Baixos, Alemanha, Suécia e Finlândia.\n\nInício: 15 de agosto às 16:00 CEST.\n\nTodas as partidas são BO1; a semifinal é BO3.\n\nO calendário exato será definido conforme o número total de equipes inscritas.\n\nAs 2 melhores equipes avançam à classificatória fechada.",
+    "es": "Eliminación directa\n\nEl clasificatorio abierto se disputa online en FACEIT, sin límite de inscripciones.\n\nServidores: Moscú, Países Bajos, Alemania, Suecia y Finlandia.\n\nInicio: 15 de agosto a las 16:00 CEST.\n\nTodos los partidos son BO1; la semifinal es BO3.\n\nEl calendario exacto se definirá según el número total de equipos inscritos.\n\nLos 2 mejores equipos avanzan al clasificatorio cerrado.",
+    "fr": "Élimination directe\n\nLa qualification ouverte se déroule en ligne sur FACEIT, sans limite d’inscriptions.\n\nServeurs : Moscou, Pays-Bas, Allemagne, Suède et Finlande.\n\nDébut : le 15 août à 16:00 CEST.\n\nTous les matchs sont en BO1 ; la demi-finale est en BO3.\n\nLe calendrier exact sera fixé selon le nombre total d’équipes inscrites.\n\nLes 2 meilleures équipes accèdent à la qualification fermée.",
+    "it": "Eliminazione diretta\n\nLa qualificazione aperta si svolge online su FACEIT, senza limite di iscrizioni.\n\nServer: Mosca, Paesi Bassi, Germania, Svezia e Finlandia.\n\nInizio: 15 agosto alle 16:00 CEST.\n\nTutte le partite sono BO1; la semifinale è BO3.\n\nIl calendario esatto sarà definito in base al numero totale di squadre iscritte.\n\nLe migliori 2 squadre accedono alla qualificazione chiusa."
+  },
+  "**Global Qualifier is open to participants from anywhere in the world; however, please note that all matches will be played exclusively on European servers** - **Participants must be FACEIT Verified in order to compete** - **Participants must be able to provide two operational webcam feeds upon request for competitive integrity checks. Failure to do so may result in disqualification** Open Qualifier Provisional Schedule (Timezone CET): Day 1 - Timeslot #1: 18:00 - Ro512 (256 matches) [Bo1] - Timeslot #2: 19:10 - Ro256 (128 matches) [Bo1] - Timeslot #3: 20:10 - Ro128 (64 matches) [Bo1] - Timeslot #4: 21:10 - Ro64 (32 matches) [Bo1] - Timeslot #5: 22:10 - Ro32 (16 matches) [Bo1] Day 2 - Timeslot #1: 18:00 - Ro16 (8 matches) [Bo1] - Timeslot #2: 19:10 - Deciders (4 matches) [Bo3] Open Qualifier Format: - One open qualifier for 4 slots - Unlimited SE best-of-one bracket - Decider matches Bo3 - The qualifier determines four teams Closed Qualifier Format - 16 Teams - DE best-of-three bracket - 12 invites & 4 qualifying from open qualifiers - Two teams advance to the main event - Date: 2 - 4 September": {
+    "ru": "Глобальная квалификация открыта для участников со всего мира, но все матчи проходят исключительно на европейских серверах.\n\n- Для участия требуется верификация FACEIT.\n- По запросу участники должны предоставить два работающих видеопотока с веб-камер для проверки честной игры. Невыполнение может привести к дисквалификации.\n\nПредварительное расписание открытой квалификации (часовой пояс CET):\n\nДень 1\n- Слот №1: 18:00 — 1/256 финала (256 матчей), BO1\n- Слот №2: 19:10 — 1/128 финала (128 матчей), BO1\n- Слот №3: 20:10 — 1/64 финала (64 матча), BO1\n- Слот №4: 21:10 — 1/32 финала (32 матча), BO1\n- Слот №5: 22:10 — 1/16 финала (16 матчей), BO1\n\nДень 2\n- Слот №1: 18:00 — 1/8 финала (8 матчей), BO1\n- Слот №2: 19:10 — решающие матчи (4 матча), BO3\n\nФормат открытой квалификации:\n\n- Одна открытая квалификация на 4 места\n- Неограниченная сетка на выбывание, BO1\n- Решающие матчи BO3\n- Квалификация определяет четыре команды\n\nФормат закрытой квалификации\n- 16 команд\n- Сетка на выбывание после двух поражений, BO3\n- 12 приглашённых команд и 4 из открытой квалификации\n- Две команды проходят в основной турнир\n- Даты: 2–4 сентября",
+    "de": "Die globale Qualifikation steht Teilnehmern weltweit offen, doch alle Matches werden ausschließlich auf europäischen Servern gespielt.\n\n- Zur Teilnahme ist FACEIT-Verifizierung erforderlich.\n- Auf Anfrage müssen Teilnehmer zwei funktionierende Webcam-Übertragungen für Integritätsprüfungen bereitstellen. Bei Nichterfüllung droht Disqualifikation.\n\nVorläufiger Zeitplan der offenen Qualifikation (Zeitzone CET):\n\nTag 1\n- Zeitfenster 1: 18:00 — Runde der 512 (256 Matches), BO1\n- Zeitfenster 2: 19:10 — Runde der 256 (128 Matches), BO1\n- Zeitfenster 3: 20:10 — Runde der 128 (64 Matches), BO1\n- Zeitfenster 4: 21:10 — Runde der 64 (32 Matches), BO1\n- Zeitfenster 5: 22:10 — Runde der 32 (16 Matches), BO1\n\nTag 2\n- Zeitfenster 1: 18:00 — Achtelfinale (8 Matches), BO1\n- Zeitfenster 2: 19:10 — Entscheidungsmatches (4 Matches), BO3\n\nFormat der offenen Qualifikation:\n\n- Eine offene Qualifikation für 4 Plätze\n- Unbegrenztes Turnierraster mit Ausscheiden nach einer Niederlage, BO1\n- Entscheidungsmatches BO3\n- Vier Teams qualifizieren sich\n\nFormat der geschlossenen Qualifikation\n- 16 Teams\n- Ausscheiden nach zwei Niederlagen, BO3\n- 12 eingeladene Teams und 4 aus der offenen Qualifikation\n- Zwei Teams erreichen das Hauptevent\n- Datum: 2.–4. September",
+    "pt": "A classificatória global é aberta a participantes do mundo inteiro, mas todas as partidas ocorrem exclusivamente em servidores europeus.\n\n- É obrigatório ter verificação FACEIT.\n- Quando solicitado, os participantes devem fornecer duas transmissões funcionais de webcam para verificações de integridade. O descumprimento pode causar desclassificação.\n\nCalendário provisório da classificatória aberta (fuso CET):\n\nDia 1\n- Horário 1: 18:00 — fase de 512 (256 partidas), BO1\n- Horário 2: 19:10 — fase de 256 (128 partidas), BO1\n- Horário 3: 20:10 — fase de 128 (64 partidas), BO1\n- Horário 4: 21:10 — fase de 64 (32 partidas), BO1\n- Horário 5: 22:10 — fase de 32 (16 partidas), BO1\n\nDia 2\n- Horário 1: 18:00 — oitavas de final (8 partidas), BO1\n- Horário 2: 19:10 — partidas decisivas (4 partidas), BO3\n\nFormato da classificatória aberta:\n\n- Uma classificatória aberta para 4 vagas\n- Chave sem limite de equipes, eliminação simples, BO1\n- Partidas decisivas BO3\n- Quatro equipes se classificam\n\nFormato da classificatória fechada\n- 16 equipes\n- Eliminação dupla, BO3\n- 12 convidadas e 4 da classificatória aberta\n- Duas equipes avançam ao evento principal\n- Datas: 2 a 4 de setembro",
+    "es": "El clasificatorio global está abierto a participantes de todo el mundo, pero todos los partidos se juegan exclusivamente en servidores europeos.\n\n- Se requiere verificación FACEIT.\n- A petición, los participantes deben proporcionar dos transmisiones funcionales de webcam para controles de integridad. El incumplimiento puede causar descalificación.\n\nCalendario provisional del clasificatorio abierto (zona horaria CET):\n\nDía 1\n- Horario 1: 18:00 — ronda de 512 (256 partidos), BO1\n- Horario 2: 19:10 — ronda de 256 (128 partidos), BO1\n- Horario 3: 20:10 — ronda de 128 (64 partidos), BO1\n- Horario 4: 21:10 — ronda de 64 (32 partidos), BO1\n- Horario 5: 22:10 — ronda de 32 (16 partidos), BO1\n\nDía 2\n- Horario 1: 18:00 — octavos de final (8 partidos), BO1\n- Horario 2: 19:10 — partidos decisivos (4 partidos), BO3\n\nFormato del clasificatorio abierto:\n\n- Un clasificatorio abierto para 4 plazas\n- Cuadro sin límite de equipos, eliminación directa, BO1\n- Partidos decisivos BO3\n- Se clasifican cuatro equipos\n\nFormato del clasificatorio cerrado\n- 16 equipos\n- Doble eliminación, BO3\n- 12 invitados y 4 del clasificatorio abierto\n- Dos equipos avanzan al evento principal\n- Fechas: del 2 al 4 de septiembre",
+    "fr": "La qualification mondiale est ouverte aux participants du monde entier, mais tous les matchs se jouent exclusivement sur des serveurs européens.\n\n- La vérification FACEIT est obligatoire.\n- Sur demande, les participants doivent fournir deux flux vidéo de webcam fonctionnels pour les contrôles d’intégrité. Un manquement peut entraîner une disqualification.\n\nCalendrier provisoire de la qualification ouverte (fuseau CET) :\n\nJour 1\n- Créneau 1 : 18:00 — tour des 512 (256 matchs), BO1\n- Créneau 2 : 19:10 — tour des 256 (128 matchs), BO1\n- Créneau 3 : 20:10 — tour des 128 (64 matchs), BO1\n- Créneau 4 : 21:10 — tour des 64 (32 matchs), BO1\n- Créneau 5 : 22:10 — tour des 32 (16 matchs), BO1\n\nJour 2\n- Créneau 1 : 18:00 — huitièmes de finale (8 matchs), BO1\n- Créneau 2 : 19:10 — matchs décisifs (4 matchs), BO3\n\nFormat de la qualification ouverte :\n\n- Une qualification ouverte pour 4 places\n- Tableau sans limite d’équipes, élimination directe, BO1\n- Matchs décisifs BO3\n- Quatre équipes se qualifient\n\nFormat de la qualification fermée\n- 16 équipes\n- Double élimination, BO3\n- 12 invitées et 4 issues de la qualification ouverte\n- Deux équipes accèdent à l’événement principal\n- Dates : du 2 au 4 septembre",
+    "it": "La qualificazione globale è aperta ai partecipanti di tutto il mondo, ma tutte le partite si giocano esclusivamente sui server europei.\n\n- È richiesta la verifica FACEIT.\n- Su richiesta, i partecipanti devono fornire due flussi webcam funzionanti per i controlli di integrità. Il mancato rispetto può comportare la squalifica.\n\nCalendario provvisorio della qualificazione aperta (fuso CET):\n\nGiorno 1\n- Orario 1: 18:00 — turno di 512 (256 partite), BO1\n- Orario 2: 19:10 — turno di 256 (128 partite), BO1\n- Orario 3: 20:10 — turno di 128 (64 partite), BO1\n- Orario 4: 21:10 — turno di 64 (32 partite), BO1\n- Orario 5: 22:10 — turno di 32 (16 partite), BO1\n\nGiorno 2\n- Orario 1: 18:00 — ottavi di finale (8 partite), BO1\n- Orario 2: 19:10 — partite decisive (4 partite), BO3\n\nFormato della qualificazione aperta:\n\n- Una qualificazione aperta per 4 posti\n- Tabellone senza limite di squadre, eliminazione diretta, BO1\n- Partite decisive BO3\n- Si qualificano quattro squadre\n\nFormato della qualificazione chiusa\n- 16 squadre\n- Doppia eliminazione, BO3\n- 12 invitate e 4 dalla qualificazione aperta\n- Due squadre accedono all’evento principale\n- Date: 2–4 settembre"
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 9. Match Format: All matches will be played in Best-of-1 format. Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 9. Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing). Eligibility Compliance: - Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform. - All players must reside in Europe Region. Failure to comply may result in team disqualification. Any team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes: - The core roster, for all matches, must currently reside in the region they are competing in. - The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event. - Any changes to the qualified roster must be pre-approved by Tournament Officials. Teams that don’t meet these requirements may be disqualified or replaced without further notice.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 9.\n\nФормат матчей: все матчи проводятся в формате BO1.\n\nФиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 9.\n\nДоступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nТребования к участию:\n- У игроков не должно быть действующих игровых блокировок FACEIT, иначе матчи не запустятся.\n- Все игроки должны проживать в Европе. Нарушение может привести к дисквалификации.\n\nКоманды из открытых квалификаций должны соответствовать требованиям Valve и регламенту CCT:\n- Основной состав должен проживать в регионе участия на протяжении всех матчей.\n- На всех стартовых матчах регионального турнира сохраняется квалифицировавшееся ядро: минимум 3 из 5 игроков.\n- Изменения состава требуют предварительного согласования с организаторами.\nНесоответствующие команды могут быть дисквалифицированы или заменены без дополнительного уведомления.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 9.\n\nMatchformat: Alle Matches werden als BO1 gespielt.\n\nKadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 9 dieselbe Startformation einsetzen.\n\nVerfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nTeilnahmebedingungen:\n- Spieler dürfen keine aktiven FACEIT-Spielsperren haben, sonst starten die Matches nicht.\n- Alle Spieler müssen in Europa wohnen. Verstöße können zur Disqualifikation führen.\n\nTeams aus offenen Qualifikationen müssen die Valve-Vorgaben und das CCT-Regelwerk erfüllen:\n- Der Kernkader muss bei allen Matches in der jeweiligen Wettbewerbsregion wohnen.\n- In allen ersten Matches des regionalen Events muss der qualifizierte Kern mit mindestens 3 von 5 Spielern bestehen bleiben.\n- Kaderänderungen benötigen vorherige Genehmigung der Turnierleitung.\nBei Verstößen können Teams ohne weitere Ankündigung disqualifiziert oder ersetzt werden.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 9.\n\nFormato: todas as partidas são disputadas em BO1.\n\nElencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 9.\n\nDisponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nRequisitos:\n- Os jogadores não podem ter banimentos ativos no FACEIT; caso contrário, as partidas não iniciam.\n- Todos devem residir na Europa. O descumprimento pode causar desclassificação.\n\nEquipes das classificatórias abertas devem cumprir as exigências da Valve e o regulamento do CCT:\n- O núcleo do elenco deve residir na região em que compete em todas as partidas.\n- O núcleo classificado, com pelo menos 3 dos 5 jogadores, deve ser mantido em todas as partidas iniciais do evento regional.\n- Mudanças exigem aprovação prévia da organização.\nEquipes que não cumpram os requisitos podem ser desclassificadas ou substituídas sem aviso adicional.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 9.\n\nFormato: todos los partidos se disputan en BO1.\n\nPlantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 9.\n\nDisponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nRequisitos:\n- Los jugadores no deben tener bloqueos activos en FACEIT; de lo contrario, los partidos no se iniciarán.\n- Todos deben residir en Europa. El incumplimiento puede causar descalificación.\n\nLos equipos de clasificatorios abiertos deben cumplir los requisitos de Valve y el reglamento de CCT:\n- El núcleo de la plantilla debe residir en la región en la que compite durante todos los partidos.\n- Debe mantenerse el núcleo clasificado, al menos 3 de 5 jugadores, en todos los primeros partidos del evento regional.\n- Los cambios requieren aprobación previa de la organización.\nLos equipos que incumplan pueden ser descalificados o sustituidos sin previo aviso adicional.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 9.\n\nFormat : tous les matchs se jouent en BO1.\n\nEffectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 9.\n\nDisponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nConditions :\n- Les joueurs ne doivent avoir aucun bannissement de jeu FACEIT actif, sinon les matchs ne démarrent pas.\n- Tous doivent résider en Europe. Un manquement peut entraîner une disqualification.\n\nLes équipes issues des qualifications ouvertes doivent respecter les exigences de Valve et le règlement CCT :\n- Le noyau de l’effectif doit résider dans la région où il joue pendant tous les matchs.\n- Le noyau qualifié, au moins 3 joueurs sur 5, doit être conservé pour tous les premiers matchs de l’événement régional.\n- Toute modification nécessite l’accord préalable des organisateurs.\nLes équipes non conformes peuvent être disqualifiées ou remplacées sans autre préavis.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 9.\n\nFormato: tutte le partite si giocano in BO1.\n\nRose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 9.\n\nDisponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/1orPuYSA5ajvz-Dyh9Sf5nUusu39Ec3Hf6Tuh6XCjBLk/edit?usp=sharing).\n\nRequisiti:\n- I giocatori non devono avere ban di gioco FACEIT attivi, altrimenti le partite non partiranno.\n- Tutti devono risiedere in Europa. Le violazioni possono comportare la squalifica.\n\nLe squadre provenienti dalle qualificazioni aperte devono rispettare i requisiti Valve e il regolamento CCT:\n- Il nucleo della rosa deve risiedere nella regione in cui compete durante tutte le partite.\n- Il nucleo qualificato, almeno 3 giocatori su 5, deve essere mantenuto in tutte le prime partite dell’evento regionale.\n- Le modifiche richiedono l’approvazione preventiva degli organizzatori.\nLe squadre non conformi possono essere squalificate o sostituite senza ulteriore preavviso."
+  },
+  "The Open Qualifier for Stake Ranked Ep.4, the fourth tournament of the Tier 2 CS2 LAN circuit by Stake and StarLadder. Teams will compete for 4 spots in the Closed Qualifier, where they will join VRS-invited rosters on the road to the LAN Finals. Open Qualifier: Day 1 (29th of August) - all matches until Quarterfinals / Bo1 Day 2 (30th of August) - Decider matches - Quarterfinals / Bo3: Quarterfinal Match #1-2: 16:00 CEST Quarterfinal Match #3-4: 19:00 CEST **The matches will be played on European servers.** To avoid smurfing, registration requires FACEIT Verification to join. Make sure your FACEIT account is verified.": {
+    "ru": "Открытая квалификация Stake Ranked Ep.4 — четвёртого LAN-турнира серии Tier 2 CS2 от Stake и StarLadder.\nКоманды борются за 4 места в закрытой квалификации, где присоединятся к приглашённым по VRS составам на пути к LAN-финалу.\n\nОткрытая квалификация:\n\nДень 1 (29 августа): все матчи до четвертьфинала, BO1.\n\nДень 2 (30 августа): решающие матчи — четвертьфиналы, BO3.\n\nЧетвертьфинальные матчи №1–2: 16:00 CEST.\n\nЧетвертьфинальные матчи №3–4: 19:00 CEST.\n\nМатчи проходят на европейских серверах.\n\nДля борьбы со смурфингом регистрация требует верификации FACEIT. Убедитесь, что ваш аккаунт FACEIT подтверждён.",
+    "de": "Offene Qualifikation für Stake Ranked Ep.4, das vierte LAN-Turnier der Tier-2-CS2-Serie von Stake und StarLadder.\nTeams kämpfen um 4 Plätze in der geschlossenen Qualifikation und treffen dort auf über VRS eingeladene Kader auf dem Weg zum LAN-Finale.\n\nOffene Qualifikation:\n\nTag 1 (29. August): alle Matches vor dem Viertelfinale, BO1.\n\nTag 2 (30. August): Entscheidungsmatches im Viertelfinale, BO3.\n\nViertelfinalmatches 1–2: 16:00 CEST.\n\nViertelfinalmatches 3–4: 19:00 CEST.\n\nDie Matches werden auf europäischen Servern gespielt.\n\nZur Vermeidung von Smurfing ist FACEIT-Verifizierung zur Anmeldung erforderlich. Prüft, ob euer FACEIT-Konto verifiziert ist.",
+    "pt": "Classificatória aberta do Stake Ranked Ep.4, quarto torneio LAN do circuito Tier 2 de CS2 da Stake e StarLadder.\nAs equipes disputam 4 vagas na classificatória fechada, onde se juntam aos elencos convidados pelo VRS rumo às finais LAN.\n\nClassificatória aberta:\n\nDia 1 (29 de agosto): todas as partidas antes das quartas de final, BO1.\n\nDia 2 (30 de agosto): partidas decisivas nas quartas de final, BO3.\n\nQuartas de final, partidas 1–2: 16:00 CEST.\n\nQuartas de final, partidas 3–4: 19:00 CEST.\n\nAs partidas são disputadas em servidores europeus.\n\nPara evitar contas secundárias abusivas, a inscrição exige verificação FACEIT. Certifique-se de que sua conta está verificada.",
+    "es": "Clasificatorio abierto de Stake Ranked Ep.4, cuarto torneo LAN del circuito Tier 2 de CS2 de Stake y StarLadder.\nLos equipos compiten por 4 plazas en el clasificatorio cerrado, donde se unen a plantillas invitadas por VRS rumbo a las finales LAN.\n\nClasificatorio abierto:\n\nDía 1 (29 de agosto): todos los partidos anteriores a los cuartos de final, BO1.\n\nDía 2 (30 de agosto): partidos decisivos de cuartos de final, BO3.\n\nCuartos de final, partidos 1–2: 16:00 CEST.\n\nCuartos de final, partidos 3–4: 19:00 CEST.\n\nLos partidos se juegan en servidores europeos.\n\nPara evitar cuentas secundarias abusivas, la inscripción exige verificación FACEIT. Asegúrese de que su cuenta esté verificada.",
+    "fr": "Qualification ouverte de Stake Ranked Ep.4, quatrième tournoi LAN du circuit Tier 2 CS2 de Stake et StarLadder.\nLes équipes disputent 4 places dans la qualification fermée et y rejoignent les effectifs invités via VRS sur la route des finales LAN.\n\nQualification ouverte :\n\nJour 1 (29 août) : tous les matchs avant les quarts de finale, BO1.\n\nJour 2 (30 août) : matchs décisifs des quarts de finale, BO3.\n\nQuarts de finale, matchs 1–2 : 16:00 CEST.\n\nQuarts de finale, matchs 3–4 : 19:00 CEST.\n\nLes matchs se jouent sur des serveurs européens.\n\nPour éviter les comptes secondaires abusifs, l’inscription exige la vérification FACEIT. Assurez-vous que votre compte est vérifié.",
+    "it": "Qualificazione aperta di Stake Ranked Ep.4, quarto torneo LAN del circuito Tier 2 CS2 di Stake e StarLadder.\nLe squadre competono per 4 posti nella qualificazione chiusa, dove si uniranno alle rose invitate tramite VRS verso le finali LAN.\n\nQualificazione aperta:\n\nGiorno 1 (29 agosto): tutte le partite prima dei quarti di finale, BO1.\n\nGiorno 2 (30 agosto): partite decisive dei quarti di finale, BO3.\n\nQuarti di finale, partite 1–2: 16:00 CEST.\n\nQuarti di finale, partite 3–4: 19:00 CEST.\n\nLe partite si giocano sui server europei.\n\nPer evitare account secondari abusivi, l’iscrizione richiede la verifica FACEIT. Assicuratevi che il vostro account sia verificato."
+  },
+  "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 10. Match Format: All matches will be played in Best-of-1 format. Roster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 10. Team Availability: Qualified teams must confirm full availability to participate according to the event schedule - [Event Schedule](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing). Eligibility Compliance: - Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform. - All players must reside in Europe Region. Failure to comply may result in team disqualification. Any team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes: - The core roster, for all matches, must currently reside in the region they are competing in. - The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event. - Any changes to the qualified roster must be pre-approved by Tournament Officials. Teams that don’t meet these requirements may be disqualified or replaced without further notice.": {
+    "ru": "Квалификация: 8 лучших команд проходят в основной турнир CCT 2026 Contenders Europe 10.\n\nФормат матчей: все матчи проводятся в формате BO1.\n\nФиксация составов: составы фиксируются в начале турнира; изменения после начала запрещены. Прошедшие команды должны использовать ту же стартовую пятёрку на CCT 2026 Contenders Europe 10.\n\nДоступность команд: прошедшие команды должны подтвердить готовность участвовать по расписанию — [Расписание](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nТребования к участию:\n- У игроков не должно быть действующих игровых блокировок FACEIT, иначе матчи не запустятся.\n- Все игроки должны проживать в Европе. Нарушение может привести к дисквалификации.\n\nКоманды из открытых квалификаций должны соответствовать требованиям Valve и регламенту CCT:\n- Основной состав должен проживать в регионе участия на протяжении всех матчей.\n- На всех стартовых матчах регионального турнира сохраняется квалифицировавшееся ядро: минимум 3 из 5 игроков.\n- Изменения состава требуют предварительного согласования с организаторами.\nНесоответствующие команды могут быть дисквалифицированы или заменены без дополнительного уведомления.",
+    "de": "Qualifikation: Die besten 8 Teams erreichen das Hauptevent von CCT 2026 Contenders Europe 10.\n\nMatchformat: Alle Matches werden als BO1 gespielt.\n\nKadersperre: Die Kader werden zu Turnierbeginn festgelegt; danach sind Änderungen verboten. Qualifizierte Teams müssen bei CCT 2026 Contenders Europe 10 dieselbe Startformation einsetzen.\n\nVerfügbarkeit: Qualifizierte Teams müssen ihre vollständige Teilnahme gemäß dem Zeitplan bestätigen — [Zeitplan](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nTeilnahmebedingungen:\n- Spieler dürfen keine aktiven FACEIT-Spielsperren haben, sonst starten die Matches nicht.\n- Alle Spieler müssen in Europa wohnen. Verstöße können zur Disqualifikation führen.\n\nTeams aus offenen Qualifikationen müssen die Valve-Vorgaben und das CCT-Regelwerk erfüllen:\n- Der Kernkader muss bei allen Matches in der jeweiligen Wettbewerbsregion wohnen.\n- In allen ersten Matches des regionalen Events muss der qualifizierte Kern mit mindestens 3 von 5 Spielern bestehen bleiben.\n- Kaderänderungen benötigen vorherige Genehmigung der Turnierleitung.\nBei Verstößen können Teams ohne weitere Ankündigung disqualifiziert oder ersetzt werden.",
+    "pt": "Classificação: as 8 melhores equipes avançam ao evento principal do CCT 2026 Contenders Europe 10.\n\nFormato: todas as partidas são disputadas em BO1.\n\nElencos: os elencos são fixados no início do torneio; mudanças posteriores são proibidas. As equipes classificadas devem manter os mesmos cinco titulares no CCT 2026 Contenders Europe 10.\n\nDisponibilidade: as equipes classificadas devem confirmar disponibilidade integral conforme o calendário — [Calendário](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nRequisitos:\n- Os jogadores não podem ter banimentos ativos no FACEIT; caso contrário, as partidas não iniciam.\n- Todos devem residir na Europa. O descumprimento pode causar desclassificação.\n\nEquipes das classificatórias abertas devem cumprir as exigências da Valve e o regulamento do CCT:\n- O núcleo do elenco deve residir na região em que compete em todas as partidas.\n- O núcleo classificado, com pelo menos 3 dos 5 jogadores, deve ser mantido em todas as partidas iniciais do evento regional.\n- Mudanças exigem aprovação prévia da organização.\nEquipes que não cumpram os requisitos podem ser desclassificadas ou substituídas sem aviso adicional.",
+    "es": "Clasificación: los 8 mejores equipos avanzan al evento principal de CCT 2026 Contenders Europe 10.\n\nFormato: todos los partidos se disputan en BO1.\n\nPlantillas: quedan fijadas al inicio del torneo; no se permiten cambios posteriores. Los equipos clasificados deben usar los mismos cinco titulares en CCT 2026 Contenders Europe 10.\n\nDisponibilidad: los equipos clasificados deben confirmar disponibilidad completa según el calendario — [Calendario](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nRequisitos:\n- Los jugadores no deben tener bloqueos activos en FACEIT; de lo contrario, los partidos no se iniciarán.\n- Todos deben residir en Europa. El incumplimiento puede causar descalificación.\n\nLos equipos de clasificatorios abiertos deben cumplir los requisitos de Valve y el reglamento de CCT:\n- El núcleo de la plantilla debe residir en la región en la que compite durante todos los partidos.\n- Debe mantenerse el núcleo clasificado, al menos 3 de 5 jugadores, en todos los primeros partidos del evento regional.\n- Los cambios requieren aprobación previa de la organización.\nLos equipos que incumplan pueden ser descalificados o sustituidos sin previo aviso adicional.",
+    "fr": "Qualification : les 8 meilleures équipes accèdent à l’événement principal de CCT 2026 Contenders Europe 10.\n\nFormat : tous les matchs se jouent en BO1.\n\nEffectifs : ils sont figés au début du tournoi ; aucun changement n’est ensuite autorisé. Les équipes qualifiées doivent conserver les mêmes cinq titulaires lors de CCT 2026 Contenders Europe 10.\n\nDisponibilité : les équipes qualifiées doivent confirmer leur entière disponibilité selon le calendrier — [Calendrier](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nConditions :\n- Les joueurs ne doivent avoir aucun bannissement de jeu FACEIT actif, sinon les matchs ne démarrent pas.\n- Tous doivent résider en Europe. Un manquement peut entraîner une disqualification.\n\nLes équipes issues des qualifications ouvertes doivent respecter les exigences de Valve et le règlement CCT :\n- Le noyau de l’effectif doit résider dans la région où il joue pendant tous les matchs.\n- Le noyau qualifié, au moins 3 joueurs sur 5, doit être conservé pour tous les premiers matchs de l’événement régional.\n- Toute modification nécessite l’accord préalable des organisateurs.\nLes équipes non conformes peuvent être disqualifiées ou remplacées sans autre préavis.",
+    "it": "Qualificazione: le migliori 8 squadre accedono all’evento principale di CCT 2026 Contenders Europe 10.\n\nFormato: tutte le partite si giocano in BO1.\n\nRose: vengono bloccate all’inizio del torneo; le modifiche successive sono vietate. Le squadre qualificate devono usare gli stessi cinque titolari a CCT 2026 Contenders Europe 10.\n\nDisponibilità: le squadre qualificate devono confermare la piena disponibilità secondo il calendario — [Calendario](https://docs.google.com/spreadsheets/d/1SEcCWL-JkUHtlairkpZR3eU-GOhjlMgHvP9iuVLPzoE/edit?usp=sharing).\n\nRequisiti:\n- I giocatori non devono avere ban di gioco FACEIT attivi, altrimenti le partite non partiranno.\n- Tutti devono risiedere in Europa. Le violazioni possono comportare la squalifica.\n\nLe squadre provenienti dalle qualificazioni aperte devono rispettare i requisiti Valve e il regolamento CCT:\n- Il nucleo della rosa deve risiedere nella regione in cui compete durante tutte le partite.\n- Il nucleo qualificato, almeno 3 giocatori su 5, deve essere mantenuto in tutte le prime partite dell’evento regionale.\n- Le modifiche richiedono l’approvazione preventiva degli organizzatori.\nLe squadre non conformi possono essere squalificate o sostituite senza ulteriore preavviso."
+  },
+  "Welcome to the Stake Pulse Beat II - Open Qualifier I, taking place on August 20, 2026. One team will qualify from this tournament to compete at the Stake Pulse Beat II Main Event — a $60,000 LAN tournament. The qualifier follows a Single Elimination format with Best-of-One matches throughout, and a Best-of-Three Grand Final. All matches are played on Counter-Strike 2 using the Active Duty map pool. Please note: teams that qualify through Open Qualifier I are not eligible to participate in Open Qualifier II (August 21). Any team that has already successfully secured a spot at Stake Pulse Beat II through the registration system is not eligible to participate in either Open Qualifier. This rule has been further reinforced for Stake Pulse Beat II. 📋 Official Rulebook: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing By registering, you confirm that you have read and accepted all rules outlined in the rulebook. All participants must have the FACEIT Anti-Cheat installed before the tournament begins. For support, reach out via a ticket to the Tournament Discord (https://discord.gg/yyYDmjYkEM) or contact us at pulse@bme.nu.": {
+    "ru": "Добро пожаловать на Stake Pulse Beat II — Open Qualifier I, который пройдёт 20 августа 2026 года.\n\nОдна команда из этой квалификации проходит в основной LAN-турнир Stake Pulse Beat II с призовым фондом 60 000 долларов.\n\nКвалификация проводится на выбывание после одного поражения: все матчи BO1, гранд-финал BO3. Игра — Counter-Strike 2, актуальный соревновательный набор карт.\n\nКоманды, прошедшие через Open Qualifier I, не могут участвовать в Open Qualifier II (21 августа).\n\nКоманды, уже получившие место на Stake Pulse Beat II через систему регистрации, не могут участвовать ни в одной открытой квалификации. Для Stake Pulse Beat II это правило дополнительно усилено.\n\n📋 Официальный регламент: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nРегистрируясь, вы подтверждаете, что прочитали и приняли все правила регламента. У всех участников должен быть установлен FACEIT Anti-Cheat до начала турнира.\n\nДля поддержки создайте обращение в Discord турнира (https://discord.gg/yyYDmjYkEM) или напишите на pulse@bme.nu.",
+    "de": "Willkommen zur offenen Qualifikation I für Stake Pulse Beat II am 20. August 2026.\n\nEin Team aus dieser Qualifikation erreicht das LAN-Hauptevent Stake Pulse Beat II mit 60.000 Dollar Preisgeld.\n\nDie Qualifikation erfolgt mit Ausscheiden nach einer Niederlage: alle Matches BO1, großes Finale BO3. Gespielt wird Counter-Strike 2 mit dem aktuellen Wettkampfkartenpool.\n\nTeams, die sich über die offene Qualifikation I qualifizieren, dürfen nicht an Qualifikation II am 21. August teilnehmen.\n\nTeams, die bereits über das Anmeldesystem einen Platz bei Stake Pulse Beat II erhalten haben, dürfen an keiner offenen Qualifikation teilnehmen. Diese Regel wurde für Stake Pulse Beat II zusätzlich verschärft.\n\n📋 Offizielles Regelwerk: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nMit der Anmeldung bestätigt ihr, alle Regeln gelesen und akzeptiert zu haben. Alle Teilnehmer müssen FACEIT Anti-Cheat vor Turnierbeginn installiert haben.\n\nFür Unterstützung ein Ticket im Turnier-Discord (https://discord.gg/yyYDmjYkEM) erstellen oder an pulse@bme.nu schreiben.",
+    "pt": "Bem-vindos à classificatória aberta I do Stake Pulse Beat II, em 20 de agosto de 2026.\n\nUma equipe desta classificatória avança ao evento principal LAN do Stake Pulse Beat II, com premiação de 60.000 dólares.\n\nA classificatória usa eliminação simples: partidas BO1 e grande final BO3. O jogo é Counter-Strike 2, com o conjunto atual de mapas competitivos.\n\nEquipes classificadas pela etapa aberta I não podem participar da etapa aberta II (21 de agosto).\n\nEquipes que já garantiram vaga no Stake Pulse Beat II pelo sistema de inscrição não podem participar de nenhuma classificatória aberta. A regra foi reforçada para o Stake Pulse Beat II.\n\n📋 Regulamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nAo se inscrever, você confirma que leu e aceitou todas as regras. Todos devem instalar o FACEIT Anti-Cheat antes do início do torneio.\n\nPara obter suporte, abra um chamado no Discord do torneio (https://discord.gg/yyYDmjYkEM) ou escreva para pulse@bme.nu.",
+    "es": "Bienvenidos al clasificatorio abierto I de Stake Pulse Beat II, el 20 de agosto de 2026.\n\nUn equipo de este clasificatorio avanza al evento principal LAN de Stake Pulse Beat II, con 60.000 dólares en premios.\n\nEl clasificatorio usa eliminación directa: partidos BO1 y gran final BO3. Se juega Counter-Strike 2 con el conjunto vigente de mapas competitivos.\n\nLos equipos clasificados mediante la etapa abierta I no pueden participar en la etapa abierta II (21 de agosto).\n\nLos equipos que ya obtuvieron una plaza en Stake Pulse Beat II mediante el sistema de inscripción no pueden participar en ningún clasificatorio abierto. La norma se ha reforzado para Stake Pulse Beat II.\n\n📋 Reglamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nAl inscribirse, confirma que ha leído y aceptado todas las reglas. Todos deben instalar FACEIT Anti-Cheat antes del inicio del torneo.\n\nPara recibir soporte, abra un ticket en el Discord del torneo (https://discord.gg/yyYDmjYkEM) o escriba a pulse@bme.nu.",
+    "fr": "Bienvenue à la qualification ouverte I de Stake Pulse Beat II, le 20 août 2026.\n\nUne équipe issue de cette qualification accède à l’événement principal LAN de Stake Pulse Beat II, doté de 60 000 dollars.\n\nLa qualification se joue en élimination directe : matchs BO1 et grande finale BO3. Le jeu est Counter-Strike 2, avec les cartes compétitives actuelles.\n\nLes équipes qualifiées via l’étape ouverte I ne peuvent pas participer à l’étape ouverte II (21 août).\n\nLes équipes ayant déjà obtenu une place à Stake Pulse Beat II via le système d’inscription ne peuvent participer à aucune qualification ouverte. Cette règle a été renforcée pour Stake Pulse Beat II.\n\n📋 Règlement officiel : https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nEn vous inscrivant, vous confirmez avoir lu et accepté toutes les règles. Tous les participants doivent installer FACEIT Anti-Cheat avant le début du tournoi.\n\nPour obtenir de l’aide, ouvrez un ticket sur le Discord du tournoi (https://discord.gg/yyYDmjYkEM) ou écrivez à pulse@bme.nu.",
+    "it": "Benvenuti alla qualificazione aperta I di Stake Pulse Beat II, il 20 agosto 2026.\n\nUna squadra di questa qualificazione accede all’evento principale LAN di Stake Pulse Beat II, con un montepremi di 60.000 dollari.\n\nLa qualificazione usa l’eliminazione diretta: partite BO1 e finale BO3. Si gioca a Counter-Strike 2 con l’attuale selezione di mappe competitive.\n\nLe squadre qualificate tramite la fase aperta I non possono partecipare alla fase aperta II (21 agosto).\n\nLe squadre che hanno già ottenuto un posto a Stake Pulse Beat II tramite il sistema d’iscrizione non possono partecipare a nessuna qualificazione aperta. La regola è stata rafforzata per Stake Pulse Beat II.\n\n📋 Regolamento ufficiale: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nIscrivendovi, confermate di aver letto e accettato tutte le regole. Tutti devono installare FACEIT Anti-Cheat prima dell’inizio del torneo.\n\nPer assistenza, aprite un ticket nel Discord del torneo (https://discord.gg/yyYDmjYkEM) o scrivete a pulse@bme.nu."
+  },
+  "Welcome to the Stake Pulse Beat II - Open Qualifier II, taking place on August 21, 2026. One team will qualify from this tournament to compete at the Stake Pulse Beat II Main Event — a $60,000 LAN tournament. The qualifier follows a Single Elimination format with Best-of-One matches throughout, and a Best-of-Three Grand Final. All matches are played on Counter-Strike 2 using the Active Duty map pool. Please note: teams that qualify through Open Qualifier I are not eligible to participate in Open Qualifier II (August 21). Any team that has already successfully secured a spot at Stake Pulse Beat II through the registration system is not eligible to participate in either Open Qualifier. This rule has been further reinforced for Stake Pulse Beat II. 📋 Official Rulebook: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing By registering, you confirm that you have read and accepted all rules outlined in the rulebook. All participants must have the FACEIT Anti-Cheat installed before the tournament begins. For support, reach out via a ticket to the Tournament Discord (https://discord.gg/yyYDmjYkEM) or contact us at pulse@bme.nu.": {
+    "ru": "Добро пожаловать на Stake Pulse Beat II — Open Qualifier II, который пройдёт 21 августа 2126 года.\n\nОдна команда из этой квалификации проходит в основной LAN-турнир Stake Pulse Beat II с призовым фондом 60 000 долларов.\n\nКвалификация проводится на выбывание после одного поражения: все матчи BO1, гранд-финал BO3. Игра — Counter-Strike 2, актуальный соревновательный набор карт.\n\nКоманды, прошедшие через Open Qualifier I, не могут участвовать в Open Qualifier II (21 августа).\n\nКоманды, уже получившие место на Stake Pulse Beat II через систему регистрации, не могут участвовать ни в одной открытой квалификации. Для Stake Pulse Beat II это правило дополнительно усилено.\n\n📋 Официальный регламент: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nРегистрируясь, вы подтверждаете, что прочитали и приняли все правила регламента. У всех участников должен быть установлен FACEIT Anti-Cheat до начала турнира.\n\nДля поддержки создайте обращение в Discord турнира (https://discord.gg/yyYDmjYkEM) или напишите на pulse@bme.nu.",
+    "de": "Willkommen zur offenen Qualifikation II für Stake Pulse Beat II am 21. August 2126.\n\nEin Team aus dieser Qualifikation erreicht das LAN-Hauptevent Stake Pulse Beat II mit 60.000 Dollar Preisgeld.\n\nDie Qualifikation erfolgt mit Ausscheiden nach einer Niederlage: alle Matches BO1, großes Finale BO3. Gespielt wird Counter-Strike 2 mit dem aktuellen Wettkampfkartenpool.\n\nTeams, die sich über die offene Qualifikation I qualifizieren, dürfen nicht an Qualifikation II am 21. August teilnehmen.\n\nTeams, die bereits über das Anmeldesystem einen Platz bei Stake Pulse Beat II erhalten haben, dürfen an keiner offenen Qualifikation teilnehmen. Diese Regel wurde für Stake Pulse Beat II zusätzlich verschärft.\n\n📋 Offizielles Regelwerk: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nMit der Anmeldung bestätigt ihr, alle Regeln gelesen und akzeptiert zu haben. Alle Teilnehmer müssen FACEIT Anti-Cheat vor Turnierbeginn installiert haben.\n\nFür Unterstützung ein Ticket im Turnier-Discord (https://discord.gg/yyYDmjYkEM) erstellen oder an pulse@bme.nu schreiben.",
+    "pt": "Bem-vindos à classificatória aberta II do Stake Pulse Beat II, em 21 de agosto de 2126.\n\nUma equipe desta classificatória avança ao evento principal LAN do Stake Pulse Beat II, com premiação de 60.000 dólares.\n\nA classificatória usa eliminação simples: partidas BO1 e grande final BO3. O jogo é Counter-Strike 2, com o conjunto atual de mapas competitivos.\n\nEquipes classificadas pela etapa aberta I não podem participar da etapa aberta II (21 de agosto).\n\nEquipes que já garantiram vaga no Stake Pulse Beat II pelo sistema de inscrição não podem participar de nenhuma classificatória aberta. A regra foi reforçada para o Stake Pulse Beat II.\n\n📋 Regulamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nAo se inscrever, você confirma que leu e aceitou todas as regras. Todos devem instalar o FACEIT Anti-Cheat antes do início do torneio.\n\nPara obter suporte, abra um chamado no Discord do torneio (https://discord.gg/yyYDmjYkEM) ou escreva para pulse@bme.nu.",
+    "es": "Bienvenidos al clasificatorio abierto II de Stake Pulse Beat II, el 21 de agosto de 2126.\n\nUn equipo de este clasificatorio avanza al evento principal LAN de Stake Pulse Beat II, con 60.000 dólares en premios.\n\nEl clasificatorio usa eliminación directa: partidos BO1 y gran final BO3. Se juega Counter-Strike 2 con el conjunto vigente de mapas competitivos.\n\nLos equipos clasificados mediante la etapa abierta I no pueden participar en la etapa abierta II (21 de agosto).\n\nLos equipos que ya obtuvieron una plaza en Stake Pulse Beat II mediante el sistema de inscripción no pueden participar en ningún clasificatorio abierto. La norma se ha reforzado para Stake Pulse Beat II.\n\n📋 Reglamento oficial: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nAl inscribirse, confirma que ha leído y aceptado todas las reglas. Todos deben instalar FACEIT Anti-Cheat antes del inicio del torneo.\n\nPara recibir soporte, abra un ticket en el Discord del torneo (https://discord.gg/yyYDmjYkEM) o escriba a pulse@bme.nu.",
+    "fr": "Bienvenue à la qualification ouverte II de Stake Pulse Beat II, le 21 août 2126.\n\nUne équipe issue de cette qualification accède à l’événement principal LAN de Stake Pulse Beat II, doté de 60 000 dollars.\n\nLa qualification se joue en élimination directe : matchs BO1 et grande finale BO3. Le jeu est Counter-Strike 2, avec les cartes compétitives actuelles.\n\nLes équipes qualifiées via l’étape ouverte I ne peuvent pas participer à l’étape ouverte II (21 août).\n\nLes équipes ayant déjà obtenu une place à Stake Pulse Beat II via le système d’inscription ne peuvent participer à aucune qualification ouverte. Cette règle a été renforcée pour Stake Pulse Beat II.\n\n📋 Règlement officiel : https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nEn vous inscrivant, vous confirmez avoir lu et accepté toutes les règles. Tous les participants doivent installer FACEIT Anti-Cheat avant le début du tournoi.\n\nPour obtenir de l’aide, ouvrez un ticket sur le Discord du tournoi (https://discord.gg/yyYDmjYkEM) ou écrivez à pulse@bme.nu.",
+    "it": "Benvenuti alla qualificazione aperta II di Stake Pulse Beat II, il 21 agosto 2126.\n\nUna squadra di questa qualificazione accede all’evento principale LAN di Stake Pulse Beat II, con un montepremi di 60.000 dollari.\n\nLa qualificazione usa l’eliminazione diretta: partite BO1 e finale BO3. Si gioca a Counter-Strike 2 con l’attuale selezione di mappe competitive.\n\nLe squadre qualificate tramite la fase aperta I non possono partecipare alla fase aperta II (21 agosto).\n\nLe squadre che hanno già ottenuto un posto a Stake Pulse Beat II tramite il sistema d’iscrizione non possono partecipare a nessuna qualificazione aperta. La regola è stata rafforzata per Stake Pulse Beat II.\n\n📋 Regolamento ufficiale: https://docs.google.com/document/d/1GxACuasRb2YA8IEc2RYFr9ajOlYzajAMHKYxbI_cD0M/edit?usp=sharing\n\nIscrivendovi, confermate di aver letto e accettato tutte le regole. Tutti devono installare FACEIT Anti-Cheat prima dell’inizio del torneo.\n\nPer assistenza, aprite un ticket nel Discord del torneo (https://discord.gg/yyYDmjYkEM) o scrivete a pulse@bme.nu."
+  },
+  "Learn more about tournament: https://github.com/cisesportsleague/CyberClash-Open Rules of the Open Qualifiers: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md Top-2 Teams from each Qualifier advance to the Main event Main Event Prize Pool: 25 495 USD Main Event Group Stage: Best 8 teams from Open Qualifiers (Online - 26 - 28th of August 2026 - 2 GSL BO3 Groups. Best 2 teams from each group advance to the play-off stage) Main Event Play-off Stage: Best 4 teams from Main Event Group Stage (Online - 29th of August 2026 - 30th of August - Single Elimination BO3 with 3rd place decider). Visa/Location: Europe (Online)": {
+    "ru": "Подробнее о турнире: https://github.com/cisesportsleague/CyberClash-Open\nПравила открытой квалификации: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nДве лучшие команды каждой квалификации проходят в основной турнир.\nПризовой фонд: 25 495 долларов.\nГрупповой этап: 8 лучших команд открытых квалификаций; онлайн 26–28 августа 2026 года; 2 группы GSL BO3. Две лучшие команды каждой группы проходят в плей-офф.\nПлей-офф: 4 лучшие команды группового этапа; онлайн 29–30 августа; на выбывание после одного поражения, BO3, с матчем за третье место.\n\nВиза / место проведения: Европа (онлайн).",
+    "de": "Mehr zum Turnier: https://github.com/cisesportsleague/CyberClash-Open\nRegeln der offenen Qualifikation: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nDie besten 2 Teams jeder Qualifikation erreichen das Hauptevent.\nPreisgeld: 25.495 Dollar.\nGruppenphase: die besten 8 Teams aus offenen Qualifikationen; online vom 26.–28. August 2026; 2 GSL-Gruppen mit BO3. Die besten 2 jeder Gruppe erreichen die Playoffs.\nPlayoffs: die besten 4 Teams der Gruppenphase; online am 29.–30. August; Ausscheiden nach einer Niederlage, BO3, mit Spiel um Platz 3.\n\nVisum / Austragungsort: Europa (online).",
+    "pt": "Mais sobre o torneio: https://github.com/cisesportsleague/CyberClash-Open\nRegras da classificatória aberta: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nAs 2 melhores equipes de cada classificatória avançam ao evento principal.\nPremiação: 25.495 dólares.\nGrupos: as 8 melhores equipes das classificatórias abertas; online de 26 a 28 de agosto de 2026; 2 grupos GSL BO3. As 2 melhores de cada grupo avançam às eliminatórias.\nEliminatórias: as 4 melhores equipes dos grupos; online em 29 e 30 de agosto; eliminação simples BO3, com disputa do terceiro lugar.\n\nVisto / local: Europa (online).",
+    "es": "Más sobre el torneo: https://github.com/cisesportsleague/CyberClash-Open\nReglas del clasificatorio abierto: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nLos 2 mejores equipos de cada clasificatorio avanzan al evento principal.\nPremios: 25.495 dólares.\nGrupos: los 8 mejores equipos de los clasificatorios abiertos; online del 26 al 28 de agosto de 2026; 2 grupos GSL BO3. Los 2 mejores de cada grupo avanzan a la fase final.\nFase final: los 4 mejores equipos de grupos; online el 29 y 30 de agosto; eliminación directa BO3, con partido por el tercer puesto.\n\nVisado / lugar: Europa (online).",
+    "fr": "Plus d’informations sur le tournoi : https://github.com/cisesportsleague/CyberClash-Open\nRègles de la qualification ouverte : https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nLes 2 meilleures équipes de chaque qualification accèdent à l’événement principal.\nDotation : 25 495 dollars.\nGroupes : les 8 meilleures équipes des qualifications ouvertes ; en ligne du 26 au 28 août 2026 ; 2 groupes GSL BO3. Les 2 meilleures de chaque groupe accèdent aux phases finales.\nPhases finales : les 4 meilleures équipes des groupes ; en ligne les 29 et 30 août ; élimination directe BO3, avec match pour la troisième place.\n\nVisa / lieu : Europe (en ligne).",
+    "it": "Informazioni sul torneo: https://github.com/cisesportsleague/CyberClash-Open\nRegole della qualificazione aperta: https://github.com/cisesportsleague/CyberClash-Open/blob/main/open-quals-rules.md\n\nLe migliori 2 squadre di ogni qualificazione accedono all’evento principale.\nMontepremi: 25.495 dollari.\nGironi: le migliori 8 squadre delle qualificazioni aperte; online dal 26 al 28 agosto 2026; 2 gironi GSL BO3. Le migliori 2 di ogni girone accedono alla fase finale.\nFase finale: le migliori 4 squadre dei gironi; online il 29–30 agosto; eliminazione diretta BO3, con partita per il terzo posto.\n\nVisto / luogo: Europa (online)."
+  },
+  "teams": {
+    "ru": "команд",
+    "de": "Teams",
+    "pt": "equipes",
+    "es": "equipos",
+    "fr": "équipes",
+    "it": "squadre"
+  },
+  "live": {
+    "ru": "в эфире",
+    "de": "live",
+    "pt": "ao vivo",
+    "es": "en directo",
+    "fr": "en direct",
+    "it": "in diretta"
+  },
+  "pending": {
+    "ru": "на проверке",
+    "de": "ausstehend",
+    "pt": "pendentes",
+    "es": "pendientes",
+    "fr": "en attente",
+    "it": "in attesa"
+  },
+  "Round {0}": {
+    "ru": "Раунд {0}",
+    "de": "Runde {0}",
+    "pt": "Rodada {0}",
+    "es": "Ronda {0}",
+    "fr": "Tour {0}",
+    "it": "Turno {0}"
+  },
+  "Single elimination Bo1": {
+    "ru": "На выбывание после одного поражения, BO1",
+    "de": "Ausscheiden nach einer Niederlage, BO1",
+    "pt": "Eliminação simples, BO1",
+    "es": "Eliminación directa, BO1",
+    "fr": "Élimination directe, BO1",
+    "it": "Eliminazione diretta, BO1"
+  },
+  "← Back to {0}": {
+    "ru": "← Назад к {0}",
+    "de": "← Zurück zu {0}",
+    "pt": "← Voltar para {0}",
+    "es": "← Volver a {0}",
+    "fr": "← Retour à {0}",
+    "it": "← Torna a {0}"
+  },
+  "Could not complete the request. Please try again.": {
+    "ru": "Не удалось выполнить запрос. Попробуйте ещё раз.",
+    "de": "Die Anfrage konnte nicht ausgeführt werden. Bitte erneut versuchen.",
+    "pt": "Não foi possível concluir a solicitação. Tente novamente.",
+    "es": "No se pudo completar la solicitud. Inténtalo de nuevo.",
+    "fr": "Impossible de terminer la demande. Veuillez réessayer.",
+    "it": "Impossibile completare la richiesta. Riprova."
+  },
+  "Email not confirmed": {
+    "ru": "Электронная почта не подтверждена",
+    "de": "E-Mail nicht bestätigt",
+    "pt": "E-mail não confirmado",
+    "es": "Correo electrónico sin confirmar",
+    "fr": "Adresse e-mail non confirmée",
+    "it": "Indirizzo e-mail non confermato"
+  },
+  "User already registered": {
+    "ru": "Пользователь уже зарегистрирован",
+    "de": "Benutzer bereits registriert",
+    "pt": "Usuário já cadastrado",
+    "es": "Usuario ya registrado",
+    "fr": "Utilisateur déjà inscrit",
+    "it": "Utente già registrato"
+  },
+  "Too many requests. Please try again later.": {
+    "ru": "Слишком много запросов. Попробуйте позже.",
+    "de": "Zu viele Anfragen. Bitte später erneut versuchen.",
+    "pt": "Muitas solicitações. Tente novamente mais tarde.",
+    "es": "Demasiadas solicitudes. Inténtalo más tarde.",
+    "fr": "Trop de demandes. Veuillez réessayer plus tard.",
+    "it": "Troppe richieste. Riprova più tardi."
+  },
+  "Team Staff": {
+    "ru": "Сотрудник команды",
+    "de": "Teammitarbeiter",
+    "pt": "Membro da equipe",
+    "es": "Personal del equipo",
+    "fr": "Personnel d’équipe",
+    "it": "Staff della squadra"
+  },
+  "Description saved.": {
+    "ru": "Описание сохранено.",
+    "de": "Beschreibung gespeichert.",
+    "pt": "Descrição salva.",
+    "es": "Descripción guardada.",
+    "fr": "Description enregistrée.",
+    "it": "Descrizione salvata."
+  },
+  "Social links saved.": {
+    "ru": "Социальные ссылки сохранены.",
+    "de": "Social-Media-Links gespeichert.",
+    "pt": "Links sociais salvos.",
+    "es": "Enlaces sociales guardados.",
+    "fr": "Liens sociaux enregistrés.",
+    "it": "Link social salvati."
+  },
+  "Photo updated.": {
+    "ru": "Фото обновлено.",
+    "de": "Foto aktualisiert.",
+    "pt": "Foto atualizada.",
+    "es": "Foto actualizada.",
+    "fr": "Photo mise à jour.",
+    "it": "Foto aggiornata."
+  },
+  "All registered teams": {
+    "ru": "Все зарегистрированные команды",
+    "de": "Alle registrierten Teams",
+    "pt": "Todas as equipes inscritas",
+    "es": "Todos los equipos inscritos",
+    "fr": "Toutes les équipes inscrites",
+    "it": "Tutte le squadre iscritte"
+  },
+  "Generated automatically": {
+    "ru": "Созданы автоматически",
+    "de": "Automatisch generiert",
+    "pt": "Geradas automaticamente",
+    "es": "Generados automáticamente",
+    "fr": "Générées automatiquement",
+    "it": "Generate automaticamente"
+  },
+  "Already played": {
+    "ru": "Уже сыграли",
+    "de": "Bereits gespielt",
+    "pt": "Já jogaram",
+    "es": "Ya jugaron",
+    "fr": "Ont déjà joué",
+    "it": "Hanno già giocato"
+  },
+  "Zero matches": {
+    "ru": "Без матчей",
+    "de": "Ohne Matches",
+    "pt": "Sem partidas",
+    "es": "Sin partidos",
+    "fr": "Aucun match",
+    "it": "Nessuna partita"
+  },
+  "Unknown team": {
+    "ru": "Неизвестная команда",
+    "de": "Unbekanntes Team",
+    "pt": "Equipe desconhecida",
+    "es": "Equipo desconocido",
+    "fr": "Équipe inconnue",
+    "it": "Squadra sconosciuta"
+  },
+  "Unknown player": {
+    "ru": "Неизвестный игрок",
+    "de": "Unbekannter Spieler",
+    "pt": "Jogador desconhecido",
+    "es": "Jugador desconocido",
+    "fr": "Joueur inconnu",
+    "it": "Giocatore sconosciuto"
+  },
+  "Date to be announced": {
+    "ru": "Дата будет объявлена",
+    "de": "Datum wird bekannt gegeben",
+    "pt": "Data a anunciar",
+    "es": "Fecha por anunciar",
+    "fr": "Date à annoncer",
+    "it": "Data da annunciare"
+  },
+  "MVP, ADR, and K/D are available in the Match Center": {
+    "ru": "MVP, ADR и K/D доступны в центре матча",
+    "de": "MVP, ADR und K/D sind im Matchcenter verfügbar",
+    "pt": "MVP, ADR e K/D estão disponíveis na central da partida",
+    "es": "MVP, ADR y K/D están disponibles en el centro del partido",
+    "fr": "MVP, ADR et K/D sont disponibles dans le centre du match",
+    "it": "MVP, ADR e K/D sono disponibili nel centro della partita"
+  },
+  "Open the most popular recent completed match. Automatic wins and walkovers are excluded.": {
+    "ru": "Открой самый популярный из недавно завершённых матчей. Автоматические и технические победы исключены.",
+    "de": "Öffne das beliebteste kürzlich beendete Match. Automatische Siege und kampflose Siege sind ausgeschlossen.",
+    "pt": "Abra a partida recente concluída mais popular. Vitórias automáticas e por ausência são excluídas.",
+    "es": "Abre el partido reciente finalizado más popular. Se excluyen las victorias automáticas y por incomparecencia.",
+    "fr": "Ouvrez le match récent terminé le plus populaire. Les victoires automatiques et par forfait sont exclues.",
+    "it": "Apri la partita recente conclusa più popolare. Sono escluse le vittorie automatiche e per forfait."
+  },
+  "Statistics appear after FACEIT publishes the match data.": {
+    "ru": "Статистика появится после публикации данных матча на FACEIT.",
+    "de": "Statistiken erscheinen, sobald FACEIT die Matchdaten veröffentlicht.",
+    "pt": "As estatísticas aparecem depois que o FACEIT publica os dados da partida.",
+    "es": "Las estadísticas aparecen cuando FACEIT publica los datos del partido.",
+    "fr": "Les statistiques apparaissent après la publication des données du match par FACEIT.",
+    "it": "Le statistiche appaiono dopo la pubblicazione dei dati della partita da parte di FACEIT."
+  },
+  "Automatic statistics are temporarily unavailable": {
+    "ru": "Автоматическая статистика временно недоступна",
+    "de": "Automatische Statistiken sind vorübergehend nicht verfügbar",
+    "pt": "Estatísticas automáticas temporariamente indisponíveis",
+    "es": "Estadísticas automáticas temporalmente no disponibles",
+    "fr": "Statistiques automatiques temporairement indisponibles",
+    "it": "Statistiche automatiche temporaneamente non disponibili"
+  },
+  "Average damage per round": {
+    "ru": "Средний урон за раунд",
+    "de": "Durchschnittlicher Schaden pro Runde",
+    "pt": "Dano médio por rodada",
+    "es": "Daño medio por ronda",
+    "fr": "Dégâts moyens par manche",
+    "it": "Danno medio per round"
+  },
+  "Kill/death ratio": {
+    "ru": "Соотношение убийств и смертей",
+    "de": "Verhältnis von Abschüssen zu Toden",
+    "pt": "Relação entre eliminações e mortes",
+    "es": "Relación entre bajas y muertes",
+    "fr": "Rapport éliminations/morts",
+    "it": "Rapporto uccisioni/morti"
+  },
+  "Average per match": {
+    "ru": "В среднем за матч",
+    "de": "Durchschnitt pro Match",
+    "pt": "Média por partida",
+    "es": "Media por partido",
+    "fr": "Moyenne par match",
+    "it": "Media per partita"
+  },
+  "Headshot percentage": {
+    "ru": "Процент попаданий в голову",
+    "de": "Kopfschussanteil",
+    "pt": "Percentual de tiros na cabeça",
+    "es": "Porcentaje de disparos a la cabeza",
+    "fr": "Pourcentage de tirs à la tête",
+    "it": "Percentuale di colpi alla testa"
+  },
+  "Group": {
+    "ru": "Группа",
+    "de": "Gruppe",
+    "pt": "Grupo",
+    "es": "Grupo",
+    "fr": "Groupe",
+    "it": "Girone"
+  },
+  "vs": {
+    "ru": "против",
+    "de": "gegen",
+    "pt": "contra",
+    "es": "contra",
+    "fr": "contre",
+    "it": "contro"
+  },
+  "OT": {
+    "ru": "ОТ",
+    "de": "VL",
+    "pt": "PR",
+    "es": "PR",
+    "fr": "PROL",
+    "it": "SUP"
+  },
+  "Online": {
+    "ru": "Онлайн",
+    "de": "Online",
+    "pt": "Online",
+    "es": "En línea",
+    "fr": "En ligne",
+    "it": "Online"
+  },
+  "Grand final": {
+    "ru": "Гранд-финал",
+    "de": "Großes Finale",
+    "pt": "Grande final",
+    "es": "Gran final",
+    "fr": "Grande finale",
+    "it": "Finale"
+  },
+  "Semi-finals": {
+    "ru": "Полуфиналы",
+    "de": "Halbfinale",
+    "pt": "Semifinais",
+    "es": "Semifinales",
+    "fr": "Demi-finales",
+    "it": "Semifinali"
+  },
+  "Quarter-finals": {
+    "ru": "Четвертьфиналы",
+    "de": "Viertelfinale",
+    "pt": "Quartas de final",
+    "es": "Cuartos de final",
+    "fr": "Quarts de finale",
+    "it": "Quarti di finale"
+  },
+  "Team 1": {
+    "ru": "Команда 1",
+    "de": "Team 1",
+    "pt": "Equipe 1",
+    "es": "Equipo 1",
+    "fr": "Équipe 1",
+    "it": "Squadra 1"
+  },
+  "Team 2": {
+    "ru": "Команда 2",
+    "de": "Team 2",
+    "pt": "Equipe 2",
+    "es": "Equipo 2",
+    "fr": "Équipe 2",
+    "it": "Squadra 2"
+  },
+  "Other": {
+    "ru": "Другое",
+    "de": "Sonstiges",
+    "pt": "Outro",
+    "es": "Otro",
+    "fr": "Autre",
+    "it": "Altro"
+  },
+  "Website": {
+    "ru": "Сайт",
+    "de": "Webseite",
+    "pt": "Site",
+    "es": "Sitio web",
+    "fr": "Site web",
+    "it": "Sito web"
+  },
+  "VS": {
+    "ru": "против",
+    "de": "gegen",
+    "pt": "contra",
+    "es": "contra",
+    "fr": "contre",
+    "it": "contro"
   }
 }

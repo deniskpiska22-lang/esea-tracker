@@ -1,4 +1,4 @@
-import { tf, tx } from "../i18n/translate.js";
+import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import {
@@ -619,7 +619,7 @@ function StatCard({
       }`}
     >
       <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-        {label}
+        {tx(label)}
       </div>
 
       <div
@@ -634,7 +634,7 @@ function StatCard({
 
       {hint && (
         <div className="mt-1 text-xs text-slate-500">
-          {hint}
+          {tx(hint)}
         </div>
       )}
     </div>
@@ -1000,7 +1000,7 @@ function PlayerPage() {
             routePlayerKey
           );
           setStatsError(
-            "Automatic statistics are temporarily unavailable"
+            tx("Automatic statistics are temporarily unavailable")
           );
         }
       } finally {
@@ -1286,42 +1286,42 @@ const currentTeam =
       value:
         toNumber(avgAdr).toFixed(1),
       caption:
-        "Average damage per round",
+        tx("Average damage per round"),
     },
     {
       label: "K/D",
       value:
         toNumber(avgKd).toFixed(2),
       caption:
-        "Kill/death ratio",
+        tx("Kill/death ratio"),
     },
     {
       label: tx("Kills"),
       value:
         toNumber(avgKills).toFixed(1),
       caption:
-        "Average per match",
+        tx("Average per match"),
     },
     {
       label: tx("Deaths"),
       value:
         toNumber(avgDeaths).toFixed(1),
       caption:
-        "Average per match",
+        tx("Average per match"),
     },
     {
       label: tx("Assists"),
       value:
         toNumber(avgAssists).toFixed(1),
       caption:
-        "Average per match",
+        tx("Average per match"),
     },
     {
       label: "HS%",
       value:
         `${toNumber(avgHs).toFixed(1)}%`,
       caption:
-        "Headshot percentage",
+        tx("Headshot percentage"),
     },
   ];
 
@@ -1332,7 +1332,7 @@ const currentTeam =
           to={backLink}
           className="inline-flex items-center text-sm font-medium text-slate-400 transition hover:text-orange-300"
         >
-          {backLabel}
+          {translateBackLabel(backLabel)}
         </Link>
 
         <section className="relative mt-5 overflow-hidden rounded-[28px] border border-[#263244] bg-[#101722]">
@@ -1518,7 +1518,7 @@ const currentTeam =
 
               {statsError && (
                 <div className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
-                  {statsError}{tx(". Saved local data is shown. ")}</div>
+                  {translateError(statsError)}{tx(". Saved local data is shown. ")}</div>
               )}
             </div>
 
@@ -1737,11 +1737,11 @@ const currentTeam =
                 ].map(
                   ([label, value]) => (
                     <div
-                      key={label}
+                      key={tx(label)}
                       className="flex items-center justify-between border-b border-[#263244] pb-3 last:border-0 last:pb-0"
                     >
                       <span className="text-sm text-slate-500">
-                        {label}
+                        {tx(label)}
                       </span>
 
                       <span className="font-black text-slate-200">

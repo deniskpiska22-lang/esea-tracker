@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
@@ -108,8 +109,8 @@ export default function RegisterPage() {
           <AuthInput label={tx("Password")} name="password" type="password" value={form.password} onChange={updateField} autoComplete="new-password" placeholder={tx("At least 8 characters")} />
           <AuthInput label={tx("Confirm password")} name="confirmPassword" type="password" value={form.confirmPassword} onChange={updateField} autoComplete="new-password" placeholder={tx("Confirm password")} />
 
-          {error && <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</div>}
-          {success && <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">{success}</div>}
+          {error && <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{translateError(error)}</div>}
+          {success && <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">{tx(success)}</div>}
 
           <button disabled={submitting} className="w-full rounded-xl bg-orange-500 px-5 py-3 font-black transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60">
             {submitting ? tx("Creating account...") : tx("Create account")}
@@ -126,7 +127,7 @@ export default function RegisterPage() {
 function AuthInput({ label, ...props }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-bold text-gray-300">{label}</span>
+      <span className="mb-2 block text-sm font-bold text-gray-300">{tx(label)}</span>
       <input {...props} required className="w-full rounded-xl border border-[#2b3748] bg-[#0b0f14] px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15" />
     </label>
   );

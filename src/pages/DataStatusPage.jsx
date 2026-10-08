@@ -32,10 +32,10 @@ export default function DataStatusPage() {
   }, []);
 
   const cards = [
-    ["All registered teams", stats.total],
-    ["Generated automatically", stats.generated],
-    ["Already played", stats.withMatches],
-    ["Zero matches", stats.zeroMatches],
+    [tx("All registered teams"), stats.total],
+    [tx("Generated automatically"), stats.generated],
+    [tx("Already played"), stats.withMatches],
+    [tx("Zero matches"), stats.zeroMatches],
   ];
 
   return (
@@ -48,8 +48,8 @@ export default function DataStatusPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map(([label, value]) => (
-          <article key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.035] p-5">
-            <p className="text-sm font-bold text-gray-500">{label}</p>
+          <article key={label.split(" · ").map(part => tx(part)).join(" · ")} className="rounded-2xl border border-white/[0.07] bg-white/[0.035] p-5">
+            <p className="text-sm font-bold text-gray-500">{label.split(" · ").map(part => tx(part)).join(" · ")}</p>
             <p className="mt-2 text-3xl font-black text-white">{value}</p>
           </article>
         ))}
@@ -71,12 +71,12 @@ function StatusTable({ title, rows }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025]">
       <div className="border-b border-white/[0.07] px-5 py-4">
-        <h2 className="font-black">{title}</h2>
+        <h2 className="font-black">{tx(title)}</h2>
       </div>
       <div className="divide-y divide-white/[0.06]">
         {rows.map(([label, count]) => (
-          <div key={label} className="flex items-center justify-between gap-4 px-5 py-3">
-            <span className="text-sm font-semibold text-gray-300">{label}</span>
+          <div key={label.split(" · ").map(part => tx(part)).join(" · ")} className="flex items-center justify-between gap-4 px-5 py-3">
+            <span className="text-sm font-semibold text-gray-300">{label.split(" · ").map(part => tx(part)).join(" · ")}</span>
             <span className="rounded-lg bg-white/[0.06] px-2.5 py-1 text-sm font-black text-white">{count}</span>
           </div>
         ))}

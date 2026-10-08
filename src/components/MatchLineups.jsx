@@ -248,7 +248,7 @@ function CompareStatRow({ label, value1, value2, decimals }) {
       </div>
 
       <div className="text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7185a0]">
-        {label}
+        {tx(label)}
       </div>
 
       <div className="text-left text-sm font-black text-white">

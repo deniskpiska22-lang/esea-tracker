@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { tx, tf } from "../i18n/translate.js";
 import {
@@ -223,7 +224,7 @@ function StatsPage() {
 
         {error && (
           <div className="mb-5 rounded-xl border border-yellow-500/20 bg-yellow-500/5 px-4 py-3 text-sm text-yellow-300">
-            {error}{tx(". Saved match data is shown. ")}</div>
+            {translateError(error)}{tx(". Saved match data is shown. ")}</div>
         )}
 
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

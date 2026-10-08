@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useEffect, useMemo, useState } from "react";
@@ -307,7 +308,7 @@ function MatchesPage() {
         )}
 
         {!loading && errorMessage && (
-          <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">{tx(" Could not load matches from Supabase: ")}{errorMessage}
+          <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">{tx(" Could not load matches from Supabase: ")}{translateError(errorMessage)}
           </div>
         )}
 

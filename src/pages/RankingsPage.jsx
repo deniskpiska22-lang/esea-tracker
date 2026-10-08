@@ -1,4 +1,4 @@
-import { tf, tx } from "../i18n/translate.js";
+import { tx, translateError, tf } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
@@ -774,7 +774,7 @@ function RankingsPage() {
 
         const name =
           getRatingRowName(ratingRow) || staticTeam?.name ||
-          "Unknown team";
+          tx("Unknown team");
 
         const slug =
           staticTeam?.slug ??
@@ -812,7 +812,7 @@ function RankingsPage() {
           country,
           region:
             ratingRow.region ?? REGION_BY_COUNTRY[country] ??
-            "Other",
+            tx("Other"),
           division,
           points: rating,
           pointsChange: getPointsChange(ratingRow, changePeriod),
@@ -870,7 +870,7 @@ const teamCountByRegion = useMemo(() => {
   const counts = {};
 
   sortedTeams.forEach((team) => {
-    if (!team.region || team.region === "Other") {
+    if (!team.region || team.region === tx("Other")) {
       return;
     }
 
@@ -1321,7 +1321,7 @@ useEffect(() => {
             <div className="font-semibold text-red-400">{tx(" Failed to load rankings ")}</div>
 
             <div className="mt-2 text-sm text-red-300/80">
-              {error}
+              {translateError(error)}
             </div>
           </div>
         ) : (

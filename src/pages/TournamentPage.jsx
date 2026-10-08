@@ -1,3 +1,4 @@
+import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -76,7 +77,7 @@ function InfoPill({ label, value }) {
 
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.035] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-sm transition hover:border-orange-400/20 hover:bg-white/[0.05]">
-      <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
+      <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{tx(label)}</span>
       <span className="mt-1 block text-sm font-black text-slate-100">{value}</span>
     </div>
   );
@@ -93,9 +94,9 @@ function Accordion({ title, subtitle, defaultOpen = true, children }) {
         className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition hover:bg-white/[0.025] sm:px-7"
       >
         <div>
-          <div className="flex items-center gap-3"><span className="h-6 w-1 rounded-full bg-gradient-to-b from-orange-400 to-orange-600" /><h2 className="text-xl font-black tracking-tight text-white sm:text-[22px]">{title}</h2></div>
+          <div className="flex items-center gap-3"><span className="h-6 w-1 rounded-full bg-gradient-to-b from-orange-400 to-orange-600" /><h2 className="text-xl font-black tracking-tight text-white sm:text-[22px]">{tx(title)}</h2></div>
           {subtitle && (
-            <p className="mt-1.5 pl-4 text-xs font-semibold text-slate-500">{subtitle}</p>
+            <p className="mt-1.5 pl-4 text-xs font-semibold text-slate-500">{tx(subtitle)}</p>
           )}
         </div>
 
@@ -183,7 +184,7 @@ function TeamAttendingCard({ team }) {
           )
         ) : (
           team?.region && (
-            <div className="text-xs text-slate-600">{team.region}</div>
+            <div className="text-xs text-slate-600">{tx(team.region)}</div>
           )
         )}
       </div>
@@ -656,7 +657,7 @@ function TournamentPage() {
               </h1>
 
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                <InfoPill label={tx("Location")} value={tournament.location} />
+                <InfoPill label={tx("Location")} value={tx(tournament.location)} />
                 <InfoPill
                   label={tx("Dates")}
                   value={formatDateRange(
@@ -686,7 +687,7 @@ function TournamentPage() {
             <Accordion title={tx("Overview")}>
               <div className="p-5 sm:p-6">
                 <p className="max-w-4xl text-[15px] leading-8 text-slate-300">
-                  {tournament.description}
+                  {tx(tournament.description)}
                 </p>
               </div>
             </Accordion>
@@ -722,7 +723,7 @@ function TournamentPage() {
             <h2 className="px-1 text-lg font-black text-slate-400">{tx(" Group Stage ")}</h2>
 
             {groups.map((group) => (
-              <Accordion key={group.name} title={group.name}>
+              <Accordion key={group.name} title={translateTournamentText(group.name)}>
                 <GroupSection group={group} />
               </Accordion>
             ))}
@@ -775,7 +776,7 @@ function TournamentPage() {
                     <div className="text-xs font-black uppercase tracking-wide text-slate-500">{tx(" Group stage ")}</div>
                     <div className="mt-2 space-y-1 text-sm text-slate-300">
                       {tournament.formats.groupStage.map((line, index) => (
-                        <div key={index}>{line}</div>
+                        <div key={index}>{tx(line)}</div>
                       ))}
                     </div>
                   </div>
@@ -786,7 +787,7 @@ function TournamentPage() {
                     <div className="text-xs font-black uppercase tracking-wide text-slate-500">{tx(" Playoffs ")}</div>
                     <div className="mt-2 space-y-1 text-sm text-slate-300">
                       {tournament.formats.playoffs.map((line, index) => (
-                        <div key={index}>{line}</div>
+                        <div key={index}>{tx(line)}</div>
                       ))}
                     </div>
                   </div>

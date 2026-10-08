@@ -150,7 +150,7 @@ function StatCard({ label, value, description, icon }) {
       <div className="relative">
         <div className="flex items-center justify-between">
           <span className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-            {label}
+            {tx(label)}
           </span>
 
           <span className="text-slate-600 transition group-hover:text-orange-400">
@@ -162,7 +162,7 @@ function StatCard({ label, value, description, icon }) {
           {value}
         </div>
 
-        <div className="mt-1 text-xs text-slate-500">{description}</div>
+        <div className="mt-1 text-xs text-slate-500">{tx(description)}</div>
       </div>
     </div>
   );
@@ -255,13 +255,13 @@ function TournamentListRow({ tournament, status = "upcoming", featured = false }
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
               <LocationIcon />
-              {tournament.location || tx("Location TBD")}
+              {tx(tournament.location) || tx("Location TBD")}
             </span>
 
             {teamsCount > 0 && (
               <span className="flex items-center gap-1.5">
                 <TeamsIcon />
-                {teamsCount} teams
+                {teamsCount} {tx("teams")}
               </span>
             )}
           </div>
@@ -328,7 +328,7 @@ function SectionHeading({
                   : "bg-orange-500"
             }`}
           />
-          {eyebrow}
+          {tx(eyebrow)}
         </div>
 
         <h2
@@ -336,11 +336,11 @@ function SectionHeading({
             muted ? "text-slate-400" : "text-white"
           }`}
         >
-          {title}
+          {tx(title)}
         </h2>
 
         {description && (
-          <p className="mt-1 text-sm text-slate-500">{description}</p>
+          <p className="mt-1 text-sm text-slate-500">{tx(description)}</p>
         )}
       </div>
 

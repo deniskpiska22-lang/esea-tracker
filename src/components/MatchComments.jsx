@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tf, tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import {
@@ -349,7 +350,7 @@ export default function MatchComments({ matchId }) {
 
         {error && (
           <div className="mt-4 rounded-xl border border-yellow-500/25 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-300">
-            {error}
+            {translateError(error)}
           </div>
         )}
 

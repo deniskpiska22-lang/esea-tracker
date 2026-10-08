@@ -27,7 +27,7 @@ function HeadToHeadRow({ row, team1, team2, stripe }) {
         >
           {team1.name}
         </span>
-        <span className="shrink-0 text-xs text-slate-600">vs</span>
+        <span className="shrink-0 text-xs text-slate-600">{tx("vs")}</span>
         <span
           className={`truncate font-semibold ${
             row.leftWon ? "text-slate-500" : "text-white"
@@ -49,7 +49,7 @@ function HeadToHeadRow({ row, team1, team2, stripe }) {
         )}
         {row.overtime && (
           <span className="hidden rounded border border-[#2a3546] px-1.5 py-0.5 text-[10px] font-bold uppercase text-slate-400 sm:inline">
-            OT
+            {tx("OT")}
           </span>
         )}
         <span className="font-black">

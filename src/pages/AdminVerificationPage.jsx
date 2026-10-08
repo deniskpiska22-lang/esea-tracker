@@ -1,4 +1,4 @@
-import { tf, tx } from "../i18n/translate.js";
+import { tx, translateError, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import {
   useCallback,
@@ -95,19 +95,19 @@ const ROLE_LABELS = {
 const ACCOUNT_TYPE_LABELS = {
   fan: "Fan",
   player: "Player",
-  staff: "Team Staff",
+  staff: tx("Team Staff"),
 };
 
 const SOCIAL_PLATFORM_OPTIONS = [
   "FACEIT",
   "HLTV",
   "Liquipedia",
-  "Website",
+  tx("Website"),
   "Twitter/X",
   "Instagram",
   "Discord",
   "Telegram",
-  "Other",
+  tx("Other"),
 ];
 
 function formatDate(value, withTime = true) {
@@ -261,7 +261,7 @@ function MetricCard({
 
       <div className="relative">
         <div className="text-[11px] font-black uppercase tracking-[0.16em] text-gray-500">
-          {label}
+          {tx(label)}
         </div>
 
         <div className="mt-3 text-4xl font-black tracking-tight text-white">
@@ -269,7 +269,7 @@ function MetricCard({
         </div>
 
         <div className="mt-2 text-xs text-gray-600">
-          {hint}
+          {tx(hint)}
         </div>
       </div>
     </div>
@@ -286,10 +286,10 @@ function EmptyState({
         ◇
       </div>
       <div className="mt-4 text-lg font-black text-white">
-        {title}
+        {tx(title)}
       </div>
       <p className="mt-2 max-w-md text-sm leading-6 text-gray-600">
-        {text}
+        {tx(text)}
       </p>
     </div>
   );
@@ -1097,7 +1097,7 @@ export default function AdminVerificationPage() {
       }
 
       setTeamProfileSuccess(
-        "Description saved."
+        tx("Description saved.")
       );
     } catch (error) {
       console.error(
@@ -1150,7 +1150,7 @@ export default function AdminVerificationPage() {
 
     const cleaned = socialLinksDraft
       .map((row) => ({
-        platform: row.platform || "Other",
+        platform: row.platform || tx("Other"),
         url: String(row.url || "").trim(),
       }))
       .filter((row) => row.url);
@@ -1169,7 +1169,7 @@ export default function AdminVerificationPage() {
       }
 
       setSocialLinksDraft(cleaned);
-      setTeamProfileSuccess("Social links saved.");
+      setTeamProfileSuccess(tx("Social links saved."));
     } catch (error) {
       console.error(
         "Failed to save social links:",
@@ -1229,7 +1229,7 @@ export default function AdminVerificationPage() {
         )
       );
 
-      setTeamProfileSuccess("Photo updated.");
+      setTeamProfileSuccess(tx("Photo updated."));
     } catch (error) {
       console.error(
         "Failed to save player photo:",
@@ -1398,13 +1398,13 @@ export default function AdminVerificationPage() {
           <div className="p-4 md:p-7">
             {error && (
               <div className="mb-5 rounded-2xl border border-red-500/25 bg-red-500/10 p-4 text-sm text-red-300">
-                {error}
+                {translateError(error)}
               </div>
             )}
 
             {success && (
               <div className="mb-5 rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-4 text-sm text-emerald-300">
-                {success}
+                {tx(success)}
               </div>
             )}
 
@@ -1727,7 +1727,7 @@ export default function AdminVerificationPage() {
                       </div>
 
                       <span className="rounded-xl bg-amber-500/10 px-3 py-2 text-xs font-black text-amber-300">
-                        {counts.pending} pending
+                        {counts.pending} {tx("pending")}
                       </span>
                     </div>
 
@@ -2211,10 +2211,10 @@ export default function AdminVerificationPage() {
                             </td>
 
                             <td className="px-6 py-4 text-sm font-bold text-gray-400">
-                              {ACCOUNT_TYPE_LABELS[
+                              {tx(ACCOUNT_TYPE_LABELS[
                                 item.account_type
                               ] ||
-                                item.account_type}
+                                item.account_type)}
                               {item.is_admin
                                 ? tx(" · Admin")
                                 : ""}
@@ -2400,13 +2400,13 @@ export default function AdminVerificationPage() {
 
                           {teamProfileError && (
                             <div className="rounded-2xl border border-red-500/25 bg-red-500/10 p-4 text-sm text-red-300">
-                              {teamProfileError}
+                              {translateError(teamProfileError)}
                             </div>
                           )}
 
                           {teamProfileSuccess && (
                             <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-4 text-sm text-emerald-300">
-                              {teamProfileSuccess}
+                              {tx(teamProfileSuccess)}
                             </div>
                           )}
 
@@ -2472,10 +2472,10 @@ export default function AdminVerificationPage() {
                                       {SOCIAL_PLATFORM_OPTIONS.map(
                                         (option) => (
                                           <option
-                                            key={option}
-                                            value={option}
+                                            key={tx(option)}
+                                            value={tx(option)}
                                           >
-                                            {option}
+                                            {tx(option)}
                                           </option>
                                         )
                                       )}

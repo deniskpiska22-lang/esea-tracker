@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
@@ -88,7 +89,7 @@ export default function LoginPage() {
             <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required autoComplete="current-password" placeholder={tx("Your password")} className="w-full rounded-xl border border-[#2b3748] bg-[#0b0f14] px-4 py-3 text-white outline-none transition placeholder:text-gray-600 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15" />
           </label>
 
-          {error && <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</div>}
+          {error && <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{translateError(error)}</div>}
 
           <button disabled={submitting} className="w-full rounded-xl bg-orange-500 px-5 py-3 font-black transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60">
             {submitting ? tx("Log in...") : tx("Log in")}

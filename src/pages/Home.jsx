@@ -199,7 +199,7 @@ function mergeRatingTeams(ratingRows) {
       const name =
         staticTeam?.name ||
         getRatingRowName(ratingRow) ||
-        "Unknown team";
+        tx("Unknown team");
 
       const slug =
         staticTeam?.slug ||
@@ -924,7 +924,7 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
     : tx("TBD");
 
   const dateRange = !tournament.startDate
-    ? "Date to be announced"
+    ? tx("Date to be announced")
     : !tournament.endDate || tournament.endDate === tournament.startDate
       ? formatDate(tournament.startDate)
       : `${formatDate(tournament.startDate)} – ${formatDate(tournament.endDate)}`;
@@ -1081,7 +1081,7 @@ function SectionTitle({ title, action }) {
   return (
     <div className="mb-4 flex items-center justify-between gap-3">
       <h2 className="text-xl font-black tracking-[-0.025em] text-white md:text-[22px]">
-        {title}
+        {tx(title)}
       </h2>
       {action}
     </div>
@@ -1372,7 +1372,7 @@ function MatchCard({ match }) {
 
         <div className="text-center">
           <div className="text-[10px] font-black uppercase tracking-wider text-slate-600">
-            vs
+            {tx("vs")}
           </div>
           <div className="mt-1 text-xs font-black text-orange-400">
             BO{match.bestOf || "?"}
@@ -1674,11 +1674,11 @@ function NewsCard({
             large ? "text-3xl" : "text-lg"
           }`}
         >
-          {title}
+          {tx(title)}
         </h3>
 
         <p className="mt-3 text-sm leading-6 text-slate-500">
-          {text}
+          {tx(text)}
         </p>
 
         <div className="mt-5 text-xs font-black text-orange-400 opacity-80 transition group-hover:translate-x-1 group-hover:opacity-100">{tx(" Read more → ")}</div>
@@ -2006,7 +2006,7 @@ function Home() {
         Array.isArray(ratingData) ? ratingData : []
       ).map((row) => {
         const nickname =
-          row.nickname || "Unknown player";
+          row.nickname || tx("Unknown player");
 
         return {
           playerId: row.player_id,
@@ -2228,7 +2228,7 @@ function Home() {
 
                 <div className="flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-red-400">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
-                  {liveMatches.length} live
+                  {liveMatches.length} {tx("live")}
                 </div>
               </div>
 
@@ -2370,15 +2370,15 @@ function Home() {
               tag={tx("STATISTICS")}
               title={
                 popularRecentMatch
-                  ? `${popularRecentMatch.team1?.name || "Team 1"} vs ${
-                      popularRecentMatch.team2?.name || "Team 2"
+                  ? `${popularRecentMatch.team1?.name || tx("Team 1")} vs ${
+                      popularRecentMatch.team2?.name || tx("Team 2")
                     }`
-                  : "MVP, ADR, and K/D are available in the Match Center"
+                  : tx("MVP, ADR, and K/D are available in the Match Center")
               }
               text={
                 popularRecentMatch
-                  ? "Open the most popular recent completed match. Automatic wins and walkovers are excluded."
-                  : "Statistics appear after FACEIT publishes the match data."
+                  ? tx("Open the most popular recent completed match. Automatic wins and walkovers are excluded.")
+                  : tx("Statistics appear after FACEIT publishes the match data.")
               }
             />
           </div>

@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
@@ -456,12 +457,12 @@ function normalizeDisplayedMapScore(map, displayTeam1, displayTeam2) {
     opponentScore,
     team1: {
       id: left.id || displayTeam1?.id || null,
-      name: left.name || displayTeam1?.name || "Team 1",
+      name: left.name || displayTeam1?.name || tx("Team 1"),
       score: teamScore,
     },
     team2: {
       id: right.id || displayTeam2?.id || null,
-      name: right.name || displayTeam2?.name || "Team 2",
+      name: right.name || displayTeam2?.name || tx("Team 2"),
       score: opponentScore,
     },
     won: teamScore > opponentScore,
@@ -853,7 +854,7 @@ function VoteCard({ matchId, team1, team2 }) {
               <div className="mt-2 truncate font-bold">{team.name}</div>
             </div>
           ))}
-          <div className="col-start-2 row-start-1 font-black text-gray-400">VS</div>
+          <div className="col-start-2 row-start-1 font-black text-gray-400">{tx("vs")}</div>
         </div>
 
         {loading ? (
@@ -914,7 +915,7 @@ function VoteCard({ matchId, team1, team2 }) {
 
             {error && (
               <div className="mt-5 text-center text-sm text-yellow-400">
-                {error}
+                {translateError(error)}
               </div>
             )}
           </>
@@ -2065,7 +2066,7 @@ function UpcomingMatchPage() {
 
         {liveError && (
           <div className="mt-2 text-sm text-red-400">
-            {liveError}
+            {translateError(liveError)}
           </div>
         )}
       </div>

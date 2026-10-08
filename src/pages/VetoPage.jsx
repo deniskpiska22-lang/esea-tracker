@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useMemo } from "react";
@@ -218,7 +219,7 @@ function HeroStatCard({ label, value, valueClass }) {
   return (
     <div className="min-w-[108px] rounded-lg border border-white/5 bg-[#151e29] px-3 py-2">
       <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#587094]">
-        {label}
+        {tx(label)}
       </div>
       <div
         className={`mt-0.5 truncate text-base font-black ${
@@ -247,11 +248,11 @@ function BanOrderFlow({
 
   return (
     <section className="rounded-xl border border-white/5 bg-[#111923] p-4 sm:p-6">
-      <SectionEyebrow>{eyebrow}</SectionEyebrow>
-      <h2 className="mt-1 text-lg font-black sm:text-xl">{title}</h2>
+      <SectionEyebrow>{tx(eyebrow)}</SectionEyebrow>
+      <h2 className="mt-1 text-lg font-black sm:text-xl">{tx(title)}</h2>
       {description && (
         <p className="mt-1 max-w-2xl text-xs leading-relaxed text-[#6e87ad]">
-          {description}
+          {tx(description)}
         </p>
       )}
 
@@ -642,7 +643,7 @@ function VetoPage() {
 
           {error && (
             <div className="mt-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-sm text-yellow-300">
-              {error}{tx(". Saved match data is shown. ")}</div>
+              {translateError(error)}{tx(". Saved match data is shown. ")}</div>
           )}
         </section>
 

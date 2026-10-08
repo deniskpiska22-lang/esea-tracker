@@ -1,3 +1,4 @@
+import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { Link } from "react-router-dom";
 
@@ -90,7 +91,7 @@ export function Bracket({ rounds }) {
       {list.map((round, roundIndex) => (
         <div key={round.name || roundIndex} className="flex shrink-0 flex-col">
           <div className="mb-3 text-center text-xs font-black uppercase tracking-wide text-slate-500">
-            {round.name}
+            {translateTournamentText(round.name)}
           </div>
 
           <div className="flex flex-1 flex-col justify-around gap-4">

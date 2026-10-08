@@ -265,7 +265,7 @@ function RankCard({
 
       <div className="flex items-center justify-between gap-3">
         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
-          {eyebrow}
+          {tx(eyebrow)}
         </div>
 
         <RankChange value={change} />

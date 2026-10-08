@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { tx } from "../i18n/translate.js";
 import {
@@ -482,7 +483,7 @@ export default function VerificationRequestPage() {
                           : "border-[#2b394b] text-gray-300 hover:border-[#41516a]"
                       } disabled:opacity-60`}
                     >
-                      {label}
+                      {tx(label)}
                     </button>
                   ))}
                 </div>
@@ -671,13 +672,13 @@ export default function VerificationRequestPage() {
 
               {error && (
                 <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
-                  {error}
+                  {translateError(error)}
                 </div>
               )}
 
               {success && (
                 <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-300">
-                  {success}
+                  {tx(success)}
                 </div>
               )}
 

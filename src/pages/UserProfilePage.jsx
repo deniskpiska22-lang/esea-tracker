@@ -1,3 +1,4 @@
+import { translateError } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { tx } from "../i18n/translate.js";
 import {
@@ -187,12 +188,12 @@ function PanelTitle({
       <div>
         {eyebrow && (
           <div className="text-[10px] font-black uppercase tracking-[0.28em] text-orange-400">
-            {eyebrow}
+            {tx(eyebrow)}
           </div>
         )}
 
         <h2 className="mt-1 text-xl font-black tracking-tight text-white">
-          {title}
+          {tx(title)}
         </h2>
       </div>
 
@@ -314,7 +315,7 @@ function MetricCard({
 
       <div className="relative">
         <div className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-500">
-          {label}
+          {tx(label)}
         </div>
 
         <div className="mt-2 text-3xl font-black tracking-tight text-white">
@@ -343,11 +344,11 @@ function EmptyState({
       </div>
 
       <div className="mt-4 font-black text-white">
-        {title}
+        {tx(title)}
       </div>
 
       <p className="mt-2 max-w-md text-sm leading-6 text-gray-500">
-        {text}
+        {tx(text)}
       </p>
 
       {action}
@@ -912,7 +913,7 @@ export default function UserProfilePage() {
     return (
       <main className="min-h-screen bg-[#060a0f] px-4 py-12 text-white">
         <div className="mx-auto max-w-3xl rounded-2xl border border-red-500/20 bg-red-500/10 p-6 text-center text-red-300">
-          {error}
+          {translateError(error)}
         </div>
       </main>
     );

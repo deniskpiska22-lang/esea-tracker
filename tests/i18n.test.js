@@ -59,3 +59,15 @@ test('sitemap expansion remains under URL limit and translated rewrites reach th
   const privatePage=localizeSeo(getSiteSeoMetadata('/login'),'de');
   assert.equal(privatePage.alternates.length,0);
 });
+test('imported tournament descriptions and formats are translated while source links stay intact',async()=>{
+  const {default:tournaments}=await import('../src/data/tournaments.generated.json',{with:{type:'json'}});
+  for(const tournament of tournaments) for(const {code} of LANGUAGES) {
+    if(code==='en') continue;
+    if(tournament.description) {
+      const description=translateText(tournament.description,code);
+      assert.notEqual(description,tournament.description,`${tournament.id}: ${code}`);
+      for(const url of tournament.description.match(/https:\/\/[^\s)]+/g)||[]) assert.ok(description.includes(url),`${code}: ${url}`);
+    }
+    for(const lines of Object.values(tournament.formats||{})) for(const line of lines||[]) assert.notEqual(translateText(line,code),line);
+  }
+});
