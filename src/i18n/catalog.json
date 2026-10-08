@@ -3497,11 +3497,11 @@
   },
   "Playoffs": {
     "ru": "Плей-офф",
-    "de": "Playoffs",
-    "pt": "Playoffs",
+    "de": "Finalrunde",
+    "pt": "Fase eliminatória",
     "es": "Eliminatorias",
-    "fr": "Playoffs",
-    "it": "Playoff"
+    "fr": "Phases finales",
+    "it": "Fase finale"
   },
   "Group Stage": {
     "ru": "Групповой этап",
@@ -6934,5 +6934,53 @@
     "es": "contra",
     "fr": "contre",
     "it": "contro"
+  },
+  "Ready": {
+    "ru": "Готов",
+    "de": "Bereit",
+    "pt": "Pronto",
+    "es": "Listo",
+    "fr": "Prêt",
+    "it": "Pronto"
+  },
+  "Map veto": {
+    "ru": "Выбор и запрет карт",
+    "de": "Kartenauswahl und Sperren",
+    "pt": "Escolha e veto de mapas",
+    "es": "Selección y veto de mapas",
+    "fr": "Choix et veto des cartes",
+    "it": "Scelta e veto delle mappe"
+  },
+  "Preparing match": {
+    "ru": "Подготовка матча",
+    "de": "Matchvorbereitung",
+    "pt": "Preparando partida",
+    "es": "Preparando partido",
+    "fr": "Préparation du match",
+    "it": "Preparazione della partita"
+  },
+  "Cancelled": {
+    "ru": "Отменён",
+    "de": "Abgesagt",
+    "pt": "Cancelado",
+    "es": "Cancelado",
+    "fr": "Annulé",
+    "it": "Annullato"
+  },
+  "Scheduled": {
+    "ru": "Запланирован",
+    "de": "Geplant",
+    "pt": "Agendado",
+    "es": "Programado",
+    "fr": "Programmé",
+    "it": "Programmato"
+  },
+  "Paused": {
+    "ru": "Приостановлен",
+    "de": "Pausiert",
+    "pt": "Pausado",
+    "es": "Pausado",
+    "fr": "En pause",
+    "it": "In pausa"
   }
 }

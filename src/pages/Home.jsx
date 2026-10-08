@@ -1,3 +1,4 @@
+import { translateMatchStatus } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
@@ -1229,9 +1230,7 @@ function HeroMatch({ match }) {
 }
 
 function LiveCard({ match }) {
-  const statusLabel = String(match.status || "LIVE")
-    .replace(/^MATCH_STATUS_/, "")
-    .toUpperCase();
+  const statusLabel = translateMatchStatus(match.status);
 
   const elapsed = match.startedAt ? formatRelative(match.startedAt) : "";
   const map = match.map || match.currentMap || "";
@@ -2370,7 +2369,7 @@ function Home() {
               tag={tx("STATISTICS")}
               title={
                 popularRecentMatch
-                  ? `${popularRecentMatch.team1?.name || tx("Team 1")} vs ${
+                  ? `${popularRecentMatch.team1?.name || tx("Team 1")} ${tx("vs")} ${
                       popularRecentMatch.team2?.name || tx("Team 2")
                     }`
                   : tx("MVP, ADR, and K/D are available in the Match Center")

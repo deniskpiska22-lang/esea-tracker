@@ -647,7 +647,7 @@ function TournamentPage() {
                     <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />{tx(" Live ")}</span>
                 ) : (
                   <span className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
-                    {status || "upcoming"}
+                    {tx(status === "finished" ? "Finished" : "Upcoming")}
                   </span>
                 )}
               </div>
@@ -735,7 +735,7 @@ function TournamentPage() {
           <Accordion
             title={tx("Teams attending")}
             subtitle={
-              teamsList.length > 0 ? `${teamsList.length} teams` : undefined
+              teamsList.length > 0 ? `${teamsList.length} ${tx("teams")}` : undefined
             }
           >
             {teamsList.length > 0 ? (

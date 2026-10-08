@@ -289,7 +289,7 @@ function StatsPage() {
                       <Link
                         key={match.matchId || match.id}
                         to={`/match/${match.matchId || match.id}`}
-                        title={`vs ${match.opponentName || "Unknown"}`}
+                        title={`${tx("vs")} ${match.opponentName || "Unknown"}`}
                         className={`flex h-11 min-w-11 items-center justify-center rounded-xl border px-3 text-sm font-black transition hover:-translate-y-0.5 ${
                           match.won
                             ? "border-emerald-500/35 bg-emerald-500/10 text-emerald-400 hover:border-emerald-400/60"

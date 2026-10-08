@@ -26,6 +26,13 @@ export function translateBackLabel(value) {
   const team = String(value || '').match(/^← Back to (.+)$/);
   return team ? tf('← Back to {0}', team[1]) : translateText(value);
 }
+export function translateMatchStatus(value) {
+  const status = String(value || 'LIVE').replace(/^MATCH_STATUS_/, '').toUpperCase();
+  const label = { LIVE: 'Live', ONGOING: 'Live', FINISHED: 'Finished', READY: 'Ready',
+    VOTING: 'Map veto', CONFIGURING: 'Preparing match', CANCELLED: 'Cancelled',
+    SCHEDULED: 'Scheduled', PAUSED: 'Paused' }[status];
+  return translateText(label || 'Match Information');
+}
 const localizedMessages = new Set(Object.values(catalog).flatMap(row => Object.values(row)));
 export function translateError(value) {
   if (!value) return value;

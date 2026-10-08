@@ -1,4 +1,5 @@
 import { localizeSeo } from '../src/i18n/seo.js';
+import { translateText } from '../src/i18n/translate.js';
 import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
 import { readFile } from 'node:fs/promises';
 import process from 'node:process';
@@ -14,12 +15,12 @@ export default async function handler(req,res) {
   const kind = ['player','team','match','page'].includes(req.query.kind) ? req.query.kind : 'team';
   const key = String(req.query.key || '');
   const section = String(req.query.section || '');
-  if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end('Not found');
+  if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end(translateText('Page not found',language));
   try {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
     if (kind==='page') {
       const pathname = key==='home' ? '/' : `/${key}`;
-      if (!(pathname in pageMetadata)) return res.status(404).end('Not found');
+      if (!(pathname in pageMetadata)) return res.status(404).end(translateText('Page not found',language));
       const metadata = localizeSeo(await loadSiteMetadata(seoClient(),pathname), language);
       res.setHeader('Content-Type','text/html; charset=utf-8');
       res.setHeader('Cache-Control','public, max-age=0, s-maxage=60, stale-while-revalidate=60');
@@ -51,7 +52,7 @@ export default async function handler(req,res) {
     console.error('[seo-profile]',error.message);
     res.setHeader('Cache-Control','no-store');
     res.setHeader('Retry-After','60');
-    return res.status(503).end('Profile temporarily unavailable');
+    return res.status(503).end(translateText('Could not complete the request. Please try again.',language));
   }
 }
 
