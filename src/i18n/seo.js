@@ -37,9 +37,16 @@ export function localizeSeo(metadata, language, {kind, entity, section = ''} = {
   const inferred = kind || (/^\/teams\//.test(pathname) ? 'team' : /^\/players\//.test(pathname) ? 'player' : /^\/match\//.test(pathname) ? 'match' : 'page');
   let title,description,heading;
   if (inferred==='page') {
-    const label = DIRECTORY_LABELS[pathname];
+    const label = DIRECTORY_LABELS[pathname] || ({
+      '/login': 'Log in', '/register': 'Create account',
+      '/auth/callback': 'Confirming your account…', '/data-status': 'Season import status',
+      '/admin/verifications': 'Admin panel',
+    }[pathname]) || (/^\/calendar\/[^/]+$/.test(pathname) ? 'Tournament' :
+      /^\/profile\/[^/]+\/edit$/.test(pathname) ? 'Edit profile' :
+      /^\/profile\/[^/]+\/verification$/.test(pathname) ? 'Verification' :
+      /^\/profile\/[^/]+$/.test(pathname) ? 'My profile' : null);
     heading = t(label || 'Page not found');
-    title = label ? `${heading}${pathname==='/about' ? '' : ' — ESEA CS2'} | ESEA Tracker` : `${heading} | ESEA Tracker`;
+    title = label ? `${heading}${DIRECTORY_LABELS[pathname] && pathname!=='/about' ? ' — ESEA CS2' : ''} | ESEA Tracker` : `${heading} | ESEA Tracker`;
     description = label ? `${heading}. ${COPY[language].intro}` : t('This page is unavailable.');
   } else {
     const fallbackName = metadata.heading?.split(' — ')[0] || metadata.title?.split(/ CS2 | — /)[0] || 'CS2';

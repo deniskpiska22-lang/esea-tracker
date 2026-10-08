@@ -71,3 +71,13 @@ test('imported tournament descriptions and formats are translated while source l
     for(const lines of Object.values(tournament.formats||{})) for(const line of lines||[]) assert.notEqual(translateText(line,code),line);
   }
 });
+test('existing account and tournament routes have localized titles instead of not-found metadata',()=>{
+  for(const route of ['/login','/register','/auth/callback','/data-status','/admin/verifications','/calendar/known-event','/profile/player','/profile/player/edit','/profile/player/verification']) {
+    for(const {code} of LANGUAGES) {
+      const metadata=localizeSeo(getSiteSeoMetadata(route),code);
+      assert.ok(!metadata.title.includes(translateText('Page not found',code)),`${route}: ${code}`);
+      assert.ok(metadata.robots.includes('noindex'));
+      assert.equal(metadata.alternates.length,0);
+    }
+  }
+});
