@@ -18,7 +18,7 @@ function analytics(kind, data) {
   window.dataLayer.push({ event, ...data });
 }
 
-function Banner({ placement, creativeLanguage, siteLanguage, country, page, className }) {
+function Banner({ placement, creativeLanguage, siteLanguage, country, page, className, stretch = false }) {
   const imageRef = useRef(null);
   const label = labels[siteLanguage] || labels.en;
   const data = { placement, creative: `1win_${creativeLanguage}`, language: creativeLanguage, site_language: siteLanguage, country, page };
@@ -47,8 +47,8 @@ function Banner({ placement, creativeLanguage, siteLanguage, country, page, clas
   }, [key, placement, creativeLanguage, siteLanguage, country, page]);
   return <aside className={className} aria-label={`${label} 1win · 18+`}>
     <div className="px-2 py-1.5 text-center text-xs text-slate-400">{label} · 18+</div>
-    <a href={`/api/onewin?kind=click&lang=${creativeLanguage}&placement=${placement}`} target="_blank" rel="sponsored noopener noreferrer nofollow" onClick={() => analytics('click', data)} className="block focus-visible:outline-2 focus-visible:outline-sky-400">
-      <img ref={imageRef} src={`/api/onewin?kind=image&lang=${creativeLanguage}`} alt={`1win · ${label} · 18+`} width={creativeLanguage === 'ar' ? 2000 : 1080} height={creativeLanguage === 'ar' ? 2000 : 1920} className="mx-auto block h-auto max-h-[calc(100dvh-130px)] w-full object-contain" loading="lazy" decoding="async" />
+    <a href={`/api/onewin?kind=click&lang=${creativeLanguage}&placement=${placement}`} target="_blank" rel="sponsored noopener noreferrer nofollow" onClick={() => analytics('click', data)} className={`block focus-visible:outline-2 focus-visible:outline-sky-400 ${stretch ? "min-h-0 flex-1" : ""}`}>
+      <img ref={imageRef} src={`/api/onewin?kind=image&lang=${creativeLanguage}`} alt={`1win · ${label} · 18+`} width={creativeLanguage === 'ar' ? 2000 : 1080} height={creativeLanguage === 'ar' ? 2000 : 1920} className={stretch ? "block h-full w-full object-fill" : "mx-auto block h-auto max-h-[calc(100dvh-130px)] w-full object-contain"} loading="lazy" decoding="async" />
     </a>
   </aside>;
 }
@@ -64,6 +64,6 @@ export default function OneWinAds({ mobile = false }) {
   const creativeLanguage = selectAdLanguage(language, explicit, navigator.languages || [navigator.language]);
   const props = { creativeLanguage, siteLanguage: language, country: policy.country, page: pathname };
   if (mobile) return <Banner {...props} placement="mobile_inline" className="mx-auto my-8 w-[min(65%,240px)] overflow-hidden rounded-xl border border-white/10 bg-[#05070a] min-[1200px]:hidden" />;
-  const rail = 'fixed top-[84px] z-20 hidden overflow-hidden rounded-xl border border-white/5 bg-[#05070a] min-[1200px]:block min-[1200px]:w-[calc((100vw-960px)/2-24px)] min-[1360px]:w-[calc((100vw-1040px)/2-24px)] min-[1600px]:w-[calc((100vw-1120px)/2-24px)] min-[1850px]:w-[calc((100vw-1180px)/2-24px)]';
-  return <><Banner {...props} placement="site_left_rail" className={`${rail} left-3`} /><Banner {...props} placement="site_right_rail" className={`${rail} right-3`} /></>;
+  const rail = 'fixed bottom-0 top-[84px] z-20 hidden flex-col overflow-hidden rounded-xl border border-white/5 bg-[#05070a] min-[1200px]:flex min-[1200px]:w-[calc((100vw-960px)/2-24px)] min-[1360px]:w-[calc((100vw-1040px)/2-24px)] min-[1600px]:w-[calc((100vw-1120px)/2-24px)] min-[1850px]:w-[calc((100vw-1180px)/2-24px)]';
+  return <><Banner {...props} placement="site_left_rail" stretch className={`${rail} left-3`} /><Banner {...props} placement="site_right_rail" stretch className={`${rail} right-3`} /></>;
 }
