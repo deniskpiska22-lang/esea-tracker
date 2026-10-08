@@ -323,6 +323,9 @@
   "functions": {
     "api/seo-profile.js": {
       "includeFiles": "dist/index.html"
+    },
+    "api/onewin.js": {
+      "includeFiles": "server/ad-creatives/*.jpeg"
     }
   }
 }

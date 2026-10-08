@@ -2,7 +2,7 @@
 export function getAdPolicy(countryHeader) {
   const country = typeof countryHeader === "string" ? countryHeader.trim().toUpperCase() : "";
   const knownCountry = /^[A-Z]{2}$/.test(country) && !["XX", "ZZ", "T1"].includes(country);
-  return { adsEnabled: knownCountry && country !== "RU" };
+  return { adsEnabled: knownCountry && country !== "RU", country: knownCountry ? country : null };
 }
 
 export default function handler(request, response) {
