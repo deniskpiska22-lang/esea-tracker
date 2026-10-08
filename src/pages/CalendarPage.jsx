@@ -1,3 +1,5 @@
+import { tf, tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { Link } from "react-router-dom";
 
 import tournaments from "../data/tournaments";
@@ -14,14 +16,14 @@ function formatDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
   }).format(date);
 }
 
 function formatDateRange(startDate, endDate) {
-  if (!startDate) return "Date TBD";
+  if (!startDate) return tx("Date TBD");
   if (!endDate || endDate === startDate) return formatDate(startDate);
 
   return `${formatDate(startDate)} – ${formatDate(endDate)}`;
@@ -31,10 +33,10 @@ function monthKey(value) {
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return "Date TBD";
+    return tx("Date TBD");
   }
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     month: "long",
     year: "numeric",
   }).format(date);
@@ -173,24 +175,18 @@ function StatusBadge({ status }) {
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-        </span>
-        Live
-      </span>
+        </span>{tx(" Live ")}</span>
     );
   }
 
   if (status === "finished") {
     return (
-      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-500/20 bg-slate-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
-        Finished
-      </span>
+      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-500/20 bg-slate-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">{tx(" Finished ")}</span>
     );
   }
 
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-orange-300">
-      Upcoming
-    </span>
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-orange-300">{tx(" Upcoming ")}</span>
   );
 }
 
@@ -233,7 +229,7 @@ function TournamentListRow({ tournament, status = "upcoming", featured = false }
   {tournament.logo ? (
     <img
       src={tournament.logo}
-      alt={`${tournament.name} logo`}
+      alt={tf("{0} logo", tournament.name)}
       className="h-full w-full object-contain p-2.5 transition duration-300 group-hover:scale-105"
     />
   ) : (
@@ -259,7 +255,7 @@ function TournamentListRow({ tournament, status = "upcoming", featured = false }
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
               <LocationIcon />
-              {tournament.location || "Location TBD"}
+              {tournament.location || tx("Location TBD")}
             </span>
 
             {teamsCount > 0 && (
@@ -273,9 +269,7 @@ function TournamentListRow({ tournament, status = "upcoming", featured = false }
 
         <div className="hidden shrink-0 items-center gap-5 sm:flex">
           <div className="text-right">
-            <div className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-600">
-              Event dates
-            </div>
+            <div className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-600">{tx(" Event dates ")}</div>
 
             <div className="mt-1 text-sm font-black text-slate-300">
               {formatDateRange(tournament.startDate, tournament.endDate)}
@@ -295,9 +289,7 @@ function TournamentListRow({ tournament, status = "upcoming", featured = false }
       </div>
 
       <div className="relative flex items-center justify-between border-t border-white/[0.05] px-4 py-2.5 sm:hidden">
-        <span className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-600">
-          Dates
-        </span>
+        <span className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-600">{tx(" Dates ")}</span>
 
         <span className="text-xs font-bold text-slate-400">
           {formatDateRange(tournament.startDate, tournament.endDate)}
@@ -354,7 +346,7 @@ function SectionHeading({
 
       {count != null && (
         <div className="w-fit rounded-full border border-white/[0.07] bg-white/[0.035] px-3 py-1.5 text-xs font-bold text-slate-400">
-          {count} {count === 1 ? "event" : "events"}
+          {tf(count === 1 ? tx("{0} event") : tx("{0} events"), count)}
         </div>
       )}
     </div>
@@ -373,9 +365,7 @@ function MonthSection({ month, items }) {
 
         <div className="flex min-w-0 flex-1 items-center justify-between gap-4">
           <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
-              Upcoming events
-            </div>
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">{tx(" Upcoming events ")}</div>
 
             <h2 className="mt-1 text-2xl font-black tracking-tight text-white">
               {month}
@@ -383,7 +373,7 @@ function MonthSection({ month, items }) {
           </div>
 
           <div className="rounded-full border border-white/[0.07] bg-white/[0.035] px-3 py-1.5 text-xs font-bold text-slate-500">
-            {items.length} {items.length === 1 ? "event" : "events"}
+            {tf(items.length === 1 ? tx("{0} event") : tx("{0} events"), items.length)}
           </div>
         </div>
       </div>
@@ -411,14 +401,9 @@ function EmptyCalendar() {
           <CalendarIcon />
         </div>
 
-        <h2 className="mt-5 text-xl font-black text-white">
-          No tournaments scheduled
-        </h2>
+        <h2 className="mt-5 text-xl font-black text-white">{tx(" No tournaments scheduled ")}</h2>
 
-        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
-          New tournaments will automatically appear here as soon as they are
-          added to the calendar.
-        </p>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">{tx(" New tournaments will automatically appear here as soon as they are added to the calendar. ")}</p>
       </div>
     </div>
   );
@@ -506,21 +491,12 @@ function CalendarPage() {
           <div className="relative grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1fr_360px] lg:items-center lg:px-10 lg:py-12">
             <div>
               <div className="flex w-fit items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/[0.08] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-orange-300">
-                <span className="h-1.5 w-1.5 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.9)]" />
-                CS2 tournament hub
-              </div>
+                <span className="h-1.5 w-1.5 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.9)]" />{tx(" CS2 tournament hub ")}</div>
 
-              <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
-                Event
-                <span className="block bg-gradient-to-r from-orange-400 via-orange-500 to-amber-300 bg-clip-text text-transparent">
-                  Calendar
-                </span>
+              <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[0.98] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">{tx(" Event ")}<span className="block bg-gradient-to-r from-orange-400 via-orange-500 to-amber-300 bg-clip-text text-transparent">{tx(" Calendar ")}</span>
               </h1>
 
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-                Follow live tournaments, discover upcoming events and explore
-                recently completed CS2 competitions in one place.
-              </p>
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">{tx(" Follow live tournaments, discover upcoming events and explore recently completed CS2 competitions in one place. ")}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 {live.length > 0 && (
@@ -528,9 +504,7 @@ function CalendarPage() {
                     href="#live-events"
                     className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white shadow-[0_12px_35px_rgba(249,115,22,0.22)] transition hover:-translate-y-0.5 hover:bg-orange-400"
                   >
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
-                    Watch live events
-                  </a>
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-white" />{tx(" Watch live events ")}</a>
                 )}
 
                 {upcoming.length > 0 && (
@@ -538,9 +512,7 @@ function CalendarPage() {
                     href="#upcoming-events"
                     className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-black text-slate-300 transition hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-white/[0.07] hover:text-white"
                   >
-                    <CalendarIcon />
-                    Upcoming calendar
-                  </a>
+                    <CalendarIcon />{tx(" Upcoming calendar ")}</a>
                 )}
               </div>
             </div>
@@ -550,9 +522,9 @@ function CalendarPage() {
 
               <div className="relative grid grid-cols-2 gap-3">
                 <StatCard
-                  label="Live now"
+                  label={tx("Live now")}
                   value={live.length}
-                  description="Active tournaments"
+                  description={tx("Active tournaments")}
                   icon={
                     <span className="relative flex h-3 w-3">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-50" />
@@ -562,32 +534,30 @@ function CalendarPage() {
                 />
 
                 <StatCard
-                  label="Upcoming"
+                  label={tx("Upcoming")}
                   value={upcoming.length}
-                  description="Scheduled events"
+                  description={tx("Scheduled events")}
                   icon={<CalendarIcon />}
                 />
 
                 <StatCard
-                  label="Completed"
+                  label={tx("Completed")}
                   value={finished.length}
-                  description="Finished events"
+                  description={tx("Finished events")}
                   icon={<TrophyIcon />}
                 />
 
                 <StatCard
-                  label="Total"
+                  label={tx("Total")}
                   value={totalEvents}
-                  description="Events tracked"
+                  description={tx("Events tracked")}
                   icon={<TeamsIcon />}
                 />
               </div>
 
               {nextTournament && (
                 <div className="mt-3 rounded-2xl border border-orange-500/15 bg-orange-500/[0.055] px-4 py-3">
-                  <div className="text-[9px] font-black uppercase tracking-[0.17em] text-orange-400">
-                    Next event
-                  </div>
+                  <div className="text-[9px] font-black uppercase tracking-[0.17em] text-orange-400">{tx(" Next event ")}</div>
 
                   <div className="mt-1 flex items-center justify-between gap-3">
                     <span className="truncate text-sm font-bold text-slate-200">
@@ -610,10 +580,10 @@ function CalendarPage() {
         {live.length > 0 && (
           <section id="live-events" className="mt-14 scroll-mt-24">
             <SectionHeading
-              eyebrow="Happening now"
-              title="Live tournaments"
+              eyebrow={tx("Happening now")}
+              title={tx("Live tournaments")}
               count={live.length}
-              description="Events currently in progress."
+              description={tx("Events currently in progress.")}
               live
             />
 
@@ -645,10 +615,10 @@ function CalendarPage() {
         {finished.length > 0 && (
           <section className="mt-16">
             <SectionHeading
-              eyebrow="Event archive"
-              title="Recently finished"
+              eyebrow={tx("Event archive")}
+              title={tx("Recently finished")}
               count={finished.length}
-              description="Latest completed tournaments and their results."
+              description={tx("Latest completed tournaments and their results.")}
               muted
             />
 

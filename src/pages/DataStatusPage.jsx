@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { useMemo } from "react";
 import teams from "../data/teams";
 
@@ -40,15 +41,9 @@ export default function DataStatusPage() {
   return (
     <main className="mx-auto max-w-[1280px] px-4 py-8 md:px-6">
       <div className="mb-8">
-        <div className="mb-2 inline-flex rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-amber-300">
-          Test data monitor
-        </div>
-        <h1 className="text-3xl font-black tracking-tight">Season import status</h1>
-        <p className="mt-2 max-w-3xl text-gray-400">
-          This page reads the same generated team file as the rest of the website. After
-          <code className="mx-1 rounded bg-white/5 px-1.5 py-0.5 text-gray-200">npm run v2:sync</code>
-          the counters below change immediately in local development.
-        </p>
+        <div className="mb-2 inline-flex rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-amber-300">{tx(" Test data monitor ")}</div>
+        <h1 className="text-3xl font-black tracking-tight">{tx("Season import status")}</h1>
+        <p className="mt-2 max-w-3xl text-gray-400">{tx(" This page reads the same generated team file as the rest of the website. After ")}<code className="mx-1 rounded bg-white/5 px-1.5 py-0.5 text-gray-200">npm run v2:sync</code>{tx(" the counters below change immediately in local development. ")}</p>
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,12 +56,12 @@ export default function DataStatusPage() {
       </section>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-2">
-        <StatusTable title="By region" rows={stats.regions} />
-        <StatusTable title="By division" rows={stats.divisions} />
+        <StatusTable title={tx("By region")} rows={stats.regions} />
+        <StatusTable title={tx("By division")} rows={stats.divisions} />
       </section>
 
       <section className="mt-6">
-        <StatusTable title="By region, division and conference" rows={stats.conferences} />
+        <StatusTable title={tx("By region, division and conference")} rows={stats.conferences} />
       </section>
     </main>
   );

@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import teams from "../data/teams";
@@ -109,36 +110,26 @@ const top3 = players.slice(0, 3);
   <Link
     to="/"
     className="text-gray-400 hover:text-white transition"
-  >
-    Rankings
-  </Link>
+  >{tx(" Rankings ")}</Link>
 
   <Link
     to="/players"
     className="text-white border-b border-orange-500 pb-1"
-  >
-    Players
-  </Link>
+  >{tx(" Players ")}</Link>
 
   <Link
     to="/Media"
     className="text-gray-400 hover:text-white transition"
-  >
-    Media
-  </Link>
+  >{tx(" Media ")}</Link>
 
   <Link
     to="/about"
     className="text-gray-400 hover:text-white transition"
-  >
-    About
-  </Link>
+  >{tx(" About ")}</Link>
 
 </div>
 
-        <h1 className="text-5xl font-black mb-10">
-          Top Players
-        </h1>
+        <h1 className="text-5xl font-black mb-10">{tx(" Top Players ")}</h1>
 
       
 
@@ -199,8 +190,7 @@ state={{
 </div>
 
 <div className="text-xs text-gray-500 mt-1">
-  {player.matches} matches
-</div>
+  {player.matches}{tx(" matches ")}</div>
 
               <div className="text-orange-400 text-3xl font-black mt-4">
                 {player.rating.toFixed(2)}
@@ -218,10 +208,10 @@ state={{
           <div className="grid grid-cols-[80px_1fr_1fr_120px_120px] px-6 py-4 bg-[#161f2c] font-bold text-gray-300">
 
             <div>#</div>
-<div>Player</div>
-<div>Team</div>
-<div>Matches</div>
-<div>Rating</div>
+<div>{tx("Player")}</div>
+<div>{tx("Team")}</div>
+<div>{tx("Matches")}</div>
+<div>{tx("Rating")}</div>
 
           </div>
 
@@ -306,9 +296,7 @@ state={{
         hover:text-orange-400
         transition
       "
-    >
-      Load More Players
-    </button>
+    >{tx(" Load More Players ")}</button>
   </div>
 )}
     </div>

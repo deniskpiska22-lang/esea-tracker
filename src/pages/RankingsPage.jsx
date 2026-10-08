@@ -1,3 +1,4 @@
+import { tf, tx } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
@@ -546,7 +547,7 @@ function TeamLogo({
   return (
     <img
       src={src}
-      alt={`${name} logo`}
+      alt={tf("{0} logo", name)}
       className="h-10 w-10 shrink-0 object-contain"
       loading="lazy"
       onError={() => setFailed(true)}
@@ -621,7 +622,7 @@ function RankingsPage() {
       if (!supabase) {
         if (mounted) {
           setError(
-            "Supabase is not configured. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY."
+            tx("Supabase is not configured. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.")
           );
           setLoading(false);
         }
@@ -673,7 +674,7 @@ function RankingsPage() {
 
         setError(
           requestError.message ||
-            "Failed to load team ratings."
+            tx("Failed to load team ratings.")
         );
         setRatingRows([]);
         setLoading(false);
@@ -933,7 +934,7 @@ useEffect(() => {
       team.country === selectedCountry;
 
     const countryName =
-      COUNTRY_NAMES[team.country] ??
+      localizedCountry(team.country) ??
       team.country;
 
     const searchMatches =
@@ -995,17 +996,12 @@ useEffect(() => {
       <div className="mx-auto max-w-7xl px-4 pt-6 md:px-8">
         <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold">
-              Team Rankings
-            </h1>
+            <h1 className="text-2xl font-bold">{tx(" Team Rankings ")}</h1>
 
-            <p className="mt-1 text-sm text-gray-500">
-              ESEA team ranking based on match results
-            </p>
+            <p className="mt-1 text-sm text-gray-500">{tx(" ESEA team ranking based on match results ")}</p>
           </div>
 
-          <div className="rounded-lg border border-white/5 bg-[#0c1016] px-4 py-2 text-sm text-gray-400">
-            Teams:{" "}
+          <div className="rounded-lg border border-white/5 bg-[#0c1016] px-4 py-2 text-sm text-gray-400">{tx(" Teams:")}{" "}
             <span className="font-bold text-white">
               {filteredTeams.length}
             </span>
@@ -1014,16 +1010,14 @@ useEffect(() => {
 
         <div className="rounded-xl border border-white/5 bg-[#0a0e14] p-4">
           <div>
-            <div className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
-              Division
-            </div>
+            <div className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">{tx(" Division ")}</div>
 
             <div className="flex flex-wrap gap-2">
               {DIVISIONS.map(
                 (division) => (
                   <button
                     type="button"
-                    key={division}
+                    key={tx(division)}
                     onClick={() =>
                       setSelectedDivision(
                         division
@@ -1036,7 +1030,7 @@ useEffect(() => {
                         : "border border-white/5 bg-[#0f131a] text-gray-300 hover:border-white/10 hover:bg-[#121a25]"
                     }`}
                   >
-                    {division}
+                    {tx(division)}
                   </button>
                 )
               )}
@@ -1046,9 +1040,7 @@ useEffect(() => {
           <div className="mt-5">
             <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
               <div>
-                <div className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
-                  Region
-                </div>
+                <div className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">{tx(" Region ")}</div>
 
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4">
                   <button
@@ -1062,7 +1054,7 @@ useEffect(() => {
                   >
                     <span className="flex min-w-0 items-center gap-2">
                       <span className="text-base">🌍</span>
-                      <span className="truncate">World</span>
+                      <span className="truncate">{tx("World")}</span>
                     </span>
 
                     <span
@@ -1088,7 +1080,7 @@ useEffect(() => {
                     return (
                       <button
                         type="button"
-                        key={region}
+                        key={tx(region)}
                         onClick={() =>
                           handleRegionClick(region)
                         }
@@ -1099,7 +1091,7 @@ useEffect(() => {
                         }`}
                       >
                         <span className="min-w-0 truncate">
-                          {region}
+                          {tx(region)}
                         </span>
 
                         <span className="flex shrink-0 items-center gap-2">
@@ -1131,9 +1123,7 @@ useEffect(() => {
                 <label
                   htmlFor="ranking-search"
                   className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500"
-                >
-                  Search
-                </label>
+                >{tx(" Search ")}</label>
 
                 <input
                   id="ranking-search"
@@ -1142,7 +1132,7 @@ useEffect(() => {
                   onChange={(event) =>
                     setSearchQuery(event.target.value)
                   }
-                  placeholder="Search team..."
+                  placeholder={tx("Search team...")}
                   className="h-11 w-full rounded-lg border border-white/10 bg-[#0f131a] px-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-orange-500/60"
                 />
               </div>
@@ -1153,19 +1143,17 @@ useEffect(() => {
                 <div className="flex items-center justify-between gap-3 border-b border-white/5 px-4 py-3">
                   <div>
                     <div className="text-sm font-bold text-white">
-                      {openRegion}
+                      {tx(openRegion)}
                     </div>
 
-                    <div className="mt-0.5 text-xs text-gray-500">
-                      Choose a country or keep the whole region selected
-                    </div>
+                    <div className="mt-0.5 text-xs text-gray-500">{tx(" Choose a country or keep the whole region selected ")}</div>
                   </div>
 
                   <button
                     type="button"
                     onClick={() => setOpenRegion(null)}
                     className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/5 bg-white/[0.03] text-gray-500 transition hover:border-white/10 hover:text-white"
-                    aria-label="Close country selector"
+                    aria-label={tx("Close country selector")}
                   >
                     ×
                   </button>
@@ -1173,9 +1161,7 @@ useEffect(() => {
 
                 <div className="p-3">
                   {openedRegionCountries.length === 0 ? (
-                    <div className="px-2 py-4 text-sm text-gray-500">
-                      No countries with ranked teams found in this region.
-                    </div>
+                    <div className="px-2 py-4 text-sm text-gray-500">{tx(" No countries with ranked teams found in this region. ")}</div>
                   ) : (
                     <div className="grid grid-cols-2 gap-x-3 gap-y-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                       <button
@@ -1193,8 +1179,7 @@ useEffect(() => {
                       >
                         <span className="text-base">🌐</span>
 
-                        <span className="min-w-0 flex-1 truncate">
-                          All {openRegion}
+                        <span className="min-w-0 flex-1 truncate">{tx(" All ")}{tx(openRegion)}
                         </span>
 
                         <span className="shrink-0 text-xs text-gray-600">
@@ -1208,7 +1193,7 @@ useEffect(() => {
                             selectedCountry === countryCode;
 
                           const countryName =
-                            COUNTRY_NAMES[countryCode] ||
+                            localizedCountry(countryCode) ||
                             countryCode;
 
                           const count =
@@ -1264,8 +1249,7 @@ useEffect(() => {
               <div className="flex flex-wrap gap-2 text-xs text-gray-400">
                 {selectedDivision !==
                   "All" && (
-                  <span className="rounded-md bg-white/5 px-2 py-1">
-                    Division:{" "}
+                  <span className="rounded-md bg-white/5 px-2 py-1">{tx(" Division:")}{" "}
                     <strong className="text-white">
                       {selectedDivision}
                     </strong>
@@ -1274,22 +1258,18 @@ useEffect(() => {
 
                 {selectedRegion !==
                   "All" && (
-                  <span className="rounded-md bg-white/5 px-2 py-1">
-                    Region:{" "}
+                  <span className="rounded-md bg-white/5 px-2 py-1">{tx(" Region:")}{" "}
                     <strong className="text-white">
-                      {selectedRegion}
+                      {tx(selectedRegion)}
                     </strong>
                   </span>
                 )}
 
                 {selectedCountry !==
                   "All" && (
-                  <span className="rounded-md bg-white/5 px-2 py-1">
-                    Country:{" "}
+                  <span className="rounded-md bg-white/5 px-2 py-1">{tx(" Country:")}{" "}
                     <strong className="text-white">
-                      {COUNTRY_NAMES[
-                        selectedCountry
-                      ] ??
+                      {localizedCountry(selectedCountry) ??
                         selectedCountry}
                     </strong>
                   </span>
@@ -1300,9 +1280,7 @@ useEffect(() => {
                 type="button"
                 onClick={clearFilters}
                 className="text-sm font-semibold text-orange-400 transition hover:text-orange-300"
-              >
-                Clear filters
-              </button>
+              >{tx(" Clear filters ")}</button>
             </div>
           )}
         </div>
@@ -1311,9 +1289,7 @@ useEffect(() => {
       
       <div className="mx-auto max-w-7xl px-4 pt-5 md:px-8">
         <div className="flex items-center justify-end gap-2">
-          <span className="mr-2 text-[10px] font-bold uppercase tracking-[0.18em] text-gray-600">
-            Changes
-          </span>
+          <span className="mr-2 text-[10px] font-bold uppercase tracking-[0.18em] text-gray-600">{tx(" Changes ")}</span>
 
           <button
             type="button"
@@ -1323,9 +1299,7 @@ useEffect(() => {
                 ? "border-orange-500/30 bg-orange-500/10 text-orange-400"
                 : "border-white/5 bg-[#0f131a] text-gray-500 hover:text-white"
             }`}
-          >
-            Last update
-          </button>
+          >{tx(" Last update ")}</button>
 
           <button
             type="button"
@@ -1335,22 +1309,16 @@ useEffect(() => {
                 ? "border-orange-500/30 bg-orange-500/10 text-orange-400"
                 : "border-white/5 bg-[#0f131a] text-gray-500 hover:text-white"
             }`}
-          >
-            7 days
-          </button>
+          >{tx(" 7 days ")}</button>
         </div>
       </div>
 
 <div className="mx-auto max-w-7xl p-4 md:p-8">
         {loading ? (
-          <div className="rounded-xl border border-white/5 bg-[#0c1016] p-10 text-center text-gray-400">
-            Loading rankings...
-          </div>
+          <div className="rounded-xl border border-white/5 bg-[#0c1016] p-10 text-center text-gray-400">{tx(" Loading rankings... ")}</div>
         ) : error ? (
           <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6">
-            <div className="font-semibold text-red-400">
-              Failed to load rankings
-            </div>
+            <div className="font-semibold text-red-400">{tx(" Failed to load rankings ")}</div>
 
             <div className="mt-2 text-sm text-red-300/80">
               {error}
@@ -1360,27 +1328,23 @@ useEffect(() => {
           <div className="overflow-x-auto">
             <div className="min-w-[900px]">
               <div className="grid grid-cols-[110px_minmax(360px,2fr)_190px_170px] rounded-xl border border-white/5 bg-[#0f141a] px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-500">
-                <div>Rank</div>
-                <div>Team</div>
-                <div>Rating</div>
-                <div>Division</div>
+                <div>{tx("Rank")}</div>
+                <div>{tx("Team")}</div>
+                <div>{tx("Rating")}</div>
+                <div>{tx("Division")}</div>
               </div>
 
               <div className="mt-3 space-y-2">
                 {filteredTeams.length ===
                 0 ? (
-                  <div className="rounded-xl border border-white/5 bg-[#0c1016] p-10 text-center text-gray-500">
-                    No teams found
-                  </div>
+                  <div className="rounded-xl border border-white/5 bg-[#0c1016] p-10 text-center text-gray-500">{tx(" No teams found ")}</div>
                 ) : (
                   filteredTeams.map(
                     (team) => {
                       const countryName =
-                        COUNTRY_NAMES[
-                          team.country
-                        ] ??
+                        localizedCountry(team.country) ??
                         team.country ??
-                        "Unknown country";
+                        tx("Unknown country");
 
                       return (
                         <Link
@@ -1468,3 +1432,5 @@ useEffect(() => {
 }
 
 export default RankingsPage;
+
+function localizedCountry(code) { try { return new Intl.DisplayNames([currentLocale()], {type:"region"}).of(code); } catch { return COUNTRY_NAMES[code] || code; } }

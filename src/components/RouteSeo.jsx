@@ -1,3 +1,6 @@
+import { useLanguage } from '../context/LanguageContext';
+import { localizeSeo } from '../i18n/seo.js';
+import { LANGUAGES, stripLanguage } from '../i18n/languages.js';
 import { getSiteSeoMetadata } from '../utils/siteSeo.js';
 import { getTeamSeoMetadata } from '../utils/teamSeo.js';
 import { useEffect, useMemo, useState } from "react";
@@ -73,11 +76,12 @@ function getMetadata(pathname, teams) {
 
 export default function RouteSeo() {
   const { pathname } = useLocation();
+  const { language } = useLanguage();
   const { teams } = useTeamCatalog();
   const [dynamicMetadata, setDynamicMetadata] = useState(() => {
     const canonical = document.head.querySelector('link[rel="canonical"]')?.href;
-    if (!canonical || new URL(canonical).pathname !== pathname) return null;
-    try { return { routePath: pathname, canonicalPath: pathname, title: document.title,
+    if (!canonical || stripLanguage(new URL(canonical).pathname) !== pathname) return null;
+    try { return { routePath: pathname, canonicalPath: new URL(canonical).pathname, title: document.title,
       description: document.head.querySelector('meta[name="description"]')?.content || DEFAULT_DESCRIPTION,
       language: document.documentElement.lang,
       image: document.head.querySelector('meta[property="og:image"]')?.content,
@@ -87,7 +91,7 @@ export default function RouteSeo() {
   });
   const metadata = useMemo(
     () =>
-      dynamicMetadata?.routePath === pathname
+      stripLanguage(dynamicMetadata?.routePath || "") === pathname
         ? dynamicMetadata
         : getMetadata(pathname, teams),
     [dynamicMetadata, pathname, teams]
@@ -107,40 +111,41 @@ export default function RouteSeo() {
   }, []);
 
   useEffect(() => {
+    const localized = metadata.language === language && metadata.alternates ? metadata : localizeSeo(metadata, language, {entity:teams.find(team=>`/teams/${team.slug}` === pathname.split(/\/(matches|stats|veto|analytics)$/)[0])});
     const canonicalUrl = new URL(
-      metadata.canonicalPath || pathname,
+      localized.canonicalPath || pathname,
       SITE_ORIGIN
     ).toString();
-    const image = new URL(metadata.image || "/logo.png", SITE_ORIGIN).toString();
+    const image = new URL(localized.image || "/logo.png", SITE_ORIGIN).toString();
 
     let structured = document.head.querySelector('script[type="application/ld+json"]');
     if (!structured) { structured = document.createElement("script"); structured.type = "application/ld+json"; document.head.appendChild(structured); }
-    structured.textContent = JSON.stringify(metadata.schema || { "@context":"https://schema.org", "@type":"WebSite", name:"ESEA Tracker", url:SITE_ORIGIN });
-    document.title = metadata.title;
-    document.documentElement.lang = metadata.language || "ru";
+    structured.textContent = JSON.stringify(localized.schema || { "@context":"https://schema.org", "@type":"WebSite", name:"ESEA Tracker", url:SITE_ORIGIN });
+    document.title = localized.title;
+    document.documentElement.lang = language;
 
-    setMeta('meta[name="robots"]', { name: "robots" }, metadata.robots || 'index,follow,max-image-preview:large');
-    setMeta('meta[property="og:locale"]', { property: "og:locale" }, metadata.language === 'en' ? 'en_US' : 'ru_RU');
-    setMeta('meta[name="description"]', { name: "description" }, metadata.description);
-    setMeta('meta[property="og:title"]', { property: "og:title" }, metadata.title);
+    setMeta('meta[name="robots"]', { name: "robots" }, localized.robots || 'index,follow,max-image-preview:large');
+    setMeta('meta[property="og:locale"]', { property: "og:locale" }, LANGUAGES.find(item=>item.code===language).og);
+    setMeta('meta[name="description"]', { name: "description" }, localized.description);
+    setMeta('meta[property="og:title"]', { property: "og:title" }, localized.title);
     setMeta(
       'meta[property="og:description"]',
       { property: "og:description" },
-      metadata.description
+      localized.description
     );
     setMeta('meta[property="og:url"]', { property: "og:url" }, canonicalUrl);
-    if (metadata.language === 'en' && !metadata.image) {
+    if (localized.language === 'en' && !localized.image) {
       document.head.querySelector('meta[property="og:image"]')?.remove();
       document.head.querySelector('meta[name="twitter:image"]')?.remove();
     } else {
       setMeta('meta[property="og:image"]', { property: "og:image" }, image);
       setMeta('meta[name="twitter:image"]', { name: "twitter:image" }, image);
     }
-    setMeta('meta[name="twitter:title"]', { name: "twitter:title" }, metadata.title);
+    setMeta('meta[name="twitter:title"]', { name: "twitter:title" }, localized.title);
     setMeta(
       'meta[name="twitter:description"]',
       { name: "twitter:description" },
-      metadata.description
+      localized.description
     );
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
@@ -152,7 +157,11 @@ export default function RouteSeo() {
     }
 
     canonical.setAttribute("href", canonicalUrl);
-  }, [metadata, pathname]);
+    document.head.querySelectorAll('link[hreflang]').forEach(element=>element.remove());
+    for (const alternate of localized.alternates || []) {
+      const element=document.createElement('link'); element.rel='alternate'; element.hreflang=alternate.language; element.href=alternate.url; document.head.appendChild(element);
+    }
+  }, [metadata, pathname, language, teams]);
 
   return null;
 }

@@ -1,3 +1,6 @@
+import { localizeBody, alternateLanguages } from '../src/i18n/seo.js';
+import { LANGUAGES, localizedPath } from '../src/i18n/languages.js';
+import { translateText } from '../src/i18n/translate.js';
 import { getTeamSeoMetadata, getTeamContext } from '../src/utils/teamSeo.js';
 import { getPlayerSeoMetadata } from '../src/utils/playerSeo.js';
 import aliases from '../src/data/playerAliases.js';
@@ -5,7 +8,7 @@ import { getMatchSeoMetadata, parseMaps } from '../src/utils/matchSeo.js';
 export const ORIGIN = 'https://eseatracker.ru';
 export const staticRoutes = ['/', '/rankings', '/matches', '/players', '/calendar', '/about', '/media'];
 export const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const link = (url, name) => `<a href="${escapeHtml(url)}">${escapeHtml(name)}</a>`;
+const link = (url, name, preserve = true) => `<a ${preserve ? 'data-entity-link="true" ' : ''}href="${escapeHtml(url)}">${escapeHtml(name)}</a>`;
 export function profileMetadata(kind, entity, roster = [], section = '', recentMatches = []) {
   if (kind === 'match') {
     const metadata = getMatchSeoMetadata(entity);
@@ -80,7 +83,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
   return { ...metadata, body: `<p>${escapeHtml(metadata.intro)}</p><dl>${facts}</dl>
     <h2>${escapeHtml(entity.name)} CS2 roster</h2>${members.length ? `<ul>${members.map(player => `<li>${link(`/players/${encodeURIComponent(player.faceit_id)}`, player.nickname)}</li>`).join('')}</ul>` : '<p>No current roster has been published yet.</p>'}
     ${sectionContent}<h2>Recent ${escapeHtml(entity.name)} match results</h2>${matchRows ? `<ul>${matchRows}</ul>` : '<p>No completed matches are available yet.</p>'}
-    <nav aria-label="Team sections">${[['', 'Overview'], ['/matches', 'All match results'], ['/stats', 'Map statistics'], ['/veto', 'Map picks and bans']].map(([path, label]) => link(`${base}${path}`, label)).join(' · ')}</nav>` };
+    <nav aria-label="Team sections">${[['', 'Overview'], ['/matches', 'All match results'], ['/stats', 'Map statistics'], ['/veto', 'Map picks and bans']].map(([path, label]) => link(`${base}${path}`, label, false)).join(' · ')}</nav>` };
 
 }
 export function renderProfile(template, metadata, status = 200) {
@@ -90,7 +93,7 @@ export function renderProfile(template, metadata, status = 200) {
   html = html.replace(/<div id="app-boot-shell"[^>]*>[\s\S]*?(?=<div id="root")/i, '');
   const metas = { 'name:description': metadata.description,'property:og:title':metadata.title,'property:og:description':metadata.description,
     'property:og:url':canonical,'property:og:image':metadata.image ? new URL(metadata.image,ORIGIN).toString() : '', 'name:twitter:image':metadata.image ? new URL(metadata.image,ORIGIN).toString() : '',
-    'name:twitter:title':metadata.title,'name:twitter:description':metadata.description,'property:og:locale':metadata.language==='en'?'en_US':'ru_RU', 'name:twitter:card':'summary', 'name:robots':status===404?'noindex,follow':metadata.robots || 'index,follow,max-image-preview:large' };
+    'name:twitter:title':metadata.title,'name:twitter:description':metadata.description,'property:og:locale':LANGUAGES.find(item=>item.code===metadata.language)?.og || 'ru_RU', 'name:twitter:card':'summary', 'name:robots':status===404?'noindex,follow':metadata.robots || 'index,follow,max-image-preview:large' };
   for (const [key,value] of Object.entries(metas)) {
     const attr = key.slice(0,key.indexOf(':'));
     // OG names contain a colon; split only at the first separator.
@@ -103,11 +106,19 @@ export function renderProfile(template, metadata, status = 200) {
   const canonicalTag = `<link rel="canonical" href="${escapeHtml(canonical)}" />`;
   const canonicalRegex = /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i;
   html = canonicalRegex.test(html) ? html.replace(canonicalRegex, () => canonicalTag) : html.replace('</head>', () => `${canonicalTag}</head>`);
+  html = html.replace(/<link\s+[^>]*hreflang=[^>]*>/gi, '');
+  const alternates = metadata.alternates || (status===200 && !metadata.robots?.includes('noindex') ? alternateLanguages(metadata.canonicalPath) : []);
+  html = html.replace('</head>', () => alternates.map(item => `<link rel="alternate" hreflang="${item.language}" href="${escapeHtml(item.url)}" />`).join('') + '</head>');
   const schemaTag = `<script type="application/ld+json">${JSON.stringify(metadata.schema || {}).replaceAll('<','\\u003c')}</script>`;
   const schemaRegex = /<script type="application\/ld\+json">[\s\S]*?<\/script>/i;
   html = schemaRegex.test(html) ? html.replace(schemaRegex, () => schemaTag) : html.replace('</head>', () => `${schemaTag}</head>`);
 
-  return html.replace('<div id="root"></div>',() => `<div id="root"><main style="max-width:1000px;margin:auto;padding:32px"><h1>${escapeHtml(metadata.heading)}</h1><p>${escapeHtml(metadata.description)}</p>${metadata.body || ''}<nav>${link('/rankings',metadata.language==='en'?'ESEA team rankings':'Команды ESEA')} · ${link('/players',metadata.language==='en'?'CS2 players':'Игроки ESEA')} · ${link('/calendar',metadata.language==='en'?'ESEA tournaments':'Турниры ESEA')}</nav></main></div>`);
+  const language = metadata.language || 'ru';
+  const body = metadata.localized ? localizeBody(metadata.body, language) : metadata.body || ''; 
+  const nav = [['/rankings','ESEA team rankings'],['/players','CS2 players'],['/calendar','ESEA tournaments']]
+    .map(([url,label])=>link(metadata.localized ? localizedPath(url,language) : url,translateText(label,language))).join(' · ');
+  const languageNav = `<nav aria-label="${escapeHtml(translateText('Language',language))}">${LANGUAGES.map(item=>link(localizedPath(metadata.canonicalPath,item.code),item.name)).join(' · ')}</nav>`;
+  return html.replace('<div id="root"></div>',() => `<div id="root"><main style="max-width:1000px;margin:auto;padding:32px">${languageNav}<h1>${escapeHtml(metadata.heading)}</h1><p>${escapeHtml(metadata.description)}</p>${body}<nav>${nav}</nav></main></div>`);
 }
 export function sitemapXml(entries, index = false) {
   const tag = index ? 'sitemapindex' : 'urlset';

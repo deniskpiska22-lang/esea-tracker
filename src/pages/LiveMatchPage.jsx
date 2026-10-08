@@ -1,3 +1,5 @@
+import { tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
 import {
@@ -265,7 +267,7 @@ function normalizeDatabaseMatch(row) {
 
 function formatDateTime(value) {
   if (!value) {
-    return "Date TBD";
+    return tx("Date TBD");
   }
 
   const parsed = new Date(value);
@@ -275,7 +277,7 @@ function formatDateTime(value) {
   }
 
   return new Intl.DateTimeFormat(
-    "ru-RU",
+    currentLocale(),
     {
       day: "2-digit",
       month: "long",
@@ -298,7 +300,7 @@ function formatMatchTime(value) {
   }
 
   return new Intl.DateTimeFormat(
-    "ru-RU",
+    currentLocale(),
     {
       hour: "2-digit",
       minute: "2-digit",
@@ -308,7 +310,7 @@ function formatMatchTime(value) {
 
 function formatMatchDate(value) {
   if (!value) {
-    return "Date TBD";
+    return tx("Date TBD");
   }
 
   const parsed = new Date(value);
@@ -318,7 +320,7 @@ function formatMatchDate(value) {
   }
 
   return new Intl.DateTimeFormat(
-    "ru-RU",
+    currentLocale(),
     {
       day: "2-digit",
       month: "long",
@@ -333,7 +335,7 @@ function formatMapName(value) {
   ).replace(/^de_/i, "");
 
   if (!rawName) {
-    return "Unknown";
+    return tx("Unknown");
   }
 
   return (
@@ -572,13 +574,9 @@ function RecentMatchesCard({
       </div>
 
       {!localTeam ? (
-        <div className="p-6 text-gray-500">
-          Team is not in CIS Rankings
-        </div>
+        <div className="p-6 text-gray-500">{tx(" Team is not in CIS Rankings ")}</div>
       ) : matches.length === 0 ? (
-        <div className="p-6 text-gray-500">
-          No recent matches
-        </div>
+        <div className="p-6 text-gray-500">{tx(" No recent matches ")}</div>
       ) : (
         <div className="max-h-[340px] overflow-y-auto">
           {matches.map((item) => (
@@ -681,22 +679,18 @@ function MapStatisticsCard({
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
-        <h2 className="text-xl font-black">Map Statistics</h2>
-        <p className="mt-1 text-xs text-gray-500">
-          Historical results from tracked matches
-        </p>
+        <h2 className="text-xl font-black">{tx("Map Statistics")}</h2>
+        <p className="mt-1 text-xs text-gray-500">{tx(" Historical results from tracked matches ")}</p>
       </div>
 
       <div className="grid grid-cols-[minmax(0,1fr)_72px_72px] gap-2 border-b border-[#243041] px-5 py-3 text-xs text-gray-500">
-        <div>Map</div>
+        <div>{tx("Map")}</div>
         <div className="truncate text-center">{leftTeam.name}</div>
         <div className="truncate text-center">{rightTeam.name}</div>
       </div>
 
       {maps.length === 0 ? (
-        <div className="p-6 text-sm text-gray-500">
-          Map statistics are not available yet.
-        </div>
+        <div className="p-6 text-sm text-gray-500">{tx(" Map statistics are not available yet. ")}</div>
       ) : (
         <div>
           {maps.map((mapName) => {
@@ -733,9 +727,9 @@ function MapStatisticsCard({
                     className="text-center"
                   >
                     <div className="text-sm font-black">
-                      <span className="text-green-400">{record.wins}W</span>
+                      <span className="text-green-400">{record.wins}{tx("W")}</span>
                       <span className="text-gray-600"> - </span>
-                      <span className="text-red-400">{record.losses}L</span>
+                      <span className="text-red-400">{record.losses}{tx("L")}</span>
                     </div>
                     <div className="mt-1 text-xs text-gray-500">
                       {getMapWinrate(record)}%
@@ -795,7 +789,7 @@ function VoteCard({ matchId, team1, team2 }) {
       setError("");
     } catch (loadError) {
       console.error("Failed to load match votes:", loadError);
-      setError("Voting is temporarily unavailable.");
+      setError(tx("Voting is temporarily unavailable."));
     } finally {
       setLoading(false);
     }
@@ -829,7 +823,7 @@ function VoteCard({ matchId, team1, team2 }) {
       ]);
     } catch (voteError) {
       console.error("Failed to submit vote:", voteError);
-      setError("Could not save your vote. Please try again.");
+      setError(tx("Could not save your vote. Please try again."));
     } finally {
       setSubmitting(false);
     }
@@ -851,10 +845,8 @@ function VoteCard({ matchId, team1, team2 }) {
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
-        <h2 className="text-xl font-black">Vote for Winner</h2>
-        <p className="mt-1 text-xs text-gray-500">
-          Community prediction
-        </p>
+        <h2 className="text-xl font-black">{tx("Vote for Winner")}</h2>
+        <p className="mt-1 text-xs text-gray-500">{tx(" Community prediction ")}</p>
       </div>
 
       <div className="p-5">
@@ -879,9 +871,7 @@ function VoteCard({ matchId, team1, team2 }) {
         </div>
 
         {loading ? (
-          <div className="mt-7 text-center text-sm text-gray-500">
-            Loading votes...
-          </div>
+          <div className="mt-7 text-center text-sm text-gray-500">{tx(" Loading votes... ")}</div>
         ) : (
           <>
             {!hasVoted && user && !error && (
@@ -891,16 +881,14 @@ function VoteCard({ matchId, team1, team2 }) {
                   disabled={submitting}
                   onClick={() => voteFor(team1VoteId)}
                   className="rounded-xl border border-orange-500/40 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-400 transition hover:bg-orange-500 hover:text-white disabled:cursor-wait disabled:opacity-50"
-                >
-                  Vote {team1.name}
+                >{tx(" Vote ")}{team1.name}
                 </button>
                 <button
                   type="button"
                   disabled={submitting}
                   onClick={() => voteFor(team2VoteId)}
                   className="rounded-xl border border-orange-500/40 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-400 transition hover:bg-orange-500 hover:text-white disabled:cursor-wait disabled:opacity-50"
-                >
-                  Vote {team2.name}
+                >{tx(" Vote ")}{team2.name}
                 </button>
               </div>
             )}
@@ -923,8 +911,7 @@ function VoteCard({ matchId, team1, team2 }) {
             </div>
 
             <div className="mt-3 text-center text-sm text-gray-400">
-              {totalVotes.toLocaleString("ru-RU")} votes
-            </div>
+              {totalVotes.toLocaleString(currentLocale())}{tx(" votes ")}</div>
 
             {!user && !error && (
   <div className="mt-5 rounded-xl border border-[#243041] bg-[#0b0f14] p-3 text-center text-sm text-gray-400">
@@ -932,17 +919,11 @@ function VoteCard({ matchId, team1, team2 }) {
       to="/login"
       state={{ from: location }}
       className="font-semibold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
-    >
-      Log in
-    </Link>{" "}
-    to vote
-  </div>
+    >{tx(" Log in ")}</Link>{" "}{tx(" to vote ")}</div>
 )}
 
             {hasVoted && (
-              <div className="mt-5 text-center text-sm font-semibold text-green-400">
-                ✓ Thanks for voting
-              </div>
+              <div className="mt-5 text-center text-sm font-semibold text-green-400">{tx(" ✓ Thanks for voting ")}</div>
             )}
 
             {error && (
@@ -968,26 +949,26 @@ function MatchInformationCard({
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
-        <h2 className="text-xl font-black">Match Information</h2>
+        <h2 className="text-xl font-black">{tx("Match Information")}</h2>
       </div>
 
       <div className="space-y-5 p-5">
         <div>
-          <div className="text-sm text-gray-500">Teams</div>
+          <div className="text-sm text-gray-500">{tx("Teams")}</div>
           <div className="font-bold">{team1.name} vs {team2.name}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-500">League</div>
+          <div className="text-sm text-gray-500">{tx("League")}</div>
           <div className="font-bold">
             <TournamentNameLink name={season} />
           </div>
         </div>
         <div>
-          <div className="text-sm text-gray-500">Match Date</div>
+          <div className="text-sm text-gray-500">{tx("Match Date")}</div>
           <div className="font-bold">{formatDateTime(date)}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-500">Format</div>
+          <div className="text-sm text-gray-500">{tx("Format")}</div>
           <div className="font-bold">BO{bestOf}</div>
         </div>
 
@@ -996,9 +977,7 @@ function MatchInformationCard({
           target="_blank"
           rel="noreferrer"
           className="flex w-full items-center justify-center rounded-xl bg-orange-500 px-5 py-3 font-bold transition hover:bg-orange-600"
-        >
-          Open FACEIT Match Room →
-        </a>
+        >{tx(" Open FACEIT Match Room → ")}</a>
       </div>
     </section>
   );
@@ -1345,22 +1324,18 @@ function RatingForecastCard({
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#263244] px-5 py-4 sm:px-6">
-        <h2 className="text-xl font-black">
-          Rating forecast
-        </h2>
+        <h2 className="text-xl font-black">{tx(" Rating forecast ")}</h2>
 
-        <p className="mt-1 text-xs text-slate-500">
-          How this match can change the team ranking
-        </p>
+        <p className="mt-1 text-xs text-slate-500">{tx(" How this match can change the team ranking ")}</p>
       </div>
 
       <div className="overflow-x-auto">
         <div className="min-w-[680px]">
           <div className="grid grid-cols-[minmax(180px,1fr)_110px_150px_150px] border-b border-[#263244] px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 sm:px-6">
-            <div>Team</div>
-            <div className="text-center">Current</div>
-            <div className="text-center">If team wins</div>
-            <div className="text-center">If team loses</div>
+            <div>{tx("Team")}</div>
+            <div className="text-center">{tx("Current")}</div>
+            <div className="text-center">{tx("If team wins")}</div>
+            <div className="text-center">{tx("If team loses")}</div>
           </div>
 
           {rows.map(({ team, data }) => (
@@ -1406,12 +1381,11 @@ function RatingForecastCard({
                 <>
                   <div className="text-center">
                     <div className="font-black text-slate-200">
-                      {data.points} pt
-                    </div>
+                      {data.points}{tx(" pt ")}</div>
                     <div className="mt-1 text-xs text-slate-500">
                       {data.rank
                         ? `#${data.rank}`
-                        : "Unranked"}
+                        : tx("Unranked")}
                     </div>
                   </div>
 
@@ -1419,8 +1393,7 @@ function RatingForecastCard({
                     {forecast?.calculable ? (
                       <>
                         <div className="font-black text-emerald-400">
-                          {data.winPoints} pt
-                        </div>
+                          {data.winPoints}{tx(" pt ")}</div>
                         <div className="mt-1 text-xs font-bold text-emerald-400">
                           {data.winChange > 0 ? "+" : ""}
                           {data.winChange}
@@ -1430,9 +1403,7 @@ function RatingForecastCard({
                         </div>
                       </>
                     ) : (
-                      <div className="text-xs font-semibold text-slate-600">
-                        Unavailable
-                      </div>
+                      <div className="text-xs font-semibold text-slate-600">{tx(" Unavailable ")}</div>
                     )}
                   </div>
 
@@ -1440,8 +1411,7 @@ function RatingForecastCard({
                     {forecast?.calculable ? (
                       <>
                         <div className="font-black text-rose-400">
-                          {data.lossPoints} pt
-                        </div>
+                          {data.lossPoints}{tx(" pt ")}</div>
                         <div className="mt-1 text-xs font-bold text-rose-400">
                           {data.lossChange > 0 ? "+" : ""}
                           {data.lossChange}
@@ -1451,23 +1421,15 @@ function RatingForecastCard({
                         </div>
                       </>
                     ) : (
-                      <div className="text-xs font-semibold text-slate-600">
-                        Unavailable
-                      </div>
+                      <div className="text-xs font-semibold text-slate-600">{tx(" Unavailable ")}</div>
                     )}
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="text-center text-xs font-semibold text-slate-500">
-                    Unrated
-                  </div>
-                  <div className="text-center text-xs font-semibold text-slate-600">
-                    Unavailable
-                  </div>
-                  <div className="text-center text-xs font-semibold text-slate-600">
-                    Unavailable
-                  </div>
+                  <div className="text-center text-xs font-semibold text-slate-500">{tx(" Unrated ")}</div>
+                  <div className="text-center text-xs font-semibold text-slate-600">{tx(" Unavailable ")}</div>
+                  <div className="text-center text-xs font-semibold text-slate-600">{tx(" Unavailable ")}</div>
                 </>
               )}
             </div>
@@ -1548,9 +1510,7 @@ function FinishedMatchHero({
           <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_190px_minmax(0,1fr)]">
             <div className="relative">
               {team1Won && (
-                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-left">
-                  Winner
-                </div>
+                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-left">{tx(" Winner ")}</div>
               )}
               <TeamHero team={team1} />
             </div>
@@ -1566,9 +1526,7 @@ function FinishedMatchHero({
 
             <div className="relative">
               {team2Won && (
-                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-right">
-                  Winner
-                </div>
+                <div className="mb-3 text-center text-xs font-black uppercase tracking-[0.22em] text-emerald-400 md:text-right">{tx(" Winner ")}</div>
               )}
               <TeamHero team={team2} align="right" />
             </div>
@@ -1666,7 +1624,7 @@ function LiveMatchPage() {
       try {
         if (!supabase) {
           throw new Error(
-            "Supabase client is not configured"
+            tx("Supabase client is not configured")
           );
         }
 
@@ -1944,7 +1902,7 @@ function LiveMatchPage() {
 
   const displayScoreLabel = liveMapProgress
     ? `Map ${liveMapProgress.mapNumber} · series ${liveData.team1Score}:${liveData.team2Score}`
-    : "Series score";
+    : tx("Series score");
 
   const displaySeason =
     liveData?.season ||
@@ -2111,9 +2069,7 @@ function LiveMatchPage() {
     loadingLive
   ) {
     return (
-      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        Loading match...
-      </div>
+      <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">{tx(" Loading match... ")}</div>
     );
   }
 
@@ -2124,9 +2080,7 @@ function LiveMatchPage() {
   ) {
     return (
       <div className="min-h-screen bg-[#0b0f14] p-8 text-center text-white">
-        <div className="text-xl font-bold">
-          Match not found
-        </div>
+        <div className="text-xl font-bold">{tx(" Match not found ")}</div>
 
         {liveError && (
           <div className="mt-2 text-sm text-red-400">
@@ -2148,14 +2102,10 @@ function LiveMatchPage() {
                 : "/"
             }
             className="text-orange-400 hover:text-orange-300"
-          >
-            ← Back to Matches
-          </Link>
+          >{tx(" ← Back to Matches ")}</Link>
 
           {isLive && (
-            <div className="animate-pulse rounded-full border border-red-500/30 bg-red-500/15 px-4 py-1 text-sm font-bold text-red-400">
-              ● LIVE
-            </div>
+            <div className="animate-pulse rounded-full border border-red-500/30 bg-red-500/15 px-4 py-1 text-sm font-bold text-red-400">{tx(" ● LIVE ")}</div>
           )}
         </div>
 
@@ -2299,9 +2249,7 @@ function LiveMatchPage() {
           ) &&
           stats.teams.length > 0 && (
             <div className="mt-8">
-              <h2 className="mb-4 text-2xl font-black tracking-tight">
-                Player Statistics
-              </h2>
+              <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Player Statistics ")}</h2>
 
               <div className="space-y-6">
                 {orderedTeams.map(
@@ -2343,9 +2291,7 @@ function LiveMatchPage() {
                           <table className="w-full min-w-[520px]">
                             <thead>
                               <tr className="text-sm text-gray-500">
-                                <th className="p-3 text-left">
-                                  Player
-                                </th>
+                                <th className="p-3 text-left">{tx(" Player ")}</th>
 
                                 <th>R</th>
                                 <th>K</th>
@@ -2456,7 +2402,7 @@ function LiveMatchPage() {
                                             className="transition-colors hover:text-orange-400"
                                           >
                                             {player.nickname ||
-                                              "Unknown"}
+                                              tx("Unknown")}
                                           </Link>
                                         </td>
 
@@ -2534,9 +2480,7 @@ function LiveMatchPage() {
 
         {showFinishedSections && (
           <div className="mt-8">
-            <h2 className="mb-4 text-2xl font-black tracking-tight">
-              Recent Matches (Past 3 Months)
-            </h2>
+            <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Recent Matches (Past 3 Months) ")}</h2>
 
             <div className="grid gap-6 md:grid-cols-2">
               <RecentMatchesCard
@@ -2573,16 +2517,12 @@ function LiveMatchPage() {
 
         {(showFinishedSections || isLive) && (
         <div className="mt-8">
-          <h2 className="mb-4 text-2xl font-black tracking-tight">
-            Match Information
-          </h2>
+          <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Match Information ")}</h2>
 
           <div className="rounded-2xl border border-[#243041] bg-[#111823] p-6">
             <div className="grid gap-6 md:grid-cols-2">
               <div>
-                <div className="text-sm text-gray-500">
-                  Teams
-                </div>
+                <div className="text-sm text-gray-500">{tx(" Teams ")}</div>
 
                 <div className="text-lg font-bold">
                   {displayTeam1.name} vs{" "}
@@ -2591,9 +2531,7 @@ function LiveMatchPage() {
               </div>
 
               <div>
-                <div className="text-sm text-gray-500">
-                  League
-                </div>
+                <div className="text-sm text-gray-500">{tx(" League ")}</div>
 
                 <div className="text-lg font-bold">
                   <TournamentNameLink name={displaySeason} />
@@ -2601,9 +2539,7 @@ function LiveMatchPage() {
               </div>
 
               <div>
-                <div className="text-sm text-gray-500">
-                  Match Date
-                </div>
+                <div className="text-sm text-gray-500">{tx(" Match Date ")}</div>
 
                 <div className="text-lg font-bold">
                   {formatDateTime(
@@ -2613,9 +2549,7 @@ function LiveMatchPage() {
               </div>
 
               <div>
-                <div className="text-sm text-gray-500">
-                  Format
-                </div>
+                <div className="text-sm text-gray-500">{tx(" Format ")}</div>
 
                 <div className="text-lg font-bold">
                   BO{displayBestOf}
@@ -2628,15 +2562,10 @@ function LiveMatchPage() {
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex rounded-xl bg-orange-500 px-5 py-3 font-bold transition-all hover:bg-orange-600"
-            >
-              Open FACEIT Match Room →
-            </a>
+            >{tx(" Open FACEIT Match Room → ")}</a>
 
             {liveError && (
-              <div className="mt-3 text-sm text-yellow-400">
-                Live update unavailable.
-                Static match data is shown.
-              </div>
+              <div className="mt-3 text-sm text-yellow-400">{tx(" Live update unavailable. Static match data is shown. ")}</div>
             )}
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { tf, tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import {
   useEffect,
@@ -93,7 +95,7 @@ function formatDate(value) {
   }
 
   return date.toLocaleDateString(
-    "en-GB",
+    currentLocale(),
     {
       day: "2-digit",
       month: "short",
@@ -765,7 +767,7 @@ function PlayerPage() {
       try {
         if (!supabase) {
           throw new Error(
-            "Supabase client is not configured"
+            tx("Supabase client is not configured")
           );
         }
 
@@ -911,7 +913,7 @@ function PlayerPage() {
           data: matchRows,
           error: matchesError,
         } = ratingRow ? await supabase
-          .from("matches")
+          .from(tx("matches"))
           .select(
             [
               "id",
@@ -1294,21 +1296,21 @@ const currentTeam =
         "Kill/death ratio",
     },
     {
-      label: "Kills",
+      label: tx("Kills"),
       value:
         toNumber(avgKills).toFixed(1),
       caption:
         "Average per match",
     },
     {
-      label: "Deaths",
+      label: tx("Deaths"),
       value:
         toNumber(avgDeaths).toFixed(1),
       caption:
         "Average per match",
     },
     {
-      label: "Assists",
+      label: tx("Assists"),
       value:
         toNumber(avgAssists).toFixed(1),
       caption:
@@ -1456,9 +1458,7 @@ const currentTeam =
     )}
 
     <div>
-      <div className="text-xs uppercase tracking-wider text-slate-500">
-        Current team
-      </div>
+      <div className="text-xs uppercase tracking-wider text-slate-500">{tx(" Current team ")}</div>
 
       <div className="font-bold text-white">
         {currentTeam.name}
@@ -1467,13 +1467,9 @@ const currentTeam =
   </Link>
 ) : (
   <div className="rounded-2xl border border-[#2a3749] bg-[#0d151f] px-4 py-3">
-    <div className="text-xs uppercase tracking-wider text-slate-500">
-      Current team
-    </div>
+    <div className="text-xs uppercase tracking-wider text-slate-500">{tx(" Current team ")}</div>
 
-    <div className="font-bold text-slate-400">
-      Free agent
-    </div>
+    <div className="font-bold text-slate-400">{tx(" Free agent ")}</div>
   </div>
 )}
               </div>
@@ -1481,18 +1477,13 @@ const currentTeam =
               <div className="mt-8">
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                      Recent form
-                    </div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{tx(" Recent form ")}</div>
 
-                    <div className="mt-1 text-sm text-slate-400">
-                      Last {recentForm.length} matches
-                    </div>
+                    <div className="mt-1 text-sm text-slate-400">{tx(" Last ")}{recentForm.length}{tx(" matches ")}</div>
                   </div>
 
                   <div className="text-sm font-bold text-slate-300">
-                    {winRate.toFixed(0)}% wins
-                  </div>
+                    {winRate.toFixed(0)}{tx("% wins ")}</div>
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -1510,37 +1501,30 @@ const currentTeam =
                           }`}
                         >
                           {match.won
-                            ? "W"
-                            : "L"}
+                            ? tx("W")
+                            : tx("L")}
                         </Link>
                       )
                     )
                   ) : (
-                    <div className="text-sm text-slate-600">
-                      No recent matches
-                    </div>
+                    <div className="text-sm text-slate-600">{tx(" No recent matches ")}</div>
                   )}
                 </div>
               </div>
 
               {loadingStats && (
-                <div className="mt-5 text-sm text-slate-500">
-                  Loading player statistics...
-                </div>
+                <div className="mt-5 text-sm text-slate-500">{tx(" Loading player statistics... ")}</div>
               )}
 
               {statsError && (
                 <div className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
-                  {statsError}. Saved local data is shown.
-                </div>
+                  {statsError}{tx(". Saved local data is shown. ")}</div>
               )}
             </div>
 
             <div className="grid content-start gap-4 sm:grid-cols-2 lg:grid-cols-1">
               <div className={`rounded-3xl border p-6 ${ratingBackground(averageRating)}`}>
-                <div className="text-xs font-semibold uppercase tracking-[0.17em] text-slate-400">
-                  Player rating
-                </div>
+                <div className="text-xs font-semibold uppercase tracking-[0.17em] text-slate-400">{tx(" Player rating ")}</div>
 
                 <div className={`mt-3 text-6xl font-black tracking-tight ${ratingColor(averageRating)}`}>
                   {averageRating
@@ -1549,9 +1533,7 @@ const currentTeam =
                 </div>
 
                 <div className="mt-3 flex items-center justify-between text-sm">
-                  <span className="text-slate-500">
-                    Recent
-                  </span>
+                  <span className="text-slate-500">{tx(" Recent ")}</span>
 
                   <span className={`font-black ${ratingColor(recentRating)}`}>
                     {recentRating
@@ -1573,20 +1555,18 @@ const currentTeam =
                 />
 
                 <StatCard
-                  label="Matches"
+                  label={tx("Matches")}
                   value={
                     matchesPlayed ||
                     "—"
                   }
-                  hint={`${mapsPlayed || 0} maps`}
+                  hint={tf("{0} maps", mapsPlayed || 0)}
                 />
               </div>
 
               <div className="rounded-2xl border border-[#263244] bg-[#0f1620] p-5">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                    Last update
-                  </div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{tx(" Last update ")}</div>
 
                   <div className="text-sm font-semibold text-slate-300">
                     {formatDate(
@@ -1603,13 +1583,9 @@ const currentTeam =
         <section className="mt-6">
           <div className="mb-4 flex items-end justify-between">
             <div>
-              <h2 className="text-2xl font-black">
-                Performance
-              </h2>
+              <h2 className="text-2xl font-black">{tx(" Performance ")}</h2>
 
-              <p className="mt-1 text-sm text-slate-500">
-                Career averages from recorded matches
-              </p>
+              <p className="mt-1 text-sm text-slate-500">{tx(" Career averages from recorded matches ")}</p>
             </div>
           </div>
 
@@ -1631,18 +1607,13 @@ const currentTeam =
           <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
             <div className="flex items-center justify-between border-b border-[#263244] px-5 py-5 sm:px-6">
               <div>
-                <h2 className="text-xl font-black">
-                  Recent matches
-                </h2>
+                <h2 className="text-xl font-black">{tx(" Recent matches ")}</h2>
 
-                <div className="mt-1 text-sm text-slate-500">
-                  Individual performance in the latest games
-                </div>
+                <div className="mt-1 text-sm text-slate-500">{tx(" Individual performance in the latest games ")}</div>
               </div>
 
               <div className="text-sm font-bold text-slate-500">
-                {totalMatches} total
-              </div>
+                {totalMatches}{tx(" total ")}</div>
             </div>
 
             {playerMatches.length ? (
@@ -1683,7 +1654,7 @@ const currentTeam =
                               :
                               {match.opponent?.score ?? 0}
                             </span>
-                            {match.opponent?.teamName || "Unknown"}
+                            {match.opponent?.teamName || tx("Unknown")}
                           </div>
 
                           <div className="mt-1 truncate text-xs text-slate-500">
@@ -1716,9 +1687,7 @@ const currentTeam =
                         </div>
 
                         <div className="sm:text-right">
-                          <div className="text-xs uppercase tracking-wider text-slate-600">
-                            Rating
-                          </div>
+                          <div className="text-xs uppercase tracking-wider text-slate-600">{tx(" Rating ")}</div>
 
                           <div className={`mt-1 text-lg font-black ${ratingColor(match.rating)}`}>
                             {toNumber(
@@ -1731,42 +1700,38 @@ const currentTeam =
                   )}
               </div>
             ) : (
-              <div className="px-6 py-16 text-center text-slate-600">
-                No match statistics found
-              </div>
+              <div className="px-6 py-16 text-center text-slate-600">{tx(" No match statistics found ")}</div>
             )}
           </div>
 
           <div className="space-y-6">
             <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
-              <h2 className="text-xl font-black">
-                Overview
-              </h2>
+              <h2 className="text-xl font-black">{tx(" Overview ")}</h2>
 
               <div className="mt-5 space-y-4">
                 {[
                   [
-                    "Matches",
+                    tx("Matches"),
                     matchesPlayed,
                   ],
                   [
-                    "Maps",
+                    tx("Maps"),
                     mapsPlayed,
                   ],
                   [
-                    "Wins",
+                    tx("Wins"),
                     wins,
                   ],
                   [
-                    "Win rate",
+                    tx("Win rate"),
                     `${winRate.toFixed(1)}%`,
                   ],
                   [
-                    "Total kills",
+                    tx("Total kills"),
                     databaseRating?.kills ?? "—",
                   ],
                   [
-                    "Total deaths",
+                    tx("Total deaths"),
                     databaseRating?.deaths ?? "—",
                   ],
                 ].map(
@@ -1790,9 +1755,7 @@ const currentTeam =
 
             {transfers.length > 0 && (
               <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
-                <h2 className="text-xl font-black">
-                  Team history
-                </h2>
+                <h2 className="text-xl font-black">{tx(" Team history ")}</h2>
 
                 <div className="mt-5 space-y-5">
                   {transfers

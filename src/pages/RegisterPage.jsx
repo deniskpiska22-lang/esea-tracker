@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
@@ -32,22 +33,22 @@ export default function RegisterPage() {
     const email = form.email.trim().toLowerCase();
 
     if (!USERNAME_RE.test(username)) {
-      setError("Username must be 3–24 characters and contain only Latin letters, numbers, and _. ");
+      setError(tx("Username must be 3–24 characters and contain only Latin letters, numbers, and _. "));
       return;
     }
 
     if (form.password.length < 8) {
-      setError("Password must contain at least 8 characters.");
+      setError(tx("Password must contain at least 8 characters."));
       return;
     }
 
     if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match.");
+      setError(tx("Passwords do not match."));
       return;
     }
 
     if (!supabase) {
-      setError("Supabase is not configured. Check the environment variables.");
+      setError(tx("Supabase is not configured. Check the environment variables."));
       return;
     }
 
@@ -62,7 +63,7 @@ export default function RegisterPage() {
 
       if (profileError) throw profileError;
       if (existingProfile) {
-        setError("This username is already taken.");
+        setError(tx("This username is already taken."));
         return;
       }
 
@@ -78,15 +79,15 @@ export default function RegisterPage() {
       if (signUpError) throw signUpError;
 
       if (data.session) {
-        setSuccess("Account created. You are now logged in.");
+        setSuccess(tx("Account created. You are now logged in."));
       } else {
-        setSuccess("Account created. Confirm your email using the link we sent you.");
+        setSuccess(tx("Account created. Confirm your email using the link we sent you."));
       }
 
       setForm({ username: "", email: "", password: "", confirmPassword: "" });
     } catch (err) {
       console.error(err);
-      setError(err.message || "Could not create the account.");
+      setError(err.message || tx("Could not create the account."));
     } finally {
       setSubmitting(false);
     }
@@ -97,26 +98,25 @@ export default function RegisterPage() {
       <section className="w-full max-w-md rounded-3xl border border-[#243041] bg-[#111823] p-6 shadow-2xl md:p-8">
         <div className="mb-7 text-center">
           <div className="text-sm font-bold uppercase tracking-[0.25em] text-orange-400">ESEA Tracker</div>
-          <h1 className="mt-2 text-3xl font-black">Create account</h1>
-          <p className="mt-2 text-sm text-gray-400">Your username will be displayed on the site.</p>
+          <h1 className="mt-2 text-3xl font-black">{tx("Create account")}</h1>
+          <p className="mt-2 text-sm text-gray-400">{tx("Your username will be displayed on the site.")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <AuthInput label="Username" name="username" value={form.username} onChange={updateField} autoComplete="username" placeholder="player123" />
-          <AuthInput label="Email" name="email" type="email" value={form.email} onChange={updateField} autoComplete="email" placeholder="you@example.com" />
-          <AuthInput label="Password" name="password" type="password" value={form.password} onChange={updateField} autoComplete="new-password" placeholder="At least 8 characters" />
-          <AuthInput label="Confirm password" name="confirmPassword" type="password" value={form.confirmPassword} onChange={updateField} autoComplete="new-password" placeholder="Confirm password" />
+          <AuthInput label={tx("Username")} name="username" value={form.username} onChange={updateField} autoComplete="username" placeholder="player123" />
+          <AuthInput label={tx("Email")} name="email" type="email" value={form.email} onChange={updateField} autoComplete="email" placeholder="you@example.com" />
+          <AuthInput label={tx("Password")} name="password" type="password" value={form.password} onChange={updateField} autoComplete="new-password" placeholder={tx("At least 8 characters")} />
+          <AuthInput label={tx("Confirm password")} name="confirmPassword" type="password" value={form.confirmPassword} onChange={updateField} autoComplete="new-password" placeholder={tx("Confirm password")} />
 
           {error && <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</div>}
           {success && <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">{success}</div>}
 
           <button disabled={submitting} className="w-full rounded-xl bg-orange-500 px-5 py-3 font-black transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60">
-            {submitting ? "Creating account..." : "Create account"}
+            {submitting ? tx("Creating account...") : tx("Create account")}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-400">
-          Already have an account? <Link to="/login" className="font-bold text-orange-400 hover:text-orange-300">Log in</Link>
+        <p className="mt-6 text-center text-sm text-gray-400">{tx(" Already have an account? ")}<Link to="/login" className="font-bold text-orange-400 hover:text-orange-300">{tx("Log in")}</Link>
         </p>
       </section>
     </main>

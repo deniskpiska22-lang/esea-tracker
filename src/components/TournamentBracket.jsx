@@ -1,3 +1,4 @@
+import { tx } from "../i18n/translate.js";
 import { Link } from "react-router-dom";
 
 function TeamRow({ team, score, winner }) {
@@ -33,7 +34,7 @@ function TeamRow({ team, score, winner }) {
                 : "text-slate-300"
           }`}
         >
-          {team?.name || "TBD"}
+          {team?.name || tx("TBD")}
         </span>
 
         {team?.tag && (

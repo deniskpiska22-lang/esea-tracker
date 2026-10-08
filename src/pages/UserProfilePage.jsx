@@ -1,3 +1,5 @@
+import { currentLocale } from "../i18n/languages.js";
+import { tx } from "../i18n/translate.js";
 import {
   useCallback,
   useEffect,
@@ -68,7 +70,7 @@ function formatDate(value, language) {
   if (!value) {
     return language === "ru"
       ? "Неизвестно"
-      : "Unknown";
+      : tx("Unknown");
   }
 
   const date = new Date(value);
@@ -76,11 +78,11 @@ function formatDate(value, language) {
   if (Number.isNaN(date.getTime())) {
     return language === "ru"
       ? "Неизвестно"
-      : "Unknown";
+      : tx("Unknown");
   }
 
   return new Intl.DateTimeFormat(
-    language === "ru" ? "ru-RU" : "en-US",
+    currentLocale(),
     {
       day: "2-digit",
       month: "long",
@@ -101,7 +103,7 @@ function formatDateTime(value, language) {
   }
 
   return new Intl.DateTimeFormat(
-    language === "ru" ? "ru-RU" : "en-US",
+    currentLocale(),
     {
       day: "2-digit",
       month: "short",
@@ -170,7 +172,7 @@ function getWinnerTeamId(match) {
 function getLocalizedLabel(dictionary, key, language, fallback) {
   return (
     dictionary[key]?.[language] ||
-    dictionary[key]?.en ||
+    tx(dictionary[key]?.en) ||
     fallback
   );
 }
@@ -212,7 +214,7 @@ function BugHunterBadge({ compact = false }) {
         🛠
       </span>
 
-      <span>Bug Hunter</span>
+      <span>{tx("Bug Hunter")}</span>
 
       {!compact && (
         <span className="ml-auto text-orange-400/70">
@@ -433,9 +435,7 @@ function ProfessionalPanel({
           />
 
           <div className="mt-7 rounded-2xl border border-orange-400/15 bg-orange-500/[0.05] p-6">
-            <div className="inline-flex rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-orange-300">
-              Free Agent
-            </div>
+            <div className="inline-flex rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-orange-300">{tx(" Free Agent ")}</div>
 
             <div className="mt-4 text-3xl font-black tracking-tight text-white">
               {accountType}
@@ -1177,9 +1177,7 @@ export default function UserProfilePage() {
                           </div>
 
                           <div className="min-w-0 flex-1">
-                            <div className="text-lg font-black uppercase tracking-[0.14em] text-orange-300">
-                              Bug Hunter
-                            </div>
+                            <div className="text-lg font-black uppercase tracking-[0.14em] text-orange-300">{tx(" Bug Hunter ")}</div>
 
                             <p className="mt-2 text-sm leading-6 text-gray-300">
                               {tr(

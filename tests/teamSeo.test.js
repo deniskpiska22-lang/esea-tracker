@@ -1,3 +1,4 @@
+import { localizeSeo } from '../src/i18n/seo.js';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
@@ -81,13 +82,13 @@ test('sitemap discovers the three real sections with no placeholder analytics pa
   assert.doesNotMatch(xml,/analytics/);
 });
 
-test('static build and live renderer use the same team title and English language', async () => {
+test('static build and live renderer use the same localized Russian team metadata', async () => {
   const team = teams[0];
   const html = await readFile(`dist/teams/${team.slug}.html`,'utf8');
-  assert.ok(html.includes(`<title>${escapeHtml(getTeamSeoMetadata(team).title)}</title>`));
-  assert.match(html,/<html lang="en">/);
+  assert.ok(html.includes(`<title>${escapeHtml(localizeSeo(getTeamSeoMetadata(team),'ru',{kind:'team',entity:team}).title)}</title>`));
+  assert.match(html,/<html lang="ru">/);
   assert.equal((html.match(/<h1[ >]/g) || []).length,1);
   assert.doesNotMatch(html,/<div id="app-boot-shell"/);
   const stats = await readFile(`dist/teams/${team.slug}/stats.html`,'utf8');
-  assert.match(stats,/Map Statistics/);
+  assert.match(stats,/Статистика карт/);
 });

@@ -1,3 +1,5 @@
+import { tx, tf } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -155,7 +157,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -258,8 +260,7 @@ function BanOrderFlow({
           {groups.map((group) => (
             <div key={group.order}>
               <div className="mb-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#8ca2c2]">
-                {ordinalLabel(group.order)} Ban
-              </div>
+                {ordinalLabel(group.order)}{tx(" Ban ")}</div>
               <div className="space-y-3">
                 {group.entries.map((entry) => (
                   <div key={entry.name}>
@@ -350,7 +351,7 @@ function MatchHistoryCard({ match }) {
 
       <div className="min-w-0 flex-1">
         <div className="truncate text-sm font-black text-slate-100">
-          vs {match.opponentName || "Unknown"}
+          vs {match.opponentName || tx("Unknown")}
         </div>
         <div className="mt-0.5 truncate text-[11px] font-semibold text-[#587094]">
           {formatDate(match.date)}
@@ -390,7 +391,7 @@ function MatchHistoryCard({ match }) {
             : "bg-rose-500/10 text-rose-400"
         }`}
       >
-        {match.won ? "W" : "L"}
+        {match.won ? tx("W") : tx("L")}
       </div>
     </Link>
   );
@@ -431,7 +432,7 @@ function MapCard({ map, form, slug }) {
         {tier && (
           <div
             className={`absolute left-2 top-2 flex h-5 w-5 items-center justify-center rounded-md border text-[10px] font-black ${TIER_STYLES[tier]}`}
-            title={`Map rating: ${tier} tier`}
+            title={tf("Map rating: {0} tier", tier)}
           >
             {tier}
           </div>
@@ -473,7 +474,7 @@ function MapCard({ map, form, slug }) {
           {hasTrend && (
             <span
               className={`text-base font-black ${trendClass}`}
-              title={`Recent form vs. overall — ${trend}`}
+              title={tf("Recent form vs. overall — {0}", trend)}
             >
               {trendGlyph}
             </span>
@@ -481,8 +482,8 @@ function MapCard({ map, form, slug }) {
         </div>
 
         <div className="mt-1.5 flex items-center gap-3 text-[10px] font-bold">
-          <span className="text-emerald-400">{map.pickRate}% pick</span>
-          <span className="text-rose-400">{map.banRate}% ban</span>
+          <span className="text-emerald-400">{map.pickRate}{tx("% pick")}</span>
+          <span className="text-rose-400">{map.banRate}{tx("% ban")}</span>
         </div>
       </div>
     </Link>
@@ -568,13 +569,11 @@ function VetoPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0b1117] p-8 text-white">
         <div className="text-center">
-          <h1 className="text-3xl font-black">Team not found</h1>
+          <h1 className="text-3xl font-black">{tx("Team not found")}</h1>
           <Link
             to="/"
             className="mt-4 inline-block text-orange-400 transition hover:text-orange-300"
-          >
-            ← Back Home
-          </Link>
+          >{tx(" ← Back Home ")}</Link>
         </div>
       </div>
     );
@@ -586,9 +585,7 @@ function VetoPage() {
         <Link
           to={`/team/${slug}`}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-orange-400 transition hover:text-orange-300"
-        >
-          ← Back to Team
-        </Link>
+        >{tx(" ← Back to Team ")}</Link>
 
         {/* HERO */}
         <section className="mt-3 rounded-xl border border-white/5 bg-[#111923] p-4 sm:p-5">
@@ -605,36 +602,32 @@ function VetoPage() {
                 <div className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ff8c32]">
                   {team.name}
                 </div>
-                <h1 className="mt-0.5 text-[26px] font-black uppercase leading-none tracking-tight">
-                  Veto Analytics
-                </h1>
-                <div className="mt-1 text-[11px] font-semibold text-[#587094]">
-                  Last {VETO_WINDOW_DAYS} days
-                </div>
+                <h1 className="mt-0.5 text-[26px] font-black uppercase leading-none tracking-tight">{tx(" Veto Analytics ")}</h1>
+                <div className="mt-1 text-[11px] font-semibold text-[#587094]">{tx(" Last ")}{VETO_WINDOW_DAYS}{tx(" days ")}</div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
               <HeroStatCard
-                label="Matches"
+                label={tx("Matches")}
                 value={recentMatches.length}
               />
               <HeroStatCard
-                label="Favorite Pick"
+                label={tx("Favorite Pick")}
                 value={
                   mostPickedByUs ? formatMapName(mostPickedByUs.name) : "—"
                 }
                 valueClass="text-emerald-400"
               />
               <HeroStatCard
-                label="Favorite Ban"
+                label={tx("Favorite Ban")}
                 value={
                   mostBannedByUs ? formatMapName(mostBannedByUs.name) : "—"
                 }
                 valueClass="text-rose-400"
               />
               <HeroStatCard
-                label="Best Map"
+                label={tx("Best Map")}
                 value={
                   bestMapForUs ? formatMapName(bestMapForUs.name) : "—"
                 }
@@ -644,24 +637,21 @@ function VetoPage() {
           </div>
 
           {loading && (
-            <div className="mt-3 text-sm font-semibold text-slate-400">
-              Loading veto history...
-            </div>
+            <div className="mt-3 text-sm font-semibold text-slate-400">{tx(" Loading veto history... ")}</div>
           )}
 
           {error && (
             <div className="mt-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-sm text-yellow-300">
-              {error}. Saved match data is shown.
-            </div>
+              {error}{tx(". Saved match data is shown. ")}</div>
           )}
         </section>
 
         {/* VETO FLOW — this team's own ban order, the main section */}
         <div className="mt-4">
           <BanOrderFlow
-            eyebrow="Veto flow"
-            title="How this team bans"
-            description="The order this team drops maps in their own veto — the first ban is their strongest signal of what they want off the table."
+            eyebrow={tx("Veto flow")}
+            title={tx("How this team bans")}
+            description={tx("The order this team drops maps in their own veto — the first ban is their strongest signal of what they want off the table.")}
             banOrderStats={ourBanOrder}
             barClass="bg-gradient-to-r from-[#ff8c32] to-[#ffb066]"
             loading={loading}
@@ -672,9 +662,9 @@ function VetoPage() {
         {/* OPPONENT TENDENCIES */}
         <div className="mt-4">
           <BanOrderFlow
-            eyebrow="Opponent tendencies"
-            title="How opponents veto against this team"
-            description="The order opponents drop maps when facing this team — a map almost always banned first is the one they fear least prepping for."
+            eyebrow={tx("Opponent tendencies")}
+            title={tx("How opponents veto against this team")}
+            description={tx("The order opponents drop maps when facing this team — a map almost always banned first is the one they fear least prepping for.")}
             banOrderStats={opponentBanOrder}
             barClass="bg-gradient-to-r from-rose-500 to-rose-400"
             loading={loading}
@@ -685,7 +675,7 @@ function VetoPage() {
         {/* MAP POOL */}
         <section className="mt-4">
           <div className="mb-3">
-            <SectionEyebrow>Map pool</SectionEyebrow>
+            <SectionEyebrow>{tx("Map pool")}</SectionEyebrow>
           </div>
 
           {vetoStats.length > 0 ? (
@@ -701,9 +691,7 @@ function VetoPage() {
             </div>
           ) : (
             !loading && (
-              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">
-                No veto data available for this team yet.
-              </div>
+              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No veto data available for this team yet. ")}</div>
             )
           )}
         </section>
@@ -711,7 +699,7 @@ function VetoPage() {
         {/* MATCH HISTORY */}
         <section className="mt-4 mb-6">
           <div className="mb-3">
-            <SectionEyebrow>Match history</SectionEyebrow>
+            <SectionEyebrow>{tx("Match history")}</SectionEyebrow>
           </div>
 
           {sortedVetoMatches.length > 0 ? (
@@ -725,9 +713,7 @@ function VetoPage() {
             </div>
           ) : (
             !loading && (
-              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">
-                No matches with veto data yet.
-              </div>
+              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No matches with veto data yet. ")}</div>
             )
           )}
         </section>

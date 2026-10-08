@@ -1,3 +1,5 @@
+import { tx } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
@@ -54,7 +56,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -62,7 +64,7 @@ function formatDate(value) {
 }
 
 function formatDateRange(startDate, endDate) {
-  if (!startDate || !endDate) return "Date TBD";
+  if (!startDate || !endDate) return tx("Date TBD");
 
   return `${formatDate(startDate)} – ${formatDate(endDate)}`;
 }
@@ -163,7 +165,7 @@ function TeamAttendingCard({ team }) {
 
       <div className="min-w-0">
         <div className="truncate text-sm font-bold text-slate-200">
-          {team?.name || "TBD"}
+          {team?.name || tx("TBD")}
         </div>
 
         {isTbd && team?.qualifierName ? (
@@ -311,7 +313,7 @@ function MatchScheduleRow({ match }) {
             team1Won ? "text-emerald-400" : "text-slate-300"
           }`}
         >
-          {team1.name || "TBD"}
+          {team1.name || tx("TBD")}
         </span>
         {team1.logo && (
           <img
@@ -339,7 +341,7 @@ function MatchScheduleRow({ match }) {
             team2Won ? "text-emerald-400" : "text-slate-300"
           }`}
         >
-          {team2.name || "TBD"}
+          {team2.name || tx("TBD")}
         </span>
       </div>
     </div>
@@ -356,7 +358,7 @@ function MatchesSchedule({ matches }) {
   const groups = new Map();
 
   matches.forEach((match) => {
-    const key = match.date ? formatDate(match.date) : "Date TBD";
+    const key = match.date ? formatDate(match.date) : tx("Date TBD");
 
     if (!groups.has(key)) {
       groups.set(key, []);
@@ -388,25 +390,19 @@ function GroupSection({ group }) {
 
   return (
     <div className="p-5 sm:p-6">
-      <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">
-        Upper Bracket
-      </div>
+      <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">{tx(" Upper Bracket ")}</div>
       <Bracket rounds={group.upper} />
 
       {hasLower && (
         <>
-          <div className="mb-2 mt-6 text-xs font-black uppercase tracking-wide text-slate-500">
-            Lower Bracket
-          </div>
+          <div className="mb-2 mt-6 text-xs font-black uppercase tracking-wide text-slate-500">{tx(" Lower Bracket ")}</div>
           <Bracket rounds={group.lower} />
         </>
       )}
 
       {group.final && (
         <div className="mt-6">
-          <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">
-            Group Final
-          </div>
+          <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 before:h-px before:w-7 before:bg-orange-500/50">{tx(" Group Final ")}</div>
           <div className="max-w-[220px]">
             <BracketMatchBox match={group.final} />
           </div>
@@ -543,22 +539,18 @@ function TournamentPage() {
 
   if (loadingLive && !staticTournament) {
     return (
-      <div className="min-h-screen bg-[#090f16] p-8 text-center text-white">
-        Loading tournament...
-      </div>
+      <div className="min-h-screen bg-[#090f16] p-8 text-center text-white">{tx(" Loading tournament... ")}</div>
     );
   }
 
   if (!tournament) {
     return (
       <div className="min-h-screen bg-[#090f16] p-8 text-center text-white">
-        <div className="text-xl font-bold">Tournament not found</div>
+        <div className="text-xl font-bold">{tx("Tournament not found")}</div>
         <Link
           to="/calendar"
           className="mt-4 inline-block text-orange-400 hover:text-orange-300"
-        >
-          ← Back to Calendar
-        </Link>
+        >{tx(" ← Back to Calendar ")}</Link>
       </div>
     );
   }
@@ -625,9 +617,7 @@ function TournamentPage() {
         <Link
           to="/calendar"
           className="inline-flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.025] px-3 py-2 text-sm font-bold text-orange-400 transition hover:border-orange-400/20 hover:bg-orange-500/[0.06] hover:text-orange-300"
-        >
-          ← Back to Calendar
-        </Link>
+        >{tx(" ← Back to Calendar ")}</Link>
 
         {/* HERO */}
         <section className="relative mt-5 overflow-hidden rounded-[34px] border border-white/[0.08] bg-gradient-to-br from-[#121b27] via-[#0d141e] to-[#0a1018] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.42)] md:p-10 lg:p-12">
@@ -653,9 +643,7 @@ function TournamentPage() {
 
                 {isLive ? (
                   <span className="flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/15 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-red-400">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
-                    Live
-                  </span>
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />{tx(" Live ")}</span>
                 ) : (
                   <span className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
                     {status || "upcoming"}
@@ -668,16 +656,16 @@ function TournamentPage() {
               </h1>
 
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                <InfoPill label="Location" value={tournament.location} />
+                <InfoPill label={tx("Location")} value={tournament.location} />
                 <InfoPill
-                  label="Dates"
+                  label={tx("Dates")}
                   value={formatDateRange(
                     tournament.startDate,
                     tournament.endDate
                   )}
                 />
-                <InfoPill label="Teams" value={teamsList.length || null} />
-                <InfoPill label="Prize pool" value={tournament.prizePool} />
+                <InfoPill label={tx("Teams")} value={teamsList.length || null} />
+                <InfoPill label={tx("Prize pool")} value={tournament.prizePool} />
               </div>
 
               {tournament.url && (
@@ -686,9 +674,7 @@ function TournamentPage() {
                   target="_blank"
                   rel="noreferrer"
                   className="mt-7 inline-flex items-center rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-3 text-sm font-black text-white shadow-[0_12px_30px_rgba(249,115,22,0.25)] transition hover:-translate-y-0.5 hover:from-orange-400 hover:to-orange-500"
-                >
-                  View source →
-                </a>
+                >{tx(" View source → ")}</a>
               )}
             </div>
           </div>
@@ -697,7 +683,7 @@ function TournamentPage() {
         {/* OVERVIEW */}
         {tournament.description && (
           <div className="mt-6">
-            <Accordion title="Overview">
+            <Accordion title={tx("Overview")}>
               <div className="p-5 sm:p-6">
                 <p className="max-w-4xl text-[15px] leading-8 text-slate-300">
                   {tournament.description}
@@ -710,7 +696,7 @@ function TournamentPage() {
         {/* PLAYOFFS */}
         {bracketRounds.length > 0 && (
           <div className="mt-6">
-            <Accordion title="Playoffs">
+            <Accordion title={tx("Playoffs")}>
               <div className="p-5 sm:p-6">
                 <Bracket rounds={bracketRounds} />
               </div>
@@ -722,7 +708,7 @@ function TournamentPage() {
         {scheduleMatches.length > 0 && (
           <div className="mt-6">
             <Accordion
-              title="Matches"
+              title={tx("Matches")}
               subtitle={`${scheduleMatches.length} matches`}
             >
               <MatchesSchedule matches={scheduleMatches} />
@@ -733,9 +719,7 @@ function TournamentPage() {
         {/* GROUP STAGE */}
         {groups.length > 0 && (
           <div className="mt-6 space-y-3">
-            <h2 className="px-1 text-lg font-black text-slate-400">
-              Group Stage
-            </h2>
+            <h2 className="px-1 text-lg font-black text-slate-400">{tx(" Group Stage ")}</h2>
 
             {groups.map((group) => (
               <Accordion key={group.name} title={group.name}>
@@ -748,7 +732,7 @@ function TournamentPage() {
         {/* TEAMS */}
         <div className="mt-6">
           <Accordion
-            title="Teams attending"
+            title={tx("Teams attending")}
             subtitle={
               teamsList.length > 0 ? `${teamsList.length} teams` : undefined
             }
@@ -763,9 +747,7 @@ function TournamentPage() {
                 ))}
               </div>
             ) : (
-              <EmptyState>
-                Teams will be announced closer to the event.
-              </EmptyState>
+              <EmptyState>{tx(" Teams will be announced closer to the event. ")}</EmptyState>
             )}
           </Accordion>
         </div>
@@ -773,7 +755,7 @@ function TournamentPage() {
         {/* PRIZE DISTRIBUTION */}
         {prizeDistribution.length > 0 && (
           <div className="mt-6">
-            <Accordion title="Prize distribution">
+            <Accordion title={tx("Prize distribution")}>
               <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-4 sm:gap-4 sm:p-7">
                 {prizeDistribution.map((entry, index) => (
                   <PrizeDistributionCard key={index} entry={entry} />
@@ -786,13 +768,11 @@ function TournamentPage() {
         {/* FORMATS */}
         {hasFormats && (
           <div className="mt-6">
-            <Accordion title="Formats">
+            <Accordion title={tx("Formats")}>
               <div className="grid grid-cols-1 gap-5 p-5 sm:grid-cols-2 sm:p-7">
                 {tournament.formats.groupStage?.length > 0 && (
                   <div>
-                    <div className="text-xs font-black uppercase tracking-wide text-slate-500">
-                      Group stage
-                    </div>
+                    <div className="text-xs font-black uppercase tracking-wide text-slate-500">{tx(" Group stage ")}</div>
                     <div className="mt-2 space-y-1 text-sm text-slate-300">
                       {tournament.formats.groupStage.map((line, index) => (
                         <div key={index}>{line}</div>
@@ -803,9 +783,7 @@ function TournamentPage() {
 
                 {tournament.formats.playoffs?.length > 0 && (
                   <div>
-                    <div className="text-xs font-black uppercase tracking-wide text-slate-500">
-                      Playoffs
-                    </div>
+                    <div className="text-xs font-black uppercase tracking-wide text-slate-500">{tx(" Playoffs ")}</div>
                     <div className="mt-2 space-y-1 text-sm text-slate-300">
                       {tournament.formats.playoffs.map((line, index) => (
                         <div key={index}>{line}</div>
@@ -821,7 +799,7 @@ function TournamentPage() {
         {/* MAP POOL */}
         {mapPool.length > 0 && (
           <div className="mt-6">
-            <Accordion title="Map pool">
+            <Accordion title={tx("Map pool")}>
               <MapPoolGrid maps={mapPool} />
             </Accordion>
           </div>
@@ -830,7 +808,7 @@ function TournamentPage() {
         {/* RELATED EVENTS */}
         {relatedEvents.length > 0 && (
           <div className="mt-6">
-            <Accordion title="Related events">
+            <Accordion title={tx("Related events")}>
               <RelatedEventsList events={relatedEvents} />
             </Accordion>
           </div>

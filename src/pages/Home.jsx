@@ -1,3 +1,5 @@
+import { tx, tf } from "../i18n/translate.js";
+import { currentLocale } from "../i18n/languages.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -303,7 +305,7 @@ function normalizeTeam(team) {
   if (!team) {
     return {
       id: null,
-      name: "TBD",
+      name: tx("TBD"),
       slug: null,
       logo: null,
       points: 0,
@@ -351,12 +353,12 @@ function isWithinUpcomingWindow(value) {
 }
 
 function formatTime(value) {
-  if (!value) return "TBD";
+  if (!value) return tx("TBD");
 
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "TBD";
+  if (Number.isNaN(date.getTime())) return tx("TBD");
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
@@ -368,7 +370,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
   }).format(date);
@@ -383,33 +385,33 @@ function formatRelative(value) {
   const diff = Math.max(0, Date.now() - timestamp);
   const minutes = Math.floor(diff / 60000);
 
-  if (minutes < 1) return "just now";
-  if (minutes < 60) return `${minutes} min ago`;
+  if (minutes < 1) return tx("just now");
+  if (minutes < 60) return tf("{0} min ago", minutes);
 
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 24) return tf("{0}h ago", hours);
 
   return formatDate(value);
 }
 
 function formatCountdown(value) {
-  if (!value) return "Soon";
+  if (!value) return tx("Soon");
 
   const timestamp = new Date(value).getTime();
-  if (Number.isNaN(timestamp)) return "Soon";
+  if (Number.isNaN(timestamp)) return tx("Soon");
 
   const diff = timestamp - Date.now();
-  if (diff <= 0) return "Starting";
+  if (diff <= 0) return tx("Starting");
 
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(minutes / 60);
 
   if (hours >= 24) {
     const days = Math.floor(hours / 24);
-    return `${days}d ${hours % 24}h`;
+    return tf("{0}d {1}h", days, hours % 24);
   }
 
-  return `${hours}h ${String(minutes % 60).padStart(2, "0")}m`;
+  return tf("{0}h {1}m", hours, String(minutes % 60).padStart(2, "0"));
 }
 
 function getLeaguePriority(season = "") {
@@ -855,7 +857,7 @@ function TeamLink({ team, className = "" }) {
   if (!team?.slug) {
     return (
       <span className={`truncate ${className}`}>
-        {team?.name || "TBD"}
+        {team?.name || tx("TBD")}
       </span>
     );
   }
@@ -914,12 +916,12 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
   const validStartDate = startDate && !Number.isNaN(startDate.getTime());
 
   const day = validStartDate
-    ? new Intl.DateTimeFormat("en-GB", { day: "2-digit" }).format(startDate)
+    ? new Intl.DateTimeFormat(currentLocale(), { day: "2-digit" }).format(startDate)
     : "—";
 
   const month = validStartDate
-    ? new Intl.DateTimeFormat("en-GB", { month: "short" }).format(startDate).toUpperCase()
-    : "TBD";
+    ? new Intl.DateTimeFormat(currentLocale(), { month: "short" }).format(startDate).toUpperCase()
+    : tx("TBD");
 
   const dateRange = !tournament.startDate
     ? "Date to be announced"
@@ -959,7 +961,7 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
               <div className="min-w-0">
                 <div className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.16em] ${isLive ? "border-red-500/25 bg-red-500/10 text-red-400" : "border-white/[0.08] bg-white/[0.035] text-slate-400"}`}>
                   <span className={`h-1.5 w-1.5 rounded-full ${isLive ? "animate-pulse bg-red-500" : "bg-orange-400"}`} />
-                  {isLive ? "Live now" : "Upcoming"}
+                  {isLive ? tx("Live now") : tx("Upcoming")}
                 </div>
 
                 <h3 className="mt-2 line-clamp-2 text-[15px] font-black leading-5 text-white transition group-hover:text-orange-400">
@@ -979,7 +981,7 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
             <div className="mt-3 space-y-2 text-[11px] font-semibold text-slate-500">
               <div className="flex min-w-0 items-center gap-2">
                 <LocationIcon className="h-3.5 w-3.5 shrink-0 text-slate-600" />
-                <span className="truncate">{tournament.location || "Location to be announced"}</span>
+                <span className="truncate">{tournament.location || tx("Location to be announced")}</span>
               </div>
 
               <div className="flex min-w-0 items-center gap-2">
@@ -991,13 +993,9 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
         </div>
 
         <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
-          <span className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-600">
-            Tournament page
-          </span>
+          <span className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-600">{tx(" Tournament page ")}</span>
 
-          <span className="flex items-center gap-2 text-[11px] font-black text-orange-400">
-            View event
-            <ArrowIcon className="h-3.5 w-3.5 transition duration-300 group-hover:translate-x-1" />
+          <span className="flex items-center gap-2 text-[11px] font-black text-orange-400">{tx(" View event ")}<ArrowIcon className="h-3.5 w-3.5 transition duration-300 group-hover:translate-x-1" />
           </span>
         </div>
       </div>
@@ -1012,14 +1010,14 @@ function CompactTournamentCard({ tournament, isLive = false }) {
   const validStartDate = startDate && !Number.isNaN(startDate.getTime());
 
   const day = validStartDate
-    ? new Intl.DateTimeFormat("en-GB", { day: "2-digit" }).format(startDate)
+    ? new Intl.DateTimeFormat(currentLocale(), { day: "2-digit" }).format(startDate)
     : "—";
 
   const month = validStartDate
-    ? new Intl.DateTimeFormat("en-GB", { month: "short" })
+    ? new Intl.DateTimeFormat(currentLocale(), { month: "short" })
         .format(startDate)
         .toUpperCase()
-    : "TBD";
+    : tx("TBD");
 
   return (
     <Link
@@ -1047,7 +1045,7 @@ function CompactTournamentCard({ tournament, isLive = false }) {
               isLive ? "text-red-400" : "text-slate-500"
             }`}
           >
-            {isLive ? "Live now" : "Upcoming"}
+            {isLive ? tx("Live now") : tx("Upcoming")}
           </span>
         </div>
 
@@ -1058,7 +1056,7 @@ function CompactTournamentCard({ tournament, isLive = false }) {
         <div className="mt-1 flex items-center gap-1.5 truncate text-[10px] font-semibold text-slate-600">
           <LocationIcon className="h-3 w-3 shrink-0" />
           <span className="truncate">
-            {tournament.location || "Location TBD"}
+            {tournament.location || tx("Location TBD")}
           </span>
         </div>
       </div>
@@ -1095,15 +1093,11 @@ function HeroMatch({ match }) {
     return (
       <section className="flex min-h-[390px] items-center justify-center rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-7 text-center">
         <div>
-          <div className="text-xl font-black text-white">
-            No matches available
-          </div>
+          <div className="text-xl font-black text-white">{tx(" No matches available ")}</div>
           <Link
             to="/matches"
             className="mt-4 inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-          >
-            Open matches page
-          </Link>
+          >{tx(" Open matches page ")}</Link>
         </div>
       </section>
     );
@@ -1125,9 +1119,7 @@ function HeroMatch({ match }) {
             to={matchPath}
             state={{ from: "/", label: "← Back to Home" }}
             className="text-[11px] font-black uppercase tracking-[0.24em] text-orange-400 transition hover:text-orange-300"
-          >
-            Match of the Day
-          </Link>
+          >{tx(" Match of the Day ")}</Link>
 
           <div className="flex items-center gap-2">
             <Link
@@ -1139,7 +1131,7 @@ function HeroMatch({ match }) {
                   : "border-white/10 bg-white/[0.04] text-slate-400 hover:bg-white/[0.08]"
               }`}
             >
-              {live ? "● Live" : formatCountdown(match.scheduledAt)}
+              {live ? tx("● Live") : formatCountdown(match.scheduledAt)}
             </Link>
 
             <Link
@@ -1159,7 +1151,7 @@ function HeroMatch({ match }) {
           >
             <Logo team={match.team1} size="lg" priority />
             <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
-              {match.team1?.name || "TBD"}
+              {match.team1?.name || tx("TBD")}
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-start">
               {match.team1?.rank ? (
@@ -1167,14 +1159,11 @@ function HeroMatch({ match }) {
                   #{match.team1.rank}
                 </span>
               ) : (
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">
-                  Unranked
-                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">{tx(" Unranked ")}</span>
               )}
 
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-400">
-                {toNumber(match.team1?.points)} PTS
-              </span>
+                {toNumber(match.team1?.points)}{tx(" PTS ")}</span>
             </div>
           </Link>
 
@@ -1188,9 +1177,7 @@ function HeroMatch({ match }) {
                 <div className="text-5xl font-black tracking-[-0.07em]">
                   {match.team1Score}:{match.team2Score}
                 </div>
-                <div className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-red-400">
-                  Live now
-                </div>
+                <div className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-red-400">{tx(" Live now ")}</div>
               </>
             ) : (
               <>
@@ -1214,7 +1201,7 @@ function HeroMatch({ match }) {
           >
             <Logo team={match.team2} size="lg" priority />
             <div className="mt-4 line-clamp-2 min-h-[60px] max-w-full text-[28px] font-black leading-[1.06] tracking-[-0.035em] transition hover:text-orange-400 md:min-h-[72px] md:text-[34px]">
-              {match.team2?.name || "TBD"}
+              {match.team2?.name || tx("TBD")}
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.14em] md:justify-end">
               {match.team2?.rank ? (
@@ -1222,14 +1209,11 @@ function HeroMatch({ match }) {
                   #{match.team2.rank}
                 </span>
               ) : (
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">
-                  Unranked
-                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-500">{tx(" Unranked ")}</span>
               )}
 
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-slate-400">
-                {toNumber(match.team2?.points)} PTS
-              </span>
+                {toNumber(match.team2?.points)}{tx(" PTS ")}</span>
             </div>
           </Link>
         </div>
@@ -1238,9 +1222,7 @@ function HeroMatch({ match }) {
           to={matchPath}
           state={{ from: "/", label: "← Back to Home" }}
           className="mt-7 flex items-center justify-center border-t border-white/[0.07] pt-5 text-sm font-black text-orange-400 transition hover:text-orange-300"
-        >
-          Open Match Center →
-        </Link>
+        >{tx(" Open Match Center → ")}</Link>
       </div>
     </section>
   );
@@ -1306,7 +1288,7 @@ function LiveCard({ match }) {
             <Logo team={match.team1} size="card" />
           </div>
           <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-white sm:text-sm">
-            {match.team1?.name || "TBD"}
+            {match.team1?.name || tx("TBD")}
           </div>
         </div>
         <div className="flex shrink-0 items-baseline gap-1">
@@ -1328,7 +1310,7 @@ function LiveCard({ match }) {
             <Logo team={match.team2} size="card" />
           </div>
           <div className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-white sm:text-sm">
-            {match.team2?.name || "TBD"}
+            {match.team2?.name || tx("TBD")}
           </div>
         </div>
         <div className="flex shrink-0 items-baseline gap-1">
@@ -1577,9 +1559,7 @@ function TopPlayerRow({ player, index }) {
               </span>
             </>
           ) : (
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600">
-              Team unavailable
-            </span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600">{tx(" Team unavailable ")}</span>
           )}
         </div>
       </div>
@@ -1588,9 +1568,7 @@ function TopPlayerRow({ player, index }) {
         <div className="text-lg font-black text-emerald-400">
           {toNumber(player.rating).toFixed(2)}
         </div>
-        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-          Rating
-        </div>
+        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">{tx(" Rating ")}</div>
       </div>
 
       <div className="hidden shrink-0 text-right sm:block">
@@ -1637,7 +1615,7 @@ function RankingCard({ team, index }) {
         <div className="text-lg font-black">{team.points}</div>
 
         <div className="mt-1 flex items-center justify-end gap-2 text-[9px] font-black uppercase tracking-wider">
-          <span className="text-slate-600">pts</span>
+          <span className="text-slate-600">{tx("pts")}</span>
 
           {team.pointsChange !== 0 && (
             <span
@@ -1703,9 +1681,7 @@ function NewsCard({
           {text}
         </p>
 
-        <div className="mt-5 text-xs font-black text-orange-400 opacity-80 transition group-hover:translate-x-1 group-hover:opacity-100">
-          Read more →
-        </div>
+        <div className="mt-5 text-xs font-black text-orange-400 opacity-80 transition group-hover:translate-x-1 group-hover:opacity-100">{tx(" Read more → ")}</div>
       </div>
     </Link>
   );
@@ -2210,9 +2186,7 @@ function Home() {
       `}</style>
       <div className="mx-auto w-full px-4 py-5 sm:px-5 lg:px-6 min-[1600px]:-translate-x-5">
         {databaseError && (
-          <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">
-            Supabase is temporarily unavailable. Local data is being shown.
-          </div>
+          <div className="mb-5 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.05] px-4 py-3 text-sm text-yellow-300">{tx(" Supabase is temporarily unavailable. Local data is being shown. ")}</div>
         )}
 
         <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_320px] min-[1850px]:grid-cols-[minmax(0,1fr)_340px]">
@@ -2224,7 +2198,7 @@ function Home() {
               ref={upcomingSectionRef}
               className="scroll-mt-24 rounded-[22px] border border-white/[0.07] bg-[#111820] p-4 md:p-5"
             >
-              <SectionTitle title="Upcoming Matches" />
+              <SectionTitle title={tx("Upcoming Matches")} />
 
               {upcoming.length > 0 ? (
                 <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
@@ -2238,9 +2212,7 @@ function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">
-                  No matches scheduled in the next 24 hours
-                </div>
+                <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">{tx(" No matches scheduled in the next 24 hours ")}</div>
               )}
             </section>
           </div>
@@ -2250,12 +2222,8 @@ function Home() {
             <section className="overflow-hidden rounded-[22px] border border-white/[0.07] bg-[#111820]">
               <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-4">
                 <div>
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">
-                    Live matches
-                  </div>
-                  <h2 className="mt-1 text-lg font-black tracking-tight">
-                    Live Center
-                  </h2>
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-400">{tx(" Live matches ")}</div>
+                  <h2 className="mt-1 text-lg font-black tracking-tight">{tx(" Live Center ")}</h2>
                 </div>
 
                 <div className="flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-red-400">
@@ -2274,9 +2242,7 @@ function Home() {
                   ))}
                 </div>
               ) : (
-                <div className="flex min-h-[150px] items-center justify-center px-6 text-center text-sm text-slate-600">
-                  No live matches right now
-                </div>
+                <div className="flex min-h-[150px] items-center justify-center px-6 text-center text-sm text-slate-600">{tx(" No live matches right now ")}</div>
               )}
             </section>
 
@@ -2293,12 +2259,8 @@ function Home() {
                   </div>
 
                   <div>
-                    <div className="text-[8px] font-black uppercase tracking-[0.22em] text-orange-400">
-                      Event Calendar
-                    </div>
-                    <h2 className="mt-1 text-[15px] font-black tracking-tight text-white transition group-hover:text-orange-400 min-[1850px]:text-base">
-                      Upcoming Tournaments
-                    </h2>
+                    <div className="text-[8px] font-black uppercase tracking-[0.22em] text-orange-400">{tx(" Event Calendar ")}</div>
+                    <h2 className="mt-1 text-[15px] font-black tracking-tight text-white transition group-hover:text-orange-400 min-[1850px]:text-base">{tx(" Upcoming Tournaments ")}</h2>
                   </div>
                 </div>
 
@@ -2328,9 +2290,7 @@ function Home() {
                   <Link
                     to="/calendar"
                     className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-white/[0.07] py-2.5 text-[10px] font-black uppercase tracking-[0.16em] text-slate-600 transition hover:border-orange-500/20 hover:text-orange-400"
-                  >
-                    View full calendar
-                    <ArrowIcon className="h-3.5 w-3.5" />
+                  >{tx(" View full calendar ")}<ArrowIcon className="h-3.5 w-3.5" />
                   </Link>
                 </div>
               ) : (
@@ -2338,12 +2298,8 @@ function Home() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-600">
                     <TrophyIcon className="h-6 w-6" />
                   </div>
-                  <div className="mt-3 text-sm font-black text-slate-400">
-                    No tournaments scheduled
-                  </div>
-                  <div className="mt-1 text-xs text-slate-600">
-                    New events will appear here automatically
-                  </div>
+                  <div className="mt-3 text-sm font-black text-slate-400">{tx(" No tournaments scheduled ")}</div>
+                  <div className="mt-1 text-xs text-slate-600">{tx(" New events will appear here automatically ")}</div>
                 </div>
               )}
             </section>
@@ -2352,7 +2308,7 @@ function Home() {
               ref={recentResultsSectionRef}
               className="scroll-mt-24 rounded-[22px] border border-white/[0.07] bg-[#111820] p-4"
             >
-              <SectionTitle title="Recent Results" />
+              <SectionTitle title={tx("Recent Results")} />
 
               <div className="home-scrollbar max-h-[320px] overflow-y-auto pr-2">
                 <div className="grid gap-3">
@@ -2370,14 +2326,12 @@ function Home() {
 
         <section className="mt-8">
           <SectionTitle
-            title="Top Teams"
+            title={tx("Top Teams")}
             action={
               <Link
                 to="/rankings"
                 className="text-sm font-black text-orange-400 hover:text-orange-300"
-              >
-                Full rankings →
-              </Link>
+              >{tx(" Full rankings → ")}</Link>
             }
           />
 
@@ -2393,27 +2347,27 @@ function Home() {
         </section>
 
         <section className="mt-8">
-          <SectionTitle title="Latest Updates" />
+          <SectionTitle title={tx("Latest Updates")} />
 
           <div className="grid gap-4 lg:grid-cols-[1.3fr_1fr_1fr]">
             <NewsCard
               large
               to="/about"
-              tag="PLATFORM"
-              title="Matches, rankings, and statistics in one place"
-              text="ESEA Tracker automatically collects schedules, results, maps, and player statistics."
+              tag={tx("PLATFORM")}
+              title={tx("Matches, rankings, and statistics in one place")}
+              text={tx("ESEA Tracker automatically collects schedules, results, maps, and player statistics.")}
             />
 
             <NewsCard
               to="/rankings"
-              tag="RANKINGS"
-              title="Team rankings update after completed matches"
-              text="Points and positions are recalculated automatically after synchronization."
+              tag={tx("RANKINGS")}
+              title={tx("Team rankings update after completed matches")}
+              text={tx("Points and positions are recalculated automatically after synchronization.")}
             />
 
             <NewsCard
               to={popularRecentMatchPath || "/stats"}
-              tag="STATISTICS"
+              tag={tx("STATISTICS")}
               title={
                 popularRecentMatch
                   ? `${popularRecentMatch.team1?.name || "Team 1"} vs ${
