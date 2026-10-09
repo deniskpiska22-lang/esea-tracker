@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 
-import teams from "../data/teams";
+import { useTeamCatalog } from "./useTeamCatalog.js";
 import { supabase } from "../lib/supabaseClient";
 
 const FINISHED_STATUSES = [
@@ -1041,6 +1041,7 @@ export function useTeamStats(
   slug,
   fallbackMatches = []
 ) {
+  const { teams } = useTeamCatalog();
   const reloadRef = useRef(null);
   const refresh = useCallback(() => reloadRef.current?.(false), []);
   const team =
@@ -1050,7 +1051,7 @@ export function useTeamStats(
           (item) =>
             item.slug === slug
         ) || null,
-      [slug]
+      [slug, teams]
     );
 
   const [
