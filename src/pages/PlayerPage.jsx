@@ -1,5 +1,5 @@
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+import { localizedPath, currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import {
   useEffect,
@@ -772,9 +772,23 @@ function PlayerPage() {
 
         let ratingRow = null;
 
+        let lookupPlayerKey = routePlayerKey;
+        if (!isFaceitPlayerId(lookupPlayerKey)) {
+          const escapedNickname = decodedRouteValue.replace(/[\\%_]/g, "\\$&");
+          const { data: identity, error: identityError } = await supabase.from("players")
+            .select("faceit_id").ilike("nickname", escapedNickname).limit(1).maybeSingle();
+          if (identityError) throw identityError;
+          if (identity) lookupPlayerKey = identity.faceit_id;
+          else {
+            const { data: alias, error: aliasError } = await supabase.from("player_profile_aliases")
+              .select("player_id").eq("nickname", decodedRouteValue.toLowerCase()).maybeSingle();
+            if (aliasError) throw aliasError;
+            if (alias) lookupPlayerKey = alias.player_id;
+          }
+        }
         const looksLikePlayerId =
           isFaceitPlayerId(
-            routePlayerKey
+            lookupPlayerKey
           );
 
         if (looksLikePlayerId) {
@@ -801,7 +815,7 @@ function PlayerPage() {
             )
             .eq(
               "player_id",
-              routePlayerKey
+              lookupPlayerKey
             )
             .maybeSingle();
 
@@ -864,7 +878,7 @@ function PlayerPage() {
         const playerIdFromRating =
           String(
             ratingRow?.player_id ||
-            routePlayerKey
+            lookupPlayerKey
           );
 
         let playerRow = null;
@@ -995,26 +1009,11 @@ function PlayerPage() {
   ]);
 
   useEffect(() => {
-    if (
-      loadingStats ||
-      !isFaceitPlayerId(resolvedPlayerId) ||
-      location.pathname.toLowerCase() ===
-        `/players/${resolvedPlayerId}`.toLowerCase()
-    ) {
-      return;
-    }
-
-    navigate(`/players/${resolvedPlayerId}`, {
-      replace: true,
-      state: location.state,
-    });
-  }, [
-    loadingStats,
-    location.pathname,
-    location.state,
-    navigate,
-    resolvedPlayerId,
-  ]);
+    if (loadingStats || !resolvedNickname || isFaceitPlayerId(resolvedNickname)) return;
+    const target = localizedPath(`/players/${encodeURIComponent(resolvedNickname)}`, currentLocale());
+    if (location.pathname === target) return;
+    navigate(target, { replace: true, state: location.state });
+  }, [loadingStats, resolvedNickname, location.pathname, location.state, navigate]);
 
   const supabasePlayerMatches =
     useMemo(
@@ -1399,8 +1398,12 @@ const currentTeam =
                 {(databasePlayer?.country ||
                   localPlayerInfo?.country) && (
                   <span className="rounded-full border border-[#2a3749] bg-[#0c141e] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    {databasePlayer?.country ||
-                      localPlayerInfo?.country}
+                    <img
+                      src={`https://flagcdn.com/24x18/${String(databasePlayer?.country || localPlayerInfo?.country).toLowerCase()}.png`}
+                      alt={String(databasePlayer?.country || localPlayerInfo?.country).toUpperCase()}
+                      title={String(databasePlayer?.country || localPlayerInfo?.country).toUpperCase()}
+                      width="24" height="18" className="inline-block rounded-sm"
+                    />
                   </span>
                 )}
 

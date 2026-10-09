@@ -47,7 +47,7 @@ function TopPlayersPage() {
     return () => { cancelled = true; clearInterval(timer); };
   }, [visiblePlayers]);
 
-  const getPlayerPath = (player) => `/players/${encodeURIComponent(player.player_id)}`;
+  const getPlayerPath = (player) => `/players/${encodeURIComponent(player.nickname || player.player_id)}`;
 const top3 = players.slice(0, 3);
 
 

@@ -17,7 +17,12 @@ export default async function handler(req,res) {
       const bounds=await Promise.all(["teams","players","matches"].map(kind=>result(client.from("seo_profile_urls").select("position").eq("kind",kind).order("position",{ascending:false}).limit(1))));
       entries=bounds.flatMap((rows,i)=>Array.from({length:Math.max(1,Math.ceil((rows[0]?.position || 0)/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${['teams','players','matches'][i]}-${p}.xml`})));
     } else {
-      const rows=await result(client.from("seo_profile_urls").select("url,updated_at").eq("kind",kind).gt("position",page*PAGE_SIZE).lte("position",(page+1)*PAGE_SIZE).order("position"));
+      const rows=await result(client.from("seo_profile_urls").select("url,updated_at,entity_id").eq("kind",kind).gt("position",page*PAGE_SIZE).lte("position",(page+1)*PAGE_SIZE).order("position"));
+      if (kind==='players' && rows.length) {
+        const identities=await result(client.from('players').select('faceit_id,nickname').in('faceit_id',rows.map(row=>row.entity_id)));
+        const names=new Map(identities.map(player=>[player.faceit_id,player.nickname]));
+        for (const row of rows) if(names.get(row.entity_id)) row.url=`/players/${encodeURIComponent(names.get(row.entity_id))}`;
+      }
       entries=rows.flatMap(r=>kind==='teams' ? teamSitemapEntries(`${ORIGIN}${r.url}`,contentUpdatedAt(r.updated_at)) : [{url:`${ORIGIN}${r.url}`,updatedAt:contentUpdatedAt(r.updated_at)}]);
       if(kind==='teams' && page===0) entries.unshift(...staticRoutes.map(route=>({url:`${ORIGIN}${route}`,updatedAt:SEO_CONTENT_UPDATED_AT})));
     }

@@ -10,7 +10,7 @@ test('reported duplicate match has its own canonical, title, scores and readable
  const metadata=profileMetadata('match',match,{teams:[{team_id:'one',team:{slug:'uk-ripper-one'}}],players:[{faceit_player_id:'player-id',nickname:'Example',kills:21,deaths:18}]});
  const html=renderProfile(template,metadata);
  assert.match(html,/<title>UK RIPPER vs CloudPeppers 11–13/);
- assert.match(html,/Ancient: 11–13/);assert.match(html,/href="\/teams\/uk-ripper-one"/);assert.match(html,/href="\/players\/player-id"/);
+ assert.match(html,/Ancient: 11–13/);assert.match(html,/href="\/teams\/uk-ripper-one"/);assert.match(html,/href="\/players\/Example"/);
  assert.match(html,new RegExp(`rel="canonical" href="https://eseatracker.ru/match/${match.id}"`));
  assert.equal((html.match(/<h1/g)||[]).length,1);assert.match(html,/<html lang="en">/);
  assert.deepEqual(metadata.schema['@graph'].find(node=>node['@type']==='WebPage').about.map(team=>team.identifier),['one','two']);

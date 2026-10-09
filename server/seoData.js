@@ -40,6 +40,15 @@ export async function loadProfile(client,kind,key) {
   }
   const aliasEntry=Object.entries(aliases).find(([name,old])=>name.toLowerCase()===key.toLowerCase() || old.some(n=>n.toLowerCase()===key.toLowerCase()));
   if(aliasEntry) key=aliasEntry[0];
+  if (!/^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(key)) {
+    const exact = await result(client.from('players').select('faceit_id')
+      .ilike('nickname',key.replace(/[\\%_]/g,'\\$&')).limit(1).maybeSingle());
+    if (exact) key=exact.faceit_id;
+    else {
+      const alias=await result(client.from('player_profile_aliases').select('player_id').eq('nickname',key.toLowerCase()).maybeSingle());
+      if(alias) key=alias.player_id;
+    }
+  }
   key=key.replace(/[\\%_]/g,'\\$&');
   let query = client.from('players').select('id,faceit_id,nickname,avatar,country,faceit_elo,faceit_level,updated_at');
   const uuid = /^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(key);

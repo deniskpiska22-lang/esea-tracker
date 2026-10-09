@@ -44,7 +44,7 @@ test('team localization preserves entity identity, links and escaping in all loc
     const metadata=localizeSeo(profileMetadata('team',entity,[{nickname:'ExactName',faceit_id:'stable-player-id'}]),code,{kind:'team',entity});
     const html=renderProfile(template,metadata);
     assert.doesNotMatch(html,/<bad>/);
-    assert.ok(html.includes(`href="${localizedPath('/players/stable-player-id',code)}"`));
+    assert.ok(html.includes(`href="${localizedPath('/players/ExactName',code)}"`));
     assert.ok(html.includes('ExactName'));
     assert.ok(JSON.stringify(metadata.schema).includes('stable-team-id'));
     assert.ok(JSON.stringify(metadata.schema).includes(`"inLanguage":"${code}"`));

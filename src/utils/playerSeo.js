@@ -45,9 +45,9 @@ export function getPlayerSeoMetadata(player, aliasesByNickname = {}) {
   const kd = compactNumber(player?.kd);
   const adr = compactNumber(player?.adr, 1);
   const aliases = getPlayerAliases(player, aliasesByNickname);
-  const canonicalPath = isFaceitPlayerId(playerId)
-    ? `/players/${playerId}`
-    : "/players";
+  const canonicalPath = rawNickname && !isFaceitPlayerId(rawNickname)
+    ? `/players/${encodeURIComponent(rawNickname)}`
+    : isFaceitPlayerId(playerId) ? `/players/${playerId}` : "/players";
   const facts = [
     teamName ? `team ${teamName}` : null,
     rating ? `rating ${rating}` : null,

@@ -28,7 +28,7 @@ function getPlayerUrl(player) {
 
   return playerId
     ? `/players/${encodeURIComponent(
-        playerId
+        player.nickname || playerId
       )}`
     : "#";
 }

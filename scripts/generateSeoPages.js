@@ -215,7 +215,7 @@ async function main() {
     ...staticPages.map((route) => `${SITE_ORIGIN}${route || "/"}`),
     ...uniqueTeams.flatMap(team => teamSitemapEntries(`${SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`).map(entry => entry.url)),
     ...players.map(
-      (player) => `${SITE_ORIGIN}/players/${encodeURIComponent(player.playerId)}`
+      (player) => `${SITE_ORIGIN}/players/${encodeURIComponent(player.nickname || player.playerId)}`
     ),
   ];
   const urls = baseUrls.flatMap(url=>LANGUAGE_CODES.map(language=>SITE_ORIGIN+localizedPath(new URL(url).pathname,language)));

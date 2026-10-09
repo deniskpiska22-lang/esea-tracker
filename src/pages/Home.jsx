@@ -1518,7 +1518,9 @@ function findPlayerTeam(teamId, teamName, nickname, teamSlug) {
 }
 
 function TopPlayerRow({ player, index }) {
-  const playerPath = player?.playerId
+  const playerPath = player?.nickname
+    ? `/players/${encodeURIComponent(player.nickname)}`
+    : player?.playerId
     ? `/players/${encodeURIComponent(player.playerId)}`
     : `/players/${encodeURIComponent(player.nickname)}`;
 
