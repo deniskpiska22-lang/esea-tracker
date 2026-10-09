@@ -1,3 +1,4 @@
+import OneWinAds from "./components/OneWinAds.jsx";
 import { tx } from "./i18n/translate.js";
 import {
   useEffect,
@@ -911,10 +912,11 @@ function App() {
         </div>
       )}
 
-      {/* Advertising paused while partner details are clarified. */}
+      <OneWinAds />
 
       <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
         <Outlet />
+        <OneWinAds mobile />
       </div>
 
       
