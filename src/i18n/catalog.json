@@ -4365,7 +4365,7 @@
     "pt": "Banimento",
     "es": "Veto",
     "fr": "Ban",
-    "it": "Ban"
+    "it": "Esclusione"
   },
   "% pick": {
     "ru": "% пиков",
@@ -5696,7 +5696,7 @@
     "it": "{0} h {1} min"
   },
   "{0} maps": {
-    "ru": "{0} карт",
+    "ru": "Карт: {0}",
     "de": "{0} Karten",
     "pt": "{0} mapas",
     "es": "{0} mapas",
@@ -6982,5 +6982,101 @@
     "es": "Pausado",
     "fr": "En pause",
     "it": "In pausa"
+  },
+  "Team history · last 90 days · win rate from 3 maps": {
+    "ru": "История команд · последние 90 дней · винрейт от 3 карт",
+    "de": "Teamhistorie · letzte 90 Tage · Siegquote ab 3 Karten",
+    "pt": "Histórico das equipes · últimos 90 dias · vitórias a partir de 3 mapas",
+    "es": "Historial de equipos · últimos 90 días · victorias desde 3 mapas",
+    "fr": "Historique des équipes · 90 derniers jours · victoires à partir de 3 cartes",
+    "it": "Storico squadre · ultimi 90 giorni · vittorie da 3 mappe"
+  },
+  "Win %": {
+    "ru": "Победы %",
+    "de": "Siege %",
+    "pt": "Vitórias %",
+    "es": "Victorias %",
+    "fr": "Victoires %",
+    "it": "Vittorie %"
+  },
+  "Pick %": {
+    "ru": "Пики %",
+    "de": "Picks %",
+    "pt": "Escolhas %",
+    "es": "Selecciones %",
+    "fr": "Choix %",
+    "it": "Scelte %"
+  },
+  "Ban %": {
+    "ru": "Баны %",
+    "de": "Bans %",
+    "pt": "Banimentos %",
+    "es": "Vetos %",
+    "fr": "Bans %",
+    "it": "Esclusioni %"
+  },
+  "Map comparison metric": {
+    "ru": "Показатель сравнения карт",
+    "de": "Kennzahl für Kartenvergleich",
+    "pt": "Métrica de comparação de mapas",
+    "es": "Métrica de comparación de mapas",
+    "fr": "Indicateur de comparaison des cartes",
+    "it": "Metrica di confronto mappe"
+  },
+  "Map comparison: {0} vs {1}": {
+    "ru": "Сравнение карт: {0} против {1}",
+    "de": "Kartenvergleich: {0} gegen {1}",
+    "pt": "Comparação de mapas: {0} contra {1}",
+    "es": "Comparación de mapas: {0} contra {1}",
+    "fr": "Comparaison des cartes : {0} contre {1}",
+    "it": "Confronto mappe: {0} contro {1}"
+  },
+  "{0} vetoes": {
+    "ru": "Вето: {0}",
+    "de": "{0} Vetos",
+    "pt": "{0} vetos",
+    "es": "{0} vetos",
+    "fr": "{0} vetos",
+    "it": "{0} veti"
+  },
+  "Loading map statistics…": {
+    "ru": "Загрузка статистики карт…",
+    "de": "Kartenstatistik wird geladen…",
+    "pt": "Carregando estatísticas de mapas…",
+    "es": "Cargando estadísticas de mapas…",
+    "fr": "Chargement des statistiques des cartes…",
+    "it": "Caricamento statistiche mappe…"
+  },
+  "Not enough tracked data for this metric.": {
+    "ru": "Недостаточно данных для этого показателя.",
+    "de": "Nicht genügend erfasste Daten für diese Kennzahl.",
+    "pt": "Dados insuficientes para esta métrica.",
+    "es": "No hay suficientes datos para esta métrica.",
+    "fr": "Données insuffisantes pour cet indicateur.",
+    "it": "Dati insufficienti per questa metrica."
+  },
+  "Missing data is shown as —.": {
+    "ru": "Если данных недостаточно, показан прочерк.",
+    "de": "Fehlende Daten werden als — angezeigt.",
+    "pt": "Dados ausentes são exibidos como —.",
+    "es": "Los datos ausentes se muestran como —.",
+    "fr": "Les données manquantes sont indiquées par —.",
+    "it": "I dati mancanti sono indicati con —."
+  },
+  "Live history unavailable. Saved data is shown.": {
+    "ru": "Не удалось обновить историю. Показаны сохранённые данные.",
+    "de": "Live-Verlauf nicht verfügbar. Gespeicherte Daten werden angezeigt.",
+    "pt": "Histórico ao vivo indisponível. Exibindo dados salvos.",
+    "es": "Historial en vivo no disponible. Se muestran datos guardados.",
+    "fr": "Historique en direct indisponible. Données enregistrées affichées.",
+    "it": "Storico live non disponibile. Sono mostrati i dati salvati."
+  },
+  "Pick": {
+    "ru": "Пик",
+    "de": "Pick",
+    "pt": "Escolha",
+    "es": "Selección",
+    "fr": "Choix",
+    "it": "Scelta"
   }
 }

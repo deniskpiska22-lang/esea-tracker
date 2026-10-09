@@ -387,6 +387,7 @@ export default function MatchMapResultsSection({
   team2,
   demoUrls,
   demoUnavailable,
+  onVetoData,
 }) {
   const [steps, setSteps] = useState(null);
 
@@ -408,6 +409,7 @@ export default function MatchMapResultsSection({
       .then((data) => {
         if (!cancelled) {
           setSteps(parseVetoSteps(data, team1, team2));
+          onVetoData?.(data);
         }
       })
       .catch(() => {
@@ -419,7 +421,7 @@ export default function MatchMapResultsSection({
     return () => {
       cancelled = true;
     };
-  }, [matchId, team1, team2]);
+  }, [matchId, team1, team2, onVetoData]);
 
   const pickedTeamByMap = buildPickedTeamByMap(
     steps || [],

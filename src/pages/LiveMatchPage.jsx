@@ -26,6 +26,8 @@ import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating
 import { ACTIVE_MAP_POOL, isActiveMap } from "../utils/activeMapPool";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
+import LiveMapComparison from "../components/LiveMapComparison";
+import { normalizeLiveVeto } from "../utils/liveMapComparison.js";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
@@ -256,6 +258,8 @@ function normalizeDatabaseMatch(row) {
       typeof rawPlayerStats === "object"
         ? rawPlayerStats
         : null,
+
+    vetoSteps: parseJsonValue(row.veto_steps, []),
 
     statsSynced:
       Boolean(row.stats_synced),
@@ -1611,6 +1615,11 @@ function LiveMatchPage() {
   const [liveData, setLiveData] =
     useState(null);
 
+  const [liveVeto, setLiveVeto] = useState(null);
+  const receiveVeto = useCallback((data) => {
+    setLiveVeto({ matchId, steps: normalizeLiveVeto(data) });
+  }, [matchId]);
+
   const [loadingLive, setLoadingLive] =
     useState(true);
 
@@ -1876,12 +1885,12 @@ function LiveMatchPage() {
     (match) => match.teamSlug === rightLocalTeam?.slug
   );
 
-  const { matches: leftAllMatches = [] } = useTeamStats(
+  const { matches: leftAllMatches = [], loading: leftStatsLoading, error: leftStatsError } = useTeamStats(
     leftLocalTeam?.slug,
     leftFallbackMatches
   );
 
-  const { matches: rightAllMatches = [] } = useTeamStats(
+  const { matches: rightAllMatches = [], loading: rightStatsLoading, error: rightStatsError } = useTeamStats(
     rightLocalTeam?.slug,
     rightFallbackMatches
   );
@@ -2187,6 +2196,7 @@ function LiveMatchPage() {
             <MatchMapResultsSection
               matchId={matchId}
               maps={displayedMapScores}
+              onVetoData={receiveVeto}
               team1={displayTeam1}
               team2={displayTeam2}
             />
@@ -2513,6 +2523,21 @@ function LiveMatchPage() {
               leftTeamSlug={leftLocalTeam.slug}
             />
           )}
+
+        {isLive && (
+          <div className="mt-8">
+            <LiveMapComparison
+              matchId={matchId}
+              leftTeam={{ ...displayTeam1, logo: leftLocalTeam?.logo || displayTeam1.logo }}
+              rightTeam={{ ...displayTeam2, logo: rightLocalTeam?.logo || displayTeam2.logo }}
+              leftMatches={leftAllMatches}
+              rightMatches={rightAllMatches}
+              vetoSteps={liveVeto?.matchId === matchId && liveVeto.steps.length ? liveVeto.steps : Array.isArray(liveData?.vetoSteps) ? liveData.vetoSteps : []}
+              loading={leftStatsLoading || rightStatsLoading}
+              error={Boolean(leftStatsError || rightStatsError)}
+            />
+          </div>
+        )}
 
         {/* MATCH INFORMATION */}
 
