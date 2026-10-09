@@ -254,7 +254,7 @@ async function main() {
   // backlog), this is a one-off backfill against ~9k historical matches,
   // so oldest-first would spend a very long time never reaching matches
   // the frontend can actually show.
-  const { data: matches, error } = await supabase
+  let query = supabase
     .from("matches")
     .select("id")
     .in("status", ["FINISHED", "MATCH_STATUS_FINISHED"])
@@ -265,6 +265,16 @@ async function main() {
       nullsFirst: false,
     })
     .limit(BATCH_SIZE);
+
+  if (process.env.VETO_BACKFILL_TEAM_ID) {
+    const teamId = process.env.VETO_BACKFILL_TEAM_ID;
+    if (!/^[a-f0-9-]{36}$/i.test(teamId)) throw new Error("Invalid team ID");
+    query = query.or(`team1_id.eq.${teamId},team2_id.eq.${teamId}`);
+  }
+  if (process.env.VETO_BACKFILL_SINCE) {
+    query = query.gte("finished_at", process.env.VETO_BACKFILL_SINCE);
+  }
+  const { data: matches, error } = await query;
 
   if (error) {
     throw error;

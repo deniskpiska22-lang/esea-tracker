@@ -7078,5 +7078,13 @@
     "es": "Selección",
     "fr": "Choix",
     "it": "Scelta"
+  },
+  "Veto data: {0} of {1} matches": {
+    "ru": "Вето загружены: {0} из {1} матчей",
+    "de": "Veto-Daten: {0} von {1} Spielen",
+    "pt": "Dados de veto: {0} de {1} partidas",
+    "es": "Datos de veto: {0} de {1} partidos",
+    "fr": "Données de veto : {0} sur {1} matchs",
+    "it": "Dati veto: {0} di {1} partite"
   }
 }

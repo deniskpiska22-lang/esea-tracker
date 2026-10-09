@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
+import { useTeamVetoRecovery } from "../hooks/useTeamVetoRecovery.js";
 import matchesData from "../data/matches";
 import {
   buildOpponentBanOrderStats,
@@ -504,7 +505,9 @@ function VetoPage() {
     matches: teamMatches,
     loading,
     error,
+    refresh,
   } = useTeamStats(slug, fallbackMatches);
+  const recovering = useTeamVetoRecovery(team?.faceitTeamId, refresh);
 
   // Everything on this tab is scoped to the last VETO_WINDOW_DAYS days —
   // see the constant above for why. teamMatches itself (full history)
@@ -637,8 +640,14 @@ function VetoPage() {
             </div>
           </div>
 
-          {loading && (
+          {(loading || recovering) && (
             <div className="mt-3 text-sm font-semibold text-slate-400">{tx(" Loading veto history... ")}</div>
+          )}
+
+          {!loading && recentMatches.length > 0 && (
+            <div className="mt-3 text-xs text-slate-400">
+              {tf("Veto data: {0} of {1} matches", matchesWithVeto.length, recentMatches.length)}
+            </div>
           )}
 
           {error && (
@@ -655,7 +664,7 @@ function VetoPage() {
             description={tx("The order this team drops maps in their own veto — the first ban is their strongest signal of what they want off the table.")}
             banOrderStats={ourBanOrder}
             barClass="bg-gradient-to-r from-[#ff8c32] to-[#ffb066]"
-            loading={loading}
+            loading={loading || recovering}
             emptyMessage="No veto data available for this team yet."
           />
         </div>
@@ -668,7 +677,7 @@ function VetoPage() {
             description={tx("The order opponents drop maps when facing this team — a map almost always banned first is the one they fear least prepping for.")}
             banOrderStats={opponentBanOrder}
             barClass="bg-gradient-to-r from-rose-500 to-rose-400"
-            loading={loading}
+            loading={loading || recovering}
             emptyMessage="No veto data available for this team yet."
           />
         </div>
@@ -691,7 +700,7 @@ function VetoPage() {
               ))}
             </div>
           ) : (
-            !loading && (
+            !loading && !recovering && (
               <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No veto data available for this team yet. ")}</div>
             )
           )}
@@ -713,7 +722,7 @@ function VetoPage() {
               ))}
             </div>
           ) : (
-            !loading && (
+            !loading && !recovering && (
               <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No matches with veto data yet. ")}</div>
             )
           )}

@@ -242,12 +242,12 @@ let lastVetoBackfillAt = 0;
 
 // Separate child: veto recovery must never hold up stat jobs or live updates.
 function scheduleVetoBackfill() {
-  if (vetoBackfillRunning || Date.now() - lastVetoBackfillAt < 300000) return;
+  if (vetoBackfillRunning || Date.now() - lastVetoBackfillAt < 60000) return;
   vetoBackfillRunning = true;
   lastVetoBackfillAt = Date.now();
   const child = spawn(process.execPath, ["scripts/backfillMatchVeto.js"], {
     stdio: "inherit", shell: false,
-    env: { ...process.env, VETO_BACKFILL_BATCH_SIZE: "25", VETO_BACKFILL_CONCURRENCY: "2",
+    env: { ...process.env, VETO_BACKFILL_BATCH_SIZE: "100", VETO_BACKFILL_CONCURRENCY: "3",
       FACEIT_FETCH_TIMEOUT_MS: "10000", VETO_BACKFILL_MAX_DURATION_MS: "60000" },
   });
   const timer = setTimeout(() => child.kill("SIGTERM"), 90000);

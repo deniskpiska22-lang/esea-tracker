@@ -24,23 +24,34 @@ export default async function handler(request, response) {
   }) : null;
   try {
     const { data: match, error: readError } = db ? await db.from("matches")
-      .select("status,veto_steps").eq("id", matchId).maybeSingle() : { data: null };
+      .select("status,veto_steps,veto_unavailable").eq("id", matchId).maybeSingle() : { data: null };
     if (readError) console.warn("Veto cache read failed:", readError.message);
     const finished = ["FINISHED", "MATCH_STATUS_FINISHED"].includes(match?.status);
     if (finished && Array.isArray(match.veto_steps) && match.veto_steps.length) {
       response.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
       return response.status(200).json(storedPayload(match.veto_steps));
     }
+    if (finished && match.veto_unavailable) {
+      response.setHeader("Cache-Control", "s-maxage=3600");
+      return response.status(200).json({ payload: { tickets: [] }, unavailable: true });
+    }
     const upstream = await fetch(`https://www.faceit.com/api/democracy/v1/match/${encodeURIComponent(matchId)}/history`, {
       headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000),
     });
+    if (upstream.status === 404 && db && finished) {
+      const { error } = await db.from("matches").update({ veto_unavailable: true,
+        updated_at: new Date().toISOString() }).eq("id", matchId);
+      if (error) console.warn("Veto unavailable marker write failed:", error.message);
+      return response.status(200).json({ payload: { tickets: [] }, unavailable: true });
+    }
     if (!upstream.ok) return response.status(upstream.status).json({ error: "Failed to load veto history" });
     const data = await upstream.json();
     const steps = parseVetoSteps(data);
-    if (db && finished && steps) {
-      const { error } = await db.from("matches").update({ veto_steps: steps,
+    if (db && finished) {
+      const patch = steps ? { veto_steps: steps,
         veto_synced: true, veto_unavailable: false, veto_synced_at: new Date().toISOString(),
-        updated_at: new Date().toISOString() }).eq("id", matchId);
+        updated_at: new Date().toISOString() } : { veto_unavailable: true, updated_at: new Date().toISOString() };
+      const { error } = await db.from("matches").update(patch).eq("id", matchId);
       if (error) console.warn("Veto cache write failed:", error.message);
     }
     response.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");

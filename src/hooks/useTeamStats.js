@@ -1,6 +1,8 @@
 import {
+  useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -514,6 +516,8 @@ function normalizeDatabaseMatch(
 
     vetoSynced:
       Boolean(row.veto_synced),
+
+    vetoUnavailable: Boolean(row.veto_unavailable),
 
     source:
       "supabase",
@@ -1037,6 +1041,8 @@ export function useTeamStats(
   slug,
   fallbackMatches = []
 ) {
+  const reloadRef = useRef(null);
+  const refresh = useCallback(() => reloadRef.current?.(false), []);
   const team =
     useMemo(
       () =>
@@ -1115,6 +1121,7 @@ export function useTeamStats(
               "demo_synced",
               "veto_steps",
               "veto_synced",
+              "veto_unavailable",
             ].join(",")
           )
           .in(
@@ -1203,6 +1210,7 @@ export function useTeamStats(
       }
     }
 
+    reloadRef.current = loadTeamStats;
     loadTeamStats();
 
     if (supabase && slug && team) {
@@ -1258,6 +1266,7 @@ export function useTeamStats(
 
     return () => {
       cancelled = true;
+      reloadRef.current = null;
       clearTimeout(reloadTimer);
 
       if (supabase && channel) {
@@ -1298,5 +1307,6 @@ export function useTeamStats(
     maps,
     loading,
     error,
+    refresh,
   };
 }
