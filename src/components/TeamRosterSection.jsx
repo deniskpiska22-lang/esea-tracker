@@ -189,8 +189,7 @@ function PlayerCard({
       </div>
 
       <div className="mt-2 text-[21px] font-black leading-none text-white">
-        {player.faceit_elo ??
-          "—"}
+        {Number(player.faceit_elo) > 0 ? player.faceit_elo : "—"}
       </div>
     </Link>
   );

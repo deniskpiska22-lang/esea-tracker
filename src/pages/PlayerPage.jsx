@@ -32,12 +32,7 @@ import {
 } from "../utils/playerSeo";
 
 
-const FINISHED_STATUSES = [
-  "FINISHED",
-  "MATCH_STATUS_FINISHED",
-];
-
-const MATCH_LIMIT = 1000;
+const MATCH_PAGE_SIZE = 500;
 const RECENT_MATCH_LIMIT = 10;
 
 function normalizeName(value = "") {
@@ -53,6 +48,7 @@ function normalizePlayerName(value = "") {
 }
 
 function toNumber(value, fallback = 0) {
+  if (value == null || value === "") return fallback;
   const number = Number(value);
 
   return Number.isFinite(number)
@@ -759,8 +755,11 @@ function PlayerPage() {
 
   useEffect(() => {
     let cancelled = false;
+    let running = false;
 
     async function loadPlayerData() {
+      if (running) return;
+      running = true;
       setLoadingStats(true);
       setStatsError("");
 
@@ -909,49 +908,19 @@ function PlayerPage() {
             )
           ).trim();
 
-        const {
-          data: matchRows,
-          error: matchesError,
-        } = ratingRow ? await supabase
-          .from(tx("matches"))
-          .select(
-            [
-              "id",
-              "competition_name",
-              "status",
-              "scheduled_at",
-              "finished_at",
-              "team1_id",
-              "team1_name",
-              "team1_score",
-              "team2_id",
-              "team2_name",
-              "team2_score",
-              "map_scores",
-              "player_stats",
-              "stats_synced",
-            ].join(",")
-          )
-          .in(
-            "status",
-            FINISHED_STATUSES
-          )
-          .not(
-            "player_stats",
-            "is",
-            null
-          )
-          .order(
-            "finished_at",
-            {
-              ascending: false,
-              nullsFirst: false,
-            }
-          )
-          .limit(MATCH_LIMIT) : {data:[], error:null};
-
-        if (matchesError) {
-          throw matchesError;
+        const matchRows = [];
+        if (isFaceitPlayerId(playerRow?.faceit_id || playerIdFromRating)) {
+          for (let from = 0; ; from += MATCH_PAGE_SIZE) {
+            const { data, error } = await supabase
+              .rpc("get_player_match_history", {
+                p_player_id: playerRow?.faceit_id || playerIdFromRating,
+              })
+              .range(from, from + MATCH_PAGE_SIZE - 1);
+            if (error) throw error;
+            if (cancelled) return;
+            matchRows.push(...(data || []));
+            if (!data || data.length < MATCH_PAGE_SIZE) break;
+          }
         }
 
         if (!cancelled) {
@@ -1004,6 +973,7 @@ function PlayerPage() {
           );
         }
       } finally {
+        running = false;
         if (!cancelled) {
           setLoadingStats(false);
         }
@@ -1011,8 +981,12 @@ function PlayerPage() {
     }
 
     loadPlayerData();
+    const refreshTimer = setInterval(() => {
+      if (!document.hidden) loadPlayerData();
+    }, 60000);
 
     return () => {
+      clearInterval(refreshTimer);
       cancelled = true;
     };
   }, [
@@ -1280,6 +1254,10 @@ const currentTeam =
       RECENT_MATCH_LIMIT
     );
 
+  const recentWinRate = recentForm.length
+    ? recentForm.filter((match) => match.won).length / recentForm.length * 100
+    : 0;
+
   const performanceStats = [
     {
       label: "ADR",
@@ -1483,7 +1461,7 @@ const currentTeam =
                   </div>
 
                   <div className="text-sm font-bold text-slate-300">
-                    {winRate.toFixed(0)}{tx("% wins ")}</div>
+                    {recentWinRate.toFixed(0)}{tx("% wins ")}</div>
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -1547,9 +1525,9 @@ const currentTeam =
                 <StatCard
                   label="FACEIT ELO"
                   value={
-                    databasePlayer?.faceit_elo ||
-                    localPlayerInfo?.elo ||
-                    "—"
+                    Number(databasePlayer?.faceit_elo) > 0
+                      ? databasePlayer.faceit_elo
+                      : databasePlayer ? "—" : (localPlayerInfo?.elo || "—")
                   }
                   accent
                 />

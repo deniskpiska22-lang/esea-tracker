@@ -1,102 +1,53 @@
 import { tx } from "../i18n/translate.js";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import teams from "../data/teams";
-import playerAverageRatings from "../data/playerAverageRatings.json";
-import matchStatsCompact from "../data/matchStatsCompact.json";
-import { normalizeNickname } from "../utils/normalizeNickname";
 import { supabase } from "../lib/supabaseClient";
-
 
 function TopPlayersPage() {
   const [visiblePlayers, setVisiblePlayers] = useState(100);
-  const [playerIdsByNickname, setPlayerIdsByNickname] = useState({});
+  const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-
-    async function loadPlayerIds() {
-      if (!supabase) return;
-
-      const nextIds = {};
-      const pageSize = 1000;
-
-      for (let from = 0; ; from += pageSize) {
-        const { data, error } = await supabase
-          .from("player_ratings")
-          .select("player_id,nickname")
-          .range(from, from + pageSize - 1);
-
-        if (error) {
-          console.warn("Player profile links unavailable:", error.message);
-          return;
+    let running = false;
+    async function loadPlayers() {
+      if (running) return;
+      running = true;
+      try {
+        if (!supabase) throw new Error("Supabase unavailable");
+        const rows = [];
+        for (let offset = 0; offset < visiblePlayers; offset += 100) {
+          const { data, error: queryError } = await supabase.rpc("get_top_player_ratings", {
+            p_limit: 100, p_offset: offset,
+          });
+          if (queryError) throw queryError;
+          if (cancelled) return;
+          rows.push(...(data || []));
+          if (!data || data.length < 100) break;
         }
-
-        for (const row of data || []) {
-          nextIds[String(row.nickname || "").toLowerCase()] = row.player_id;
+        if (!cancelled) {
+          setPlayers(rows.map((row) => ({ ...row, rating: Number(row.rating),
+            matches: row.matches_played, team: row.team_name || "—", teamSlug: row.team_slug })));
+          setHasMore(rows.length === visiblePlayers);
+          setError("");
         }
-
-        if (!data || data.length < pageSize) break;
+      } catch (err) {
+        console.warn("Top players unavailable:", err.message);
+        if (!cancelled) setError(tx("Automatic statistics are temporarily unavailable"));
+      } finally {
+        running = false;
+        if (!cancelled) setLoading(false);
       }
-
-      if (!cancelled) setPlayerIdsByNickname(nextIds);
     }
+    loadPlayers();
+    const timer = setInterval(() => { if (!document.hidden) loadPlayers(); }, 60000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [visiblePlayers]);
 
-    loadPlayerIds();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const getPlayerPath = (nickname) => {
-    const playerId = playerIdsByNickname[String(nickname).toLowerCase()];
-    return `/players/${encodeURIComponent(playerId || nickname)}`;
-  };
- const players = Object.entries(playerAverageRatings)
-  .map(([nickname, rating]) => {
-    const teamInfo = teams.find(
-      (team) =>
-        team.players?.some(
-          (player) =>
-            player.toLowerCase() === nickname.toLowerCase()
-        )
-    );
-
-    if (!teamInfo) return null;
-
-    const matchesPlayed = Object.values(
-      matchStatsCompact
-    ).reduce((count, match) => {
-      const played = (match.teams || []).some((team) =>
-        (team.players || []).some(
-          (player) =>
-            normalizeNickname(player.nickname) ===
-            nickname
-        )
-      );
-
-      return count + (played ? 1 : 0);
-    }, 0);
-
-    return {
-      nickname,
-      rating,
-      matches: matchesPlayed,
-      team: teamInfo.name,
-      teamSlug: teamInfo.slug,
-      division: teamInfo.division,
-    };
-  })
-.filter(Boolean)
-.filter(player => player.matches >= 5)
-.sort((a, b) => {
-  if (b.rating !== a.rating) {
-    return b.rating - a.rating;
-  }
-
-  return b.matches - a.matches;
-});
-
+  const getPlayerPath = (player) => `/players/${encodeURIComponent(player.player_id)}`;
 const top3 = players.slice(0, 3);
 
 
@@ -133,14 +84,16 @@ const top3 = players.slice(0, 3);
 
       
 
+        {loading && <p role="status" className="mb-6 text-gray-400">{tx("Loading...")}</p>}
+        {error && <p role="alert" className="mb-6 text-yellow-300">{error}</p>}
         {/* TOP 3 */}
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
 
           {top3.map((player, index) => (
             <Link
-              key={player.nickname}
-              to={getPlayerPath(player.nickname)}
+              key={player.player_id}
+              to={getPlayerPath(player)}
 state={{
   from: "/players",
   label: "← Back to Top Players"
@@ -166,7 +119,7 @@ state={{
               <div className="relative h-40 mb-4 flex items-end justify-center overflow-hidden">
 
                 <img
-                  src={`/players/${player.nickname}.png`}
+                  src={player.avatar || "/player-silhouette.png"}
                   alt={player.nickname}
                   onError={(e) => {
                     e.currentTarget.src =
@@ -203,9 +156,9 @@ state={{
 
         {/* TABLE */}
 
-        <div className="bg-[#111823] border border-[#243041] rounded-2xl overflow-hidden">
+        <div className="bg-[#111823] border border-[#243041] rounded-2xl overflow-x-auto">
 
-          <div className="grid grid-cols-[80px_1fr_1fr_120px_120px] px-6 py-4 bg-[#161f2c] font-bold text-gray-300">
+          <div className="grid min-w-[650px] grid-cols-[80px_1fr_1fr_120px_120px] px-6 py-4 bg-[#161f2c] font-bold text-gray-300">
 
             <div>#</div>
 <div>{tx("Player")}</div>
@@ -217,15 +170,15 @@ state={{
 
           {players.slice(0, visiblePlayers).map((player, index) => (
             <Link
-              key={player.nickname}
-              to={getPlayerPath(player.nickname)}
+              key={player.player_id}
+              to={getPlayerPath(player)}
 state={{
   from: "/players",
   label: "← Back to Top Players"
 }}
               className="
                 grid
-                grid-cols-[80px_1fr_1fr_120px_120px]
+                min-w-[650px] grid-cols-[80px_1fr_1fr_120px_120px]
                 items-center
                 px-6
                 py-4
@@ -242,7 +195,7 @@ state={{
               <div className="flex items-center gap-3">
 
                 <img
-                  src={`/players/${player.nickname}.png`}
+                  src={player.avatar || "/player-silhouette.png"}
                   alt={player.nickname}
                   onError={(e) => {
                     e.currentTarget.src =
@@ -281,7 +234,7 @@ state={{
         </div>
 
       </div>
-      {visiblePlayers < players.length && (
+      {hasMore && (
   <div className="flex justify-center mt-8">
     <button
       onClick={() => setVisiblePlayers((v) => v + 100)}

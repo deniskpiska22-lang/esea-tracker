@@ -1,3 +1,4 @@
+import process from "node:process";
 // ESEA Tracker — постоянный Stats Worker (Railway, отдельный сервис).
 //
 // Единственная задача: забирать due match_stat_jobs и запускать существующий,
@@ -236,8 +237,27 @@ async function pingWorkerStatus(status, detail) {
 }
 
 let cycleCount = 0;
+let vetoBackfillRunning = false;
+let lastVetoBackfillAt = 0;
+
+// Separate child: veto recovery must never hold up stat jobs or live updates.
+function scheduleVetoBackfill() {
+  if (vetoBackfillRunning || Date.now() - lastVetoBackfillAt < 300000) return;
+  vetoBackfillRunning = true;
+  lastVetoBackfillAt = Date.now();
+  const child = spawn(process.execPath, ["scripts/backfillMatchVeto.js"], {
+    stdio: "inherit", shell: false,
+    env: { ...process.env, VETO_BACKFILL_BATCH_SIZE: "25", VETO_BACKFILL_CONCURRENCY: "2",
+      FACEIT_FETCH_TIMEOUT_MS: "10000", VETO_BACKFILL_MAX_DURATION_MS: "60000" },
+  });
+  const timer = setTimeout(() => child.kill("SIGTERM"), 90000);
+  const done = () => { clearTimeout(timer); vetoBackfillRunning = false; };
+  child.on("error", done);
+  child.on("exit", done);
+}
 
 async function runCycleOnce() {
+  scheduleVetoBackfill();
   cycleCount += 1;
   const cycleNumber = cycleCount;
 

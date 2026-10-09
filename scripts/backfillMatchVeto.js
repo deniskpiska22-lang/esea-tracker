@@ -1,3 +1,5 @@
+import process from "node:process";
+import { parseVetoSteps } from "./lib/veto.js";
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 
@@ -73,7 +75,7 @@ function formatFetchError(error) {
 // throw on other 4xx. A 404 is treated as "this match has no veto record"
 // rather than a transient failure, so it short-circuits straight to
 // NotFoundError instead of burning retries.
-async function fetchVetoHistory(matchId, attempts = 5) {
+async function fetchVetoHistory(matchId, attempts = 2) {
   const url = `https://www.faceit.com/api/democracy/v1/match/${encodeURIComponent(
     matchId
   )}/history`;
@@ -154,11 +156,12 @@ async function fetchVetoHistory(matchId, attempts = 5) {
 
 async function runPool(items, worker, size = CONCURRENCY) {
   let cursor = 0;
+  const deadline = Date.now() + Number(process.env.VETO_BACKFILL_MAX_DURATION_MS || 90000);
 
   const runners = Array.from(
     { length: Math.min(size, Math.max(items.length, 1)) },
     async () => {
-      while (cursor < items.length) {
+      while (cursor < items.length && Date.now() < deadline) {
         const index = cursor;
         cursor += 1;
         await worker(items[index], index);
@@ -167,11 +170,6 @@ async function runPool(items, worker, size = CONCURRENCY) {
   );
 
   await Promise.all(runners);
-}
-
-function toNumber(value, fallback = 0) {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : fallback;
 }
 
 // Faction-relative mirror of parseVetoSteps() in
@@ -183,47 +181,6 @@ function toNumber(value, fallback = 0) {
 // Returns null when the response has no map veto ticket at all (e.g. a
 // BO1 the admin set without a public vote) so the caller can tell that
 // apart from a fetch failure.
-function parseVetoSteps(payload) {
-  const tickets = payload?.payload?.tickets || payload?.tickets;
-
-  if (!Array.isArray(tickets)) {
-    return null;
-  }
-
-  const mapTicket = tickets.find(
-    (ticket) => ticket?.entity_type === "map"
-  );
-  const entities = mapTicket?.entities;
-
-  if (!Array.isArray(entities) || entities.length === 0) {
-    return null;
-  }
-
-  const sorted = entities
-    .slice()
-    .sort((a, b) => toNumber(a.round) - toNumber(b.round));
-
-  const deciderIndex = sorted.length - 1;
-
-  return sorted.map((entity, index) => ({
-    map: entity.guid,
-    action:
-      index === deciderIndex
-        ? "Decider"
-        : entity.status === "pick"
-          ? "Picked"
-          : "Banned",
-    selectedBy:
-      index === deciderIndex
-        ? null
-        : entity.selected_by === "faction1" ||
-            entity.selected_by === "faction2"
-          ? entity.selected_by
-          : null,
-    round: toNumber(entity.round),
-  }));
-}
-
 async function markUnavailable(matchId) {
   const { error } = await supabase
     .from("matches")
@@ -258,6 +215,7 @@ async function processMatch(match, stats) {
       .update({
         veto_steps: vetoSteps,
         veto_synced: true,
+        veto_unavailable: false,
         veto_synced_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })

@@ -1454,7 +1454,7 @@ function ResultCard({ match }) {
 }
 
 
-function findPlayerTeam(teamId, teamName, nickname) {
+function findPlayerTeam(teamId, teamName, nickname, teamSlug) {
   const normalizedTeamId = String(teamId || "").trim();
   const normalizedTeamName = normalizeName(teamName);
   const normalizedNickname = normalizeName(nickname);
@@ -1509,7 +1509,7 @@ function findPlayerTeam(teamId, teamName, nickname) {
       id: teamId || null,
       teamId: teamId || null,
       name: teamName,
-      slug: slugify(teamName),
+      slug: teamSlug || null,
       logo: null,
     });
   }
@@ -1805,7 +1805,12 @@ function Home() {
         .subscribe();
     }
 
+    const refreshTimer = setInterval(() => {
+      if (!document.hidden) matchRefresh.request();
+    }, 30000);
+
     return () => {
+      clearInterval(refreshTimer);
       cancelled = true;
       matchRefresh.dispose();
 
@@ -1882,7 +1887,12 @@ function Home() {
       }
     });
 
+    const refreshTimer = setInterval(() => {
+      if (!document.hidden) ratingsRefresh.request();
+    }, 60000);
+
     return () => {
+      clearInterval(refreshTimer);
       cancelled = true;
       cancelScheduledStart();
       ratingsRefresh.dispose();
@@ -1968,26 +1978,7 @@ function Home() {
       }
 
       const { data: ratingData, error: ratingError } = await supabase
-        .from("player_ratings")
-        .select(
-          [
-            "player_id",
-            "nickname",
-            "rating",
-            "recent_rating",
-            "matches_played",
-            "maps_played",
-            "adr",
-            "kd",
-            "last_match_at",
-            "team_id",
-            "team_name",
-          ].join(",")
-        )
-        .not("rating", "is", null)
-        .gt("matches_played", 5)
-        .order("rating", { ascending: false })
-        .limit(5);
+        .rpc("get_top_player_ratings", { p_limit: 5, p_offset: 0 });
 
       if (cancelled) return;
 
@@ -2018,7 +2009,8 @@ function Home() {
           team: findPlayerTeam(
             row.team_id,
             row.team_name,
-            nickname
+            nickname,
+            row.team_slug
           ),
         };
       });
@@ -2050,7 +2042,12 @@ function Home() {
       }
     });
 
+    const refreshTimer = setInterval(() => {
+      if (!document.hidden) playersRefresh.request();
+    }, 60000);
+
     return () => {
+      clearInterval(refreshTimer);
       cancelled = true;
       cancelScheduledStart();
       playersRefresh.dispose();
@@ -2189,7 +2186,7 @@ function Home() {
         <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_352px] min-[1850px]:grid-cols-[minmax(0,1fr)_372px]">
           {/* LEFT COLUMN — independent height */}
           <div className="grid min-w-0 gap-5">
-            <HeroMatch match={featured} />
+            {databaseReady ? <HeroMatch match={featured} /> : <div className="h-72 animate-pulse rounded-2xl bg-white/5" role="status" aria-label={tx("Loading...")} />}
 
             <section
               ref={upcomingSectionRef}
@@ -2197,7 +2194,7 @@ function Home() {
             >
               <SectionTitle title={tx("Upcoming Matches")} />
 
-              {upcoming.length > 0 ? (
+              {!databaseReady ? <div className="h-64 animate-pulse bg-white/5 rounded-2xl" /> : upcoming.length > 0 ? (
                 <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
                   <div className="grid gap-4 sm:grid-cols-2">
                     {upcoming.map((match) => (
@@ -2229,7 +2226,7 @@ function Home() {
                 </div>
               </div>
 
-              {liveMatches.length > 0 ? (
+              {!databaseReady ? <div className="h-36 animate-pulse bg-white/5" /> : liveMatches.length > 0 ? (
                 <div className="max-h-[300px] space-y-2 overflow-y-auto overflow-x-hidden p-2.5 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.12)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent">
                   {liveMatches.map((match) => (
                     <LiveCard
@@ -2333,13 +2330,22 @@ function Home() {
           />
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {topTeams.slice(0, 8).map((team, index) => (
+            {(ratingsReady ? topTeams : []).slice(0, 8).map((team, index) => (
               <RankingCard
                 key={team.slug || team.name}
                 team={team}
                 index={index}
               />
             ))}
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <SectionTitle title={tx("Top Players")} action={<Link to="/players" className="text-sm font-black text-orange-400">{tx("Full rankings →")}</Link>} />
+          <div className="rounded-2xl border border-white/10 bg-[#111820] overflow-hidden">
+            {!playersReady ? <div role="status" className="p-5 text-slate-400">{tx("Loading...")}</div>
+              : playersError ? <div role="alert" className="p-5 text-yellow-300">{tx("Automatic statistics are temporarily unavailable")}</div>
+              : topPlayers.map((player,index) => <TopPlayerRow key={player.playerId} player={player} index={index} />)}
           </div>
         </section>
 
@@ -2363,7 +2369,7 @@ function Home() {
             />
 
             <NewsCard
-              to={popularRecentMatchPath || "/stats"}
+              to={popularRecentMatchPath || "/players"}
               tag={tx("STATISTICS")}
               title={
                 popularRecentMatch

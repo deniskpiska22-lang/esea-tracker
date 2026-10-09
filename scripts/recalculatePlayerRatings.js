@@ -1,3 +1,4 @@
+import process from "node:process";
 import { createClient } from "@supabase/supabase-js";
 import { calculatePlayerMatchRating } from "../src/utils/calculatePlayerRating.js";
 
@@ -392,6 +393,7 @@ async function main() {
           assists: 0,
           adrTotal: 0,
           matchesPlayed: 0,
+          mapsPlayed: 0,
           lastMatchAt: null,
         };
 
@@ -418,6 +420,8 @@ async function main() {
         Number(player.adr || 0);
 
       current.matchesPlayed += 1;
+      const payload = parseJson(match.player_stats);
+      current.mapsPlayed += Math.max(1, Array.isArray(payload?.maps) ? payload.maps.length : 0);
 
       if (
         match.finished_at &&
@@ -496,7 +500,7 @@ async function main() {
         player.matchesPlayed,
 
       maps_played:
-        player.matchesPlayed,
+        player.mapsPlayed,
 
       kills:
         player.kills,

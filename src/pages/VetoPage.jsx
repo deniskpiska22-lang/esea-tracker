@@ -552,11 +552,11 @@ function VetoPage() {
   );
 
   const mostPickedByUs =
-    [...vetoStats].sort((first, second) => second.pickRate - first.pickRate)[0] ||
+    vetoStats.filter((map) => map.pickRate > 0).sort((first, second) => second.pickRate - first.pickRate)[0] ||
     null;
 
   const mostBannedByUs =
-    [...vetoStats].sort((first, second) => second.banRate - first.banRate)[0] ||
+    vetoStats.filter((map) => map.banRate > 0).sort((first, second) => second.banRate - first.banRate)[0] ||
     null;
 
   const bestMapForUs =
