@@ -16,11 +16,16 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: "Valid matchId is required" });
   }
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
-  const db = process.env.SUPABASE_URL && key ? createClient(process.env.SUPABASE_URL, key,
-    { auth: { persistSession: false, autoRefreshToken: false } }) : null;
+  const rawUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const url = rawUrl ? new URL(rawUrl.trim()).origin : null;
+  const db = url && key ? createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(10000) }) },
+  }) : null;
   try {
-    const { data: match } = db ? await db.from("matches")
+    const { data: match, error: readError } = db ? await db.from("matches")
       .select("status,veto_steps").eq("id", matchId).maybeSingle() : { data: null };
+    if (readError) console.warn("Veto cache read failed:", readError.message);
     const finished = ["FINISHED", "MATCH_STATUS_FINISHED"].includes(match?.status);
     if (finished && Array.isArray(match.veto_steps) && match.veto_steps.length) {
       response.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
