@@ -1,3 +1,5 @@
+import UserTime from "../components/UserTime.jsx";
+import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
@@ -281,16 +283,13 @@ function formatDateTime(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat(
-    currentLocale(),
-    {
+  return formatUserDateTime(parsed, {
       day: "2-digit",
       month: "long",
       year: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    }
-  ).format(parsed);
+    });
 }
 
 function formatMatchTime(value) {
@@ -304,13 +303,7 @@ function formatMatchTime(value) {
     return "--:--";
   }
 
-  return new Intl.DateTimeFormat(
-    currentLocale(),
-    {
-      hour: "2-digit",
-      minute: "2-digit",
-    }
-  ).format(parsed);
+  return <UserTime value={parsed} />;
 }
 
 function formatMatchDate(value) {

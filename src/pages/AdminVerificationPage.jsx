@@ -1,5 +1,5 @@
+import { formatUserDateTime } from "../utils/userTime.js";
 import { tx, translateError, tf } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
 import {
   useCallback,
   useEffect,
@@ -121,7 +121,7 @@ function formatDate(value, withTime = true) {
     return tx("Unknown");
   }
 
-  return new Intl.DateTimeFormat(currentLocale(), {
+  return formatUserDateTime(date, {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -131,7 +131,7 @@ function formatDate(value, withTime = true) {
           minute: "2-digit",
         }
       : {}),
-  }).format(date);
+  });
 }
 
 function relativeTime(value) {

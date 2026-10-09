@@ -1,3 +1,4 @@
+import UserTime from "../components/UserTime.jsx";
 import { translateMatchStatus } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
@@ -359,10 +360,7 @@ function formatTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return tx("TBD");
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(date);
+  return <UserTime value={date} />;
 }
 
 function formatDate(value) {

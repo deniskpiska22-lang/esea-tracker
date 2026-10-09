@@ -1,6 +1,6 @@
+import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
 import { tf, tx } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
 import {
   useCallback,
   useEffect,
@@ -27,13 +27,13 @@ function formatCommentDate(value) {
     return "";
   }
 
-  return new Intl.DateTimeFormat(currentLocale(), {
+  return formatUserDateTime(date, {
     day: "2-digit",
     month: "short",
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-  }).format(date);
+  });
 }
 
 function getInitials(profile) {
