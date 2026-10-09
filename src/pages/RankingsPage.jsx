@@ -949,11 +949,7 @@ useEffect(() => {
       countryMatches &&
       searchMatches
     );
-  })
-  .map((team, index) => ({
-    ...team,
-    displayRank: index + 1,
-  }));
+  });
   }, [
     sortedTeams,
     selectedDivision,
@@ -1363,7 +1359,7 @@ useEffect(() => {
                                   : "text-gray-300"
                               }
                             >
-                              #{team.displayRank}
+                              #{team.rank}
                             </span>
 
                             <ChangeText

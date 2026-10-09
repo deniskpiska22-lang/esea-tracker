@@ -16,6 +16,7 @@ import {
 import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";
 import { useTeamCatalog } from "./hooks/useTeamCatalog";
+import { useTeamRanks } from "./hooks/useTeamRanks";
 import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -55,6 +56,7 @@ function App() {
 
   const [showSearch, setShowSearch] =
     useState(false);
+  const teamRanks = useTeamRanks(showSearch, teams);
   const [search, setSearch] =
     useState("");
   const [searchablePlayers, setSearchablePlayers] =
@@ -741,6 +743,11 @@ function App() {
                               tx("Team")}
                           </div>
                         </div>
+                        {teamRanks.has(String(team.faceitTeamId)) && (
+                          <span className="ml-auto shrink-0 font-black text-orange-400">
+                            #{teamRanks.get(String(team.faceitTeamId))}
+                          </span>
+                        )}
                       </button>
                     )
                   )}
@@ -925,3 +932,4 @@ function App() {
 }
 
 export default App;
+
