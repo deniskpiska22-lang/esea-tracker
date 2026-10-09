@@ -1,5 +1,5 @@
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
-import { localizedPath, currentLocale } from "../i18n/languages.js";
+import { localizedPath, currentLanguage, currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import {
   useEffect,
@@ -1010,7 +1010,7 @@ function PlayerPage() {
 
   useEffect(() => {
     if (loadingStats || !resolvedNickname || isFaceitPlayerId(resolvedNickname)) return;
-    const target = localizedPath(`/players/${encodeURIComponent(resolvedNickname)}`, currentLocale());
+    const target = localizedPath(`/players/${encodeURIComponent(resolvedNickname)}`, currentLanguage());
     if (location.pathname === target) return;
     navigate(target, { replace: true, state: location.state });
   }, [loadingStats, resolvedNickname, location.pathname, location.state, navigate]);
