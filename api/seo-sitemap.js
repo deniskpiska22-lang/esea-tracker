@@ -19,7 +19,11 @@ export default async function handler(req,res) {
     } else {
       const rows=await result(client.from("seo_profile_urls").select("url,updated_at,entity_id").eq("kind",kind).gt("position",page*PAGE_SIZE).lte("position",(page+1)*PAGE_SIZE).order("position"));
       if (kind==='players' && rows.length) {
-        const identities=await result(client.from('players').select('faceit_id,nickname').in('faceit_id',rows.map(row=>row.entity_id)));
+        // Keep GET filters below the gateway URL limit (1000 UUIDs exceed it).
+        const batches=[];
+        for(let start=0;start<rows.length;start+=100) batches.push(rows.slice(start,start+100));
+        const identities=(await Promise.all(batches.map(batch=>result(client.from('players')
+          .select('faceit_id,nickname').in('faceit_id',batch.map(row=>row.entity_id)))))).flat();
         const names=new Map(identities.map(player=>[player.faceit_id,player.nickname]));
         for (const row of rows) if(names.get(row.entity_id)) row.url=`/players/${encodeURIComponent(names.get(row.entity_id))}`;
       }
