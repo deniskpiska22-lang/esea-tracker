@@ -18,7 +18,6 @@ import { useTeamCatalog } from "./hooks/useTeamCatalog";
 import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import OneWinAds from "./components/OneWinAds.jsx";
 
 function App() {
   const { teams } = useTeamCatalog();
@@ -912,11 +911,10 @@ function App() {
         </div>
       )}
 
-      <OneWinAds />
+      {/* Advertising paused while partner details are clarified. */}
 
       <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
         <Outlet />
-        <OneWinAds mobile />
       </div>
 
       
