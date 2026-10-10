@@ -1,3 +1,5 @@
+import { countryName } from "../utils/countries.js";
+import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { tx, translateError, tf } from "../i18n/translate.js";
 import {
@@ -149,120 +151,7 @@ const REGION_BY_COUNTRY = {
   ZA: "Africa",
 };
 
-const COUNTRY_NAMES = {
-  AL: "Albania",
-  AD: "Andorra",
-  AR: "Argentina",
-  AM: "Armenia",
-  AU: "Australia",
-  AT: "Austria",
-  AZ: "Azerbaijan",
-  BA: "Bosnia and Herzegovina",
-  BD: "Bangladesh",
-  BE: "Belgium",
-  BG: "Bulgaria",
-  BO: "Bolivia",
-  BR: "Brazil",
-  BY: "Belarus",
-  CA: "Canada",
-  CH: "Switzerland",
-  CL: "Chile",
-  CN: "China",
-  CO: "Colombia",
-  CR: "Costa Rica",
-  CU: "Cuba",
-  CY: "Cyprus",
-  CZ: "Czechia",
-  DE: "Germany",
-  DK: "Denmark",
-  DO: "Dominican Republic",
-  DZ: "Algeria",
-  EC: "Ecuador",
-  EE: "Estonia",
-  EG: "Egypt",
-  ES: "Spain",
-  FI: "Finland",
-  FJ: "Fiji",
-  FR: "France",
-  GB: "United Kingdom",
-  GE: "Georgia",
-  GH: "Ghana",
-  GR: "Greece",
-  GT: "Guatemala",
-  HK: "Hong Kong",
-  HN: "Honduras",
-  HR: "Croatia",
-  HU: "Hungary",
-  ID: "Indonesia",
-  IE: "Ireland",
-  IL: "Israel",
-  IN: "India",
-  IQ: "Iraq",
-  IR: "Iran",
-  IS: "Iceland",
-  IT: "Italy",
-  JM: "Jamaica",
-  JO: "Jordan",
-  JP: "Japan",
-  KE: "Kenya",
-  KG: "Kyrgyzstan",
-  KH: "Cambodia",
-  KR: "South Korea",
-  KZ: "Kazakhstan",
-  LB: "Lebanon",
-  LI: "Liechtenstein",
-  LK: "Sri Lanka",
-  LT: "Lithuania",
-  LU: "Luxembourg",
-  LV: "Latvia",
-  MA: "Morocco",
-  MC: "Monaco",
-  MD: "Moldova",
-  ME: "Montenegro",
-  MK: "North Macedonia",
-  MN: "Mongolia",
-  MT: "Malta",
-  MX: "Mexico",
-  MY: "Malaysia",
-  NG: "Nigeria",
-  NL: "Netherlands",
-  NO: "Norway",
-  NP: "Nepal",
-  NZ: "New Zealand",
-  PA: "Panama",
-  PE: "Peru",
-  PH: "Philippines",
-  PK: "Pakistan",
-  PL: "Poland",
-  PR: "Puerto Rico",
-  PT: "Portugal",
-  PY: "Paraguay",
-  QA: "Qatar",
-  RO: "Romania",
-  RS: "Serbia",
-  RU: "Russia",
-  SA: "Saudi Arabia",
-  SE: "Sweden",
-  SG: "Singapore",
-  SI: "Slovenia",
-  SK: "Slovakia",
-  SM: "San Marino",
-  SY: "Syria",
-  TH: "Thailand",
-  TJ: "Tajikistan",
-  TM: "Turkmenistan",
-  TN: "Tunisia",
-  TR: "Turkey",
-  TW: "Taiwan",
-  UA: "Ukraine",
-  AE: "United Arab Emirates",
-  US: "United States",
-  UY: "Uruguay",
-  UZ: "Uzbekistan",
-  VE: "Venezuela",
-  VN: "Vietnam",
-  ZA: "South Africa",
-};
+
 
 const POPULAR_COUNTRIES_BY_REGION = {
   Europe: [
@@ -493,13 +382,6 @@ function getDivision(staticTeam, ratingRow) {
   );
 }
 
-function getFlagUrl(country) {
-  if (!country || country.length !== 2) {
-    return null;
-  }
-
-  return `https://flagcdn.com/24x18/${country.toLowerCase()}.png`;
-}
 
 function ChangeText({
   value,
@@ -556,33 +438,6 @@ function TeamLogo({
   );
 }
 
-function CountryFlag({
-  country,
-  name,
-}) {
-  const [failed, setFailed] = useState(false);
-  const flagUrl = getFlagUrl(country);
-
-  if (!flagUrl || failed) {
-    return (
-      <div
-        className="h-[18px] w-6 shrink-0 rounded-sm border border-white/10 bg-white/[0.04]"
-        title={country || "Unknown country"}
-      />
-    );
-  }
-
-  return (
-    <img
-      src={flagUrl}
-      alt={name || country}
-      title={name || country}
-      className="h-[18px] w-6 shrink-0 rounded-sm object-cover"
-      loading="lazy"
-      onError={() => setFailed(true)}
-    />
-  );
-}
 
 function RankingsPage() {
   const [ratingRows, setRatingRows] =
@@ -1430,4 +1285,4 @@ useEffect(() => {
 
 export default RankingsPage;
 
-function localizedCountry(code) { try { return new Intl.DisplayNames([currentLocale()], {type:"region"}).of(code); } catch { return COUNTRY_NAMES[code] || code; } }
+function localizedCountry(code) { return countryName(code) || tx("Unknown country"); }

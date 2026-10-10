@@ -1,3 +1,4 @@
+import CountryFlag from "../components/CountryFlag.jsx";
 import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
@@ -124,21 +125,6 @@ function getInitials(profile) {
     .toUpperCase();
 }
 
-function countryFlag(code) {
-  if (!code || code.length !== 2) {
-    return "";
-  }
-
-  return code
-    .toUpperCase()
-    .replace(
-      /./g,
-      (character) =>
-        String.fromCodePoint(
-          127397 + character.charCodeAt()
-        )
-    );
-}
 
 function getWinnerTeamId(match) {
   const status = String(
@@ -1003,10 +989,7 @@ export default function UserProfilePage() {
 
                   {profile.country_code && (
                     <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-black text-white">
-                      {countryFlag(
-                        profile.country_code
-                      )}{" "}
-                      {profile.country_code.toUpperCase()}
+                      <CountryFlag country={profile.country_code} />
                     </span>
                   )}
                 </div>

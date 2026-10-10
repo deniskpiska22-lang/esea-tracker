@@ -1,3 +1,4 @@
+import CountryFlag from "./CountryFlag.jsx";
 import Link from "./SiteLink.jsx";
 import { tx, tf } from "../i18n/translate.js";
 import { useState } from "react";
@@ -36,38 +37,6 @@ function pickActivePlayer(list, selectedId) {
   )[0];
 }
 
-function getFlagUrl(country) {
-  if (!country || country.length !== 2) {
-    return null;
-  }
-  return `https://flagcdn.com/24x18/${country.toLowerCase()}.png`;
-}
-
-function PlayerFlag({ country, size = "sm" }) {
-  const [failed, setFailed] = useState(false);
-  const flagUrl = getFlagUrl(country);
-  const dims = size === "sm" ? "h-[14px] w-5" : "h-[18px] w-6";
-
-  if (!flagUrl || failed) {
-    return (
-      <div
-        className={`${dims} shrink-0 rounded-sm border border-white/10 bg-white/[0.04]`}
-        title={country || "Unknown country"}
-      />
-    );
-  }
-
-  return (
-    <img
-      src={flagUrl}
-      alt={country}
-      title={country}
-      className={`${dims} shrink-0 rounded-sm object-cover`}
-      loading="lazy"
-      onError={() => setFailed(true)}
-    />
-  );
-}
 
 function PlayerPortraitLayers({ player, team }) {
   const teamLogo = getTeamLogo(team);
@@ -100,7 +69,7 @@ function PlayerTileBody({ player, team }) {
       <PlayerPortraitLayers player={player} team={team} />
 
       <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-center gap-1 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-1.5 pb-1.5 pt-6">
-        <PlayerFlag country={player?.country} />
+        <CountryFlag country={player?.country} size="sm" />
         <div
           title={player?.nickname}
           className="min-w-0 truncate text-[11px] font-bold text-white"

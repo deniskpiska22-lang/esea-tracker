@@ -1,3 +1,4 @@
+import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
@@ -1394,12 +1395,7 @@ const currentTeam =
                 {(databasePlayer?.country ||
                   localPlayerInfo?.country) && (
                   <span className="rounded-full border border-[#2a3749] bg-[#0c141e] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    <img
-                      src={`https://flagcdn.com/24x18/${String(databasePlayer?.country || localPlayerInfo?.country).toLowerCase()}.png`}
-                      alt={String(databasePlayer?.country || localPlayerInfo?.country).toUpperCase()}
-                      title={String(databasePlayer?.country || localPlayerInfo?.country).toUpperCase()}
-                      width="24" height="18" className="inline-block rounded-sm"
-                    />
+                    <CountryFlag country={databasePlayer?.country || localPlayerInfo?.country} />
                   </span>
                 )}
 

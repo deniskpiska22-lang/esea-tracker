@@ -1,3 +1,5 @@
+import { COUNTRY_CODES, countryName } from "../utils/countries.js";
+import CountryFlag from "../components/CountryFlag.jsx";
 import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import {
@@ -26,21 +28,6 @@ function getInitials(profile, displayName) {
     .toUpperCase();
 }
 
-function countryFlag(code) {
-  if (!code || code.length !== 2) {
-    return "";
-  }
-
-  return code
-    .toUpperCase()
-    .replace(
-      /./g,
-      (character) =>
-        String.fromCodePoint(
-          127397 + character.charCodeAt()
-        )
-    );
-}
 
 function SectionHeader({
   eyebrow,
@@ -381,28 +368,18 @@ export default function EditProfilePage() {
                 </label>
 
                 <label className="block">
-                  <FieldLabel
-                    title={tr("Код страны", "Country code")}
-                    hint={tr("Например RU, UA, KZ", "For example US, DE, PL")}
-                  />
-
-                  <input
-                    value={countryCode}
-                    onChange={(event) =>
-                      setCountryCode(
-                        event.target.value
-                          .replace(
-                            /[^a-zA-Z]/g,
-                            ""
-                          )
-                          .slice(0, 2)
-                          .toUpperCase()
-                      )
-                    }
-                    maxLength={2}
-                    placeholder={tr("RU", "US")}
-                    className="w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 uppercase text-white outline-none transition placeholder:text-gray-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15"
-                  />
+                  <FieldLabel title={tr("Страна", "Country")} />
+                  <div className="flex items-center gap-3">
+                    {countryCode && <CountryFlag country={countryCode} />}
+                    <select value={countryCode} onChange={(event) => setCountryCode(event.target.value)}
+                      className="min-w-0 w-full rounded-2xl border border-[#2b394b] bg-[#0a1018] px-4 py-3.5 text-white outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15">
+                      <option value="">{tr("Не выбрана", "Not selected")}</option>
+                      {COUNTRY_CODES.map((code) => ({ code, name: countryName(code) }))
+                        .filter((item) => item.name)
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((item) => <option key={item.code} value={item.code}>{item.name}</option>)}
+                    </select>
+                  </div>
                 </label>
 
                 <label className="block md:col-span-2">
@@ -618,10 +595,7 @@ export default function EditProfilePage() {
                     <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-gray-500">
                       {countryCode && (
                         <span>
-                          {countryFlag(
-                            countryCode
-                          )}{" "}
-                          {countryCode}
+                          <CountryFlag country={countryCode} />
                         </span>
                       )}
 

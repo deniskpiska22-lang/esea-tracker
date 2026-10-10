@@ -1,3 +1,4 @@
+import CountryFlag from "../components/CountryFlag.jsx";
 import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
@@ -281,7 +282,7 @@ function RankCard({
 
         {countryCode && (
           <div className="text-sm font-black text-slate-500">
-            {countryCode}
+            <CountryFlag country={countryCode} />
           </div>
         )}
       </div>
@@ -730,13 +731,7 @@ function TeamPage() {
 
                 <div className="min-w-0 text-center md:text-left">
                   <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                    {team.flag && (
-                      <img
-                        src={team.flag}
-                        alt=""
-                        className="h-6 w-8 rounded-sm object-cover"
-                      />
-                    )}
+                    {rankingData.countryCode && <CountryFlag country={rankingData.countryCode} className="h-6 w-8" />}
 
                     <span className="rounded-lg border border-orange-500/15 bg-orange-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-orange-400">
                       {team.division || tx("Division")}
