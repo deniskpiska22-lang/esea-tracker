@@ -1,3 +1,4 @@
+import { localizeSeo } from '../src/i18n/seo.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { findTeamByRoute, teamPublicPath } from '../src/utils/teamProfileUrls.js';
@@ -23,4 +24,11 @@ test('SEO uses readable canonical while structured identity remains FACEIT ID',(
  const seo=getTeamSeoMetadata(teams[0],'veto');
  assert.equal(seo.canonicalPath,'/teams/navi-junior/veto');
  assert.equal(seo.schema['@graph'][0].identifier,'identity-a');
+});
+
+test('clean profile metadata survives the initial catalog-loading state',()=>{
+ const metadata=getTeamSeoMetadata(teams[0]);
+ const localized=localizeSeo(metadata,'en',{entity:null});
+ assert.equal(localized.canonicalPath,'/en/teams/navi-junior');
+ assert.ok(localized.title.includes('NAVI Junior'));
 });

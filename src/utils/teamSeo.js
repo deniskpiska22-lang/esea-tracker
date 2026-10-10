@@ -4,6 +4,7 @@ const REGION_SHORT = { Europe: 'EU', 'North America': 'NA', 'South America': 'SA
 const TOPICS = { '': 'Roster & Results', matches: 'Matches & Results', stats: 'Map Statistics', veto: 'Map Picks & Bans', analytics: 'Analytics' };
 
 export function getTeamContext(team = {}) {
+  team = team || {};
   const sources = Array.isArray(team.sources) ? team.sources : [];
   const latest = [...sources].sort((a, b) => Number(b.season || 0) - Number(a.season || 0));
   const season = team.season || latest[0]?.season;
