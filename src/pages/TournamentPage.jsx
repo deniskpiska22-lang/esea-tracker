@@ -1,9 +1,10 @@
+import Link from "../components/SiteLink.jsx";
 import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import tournaments from "../data/tournaments";
 import teams from "../data/teams";

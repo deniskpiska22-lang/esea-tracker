@@ -1,3 +1,4 @@
+import Link from "../components/SiteLink.jsx";
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
@@ -7,12 +8,7 @@ import {
   useState,
 } from "react";
 
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import matchStatsCompact from "../data/matchStatsCompact.json";
 import teams from "../data/teams";

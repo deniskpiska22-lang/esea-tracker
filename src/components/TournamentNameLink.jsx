@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import Link from "./SiteLink.jsx";
+
 
 import { findTournamentByName } from "../utils/tournaments";
 

@@ -1,3 +1,4 @@
+import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { useLanguage } from '../context/LanguageContext';
 import { localizeSeo } from '../i18n/seo.js';
 import { LANGUAGES, stripLanguage } from '../i18n/languages.js';
@@ -36,7 +37,7 @@ function getTeamMetadata(pathname, teams) {
 
   const slug = decodeURIComponent(match[1]);
   const section = match[2] || "overview";
-  const team = teams.find((item) => item.slug === slug);
+  const team = findTeamByRoute(teams, slug);
 
   if (!team) {
     return null;
@@ -111,7 +112,7 @@ export default function RouteSeo() {
   }, []);
 
   useEffect(() => {
-    const localized = metadata.language === language && metadata.alternates ? metadata : localizeSeo(metadata, language, {entity:teams.find(team=>`/teams/${team.slug}` === pathname.split(/\/(matches|stats|veto|analytics)$/)[0])});
+    const localized = metadata.language === language && metadata.alternates ? metadata : localizeSeo(metadata, language, {entity:findTeamByRoute(teams, decodeURIComponent(pathname.match(/^\/(?:teams|team)\/([^/]+)/)?.[1] || ''))});
     const canonicalUrl = new URL(
       localized.canonicalPath || pathname,
       SITE_ORIGIN

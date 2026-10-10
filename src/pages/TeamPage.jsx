@@ -1,3 +1,5 @@
+import Link from "../components/SiteLink.jsx";
+import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { getTeamSeoMetadata } from '../utils/teamSeo.js';
@@ -8,7 +10,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import staticTeams from "../data/teams";
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import matchesData from "../data/matches";
@@ -290,9 +292,7 @@ function TeamPage() {
   const { slug } = useParams();
   const { teams, catalogLoading } = useTeamCatalog();
 
-  const team = teams?.find(
-    (item) => item.slug === slug
-  );
+  const team = findTeamByRoute(teams, slug);
 
   const [rankingRows, setRankingRows] =
     useState([]);
@@ -512,7 +512,7 @@ function TeamPage() {
 
   const fallbackMatches = matchesData
     .filter(
-      (match) => match.teamSlug === slug
+      (match) => match.teamSlug === team?.slug
     )
     .sort(
       (a, b) =>

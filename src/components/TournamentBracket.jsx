@@ -1,6 +1,7 @@
+import Link from "./SiteLink.jsx";
 import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
-import { Link } from "react-router-dom";
+
 
 function TeamRow({ team, score, winner }) {
   const isTbd = !team?.name;

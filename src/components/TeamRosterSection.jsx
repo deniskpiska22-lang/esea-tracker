@@ -1,3 +1,4 @@
+import Link from "./SiteLink.jsx";
 import { tx, tf } from "../i18n/translate.js";
 import {
   useEffect,
@@ -5,7 +6,7 @@ import {
   useState,
 } from "react";
 
-import { Link } from "react-router-dom";
+
 import { useTeamRoster } from "../hooks/useTeamRoster";
 import { supabase } from "../lib/supabaseClient";
 

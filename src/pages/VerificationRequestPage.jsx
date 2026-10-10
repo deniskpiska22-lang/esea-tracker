@@ -1,3 +1,4 @@
+import Link from "../components/SiteLink.jsx";
 import { translateError } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { tx } from "../i18n/translate.js";
@@ -7,11 +8,7 @@ import {
   useState,
 } from "react";
 
-import {
-  Link,
-  Navigate,
-  useParams,
-} from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";

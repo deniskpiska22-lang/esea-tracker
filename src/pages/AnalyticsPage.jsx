@@ -1,8 +1,7 @@
+import Link from "../components/SiteLink.jsx";
+import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { tx } from "../i18n/translate.js";
-import {
-  Link,
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import teams from "../data/teams";
 import matchesData from "../data/matches";
@@ -35,10 +34,10 @@ function AnalyticsPage() {
   const { slug } = useParams();
 
   const team =
-    teams.find((item) => item.slug === slug) || null;
+    findTeamByRoute(teams, slug) || null;
 
   const fallbackMatches = matchesData.filter(
-    (match) => match.teamSlug === slug
+    (match) => match.teamSlug === team?.slug
   );
 
   const { matches, loading } = useTeamStats(

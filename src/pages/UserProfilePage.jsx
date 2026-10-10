@@ -1,3 +1,4 @@
+import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
@@ -9,10 +10,7 @@ import {
   useState,
 } from "react";
 
-import {
-  Link,
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";

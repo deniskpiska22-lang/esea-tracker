@@ -1,10 +1,11 @@
+import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { translateMatchStatus } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+
 
 import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";

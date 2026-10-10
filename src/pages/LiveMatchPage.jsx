@@ -1,3 +1,4 @@
+import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
@@ -12,11 +13,7 @@ import {
   useState,
 } from "react";
 
-import {
-  Link,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import matchesData from "../data/matches";
 import upcomingMatches from "../data/upcomingMatches";

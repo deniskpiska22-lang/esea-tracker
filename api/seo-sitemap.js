@@ -4,7 +4,7 @@ import { seoClient, result } from '../server/seoData.js';
 import { ORIGIN, staticRoutes, sitemapXml } from '../server/profileSeo.js';
 const PAGE_SIZE=1000;
 // These pages' rendered SEO content changed in this release, even when match data did not.
-const SEO_CONTENT_UPDATED_AT='2026-10-08T20:58:00.000Z';
+const SEO_CONTENT_UPDATED_AT='2026-10-10T12:20:00.000Z';
 const contentUpdatedAt = value => value && new Date(value).getTime()>new Date(SEO_CONTENT_UPDATED_AT).getTime() ? value : SEO_CONTENT_UPDATED_AT;
 export default async function handler(req,res) {
   const kind=String(req.query.kind || 'index');
@@ -18,14 +18,17 @@ export default async function handler(req,res) {
       entries=bounds.flatMap((rows,i)=>Array.from({length:Math.max(1,Math.ceil((rows[0]?.position || 0)/PAGE_SIZE))},(_,p)=>({url:`${ORIGIN}/sitemaps/${['teams','players','matches'][i]}-${p}.xml`})));
     } else {
       const rows=await result(client.from("seo_profile_urls").select("url,updated_at,entity_id").eq("kind",kind).gt("position",page*PAGE_SIZE).lte("position",(page+1)*PAGE_SIZE).order("position"));
-      if (kind==='players' && rows.length) {
+      if ((kind==='players' || kind==='teams') && rows.length) {
         // Keep GET filters below the gateway URL limit (1000 UUIDs exceed it).
         const batches=[];
         for(let start=0;start<rows.length;start+=100) batches.push(rows.slice(start,start+100));
-        const identities=(await Promise.all(batches.map(batch=>result(client.from('players')
-          .select('faceit_id,nickname').in('faceit_id',batch.map(row=>row.entity_id)))))).flat();
-        const names=new Map(identities.map(player=>[player.faceit_id,player.nickname]));
-        for (const row of rows) if(names.get(row.entity_id)) row.url=`/players/${encodeURIComponent(names.get(row.entity_id))}`;
+        const playerKind=kind==='players';
+        const idColumn=playerKind ? 'faceit_id' : 'team_id';
+        const nameColumn=playerKind ? 'nickname' : 'slug';
+        const identities=(await Promise.all(batches.map(batch=>result(client.from(playerKind ? 'players' : 'team_profile_urls')
+          .select(`${idColumn},${nameColumn}`).in(idColumn,batch.map(row=>row.entity_id)))))).flat();
+        const names=new Map(identities.map(entity=>[entity[idColumn],entity[nameColumn]]));
+        for (const row of rows) if(names.get(row.entity_id)) row.url=`/${kind}/${encodeURIComponent(names.get(row.entity_id))}`;
       }
       entries=rows.flatMap(r=>kind==='teams' ? teamSitemapEntries(`${ORIGIN}${r.url}`,contentUpdatedAt(r.updated_at)) : [{url:`${ORIGIN}${r.url}`,updatedAt:contentUpdatedAt(r.updated_at)}]);
       if(kind==='teams' && page===0) entries.unshift(...staticRoutes.map(route=>({url:`${ORIGIN}${route}`,updatedAt:SEO_CONTENT_UPDATED_AT})));

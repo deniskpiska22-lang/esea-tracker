@@ -1,15 +1,11 @@
+import Link from "../components/SiteLink.jsx";
 import {
   useEffect,
   useMemo,
   useState,
 } from "react";
 
-import {
-  Link,
-  Navigate,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";

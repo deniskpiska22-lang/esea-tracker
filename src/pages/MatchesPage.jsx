@@ -1,8 +1,10 @@
+import Link from "../components/SiteLink.jsx";
+import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { supabase } from "../lib/supabaseClient";
@@ -123,7 +125,7 @@ function MatchesPage() {
   const location = useLocation();
 
   const mapFilter = new URLSearchParams(location.search).get("map");
-  const team = teams.find((item) => item.slug === slug);
+  const team = findTeamByRoute(teams, slug);
 
   const [databaseRows, setDatabaseRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -133,6 +135,7 @@ function MatchesPage() {
     let cancelled = false;
 
     const loadMatches = async () => {
+      if (slug && !team) { setDatabaseRows([]); setLoading(false); return; }
       if (!supabase) {
         if (!cancelled) {
           setErrorMessage("Supabase client is not configured");
@@ -214,7 +217,7 @@ function MatchesPage() {
             {
               event: "*",
               schema: "public",
-              table: tx("matches"),
+              table: "matches",
             },
             loadMatches
           )

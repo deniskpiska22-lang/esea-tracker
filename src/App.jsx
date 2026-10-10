@@ -1,3 +1,4 @@
+import Link from "./components/SiteLink.jsx";
 import OneWinAds from "./components/OneWinAds.jsx";
 import { tx } from "./i18n/translate.js";
 import {
@@ -6,12 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";

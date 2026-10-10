@@ -18,7 +18,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
     const participants = roster.players || [];
     const maps = parseMaps(entity.map_scores);
     return { ...metadata, body: `<dl>${facts.filter(([,value])=>value).map(([label,value])=>`<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>
-      <h2>Teams</h2><ul>${[1,2].map(n=>{const team=teamLinks.find(t=>t.team_id===entity[`team${n}_id`])?.team;return `<li>${team?.slug ? link(`/teams/${encodeURIComponent(team.slug)}`,entity[`team${n}_name`] || team.name) : escapeHtml(entity[`team${n}_name`] || 'TBD')}</li>`;}).join('')}</ul>
+      <h2>Teams</h2><ul>${[1,2].map(n=>{const team=teamLinks.find(t=>t.team_id===entity[`team${n}_id`])?.team;return `<li>${team?.slug ? link(`/teams/${encodeURIComponent(team.profileSlug || team.slug)}`,entity[`team${n}_name`] || team.name) : escapeHtml(entity[`team${n}_name`] || 'TBD')}</li>`;}).join('')}</ul>
       <h2>Map results</h2>${maps.length ? `<ul>${maps.map(map=>{const reversed=map.team1_id && map.team1_id===entity.team2_id;const one=reversed ? map.team2_score : map.team1_score ?? map.teamScore;const two=reversed ? map.team1_score : map.team2_score ?? map.opponentScore;return `<li>${escapeHtml(map.map || map.mapName || 'Map')}${one!=null && two!=null ? `: ${escapeHtml(one)}–${escapeHtml(two)}` : ''}</li>`;}).join('')}</ul>` : '<p>Map results are not available yet.</p>'}
       <h2>Player statistics</h2>${participants.length ? `<table><thead><tr><th>Player</th><th>Kills</th><th>Deaths</th><th>ADR</th><th>Rating</th></tr></thead><tbody>${participants.filter(p=>p.faceit_player_id && p.nickname).map(p=>`<tr><td>${link(`/players/${encodeURIComponent(p.nickname || p.faceit_player_id)}`,p.nickname)}</td>${[p.kills,p.deaths,p.adr,p.rating].map(v=>`<td>${escapeHtml(v ?? '—')}</td>`).join('')}</tr>`).join('')}</tbody></table>` : '<p>Player statistics are not available yet.</p>'}` };
   }
@@ -37,7 +37,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
         memberOf:entity.teamName && entity.teamSlug ? { '@type':'SportsTeam',name:entity.teamName,url:`${ORIGIN}/teams/${encodeURIComponent(entity.teamSlug)}` } : undefined } };
   }
   const metadata = getTeamSeoMetadata(entity, section, roster);
-  const base = `/teams/${encodeURIComponent(entity.slug)}`;
+  const base = `/teams/${encodeURIComponent(entity.profileSlug || entity.slug)}`;
   const { division, region, country, season } = getTeamContext(entity);
   const facts = [['League', 'ESEA Counter-Strike 2'], ['Division', division], ['Region', region], ['Country', country], ['Season', season]]
     .filter(([, value]) => value).map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`).join('');

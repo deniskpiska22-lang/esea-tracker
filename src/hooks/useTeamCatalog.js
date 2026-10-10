@@ -17,7 +17,24 @@ async function loadCatalog() {
       for (const row of data || []) byId.set(row.team_id, { ...byId.get(row.team_id), ...row.team });
       if ((data || []).length < 1000) break;
     }
-    cachedTeams = [...byId.values()];
+    const urls = [], aliases = [];
+    for (let offset = 0; ; offset += 1000) {
+      const [urlResult, aliasResult] = await Promise.all([
+        supabase.from("team_profile_urls").select("team_id,slug").order("team_id").range(offset, offset + 999),
+        supabase.from("team_profile_aliases").select("team_id,slug").order("slug").range(offset, offset + 999),
+      ]);
+      if (urlResult.error || aliasResult.error) throw urlResult.error || aliasResult.error;
+      urls.push(...urlResult.data); aliases.push(...aliasResult.data);
+      if (urlResult.data.length < 1000 && aliasResult.data.length < 1000) break;
+    }
+    const byUrlId = new Map(urls.map(row => [row.team_id, row.slug]));
+    const byAliasId = new Map();
+    for (const row of aliases) {
+      if (!byAliasId.has(row.team_id)) byAliasId.set(row.team_id, []);
+      byAliasId.get(row.team_id).push(row.slug);
+    }
+    cachedTeams = [...byId.values()].map(team => ({...team,
+      profileSlug: byUrlId.get(team.faceitTeamId), urlAliases: byAliasId.get(team.faceitTeamId) || []}));
     cachedAt = Date.now();
     return cachedTeams;
   })().finally(() => { pending = null; });

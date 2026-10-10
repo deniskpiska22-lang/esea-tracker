@@ -1,3 +1,4 @@
+import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import {
   useCallback,
   useEffect,
@@ -1047,10 +1048,7 @@ export function useTeamStats(
   const team =
     useMemo(
       () =>
-        teams.find(
-          (item) =>
-            item.slug === slug
-        ) || null,
+        findTeamByRoute(teams, slug) || null,
       [slug, teams]
     );
 

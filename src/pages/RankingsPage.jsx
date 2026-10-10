@@ -1,10 +1,11 @@
+import Link from "../components/SiteLink.jsx";
 import { tx, translateError, tf } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
   useState,
 } from "react";
-import { Link } from "react-router-dom";
+
 
 import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";

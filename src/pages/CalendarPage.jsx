@@ -1,6 +1,7 @@
+import Link from "../components/SiteLink.jsx";
 import { tf, tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
-import { Link } from "react-router-dom";
+
 
 import tournaments from "../data/tournaments";
 import { getTournamentStatus } from "../utils/tournaments";

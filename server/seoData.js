@@ -20,14 +20,27 @@ export async function loadProfile(client,kind,key) {
     const entity = await result(client.from('matches').select(MATCH_SEO_COLUMNS).eq('id',key).maybeSingle());
     if (!entity) return null;
     const ids = [entity.team1_id, entity.team2_id].filter(Boolean);
-    const catalog = ids.length ? await result(client.from('team_catalog').select('team_id,team').in('team_id',ids)) : [];
+    let catalog = ids.length ? await result(client.from('team_catalog').select('team_id,team').in('team_id',ids)) : [];
+    if (ids.length) {
+      const urls=await result(client.from('team_profile_urls').select('team_id,slug').in('team_id',ids));
+      const byId=new Map(urls.map(row=>[row.team_id,row.slug]));
+      catalog=catalog.map(row=>({...row,team:{...row.team,profileSlug:byId.get(row.team_id)}}));
+    }
     const participants = await result(client.from('match_player_stats').select('faceit_player_id,nickname,team_id,kills,deaths,adr,rating').eq('match_id',key).limit(20))
       .catch(error => { console.warn('[seo-match-players]',error.message); return []; });
     return { entity, roster: participants, teams: catalog };
   }
   if (kind === 'team') {
-    let row = await result(client.from('team_catalog').select('team_id,team,updated_at').eq('team->>slug',key).maybeSingle());
-    if (!row) { const team=staticTeams.find(t=>t.slug===key);if(team) row={team_id:team.faceitTeamId,team}; }
+    const alias = await result(client.from('team_profile_aliases').select('team_id').eq('slug',key).maybeSingle());
+    const targetId = alias?.team_id || (/^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(key) ? key : null);
+    let row = await result(targetId
+      ? client.from('team_catalog').select('team_id,team,updated_at').eq('team_id',targetId).maybeSingle()
+      : client.from('team_catalog').select('team_id,team,updated_at').eq('team->>slug',key).maybeSingle());
+    if (!row) { const team=staticTeams.find(t=>targetId ? t.faceitTeamId===targetId : t.slug===key);if(team) row={team_id:team.faceitTeamId,team}; }
+    if (row) {
+      const url=await result(client.from('team_profile_urls').select('slug').eq('team_id',row.team_id).maybeSingle());
+      row.team={...row.team,profileSlug:url?.slug};
+    }
     if (!row) return null;
     const [links, recentMatches] = await Promise.all([
       result(client.from('team_players').select('players!team_players_player_id_fkey(faceit_id,nickname)').eq('team_id',row.team_id).eq('is_active',true)),
@@ -62,9 +75,13 @@ export async function loadProfile(client,kind,key) {
     const links = await result(client.from('team_players').select('team_id').eq('player_id',identity.id).eq('is_active',true).order('joined_at',{ascending:false,nullsFirst:false}).limit(1));
     if(links[0]) team = (await result(client.from('team_catalog').select('team').eq('team_id',links[0].team_id).maybeSingle()))?.team;
   }
+  if(team) {
+    const url=await result(client.from('team_profile_urls').select('slug').eq('team_id',team.faceitTeamId).maybeSingle());
+    team={...team,profileSlug:url?.slug};
+  }
   const appearances = await result(client.from('match_player_stats').select('match_id,kills,deaths,adr,rating').eq('faceit_player_id',playerId).order('created_at',{ascending:false}).limit(8))
     .catch(error => { console.warn('[seo-player-matches]',error.message); return []; });
   const recentMatches = appearances.length ? await result(client.from('matches').select(MATCH_SEO_COLUMNS).in('id',appearances.map(row=>row.match_id)).in('status',['FINISHED','MATCH_STATUS_FINISHED']).order('finished_at',{ascending:false})).catch(error => { console.warn('[seo-player-results]',error.message); return []; }) : [];
   return { recentMatches, entity:{playerId,nickname:identity?.nickname || rating?.nickname,avatar:identity?.avatar,country:identity?.country,
-    faceitElo:identity?.faceit_elo,faceitLevel:identity?.faceit_level,teamName:team?.name,teamSlug:team?.slug,rating:rating?.rating,adr:rating?.adr,kd:rating?.kd,mapsPlayed:rating?.maps_played,matchesPlayed:rating?.matches_played},roster:[] };
+    faceitElo:identity?.faceit_elo,faceitLevel:identity?.faceit_level,teamName:team?.name,teamSlug:team?.profileSlug || team?.slug,rating:rating?.rating,adr:rating?.adr,kd:rating?.kd,mapsPlayed:rating?.maps_played,matchesPlayed:rating?.matches_played},roster:[] };
 }

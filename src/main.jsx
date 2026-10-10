@@ -1,3 +1,4 @@
+import TeamUrlProvider from "./components/TeamUrlProvider.jsx";
 import { tx } from "./i18n/translate.js";
 /* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
 import React, { Suspense, lazy } from "react";
@@ -108,6 +109,7 @@ function Application() {
           <BrowserRouter basename={currentLanguage() === "ru" ? "/" : `/${currentLanguage()}`}>
             <LanguageProvider>
               <AuthProvider>
+                <TeamUrlProvider>
                 <ScrollToTop />
                 <YandexMetrika />
 
@@ -151,6 +153,7 @@ function Application() {
                 </Suspense>
 
                 <Analytics />
+              </TeamUrlProvider>
               </AuthProvider>
             </LanguageProvider>
           </BrowserRouter>

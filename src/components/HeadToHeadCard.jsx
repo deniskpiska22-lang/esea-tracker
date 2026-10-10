@@ -1,5 +1,6 @@
+import Link from "./SiteLink.jsx";
 import { tx } from "../i18n/translate.js";
-import { Link } from "react-router-dom";
+
 
 import {
   buildHeadToHeadMapRows,

@@ -28,9 +28,9 @@ export function getTeamIntro(team = {}) {
 
 export function getTeamSeoMetadata(team, section = '', roster = []) {
   const { division, region, country, shortRegion, season } = getTeamContext(team);
-  const canonicalPath = `/teams/${encodeURIComponent(team.slug)}${section ? `/${section}` : ''}`;
+  const canonicalPath = `/teams/${encodeURIComponent(team.profileSlug || team.slug)}${section ? `/${section}` : ''}`;
   const canonicalUrl = `${TEAM_SITE_ORIGIN}${canonicalPath}`;
-  const teamUrl = `${TEAM_SITE_ORIGIN}/teams/${encodeURIComponent(team.slug)}`;
+  const teamUrl = `${TEAM_SITE_ORIGIN}/teams/${encodeURIComponent(team.profileSlug || team.slug)}`;
   const competition = ['ESEA', division, shortRegion].filter(Boolean).join(' ');
   const topic = TOPICS[section] || TOPICS[''];
   const subjects = { '': 'roster, match results and team rating', matches: 'match results, opponents and match statistics', stats: 'map statistics and match history', veto: 'map picks, bans and veto history', analytics: 'team analytics' };

@@ -1,5 +1,6 @@
+import Link from "../components/SiteLink.jsx";
 import { tx } from "../i18n/translate.js";
-import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
