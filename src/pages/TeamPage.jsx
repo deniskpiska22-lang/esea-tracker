@@ -1,3 +1,4 @@
+import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { tx, tf } from "../i18n/translate.js";
@@ -746,12 +747,14 @@ function TeamPage() {
                     {team.name}
                   </h1>
 
+                  {PROFESSIONAL_PROFILES_ENABLED && (
                   <a
                     href={TEAM_VERIFICATION_FORM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-orange-300 transition hover:bg-orange-500 hover:text-white"
                   >{tx(" Verification ")}</a>
+                  )}
 
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">

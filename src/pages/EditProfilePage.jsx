@@ -1,3 +1,4 @@
+import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import {
   useEffect,
@@ -352,7 +353,7 @@ export default function EditProfilePage() {
                   </h1>
 
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50/60">
-                    {tr("Здесь редактируются только личные данные. Команда и роль подтверждаются через отдельную заявку.", "Only personal details are edited here. Team and role are verified through a separate request.")}
+                    {tr("Настройте личные данные и внешний вид профиля.", "Update your personal details and profile appearance.")}
                   </p>
                 </div>
               </div>
@@ -497,6 +498,7 @@ export default function EditProfilePage() {
               </div>
             </section>
 
+            {PROFESSIONAL_PROFILES_ENABLED && (
             <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
               <SectionHeader
                 eyebrow={tr("Профессиональная верификация", "Professional verification")}
@@ -551,6 +553,7 @@ export default function EditProfilePage() {
                 </Link>
               </div>
             </section>
+            )}
 
             {error && (
               <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
@@ -622,6 +625,7 @@ export default function EditProfilePage() {
                         </span>
                       )}
 
+                      {PROFESSIONAL_PROFILES_ENABLED && (<>
                       <span>•</span>
 
                       <span>
@@ -633,6 +637,7 @@ export default function EditProfilePage() {
                             ? tr("Заявка отклонена", "Request rejected")
                             : tr("Не подтверждено", "Not verified")}
                       </span>
+                      </>)}
                     </div>
 
                     <p className="mt-4 line-clamp-4 text-sm leading-6 text-gray-400">

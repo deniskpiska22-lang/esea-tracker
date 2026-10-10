@@ -1,3 +1,4 @@
+import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
@@ -985,7 +986,7 @@ export default function UserProfilePage() {
                   </div>
                 )}
 
-                {profile.verification_status ===
+                {PROFESSIONAL_PROFILES_ENABLED && profile.verification_status ===
                   "verified" && (
                   <div className="absolute -bottom-1 right-1 flex h-10 w-10 items-center justify-center rounded-full border-[5px] border-[#0a1018] bg-emerald-400 font-black text-[#07110c]">
                     ✓
@@ -1015,6 +1016,7 @@ export default function UserProfilePage() {
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center gap-2">
+                  {PROFESSIONAL_PROFILES_ENABLED && (<>
                   <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-gray-300">
                     {accountType}
                   </span>
@@ -1029,6 +1031,8 @@ export default function UserProfilePage() {
                     status={profile.verification_status}
                     tr={tr}
                   />
+
+                  </>)}
 
                   {hasBugHunterBadge && (
                     <BugHunterBadge compact />
@@ -1118,7 +1122,7 @@ export default function UserProfilePage() {
               />
             </div>
 
-            <div className="mt-6 grid gap-6 xl:grid-cols-[0.82fr_1.18fr]">
+            <div className={`mt-6 grid gap-6 ${PROFESSIONAL_PROFILES_ENABLED ? "xl:grid-cols-[0.82fr_1.18fr]" : ""}`}>
               <div className="grid gap-6">
                 <section className="rounded-[26px] border border-white/[0.07] bg-[#0d141e] p-6">
                   <PanelTitle
@@ -1248,13 +1252,13 @@ export default function UserProfilePage() {
                 </section>
               </div>
 
-              <ProfessionalPanel
+              {PROFESSIONAL_PROFILES_ENABLED && <ProfessionalPanel
                 profile={profile}
                 team={profileTeam}
                 isOwnProfile={isOwnProfile}
                 tr={tr}
                 language={language}
-              />
+              />}
             </div>
 
             <section className="mt-6 overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#0d141e]">

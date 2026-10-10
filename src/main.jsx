@@ -1,3 +1,4 @@
+import { PROFESSIONAL_PROFILES_ENABLED } from "./lib/features.js";
 import TeamUrlProvider from "./components/TeamUrlProvider.jsx";
 import { tx } from "./i18n/translate.js";
 /* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
@@ -6,6 +7,7 @@ import ReactDOM from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
 import {
   BrowserRouter,
+  Navigate,
   Routes,
   Route,
 } from "react-router-dom";
@@ -146,7 +148,7 @@ function Application() {
                       <Route path="/players" element={<TopPlayersPage />} />
                       <Route path="/profile/:username" element={<UserProfilePage />} />
                       <Route path="/profile/:username/edit" element={<EditProfilePage />} />
-                      <Route path="/profile/:username/verification" element={<VerificationRequestPage />} />
+                      <Route path="/profile/:username/verification" element={PROFESSIONAL_PROFILES_ENABLED ? <VerificationRequestPage /> : <Navigate to="/" replace />} />
                       <Route path="/admin/verifications" element={<AdminVerificationPage />} />
                     </Route>
                   </Routes>
