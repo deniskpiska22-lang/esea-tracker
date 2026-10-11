@@ -1826,6 +1826,37 @@ function Home() {
   }, [databaseReady, databaseRows, staticResults]);
 
 
+  const rankedTeams = useMemo(() => {
+    const syncedTeams = mergeRatingTeams(ratingRows);
+
+    if (syncedTeams.length > 0) {
+      return syncedTeams;
+    }
+
+    /*
+     * Fallback only when Supabase is unavailable.
+     * As soon as team_ratings loads, Home automatically
+     * displays the same ranking as RankingsPage.
+     */
+    return [...teams]
+      .filter(
+        (team) =>
+          Number.isFinite(Number(team.points)) &&
+          team.slug &&
+          team.name
+      )
+      .sort(
+        (first, second) =>
+          toNumber(second.points) - toNumber(first.points)
+      )
+      .map((team, index) => ({
+        ...normalizeTeam(team),
+        rank: index + 1,
+        pointsChange: 0,
+        rankChange: 0,
+      }));
+  }, [ratingRows]);
+
   const topTeams = useMemo(
     () => rankedTeams.slice(0, 8),
     [rankedTeams]

@@ -295,7 +295,7 @@
     "fr": "Chargement…",
     "it": "Caricamento…"
   },
-  "ESEA Tracker не загрузился": {
+  "ESEA Tracker could not load": {
     "ru": "ESEA Tracker не загрузился",
     "de": "ESEA Tracker konnte nicht geladen werden",
     "pt": "Não foi possível carregar o ESEA Tracker",
@@ -303,7 +303,7 @@
     "fr": "Impossible de charger ESEA Tracker",
     "it": "Impossibile caricare ESEA Tracker"
   },
-  "Похоже, один из файлов сайта не загрузился или произошла ошибка в браузере. Перезагрузка обычно решает проблему.": {
+  "A site file could not load or a browser error occurred. Reloading the page usually fixes the problem.": {
     "ru": "Похоже, один из файлов сайта не загрузился или произошла ошибка в браузере. Перезагрузка обычно решает проблему.",
     "de": "Eine Datei wurde nicht geladen oder im Browser ist ein Fehler aufgetreten. Laden Sie die Seite neu.",
     "pt": "Um arquivo não carregou ou ocorreu um erro no navegador. Recarregue a página.",
@@ -311,7 +311,7 @@
     "fr": "Un fichier n’a pas été chargé ou une erreur s’est produite dans le navigateur. Rechargez la page.",
     "it": "Un file non è stato caricato o si è verificato un errore nel browser. Ricarica la pagina."
   },
-  "Перезагрузить": {
+  "Reload": {
     "ru": "Перезагрузить",
     "de": "Neu laden",
     "pt": "Recarregar",

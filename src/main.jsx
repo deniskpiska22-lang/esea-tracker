@@ -82,13 +82,13 @@ class AppErrorBoundary extends React.Component {
               height="56"
               className="mx-auto h-14 w-14 rounded-2xl"
             />
-            <h1 className="mt-5 text-2xl font-black">{tx("ESEA Tracker не загрузился")}</h1>
-            <p className="mt-3 text-sm leading-6 text-slate-400">{tx(" Похоже, один из файлов сайта не загрузился или произошла ошибка в браузере. Перезагрузка обычно решает проблему. ")}</p>
+            <h1 className="mt-5 text-2xl font-black">{tx("ESEA Tracker could not load")}</h1>
+            <p className="mt-3 text-sm leading-6 text-slate-400">{tx(" A site file could not load or a browser error occurred. Reloading the page usually fixes the problem. ")}</p>
             <button
               type="button"
               onClick={() => window.location.reload()}
               className="mt-5 rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-            >{tx(" Перезагрузить ")}</button>
+            >{tx(" Reload ")}</button>
           </div>
         </main>
       );
