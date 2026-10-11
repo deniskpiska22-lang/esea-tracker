@@ -1455,143 +1455,6 @@ function ResultCard({ match }) {
 }
 
 
-function findPlayerTeam(teamId, teamName, nickname, teamSlug) {
-  const normalizedTeamId = String(teamId || "").trim();
-  const normalizedTeamName = normalizeName(teamName);
-  const normalizedNickname = normalizeName(nickname);
-
-  const localTeam =
-    teams.find((team) => {
-      const candidateIds = [
-        team?.id,
-        team?.teamId,
-        team?.team_id,
-        team?.faceitTeamId,
-        team?.faceit_team_id,
-      ]
-        .filter(Boolean)
-        .map((value) => String(value).trim());
-
-      if (
-        normalizedTeamId &&
-        candidateIds.includes(normalizedTeamId)
-      ) {
-        return true;
-      }
-
-      return (
-        normalizedTeamName &&
-        normalizeName(team?.name) === normalizedTeamName
-      );
-    }) ||
-    teams.find((team) =>
-      (Array.isArray(team?.players) ? team.players : []).some((player) => {
-        const playerName =
-          typeof player === "string"
-            ? player
-            : player?.nickname ||
-              player?.name ||
-              player?.player_name;
-
-        return (
-          normalizedNickname &&
-          normalizeName(playerName) === normalizedNickname
-        );
-      })
-    ) ||
-    null;
-
-  if (localTeam) {
-    return normalizeTeam(localTeam);
-  }
-
-  if (teamName) {
-    return normalizeTeam({
-      id: teamId || null,
-      teamId: teamId || null,
-      name: teamName,
-      slug: teamSlug || null,
-      logo: null,
-    });
-  }
-
-  return null;
-}
-
-function TopPlayerRow({ player, index }) {
-  const playerPath = player?.nickname
-    ? `/players/${encodeURIComponent(player.nickname)}`
-    : player?.playerId
-    ? `/players/${encodeURIComponent(player.playerId)}`
-    : `/players/${encodeURIComponent(player.nickname)}`;
-
-  const rankStyles = [
-    "border-amber-400/25 bg-amber-400/10 text-amber-300",
-    "border-slate-300/20 bg-slate-300/10 text-slate-300",
-    "border-orange-500/25 bg-orange-500/10 text-orange-400",
-  ];
-
-  return (
-    <Link
-      to={playerPath}
-      className="group flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.035]"
-    >
-      <div
-        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-xs font-black ${
-          rankStyles[index] ||
-          "border-white/10 bg-white/[0.04] text-slate-500"
-        }`}
-      >
-        {index + 1}
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-black text-white transition group-hover:text-orange-400">
-          {player.nickname}
-        </div>
-
-        <div className="mt-1 flex min-w-0 items-center gap-2">
-          {player.team ? (
-            <>
-              <Logo team={player.team} size="xs" />
-              <span className="truncate text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                {player.team.name}
-              </span>
-            </>
-          ) : (
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600">{tx(" Team unavailable ")}</span>
-          )}
-        </div>
-      </div>
-
-      <div className="shrink-0 text-right">
-        <div className="text-lg font-black text-emerald-400">
-          {toNumber(player.rating).toFixed(2)}
-        </div>
-        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">{tx(" Rating ")}</div>
-      </div>
-
-      <div className="hidden shrink-0 text-right sm:block">
-        <div className="text-xs font-black text-white">
-          {toNumber(player.adr).toFixed(1)}
-        </div>
-        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-          ADR
-        </div>
-      </div>
-
-      <div className="hidden shrink-0 text-right sm:block">
-        <div className="text-xs font-black text-white">
-          {toNumber(player.kd).toFixed(2)}
-        </div>
-        <div className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-600">
-          K/D
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 function RankingCard({ team, index }) {
   return (
     <Link
@@ -1693,9 +1556,6 @@ function Home() {
   const [databaseError, setDatabaseError] = useState("");
   const [ratingRows, setRatingRows] = useState([]);
   const [ratingsReady, setRatingsReady] = useState(false);
-  const [topPlayers, setTopPlayers] = useState([]);
-  const [playersReady, setPlayersReady] = useState(false);
-  const [playersError, setPlayersError] = useState("");
 
   const upcomingSectionRef = useRef(null);
   const recentResultsSectionRef = useRef(null);
@@ -1966,132 +1826,6 @@ function Home() {
   }, [databaseReady, databaseRows, staticResults]);
 
 
-  useEffect(() => {
-    let cancelled = false;
-    let playerRatingsChannel = null;
-
-    async function loadTopPlayers() {
-      if (!supabase) {
-        if (!cancelled) {
-          setTopPlayers([]);
-          setPlayersError("Supabase client is not configured");
-          setPlayersReady(true);
-        }
-        return;
-      }
-
-      const { data: ratingData, error: ratingError } = await supabase
-        .rpc("get_top_player_ratings", { p_limit: 5, p_offset: 0 });
-
-      if (cancelled) return;
-
-      if (ratingError) {
-        console.error("Failed to load top players:", ratingError);
-        setTopPlayers([]);
-        setPlayersError(ratingError.message);
-        setPlayersReady(true);
-        return;
-      }
-
-      const normalizedPlayers = (
-        Array.isArray(ratingData) ? ratingData : []
-      ).map((row) => {
-        const nickname =
-          row.nickname || tx("Unknown player");
-
-        return {
-          playerId: row.player_id,
-          nickname,
-          rating: toNumber(row.rating),
-          recentRating: toNumber(row.recent_rating),
-          matchesPlayed: toNumber(row.matches_played),
-          mapsPlayed: toNumber(row.maps_played),
-          adr: toNumber(row.adr),
-          kd: toNumber(row.kd),
-          lastMatchAt: row.last_match_at || null,
-          team: findPlayerTeam(
-            row.team_id,
-            row.team_name,
-            nickname,
-            row.team_slug
-          ),
-        };
-      });
-
-      if (!cancelled) {
-        setTopPlayers(normalizedPlayers);
-        setPlayersError("");
-        setPlayersReady(true);
-      }
-    }
-
-    const playersRefresh = createRefreshQueue(loadTopPlayers, 15000);
-    const cancelScheduledStart = scheduleAfterFirstPaint(() => {
-      playersRefresh.request();
-
-      if (supabase) {
-        playerRatingsChannel = supabase
-          .channel("home-player-ratings")
-          .on(
-            "postgres_changes",
-            {
-              event: "*",
-              schema: "public",
-              table: "player_ratings",
-            },
-            playersRefresh.request
-          )
-          .subscribe();
-      }
-    });
-
-    const refreshTimer = setInterval(() => {
-      if (!document.hidden) playersRefresh.request();
-    }, 60000);
-
-    return () => {
-      clearInterval(refreshTimer);
-      cancelled = true;
-      cancelScheduledStart();
-      playersRefresh.dispose();
-
-      if (supabase && playerRatingsChannel) {
-        supabase.removeChannel(playerRatingsChannel);
-      }
-    };
-  }, []);
-
-  const rankedTeams = useMemo(() => {
-    const syncedTeams = mergeRatingTeams(ratingRows);
-
-    if (syncedTeams.length > 0) {
-      return syncedTeams;
-    }
-
-    /*
-     * Fallback only when Supabase is unavailable.
-     * As soon as team_ratings loads, Home automatically
-     * displays the same ranking as RankingsPage.
-     */
-    return [...teams]
-      .filter(
-        (team) =>
-          Number.isFinite(Number(team.points)) &&
-          team.slug &&
-          team.name
-      )
-      .sort(
-        (first, second) =>
-          toNumber(second.points) - toNumber(first.points)
-      )
-      .map((team, index) => ({
-        ...normalizeTeam(team),
-        rank: index + 1,
-        pointsChange: 0,
-        rankChange: 0,
-      }));
-  }, [ratingRows]);
-
   const topTeams = useMemo(
     () => rankedTeams.slice(0, 8),
     [rankedTeams]
@@ -2343,14 +2077,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="mt-8">
-          <SectionTitle title={tx("Top Players")} action={<Link to="/players" className="text-sm font-black text-orange-400">{tx("Full rankings →")}</Link>} />
-          <div className="rounded-2xl border border-white/10 bg-[#111820] overflow-hidden">
-            {!playersReady ? <div role="status" className="p-5 text-slate-400">{tx("Loading...")}</div>
-              : playersError ? <div role="alert" className="p-5 text-yellow-300">{tx("Automatic statistics are temporarily unavailable")}</div>
-              : topPlayers.map((player,index) => <TopPlayerRow key={player.playerId} player={player} index={index} />)}
-          </div>
-        </section>
+
 
         <section className="mt-8">
           <SectionTitle title={tx("Latest Updates")} />
@@ -2372,7 +2099,7 @@ function Home() {
             />
 
             <NewsCard
-              to={popularRecentMatchPath || "/players"}
+              to={popularRecentMatchPath || "/matches"}
               tag={tx("STATISTICS")}
               title={
                 popularRecentMatch

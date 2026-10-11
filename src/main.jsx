@@ -37,7 +37,6 @@ const MatchesPage = lazy(() => import("./pages/MatchesPage"));
 const StatsPage = lazy(() => import("./pages/StatsPage"));
 const MatchPageRouter = lazy(() => import("./pages/MatchPageRouter"));
 const PlayerPage = lazy(() => import("./pages/PlayerPage"));
-const TopPlayersPage = lazy(() => import("./pages/TopPlayersPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const AuthCallbackPage = lazy(() => import("./pages/AuthCallbackPage"));
@@ -145,7 +144,7 @@ function Application() {
                       <Route path="/player/:playerId" element={<PlayerPage />} />
                       <Route path="/players/:playerId" element={<PlayerPage />} />
                       <Route path="/matches/:matchId" element={<MatchPageRouter />} />
-                      <Route path="/players" element={<TopPlayersPage />} />
+                      <Route path="/players" element={<Navigate to="/" replace />} />
                       <Route path="/profile/:username" element={<UserProfilePage />} />
                       <Route path="/profile/:username/edit" element={<EditProfilePage />} />
                       <Route path="/profile/:username/verification" element={PROFESSIONAL_PROFILES_ENABLED ? <VerificationRequestPage /> : <Navigate to="/" replace />} />

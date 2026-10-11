@@ -15,11 +15,6 @@ export const pageMetadata = {
     description:
       "Предстоящие и завершённые матчи ESEA CS2, результаты серий и подробная статистика.",
   },
-  "/players": {
-    title: "Игроки ESEA CS2 — статистика и рейтинг | ESEA Tracker",
-    description:
-      "Статистика, команды и рейтинг игроков ESEA CS2 со всего мира.",
-  },
   "/calendar": {
     title: "Календарь турниров ESEA CS2 | ESEA Tracker",
     description:

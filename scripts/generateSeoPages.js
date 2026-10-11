@@ -28,7 +28,6 @@ const staticPages = [
   "",
   "/rankings",
   "/matches",
-  "/players",
   "/calendar",
   "/about",
   "/media",
