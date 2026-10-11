@@ -1,4 +1,5 @@
 import { countryName } from "../utils/countries.js";
+import { scopeTeamRanks } from "../utils/teamRanks.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { tx, translateError, tf } from "../i18n/translate.js";
@@ -775,19 +776,11 @@ useEffect(() => {
       searchQuery
     );
 
-    return sortedTeams
+    return scopeTeamRanks(sortedTeams, selectedRegion, selectedCountry)
   .filter((team) => {
     const divisionMatches =
       selectedDivision === "All" ||
       team.division === selectedDivision;
-
-    const regionMatches =
-      selectedRegion === "All" ||
-      team.region === selectedRegion;
-
-    const countryMatches =
-      selectedCountry === "All" ||
-      team.country === selectedCountry;
 
     const countryName =
       localizedCountry(team.country) ??
@@ -801,8 +794,6 @@ useEffect(() => {
 
     return (
       divisionMatches &&
-      regionMatches &&
-      countryMatches &&
       searchMatches
     );
   });

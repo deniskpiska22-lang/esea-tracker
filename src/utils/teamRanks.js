@@ -1,5 +1,15 @@
 import { findCatalogTeam } from "./teamIdentity.js";
 
+// Input is already sorted by rating. Rank the geographic group before
+// applying text searches or division filters so those keep its actual places.
+export function scopeTeamRanks(teams, region = "All", country = "All") {
+  if (region === "All" && country === "All") return teams;
+  return teams
+    .filter(team => (region === "All" || team.region === region) &&
+      (country === "All" || team.country === country))
+    .map((team, index) => ({ ...team, rank: index + 1 }));
+}
+
 export function buildTeamRanks(rows, catalog) {
   const ranked = rows.map(row => {
     const id = row.team_id ?? row.teamId ?? row.faceit_team_id ?? row.faceitTeamId ?? row.id;
