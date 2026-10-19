@@ -1,3 +1,4 @@
+import { loadHomeMatchFeed } from "../utils/homeMatchFeed.js";
 import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { translateMatchStatus } from "../i18n/translate.js";
@@ -1578,72 +1579,22 @@ function Home() {
         Date.now() + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000
       );
 
-      const liveStatusFilter = [
-        "status.eq.LIVE",
-        "status.eq.READY",
-        "status.eq.STARTED",
-        "status.eq.ONGOING",
-        "status.eq.IN_PROGRESS",
-        "status.eq.RUNNING",
-        "status.eq.VOTING",
-        "status.eq.CONFIGURING",
-        "status.eq.MATCH_STATUS_READY",
-        "status.eq.MATCH_STATUS_LIVE",
-        "status.eq.MATCH_STATUS_STARTED",
-        "status.eq.MATCH_STATUS_ONGOING",
-        "status.eq.MATCH_STATUS_VOTING",
-        "status.eq.MATCH_STATUS_CONFIGURING",
-        "status.eq.PAUSED",
-        "status.eq.MATCH_STATUS_PAUSED",
-      ].join(",");
-
-      const upcomingStatusFilter = [
-        "SCHEDULED",
-        "MATCH_STATUS_SCHEDULED",
-      ].join(",");
-
-      const upcomingTimeFilter = [
-        `status.in.(${upcomingStatusFilter})`,
-        `scheduled_at.gte.${now.toISOString()}`,
-        `scheduled_at.lte.${end.toISOString()}`,
-      ].join(",");
-
-      const [activeResponse, finishedResponse] = await Promise.all([
-        supabase
-          .from("matches")
-          .select(MATCH_CARD_COLUMNS)
-          .or(`${liveStatusFilter},and(${upcomingTimeFilter})`)
-          .order("scheduled_at", {
-            ascending: true,
-            nullsFirst: false,
-          })
-          .limit(200),
-
-        supabase
-          .from("matches")
-          .select(MATCH_CARD_COLUMNS)
-          .in("status", [
-            "FINISHED",
-            "MATCH_STATUS_FINISHED",
-          ])
-          .order("finished_at", {
-            ascending: false,
-            nullsFirst: false,
-          })
-          .limit(RESULTS_LIMIT),
-      ]);
+      const response = await loadHomeMatchFeed(supabase, {
+        columns: MATCH_CARD_COLUMNS,
+        liveStatuses: LIVE_STATUSES,
+        now,
+        end,
+        resultsLimit: RESULTS_LIMIT,
+      });
 
       if (cancelled) return;
 
-      const error = activeResponse.error || finishedResponse.error;
+      const error = response.error;
 
       if (error) {
         setDatabaseError(error.message);
       } else {
-        setDatabaseRows([
-          ...(activeResponse.data || []),
-          ...(finishedResponse.data || []),
-        ]);
+        setDatabaseRows(response.data);
         setDatabaseError("");
       }
 
@@ -2153,3 +2104,4 @@ function Home() {
 }
 
 export default Home;
+
