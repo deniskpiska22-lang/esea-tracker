@@ -1,7 +1,7 @@
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
-import { tx } from "../i18n/translate.js";
+import { tx, translateMatchStatus } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -10,13 +10,8 @@ import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { supabase } from "../lib/supabaseClient";
 import TournamentNameLink from "../components/TournamentNameLink";
 
-const FINISHED_STATUSES = ["FINISHED", "MATCH_STATUS_FINISHED"];
-
-function normalizeName(value = "") {
-  return String(value || "")
-    .replace(/\s+/g, "")
-    .toLowerCase();
-}
+import { loadTeamMatchFeed, matchKind, compareUpcomingMatches, teamIsFirstInMatch } from "../utils/teamMatchFeed.js";
+import { formatUserDateTime } from "../utils/userTime.js";
 
 function normalizeCompetitionKey(value = "") {
   return String(value || "ESEA League")
@@ -76,10 +71,7 @@ function getMapNames(row) {
 }
 
 function rowToTeamMatch(row, team) {
-  const teamIsFirst =
-    (team?.faceitTeamId && row.team1_id === team.faceitTeamId) ||
-    row.team1_slug === team?.slug ||
-    normalizeName(row.team1_name) === normalizeName(team?.name);
+  const teamIsFirst = teamIsFirstInMatch(row, team);
 
   const ownScoreRaw =
     teamIsFirst ? row.team1_score : row.team2_score;
@@ -101,31 +93,33 @@ function rowToTeamMatch(row, team) {
     Number.isFinite(ownScore) &&
     Number.isFinite(opponentScore);
 
-  const won = hasScores && ownScore > opponentScore;
+  const kind = matchKind(row);
+  const showScore = hasScores && kind !== "upcoming";
+  const won = showScore && ownScore > opponentScore;
   const draw = hasScores && ownScore === opponentScore;
 
   return {
     id: row.id,
+    kind,
+    status: row.status,
+    bestOf: row.best_of,
+    opponentLogo: (teamIsFirst ? row.team2_logo : row.team1_logo) || null,
     matchId: row.id,
     season: row.competition_name || row.season || "ESEA League",
     date: formatDate(row.finished_at || row.scheduled_at),
-    timestamp: row.finished_at || row.scheduled_at || "",
+    timestamp: row.finished_at || row.scheduled_at || row.started_at || "",
     opponentName:
       (teamIsFirst ? row.team2_name : row.team1_name) || "Unknown",
     maps: getMapNames(row),
     mapScores: getMapScores(row),
-    boScore: hasScores ? `${ownScore}:${opponentScore}` : "-:-",
-    result: !hasScores ? "-" : draw ? "D" : won ? tx("W") : tx("L"),
+    boScore: showScore ? `${ownScore}:${opponentScore}` : "-:-",
+    result: !showScore ? "-" : draw ? "D" : won ? tx("W") : tx("L"),
   };
 }
 
-function MatchesPage() {
-  const { teams } = useTeamCatalog();
-  const { slug } = useParams();
+function TeamMatches({ team, slug }) {
   const location = useLocation();
-
   const mapFilter = new URLSearchParams(location.search).get("map");
-  const team = findTeamByRoute(teams, slug);
 
   const [databaseRows, setDatabaseRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -133,6 +127,8 @@ function MatchesPage() {
 
   useEffect(() => {
     let cancelled = false;
+    let latestRequest = 0;
+    let reloadTimer;
 
     const loadMatches = async () => {
       if (slug && !team) { setDatabaseRows([]); setLoading(false); return; }
@@ -152,49 +148,16 @@ function MatchesPage() {
         return;
       }
 
-      const filters = [];
-
-      if (team.slug) {
-        filters.push(`team1_slug.eq.${team.slug}`);
-        filters.push(`team2_slug.eq.${team.slug}`);
+      const request = ++latestRequest;
+      let response;
+      try {
+        response = await loadTeamMatchFeed(supabase, team);
+      } catch (error) {
+        response = { error };
       }
+      const { data, error } = response;
 
-      if (team.faceitTeamId) {
-        filters.push(`team1_id.eq.${team.faceitTeamId}`);
-        filters.push(`team2_id.eq.${team.faceitTeamId}`);
-      }
-
-      /*
-       * По имени не фильтруем через .or():
-       * пробелы, запятые и спецсимволы в названии
-       * команды могут ломать PostgREST-выражение.
-       * slug и FACEIT team id надёжнее.
-       */
-      if (filters.length === 0 && team.name) {
-        const safeName = String(team.name)
-          .replace(/"/g, '\\"');
-
-        filters.push(`team1_name.eq."${safeName}"`);
-        filters.push(`team2_name.eq."${safeName}"`);
-      }
-
-      let query = supabase
-        .from("matches")
-        .select("*")
-        .in("status", FINISHED_STATUSES)
-        .order("finished_at", {
-          ascending: false,
-          nullsFirst: false,
-        })
-        .limit(250);
-
-      if (filters.length > 0) {
-        query = query.or(filters.join(","));
-      }
-
-      const { data, error } = await query;
-
-      if (cancelled) return;
+      if (cancelled || request !== latestRequest) return;
 
       if (error) {
         console.error("Team matches error:", error);
@@ -209,6 +172,15 @@ function MatchesPage() {
 
     loadMatches();
 
+    const scheduleReload = () => {
+      clearTimeout(reloadTimer);
+      reloadTimer = setTimeout(loadMatches, 300);
+    };
+    const pollTimer = setInterval(() => {
+      if (!document.hidden) loadMatches();
+    }, 60000);
+    window.addEventListener("focus", scheduleReload);
+
     const channel = supabase
       ? supabase
           .channel(`team-matches-${slug}`)
@@ -219,13 +191,22 @@ function MatchesPage() {
               schema: "public",
               table: "matches",
             },
-            loadMatches
+            (payload) => {
+              const row = payload.new?.id ? payload.new : payload.old;
+              if (!row?.team1_id || !team?.faceitTeamId ||
+                  row.team1_id === team.faceitTeamId || row.team2_id === team.faceitTeamId) {
+                scheduleReload();
+              }
+            }
           )
           .subscribe()
       : null;
 
     return () => {
       cancelled = true;
+      clearInterval(pollTimer);
+      clearTimeout(reloadTimer);
+      window.removeEventListener("focus", scheduleReload);
 
       if (channel && supabase) {
         supabase.removeChannel(channel);
@@ -235,6 +216,7 @@ function MatchesPage() {
 
   const teamMatches = useMemo(() => {
     return databaseRows
+      .filter((row) => matchKind(row) === "finished")
       .map((row) => rowToTeamMatch(row, team))
       .filter((match) => {
         if (!mapFilter) return true;
@@ -250,6 +232,19 @@ function MatchesPage() {
           new Date(second.timestamp) - new Date(first.timestamp)
       );
   }, [databaseRows, mapFilter, team]);
+
+  const upcomingGroups = useMemo(() => {
+    const rows = databaseRows.filter((row) => ["live", "upcoming"].includes(matchKind(row)))
+      .sort(compareUpcomingMatches);
+    const groups = new Map();
+    for (const row of rows) {
+      const match = rowToTeamMatch(row, team);
+      const key = normalizeCompetitionKey(match.season);
+      if (!groups.has(key)) groups.set(key, { season: match.season, matches: [] });
+      groups.get(key).matches.push(match);
+    }
+    return [...groups.values()];
+  }, [databaseRows, team]);
 
   const groupedMatches = useMemo(() => {
     const groups = teamMatches.reduce((result, match) => {
@@ -286,7 +281,7 @@ function MatchesPage() {
     <div className="min-h-screen bg-[#0b0f14] px-4 py-8 text-white">
       <div className="mx-auto max-w-6xl">
         <Link
-          to={`/team/${slug}`}
+          to={`/teams/${slug}`}
           className="text-orange-400 hover:text-orange-300"
         >{tx(" ← Back to Team ")}</Link>
 
@@ -300,7 +295,7 @@ function MatchesPage() {
             </span>
 
             <Link
-              to={`/team/${slug}/matches`}
+              to={`/teams/${slug}/matches`}
               className="text-gray-400 hover:text-white"
             >{tx(" Clear Filter ")}</Link>
           </div>
@@ -314,6 +309,48 @@ function MatchesPage() {
           <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-sm text-red-300">{tx(" Could not load matches from Supabase: ")}{translateError(errorMessage)}
           </div>
         )}
+
+        {!loading && !errorMessage && (
+          <section className="mb-10" aria-labelledby="upcoming-team-matches">
+            <h2 id="upcoming-team-matches" className="mb-5 text-2xl font-black">{tx("Upcoming Matches")}</h2>
+            {upcomingGroups.length === 0 && (
+              <p className="rounded-xl border border-[#243041] bg-[#111823] p-6 text-sm text-slate-400">{tx("No upcoming matches scheduled.")}</p>
+            )}
+            <div className="space-y-5">
+              {upcomingGroups.map(({ season, matches }) => (
+                <div key={season} className="overflow-hidden rounded-xl border border-[#243041] bg-[#111823]">
+                  <h3 className="border-b border-[#243041] bg-[#1a2330] px-4 py-3 text-sm font-bold sm:px-6">
+                    <TournamentNameLink name={season} />
+                  </h3>
+                  <div className="divide-y divide-white/[0.06]">
+                    {matches.map((match) => (
+                      <Link key={match.id} to={`/teams/${slug}/matches/${match.id}`}
+                        className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 transition hover:bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-orange-400 sm:grid-cols-[160px_minmax(0,1fr)_auto] sm:px-6">
+                        <div className="text-xs text-slate-400 sm:text-sm">
+                          {match.kind === "live" && <span className="mb-1 block font-bold text-red-400">● {translateMatchStatus(match.status)}</span>}
+                          <time dateTime={match.timestamp || undefined} className="block">
+                            {formatUserDateTime(match.timestamp, { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }) || tx("Date TBD")}
+                          </time>
+                        </div>
+                        <div className="col-start-1 row-start-2 flex min-w-0 items-center gap-3 sm:col-start-2 sm:row-start-1">
+                          <span className="text-xs font-bold text-slate-500">VS</span>
+                          {match.opponentLogo && <img src={match.opponentLogo} alt="" className="h-7 w-7 shrink-0 object-contain" loading="lazy" />}
+                          <span className="min-w-0 break-words text-sm font-bold sm:text-base">{match.opponentName}</span>
+                        </div>
+                        <div className="col-start-2 row-span-2 row-start-1 text-right sm:col-start-3 sm:row-span-1">
+                          <div className={match.kind === "live" ? "font-black text-red-400" : "font-black text-slate-500"}>{match.kind === "live" ? match.boScore : "– : –"}</div>
+                          <div className="mt-1 text-xs text-orange-400">{match.bestOf ? `BO${match.bestOf} · ` : ""}{tx("Match")} ↗</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {!loading && !errorMessage && <h2 className="mb-5 text-2xl font-black">{tx("Recent Results")}</h2>}
 
         {!loading && !errorMessage && teamMatches.length === 0 && (
           <div className="rounded-xl border border-[#243041] bg-[#111823] p-8 text-center text-gray-400">{tx(" This team does not have any completed matches in the database yet. ")}</div>
@@ -333,8 +370,8 @@ function MatchesPage() {
                 {matches.map((match) => (
                   <Link
                     key={match.matchId}
-                    to={`/team/${slug}/matches/${match.matchId}`}
-                    className="flex items-center justify-between rounded-xl border border-[#243041] bg-[#111823] px-6 py-4 transition-all duration-300 hover:translate-x-1 hover:border-orange-500/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]"
+                    to={`/teams/${slug}/matches/${match.matchId}`}
+                    className="flex flex-wrap items-center justify-between gap-y-3 rounded-xl border border-[#243041] bg-[#111823] px-6 py-4 transition-all duration-300 hover:translate-x-1 hover:border-orange-500/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]"
                   >
                     <div className="flex min-w-[180px] items-center gap-6">
                       <span
@@ -352,7 +389,7 @@ function MatchesPage() {
                       <span className="text-gray-500">{match.date}</span>
                     </div>
 
-                    <div className="flex flex-1 items-center justify-between px-8">
+                    <div className="flex min-w-0 flex-1 flex-wrap items-center justify-between gap-2 px-3 sm:px-8">
                       <div className="text-lg font-bold text-white">
                         VS {match.opponentName}
                       </div>
@@ -379,6 +416,13 @@ function MatchesPage() {
       </div>
     </div>
   );
+}
+
+function MatchesPage() {
+  const { teams } = useTeamCatalog();
+  const { slug } = useParams();
+  const team = findTeamByRoute(teams, slug);
+  return <TeamMatches key={team?.faceitTeamId || slug} team={team} slug={slug} />;
 }
 
 export default MatchesPage;
