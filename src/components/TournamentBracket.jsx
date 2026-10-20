@@ -103,10 +103,22 @@ export function BracketMatchBox({ match, final = false }) {
 }
 export function Bracket({ rounds }) {
   const viewport = useRef(null);
+  const selectedRound = useRef(0);
   const layout = bracketLayout(rounds);
   if (!layout.length) return null;
   const columnWidth = 240,
     gap = 48;
+  function goToRound(index) {
+    const target = viewport.current;
+    if (!target) return;
+    const next = Math.max(0, Math.min(layout.length - 1, index));
+    selectedRound.current = next;
+    target.scrollTo({
+      left: next * (columnWidth + gap),
+      top: Math.max(0, layout[next].centers[0] + 84 - target.clientHeight / 2),
+      behavior: "smooth",
+    });
+  }
   return (
     <div className="overflow-hidden rounded-2xl border border-white/[.07] bg-[#080f18]">
       <div className="flex items-center gap-3 border-b border-white/[.06] bg-[#0e1621] px-4 py-3">
@@ -114,12 +126,7 @@ export function Bracket({ rounds }) {
           {layout.map(({ round }, i) => (
             <button
               key={i}
-              onClick={() =>
-                viewport.current?.scrollTo({
-                  left: i * (columnWidth + gap),
-                  behavior: "smooth",
-                })
-              }
+              onClick={() => goToRound(i)}
               className="shrink-0 rounded-lg border border-white/[.07] px-3 py-1.5 text-[10px] font-bold text-slate-400 transition hover:border-orange-400/30 hover:text-orange-300"
             >
               {translateTournamentText(round.name || tx("Round"))}
@@ -130,12 +137,7 @@ export function Bracket({ rounds }) {
           <button
             type="button"
             aria-label={tx("Previous round")}
-            onClick={() =>
-              viewport.current?.scrollBy({
-                left: -(columnWidth + gap),
-                behavior: "smooth",
-              })
-            }
+            onClick={() => goToRound(selectedRound.current - 1)}
             className="rounded-lg border border-white/10 p-2 text-slate-400 hover:text-orange-300"
           >
             <FiChevronLeft />
@@ -143,12 +145,7 @@ export function Bracket({ rounds }) {
           <button
             type="button"
             aria-label={tx("Next round")}
-            onClick={() =>
-              viewport.current?.scrollBy({
-                left: columnWidth + gap,
-                behavior: "smooth",
-              })
-            }
+            onClick={() => goToRound(selectedRound.current + 1)}
             className="rounded-lg border border-white/10 p-2 text-slate-400 hover:text-orange-300"
           >
             <FiChevronRight />
