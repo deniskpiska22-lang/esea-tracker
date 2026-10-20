@@ -3,7 +3,7 @@ export const SCHEDULED_STATUSES = ['SCHEDULED', 'MATCH_STATUS_SCHEDULED'];
 export const LIVE_STATUSES = ['LIVE', 'ONGOING', 'READY', 'VOTING', 'CONFIGURING', 'PAUSED',
   'MATCH_STATUS_ONGOING', 'MATCH_STATUS_READY', 'MATCH_STATUS_VOTING',
   'MATCH_STATUS_CONFIGURING', 'MATCH_STATUS_PAUSED'];
-const COLUMNS = 'id,status,competition_name,scheduled_at,started_at,finished_at,best_of,team1_id,team1_slug,team1_name,team1_logo,team1_score,team2_id,team2_slug,team2_name,team2_logo,team2_score,maps,map_scores';
+const COLUMNS = 'id,status,championship_id,competition_name,scheduled_at,started_at,finished_at,best_of,team1_id,team1_slug,team1_name,team1_logo,team1_score,team2_id,team2_slug,team2_name,team2_logo,team2_score,maps,map_scores';
 
 export function matchKind(row) {
   const status = String(row?.status || '').toUpperCase();

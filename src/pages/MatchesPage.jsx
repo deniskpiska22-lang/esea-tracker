@@ -13,17 +13,7 @@ import TournamentNameLink from "../components/TournamentNameLink";
 import { loadTeamMatchFeed, matchKind, compareUpcomingMatches, teamIsFirstInMatch } from "../utils/teamMatchFeed.js";
 import { formatUserDateTime } from "../utils/userTime.js";
 
-function normalizeCompetitionKey(value = "") {
-  return String(value || "ESEA League")
-    .normalize("NFKC")
-    .trim()
-    .replace(/[\u2010-\u2015\u2212]/g, "-")
-    .replace(/\s*-\s*/g, " - ")
-    .replace(/\s+/g, " ")
-    .toLowerCase();
-}
-
-
+import { groupCompetitionMatches } from "../utils/competitionGroups.js";
 
 function formatDate(value) {
   if (!value) return tx("Unknown date");
@@ -105,6 +95,7 @@ function rowToTeamMatch(row, team) {
     bestOf: row.best_of,
     opponentLogo: (teamIsFirst ? row.team2_logo : row.team1_logo) || null,
     matchId: row.id,
+    competitionId: row.championship_id || null,
     season: row.competition_name || row.season || "ESEA League",
     date: formatDate(row.finished_at || row.scheduled_at),
     timestamp: row.finished_at || row.scheduled_at || row.started_at || "",
@@ -236,46 +227,10 @@ function TeamMatches({ team, slug }) {
   const upcomingGroups = useMemo(() => {
     const rows = databaseRows.filter((row) => ["live", "upcoming"].includes(matchKind(row)))
       .sort(compareUpcomingMatches);
-    const groups = new Map();
-    for (const row of rows) {
-      const match = rowToTeamMatch(row, team);
-      const key = normalizeCompetitionKey(match.season);
-      if (!groups.has(key)) groups.set(key, { season: match.season, matches: [] });
-      groups.get(key).matches.push(match);
-    }
-    return [...groups.values()];
+    return groupCompetitionMatches(rows.map((row) => rowToTeamMatch(row, team)));
   }, [databaseRows, team]);
 
-  const groupedMatches = useMemo(() => {
-    const groups = teamMatches.reduce((result, match) => {
-      const competitionKey = normalizeCompetitionKey(match.season);
-
-      if (!result[competitionKey]) {
-        result[competitionKey] = {
-          season: String(match.season || "ESEA League").trim(),
-          matches: [],
-        };
-      }
-
-      result[competitionKey].matches.push(match);
-      return result;
-    }, {});
-
-    return Object.values(groups)
-      .map(({ season, matches }) => ({
-        season,
-        matches: [...matches].sort(
-          (first, second) =>
-            new Date(second.timestamp) -
-            new Date(first.timestamp)
-        ),
-      }))
-      .sort(
-        (first, second) =>
-          new Date(second.matches[0]?.timestamp || 0) -
-          new Date(first.matches[0]?.timestamp || 0)
-      );
-  }, [teamMatches]);
+  const groupedMatches = useMemo(() => groupCompetitionMatches(teamMatches), [teamMatches]);
 
   return (
     <div className="min-h-screen bg-[#0b0f14] px-4 py-8 text-white">
@@ -317,8 +272,8 @@ function TeamMatches({ team, slug }) {
               <p className="rounded-xl border border-[#243041] bg-[#111823] p-6 text-sm text-slate-400">{tx("No upcoming matches scheduled.")}</p>
             )}
             <div className="space-y-5">
-              {upcomingGroups.map(({ season, matches }) => (
-                <div key={season} className="overflow-hidden rounded-xl border border-[#243041] bg-[#111823]">
+              {upcomingGroups.map(({ key, season, matches }) => (
+                <div key={key} className="overflow-hidden rounded-xl border border-[#243041] bg-[#111823]">
                   <h3 className="border-b border-[#243041] bg-[#1a2330] px-4 py-3 text-sm font-bold sm:px-6">
                     <TournamentNameLink name={season} />
                   </h3>
@@ -358,8 +313,8 @@ function TeamMatches({ team, slug }) {
 
         {!loading &&
           !errorMessage &&
-          groupedMatches.map(({ season, matches }) => (
-            <div key={season} className="mb-10">
+          groupedMatches.map(({ key, season, matches }) => (
+            <div key={key} className="mb-10">
               <div className="mb-4 rounded-xl bg-[#1a2330] p-4">
                 <h2 className="text-xl font-bold">
                   <TournamentNameLink name={season} />
