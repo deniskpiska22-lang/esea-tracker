@@ -1,0 +1,522 @@
+{
+  "Forum": {
+    "ru": "Форум",
+    "de": "Forum",
+    "pt": "Fórum",
+    "es": "Foro",
+    "fr": "Forum",
+    "it": "Forum"
+  },
+  "Forum moderation": {
+    "ru": "Модерация форума",
+    "de": "Forummoderation",
+    "pt": "Moderação do fórum",
+    "es": "Moderación del foro",
+    "fr": "Modération du forum",
+    "it": "Moderazione del forum"
+  },
+  "All languages": {
+    "ru": "Все языки",
+    "de": "Alle Sprachen",
+    "pt": "Todos os idiomas",
+    "es": "Todos los idiomas",
+    "fr": "Toutes les langues",
+    "it": "Tutte le lingue"
+  },
+  "All topics": {
+    "ru": "Все темы",
+    "de": "Alle Themen",
+    "pt": "Todos os tópicos",
+    "es": "Todos los temas",
+    "fr": "Tous les sujets",
+    "it": "Tutti gli argomenti"
+  },
+  "Be respectful. No spam, harassment or personal data. Report problems to moderators.": {
+    "ru": "Уважайте друг друга. Запрещены спам, травля и публикация личных данных. О нарушениях сообщайте модераторам.",
+    "de": "Bleibt respektvoll. Kein Spam, keine Belästigung und keine persönlichen Daten. Meldet Verstöße den Moderatoren.",
+    "pt": "Respeite os outros. Sem spam, assédio ou dados pessoais. Denuncie problemas aos moderadores.",
+    "es": "Respeta a los demás. Sin spam, acoso ni datos personales. Informa a los moderadores.",
+    "fr": "Respectez les autres. Pas de spam, de harcèlement ni de données personnelles. Signalez les problèmes aux modérateurs.",
+    "it": "Rispetta gli altri. Niente spam, molestie o dati personali. Segnala i problemi ai moderatori."
+  },
+  "Category": {
+    "ru": "Раздел",
+    "de": "Kategorie",
+    "pt": "Categoria",
+    "es": "Categoría",
+    "fr": "Catégorie",
+    "it": "Categoria"
+  },
+  "Closed": {
+    "ru": "Закрыта",
+    "de": "Geschlossen",
+    "pt": "Fechado",
+    "es": "Cerrado",
+    "fr": "Fermé",
+    "it": "Chiuso"
+  },
+  "Community member": {
+    "ru": "Участник сообщества",
+    "de": "Community-Mitglied",
+    "pt": "Membro da comunidade",
+    "es": "Miembro de la comunidad",
+    "fr": "Membre de la communauté",
+    "it": "Membro della community"
+  },
+  "Community rules": {
+    "ru": "Правила сообщества",
+    "de": "Community-Regeln",
+    "pt": "Regras da comunidade",
+    "es": "Normas de la comunidad",
+    "fr": "Règles de la communauté",
+    "it": "Regole della community"
+  },
+  "Create topic": {
+    "ru": "Создать тему",
+    "de": "Thema erstellen",
+    "pt": "Criar tópico",
+    "es": "Crear tema",
+    "fr": "Créer un sujet",
+    "it": "Crea argomento"
+  },
+  "Discuss ESEA, find teammates and share your ideas.": {
+    "ru": "Обсуждайте ESEA, ищите команду и делитесь идеями.",
+    "de": "Diskutiert über ESEA, findet Mitspieler und teilt eure Ideen.",
+    "pt": "Converse sobre ESEA, encontre companheiros e compartilhe ideias.",
+    "es": "Habla de ESEA, encuentra compañeros y comparte ideas.",
+    "fr": "Discutez d’ESEA, trouvez des coéquipiers et partagez vos idées.",
+    "it": "Parla di ESEA, trova compagni e condividi idee."
+  },
+  "ESEA & teams": {
+    "ru": "ESEA и команды",
+    "de": "ESEA & Teams",
+    "pt": "ESEA e equipes",
+    "es": "ESEA y equipos",
+    "fr": "ESEA et équipes",
+    "it": "ESEA e squadre"
+  },
+  "Everyone can read the forum. Sign in or create an account to post.": {
+    "ru": "Читать форум могут все. Войдите или зарегистрируйтесь, чтобы писать.",
+    "de": "Alle können das Forum lesen. Zum Schreiben anmelden oder registrieren.",
+    "pt": "Todos podem ler o fórum. Entre ou crie uma conta para publicar.",
+    "es": "Todos pueden leer el foro. Inicia sesión o regístrate para publicar.",
+    "fr": "Tout le monde peut lire le forum. Connectez-vous ou inscrivez-vous pour publier.",
+    "it": "Tutti possono leggere il forum. Accedi o registrati per scrivere."
+  },
+  "Feedback & bugs": {
+    "ru": "Идеи и ошибки",
+    "de": "Feedback & Fehler",
+    "pt": "Sugestões e erros",
+    "es": "Sugerencias y errores",
+    "fr": "Suggestions et bugs",
+    "it": "Idee e problemi"
+  },
+  "Final": {
+    "ru": "Финал",
+    "de": "Finale",
+    "pt": "Final",
+    "es": "Final",
+    "fr": "Finale",
+    "it": "Finale"
+  },
+  "Find a team or player": {
+    "ru": "Поиск команды и игроков",
+    "de": "Team oder Spieler finden",
+    "pt": "Encontrar equipe ou jogador",
+    "es": "Buscar equipo o jugador",
+    "fr": "Trouver une équipe ou un joueur",
+    "it": "Trova squadra o giocatore"
+  },
+  "Hidden": {
+    "ru": "Скрыто",
+    "de": "Ausgeblendet",
+    "pt": "Oculto",
+    "es": "Oculto",
+    "fr": "Masqué",
+    "it": "Nascosto"
+  },
+  "Hide": {
+    "ru": "Скрыть",
+    "de": "Ausblenden",
+    "pt": "Ocultar",
+    "es": "Ocultar",
+    "fr": "Masquer",
+    "it": "Nascondi"
+  },
+  "Ideas and issues with the site": {
+    "ru": "Предложения и проблемы сайта",
+    "de": "Ideen und Probleme mit der Website",
+    "pt": "Ideias e problemas do site",
+    "es": "Ideas y problemas del sitio",
+    "fr": "Idées et problèmes du site",
+    "it": "Idee e problemi del sito"
+  },
+  "Join the discussion": {
+    "ru": "Присоединиться к обсуждению",
+    "de": "Mitdiskutieren",
+    "pt": "Participe da discussão",
+    "es": "Únete al debate",
+    "fr": "Participer à la discussion",
+    "it": "Partecipa alla discussione"
+  },
+  "LFT, LFP, coaches and stand-ins": {
+    "ru": "LFT, LFP, тренеры и замены",
+    "de": "LFT, LFP, Trainer und Ersatzspieler",
+    "pt": "LFT, LFP, treinadores e substitutos",
+    "es": "LFT, LFP, entrenadores y suplentes",
+    "fr": "LFT, LFP, coachs et remplaçants",
+    "it": "LFT, LFP, allenatori e sostituti"
+  },
+  "Last activity": {
+    "ru": "Последняя активность",
+    "de": "Letzte Aktivität",
+    "pt": "Última atividade",
+    "es": "Última actividad",
+    "fr": "Dernière activité",
+    "it": "Ultima attività"
+  },
+  "Log in to join the discussion.": {
+    "ru": "Войдите, чтобы участвовать в обсуждении.",
+    "de": "Zum Mitdiskutieren anmelden.",
+    "pt": "Entre para participar da discussão.",
+    "es": "Inicia sesión para participar.",
+    "fr": "Connectez-vous pour participer.",
+    "it": "Accedi per partecipare."
+  },
+  "Maps, strategies, picks and bans": {
+    "ru": "Карты, тактики, пики и баны",
+    "de": "Karten, Strategien, Picks und Bans",
+    "pt": "Mapas, estratégias, escolhas e banimentos",
+    "es": "Mapas, estrategias, elecciones y vetos",
+    "fr": "Cartes, stratégies, picks et bans",
+    "it": "Mappe, strategie, pick e ban"
+  },
+  "Matches, rosters and rankings": {
+    "ru": "Матчи, составы и рейтинги",
+    "de": "Matches, Kader und Ranglisten",
+    "pt": "Partidas, elencos e rankings",
+    "es": "Partidos, plantillas y clasificaciones",
+    "fr": "Matchs, effectifs et classements",
+    "it": "Partite, roster e classifiche"
+  },
+  "Message": {
+    "ru": "Сообщение",
+    "de": "Nachricht",
+    "pt": "Mensagem",
+    "es": "Mensaje",
+    "fr": "Message",
+    "it": "Messaggio"
+  },
+  "Moderation": {
+    "ru": "Модерация",
+    "de": "Moderation",
+    "pt": "Moderação",
+    "es": "Moderación",
+    "fr": "Modération",
+    "it": "Moderazione"
+  },
+  "Next": {
+    "ru": "Далее",
+    "de": "Weiter",
+    "pt": "Próximo",
+    "es": "Siguiente",
+    "fr": "Suivant",
+    "it": "Avanti"
+  },
+  "Next round": {
+    "ru": "Следующий раунд",
+    "de": "Nächste Runde",
+    "pt": "Próxima rodada",
+    "es": "Siguiente ronda",
+    "fr": "Tour suivant",
+    "it": "Turno successivo"
+  },
+  "No unresolved reports.": {
+    "ru": "Нерассмотренных жалоб нет.",
+    "de": "Keine offenen Meldungen.",
+    "pt": "Nenhuma denúncia pendente.",
+    "es": "No hay denuncias pendientes.",
+    "fr": "Aucun signalement en attente.",
+    "it": "Nessuna segnalazione in sospeso."
+  },
+  "Pinned": {
+    "ru": "Закреплено",
+    "de": "Angeheftet",
+    "pt": "Fixado",
+    "es": "Fijado",
+    "fr": "Épinglé",
+    "it": "In evidenza"
+  },
+  "Please wait before posting again.": {
+    "ru": "Подождите немного перед следующей публикацией.",
+    "de": "Bitte vor dem nächsten Beitrag kurz warten.",
+    "pt": "Aguarde antes de publicar novamente.",
+    "es": "Espera antes de volver a publicar.",
+    "fr": "Patientez avant de publier à nouveau.",
+    "it": "Attendi prima di pubblicare di nuovo."
+  },
+  "Previous": {
+    "ru": "Назад",
+    "de": "Zurück",
+    "pt": "Anterior",
+    "es": "Anterior",
+    "fr": "Précédent",
+    "it": "Indietro"
+  },
+  "Previous round": {
+    "ru": "Предыдущий раунд",
+    "de": "Vorherige Runde",
+    "pt": "Rodada anterior",
+    "es": "Ronda anterior",
+    "fr": "Tour précédent",
+    "it": "Turno precedente"
+  },
+  "Replies": {
+    "ru": "Ответы",
+    "de": "Antworten",
+    "pt": "Respostas",
+    "es": "Respuestas",
+    "fr": "Réponses",
+    "it": "Risposte"
+  },
+  "Report": {
+    "ru": "Пожаловаться",
+    "de": "Melden",
+    "pt": "Denunciar",
+    "es": "Denunciar",
+    "fr": "Signaler",
+    "it": "Segnala"
+  },
+  "Report reason": {
+    "ru": "Причина жалобы",
+    "de": "Grund der Meldung",
+    "pt": "Motivo da denúncia",
+    "es": "Motivo de la denuncia",
+    "fr": "Motif du signalement",
+    "it": "Motivo della segnalazione"
+  },
+  "Report sent to moderators.": {
+    "ru": "Жалоба отправлена модераторам.",
+    "de": "Meldung an Moderatoren gesendet.",
+    "pt": "Denúncia enviada aos moderadores.",
+    "es": "Denuncia enviada a los moderadores.",
+    "fr": "Signalement envoyé aux modérateurs.",
+    "it": "Segnalazione inviata ai moderatori."
+  },
+  "Resolve report": {
+    "ru": "Закрыть жалобу",
+    "de": "Meldung erledigen",
+    "pt": "Resolver denúncia",
+    "es": "Resolver denuncia",
+    "fr": "Clore le signalement",
+    "it": "Chiudi segnalazione"
+  },
+  "Restore posting access": {
+    "ru": "Вернуть право писать",
+    "de": "Schreibzugriff wiederherstellen",
+    "pt": "Restaurar publicação",
+    "es": "Restaurar permiso de publicación",
+    "fr": "Rétablir le droit de publier",
+    "it": "Ripristina permesso di scrittura"
+  },
+  "Restrict author for 7 days": {
+    "ru": "Запретить автору писать на 7 дней",
+    "de": "Autor für 7 Tage sperren",
+    "pt": "Restringir autor por 7 dias",
+    "es": "Restringir al autor durante 7 días",
+    "fr": "Restreindre l’auteur pendant 7 jours",
+    "it": "Limita autore per 7 giorni"
+  },
+  "Retry": {
+    "ru": "Повторить",
+    "de": "Erneut versuchen",
+    "pt": "Tentar novamente",
+    "es": "Reintentar",
+    "fr": "Réessayer",
+    "it": "Riprova"
+  },
+  "Round": {
+    "ru": "Раунд",
+    "de": "Runde",
+    "pt": "Rodada",
+    "es": "Ronda",
+    "fr": "Tour",
+    "it": "Turno"
+  },
+  "Search topics": {
+    "ru": "Поиск тем",
+    "de": "Themen suchen",
+    "pt": "Buscar tópicos",
+    "es": "Buscar temas",
+    "fr": "Rechercher des sujets",
+    "it": "Cerca argomenti"
+  },
+  "Send": {
+    "ru": "Отправить",
+    "de": "Senden",
+    "pt": "Enviar",
+    "es": "Enviar",
+    "fr": "Envoyer",
+    "it": "Invia"
+  },
+  "Tactics & veto": {
+    "ru": "Тактики и вето",
+    "de": "Taktik & Veto",
+    "pt": "Táticas e veto",
+    "es": "Tácticas y vetos",
+    "fr": "Tactiques et veto",
+    "it": "Tattiche e veto"
+  },
+  "This section is available to moderators.": {
+    "ru": "Этот раздел доступен модераторам.",
+    "de": "Dieser Bereich ist für Moderatoren.",
+    "pt": "Esta seção é para moderadores.",
+    "es": "Esta sección es para moderadores.",
+    "fr": "Cette section est réservée aux modérateurs.",
+    "it": "Questa sezione è riservata ai moderatori."
+  },
+  "This topic is closed.": {
+    "ru": "Тема закрыта для новых ответов.",
+    "de": "Dieses Thema ist geschlossen.",
+    "pt": "Este tópico está fechado.",
+    "es": "Este tema está cerrado.",
+    "fr": "Ce sujet est fermé.",
+    "it": "Questo argomento è chiuso."
+  },
+  "Topic language": {
+    "ru": "Язык темы",
+    "de": "Sprache des Themas",
+    "pt": "Idioma do tópico",
+    "es": "Idioma del tema",
+    "fr": "Langue du sujet",
+    "it": "Lingua dell’argomento"
+  },
+  "Topic not found or unavailable.": {
+    "ru": "Тема не найдена или недоступна.",
+    "de": "Thema nicht gefunden oder nicht verfügbar.",
+    "pt": "Tópico não encontrado ou indisponível.",
+    "es": "Tema no encontrado o no disponible.",
+    "fr": "Sujet introuvable ou indisponible.",
+    "it": "Argomento non trovato o non disponibile."
+  },
+  "Topic title": {
+    "ru": "Название темы",
+    "de": "Thementitel",
+    "pt": "Título do tópico",
+    "es": "Título del tema",
+    "fr": "Titre du sujet",
+    "it": "Titolo dell’argomento"
+  },
+  "Topics": {
+    "ru": "Темы",
+    "de": "Themen",
+    "pt": "Tópicos",
+    "es": "Temas",
+    "fr": "Sujets",
+    "it": "Argomenti"
+  },
+  "Tournament bracket": {
+    "ru": "Турнирная сетка",
+    "de": "Turnierbaum",
+    "pt": "Chave do torneio",
+    "es": "Cuadro del torneo",
+    "fr": "Arbre du tournoi",
+    "it": "Tabellone del torneo"
+  },
+  "Your forum posting access is temporarily restricted.": {
+    "ru": "Вам временно запрещено писать на форуме.",
+    "de": "Dein Schreibzugriff im Forum ist vorübergehend gesperrt.",
+    "pt": "Sua publicação no fórum está temporariamente restrita.",
+    "es": "Tu permiso para publicar está temporalmente restringido.",
+    "fr": "Votre droit de publier est temporairement restreint.",
+    "it": "Il tuo accesso alla scrittura è temporaneamente limitato."
+  },
+  "Your profile is still loading. Please try again.": {
+    "ru": "Профиль ещё загружается. Попробуйте снова.",
+    "de": "Dein Profil wird geladen. Bitte erneut versuchen.",
+    "pt": "Seu perfil ainda está carregando. Tente novamente.",
+    "es": "Tu perfil sigue cargando. Inténtalo de nuevo.",
+    "fr": "Votre profil est en cours de chargement. Réessayez.",
+    "it": "Il profilo è ancora in caricamento. Riprova."
+  },
+  "No topics match these filters.": {
+    "ru": "По этим фильтрам тем не найдено.",
+    "de": "Keine Themen für diese Filter.",
+    "pt": "Nenhum tópico com esses filtros.",
+    "es": "No hay temas con estos filtros.",
+    "fr": "Aucun sujet avec ces filtres.",
+    "it": "Nessun argomento con questi filtri."
+  },
+  "No topics yet. Start the first discussion.": {
+    "ru": "Тем пока нет. Начните первое обсуждение.",
+    "de": "Noch keine Themen. Starte die erste Diskussion.",
+    "pt": "Ainda não há tópicos. Inicie a primeira discussão.",
+    "es": "Aún no hay temas. Inicia el primer debate.",
+    "fr": "Aucun sujet. Lancez la première discussion.",
+    "it": "Ancora nessun argomento. Inizia la prima discussione."
+  },
+  "Publishing...": {
+    "ru": "Публикуем…",
+    "de": "Wird veröffentlicht…",
+    "pt": "Publicando…",
+    "es": "Publicando…",
+    "fr": "Publication…",
+    "it": "Pubblicazione…"
+  },
+  "Publish topic": {
+    "ru": "Опубликовать тему",
+    "de": "Thema veröffentlichen",
+    "pt": "Publicar tópico",
+    "es": "Publicar tema",
+    "fr": "Publier le sujet",
+    "it": "Pubblica argomento"
+  },
+  "Post reply": {
+    "ru": "Отправить ответ",
+    "de": "Antwort senden",
+    "pt": "Enviar resposta",
+    "es": "Enviar respuesta",
+    "fr": "Publier la réponse",
+    "it": "Invia risposta"
+  },
+  "Unpin": {
+    "ru": "Открепить",
+    "de": "Loslösen",
+    "pt": "Desafixar",
+    "es": "Desfijar",
+    "fr": "Désépingler",
+    "it": "Rimuovi dai preferiti"
+  },
+  "Pin topic": {
+    "ru": "Закрепить тему",
+    "de": "Thema anheften",
+    "pt": "Fixar tópico",
+    "es": "Fijar tema",
+    "fr": "Épingler le sujet",
+    "it": "Metti argomento in evidenza"
+  },
+  "Reopen topic": {
+    "ru": "Открыть тему",
+    "de": "Thema wieder öffnen",
+    "pt": "Reabrir tópico",
+    "es": "Reabrir tema",
+    "fr": "Rouvrir le sujet",
+    "it": "Riapri argomento"
+  },
+  "Close topic": {
+    "ru": "Закрыть тему",
+    "de": "Thema schließen",
+    "pt": "Fechar tópico",
+    "es": "Cerrar tema",
+    "fr": "Fermer le sujet",
+    "it": "Chiudi argomento"
+  },
+  "Restore": {
+    "ru": "Восстановить",
+    "de": "Wiederherstellen",
+    "pt": "Restaurar",
+    "es": "Restaurar",
+    "fr": "Restaurer",
+    "it": "Ripristina"
+  }
+}

@@ -2,7 +2,7 @@ import { getTeamContext } from '../utils/teamSeo.js';
 import { LANGUAGES, LANGUAGE_CODES, localizedPath, stripLanguage } from './languages.js';
 import { translateText } from './translate.js';
 const ORIGIN = 'https://eseatracker.ru';
-const DIRECTORY_LABELS = { '/': 'Home', '/rankings': 'Team rankings', '/matches': 'Match schedule and results', '/players': 'Player statistics', '/calendar': 'Tournament calendar', '/about': 'About ESEA Tracker', '/media': 'Community media' };
+const DIRECTORY_LABELS = { '/forum': 'Forum', '/': 'Home', '/rankings': 'Team rankings', '/matches': 'Match schedule and results', '/players': 'Player statistics', '/calendar': 'Tournament calendar', '/about': 'About ESEA Tracker', '/media': 'Community media' };
 const COPY = {
   ru: {intro:'Команды, игроки, матчи и рейтинг ESEA Counter-Strike 2 из Европы, Северной и Южной Америки.', team:'{name} — команда Counter-Strike 2 в {league}. Состав, результаты матчей, статистика карт, пики и баны, рейтинг команды на ESEA Tracker.', player:'{name}: статистика игрока ESEA CS2, команда, рейтинг, ADR, K/D и последние матчи.', match:'{name}: счёт матча ESEA CS2, результаты карт, составы и статистика игроков.', sample:'Выборка из последних {n} завершённых матчей. Полная история доступна на странице статистики карт.'},
   en: {intro:'ESEA Counter-Strike 2 teams, players, matches and rankings across Europe, North America and South America.', team:'{name} is a Counter-Strike 2 team in {league}. Follow its roster, match results, map statistics, picks and bans and team rating on ESEA Tracker.', player:'{name}: ESEA CS2 player statistics, team, rating, ADR, K/D and recent matches.', match:'{name}: ESEA CS2 match score, map results, lineups and player statistics.', sample:'This sample covers the latest {n} completed matches. Open the map statistics page for the full tracked history.'},
@@ -40,14 +40,14 @@ export function localizeSeo(metadata, language, {kind, entity, section = ''} = {
     const label = DIRECTORY_LABELS[pathname] || ({
       '/login': 'Log in', '/register': 'Create account',
       '/auth/callback': 'Confirming your account…', '/data-status': 'Season import status',
-      '/admin/verifications': 'Admin panel',
+      '/admin/verifications': 'Admin panel', '/forum/new': 'Create topic', '/forum/moderation': 'Forum moderation',
     }[pathname]) || (/^\/calendar\/[^/]+$/.test(pathname) ? 'Tournament' :
       /^\/profile\/[^/]+\/edit$/.test(pathname) ? 'Edit profile' :
       /^\/profile\/[^/]+\/verification$/.test(pathname) ? 'Verification' :
       /^\/profile\/[^/]+$/.test(pathname) ? 'My profile' : null);
     heading = t(label || 'Page not found');
     title = label ? `${heading}${DIRECTORY_LABELS[pathname] && pathname!=='/about' ? ' — ESEA CS2' : ''} | ESEA Tracker` : `${heading} | ESEA Tracker`;
-    description = label ? `${heading}. ${COPY[language].intro}` : t('This page is unavailable.');
+    description = pathname==='/forum' ? t('Discuss ESEA, find teammates and share your ideas.') : label ? `${heading}. ${COPY[language].intro}` : t('This page is unavailable.');
   } else {
     const fallbackName = metadata.heading?.split(' — ')[0] || metadata.title?.split(/ CS2 | — /)[0] || 'CS2';
     const name = entity?.name || entity?.nickname || (inferred==='match' && entity ? `${entity.team1_name || 'TBD'} vs ${entity.team2_name || 'TBD'}` : fallbackName);

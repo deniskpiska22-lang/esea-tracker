@@ -30,6 +30,7 @@ const staticPages = [
   "/matches",
   "/calendar",
   "/about",
+  "/forum",
   "/media",
 ];
 

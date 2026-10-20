@@ -31,6 +31,8 @@ const MAINTENANCE_ACTIVE = false;
 // visited — without this the whole site shipped on the very first load.
 const RankingsPage = lazy(() => import("./pages/RankingsPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
+const ForumPage = lazy(() => import("./pages/ForumPage"));
+const ForumTopicPage = lazy(() => import("./pages/ForumTopicPage"));
 const About = lazy(() => import("./pages/About"));
 const MediaPage = lazy(() => import("./pages/MediaPage"));
 const MatchesPage = lazy(() => import("./pages/MatchesPage"));
@@ -127,6 +129,10 @@ function Application() {
                       <Route path="/rankings" element={<RankingsPage />} />
                       <Route path="/teams/:slug" element={<TeamPage />} />
                       <Route path="/team/:slug" element={<TeamPage />} />
+                      <Route path="/forum" element={<ForumPage key="forum-list" />} />
+                      <Route path="/forum/new" element={<ForumPage key="forum-new" mode="new" />} />
+                      <Route path="/forum/moderation" element={<ForumPage key="forum-mod" mode="moderation" />} />
+                      <Route path="/forum/topic/:id/:slug?" element={<ForumTopicPage />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/media" element={<MediaPage />} />
                       <Route path="/matches" element={<MatchesPage />} />

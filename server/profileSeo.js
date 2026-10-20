@@ -6,7 +6,7 @@ import { getPlayerSeoMetadata } from '../src/utils/playerSeo.js';
 import aliases from '../src/data/playerAliases.js';
 import { getMatchSeoMetadata, parseMaps } from '../src/utils/matchSeo.js';
 export const ORIGIN = 'https://eseatracker.ru';
-export const staticRoutes = ['/', '/rankings', '/matches', '/calendar', '/about', '/media'];
+export const staticRoutes = ['/', '/rankings', '/matches', '/calendar', '/forum', '/about', '/media'];
 export const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const link = (url, name, preserve = true) => `<a ${preserve ? 'data-entity-link="true" ' : ''}href="${escapeHtml(url)}">${escapeHtml(name)}</a>`;
 export function profileMetadata(kind, entity, roster = [], section = '', recentMatches = []) {

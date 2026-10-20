@@ -208,9 +208,61 @@
           "value": "noindex,follow"
         }
       ]
+    },
+    {
+      "source": "/forum/new",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/forum/moderation",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/forum/new",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/forum/moderation",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex,follow"
+        }
+      ]
     }
   ],
   "rewrites": [
+    {
+      "source": "/forum",
+      "destination": "/api/seo-profile?kind=page&key=forum"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/forum",
+      "destination": "/api/seo-profile?kind=page&key=forum&lang=:lang"
+    },
+    {
+      "source": "/forum/topic/:key/:slug?",
+      "destination": "/api/seo-profile?kind=forum&key=:key"
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/forum/topic/:key/:slug?",
+      "destination": "/api/seo-profile?kind=forum&key=:key&lang=:lang"
+    },
     {
       "source": "/:lang(en|de|pt|es|fr|it)/teams/:key/:section(matches|stats|analytics|veto)",
       "destination": "/api/seo-profile?kind=team&key=:key&section=:section&lang=:lang"

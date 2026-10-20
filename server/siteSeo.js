@@ -1,7 +1,7 @@
 import { getSiteSeoMetadata } from '../src/utils/siteSeo.js';
 import { escapeHtml, ORIGIN } from './profileSeo.js';
 import { result } from './seoData.js';
-const labels = [['/','Home'],['/rankings','Team rankings'],['/matches','Match schedule and results'],['/players','Player statistics'],['/calendar','Tournament calendar'],['/about','About ESEA Tracker'],['/media','Community media']];
+const labels = [['/forum','Forum'],['/','Home'],['/rankings','Team rankings'],['/matches','Match schedule and results'],['/players','Player statistics'],['/calendar','Tournament calendar'],['/about','About ESEA Tracker'],['/media','Community media']];
 export async function loadSiteMetadata(client, pathname) {
   const metadata = getSiteSeoMetadata(pathname);
   let body = `<nav aria-label="Site pages"><ul>${labels.filter(([url])=>url!==pathname).map(([url,label])=>`<li><a href="${url}">${label}</a></li>`).join('')}</ul></nav>`;
@@ -17,6 +17,10 @@ export async function loadSiteMetadata(client, pathname) {
     const urls = await result(client.from('seo_profile_urls').select('entity_id').eq('kind','players').order('position').limit(60));
     const rows = urls.length ? await result(client.from('players').select('faceit_id,nickname,country').in('faceit_id',urls.map(row=>row.entity_id))) : [];
     body += `<h2>Explore CS2 players</h2><ul>${rows.map(p=>`<li><a data-entity-link="true" href="/players/${encodeURIComponent(p.faceit_id)}">${escapeHtml(p.nickname)}</a>${p.country ? ` — ${escapeHtml(p.country)}` : ''}</li>`).join('')}</ul>`;
+  }
+  if (pathname==='/forum') {
+    const rows=await result(client.from('forum_topics').select('id,title,last_activity_at').eq('hidden',false).order('pinned',{ascending:false}).order('last_activity_at',{ascending:false}).limit(25));
+    body += `<p>Everyone can read the forum. Sign in or create an account to post.</p><ul>${rows.map(topic=>`<li><a data-entity-link="true" href="/forum/topic/${topic.id}">${escapeHtml(topic.title)}</a></li>`).join('')}</ul>`;
   }
   if (pathname==='/about') body += '<p>ESEA Tracker is an independent community project covering ESEA Counter-Strike 2 teams, players and matches. Explore tracked results, map statistics and team rankings across Europe and the Americas.</p>';
   return { ...metadata, body, canonicalUrl: ORIGIN+pathname };

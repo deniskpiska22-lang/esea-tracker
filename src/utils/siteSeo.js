@@ -20,6 +20,10 @@ export const pageMetadata = {
     description:
       "Календарь турниров и событий ESEA CS2: даты, матчи и участники.",
   },
+  "/forum": {
+    title: "Форум ESEA CS2 | ESEA Tracker",
+    description: "Обсуждения ESEA CS2, поиск команды и игроков, тактики и вето, идеи и ошибки ESEA Tracker.",
+  },
   "/about": {
     title: "О проекте | ESEA Tracker",
     description:

@@ -103,9 +103,11 @@ export default function RouteSeo() {
       if (event.detail) setDynamicMetadata(event.detail);
     };
 
+    window.addEventListener("forum-seo-update", handlePlayerMetadata);
     window.addEventListener("player-seo-update", handlePlayerMetadata);
     window.addEventListener("match-seo-update", handlePlayerMetadata);
     return () => {
+      window.removeEventListener("forum-seo-update", handlePlayerMetadata);
       window.removeEventListener("player-seo-update", handlePlayerMetadata);
       window.removeEventListener("match-seo-update", handlePlayerMetadata);
     };

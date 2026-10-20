@@ -380,6 +380,10 @@ function App() {
       label: tx("Events"),
     },
     {
+      path: "/forum",
+      label: tx("Forum"),
+    },
+    {
       path: "/about",
       label: tx("About"),
     },

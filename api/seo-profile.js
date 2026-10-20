@@ -1,3 +1,4 @@
+import { loadForumMetadata } from '../server/forumSeo.js';
 import { localizeSeo } from '../src/i18n/seo.js';
 import { translateText } from '../src/i18n/translate.js';
 import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
@@ -12,12 +13,22 @@ let template;
 export default async function handler(req,res) {
   const language = String(req.query.lang || 'ru');
   if (!LANGUAGE_CODES.includes(language)) return res.status(404).end('Not found');
-  const kind = ['player','team','match','page'].includes(req.query.kind) ? req.query.kind : 'team';
+  const kind = ['player','team','match','page','forum'].includes(req.query.kind) ? req.query.kind : 'team';
   const key = String(req.query.key || '');
   const section = String(req.query.section || '');
   if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end(translateText('Page not found',language));
   try {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
+    if (kind==='forum') {
+      const metadata=await loadForumMetadata(seoClient(),key,language);
+      res.setHeader('Content-Type','text/html; charset=utf-8');
+      res.setHeader('Cache-Control','no-store');
+      if(!metadata){
+        res.setHeader('X-Robots-Tag','noindex');
+        return res.status(404).send(renderProfile(template,{title:translateText('Topic not found or unavailable.',language),heading:translateText('Topic not found or unavailable.',language),description:translateText('This page is unavailable.',language),canonicalPath:localizedPath(`/forum/topic/${key}`,language),language,robots:'noindex,follow',alternates:[]},404));
+      }
+      return res.status(200).send(renderProfile(template,metadata));
+    }
     if (kind==='page') {
       const pathname = key==='home' ? '/' : `/${key}`;
       if (!(pathname in pageMetadata)) return res.status(404).end(translateText('Page not found',language));
