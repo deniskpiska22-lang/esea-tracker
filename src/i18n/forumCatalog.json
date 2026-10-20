@@ -518,5 +518,125 @@
     "es": "Restaurar",
     "fr": "Restaurer",
     "it": "Ripristina"
+  },
+  "ESEA community": {
+    "ru": "Сообщество ESEA",
+    "de": "ESEA-Community",
+    "pt": "Comunidade ESEA",
+    "es": "Comunidad ESEA",
+    "fr": "Communauté ESEA",
+    "it": "Community ESEA"
+  },
+  "Good discussions start with respect.": {
+    "ru": "Хорошее общение начинается с уважения.",
+    "de": "Gute Diskussionen beginnen mit Respekt.",
+    "pt": "Boas conversas começam com respeito.",
+    "es": "Las buenas conversaciones empiezan con respeto.",
+    "fr": "Les bonnes discussions commencent par le respect.",
+    "it": "Le buone discussioni iniziano dal rispetto."
+  },
+  "Respect other members.": {
+    "ru": "Уважайте других участников.",
+    "de": "Respektiert andere Mitglieder.",
+    "pt": "Respeite os outros membros.",
+    "es": "Respeta a los demás miembros.",
+    "fr": "Respectez les autres membres.",
+    "it": "Rispetta gli altri membri."
+  },
+  "Keep discussions on topic.": {
+    "ru": "Придерживайтесь темы обсуждения.",
+    "de": "Bleibt beim Thema.",
+    "pt": "Mantenha o foco no assunto.",
+    "es": "Mantén el debate en el tema.",
+    "fr": "Restez dans le sujet.",
+    "it": "Resta in tema."
+  },
+  "No spam or personal data.": {
+    "ru": "Без спама и чужих личных данных.",
+    "de": "Kein Spam und keine persönlichen Daten.",
+    "pt": "Sem spam nem dados pessoais.",
+    "es": "Sin spam ni datos personales.",
+    "fr": "Pas de spam ni de données personnelles.",
+    "it": "Niente spam o dati personali."
+  },
+  "Report problems to moderators.": {
+    "ru": "О нарушениях сообщайте модераторам.",
+    "de": "Meldet Probleme den Moderatoren.",
+    "pt": "Denuncie problemas aos moderadores.",
+    "es": "Informa de los problemas a los moderadores.",
+    "fr": "Signalez les problèmes aux modérateurs.",
+    "it": "Segnala i problemi ai moderatori."
+  },
+  "Your voice belongs here.": {
+    "ru": "Здесь есть место твоему мнению.",
+    "de": "Deine Meinung ist hier willkommen.",
+    "pt": "Sua voz tem espaço aqui.",
+    "es": "Tu opinión tiene un lugar aquí.",
+    "fr": "Votre avis a sa place ici.",
+    "it": "Qui c’è spazio per la tua opinione."
+  },
+  "Talk matches, share experience and meet the ESEA community.": {
+    "ru": "Обсуждай матчи, делись опытом и находи единомышленников в ESEA.",
+    "de": "Diskutiere Matches, teile Erfahrungen und lerne die ESEA-Community kennen.",
+    "pt": "Converse sobre partidas, compartilhe experiências e conheça a comunidade ESEA.",
+    "es": "Habla de partidos, comparte experiencias y conoce a la comunidad ESEA.",
+    "fr": "Discutez des matchs, partagez votre expérience et rencontrez la communauté ESEA.",
+    "it": "Parla delle partite, condividi esperienze e incontra la community ESEA."
+  },
+  "Join the community": {
+    "ru": "Присоединиться",
+    "de": "Community beitreten",
+    "pt": "Participar da comunidade",
+    "es": "Únete a la comunidad",
+    "fr": "Rejoindre la communauté",
+    "it": "Unisciti alla community"
+  },
+  "Everyone can read the forum.": {
+    "ru": "Читать форум могут все.",
+    "de": "Alle können das Forum lesen.",
+    "pt": "Todos podem ler o fórum.",
+    "es": "Todos pueden leer el foro.",
+    "fr": "Tout le monde peut lire le forum.",
+    "it": "Tutti possono leggere il forum."
+  },
+  "Try another search or reset the filters.": {
+    "ru": "Измени запрос или сбрось фильтры.",
+    "de": "Versuche eine andere Suche oder setze die Filter zurück.",
+    "pt": "Tente outra busca ou limpe os filtros.",
+    "es": "Prueba otra búsqueda o restablece los filtros.",
+    "fr": "Essayez une autre recherche ou réinitialisez les filtres.",
+    "it": "Prova un’altra ricerca o reimposta i filtri."
+  },
+  "Ask a question, share an idea or find your next teammate.": {
+    "ru": "Задай вопрос, поделись идеей или найди будущего тиммейта.",
+    "de": "Stelle eine Frage, teile eine Idee oder finde deinen nächsten Mitspieler.",
+    "pt": "Faça uma pergunta, compartilhe uma ideia ou encontre seu próximo companheiro.",
+    "es": "Haz una pregunta, comparte una idea o encuentra a tu próximo compañero.",
+    "fr": "Posez une question, partagez une idée ou trouvez votre prochain coéquipier.",
+    "it": "Fai una domanda, condividi un’idea o trova il tuo prossimo compagno."
+  },
+  "Reset filters": {
+    "ru": "Сбросить фильтры",
+    "de": "Filter zurücksetzen",
+    "pt": "Limpar filtros",
+    "es": "Restablecer filtros",
+    "fr": "Réinitialiser les filtres",
+    "it": "Reimposta filtri"
+  },
+  "Start a discussion": {
+    "ru": "Начать обсуждение",
+    "de": "Diskussion starten",
+    "pt": "Iniciar discussão",
+    "es": "Iniciar debate",
+    "fr": "Lancer une discussion",
+    "it": "Avvia discussione"
+  },
+  "Page": {
+    "ru": "Страница",
+    "de": "Seite",
+    "pt": "Página",
+    "es": "Página",
+    "fr": "Page",
+    "it": "Pagina"
   }
 }

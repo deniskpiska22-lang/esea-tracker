@@ -1,3 +1,11 @@
+import "../components/forum/forum.css";
+import {
+  ForumArtwork,
+  ForumCategoryIcon,
+  ForumEmptyState,
+  ForumGuidelines,
+  ForumWelcome,
+} from "../components/forum/ForumVisuals.jsx";
 import { useForumSession } from "../hooks/useForumSession.js";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -5,7 +13,13 @@ import {
   FiMessageSquare,
   FiPlus,
   FiSearch,
-  FiArrowRight,
+  FiArrowLeft,
+  FiArrowUpRight,
+  FiX,
+  FiGlobe,
+  FiBookmark,
+  FiChevronLeft,
+  FiChevronRight,
   FiLock,
   FiFlag,
 } from "react-icons/fi";
@@ -47,7 +61,6 @@ export default function ForumPage({ mode = "list" }) {
     10000,
     Math.max(0, Number.parseInt(params.get("page"), 10) || 0),
   );
-  const [search, setSearch] = useState(query);
   const [result, setResult] = useState({
     rows: [],
     count: 0,
@@ -117,14 +130,11 @@ export default function ForumPage({ mode = "list" }) {
     setParams(next);
   }
   return (
-    <main className="mx-auto max-w-[1240px] px-4 py-8 md:px-6 md:py-12">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
-        <div>
-          <div className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-[.22em] text-orange-400">
-            <span className="h-px w-7 bg-orange-400/50" />
-            ESEA COMMUNITY
-          </div>
-          <h1 className="text-3xl font-black tracking-tight md:text-4xl">
+    <main className="forum-design mx-auto max-w-[1240px] px-4 py-6 md:px-6 md:py-8">
+      <header className="forum-hero">
+        <div className="forum-hero-copy">
+          <div className="forum-eyebrow">{tx("ESEA community")}</div>
+          <h1>
             {tx(
               mode === "new"
                 ? "Create topic"
@@ -133,255 +143,266 @@ export default function ForumPage({ mode = "list" }) {
                   : "Forum",
             )}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-            {tx("Discuss ESEA, find teammates and share your ideas.")}
-          </p>
+          <p>{tx("Discuss ESEA, find teammates and share your ideas.")}</p>
+          <div className="forum-hero-actions">
+            {mode === "list" ? (
+              <Link
+                to={`/forum/new${category ? `?category=${category}` : ""}`}
+                className="forum-button"
+              >
+                <FiPlus aria-hidden="true" />
+                {tx("Create topic")}
+              </Link>
+            ) : (
+              <Link to="/forum" className="forum-button forum-button-secondary">
+                <FiArrowLeft aria-hidden="true" />
+                {tx("All topics")}
+              </Link>
+            )}
+            {session.moderator && (
+              <Link
+                to="/forum/moderation"
+                className="forum-button forum-button-secondary"
+              >
+                <FiFlag aria-hidden="true" />
+                {tx("Moderation")}
+              </Link>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-3">
-          {session.moderator && (
-            <Link
-              to="/forum/moderation"
-              className="rounded-xl border border-white/10 p-3 text-sm text-slate-300"
-            >
-              <FiFlag className="inline" /> {tx("Moderation")}
-            </Link>
-          )}
-          {mode === "list" ? (
-            <Link
-              to="/forum/new"
-              className="flex items-center gap-2 rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-            >
-              <FiPlus />
-              {tx("Create topic")}
-            </Link>
-          ) : (
-            <Link to="/forum" className="text-sm font-bold text-orange-400">
-              ← {tx("All topics")}
-            </Link>
-          )}
-        </div>
-      </div>
+        <ForumArtwork />
+      </header>
       {mode === "new" ? (
-        authLoading ? (
-          <p>{tx("Loading...")}</p>
-        ) : !user ? (
-          <ForumLoginNotice />
-        ) : session.blocked ? (
-          <ForumAlert>
-            {tx("Your forum posting access is temporarily restricted.")}
-          </ForumAlert>
-        ) : (
-          <TopicComposer
-            onCreated={(topic) => navigate(forumTopicPath(topic))}
-            initialCategory={category}
-          />
-        )
+        <div className="forum-editor-layout">
+          <div>
+            {authLoading ? (
+              <p className="p-6 text-sm text-slate-400" role="status">
+                {tx("Loading...")}
+              </p>
+            ) : !user ? (
+              <ForumLoginNotice />
+            ) : session.blocked ? (
+              <ForumAlert>
+                {tx("Your forum posting access is temporarily restricted.")}
+              </ForumAlert>
+            ) : (
+              <TopicComposer
+                onCreated={(topic) => navigate(forumTopicPath(topic))}
+                initialCategory={category}
+              />
+            )}
+          </div>
+          <ForumGuidelines />
+        </div>
       ) : mode === "moderation" ? (
-        <ModerationQueue session={session} />
+        <div className="mt-6">
+          <ModerationQueue session={session} />
+        </div>
       ) : (
         <>
-          <div className="mb-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <nav className="forum-categories" aria-label={tx("Category")}>
             {FORUM_CATEGORIES.map((c) => (
               <button
                 key={c.id}
                 type="button"
+                data-category={c.id}
+                className="forum-category"
                 onClick={() =>
                   filter("category", category === c.id ? "" : c.id)
                 }
                 aria-pressed={category === c.id}
-                className={`group rounded-2xl border p-5 text-left transition ${category === c.id ? "border-orange-400/40 bg-orange-500/[.08]" : "border-white/[.07] bg-[#0d141e] hover:border-orange-400/25"}`}
               >
-                <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl border border-orange-400/15 bg-orange-500/10 text-xl font-bold text-orange-300">
-                  {c.icon}
+                <span className="forum-category-top">
+                  <span className="forum-category-icon">
+                    <ForumCategoryIcon category={c.id} />
+                  </span>
+                  <FiArrowUpRight aria-hidden="true" />
                 </span>
-                <span className="block text-sm font-bold text-slate-100">
-                  {tx(c.label)}
-                </span>
-                <span className="mt-2 block text-xs leading-5 text-slate-500">
+                <span className="forum-category-title">{tx(c.label)}</span>
+                <span className="forum-category-description">
                   {tx(c.description)}
                 </span>
               </button>
             ))}
-          </div>
-          <section className="overflow-hidden rounded-2xl border border-white/[.07] bg-[#0b121c]">
-            <div className="flex flex-wrap items-center gap-3 border-b border-white/[.07] p-4">
-              <button
-                type="button"
-                className={`rounded-lg px-3 py-2 text-sm font-bold ${!category ? "bg-white/5 text-white" : "text-slate-400"}`}
-                onClick={() => filter("category", "")}
-              >
-                {tx("All topics")}
-              </button>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  filter("q", search);
-                }}
-                className="ml-auto flex min-w-0 flex-1 gap-2 sm:max-w-sm"
-              >
-                <label className="min-w-0 flex-1">
-                  <span className="sr-only">{tx("Search topics")}</span>
+          </nav>
+          <div className="forum-directory">
+            <section
+              className="forum-topic-list"
+              aria-labelledby="forum-topics-title"
+            >
+              <div className="forum-list-heading">
+                <h2 id="forum-topics-title">
+                  <FiMessageSquare aria-hidden="true" />
+                  {tx(category ? forumCategory(category).label : "All topics")}
+                  {result.key === key && !result.error && (
+                    <span className="forum-result-count">{result.count}</span>
+                  )}
+                </h2>
+                {(category || language || query) && (
+                  <button
+                    type="button"
+                    className="forum-reset"
+                    onClick={() => setParams({})}
+                  >
+                    <FiX aria-hidden="true" />
+                    {tx("Reset filters")}
+                  </button>
+                )}
+              </div>
+              <div className="forum-toolbar">
+                <form
+                  key={query}
+                  className="forum-search"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    filter("q", new FormData(e.currentTarget).get("q") || "");
+                  }}
+                >
+                  <label htmlFor="forum-search" className="sr-only">
+                    {tx("Search topics")}
+                  </label>
                   <input
-                    className={field}
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    id="forum-search"
+                    name="q"
+                    defaultValue={query}
                     maxLength={100}
                     placeholder={tx("Search topics")}
                   />
-                </label>
-                <button
-                  className="rounded-xl border border-white/10 px-3 text-slate-400 hover:text-orange-300"
-                  aria-label={tx("Search")}
-                >
-                  <FiSearch />
-                </button>
-              </form>
-              <label>
-                <span className="sr-only">{tx("Topic language")}</span>
-                <select
-                  className={field}
-                  value={language}
-                  onChange={(e) => filter("language", e.target.value)}
-                >
-                  <option value="">{tx("All languages")}</option>
-                  {LANGUAGES.map((l) => (
-                    <option key={l.code} value={l.code}>
-                      {l.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div className="hidden grid-cols-[1fr_70px_190px] gap-5 border-b border-white/5 px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 md:grid">
-              <span>{tx("Topics")}</span>
-              <span className="text-center">{tx("Replies")}</span>
-              <span>{tx("Last activity")}</span>
-            </div>
-            {result.error ? (
-              <div className="space-y-4 p-6">
-                <ForumAlert>{result.error}</ForumAlert>
-                <button
-                  onClick={() => setRefresh((r) => r + 1)}
-                  className="text-orange-400"
-                >
-                  {tx("Retry")}
-                </button>
-              </div>
-            ) : result.key !== key ? (
-              <p
-                role="status"
-                className="p-12 text-center text-sm text-slate-500"
-              >
-                {tx("Loading...")}
-              </p>
-            ) : !result.rows.length ? (
-              <div className="px-5 py-14 text-center">
-                <FiMessageSquare className="mx-auto mb-4 text-3xl text-slate-600" />
-                <h2 className="font-bold text-slate-200">
-                  {tx(
-                    query || category || language
-                      ? "No topics match these filters."
-                      : "No topics yet. Start the first discussion.",
-                  )}
-                </h2>
-                <Link
-                  to="/forum/new"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-orange-400"
-                >
-                  {tx("Create topic")}
-                  <FiArrowRight />
-                </Link>
-              </div>
-            ) : (
-              <div className="divide-y divide-white/5">
-                {result.rows.map((topic) => (
-                  <div
-                    key={topic.id}
-                    className="grid gap-3 px-5 py-5 transition hover:bg-white/[.025] md:grid-cols-[1fr_70px_190px] md:items-center md:gap-5"
+                  <button type="submit" aria-label={tx("Search")}>
+                    <FiSearch aria-hidden="true" />
+                  </button>
+                </form>
+                <div className="forum-language">
+                  <FiGlobe aria-hidden="true" />
+                  <label htmlFor="forum-language" className="sr-only">
+                    {tx("Topic language")}
+                  </label>
+                  <select
+                    id="forum-language"
+                    value={language}
+                    onChange={(e) => filter("language", e.target.value)}
                   >
-                    <div className="min-w-0">
-                      <div className="mb-2 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-wide">
-                        <span className="text-orange-300/80">
-                          {tx(forumCategory(topic.category).label)}
-                        </span>
-                        <span className="rounded bg-white/5 px-1.5 py-0.5 text-slate-500">
-                          {topic.language.toUpperCase()}
-                        </span>
-                        {topic.pinned && (
-                          <span className="text-amber-400">{tx("Pinned")}</span>
-                        )}
-                        {topic.locked && <FiLock aria-label={tx("Closed")} />}
-                      </div>
-                      <Link
-                        to={forumTopicPath(topic)}
-                        className="block break-words text-base font-bold leading-6 text-white hover:text-orange-300"
-                      >
-                        {topic.title}
-                      </Link>
-                      <div className="mt-3 text-xs text-slate-500">
-                        <ForumAuthor profile={topic.profile} />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm font-bold text-slate-300 md:justify-center">
-                      <FiMessageSquare className="text-slate-600" />
-                      {topic.reply_count}
-                      <span className="text-xs font-normal text-slate-500 md:hidden">
-                        {tx("Replies")}
-                      </span>
-                    </div>
-                    <div className="text-xs leading-5 text-slate-500">
-                      <ForumDate value={topic.last_activity_at} />
-                    </div>
-                  </div>
-                ))}
+                    <option value="">{tx("All languages")}</option>
+                    {LANGUAGES.map((l) => (
+                      <option key={l.code} value={l.code}>
+                        {l.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            )}
-            <div className="flex items-center justify-between border-t border-white/5 p-4 text-xs text-slate-500">
-              <span>
-                {result.count} {tx("Topics")}
-              </span>
-              <div className="flex gap-4">
-                <button
-                  disabled={page === 0}
-                  onClick={() => {
-                    const next = new URLSearchParams(params);
-                    next.set("page", String(page - 1));
-                    setParams(next);
-                  }}
-                  className="font-bold text-slate-300 disabled:opacity-30"
-                >
-                  ← {tx("Previous")}
-                </button>
-                <span>{page + 1}</span>
-                <button
-                  disabled={(page + 1) * FORUM_PAGE_SIZE >= result.count}
-                  onClick={() => {
-                    const next = new URLSearchParams(params);
-                    next.set("page", String(page + 1));
-                    setParams(next);
-                  }}
-                  className="font-bold text-slate-300 disabled:opacity-30"
-                >
-                  {tx("Next")} →
-                </button>
+              <div className="forum-columns" aria-hidden="true">
+                <span>{tx("Topics")}</span>
+                <span className="text-center">{tx("Replies")}</span>
+                <span>{tx("Last activity")}</span>
               </div>
-            </div>
-          </section>
-          <aside className="mt-5 rounded-2xl border border-white/5 bg-white/[.015] p-5 text-xs leading-6 text-slate-500">
-            <strong className="text-slate-300">{tx("Community rules")}</strong>
-            <p>
-              {tx(
-                "Be respectful. No spam, harassment or personal data. Report problems to moderators.",
+              {result.error ? (
+                <div className="space-y-4 p-6">
+                  <ForumAlert>{result.error}</ForumAlert>
+                  <button
+                    onClick={() => setRefresh((r) => r + 1)}
+                    className="forum-button forum-button-secondary"
+                  >
+                    {tx("Retry")}
+                  </button>
+                </div>
+              ) : result.key !== key ? (
+                <div
+                  role="status"
+                  className="flex min-h-80 items-center justify-center gap-3 text-sm text-slate-400"
+                >
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-600 border-t-orange-400 motion-reduce:animate-none" />
+                  {tx("Loading...")}
+                </div>
+              ) : !result.rows.length ? (
+                <ForumEmptyState
+                  filtered={!!(query || category || language)}
+                  category={category}
+                  onReset={() => setParams({})}
+                />
+              ) : (
+                <div>
+                  {result.rows.map((topic) => (
+                    <article
+                      key={topic.id}
+                      className={`forum-row ${topic.pinned ? "forum-row-pinned" : ""}`}
+                    >
+                      <div className="min-w-0">
+                        <div className="forum-row-topline">
+                          <Link
+                            className="forum-category-tag"
+                            data-category={topic.category}
+                            to={`/forum?category=${topic.category}`}
+                          >
+                            <ForumCategoryIcon category={topic.category} />
+                            {tx(forumCategory(topic.category).label)}
+                          </Link>
+                          <span className="forum-language-tag">
+                            {topic.language.toUpperCase()}
+                          </span>
+                          {topic.pinned && (
+                            <span className="forum-pinned">
+                              <FiBookmark aria-hidden="true" />
+                              {tx("Pinned")}
+                            </span>
+                          )}
+                          {topic.locked && <FiLock aria-label={tx("Closed")} />}
+                        </div>
+                        <Link
+                          to={forumTopicPath(topic)}
+                          className="forum-row-title"
+                        >
+                          {topic.title}
+                        </Link>
+                        <div className="forum-row-author">
+                          <ForumAuthor profile={topic.profile} />
+                        </div>
+                      </div>
+                      <div className="forum-row-replies">
+                        <FiMessageSquare aria-hidden="true" />
+                        <span>{topic.reply_count}</span>
+                        <span className="sr-only">{tx("Replies")}</span>
+                      </div>
+                      <div className="forum-row-activity">
+                        <ForumDate value={topic.last_activity_at} />
+                      </div>
+                    </article>
+                  ))}
+                </div>
               )}
-            </p>
-            {!user && (
-              <p className="mt-2">
-                {tx(
-                  "Everyone can read the forum. Sign in or create an account to post.",
-                )}
-              </p>
-            )}
-          </aside>
+              <nav className="forum-pagination" aria-label={tx("Topics")}>
+                <span>
+                  {tx("Page")} {page + 1}
+                </span>
+                <div>
+                  <button
+                    disabled={page === 0}
+                    onClick={() => {
+                      const next = new URLSearchParams(params);
+                      next.set("page", String(page - 1));
+                      setParams(next);
+                    }}
+                  >
+                    <FiChevronLeft className="inline" /> {tx("Previous")}
+                  </button>
+                  <button
+                    disabled={(page + 1) * FORUM_PAGE_SIZE >= result.count}
+                    onClick={() => {
+                      const next = new URLSearchParams(params);
+                      next.set("page", String(page + 1));
+                      setParams(next);
+                    }}
+                  >
+                    {tx("Next")} <FiChevronRight className="inline" />
+                  </button>
+                </div>
+              </nav>
+            </section>
+            <aside className="forum-sidebar">
+              <ForumWelcome user={user} />
+              <ForumGuidelines />
+            </aside>
+          </div>
         </>
       )}
     </main>
@@ -417,10 +438,7 @@ function TopicComposer({ onCreated, initialCategory }) {
     }
   }
   return (
-    <form
-      onSubmit={submit}
-      className="max-w-3xl space-y-5 rounded-2xl border border-white/10 bg-[#0d141e] p-5 md:p-7"
-    >
+    <form onSubmit={submit} className="forum-editor space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2 text-sm font-bold">
           <span>{tx("Category")}</span>
@@ -488,7 +506,7 @@ function TopicComposer({ onCreated, initialCategory }) {
         disabled={
           busy || form.title.trim().length < 5 || form.body.trim().length < 10
         }
-        className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-black disabled:opacity-40"
+        className="forum-button"
       >
         {tx(busy ? "Publishing..." : "Publish topic")}
       </button>

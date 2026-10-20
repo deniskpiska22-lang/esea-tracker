@@ -1,3 +1,4 @@
+import "../components/forum/forum.css";
 import { useForumSession } from "../hooks/useForumSession.js";
 import { useEffect, useState } from "react";
 import { Navigate, useParams, useSearchParams } from "react-router-dom";
@@ -145,8 +146,8 @@ function ForumTopic() {
       <Navigate to={`${canonical}${params.size ? `?${params}` : ""}`} replace />
     );
   return (
-    <main className="mx-auto max-w-[1040px] px-4 py-8 md:px-6 md:py-12">
-      <Link to="/forum" className="text-sm font-bold text-orange-400">
+    <main className="forum-design forum-topic-page mx-auto max-w-[1040px] px-4 py-8 md:px-6 md:py-10">
+      <Link to="/forum" className="forum-topic-back">
         ← {tx("All topics")}
       </Link>
       {loading ? (
@@ -171,7 +172,7 @@ function ForumTopic() {
         </div>
       ) : (
         <>
-          <header className="mb-6 mt-7">
+          <header className="forum-topic-heading mb-6 mt-6">
             <div className="mb-3 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wide text-orange-300">
               <Link to={`/forum?category=${topic.category}`}>
                 {tx(forumCategory(topic.category).label)}
@@ -198,7 +199,7 @@ function ForumTopic() {
               {topic.reply_count} {tx("Replies")}
             </div>
           </header>
-          <article className="rounded-2xl border border-white/10 bg-[#0e1621] p-5 md:p-7">
+          <article className="forum-post forum-post-original rounded-2xl border p-5 md:p-7">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
               <ForumAuthor profile={topic.profile} />
               <ForumDate value={topic.created_at} />
@@ -238,7 +239,7 @@ function ForumTopic() {
               <article
                 id={`post-${post.id}`}
                 key={post.id}
-                className={`rounded-2xl border border-white/[.07] bg-[#0b121c] p-5 md:p-6 ${post.hidden ? "opacity-50" : ""}`}
+                className={`forum-post rounded-2xl border p-5 md:p-6 ${post.hidden ? "opacity-50" : ""}`}
               >
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
                   <ForumAuthor profile={post.profile} />
@@ -310,7 +311,7 @@ function ForumTopic() {
             ) : (
               <form
                 onSubmit={reply}
-                className="mt-4 rounded-2xl border border-white/10 bg-[#0d141e] p-5"
+                className="forum-editor forum-reply-editor mt-4"
               >
                 <label
                   className="mb-3 block text-sm font-bold"
@@ -333,7 +334,7 @@ function ForumTopic() {
                   </span>
                   <button
                     disabled={busy || !body.trim()}
-                    className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-black disabled:opacity-40"
+                    className="forum-button"
                   >
                     {tx(busy ? "Publishing..." : "Post reply")}
                   </button>

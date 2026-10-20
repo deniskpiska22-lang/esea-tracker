@@ -1,3 +1,4 @@
+import { FiArrowRight, FiMessageSquare } from "react-icons/fi";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Link from "../SiteLink.jsx";
@@ -24,8 +25,8 @@ export function ForumAuthor({ profile }) {
   const label =
     profile?.display_name || profile?.username || tx("Community member");
   return (
-    <span className="inline-flex min-w-0 items-center gap-2">
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-orange-500/10 text-[10px] font-black text-orange-300">
+    <span className="inline-flex min-w-0 max-w-full items-center gap-2">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-orange-500/10 text-[10px] font-black text-orange-300">
         {profile?.avatar_url ? (
           <img
             src={profile.avatar_url}
@@ -54,31 +55,31 @@ export function ForumAuthor({ profile }) {
 export function ForumLoginNotice() {
   const location = useLocation();
   return (
-    <div className="rounded-2xl border border-orange-400/15 bg-orange-500/5 p-5 text-sm leading-7 text-slate-400">
+    <section className="forum-login-panel">
+      <FiMessageSquare aria-hidden="true" />
+      <h2>{tx("Join the discussion")}</h2>
       <p>
         {tx(
           "Everyone can read the forum. Sign in or create an account to post.",
         )}
       </p>
-      <div className="mt-2 flex gap-4">
-        <Link
-          to="/login"
-          state={{ from: location }}
-          className="font-bold text-orange-400"
-        >
+      <div className="forum-login-actions">
+        <Link to="/login" state={{ from: location }} className="forum-button">
           {tx("Log in")}
+          <FiArrowRight aria-hidden="true" />
         </Link>
         <Link
           to="/register"
           state={{ from: location }}
-          className="font-bold text-slate-200"
+          className="forum-button forum-button-secondary"
         >
           {tx("Sign up")}
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
+
 export function ForumAlert({ children }) {
   return children ? (
     <p
