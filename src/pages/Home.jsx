@@ -1,4 +1,5 @@
 import { loadHomeMatchFeed } from "../utils/homeMatchFeed.js";
+import { UPCOMING_DIVISIONS, countUpcomingDivisions, filterUpcomingDivision } from "../utils/upcomingDivisions.js";
 import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { translateMatchStatus } from "../i18n/translate.js";
@@ -1552,6 +1553,8 @@ function NewsCard({
 }
 
 function Home() {
+  const [upcomingDivision, setUpcomingDivision] = useState("All");
+  const upcomingListRef = useRef(null);
   const [databaseRows, setDatabaseRows] = useState([]);
   const [databaseReady, setDatabaseReady] = useState(false);
   const [databaseError, setDatabaseError] = useState("");
@@ -1820,6 +1823,8 @@ function Home() {
   const upcoming = activeMatches.filter(
     (match) => !isLiveStatus(match.status)
   );
+  const upcomingCounts = countUpcomingDivisions(upcoming);
+  const filteredUpcoming = filterUpcomingDivision(upcoming, upcomingDivision);
 
   const liveTournament = useMemo(
     () =>
@@ -1911,12 +1916,43 @@ function Home() {
               ref={upcomingSectionRef}
               className="scroll-mt-24 rounded-[22px] border border-white/[0.07] bg-[#111820] p-4 md:p-5"
             >
-              <SectionTitle title={tx("Upcoming Matches")} />
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-xl font-black tracking-[-0.025em] text-white md:text-[22px]">
+                  {tx("Upcoming Matches")}
+                </h2>
+                <div role="group" aria-label={tx("Division")} className="flex max-w-full flex-wrap gap-1.5">
+                  {["All", ...UPCOMING_DIVISIONS].map((division) => {
+                    const selected = upcomingDivision === division;
+                    return (
+                      <button
+                        key={division}
+                        type="button"
+                        aria-pressed={selected}
+                        disabled={!databaseReady}
+                        onClick={() => {
+                          setUpcomingDivision(division);
+                          if (upcomingListRef.current) upcomingListRef.current.scrollTop = 0;
+                        }}
+                        className={`inline-flex min-h-9 items-center gap-1.5 rounded-lg border px-2.5 text-[10px] font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 disabled:cursor-wait disabled:opacity-40 ${
+                          selected
+                            ? "border-orange-500/40 bg-orange-500/[0.14] text-orange-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+                            : "border-white/[0.07] bg-[#0b1219] text-slate-400 hover:border-white/15 hover:bg-white/[0.04] hover:text-white"
+                        }`}
+                      >
+                        {division === "All" ? tx("All") : division}
+                        <span className={`rounded px-1 py-0.5 text-[9px] leading-none tabular-nums ${selected ? "bg-orange-400/15 text-orange-200" : "bg-white/[0.04] text-slate-500"}`}>
+                          {databaseReady ? upcomingCounts[division] : "—"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
-              {!databaseReady ? <div className="h-64 animate-pulse bg-white/5 rounded-2xl" /> : upcoming.length > 0 ? (
-                <div className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
+              {!databaseReady ? <div className="h-64 animate-pulse bg-white/5 rounded-2xl" /> : filteredUpcoming.length > 0 ? (
+                <div ref={upcomingListRef} className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    {upcoming.map((match) => (
+                    {filteredUpcoming.map((match) => (
                       <MatchCard
                         key={match.matchId || match.id}
                         match={match}
@@ -1925,7 +1961,14 @@ function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-600">{tx(" No matches scheduled in the next 24 hours ")}</div>
+                <div role="status" className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-500">
+                  {upcomingDivision === "All" ? tx("No matches scheduled in the next 24 hours") : tx("No matches")}
+                  {upcomingDivision !== "All" && (
+                    <button type="button" onClick={() => setUpcomingDivision("All")} className="rounded-lg border border-orange-500/20 bg-orange-500/[0.07] px-3 py-2 text-xs font-bold text-orange-400 transition-colors hover:bg-orange-500/15 focus-visible:outline-2 focus-visible:outline-orange-400">
+                      {tx("Clear filters")}
+                    </button>
+                  )}
+                </div>
               )}
             </section>
           </div>
