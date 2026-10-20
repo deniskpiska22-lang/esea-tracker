@@ -23,12 +23,12 @@ import matchStatsCompact from "../data/matchStatsCompact.json";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
 import { resolveRatingRow } from "../utils/resolveTeamRating";
-import { ACTIVE_MAP_POOL, isActiveMap } from "../utils/activeMapPool";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
+import LiveMapComparison from "../components/LiveMapComparison";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
 
@@ -589,138 +589,6 @@ function RecentMatchesCard({
   );
 }
 
-
-function getTeamMapStatistics(matches = []) {
-  const statsByMap = new Map();
-
-  matches.forEach((item) => {
-    const maps = Array.isArray(item.mapScores)
-      ? item.mapScores
-      : [];
-
-    maps.forEach((map) => {
-      const mapName = formatMapName(map.map);
-      if (!isActiveMap(mapName)) return;
-
-      const current = statsByMap.get(mapName) || {
-        wins: 0,
-        losses: 0,
-      };
-
-      const teamScore = toNumber(map.teamScore);
-      const opponentScore = toNumber(map.opponentScore);
-      const won =
-        typeof map.won === "boolean"
-          ? map.won
-          : teamScore > opponentScore;
-
-      if (won) {
-        current.wins += 1;
-      } else {
-        current.losses += 1;
-      }
-
-      statsByMap.set(mapName, current);
-    });
-  });
-
-  return statsByMap;
-}
-
-function getMapWinrate(record) {
-  const played = record.wins + record.losses;
-
-  return played > 0
-    ? Math.round((record.wins / played) * 100)
-    : 0;
-}
-
-function MapStatisticsCard({
-  leftTeam,
-  rightTeam,
-  leftMatches,
-  rightMatches,
-}) {
-  const leftStats = useMemo(
-    () => getTeamMapStatistics(leftMatches),
-    [leftMatches]
-  );
-
-  const rightStats = useMemo(
-    () => getTeamMapStatistics(rightMatches),
-    [rightMatches]
-  );
-
-  const maps = ACTIVE_MAP_POOL;
-
-  return (
-    <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
-      <div className="border-b border-[#243041] px-5 py-4">
-        <h2 className="text-xl font-black">{tx("Map Statistics")}</h2>
-        <p className="mt-1 text-xs text-gray-500">{tx(" Historical results from tracked matches ")}</p>
-      </div>
-
-      <div className="grid grid-cols-[minmax(0,1fr)_72px_72px] gap-2 border-b border-[#243041] px-5 py-3 text-xs text-gray-500">
-        <div>{tx("Map")}</div>
-        <div className="truncate text-center">{leftTeam.name}</div>
-        <div className="truncate text-center">{rightTeam.name}</div>
-      </div>
-
-      {maps.length === 0 ? (
-        <div className="p-6 text-sm text-gray-500">{tx(" Map statistics are not available yet. ")}</div>
-      ) : (
-        <div>
-          {maps.map((mapName) => {
-            const left = leftStats.get(mapName) || {
-              wins: 0,
-              losses: 0,
-            };
-            const right = rightStats.get(mapName) || {
-              wins: 0,
-              losses: 0,
-            };
-
-            return (
-              <div
-                key={mapName}
-                className="grid grid-cols-[minmax(0,1fr)_72px_72px] items-center gap-2 border-b border-[#1d2634] px-5 py-3 last:border-b-0"
-              >
-                <div className="flex min-w-0 items-center gap-3">
-                  <img
-                    src={`/maps/${mapName.toLowerCase()}.png`}
-                    alt=""
-                    className="h-10 w-14 rounded-md bg-[#0b0f14] object-cover"
-                    onError={(event) => {
-                      event.currentTarget.style.display = "none";
-                    }}
-                  />
-
-                  <div className="truncate font-bold">{mapName}</div>
-                </div>
-
-                {[left, right].map((record, index) => (
-                  <div
-                    key={`${mapName}-${index}`}
-                    className="text-center"
-                  >
-                    <div className="text-sm font-black">
-                      <span className="text-green-400">{record.wins}{tx("W")}</span>
-                      <span className="text-gray-600"> - </span>
-                      <span className="text-red-400">{record.losses}{tx("L")}</span>
-                    </div>
-                    <div className="mt-1 text-xs text-gray-500">
-                      {getMapWinrate(record)}%
-                    </div>
-                  </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </section>
-  );
-}
 
 function VoteCard({ matchId, team1, team2 }) {
   const location = useLocation();
@@ -1857,12 +1725,12 @@ function UpcomingMatchPage() {
     (match) => match.teamSlug === rightLocalTeam?.slug
   );
 
-  const { matches: leftAllMatches = [] } = useTeamStats(
+  const { matches: leftAllMatches = [], loading: leftStatsLoading, error: leftStatsError } = useTeamStats(
     leftLocalTeam?.slug,
     leftFallbackMatches
   );
 
-  const { matches: rightAllMatches = [] } = useTeamStats(
+  const { matches: rightAllMatches = [], loading: rightStatsLoading, error: rightStatsError } = useTeamStats(
     rightLocalTeam?.slug,
     rightFallbackMatches
   );
@@ -2168,17 +2036,18 @@ function UpcomingMatchPage() {
         )}
 
         {!showFinishedSections && !isLive && (
-          <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.6fr)]">
-            <div className="space-y-6">
-              <MapStatisticsCard
-                leftTeam={displayTeam1}
-                rightTeam={displayTeam2}
-                leftMatches={leftRecentMatches}
-                rightMatches={rightRecentMatches}
-              />
-            </div>
+          <div className="mt-6 space-y-6">
+            <LiveMapComparison
+              matchId={matchId}
+              leftTeam={{ ...displayTeam1, logo: leftLocalTeam?.logo || displayTeam1.logo }}
+              rightTeam={{ ...displayTeam2, logo: rightLocalTeam?.logo || displayTeam2.logo }}
+              leftMatches={leftAllMatches}
+              rightMatches={rightAllMatches}
+              loading={leftStatsLoading || rightStatsLoading}
+              error={Boolean(leftStatsError || rightStatsError)}
+            />
 
-            <div className="space-y-6">
+            <div className="grid items-start gap-6 lg:grid-cols-2">
             <VoteCard
               matchId={matchId}
               team1={displayTeam1}
