@@ -1,3 +1,4 @@
+import { resolveForumSession } from "../src/utils/forum.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -74,5 +75,21 @@ test("rate limits and moderation denials have friendly errors without database d
   assert.equal(
     forumError({ message: "FORUM_FORBIDDEN leaked table" }),
     "Could not complete the request. Please try again.",
+  );
+});
+
+test("guest sessions and account changes never retain moderator permissions", () => {
+  assert.deepEqual(resolveForumSession(null, undefined), {
+    moderator: false,
+    blocked: false,
+  });
+  assert.deepEqual(
+    resolveForumSession({ userId: "old", moderator: true }, "new"),
+    { moderator: false, blocked: false },
+  );
+  assert.equal(
+    resolveForumSession({ userId: "current", moderator: true }, "current")
+      .moderator,
+    true,
   );
 });

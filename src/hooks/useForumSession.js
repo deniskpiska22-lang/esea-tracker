@@ -1,3 +1,4 @@
+import { resolveForumSession } from "../utils/forum.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { supabase } from "../lib/supabaseClient.js";
@@ -15,7 +16,5 @@ export function useForumSession() {
       active = false;
     };
   }, [user]);
-  return session?.userId === user?.id
-    ? session
-    : { moderator: false, blocked: false };
+  return resolveForumSession(session, user?.id);
 }

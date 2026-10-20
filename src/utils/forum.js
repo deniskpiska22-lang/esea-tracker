@@ -90,3 +90,9 @@ export function forumTopicMetadata(topic, language) {
 }
 export const escapeForumSearch = (value) =>
   value.replace(/[\\%_]/g, "\\$&").slice(0, 100);
+
+export function resolveForumSession(session, userId) {
+  return session && userId && session.userId === userId
+    ? session
+    : { moderator: false, blocked: false };
+}
