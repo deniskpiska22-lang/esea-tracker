@@ -2565,7 +2565,9 @@ async function scanDiscoverySources(workerName, jobs, fetchPage, rows, intervalM
 
 async function discoverCurrentSeasonByChampionship(rows) {
   const config = JSON.parse(fs.readFileSync("scripts/v2/standings.config.json", "utf8"));
-  const sources = CHAMPIONSHIPS.filter((item) => item.name.startsWith(`S${config.season} `));
+  const sources = CHAMPIONSHIPS.filter(
+    (item) => item.ratingTournament || item.name.startsWith(`S${config.season} `)
+  );
   await scanDiscoverySources("match-discovery-public", sources, async (championship, offset) => {
     const data = await fetchJson(buildChampionshipMatchesUrl(championship.id, offset), {
       headers: { Authorization: `Bearer ${faceitApiKey}`, Accept: "application/json" },

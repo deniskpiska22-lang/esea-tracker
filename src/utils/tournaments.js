@@ -22,7 +22,11 @@ export function findTournamentByName(name) {
 
 export function getTournamentStatus(tournament) {
   const start = new Date(tournament?.startDate).getTime();
-  const end = new Date(tournament?.endDate).getTime();
+  // Calendar dates include the whole final day, including one-day qualifiers.
+  const endValue = /^\d{4}-\d{2}-\d{2}$/.test(tournament?.endDate || "")
+    ? `${tournament.endDate}T23:59:59.999Z`
+    : tournament?.endDate;
+  const end = new Date(endValue).getTime();
 
   if (Number.isNaN(start) || Number.isNaN(end)) {
     return "upcoming";

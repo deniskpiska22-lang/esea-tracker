@@ -150,6 +150,9 @@ async function runDueTasks() {
 
   if (lastDiscoveryAt === 0 || now - lastDiscoveryAt >= DISCOVERY_INTERVAL_MS) {
     lastDiscoveryAt = now;
+    // Keep imported qualifier brackets and match rows current through the
+    // deployed automation service as well as the dedicated tournament worker.
+    await runTask("tournament-refresh", "scripts/tournamentWorker.js", ["--once"]);
     await runTask("match-discovery", "scripts/autoSyncMatches.js", [], {
       RUN_POST_MATCH_PIPELINE: "0",
       RUN_WEEKLY_RATING_SNAPSHOT: "0",

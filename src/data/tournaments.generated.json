@@ -6422,5 +6422,540 @@
     "mapPool": null,
     "relatedEvents": null,
     "matches": null
+  },
+  {
+    "id": "elisa-open-suomi-14-avoin-karsinta-2",
+    "championshipId": "012b5740-614e-40df-a46b-abbc951f5615",
+    "name": "Elisa Open Suomi 14 | Avoin karsinta 2",
+    "logo": null,
+    "tier": null,
+    "location": "Online",
+    "startDate": "2026-10-20",
+    "endDate": "2026-10-20",
+    "url": "https://www.faceit.com/en/championship/012b5740-614e-40df-a46b-abbc951f5615/Elisa%20Open%20Suomi%2014%20%7C%20Avoin%20karsinta%202",
+    "prizePool": null,
+    "description": "Tämä on 2. karsintaturnaus Elisa Open Suomen 14. kaudelle. Kaudelle osallistuu 8 karsintajoukkuetta. Kauden palkintopotissa on tuttuun tapaan 5000€ ja VRS-pisteitä!\n\nTämä karsinta pelataan perjantaina 20.10.2026 klo 18:00 alkaen. Karsinta pelataan Single elimination -formaatilla.\n\nOttelut ovat BO1, lukuunottamatta ratkaisevia RO4-otteluita, jotka pelataan BO3-muodossa. Karsinnassa pelataan kaikki kierrokset tulevan kauden seedausta varten.\n\nENNEN KARSINTAAN OSALLISTUMISTA MUISTATHAN TARKISTAA SÄÄNTÖKIRJAN \"SÄÄNNÖT\" VÄLILEHDELTÄ.\n\nCommunity Casterit voivat kysellä CSTV-osotteita otteluihin Discordissa käyttäjältä tomi.dog",
+    "formats": null,
+    "teams": [
+      {
+        "name": "Rounds",
+        "logo": "https://distribution.faceit-cdn.net/images/1194c8a4-27cf-4bfb-814f-115755e69319.jpg",
+        "slug": "rounds-e1b6291c"
+      },
+      {
+        "name": "Nordic Valor",
+        "logo": "https://distribution.faceit-cdn.net/images/327017e7-95df-4dc7-9493-1addabcc72d2.jpg",
+        "slug": "nordic-valor-8472f697"
+      },
+      {
+        "name": "INCEPTOR",
+        "logo": "https://distribution.faceit-cdn.net/images/5231b6b6-f489-46e6-b798-77b137f112ad.jpeg",
+        "slug": "inceptor-33f6f41c"
+      },
+      {
+        "name": "TAUNOPEEK",
+        "logo": "https://distribution.faceit-cdn.net/images/88b3b36d-1c7c-4b53-8420-869ddab204f5.jpg",
+        "slug": null
+      },
+      {
+        "name": "Boolsheet",
+        "logo": "https://distribution.faceit-cdn.net/images/c4e0738b-963c-4e7d-99bd-b8a158536d7b.jpg",
+        "slug": "boolsheet-ac8d9230"
+      },
+      {
+        "name": "BOJONG",
+        "logo": "https://distribution.faceit-cdn.net/images/c59db20e-19a1-4523-9043-a68f7bc19529.jpg",
+        "slug": "bojong-f618f1aa"
+      },
+      {
+        "name": "KAMKGG",
+        "logo": "https://distribution.faceit-cdn.net/images/c62e2ef5-5c26-4723-9014-7de6fe9d742b.jpg",
+        "slug": "kamkgg-5e10b578"
+      },
+      {
+        "name": "FamiljenAndersson eSports",
+        "logo": "https://distribution.faceit-cdn.net/images/dac59363-c5ef-4a9d-929d-a123125b519f.jpg",
+        "slug": null
+      },
+      {
+        "name": "Koulun Kone",
+        "logo": "https://distribution.faceit-cdn.net/images/9dd22e99-571a-44d0-be38-cd6d3783b9e4.jpg",
+        "slug": null
+      },
+      {
+        "name": "Rcave",
+        "logo": "https://distribution.faceit-cdn.net/images/d63e543b-f4ef-4ff6-a76c-a227de2747ca.jpg",
+        "slug": "trainwrecks-esports-51e8244f"
+      },
+      {
+        "name": "100 Oxygen Thieves",
+        "logo": "https://distribution.faceit-cdn.net/images/f3bdfd25-07df-40e8-9e6c-ba646ba24d19.jpg",
+        "slug": "exen-1ce16320"
+      },
+      {
+        "name": "KULTAINENCS",
+        "logo": "https://distribution.faceit-cdn.net/images/0f302e12-4c51-41bf-a834-ddf06e4db584.jpg",
+        "slug": null
+      },
+      {
+        "name": "KUUSAMO",
+        "logo": "https://distribution.faceit-cdn.net/images/e7bb8241-848e-469d-a386-01c8db64d621.jpg",
+        "slug": "kuusamogg-a1f439e6"
+      },
+      {
+        "name": "MENOKATTI",
+        "logo": "https://distribution.faceit-cdn.net/images/b22046d1-0b1e-4538-bbb2-36d04873ce66.jpg",
+        "slug": null
+      },
+      {
+        "name": "EK CSKeisari",
+        "logo": "https://distribution.faceit-cdn.net/images/ad449da3-37c4-40a8-9e67-1b495195670a.jpg",
+        "slug": "ek-cskeisari-a6627112"
+      },
+      {
+        "name": "Pesujakuivaus60",
+        "logo": "https://distribution.faceit-cdn.net/images/f875502d-658f-45d6-bac9-832f5261e202.jpg",
+        "slug": "pesujakuivaus60-ed6f77b1"
+      },
+      {
+        "name": "KingKong Esport",
+        "logo": "https://distribution.faceit-cdn.net/images/2b172c7b-c4a9-48c0-93df-415bf946eebb.jpg",
+        "slug": null
+      },
+      {
+        "name": "Sector 00",
+        "logo": "https://distribution.faceit-cdn.net/images/146e49c9-0a52-4b32-a9b5-91d30c8a6803.jpg",
+        "slug": null
+      },
+      {
+        "name": "TOOMUCHVIDEOGAMES",
+        "logo": "https://distribution.faceit-cdn.net/images/6f570aa9-e762-4038-8d39-c1939e0ec13f.jpg",
+        "slug": null
+      },
+      {
+        "name": "Louhi Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/31824c81-79b1-49d1-964b-8e7bbb50c099.jpg",
+        "slug": null
+      },
+      {
+        "name": "miumau",
+        "logo": "https://distribution.faceit-cdn.net/images/a5e8c664-b37f-4b9b-ae36-0a55c299f3ce.jpg",
+        "slug": null
+      },
+      {
+        "name": "SWMDM",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "swmdm-d0472a93"
+      },
+      {
+        "name": "PELIA",
+        "logo": "https://distribution.faceit-cdn.net/images/9f6ac3f5-50ee-4c42-91ed-cc6c4ff26950.jpg",
+        "slug": "pelia-7fe07eb1"
+      },
+      {
+        "name": "Prestige",
+        "logo": "https://distribution.faceit-cdn.net/images/e3e33345-4d04-4e46-8a4f-745fd613d191.jpeg",
+        "slug": null
+      },
+      {
+        "name": "CSDIILIT",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "csdiilit-bf4507a1"
+      },
+      {
+        "name": "nonnih",
+        "logo": "https://distribution.faceit-cdn.net/images/39e7e70f-9171-4f33-9fec-b316302938d4.jpg",
+        "slug": "nonnih-7916bdcc"
+      },
+      {
+        "name": "ObesePeek_Klaukkala",
+        "logo": "https://distribution.faceit-cdn.net/images/93a706c9-bf12-44a5-9ede-26593f2b697c.jpg",
+        "slug": null
+      },
+      {
+        "name": "jouluposti2005",
+        "logo": "https://distribution.faceit-cdn.net/images/22911803-3a6b-4b59-a163-cf1e99a0c83c.jpg",
+        "slug": null
+      },
+      {
+        "name": "AELG LFO",
+        "logo": "https://distribution.faceit-cdn.net/images/8fdee5de-926c-4518-9813-34c7e5fe6b5c.jpg",
+        "slug": "rcave-c469df83"
+      },
+      {
+        "name": "ABREU",
+        "logo": "https://distribution.faceit-cdn.net/images/004b6b9a-a9b5-46ef-9787-84060fd1ec20.jpeg",
+        "slug": "abreu-fe82a219"
+      },
+      {
+        "name": "Onxpakko",
+        "logo": null,
+        "slug": null
+      },
+      {
+        "name": "BoyBand",
+        "logo": "https://distribution.faceit-cdn.net/images/e08e020c-f965-44e3-8036-743f6c5a9479.jpg",
+        "slug": null
+      },
+      {
+        "name": "VAMOSSUG",
+        "logo": "https://distribution.faceit-cdn.net/images/b6f86048-f870-4702-b568-5a0e4f12d7cc.jpg",
+        "slug": null
+      },
+      {
+        "name": "ENCE Prospects",
+        "logo": "https://distribution.faceit-cdn.net/images/dea6ecb1-c3b1-4fab-bf9d-b176bbd0f937.jpeg",
+        "slug": "ence-prospects-d66fe13d"
+      },
+      {
+        "name": "binlocos",
+        "logo": "https://distribution.faceit-cdn.net/images/f20bc91e-a458-42ea-a3c8-e6f21e2662de.jpg",
+        "slug": null
+      }
+    ],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "elisa-open-suomi-14-avoin-karsinta-3",
+    "championshipId": "c791543a-1551-4ba5-ad5e-52d4cf43fcb4",
+    "name": "Elisa Open Suomi 14 | Avoin karsinta 3",
+    "logo": null,
+    "tier": null,
+    "location": "Online",
+    "startDate": "2026-10-21",
+    "endDate": "2026-10-21",
+    "url": "https://www.faceit.com/en/championship/c791543a-1551-4ba5-ad5e-52d4cf43fcb4/Elisa%20Open%20Suomi%2014%20%7C%20Avoin%20karsinta%203",
+    "prizePool": null,
+    "description": "Tämä on 3. karsintaturnaus Elisa Open Suomen 14. kaudelle. Kaudelle osallistuu 8 karsintajoukkuetta. Kauden palkintopotissa on tuttuun tapaan 5000€ ja VRS-pisteitä!\n\nTämä karsinta pelataan keskiviikkona 21.10.2026 klo 18:00 alkaen. Karsinta pelataan Single elimination -formaatilla.\n\nOttelut ovat BO1, lukuunottamatta ratkaisevia RO4-otteluita, jotka pelataan BO3-muodossa. Karsinnassa pelataan kaikki kierrokset tulevan kauden seedausta varten.\n\nENNEN KARSINTAAN OSALLISTUMISTA MUISTATHAN TARKISTAA SÄÄNTÖKIRJAN \"SÄÄNNÖT\" VÄLILEHDELTÄ.\n\nCommunity Casterit voivat kysellä CSTV-osotteita otteluihin Discordissa käyttäjältä tomi.dog",
+    "formats": null,
+    "teams": [
+      {
+        "name": "Rounds",
+        "logo": "https://distribution.faceit-cdn.net/images/1194c8a4-27cf-4bfb-814f-115755e69319.jpg",
+        "slug": "rounds-e1b6291c"
+      },
+      {
+        "name": "Nordic Valor",
+        "logo": "https://distribution.faceit-cdn.net/images/327017e7-95df-4dc7-9493-1addabcc72d2.jpg",
+        "slug": "nordic-valor-8472f697"
+      },
+      {
+        "name": "INCEPTOR",
+        "logo": "https://distribution.faceit-cdn.net/images/5231b6b6-f489-46e6-b798-77b137f112ad.jpeg",
+        "slug": "inceptor-33f6f41c"
+      },
+      {
+        "name": "TAUNOPEEK",
+        "logo": "https://distribution.faceit-cdn.net/images/88b3b36d-1c7c-4b53-8420-869ddab204f5.jpg",
+        "slug": null
+      },
+      {
+        "name": "Boolsheet",
+        "logo": "https://distribution.faceit-cdn.net/images/c4e0738b-963c-4e7d-99bd-b8a158536d7b.jpg",
+        "slug": "boolsheet-ac8d9230"
+      },
+      {
+        "name": "BOJONG",
+        "logo": "https://distribution.faceit-cdn.net/images/c59db20e-19a1-4523-9043-a68f7bc19529.jpg",
+        "slug": "bojong-f618f1aa"
+      },
+      {
+        "name": "KAMKGG",
+        "logo": "https://distribution.faceit-cdn.net/images/c62e2ef5-5c26-4723-9014-7de6fe9d742b.jpg",
+        "slug": "kamkgg-5e10b578"
+      },
+      {
+        "name": "FamiljenAndersson",
+        "logo": "https://distribution.faceit-cdn.net/images/dac59363-c5ef-4a9d-929d-a123125b519f.jpg",
+        "slug": null
+      },
+      {
+        "name": "Koulun Kone",
+        "logo": "https://distribution.faceit-cdn.net/images/9dd22e99-571a-44d0-be38-cd6d3783b9e4.jpg",
+        "slug": null
+      },
+      {
+        "name": "Pesujakuivaus60",
+        "logo": "https://distribution.faceit-cdn.net/images/f875502d-658f-45d6-bac9-832f5261e202.jpg",
+        "slug": "pesujakuivaus60-ed6f77b1"
+      },
+      {
+        "name": "Rcave",
+        "logo": "https://distribution.faceit-cdn.net/images/d63e543b-f4ef-4ff6-a76c-a227de2747ca.jpg",
+        "slug": "trainwrecks-esports-51e8244f"
+      },
+      {
+        "name": "100 Oxygen Thieves",
+        "logo": "https://distribution.faceit-cdn.net/images/f3bdfd25-07df-40e8-9e6c-ba646ba24d19.jpg",
+        "slug": "exen-1ce16320"
+      },
+      {
+        "name": "KULTAINENCS",
+        "logo": "https://distribution.faceit-cdn.net/images/0f302e12-4c51-41bf-a834-ddf06e4db584.jpg",
+        "slug": null
+      },
+      {
+        "name": "EK CSKeisari",
+        "logo": "https://distribution.faceit-cdn.net/images/ad449da3-37c4-40a8-9e67-1b495195670a.jpg",
+        "slug": "ek-cskeisari-a6627112"
+      },
+      {
+        "name": "TOOMUCHVIDEOGAMES",
+        "logo": "https://distribution.faceit-cdn.net/images/6f570aa9-e762-4038-8d39-c1939e0ec13f.jpg",
+        "slug": null
+      },
+      {
+        "name": "Louhi Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/31824c81-79b1-49d1-964b-8e7bbb50c099.jpg",
+        "slug": null
+      },
+      {
+        "name": "MENOKATTI",
+        "logo": "https://distribution.faceit-cdn.net/images/b22046d1-0b1e-4538-bbb2-36d04873ce66.jpg",
+        "slug": null
+      },
+      {
+        "name": "miumau",
+        "logo": "https://distribution.faceit-cdn.net/images/a5e8c664-b37f-4b9b-ae36-0a55c299f3ce.jpg",
+        "slug": null
+      },
+      {
+        "name": "SWMDM",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "swmdm-d0472a93"
+      },
+      {
+        "name": "PELIA",
+        "logo": "https://distribution.faceit-cdn.net/images/9f6ac3f5-50ee-4c42-91ed-cc6c4ff26950.jpg",
+        "slug": "pelia-7fe07eb1"
+      },
+      {
+        "name": "Prestige",
+        "logo": "https://distribution.faceit-cdn.net/images/e3e33345-4d04-4e46-8a4f-745fd613d191.jpeg",
+        "slug": null
+      },
+      {
+        "name": "CSDIILIT",
+        "logo": "/logos/faceit-logo.png",
+        "slug": "csdiilit-bf4507a1"
+      },
+      {
+        "name": "nonnih",
+        "logo": "https://distribution.faceit-cdn.net/images/39e7e70f-9171-4f33-9fec-b316302938d4.jpg",
+        "slug": "nonnih-7916bdcc"
+      },
+      {
+        "name": "ObesePeek_Klaukkala",
+        "logo": "https://distribution.faceit-cdn.net/images/93a706c9-bf12-44a5-9ede-26593f2b697c.jpg",
+        "slug": null
+      },
+      {
+        "name": "binlocos",
+        "logo": "https://distribution.faceit-cdn.net/images/f20bc91e-a458-42ea-a3c8-e6f21e2662de.jpg",
+        "slug": null
+      }
+    ],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-south-america-8-open-qualifier",
+    "championshipId": "58679fd4-2429-49c2-9d50-1fcd4b265c7f",
+    "name": "CCT 2026 South America 8 - Open Qualifier",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-10-24",
+    "endDate": "2026-11-14",
+    "url": "https://www.faceit.com/en/championship/58679fd4-2429-49c2-9d50-1fcd4b265c7f/CCT%202026%20South%20America%208%20-%20Open%20Qualifier",
+    "prizePool": null,
+    "description": "Qualification: Top 5 teams will advance to the Group Stage of CCT 2026 South America Series 8.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 South America Series 8.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/1AqieG5RtgojkY1RfMDBXZzVe1alnUWLCktMG8VLz4JI/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in South America Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": null,
+    "teams": [
+      {
+        "name": "ICARUS GAMING",
+        "logo": "https://distribution.faceit-cdn.net/images/eda7da4a-2761-4962-a620-37a9b91ed41b.jpg",
+        "slug": null
+      },
+      {
+        "name": "Outlaw eSports",
+        "logo": "https://distribution.faceit-cdn.net/images/175bfa3a-638d-43b7-89d5-a392045104d3.jpg",
+        "slug": null
+      },
+      {
+        "name": "TLK E-Sports",
+        "logo": "https://distribution.faceit-cdn.net/images/37aa2b31-f69c-43b4-b119-1e984fef8faa.jpg",
+        "slug": null
+      },
+      {
+        "name": "TNK TAPA NA KARA",
+        "logo": "https://distribution.faceit-cdn.net/images/54766ae8-6d3d-467c-86ae-4ae1054e1f7b.jpg",
+        "slug": null
+      },
+      {
+        "name": "Arena Pro Team",
+        "logo": "https://distribution.faceit-cdn.net/images/6465cc5d-2c6a-42a0-8b5f-4c756f79e11c.jpg",
+        "slug": null
+      },
+      {
+        "name": "1BalaBasta",
+        "logo": "https://distribution.faceit-cdn.net/images/f131f7d1-5a1d-4cd4-ad0a-d33f0f7f1918.jpg",
+        "slug": null
+      },
+      {
+        "name": "MouseTrap Sports",
+        "logo": "https://distribution.faceit-cdn.net/images/163d3ac0-7b5b-4e06-a71b-a1fc91621509.jpg",
+        "slug": null
+      },
+      {
+        "name": "BTH Esports",
+        "logo": "https://distribution.faceit-cdn.net/images/d3bedec9-faa8-4e49-b367-2e8775effcae.jpg",
+        "slug": null
+      },
+      {
+        "name": "paiN Academy",
+        "logo": "https://distribution.faceit-cdn.net/images/efb144a3-375e-48ef-be05-c1e77f1994f4.jpg",
+        "slug": null
+      },
+      {
+        "name": "Riprising Argentina",
+        "logo": "https://distribution.faceit-cdn.net/images/a59bc536-fb43-4b45-b0cb-90ef24ff0e3d.jpg",
+        "slug": null
+      },
+      {
+        "name": "AMERICA ORDENHADOS FC",
+        "logo": "https://distribution.faceit-cdn.net/images/a653b9b4-bf77-4561-a395-b1c4d0ed8033.jpg",
+        "slug": null
+      },
+      {
+        "name": "LOS",
+        "logo": "https://distribution.faceit-cdn.net/images/22e44eda-4736-4040-baa3-7f14a1588b6d.jpg",
+        "slug": null
+      },
+      {
+        "name": "acabou o sossego",
+        "logo": "https://distribution.faceit-cdn.net/images/5d842d95-88ba-49a2-8df4-eba3f3d3ace6.jpg",
+        "slug": null
+      },
+      {
+        "name": "RED Canids ac",
+        "logo": "https://distribution.faceit-cdn.net/images/7646cbe4-f921-422b-8e9e-872e2f5690dc.jpg",
+        "slug": null
+      },
+      {
+        "name": "HUB GAMING",
+        "logo": "https://distribution.faceit-cdn.net/images/20a1da45-339b-41a3-a25f-b6556a10078f.jpg",
+        "slug": null
+      },
+      {
+        "name": "100CHANSE",
+        "logo": "https://distribution.faceit-cdn.net/images/70be2da1-4924-4880-b4a1-1b135e727de7.jpg",
+        "slug": null
+      },
+      {
+        "name": "GOTEI FIVE",
+        "logo": null,
+        "slug": null
+      }
+    ],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-contenders-europe-11-open-qualifier-1",
+    "championshipId": "caf0ec12-d4a6-4d35-8916-f2f3122b4c37",
+    "name": "CCT 2026 Contenders Europe 11 - Open Qualifier 1",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-11-07",
+    "endDate": "2026-11-27",
+    "url": "https://www.faceit.com/en/championship/caf0ec12-d4a6-4d35-8916-f2f3122b4c37/CCT%202026%20Contenders%20Europe%2011%20-%20Open%20Qualifier%201",
+    "prizePool": null,
+    "description": "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 11.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 8.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/1rggjQQkI3KAAUB236uwg9P7ZVbvuq80aygDWoVtDCsk/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in Europe Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": null,
+    "teams": [],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-challengers-south-america-4-open-qualifier-1",
+    "championshipId": "bf478b03-383d-4d65-9a26-c83b3a78612c",
+    "name": "CCT 2026 Challengers South America 4 - Open Qualifier 1",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-11-07",
+    "endDate": "2026-11-21",
+    "url": "https://www.faceit.com/en/championship/bf478b03-383d-4d65-9a26-c83b3a78612c/CCT%202026%20Challengers%20South%20America%204%20-%20Open%20Qualifier%201",
+    "prizePool": null,
+    "description": "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Challengers South America 4.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Challengers South America 4.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/1lwEnFgM6uGawKymBz5g6mAv9NeLLXtDH8aUaH1NOoOk/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in South America Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": null,
+    "teams": [],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-contenders-europe-11-open-qualifier-2",
+    "championshipId": "fcd2f11c-803c-4007-b79e-2a411c6cafb3",
+    "name": "CCT 2026 Contenders Europe 11 - Open Qualifier 2",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-11-08",
+    "endDate": "2026-11-28",
+    "url": "https://www.faceit.com/en/championship/fcd2f11c-803c-4007-b79e-2a411c6cafb3/CCT%202026%20Contenders%20Europe%2011%20-%20Open%20Qualifier%202",
+    "prizePool": null,
+    "description": "Qualification: Top 8 teams will advance to the Main Event of CCT 2026 Contenders Europe 8.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Contenders Europe 8.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/1rggjQQkI3KAAUB236uwg9P7ZVbvuq80aygDWoVtDCsk/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in Europe Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": null,
+    "teams": [],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
+  },
+  {
+    "id": "cct-2026-challengers-south-america-4-open-qualifier-2",
+    "championshipId": "45e581f1-9f0c-40ec-8d65-e2d8888c739e",
+    "name": "CCT 2026 Challengers South America 4 - Open Qualifier 2",
+    "logo": null,
+    "tier": "B",
+    "location": "Online",
+    "startDate": "2026-11-08",
+    "endDate": "2026-11-15",
+    "url": "https://www.faceit.com/en/championship/45e581f1-9f0c-40ec-8d65-e2d8888c739e/CCT%202026%20Challengers%20South%20America%204%20-%20Open%20Qualifier%202",
+    "prizePool": null,
+    "description": "Qualification: Top 4 teams will advance to the Main Event of CCT 2026 Challengers South America 4.\n\nMatch Format: All matches will be played in Best-of-1 format.\n\nRoster Locks: Rosters are locked at the start of the tournament; no changes allowed once competition begins. Teams that qualify must use the same starting five during CCT 2026 Challengers South America 4.\n\nTeam Availability: Qualified teams must confirm full availability to participate according to the event schedule -  [Event Schedule](https://docs.google.com/spreadsheets/d/1lwEnFgM6uGawKymBz5g6mAv9NeLLXtDH8aUaH1NOoOk/edit?usp=sharing).\n\nEligibility Compliance:\n- Players must not have active FACEIT game bans; otherwise, matches will not launch on the platform.\n- All players must reside in South America Region. Failure to comply may result in team disqualification.\n\nAny team that qualifies through Open Qualifiers must be fully eligible to compete in the regional event, in line with Valve’s Tournament Operating Requirements and the CCT Rulebook. This includes:\n- The core roster, for all matches, must currently reside in the region they are competing in.\n- The core roster used to qualify (at least 3 of the 5 players) must be maintained for all starting matches of the regional event.\n- Any changes to the qualified roster must be pre-approved by Tournament Officials.\nTeams that don’t meet these requirements may be disqualified or replaced without further notice.",
+    "formats": null,
+    "teams": [],
+    "bracket": null,
+    "groups": null,
+    "prizeDistribution": null,
+    "mapPool": null,
+    "relatedEvents": null,
+    "matches": null
   }
 ]

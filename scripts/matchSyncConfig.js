@@ -2,6 +2,42 @@ import fs from "node:fs";
 import path from "node:path";
 
 const LEGACY_CHAMPIONSHIPS = [
+  // Imported qualifiers: discover their matches even outside the ESEA season tree.
+  {
+    "id": "012b5740-614e-40df-a46b-abbc951f5615",
+    "name": "Elisa Open Suomi 14 | Avoin karsinta 2",
+    "ratingTournament": true
+  },
+  {
+    "id": "c791543a-1551-4ba5-ad5e-52d4cf43fcb4",
+    "name": "Elisa Open Suomi 14 | Avoin karsinta 3",
+    "ratingTournament": true
+  },
+  {
+    "id": "58679fd4-2429-49c2-9d50-1fcd4b265c7f",
+    "name": "CCT 2026 South America 8 - Open Qualifier",
+    "ratingTournament": true
+  },
+  {
+    "id": "caf0ec12-d4a6-4d35-8916-f2f3122b4c37",
+    "name": "CCT 2026 Contenders Europe 11 - Open Qualifier 1",
+    "ratingTournament": true
+  },
+  {
+    "id": "bf478b03-383d-4d65-9a26-c83b3a78612c",
+    "name": "CCT 2026 Challengers South America 4 - Open Qualifier 1",
+    "ratingTournament": true
+  },
+  {
+    "id": "fcd2f11c-803c-4007-b79e-2a411c6cafb3",
+    "name": "CCT 2026 Contenders Europe 11 - Open Qualifier 2",
+    "ratingTournament": true
+  },
+  {
+    "id": "45e581f1-9f0c-40ec-8d65-e2d8888c739e",
+    "name": "CCT 2026 Challengers South America 4 - Open Qualifier 2",
+    "ratingTournament": true
+  },
   // Season Finals are seeded explicitly so match discovery works immediately
   // even before the cached season hierarchy is refreshed on Railway.
   {
