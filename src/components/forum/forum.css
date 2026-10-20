@@ -545,7 +545,7 @@
   transition: background 0.18s;
 }
 .forum-row:hover {
-  background: #ffffff025;
+  background: #ffffff06;
 }
 .forum-row-pinned {
   background: linear-gradient(90deg, #ffa44d05, transparent);
