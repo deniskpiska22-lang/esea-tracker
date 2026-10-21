@@ -75,6 +75,8 @@ async function fetchAllRows({ table, select, orderColumn, ascending = true, filt
       query = query.order(orderColumn, { ascending, nullsFirst: false });
     }
 
+    if (table === "matches") query = query.order("id", { ascending: true });
+
     const { data, error } = await query;
     if (error) throw new Error(`Unable to read ${table}: ${error.message}`);
 

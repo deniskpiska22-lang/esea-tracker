@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import process from "node:process";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY =
@@ -60,6 +61,10 @@ async function fetchAll(table, select, configure) {
     if (configure) {
       query = configure(query);
     }
+
+    // Rating updates change physical row order while pages are being read.
+    // Use a unique, stable key so one team cannot land in two write batches.
+    query = query.order(table === "team_rating_history" ? "id" : "team_id", { ascending: true });
 
     const { data, error } = await query;
 
@@ -269,6 +274,10 @@ async function main() {
   if (currentRows.length === 0) {
     console.log("No team ratings found.");
     return;
+  }
+
+  if (new Set(currentRows.map(row => row.team_id)).size !== currentRows.length) {
+    throw new Error("Duplicate teams in rating snapshot input; refusing to publish partial ranks");
   }
 
   const rankedRows =
