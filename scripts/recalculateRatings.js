@@ -1,6 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import process from "node:process";
 import { belongsToRatingPeriod } from "./lib/seasonParticipants.js";
+import { isUnplayedQualifierResult, QUALIFIER_RATING_COLUMNS } from "./lib/qualifierRating.js";
+import { writeFile } from "node:fs/promises";
 
 import {
   calculateMatchRating,
@@ -543,7 +545,8 @@ async function main() {
       team1_score,
       team2_id,
       team2_name,
-      team2_score
+      team2_score,
+      ${QUALIFIER_RATING_COLUMNS}
     `,
     orderColumn: "finished_at",
     ascending: true,
@@ -584,10 +587,18 @@ async function main() {
   let skippedInvalidScore = 0;
   let skippedSameTeam = 0;
   let technicalResultsProcessed = 0;
+  const excludedQualifierMatches = [];
 
   const missingNames = new Map();
 
   for (const match of matches) {
+    // Skip before resolving teams or changing match counts/last-match deltas.
+    // A zero multiplier is insufficient: calculateMatchRating enforces a
+    // minimum delta and would still advance provisional-match counters.
+    if (isUnplayedQualifierResult(match)) {
+      excludedQualifierMatches.push(match.id);
+      continue;
+    }
     if (
       isPlaceholderName(match.team1_name) ||
       isPlaceholderName(match.team2_name)
@@ -862,6 +873,14 @@ const finalRows = Array.from(
   console.log(
     `Обработано технических результатов: ${technicalResultsProcessed}`,
   );
+
+  console.log(`Исключено технических результатов квалификаций: ${excludedQualifierMatches.length}`);
+  const reportPath = process.argv.find(arg => arg.startsWith("--report="))?.slice("--report=".length);
+  if (reportPath) {
+    await writeFile(reportPath, JSON.stringify({
+      season: activeSeason.season, processed, excludedQualifierMatches, ratings: finalRows,
+    }, null, 2));
+  }
 
   console.log("\nПредварительный TOP 20:");
 

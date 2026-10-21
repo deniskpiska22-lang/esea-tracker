@@ -11,6 +11,8 @@
 //   node --env-file=.env.local scripts/backfillWeeklyRatingSnapshotFromMatches.js --week-start=2026-08-03
 
 import { createClient } from "@supabase/supabase-js";
+import process from "node:process";
+import { isUnplayedQualifierResult, QUALIFIER_RATING_COLUMNS } from "./lib/qualifierRating.js";
 import {
   calculateMatchRating,
   getInitialPoints,
@@ -288,7 +290,8 @@ async function main() {
     table: "matches",
     select: `
       id, competition_name, status, best_of, scheduled_at, finished_at,
-      team1_id, team1_name, team1_score, team2_id, team2_name, team2_score
+      team1_id, team1_name, team1_score, team2_id, team2_name, team2_score,
+      ${QUALIFIER_RATING_COLUMNS}
     `,
     orderColumn: "finished_at",
     ascending: true,
@@ -312,6 +315,8 @@ async function main() {
     if (isPlaceholderName(match.team1_name) || isPlaceholderName(match.team2_name)) {
       continue;
     }
+
+    if (isUnplayedQualifierResult(match)) continue;
 
     const series = normalizeSeriesScore(match);
     if (!series) continue;
