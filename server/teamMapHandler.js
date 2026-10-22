@@ -1,6 +1,3 @@
-import { seoClient } from '../server/seoData.js';
-import { loadTeamMapData } from '../server/teamMapData.js';
-
 export function createTeamMapHandler(load) {
   return async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -19,5 +16,3 @@ export function createTeamMapHandler(load) {
     }
   };
 }
-
-export default createTeamMapHandler(key => loadTeamMapData(seoClient(), key));

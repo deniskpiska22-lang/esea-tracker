@@ -1,4 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
+import process from 'node:process';
+import { seoClient } from '../server/seoData.js';
+import { loadTeamMapData } from '../server/teamMapData.js';
+import { createTeamMapHandler } from '../server/teamMapHandler.js';
+
+const mapHistoryHandler = createTeamMapHandler(key => loadTeamMapData(seoClient(), key));
 
 const FINISHED = ["FINISHED", "MATCH_STATUS_FINISHED"];
 
@@ -24,6 +30,7 @@ function aggregateMaps(matches, teamId) {
 }
 
 export default async function handler(request, response) {
+  if (request.query?.action === 'map-history') return mapHistoryHandler(request, response);
   try {
     const slug = String(request.query?.slug || "").trim();
     if (!slug) return response.status(400).json({ ok: false, error: "slug is required" });

@@ -310,5 +310,21 @@
     "es": "Reintentar",
     "fr": "Réessayer",
     "it": "Riprova"
+  },
+  "Date": {
+    "ru": "Дата",
+    "de": "Datum",
+    "pt": "Data",
+    "es": "Fecha",
+    "fr": "Date",
+    "it": "Data"
+  },
+  "Result": {
+    "ru": "Результат",
+    "de": "Ergebnis",
+    "pt": "Resultado",
+    "es": "Resultado",
+    "fr": "Résultat",
+    "it": "Risultato"
   }
 }

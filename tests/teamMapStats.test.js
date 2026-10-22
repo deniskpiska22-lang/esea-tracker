@@ -5,7 +5,8 @@ import { normalizeTeamMapHistory, loadTeamMapHistory, buildTeamMapStats, teamMap
 import { getTeamMapSeo } from '../src/utils/teamMapSeo.js';
 import { teamMapMetadata } from '../server/teamMapSeo.js';
 import { renderProfile } from '../server/profileSeo.js';
-import { createTeamMapHandler } from '../api/team-map-stats.js';
+import { createTeamMapHandler } from '../server/teamMapHandler.js';
+import teamStatsHandler from '../api/team-stats.js';
 import { translateText } from '../src/i18n/translate.js';
 import { LANGUAGE_CODES } from '../src/i18n/languages.js';
 
@@ -154,4 +155,11 @@ test('public endpoint rejects bad inputs, keeps failures uncached and never leak
   assert.equal(failed.code, 503);
   assert.deepEqual(failed.body, { ok: false });
   assert.equal((await apiRequest({ team: own })).body.ok, true);
+});
+
+test('map history shares the existing team statistics function', async () => {
+  const res = { code: 200, setHeader() {}, status(code) { this.code = code; return this; }, json(body) { this.body = body; return this; } };
+  await teamStatsHandler({ method: 'GET', query: { action: 'map-history', team: [] } }, res);
+  assert.equal(res.code, 400);
+  assert.deepEqual(res.body, { ok: false });
 });

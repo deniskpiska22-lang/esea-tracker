@@ -57,7 +57,7 @@ export default function TeamMapPage() {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 30_000);
     let cancelled = false;
-    fetch(`/api/team-map-stats?team=${encodeURIComponent(slug)}`, { signal: controller.signal })
+    fetch(`/api/team-stats?action=map-history&team=${encodeURIComponent(slug)}`, { signal: controller.signal })
       .then(async response => {
         if (!response.ok) throw new Error(response.status === 404 ? 'not-found' : 'unavailable');
         const data = await response.json();
