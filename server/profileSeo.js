@@ -5,6 +5,7 @@ import { getTeamSeoMetadata, getTeamContext } from '../src/utils/teamSeo.js';
 import { getPlayerSeoMetadata } from '../src/utils/playerSeo.js';
 import aliases from '../src/data/playerAliases.js';
 import { getMatchSeoMetadata, parseMaps } from '../src/utils/matchSeo.js';
+import { teamMapPath } from '../src/utils/teamMapStats.js';
 export const ORIGIN = 'https://eseatracker.ru';
 export const staticRoutes = ['/', '/rankings', '/matches', '/calendar', '/forum', '/about', '/media'];
 export const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -76,7 +77,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
     }
   }
   const sectionContent = section === 'stats'
-    ? `<h2>Maps in recent tracked matches</h2>${maps.size ? `<ul>${[...maps].map(([name, count]) => `<li>${link(`${base}/matches?map=${encodeURIComponent(name)}`, name)}: ${count} tracked map${count === 1 ? '' : 's'}</li>`).join('')}</ul><p>This sample covers the latest ${matches.length} completed matches. Open the map statistics page for the full tracked history.</p>` : '<p>Map results are not available yet.</p>'}`
+    ? `<h2>Maps in recent tracked matches</h2>${maps.size ? `<ul>${[...maps].map(([name, count]) => `<li>${link(teamMapPath(entity, name) || `${base}/matches?map=${encodeURIComponent(name)}`, name)}: ${count} tracked map${count === 1 ? '' : 's'}</li>`).join('')}</ul><p>This sample covers the latest ${matches.length} completed matches. Open the map statistics page for the full tracked history.</p>` : '<p>Map results are not available yet.</p>'}`
     : section === 'veto'
     ? `<h2>Recent map picks and bans</h2>${veto.size ? `<ul>${[...veto].map(([name, counts]) => `<li>${escapeHtml(name)}: ${counts.picks} picks, ${counts.bans} bans</li>`).join('')}</ul><p>Team decisions from available veto records in the latest tracked matches within 90 days.</p>` : '<p>No recent team veto records are available yet.</p>'}`
     : '';
@@ -114,7 +115,7 @@ export function renderProfile(template, metadata, status = 200) {
   html = schemaRegex.test(html) ? html.replace(schemaRegex, () => schemaTag) : html.replace('</head>', () => `${schemaTag}</head>`);
 
   const language = metadata.language || 'ru';
-  const body = metadata.localized ? localizeBody(metadata.body, language) : metadata.body || ''; 
+  const body = metadata.localized && !metadata.bodyLocalized ? localizeBody(metadata.body, language) : metadata.body || '';
   const nav = [['/rankings','ESEA team rankings'],['/calendar','ESEA tournaments']]
     .map(([url,label])=>link(metadata.localized ? localizedPath(url,language) : url,translateText(label,language))).join(' · ');
   const languageNav = `<nav aria-label="${escapeHtml(translateText('Language',language))}">${LANGUAGES.map(item=>link(localizedPath(metadata.canonicalPath,item.code),item.name)).join(' · ')}</nav>`;

@@ -10,6 +10,7 @@ import matchesData from "../data/matches";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { ACTIVE_MAP_POOL, normalizeMapKey } from "../utils/activeMapPool";
+import { teamMapPath } from '../utils/teamMapStats.js';
 
 const MAP_IMAGE_ALIASES = {
   ancient: "ancient",
@@ -380,7 +381,7 @@ function StatsPage() {
                   return (
                     <Link
                       key={map.name}
-                      to={`/team/${slug}/matches?map=${encodeURIComponent(map.name)}`}
+                      to={teamMapPath(team || { slug }, map.name)}
                       className="group relative grid min-h-[94px] overflow-hidden px-4 py-4 transition hover:bg-white/[0.035] sm:grid-cols-[120px_minmax(0,1fr)_72px] sm:items-center sm:gap-4"
                     >
                       <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">

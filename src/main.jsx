@@ -37,6 +37,7 @@ const About = lazy(() => import("./pages/About"));
 const MediaPage = lazy(() => import("./pages/MediaPage"));
 const MatchesPage = lazy(() => import("./pages/MatchesPage"));
 const StatsPage = lazy(() => import("./pages/StatsPage"));
+const TeamMapPage = lazy(() => import("./pages/TeamMapPage.jsx"));
 const MatchPageRouter = lazy(() => import("./pages/MatchPageRouter"));
 const PlayerPage = lazy(() => import("./pages/PlayerPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -140,6 +141,7 @@ function Application() {
                       <Route path="/teams/:slug/matches" element={<MatchesPage />} />
                       <Route path="/team/:slug/matches" element={<MatchesPage />} />
                       <Route path="/teams/:slug/stats" element={<StatsPage />} />
+                      <Route path="/teams/:slug/stats/:map" element={<TeamMapPage />} />
                       <Route path="/team/:slug/stats" element={<StatsPage />} />
                       <Route path="/teams/:slug/analytics" element={<AnalyticsPage />} />
                       <Route path="/team/:slug/analytics" element={<AnalyticsPage />} />

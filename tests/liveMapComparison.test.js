@@ -18,6 +18,10 @@ test('missing/insufficient results never masquerade as zero win rate', () => {
   assert.equal(nuke([game('tied','Nuke',0,0)]).played, 0);
   assert.equal(nuke([game('a','Nuke',2,13),game('b','Nuke',2,13),game('c','Nuke',2,13)]).win, 0);
 });
+test('technical awards and missing map scores cannot inflate the clickable map sample', () => {
+  assert.equal(nuke([game('technical', 'Nuke', 1, 0), game('missing', 'Nuke', null, 13)]).played, 0);
+  assert.equal(nuke([game('real-shutout', 'Nuke', 13, 0)]).played, 1);
+});
 test('pick/ban use known own veto history, excluding opponents and deciders', () => {
   const a = game('a'), b = game('b'), c = game('c');
   a.vetoSteps = [{ map: 'Nuke', action: 'Picked', side: 'team' }, { map: 'Mirage', action: 'Banned', side: 'team' }];

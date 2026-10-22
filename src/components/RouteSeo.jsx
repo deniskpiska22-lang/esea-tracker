@@ -4,6 +4,9 @@ import { localizeSeo } from '../i18n/seo.js';
 import { LANGUAGES, stripLanguage } from '../i18n/languages.js';
 import { getSiteSeoMetadata } from '../utils/siteSeo.js';
 import { getTeamSeoMetadata } from '../utils/teamSeo.js';
+import { getTeamMapSeo } from '../utils/teamMapSeo.js';
+import { mapName } from '../utils/teamMapStats.js';
+import { currentLanguage } from '../i18n/languages.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -42,6 +45,9 @@ function getTeamMetadata(pathname, teams) {
   if (!team) {
     return null;
   }
+
+  const detail = pathname.match(/^\/teams\/[^/]+\/stats\/([^/]+)$/);
+  if (detail && mapName(detail[1])) return getTeamMapSeo(team, detail[1], currentLanguage());
 
   return getTeamSeoMetadata(team, section === 'overview' ? '' : section, team.players || []);
 
@@ -92,7 +98,7 @@ export default function RouteSeo() {
   });
   const metadata = useMemo(
     () =>
-      stripLanguage(dynamicMetadata?.routePath || "") === pathname
+      !/^\/teams\/[^/]+\/stats\/[^/]+$/.test(pathname) && stripLanguage(dynamicMetadata?.routePath || "") === pathname
         ? dynamicMetadata
         : getMetadata(pathname, teams),
     [dynamicMetadata, pathname, teams]
@@ -106,10 +112,12 @@ export default function RouteSeo() {
     window.addEventListener("forum-seo-update", handlePlayerMetadata);
     window.addEventListener("player-seo-update", handlePlayerMetadata);
     window.addEventListener("match-seo-update", handlePlayerMetadata);
+    window.addEventListener("team-map-seo-update", handlePlayerMetadata);
     return () => {
       window.removeEventListener("forum-seo-update", handlePlayerMetadata);
       window.removeEventListener("player-seo-update", handlePlayerMetadata);
       window.removeEventListener("match-seo-update", handlePlayerMetadata);
+      window.removeEventListener("team-map-seo-update", handlePlayerMetadata);
     };
   }, []);
 

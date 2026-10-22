@@ -9,16 +9,35 @@ import { seoClient, loadProfile } from '../server/seoData.js';
 import { profileMetadata, renderProfile } from '../server/profileSeo.js';
 import { loadSiteMetadata } from '../server/siteSeo.js';
 import { pageMetadata } from '../src/utils/siteSeo.js';
+import { loadTeamMapData } from '../server/teamMapData.js';
+import { teamMapMetadata } from '../server/teamMapSeo.js';
+import { mapName } from '../src/utils/teamMapStats.js';
 let template;
 export default async function handler(req,res) {
   const language = String(req.query.lang || 'ru');
   if (!LANGUAGE_CODES.includes(language)) return res.status(404).end('Not found');
-  const kind = ['player','team','match','page','forum'].includes(req.query.kind) ? req.query.kind : 'team';
+  const kind = ['player','team','match','page','forum','team-map'].includes(req.query.kind) ? req.query.kind : 'team';
   const key = String(req.query.key || '');
   const section = String(req.query.section || '');
   if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end(translateText('Page not found',language));
   try {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
+    if (kind === 'team-map') {
+      const map = mapName(req.query.map);
+      if (!map) { res.setHeader('X-Robots-Tag', 'noindex'); return res.status(404).end(translateText('Map statistics not found', language)); }
+      const data = await loadTeamMapData(seoClient(), key);
+      if (!data) { res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex'); return res.status(404).end(translateText('Map statistics not found', language)); }
+      const metadata = teamMapMetadata(data, map, language);
+      const requested = localizedPath(`/teams/${encodeURIComponent(key)}/stats/${encodeURIComponent(req.query.map)}`, language);
+      if (requested !== metadata.canonicalPath) {
+        const params = new URLSearchParams();
+        for (const name of ['period','event','opponent','match']) if (typeof req.query[name] === 'string' && req.query[name].length <= 200) params.set(name, req.query[name]);
+        return res.redirect(308, metadata.canonicalPath + (params.size ? `?${params}` : ''));
+      }
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=30, stale-while-revalidate=60');
+      return res.status(200).send(renderProfile(template, metadata));
+    }
     if (kind==='forum') {
       const metadata=await loadForumMetadata(seoClient(),key,language);
       res.setHeader('Content-Type','text/html; charset=utf-8');

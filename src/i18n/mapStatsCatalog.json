@@ -1,0 +1,314 @@
+{
+  "Tracked matches, win rate, round results, picks and bans for {0} on {1}.": {
+    "ru": "Матчи, винрейт, результаты раундов, пики и баны команды {0} на {1}.",
+    "de": "Erfasste Matches, Siegquote, Rundenergebnisse, Picks und Bans von {0} auf {1}.",
+    "pt": "Partidas, taxa de vitória, resultados de rounds, picks e bans de {0} na {1}.",
+    "es": "Partidos, porcentaje de victorias, rondas, picks y bans de {0} en {1}.",
+    "fr": "Matchs, taux de victoire, résultats des rounds, picks et bans de {0} sur {1}.",
+    "it": "Partite, percentuale di vittorie, round, pick e ban di {0} su {1}."
+  },
+  "Select a team’s map percentage to open its match history.": {
+    "ru": "Нажмите на процент команды у карты, чтобы открыть историю матчей.",
+    "de": "Klicke auf den Kartenwert eines Teams, um den Matchverlauf zu öffnen.",
+    "pt": "Clique na porcentagem do time em um mapa para abrir o histórico de partidas.",
+    "es": "Pulsa el porcentaje de un equipo en un mapa para abrir su historial.",
+    "fr": "Cliquez sur le pourcentage d’une équipe pour ouvrir son historique sur la carte.",
+    "it": "Fai clic sulla percentuale della squadra per aprire la cronologia sulla mappa."
+  },
+  "{0} on {1}: map statistics": {
+    "ru": "{0} на {1}: статистика карты",
+    "de": "{0} auf {1}: Kartenstatistik",
+    "pt": "{0} na {1}: estatísticas do mapa",
+    "es": "{0} en {1}: estadísticas del mapa",
+    "fr": "{0} sur {1} : statistiques de la carte",
+    "it": "{0} su {1}: statistiche della mappa"
+  },
+  "Raw statistics": {
+    "ru": "Основная статистика",
+    "de": "Basisstatistiken",
+    "pt": "Estatísticas gerais",
+    "es": "Estadísticas generales",
+    "fr": "Statistiques générales",
+    "it": "Statistiche generali"
+  },
+  "Times played": {
+    "ru": "Сыграно карт",
+    "de": "Gespielte Karten",
+    "pt": "Mapas jogados",
+    "es": "Mapas jugados",
+    "fr": "Cartes jouées",
+    "it": "Mappe giocate"
+  },
+  "Wins / draws / losses": {
+    "ru": "Победы / ничьи / поражения",
+    "de": "Siege / Unentschieden / Niederlagen",
+    "pt": "Vitórias / empates / derrotas",
+    "es": "Victorias / empates / derrotas",
+    "fr": "Victoires / nuls / défaites",
+    "it": "Vittorie / pareggi / sconfitte"
+  },
+  "Total rounds played": {
+    "ru": "Всего сыграно раундов",
+    "de": "Gespielte Runden insgesamt",
+    "pt": "Total de rounds jogados",
+    "es": "Total de rondas jugadas",
+    "fr": "Total de rounds joués",
+    "it": "Totale round giocati"
+  },
+  "Rounds won": {
+    "ru": "Выиграно раундов",
+    "de": "Gewonnene Runden",
+    "pt": "Rounds vencidos",
+    "es": "Rondas ganadas",
+    "fr": "Rounds gagnés",
+    "it": "Round vinti"
+  },
+  "Rounds lost": {
+    "ru": "Проиграно раундов",
+    "de": "Verlorene Runden",
+    "pt": "Rounds perdidos",
+    "es": "Rondas perdidas",
+    "fr": "Rounds perdus",
+    "it": "Round persi"
+  },
+  "Win percent": {
+    "ru": "Процент побед",
+    "de": "Siegquote",
+    "pt": "Taxa de vitória",
+    "es": "Porcentaje de victorias",
+    "fr": "Taux de victoire",
+    "it": "Percentuale di vittorie"
+  },
+  "Round win rate": {
+    "ru": "Победы в раундах",
+    "de": "Rundensiegquote",
+    "pt": "Vitórias em rounds",
+    "es": "Victorias en rondas",
+    "fr": "Taux de rounds gagnés",
+    "it": "Percentuale round vinti"
+  },
+  "Round balance": {
+    "ru": "Баланс раундов",
+    "de": "Rundenbilanz",
+    "pt": "Saldo de rounds",
+    "es": "Balance de rondas",
+    "fr": "Bilan des rounds",
+    "it": "Bilancio dei round"
+  },
+  "Rounds won: {0}; rounds lost: {1}": {
+    "ru": "Выиграно раундов: {0}; проиграно: {1}",
+    "de": "Gewonnene Runden: {0}; verlorene Runden: {1}",
+    "pt": "Rounds vencidos: {0}; perdidos: {1}",
+    "es": "Rondas ganadas: {0}; perdidas: {1}",
+    "fr": "Rounds gagnés : {0} ; perdus : {1}",
+    "it": "Round vinti: {0}; persi: {1}"
+  },
+  "Last 30 days": {
+    "ru": "Последние 30 дней",
+    "de": "Letzte 30 Tage",
+    "pt": "Últimos 30 dias",
+    "es": "Últimos 30 días",
+    "fr": "30 derniers jours",
+    "it": "Ultimi 30 giorni"
+  },
+  "Last 3 months": {
+    "ru": "Последние 3 месяца",
+    "de": "Letzte 3 Monate",
+    "pt": "Últimos 3 meses",
+    "es": "Últimos 3 meses",
+    "fr": "3 derniers mois",
+    "it": "Ultimi 3 mesi"
+  },
+  "Last 6 months": {
+    "ru": "Последние 6 месяцев",
+    "de": "Letzte 6 Monate",
+    "pt": "Últimos 6 meses",
+    "es": "Últimos 6 meses",
+    "fr": "6 derniers mois",
+    "it": "Ultimi 6 mesi"
+  },
+  "Last 12 months": {
+    "ru": "Последние 12 месяцев",
+    "de": "Letzte 12 Monate",
+    "pt": "Últimos 12 meses",
+    "es": "Últimos 12 meses",
+    "fr": "12 derniers mois",
+    "it": "Ultimi 12 mesi"
+  },
+  "All time": {
+    "ru": "За всё время",
+    "de": "Gesamter Zeitraum",
+    "pt": "Todo o período",
+    "es": "Todo el período",
+    "fr": "Depuis le début",
+    "it": "Tutto il periodo"
+  },
+  "Event filter": {
+    "ru": "Турнир",
+    "de": "Turnierfilter",
+    "pt": "Filtro de torneio",
+    "es": "Filtro de torneo",
+    "fr": "Filtre par tournoi",
+    "it": "Filtro torneo"
+  },
+  "Time filter": {
+    "ru": "Период",
+    "de": "Zeitraum",
+    "pt": "Período",
+    "es": "Período",
+    "fr": "Période",
+    "it": "Periodo"
+  },
+  "Opponent filter": {
+    "ru": "Соперник",
+    "de": "Gegnerfilter",
+    "pt": "Filtro de adversário",
+    "es": "Filtro de rival",
+    "fr": "Filtre par adversaire",
+    "it": "Filtro avversario"
+  },
+  "All events": {
+    "ru": "Все турниры",
+    "de": "Alle Turniere",
+    "pt": "Todos os torneios",
+    "es": "Todos los torneos",
+    "fr": "Tous les tournois",
+    "it": "Tutti i tornei"
+  },
+  "All opponents": {
+    "ru": "Все соперники",
+    "de": "Alle Gegner",
+    "pt": "Todos os adversários",
+    "es": "Todos los rivales",
+    "fr": "Tous les adversaires",
+    "it": "Tutti gli avversari"
+  },
+  "Map history filters": {
+    "ru": "Фильтры истории карт",
+    "de": "Filter für Kartenverlauf",
+    "pt": "Filtros do histórico de mapas",
+    "es": "Filtros del historial de mapas",
+    "fr": "Filtres de l’historique des cartes",
+    "it": "Filtri cronologia mappe"
+  },
+  "Map statistics not found": {
+    "ru": "Статистика карты не найдена",
+    "de": "Kartenstatistik nicht gefunden",
+    "pt": "Estatísticas do mapa não encontradas",
+    "es": "Estadísticas del mapa no encontradas",
+    "fr": "Statistiques de carte introuvables",
+    "it": "Statistiche della mappa non trovate"
+  },
+  "Could not load map history. Please try again.": {
+    "ru": "Не удалось загрузить историю карт. Попробуйте ещё раз.",
+    "de": "Kartenverlauf konnte nicht geladen werden. Bitte erneut versuchen.",
+    "pt": "Não foi possível carregar o histórico. Tente novamente.",
+    "es": "No se pudo cargar el historial. Inténtalo de nuevo.",
+    "fr": "Impossible de charger l’historique. Réessayez.",
+    "it": "Impossibile caricare la cronologia. Riprova."
+  },
+  "Back to match": {
+    "ru": "Вернуться к матчу",
+    "de": "Zurück zum Match",
+    "pt": "Voltar à partida",
+    "es": "Volver al partido",
+    "fr": "Retour au match",
+    "it": "Torna alla partita"
+  },
+  "Team profile": {
+    "ru": "Профиль команды",
+    "de": "Teamprofil",
+    "pt": "Perfil do time",
+    "es": "Perfil del equipo",
+    "fr": "Profil de l’équipe",
+    "it": "Profilo squadra"
+  },
+  "{0} played maps": {
+    "ru": "Сыграно карт: {0}",
+    "de": "{0} gespielte Karten",
+    "pt": "{0} mapas jogados",
+    "es": "{0} mapas jugados",
+    "fr": "{0} cartes jouées",
+    "it": "{0} mappe giocate"
+  },
+  "Small sample: fewer than 3 played maps. Treat this win rate with caution.": {
+    "ru": "Малая выборка: сыграно меньше 3 карт. Учитывайте это при оценке винрейта.",
+    "de": "Kleine Stichprobe: weniger als 3 Karten. Siegquote vorsichtig bewerten.",
+    "pt": "Amostra pequena: menos de 3 mapas. Avalie a taxa de vitória com cautela.",
+    "es": "Muestra pequeña: menos de 3 mapas. Interpreta el porcentaje con cautela.",
+    "fr": "Petit échantillon : moins de 3 cartes. Interprétez ce taux avec prudence.",
+    "it": "Campione ridotto: meno di 3 mappe. Valuta la percentuale con cautela."
+  },
+  "{0} known team vetoes": {
+    "ru": "Доступно вето команды: {0}",
+    "de": "{0} erfasste Team-Vetos",
+    "pt": "{0} vetos do time disponíveis",
+    "es": "{0} vetos del equipo disponibles",
+    "fr": "{0} vetos d’équipe connus",
+    "it": "{0} veti della squadra disponibili"
+  },
+  "Detailed round statistics": {
+    "ru": "Подробная статистика раундов",
+    "de": "Detaillierte Rundenstatistik",
+    "pt": "Estatísticas detalhadas de rounds",
+    "es": "Estadísticas detalladas de rondas",
+    "fr": "Statistiques détaillées des rounds",
+    "it": "Statistiche dettagliate dei round"
+  },
+  "Pistol rounds, CT/T splits and opening-duel conversion are not available in the tracked data. Missing values are not counted as zero.": {
+    "ru": "В отслеживаемых данных нет пистолеток, разбивки CT/T и конверсии первого убийства в победу. Отсутствующие значения не считаются нулевыми.",
+    "de": "Pistolenrunden, CT/T-Aufteilung und Verwertung des ersten Kills sind nicht erfasst. Fehlende Werte zählen nicht als null.",
+    "pt": "Os dados não incluem pistols, divisão CT/T e conversão do primeiro abate. Valores ausentes não contam como zero.",
+    "es": "Los datos no incluyen pistolas, desglose CT/T ni conversión de la primera baja. Los valores ausentes no cuentan como cero.",
+    "fr": "Les données ne couvrent pas les pistols, la répartition CT/T ni la conversion du premier kill. Les valeurs manquantes ne valent pas zéro.",
+    "it": "I dati non includono pistol round, suddivisione CT/T e conversione della prima uccisione. I valori mancanti non valgono zero."
+  },
+  "No played maps match these filters.": {
+    "ru": "Нет сыгранных карт с такими фильтрами.",
+    "de": "Keine gespielten Karten für diese Filter.",
+    "pt": "Nenhum mapa jogado corresponde aos filtros.",
+    "es": "No hay mapas jugados con estos filtros.",
+    "fr": "Aucune carte jouée ne correspond à ces filtres.",
+    "it": "Nessuna mappa giocata corrisponde ai filtri."
+  },
+  "Try another map, time period or event.": {
+    "ru": "Выберите другую карту, период или турнир.",
+    "de": "Andere Karte, Zeitraum oder Turnier wählen.",
+    "pt": "Escolha outro mapa, período ou torneio.",
+    "es": "Elige otro mapa, período o torneo.",
+    "fr": "Choisissez une autre carte, période ou compétition.",
+    "it": "Scegli un’altra mappa, periodo o torneo."
+  },
+  "Show more matches": {
+    "ru": "Показать ещё матчи",
+    "de": "Weitere Matches anzeigen",
+    "pt": "Mostrar mais partidas",
+    "es": "Mostrar más partidos",
+    "fr": "Afficher plus de matchs",
+    "it": "Mostra altre partite"
+  },
+  "Only completed maps with recorded round scores are included. Technical awards are excluded.": {
+    "ru": "Учитываются только завершённые карты с известным счётом по раундам. Технические результаты исключены.",
+    "de": "Nur abgeschlossene Karten mit erfasstem Rundenstand. Technische Ergebnisse sind ausgeschlossen.",
+    "pt": "Apenas mapas concluídos com placar de rounds registrado. Resultados técnicos são excluídos.",
+    "es": "Solo mapas terminados con marcador de rondas registrado. Se excluyen resultados técnicos.",
+    "fr": "Seules les cartes terminées avec un score par rounds sont comptées. Résultats techniques exclus.",
+    "it": "Solo mappe concluse con punteggi dei round registrati. Risultati tecnici esclusi."
+  },
+  "Details": {
+    "ru": "Подробнее",
+    "de": "Details",
+    "pt": "Detalhes",
+    "es": "Detalles",
+    "fr": "Détails",
+    "it": "Dettagli"
+  },
+  "Retry": {
+    "ru": "Повторить",
+    "de": "Erneut versuchen",
+    "pt": "Tentar novamente",
+    "es": "Reintentar",
+    "fr": "Réessayer",
+    "it": "Riprova"
+  }
+}

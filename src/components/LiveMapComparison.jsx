@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { tx, tf } from '../i18n/translate.js';
 import { normalizeMapKey } from '../utils/activeMapPool.js';
 import { buildLiveMapComparison } from '../utils/liveMapComparison.js';
+import { teamMapPath } from '../utils/teamMapStats.js';
+import Link from './SiteLink.jsx';
 
 const COLORS = ['#fbbf24', '#38bdf8'];
 const MODES = { win: 'Win %', pick: 'Pick %', ban: 'Ban %' };
@@ -60,6 +62,7 @@ export default function LiveMapComparison({ matchId, leftTeam, rightTeam, leftMa
     <header className="border-b border-[#243041] px-5 py-4">
       <h2 className="text-xl font-black">{tx('Map Statistics')}</h2>
       <p className="mt-1 text-sm text-slate-400">{tx('Team history · last 90 days · win rate from 3 maps')}</p>
+      <p className="mt-2 text-xs text-slate-500">{tx('Select a team’s map percentage to open its match history.')}</p>
     </header>
     <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div className="min-w-0 border-b border-[#243041] p-4 md:border-b-0 md:border-r">
@@ -88,7 +91,13 @@ export default function LiveMapComparison({ matchId, leftTeam, rightTeam, leftMa
                 <div className="text-xs text-slate-400">{mode === 'win' ? tf('{0} maps', record.played) : tf('{0} vetoes', record.vetoMatches)}</div>
                 {action && <span className={`mt-1 inline-block rounded px-1.5 py-0.5 text-xs font-bold ${action.action === 'Picked' ? 'bg-emerald-500/15 text-emerald-300' : 'bg-slate-700 text-slate-300'}`}>{tx(action.action === 'Picked' ? 'Pick' : 'Ban')}</span>}
               </div>;
-              return side === 0 ? <div key={side} className="contents">{cell}<div className="text-center"><div className="rounded-md border border-white/10 bg-cover bg-center py-2 text-sm font-black" style={{ backgroundImage: `linear-gradient(#0b1119a0, #0b1119a0), url(/maps/${normalizeMapKey(row.name)}.png)` }}>{row.name}</div>{actions.some(step => step.action === 'Decider') && <span className="mt-1 block text-xs text-amber-300">{tx('Decider')}</span>}</div></div> : <div key={side}>{cell}</div>;
+              const team = side === 0 ? leftTeam : rightTeam;
+              const path = teamMapPath(team, row.name);
+              const label = tf('{0} on {1}: map statistics', team.name, row.name);
+              const linkedCell = path ? <Link to={`${path}?match=${encodeURIComponent(matchId)}`} aria-label={label} title={label} className="group block rounded-lg py-1 transition hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-orange-400">{cell}<span className="mt-1 block text-center text-[10px] font-bold text-slate-500 group-hover:text-orange-300">{tx('Details')} ↗</span></Link> : cell;
+              const mapPath = teamMapPath(leftTeam, row.name);
+              const mapTile = <div className="rounded-md border border-white/10 bg-cover bg-center py-2 text-sm font-black transition hover:border-orange-400/50" style={{ backgroundImage: `linear-gradient(#0b1119a0, #0b1119a0), url(/maps/${normalizeMapKey(row.name)}.png)` }}>{row.name}</div>;
+              return side === 0 ? <div key={side} className="contents">{linkedCell}<div className="text-center">{mapPath ? <Link to={`${mapPath}?match=${encodeURIComponent(matchId)}`} aria-label={tf('{0} on {1}: map statistics', leftTeam.name, row.name)} className="block rounded-md focus-visible:outline-2 focus-visible:outline-orange-400">{mapTile}</Link> : mapTile}{actions.some(step => step.action === 'Decider') && <span className="mt-1 block text-xs text-amber-300">{tx('Decider')}</span>}</div></div> : <div key={side}>{linkedCell}</div>;
             })}
           </div>;
         })}

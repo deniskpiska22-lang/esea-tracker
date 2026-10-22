@@ -22,11 +22,13 @@ export function buildLiveMapComparison(matches = [], { now = Date.now(), exclude
     if (!Number.isFinite(time) || time < cutoff || time > now ||
         (excludeMatchId && id === excludeMatchId) || (id && seen.has(id))) continue;
     if (id) seen.add(id);
+    const scoredMaps = match.mapScores || [];
+    if (scoredMaps.length && scoredMaps.every(map => map.teamScore != null && map.opponentScore != null && Math.max(Number(map.teamScore), Number(map.opponentScore)) <= 1)) continue;
     for (const map of match.mapScores || []) {
       const record = records.get(normalizeMapKey(map.map));
       const left = Number(map.teamScore), right = Number(map.opponentScore);
       // Unknown/tied results (including 0:0 placeholders) are not losses.
-      if (!record || map.pending || !Number.isFinite(left) || !Number.isFinite(right) || left === right) continue;
+      if (!record || map.pending || map.teamScore == null || map.opponentScore == null || !Number.isFinite(left) || !Number.isFinite(right) || Math.max(left, right) < 13 || left === right) continue;
       record.played++;
       record.wins += left > right ? 1 : 0;
     }

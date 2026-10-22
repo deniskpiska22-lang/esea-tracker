@@ -248,6 +248,14 @@
   ],
   "rewrites": [
     {
+      "source": "/:lang(en|de|pt|es|fr|it)/teams/:key/stats/:map",
+      "destination": "/api/seo-profile?kind=team-map&key=:key&map=:map&lang=:lang"
+    },
+    {
+      "source": "/teams/:key/stats/:map",
+      "destination": "/api/seo-profile?kind=team-map&key=:key&map=:map"
+    },
+    {
       "source": "/forum",
       "destination": "/api/seo-profile?kind=page&key=forum"
     },
