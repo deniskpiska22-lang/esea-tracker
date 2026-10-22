@@ -5,7 +5,7 @@ import TournamentNameLink from '../components/TournamentNameLink.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { tx, tf } from '../i18n/translate.js';
 import { ACTIVE_MAP_POOL, normalizeMapKey } from '../utils/activeMapPool.js';
-import { buildTeamMapStats, MAP_NAMES, mapName, teamMapPath } from '../utils/teamMapStats.js';
+import { buildTeamMapStats, historyOpponentKey, MAP_NAMES, mapName, teamMapPath } from '../utils/teamMapStats.js';
 import { getTeamMapSeo } from '../utils/teamMapSeo.js';
 
 const PERIODS = { '30': 'Last 30 days', '90': 'Last 3 months', '180': 'Last 6 months', '365': 'Last 12 months', all: 'All time' };
@@ -77,7 +77,8 @@ export default function TeamMapPage() {
     const events = new Map(), opponents = new Map();
     for (const match of history || []) {
       events.set(match.eventId, match.event);
-      if (match.opponent?.id) opponents.set(match.opponent.id, match.opponent.name);
+      const opponentKey = historyOpponentKey(match.opponent);
+      if (opponentKey) opponents.set(opponentKey, match.opponent.name);
     }
     return { events: [...events].sort((a, b) => a[1].localeCompare(b[1])), opponents: [...opponents].sort((a, b) => a[1].localeCompare(b[1])) };
   }, [history]);

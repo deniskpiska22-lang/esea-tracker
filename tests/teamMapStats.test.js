@@ -80,6 +80,17 @@ test('missing data stays unavailable and pick/ban denominators use only known te
   assert.equal(empty.banRate, null);
 });
 
+test('legacy opponents without FACEIT IDs remain filterable without merging identified rosters', () => {
+  const history = normalizeTeamMapHistory([
+    row('legacy', { team2_id: null, team2_slug: 'regnum4games', team2_name: 'regnum4games' }),
+    row('identified', { team2_slug: 'regnum4games', team2_name: 'regnum4games' }),
+  ], own);
+  const filtered = buildTeamMapStats(history, 'Nuke', { now, opponent: 'slug:regnum4games' });
+  assert.equal(filtered.played, 1);
+  assert.equal(filtered.matches[0].id, 'legacy');
+  assert.equal(buildTeamMapStats(history, 'Nuke', { now, opponent: other }).matches[0].id, 'identified');
+});
+
 function paginatedClient(pages) {
   const ranges = [];
   return { ranges, from(table) {

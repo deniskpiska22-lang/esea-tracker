@@ -3,6 +3,7 @@ import { ACTIVE_MAP_POOL, normalizeMapKey } from './activeMapPool.js';
 export const MAP_NAMES = [...ACTIVE_MAP_POOL, 'Overpass', 'Train', 'Vertigo', 'Cobblestone'];
 export const TEAM_MAP_COLUMNS = 'id,status,best_of,competition_id:raw_data->>competition_id,competition_name,scheduled_at,finished_at,team1_id,team1_name,team1_slug,team1_logo,team1_score,team2_id,team2_name,team2_slug,team2_logo,team2_score,map_scores,maps,veto_steps';
 export const mapName = value => MAP_NAMES.find(name => normalizeMapKey(name) === normalizeMapKey(value)) || null;
+export const historyOpponentKey = opponent => opponent?.id || (opponent?.slug ? `slug:${opponent.slug}` : opponent?.name ? `name:${opponent.name}` : '');
 const list = value => {
   if (Array.isArray(value)) return value;
   try { const parsed = JSON.parse(value); return Array.isArray(parsed) ? parsed : []; } catch { return []; }
@@ -72,7 +73,7 @@ export function buildTeamMapStats(history, map, { now = Date.now(), days = 90, e
   const cutoff = days === 'all' ? -Infinity : now - Number(days) * 86400000;
   const filtered = history.filter(match => {
     const time = Date.parse(match.date);
-    return Number.isFinite(time) && time >= cutoff && time <= now && (!event || match.eventId === event) && (!opponent || match.opponent?.id === opponent);
+    return Number.isFinite(time) && time >= cutoff && time <= now && (!event || match.eventId === event) && (!opponent || historyOpponentKey(match.opponent) === opponent);
   });
   const matches = filtered.flatMap(match => match.mapScores.filter(item => item.map === name).map(item => ({ ...match, ...item })))
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date) || a.id.localeCompare(b.id));
