@@ -25,6 +25,7 @@ import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating
 import { resolveRatingRow } from "../utils/resolveTeamRating";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
+import OneWinMatchOdds from "../components/OneWinMatchOdds.jsx";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
@@ -2015,6 +2016,8 @@ function UpcomingMatchPage() {
             </div>
           </div>
         )}
+
+        {!showFinishedSections && <OneWinMatchOdds matchId={matchId} />}
 
         {!showFinishedSections && (
           <div className="mt-8">

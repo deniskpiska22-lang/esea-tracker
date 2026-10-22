@@ -1,0 +1,101 @@
+{
+  "event": {
+    "id": 41941338,
+    "slug": "low-cortisol-vs-gremio",
+    "sportId": 142,
+    "homeTeam": {
+      "id": 1696638,
+      "name": "low cortisol",
+      "position": 1,
+      "slug": "low-cortisol"
+    },
+    "awayTeam": {
+      "id": 1717478,
+      "name": "GREMIO",
+      "position": 2,
+      "slug": "gremio",
+      "logo": {
+        "url": "https://bstatic.live/icons/13177015f9881ff8fd0b59744b4d4ca7b52ff187.webp"
+      }
+    },
+    "startAt": 1792706400,
+    "serviceV2": "live",
+    "tournament": {
+      "id": 38968,
+      "slug": "cct-south-america"
+    }
+  },
+  "snapshot": {
+    "matchId": 41941338,
+    "oddsGroups": [
+      {
+        "baseOrder": 0,
+        "id": "53278",
+        "isBase": true,
+        "name": "Победитель ",
+        "oddsList": [
+          {
+            "cf": 5.8,
+            "id": "12:L:19183031:[1,[],[0],1,0,[]]",
+            "name": "low cortisol",
+            "outcome": "1",
+            "status": 1,
+            "ts": 1792708433338
+          },
+          {
+            "cf": 1.1,
+            "id": "12:L:19183031:[1,[],[0],1,3,[]]",
+            "name": "GREMIO",
+            "outcome": "2",
+            "status": 1,
+            "ts": 1792708433338
+          }
+        ],
+        "order": 0,
+        "outcomes": [
+          "1",
+          "2"
+        ],
+        "renderType": "cols-2",
+        "subgameIds": [
+          168
+        ]
+      },
+      {
+        "baseOrder": 5,
+        "id": "53280",
+        "isBase": true,
+        "name": "Карта 2. Победитель",
+        "oddsList": [
+          {
+            "cf": 2.55,
+            "id": "12:L:19183031:[1,[],[2],1,0,[]]",
+            "name": "low cortisol",
+            "outcome": "1",
+            "status": 1,
+            "ts": 1792708433338
+          },
+          {
+            "cf": 1.45,
+            "id": "12:L:19183031:[1,[],[2],1,3,[]]",
+            "name": "GREMIO",
+            "outcome": "2",
+            "status": 1,
+            "ts": 1792708433338
+          }
+        ],
+        "order": 23000,
+        "outcomes": [
+          "1",
+          "2"
+        ],
+        "renderType": "cols-2",
+        "subgameIds": [
+          170
+        ]
+      }
+    ],
+    "ts": 1792708433338,
+    "isBaseOddsGroups": true
+  }
+}

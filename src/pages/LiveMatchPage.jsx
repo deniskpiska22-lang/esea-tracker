@@ -30,6 +30,7 @@ import { normalizeLiveVeto } from "../utils/liveMapComparison.js";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
+import OneWinMatchOdds from "../components/OneWinMatchOdds.jsx";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
 
@@ -2192,6 +2193,8 @@ function LiveMatchPage() {
             />
           </div>
         )}
+
+        {!showFinishedSections && <OneWinMatchOdds matchId={matchId} />}
 
         {!showFinishedSections && (
           <div className="mt-8">
