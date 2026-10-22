@@ -1,7 +1,7 @@
 import { ACTIVE_MAP_POOL, normalizeMapKey } from './activeMapPool.js';
 
 export const MAP_NAMES = [...ACTIVE_MAP_POOL, 'Overpass', 'Train', 'Vertigo', 'Cobblestone'];
-export const TEAM_MAP_COLUMNS = 'id,status,best_of,competition_id,competition_name,scheduled_at,finished_at,team1_id,team1_name,team1_slug,team1_logo,team1_score,team2_id,team2_name,team2_slug,team2_logo,team2_score,map_scores,maps,veto_steps';
+export const TEAM_MAP_COLUMNS = 'id,status,best_of,competition_id:raw_data->>competition_id,competition_name,scheduled_at,finished_at,team1_id,team1_name,team1_slug,team1_logo,team1_score,team2_id,team2_name,team2_slug,team2_logo,team2_score,map_scores,maps,veto_steps';
 export const mapName = value => MAP_NAMES.find(name => normalizeMapKey(name) === normalizeMapKey(value)) || null;
 const list = value => {
   if (Array.isArray(value)) return value;
