@@ -15,7 +15,7 @@ import {
 import { useParams } from "react-router-dom";
 import staticTeams from "../data/teams";
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
-import matchesData from "../data/matches";
+import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TeamRosterSection from "../components/TeamRosterSection";
 import { supabase } from "../lib/supabaseClient";
@@ -512,6 +512,7 @@ function TeamPage() {
       };
     });
 
+  const matchesData = useStaticTeamMatches(team?.slug);
   const fallbackMatches = matchesData
     .filter(
       (match) => match.teamSlug === team?.slug

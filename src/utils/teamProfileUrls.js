@@ -1,8 +1,18 @@
+const indexes = new WeakMap();
 export function findTeamByRoute(teams, key) {
-  return teams.find(team => team.faceitTeamId === key)
-    || teams.find(team => team.profileSlug === key)
-    || teams.find(team => team.slug === key || team.urlAliases?.includes(key))
-    || null;
+  let index = indexes.get(teams);
+  if (!index) {
+    index = { ids: new Map(), profiles: new Map(), aliases: new Map() };
+    const add = (map, value, team) => { if (value && !map.has(value)) map.set(value, team); };
+    for (const team of teams) {
+      add(index.ids, team.faceitTeamId, team);
+      add(index.profiles, team.profileSlug, team);
+      add(index.aliases, team.slug, team);
+      for (const alias of team.urlAliases || []) add(index.aliases, alias, team);
+    }
+    indexes.set(teams, index);
+  }
+  return index.ids.get(key) || index.profiles.get(key) || index.aliases.get(key) || null;
 }
 export function teamPublicPath(to, teams) {
   if (typeof to !== 'string') {

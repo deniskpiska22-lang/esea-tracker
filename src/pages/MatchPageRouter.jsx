@@ -12,7 +12,8 @@ import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { getMatchSeoMetadata, MATCH_SEO_COLUMNS } from "../utils/matchSeo.js";
 
-import matchesData from "../data/matches";
+import { useStaticHistory } from "../hooks/useStaticHistory.js";
+import { EMPTY_HISTORY } from "../lib/staticHistory.js";
 import upcomingMatches from "../data/upcomingMatches";
 import { supabase } from "../lib/supabaseClient";
 
@@ -63,6 +64,8 @@ function MatchPageRouter() {
   } = useParams();
 
   const matchId = routeMatchId || routeId || "";
+  const staticRows = useStaticHistory("matches", matchId);
+  const matchesData = staticRows || EMPTY_HISTORY;
 
   const finishedMatch = useMemo(
     () =>
@@ -71,7 +74,7 @@ function MatchPageRouter() {
           item.matchId === matchId ||
           item.id === matchId
       ) || null,
-    [matchId]
+    [matchId, matchesData]
   );
 
   const upcomingMatch = useMemo(
@@ -124,7 +127,7 @@ function MatchPageRouter() {
       ? resolved.row
       : null;
 
-  if (loading) {
+  if (loading || (!dbRow && staticRows === undefined)) {
     return <MatchLoading />;
   }
 

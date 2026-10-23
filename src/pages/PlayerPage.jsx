@@ -11,13 +11,12 @@ import {
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import matchStatsCompact from "../data/matchStatsCompact.json";
+import { useStaticPlayerHistory } from "../hooks/useStaticHistory.js";
 import teams from "../data/teams";
 import players from "../data/players";
 import playerTransfers from "../data/playerTransfers.json";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import playerAliases from "../data/playerAliases";
-import matchesData from "../data/matches.js";
 
 import { normalizeNickname } from "../utils/normalizeNickname";
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
@@ -158,7 +157,8 @@ function findLocalTeam(
 
 function findSiteMatch(
   matchId,
-  teamName
+  teamName,
+  matchesData = []
 ) {
   return (
     matchesData.find(
@@ -218,7 +218,8 @@ function normalizeMatchPlayer(player = {}) {
 function buildSupabasePlayerMatches(
   rows,
   decodedNickname,
-  targetPlayerId
+  targetPlayerId,
+  matchesData
 ) {
   const normalizedTarget =
     normalizePlayerName(
@@ -392,7 +393,8 @@ function buildSupabasePlayerMatches(
       findSiteMatch(
         row.id,
         teamName ||
-          playerTeam.teamName
+          playerTeam.teamName,
+        matchesData
       );
 
     const maps =
@@ -479,7 +481,9 @@ function buildSupabasePlayerMatches(
 }
 
 function buildFallbackPlayerMatches(
-  decodedNickname
+  decodedNickname,
+  matchStatsCompact,
+  matchesData
 ) {
   return Object.values(
     matchStatsCompact
@@ -512,7 +516,8 @@ function buildFallbackPlayerMatches(
           const siteMatch =
             findSiteMatch(
               match.matchId,
-              team.teamName
+              team.teamName,
+              matchesData
             );
 
           const opponent =
@@ -1012,18 +1017,21 @@ function PlayerPage() {
     navigate(target, { replace: true, state: location.state });
   }, [loadingStats, resolvedNickname, location.pathname, location.state, navigate]);
 
+  const staticHistory = useStaticPlayerHistory(decodedNickname);
   const supabasePlayerMatches =
     useMemo(
       () =>
         buildSupabasePlayerMatches(
           databaseMatches,
           decodedNickname,
-          resolvedPlayerId
+          resolvedPlayerId,
+          staticHistory.matches
         ),
       [
         databaseMatches,
         decodedNickname,
         resolvedPlayerId,
+        staticHistory.matches,
       ]
     );
 
@@ -1031,9 +1039,11 @@ function PlayerPage() {
     useMemo(
       () =>
         buildFallbackPlayerMatches(
-          decodedNickname
+          decodedNickname,
+          staticHistory.stats,
+          staticHistory.matches
         ),
-      [decodedNickname]
+      [decodedNickname, staticHistory]
     );
 
   const playerMatches =

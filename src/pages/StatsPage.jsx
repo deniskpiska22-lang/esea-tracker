@@ -6,7 +6,7 @@ import { tx, tf } from "../i18n/translate.js";
 import { useParams } from "react-router-dom";
 
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
-import matchesData from "../data/matches";
+import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
 import { useTeamStats } from "../hooks/useTeamStats";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { ACTIVE_MAP_POOL, normalizeMapKey } from "../utils/activeMapPool";
@@ -85,6 +85,7 @@ function StatsPage() {
   const { slug } = useParams();
 
   const team = findTeamByRoute(teams, slug) || null;
+  const matchesData = useStaticTeamMatches(team?.slug);
   const fallbackMatches = matchesData.filter(
     (match) => match.teamSlug === team?.slug
   );

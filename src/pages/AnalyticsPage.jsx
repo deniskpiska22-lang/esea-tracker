@@ -4,7 +4,7 @@ import { tx } from "../i18n/translate.js";
 import { useParams } from "react-router-dom";
 
 import teams from "../data/teams";
-import matchesData from "../data/matches";
+import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
 import { useTeamStats } from "../hooks/useTeamStats";
 
 const UPCOMING_FEATURES = [
@@ -36,6 +36,7 @@ function AnalyticsPage() {
   const team =
     findTeamByRoute(teams, slug) || null;
 
+  const matchesData = useStaticTeamMatches(team?.slug);
   const fallbackMatches = matchesData.filter(
     (match) => match.teamSlug === team?.slug
   );

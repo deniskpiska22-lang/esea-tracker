@@ -4,6 +4,7 @@ import PariSideRails from "./components/PariSideRails.jsx";
 import PariBanner from "./components/PariBanner.jsx";
 import { tx } from "./i18n/translate.js";
 import {
+  Suspense,
   useEffect,
   useMemo,
   useRef,
@@ -18,6 +19,7 @@ import { useTeamRanks } from "./hooks/useTeamRanks";
 import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import { buildPlayerSearchIndex, searchPlayers } from "./utils/siteSearch.js";
 
 function App() {
   const { teams } = useTeamCatalog();
@@ -138,30 +140,14 @@ function App() {
       .slice(0, 6);
   }, [normalizedSearch, teams]);
 
-  const filteredPlayers =
-    useMemo(() => {
-      if (!normalizedSearch) {
-        return [];
-      }
-
-      const byId = new Map();
-      for (const p of [...liveSearchPlayers.filter(p=>p.query===normalizedSearch), ...teams.flatMap(t=>(t.players || []).map((nickname,i)=>({nickname,faceit_id:t.playerIds?.[i],team:t.name}))), ...searchablePlayers]) {
-        const key = String(p.nickname || "").toLowerCase();
-        if (!byId.has(key)) byId.set(key,p);
-      }
-      return [...byId.values()]
-        .filter((player) =>
-          player.nickname
-            .toLowerCase()
-            .includes(normalizedSearch)
-        )
-        .slice(0, 6);
-    }, [
-      normalizedSearch,
-      searchablePlayers,
-      liveSearchPlayers,
-      teams,
-    ]);
+  const playerSearchIndex = useMemo(
+    () => buildPlayerSearchIndex(teams, searchablePlayers),
+    [teams, searchablePlayers]
+  );
+  const filteredPlayers = useMemo(
+    () => searchPlayers(playerSearchIndex, liveSearchPlayers, normalizedSearch),
+    [playerSearchIndex, liveSearchPlayers, normalizedSearch]
+  );
 
   function closeSearch() {
     setShowSearch(false);
@@ -925,7 +911,9 @@ function App() {
       <PariSideRails />
 
       <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
-        <Outlet />
+        <Suspense fallback={<div role="status" className="flex min-h-[calc(100vh-72px)] items-center justify-center text-sm font-semibold text-slate-500">{tx(" Loading... ")}</div>}>
+          <Outlet />
+        </Suspense>
         <OneWinAds mobile />
         <PariBanner placement="mobile_inline" className="mx-auto my-8 max-w-[400px] min-[1200px]:hidden" />
       </div>

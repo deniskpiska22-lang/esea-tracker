@@ -1,6 +1,4 @@
-import forumCatalog from './forumCatalog.json' with {type:'json'};
-import mapStatsCatalog from './mapStatsCatalog.json' with {type:'json'};
-import catalog from './catalog.json' with { type: 'json' };
+import { catalog, forumCatalog, mapStatsCatalog } from './catalogs.js';
 import russianAliases from './russianAliases.json' with { type: 'json' };
 import { currentLanguage } from './languages.js';
 export function translateText(value, language = currentLanguage()) {

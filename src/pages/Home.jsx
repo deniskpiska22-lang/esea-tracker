@@ -1,3 +1,4 @@
+import { loadRecentStaticMatches } from "../lib/staticHistory.js";
 import { loadHomeMatchFeed } from "../utils/homeMatchFeed.js";
 import { UPCOMING_DIVISIONS, countUpcomingDivisions, filterUpcomingDivision } from "../utils/upcomingDivisions.js";
 import Link from "../components/SiteLink.jsx";
@@ -726,12 +727,9 @@ function getStaticUpcoming() {
     );
 }
 
-// matches.js is ~7MB of historical data used only as a fallback when
-// Supabase itself has nothing to show — dynamic import keeps it out of
-// every normal page load and only fetches it if that fallback path
-// actually runs.
+// A small build-time snapshot preserves results when the live feed is unavailable.
 async function getStaticResults(limit = RESULTS_LIMIT) {
-  const { default: matchesData } = await import("../data/matches");
+  const matchesData = await loadRecentStaticMatches();
   const unique = new Map();
 
   for (const match of matchesData) {
@@ -1090,32 +1088,26 @@ function SectionTitle({ title, action }) {
   );
 }
 
-function HeroMatch({ match }) {
-  if (!match) {
-    return (
-      <section className="flex min-h-[390px] items-center justify-center rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-7 text-center">
-        <div>
-          <div className="text-xl font-black text-white">{tx(" No matches available ")}</div>
-          <Link
-            to="/matches"
-            className="mt-4 inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white transition hover:bg-orange-400"
-          >{tx(" Open matches page ")}</Link>
-        </div>
-      </section>
-    );
-  }
-
+function HeroMatch({ match: data, loading = false }) {
+  const unavailable = !data;
+  // Share the real layout with the loading/empty state so data and logos do
+  // not push the rest of the page down when they arrive.
+  const match = data || { team1: {}, team2: {}, bestOf: 1 };
   const live = isLiveStatus(match.status);
   const matchPath = `/match/${match.matchId || match.id}`;
 
   return (
-    <section className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:min-h-[420px] md:p-7">
+    <section aria-busy={loading} className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:min-h-[420px] md:p-7">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-y-0 left-0 w-1/2 bg-[radial-gradient(circle_at_20%_50%,rgba(249,115,22,0.18),transparent_60%)]" />
         <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_50%,rgba(56,189,248,0.12),transparent_60%)]" />
       </div>
 
-      <div className="relative">
+      {unavailable && !loading && <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-7 text-center">
+        <div className="text-xl font-black text-white">{tx(" No matches available ")}</div>
+        <Link to="/matches" className="rounded-xl bg-orange-500 px-5 py-3 text-sm font-black text-white">{tx(" Open matches page ")}</Link>
+      </div>}
+      <div className={`relative ${loading || unavailable ? "invisible" : ""}`} inert={loading || unavailable ? true : undefined}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             to={matchPath}
@@ -1461,7 +1453,7 @@ function RankingCard({ team, index }) {
   return (
     <Link
       to={`/teams/${team.slug}`}
-      className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f]"
+      className="group flex min-h-[90px] items-center gap-3 rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f]"
     >
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-500/10 text-xs font-black text-orange-400">
         {team.rank || index + 1}
@@ -1757,10 +1749,8 @@ function Home() {
     let cancelled = false;
 
     getStaticResults().then((data) => {
-      if (!cancelled) {
-        setStaticResults(data);
-      }
-    });
+      if (!cancelled) setStaticResults(data);
+    }).catch(error => console.warn("Static results unavailable:", error.message));
 
     return () => {
       cancelled = true;
@@ -1910,7 +1900,7 @@ function Home() {
         <div className="grid items-start gap-5 min-[1600px]:grid-cols-[minmax(0,1fr)_352px] min-[1850px]:grid-cols-[minmax(0,1fr)_372px]">
           {/* LEFT COLUMN — independent height */}
           <div className="grid min-w-0 gap-5">
-            {databaseReady ? <HeroMatch match={featured} /> : <div className="h-72 animate-pulse rounded-2xl bg-white/5" role="status" aria-label={tx("Loading...")} />}
+            <HeroMatch match={databaseReady ? featured : null} loading={!databaseReady} />
 
             <section
               ref={upcomingSectionRef}
@@ -1949,8 +1939,8 @@ function Home() {
                 </div>
               </div>
 
-              {!databaseReady ? <div className="h-64 animate-pulse bg-white/5 rounded-2xl" /> : filteredUpcoming.length > 0 ? (
-                <div ref={upcomingListRef} className="home-scrollbar max-h-[620px] overflow-y-auto pr-2">
+              {!databaseReady ? <div className="h-[620px] max-h-[60vh] animate-pulse bg-white/5 rounded-2xl" /> : filteredUpcoming.length > 0 ? (
+                <div ref={upcomingListRef} className="home-scrollbar h-[620px] max-h-[60vh] overflow-y-auto pr-2">
                   <div className="grid gap-4 sm:grid-cols-2">
                     {filteredUpcoming.map((match) => (
                       <MatchCard
@@ -1961,7 +1951,7 @@ function Home() {
                   </div>
                 </div>
               ) : (
-                <div role="status" className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-500">
+                <div role="status" className="flex h-[620px] max-h-[60vh] flex-col items-center justify-center gap-3 rounded-2xl border border-white/[0.06] bg-[#0d131a] px-6 text-center text-sm text-slate-500">
                   {upcomingDivision === "All" ? tx("No matches scheduled in the next 24 hours") : tx("No matches")}
                   {upcomingDivision !== "All" && (
                     <button type="button" onClick={() => setUpcomingDivision("All")} className="rounded-lg border border-orange-500/20 bg-orange-500/[0.07] px-3 py-2 text-xs font-bold text-orange-400 transition-colors hover:bg-orange-500/15 focus-visible:outline-2 focus-visible:outline-orange-400">
@@ -2092,13 +2082,13 @@ function Home() {
           />
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {(ratingsReady ? topTeams : []).slice(0, 8).map((team, index) => (
+            {ratingsReady ? topTeams.slice(0, 8).map((team, index) => (
               <RankingCard
                 key={team.slug || team.name}
                 team={team}
                 index={index}
               />
-            ))}
+            )) : Array.from({ length: 8 }, (_, index) => <div key={index} className="h-[90px] animate-pulse rounded-2xl border border-white/[0.07] bg-[#0d131a]" />)}
           </div>
         </section>
 

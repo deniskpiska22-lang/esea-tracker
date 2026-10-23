@@ -14,11 +14,10 @@ import {
 
 import { useLocation, useParams } from "react-router-dom";
 
-import matchesData from "../data/matches";
+import { useStaticMatch, useStaticTeamMatches, useStaticHistory } from "../hooks/useStaticHistory.js";
 import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
-import matchStatsCompact from "../data/matchStatsCompact.json";
 
 import { calculatePlayerMatchRating } from "../utils/calculatePlayerRating";
 import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating";
@@ -1467,6 +1466,7 @@ function UpcomingMatchPage() {
    * /match/:id и /match/:matchId
    */
   const matchId = routeMatchId || routeId || "";
+  const matchesData = useStaticMatch(matchId);
 
   const finishedMatch = useMemo(
     () =>
@@ -1475,7 +1475,7 @@ function UpcomingMatchPage() {
           item.matchId === matchId ||
           item.id === matchId
       ) || null,
-    [matchId]
+    [matchId, matchesData]
   );
 
   const upcomingMatch = useMemo(
@@ -1718,13 +1718,9 @@ function UpcomingMatchPage() {
       displayTeam2?.countryCode
   );
 
-  const leftFallbackMatches = matchesData.filter(
-    (match) => match.teamSlug === leftLocalTeam?.slug
-  );
+  const leftFallbackMatches = useStaticTeamMatches(leftLocalTeam?.slug);
 
-  const rightFallbackMatches = matchesData.filter(
-    (match) => match.teamSlug === rightLocalTeam?.slug
-  );
+  const rightFallbackMatches = useStaticTeamMatches(rightLocalTeam?.slug);
 
   const { matches: leftAllMatches = [], loading: leftStatsLoading, error: leftStatsError } = useTeamStats(
     leftLocalTeam?.slug,
@@ -1781,10 +1777,8 @@ function UpcomingMatchPage() {
     finishedMatch?.teamSlug ||
     null;
 
-  const stats =
-    liveData?.playerStats ||
-    matchStatsCompact[matchId] ||
-    null;
+  const fallbackStats = useStaticHistory("stats", matchId, !loadingLive && !liveData?.playerStats);
+  const stats = liveData?.playerStats || fallbackStats || null;
 
   const databaseMapScores =
     Array.isArray(liveData?.mapScores)

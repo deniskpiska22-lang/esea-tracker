@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { useTeamVetoRecovery } from "../hooks/useTeamVetoRecovery.js";
-import matchesData from "../data/matches";
+import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
 import {
   buildOpponentBanOrderStats,
   buildTeamBanOrderStats,
@@ -499,6 +499,7 @@ function VetoPage() {
   const { slug } = useParams();
 
   const team = findTeamByRoute(teams, slug) || null;
+  const matchesData = useStaticTeamMatches(team?.slug);
   const fallbackMatches = matchesData.filter(
     (match) => match.teamSlug === team?.slug
   );

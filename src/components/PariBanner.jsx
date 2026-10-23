@@ -82,10 +82,14 @@ function PariBanner({ placement, className = "" }) {
           <source
             media="(max-width: 639px)"
             srcSet="/ads/pari/pari-cs2-freebet-square.jpg"
+            width="800"
+            height="800"
           />
           <img
             src="/ads/pari/pari-cs2-freebet-legal.jpg"
             alt="PARI — фрибет 5×1000 рублей новым игрокам"
+            width="1200"
+            height="627"
             className="block h-auto w-full transition duration-300 group-hover:scale-[1.015] group-hover:brightness-110"
             loading="lazy"
             decoding="async"
