@@ -70,7 +70,7 @@ function PariBanner({ placement, className = "" }) {
       <a
         href={href}
         target="_blank"
-        rel="sponsored noopener noreferrer"
+        rel="sponsored nofollow noopener noreferrer"
         className="group relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#23e8cf] focus-visible:ring-inset"
         onClick={() => sendAnalyticsEvent("pari_banner_click", placement)}
       >
@@ -107,5 +107,5 @@ function PariBanner({ placement, className = "" }) {
 }
 
 export default function GeoRestrictedPariBanner(props) {
-  return <AdGeoGate><PariBanner {...props} /></AdGeoGate>;
+  return <AdGeoGate provider="pari"><PariBanner {...props} /></AdGeoGate>;
 }

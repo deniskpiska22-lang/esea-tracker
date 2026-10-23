@@ -2,7 +2,12 @@
 export function getAdPolicy(countryHeader) {
   const country = typeof countryHeader === "string" ? countryHeader.trim().toUpperCase() : "";
   const knownCountry = /^[A-Z]{2}$/.test(country) && !["XX", "ZZ", "T1"].includes(country);
-  return { adsEnabled: knownCountry && country !== "RU", country: knownCountry ? country : null };
+  return {
+    // Keep this existing field scoped to 1win (including its server-side endpoints).
+    adsEnabled: knownCountry && country !== "RU",
+    pariEnabled: knownCountry && country === "RU",
+    country: knownCountry ? country : null,
+  };
 }
 
 export default function handler(request, response) {

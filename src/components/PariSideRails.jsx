@@ -60,7 +60,7 @@ function SideRail({ side, imageSrc }) {
       <a
         href={PARI_OFFER_URL}
         target="_blank"
-        rel="sponsored noopener noreferrer"
+        rel="sponsored nofollow noopener noreferrer"
         className="group relative block h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#28e5cd] focus-visible:ring-inset"
         onClick={() => sendAnalyticsEvent("pari_banner_click", placement)}
       >
@@ -100,5 +100,5 @@ function PariSideRails() {
 }
 
 export default function GeoRestrictedPariSideRails(props) {
-  return <AdGeoGate><PariSideRails {...props} /></AdGeoGate>;
+  return <AdGeoGate provider="pari"><PariSideRails {...props} /></AdGeoGate>;
 }
