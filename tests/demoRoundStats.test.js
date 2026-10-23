@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { reconstructRounds, sideForRoster } from '../workers/demo-stats/rounds.js';
-import { buildDemoContext, demoUrl, downloadDemo, resolveDemoUrls } from '../workers/demo-stats/source.js';
+import { buildDemoContext, demoUrl, downloadDemo, resolveDemoUrls, resolveDownloadUrl } from '../workers/demo-stats/source.js';
 import { verifiedTeamRounds } from '../src/utils/demoRoundStats.js';
 import { normalizeTeamMapHistory, buildTeamMapStats } from '../src/utils/teamMapStats.js';
 import catalog from '../src/i18n/mapStatsCatalog.json' with { type: 'json' };
@@ -134,6 +134,23 @@ test('demo discovery takes only the requested room and does not use another team
   const item=match();item.raw_data.competition_id='event';
   const urls=await resolveDemoUrls(item,null,async()=>new Response(JSON.stringify({payload:[{id:'other',demo_urls:[url.replace(id,'other')]},{id,demo_urls:[url]}]})));
   assert.deepEqual(urls,[url]);
+});
+
+test('logical FACEIT resources are signed before download and signatures stay on trusted storage', async () => {
+  const resource = `https://demos-us-east.backblaze.faceit-cdn.net/cs2/${id}-1-1.dem.zst`;
+  const signed = `https://demos-us-east-faceit-cdn.s3.us-east-005.backblazeb2.com/cs2/${id}-1-1.dem.zst?X-Amz-Signature=test`;
+  const output = await resolveDownloadUrl(resource, id, 'test-token', async (url, options) => {
+    assert.equal(url, 'https://api.faceit.com/download/v2/demos/download');
+    assert.equal(options.headers.Authorization, 'Bearer test-token');
+    assert.equal(JSON.parse(options.body).resource_url, resource);
+    return new Response(JSON.stringify({payload:{download_url:signed}}));
+  });
+  assert.equal(output, signed);
+  await assert.rejects(resolveDownloadUrl(resource,id,null), error=>error.accessRequired);
+  await assert.rejects(resolveDownloadUrl(resource,id,'test',async()=>new Response(null,{status:403})), error=>error.accessRequired);
+  for (const target of ['https://evil.example/demo.dem',signed.replace(id,'another-match'),signed.replace('backblazeb2.com','backblazeb2.com.evil.example')]) {
+    await assert.rejects(resolveDownloadUrl(resource,id,'test',async()=>new Response(JSON.stringify({payload:{download_url:target}}))),/Untrusted/);
+  }
 });
 
 test('all demo-statistics labels are translated in every site language', () => {

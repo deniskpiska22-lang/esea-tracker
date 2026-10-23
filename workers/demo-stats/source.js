@@ -7,10 +7,29 @@ export function demoUrl(value, matchId) {
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.username || url.password || url.port) return null;
-    if (!(url.hostname === 'demos.faceit.com' || /^demos-[a-z0-9-]+\.backblaze\.faceit-cdn\.net$/.test(url.hostname))) return null;
+    if (!(url.hostname === 'demos.faceit.com' || /^demos-[a-z0-9-]+(?:\.backblaze)?\.faceit-cdn\.net$/.test(url.hostname)
+      || /^demos-[a-z0-9-]+-faceit-cdn\.s3\.[a-z0-9-]+\.backblazeb2\.com$/.test(url.hostname))) return null;
     if (!url.pathname.includes(`/${matchId}-`) || !/\.dem(?:\.(?:zst|gz))?$/.test(url.pathname)) return null;
     return url;
   } catch { return null; }
+}
+
+export async function resolveDownloadUrl(resource, matchId, token, fetcher = fetch) {
+  const url = demoUrl(resource, matchId);
+  if (!url) throw new Error('Untrusted demo resource');
+  // Data API / team-leagues return a logical, non-public resource URL.
+  // Exchange it BEFORE attempting DNS/download, not just after an HTTP 403.
+  if (url.hostname.endsWith('.backblazeb2.com')) return url.href;
+  if (!token) throw Object.assign(new Error('FACEIT Downloads token is not configured'), { accessRequired: true });
+  const response = await fetcher('https://api.faceit.com/download/v2/demos/download', {
+    method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ resource_url: resource }), signal: AbortSignal.timeout(15_000),
+  });
+  if (!response.ok) throw Object.assign(new Error(`FACEIT Downloads HTTP ${response.status}`), { accessRequired: [401, 403].includes(response.status) });
+  const data = await response.json();
+  const signed = demoUrl(data.payload?.download_url, matchId);
+  if (!signed || !signed.hostname.endsWith('.backblazeb2.com')) throw new Error('Untrusted signed demo URL');
+  return signed.href;
 }
 
 const limited = maximum => {

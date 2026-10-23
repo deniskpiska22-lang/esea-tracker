@@ -5,8 +5,12 @@ the live/stats worker event loop. One download/parser at a time, 30-second
 poll, one CPU / 2 GB service limit. Requires the round-statistics migration.
 
 Server-only environment: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, optional
-`FACEIT_API_KEY`. If a public resource requires signing, a separately scoped
-`FACEIT_DOWNLOADS_TOKEN` is needed; a Data API key is not a Downloads token.
+`FACEIT_API_KEY`. Logical resource URLs are exchanged with Downloads API
+before downloading. Set a scoped `FACEIT_DOWNLOADS_TOKEN` when the existing
+key has no Downloads permission; 401/403 is recorded as `access_required`.
+An authorization failure pauses all signing requests for six hours; updating
+the token redeploys the worker and resumes immediately, without hammering
+the provider once per queued match.
 Do not put any of these secrets in `VITE_*` variables.
 
 The atomic service-role-only queue discovers finished matches from the last

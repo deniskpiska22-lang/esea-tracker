@@ -6,11 +6,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
-import { buildDemoContext, downloadDemo, resolveDemoUrls } from './source.js';
+import { buildDemoContext, downloadDemo, resolveDemoUrls, resolveDownloadUrl } from './source.js';
 
 const db = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY,
   { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (url, init) => fetch(url, { ...init, signal: AbortSignal.timeout(20_000) }) } });
 let stopped = false;
+let accessBlockedUntil = 0;
 process.on('SIGTERM', () => { stopped = true; });
 process.on('SIGINT', () => { stopped = true; });
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -33,19 +34,6 @@ function parse(path, contextFile) {
   });
 }
 
-async function signedResource(resource) {
-  const token = process.env.FACEIT_DOWNLOADS_TOKEN;
-  if (!token) return resource;
-  const response = await fetch('https://api.faceit.com/download/v2/demos/download', {
-    method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ resource_url: resource }), signal: AbortSignal.timeout(15_000),
-  });
-  if (!response.ok) throw Object.assign(new Error(`Signed download HTTP ${response.status}`), { accessRequired: [401, 403].includes(response.status) });
-  const data = await response.json();
-  if (typeof data.payload?.download_url !== 'string') throw new Error('Signed download URL unavailable');
-  return data.payload.download_url;
-}
-
 async function processJob(job) {
   const match = await result(db.from('matches').select('id,status,finished_at,championship_id,team1_id,team2_id,map_scores,raw_data,demo_urls').eq('id', job.match_id).single());
   const directory = await mkdtemp(join(tmpdir(), 'esea-demo-'));
@@ -59,12 +47,8 @@ async function processJob(job) {
     if (!urls.length) throw new Error('Demo is not available yet');
     for (let index = 0; index < urls.length; index++) {
       const path = join(directory, `map-${index}.dem`);
-      try {
-        await downloadDemo(urls[index], match.id, path);
-      } catch (error) {
-        if (!error.accessRequired || !process.env.FACEIT_DOWNLOADS_TOKEN) throw error;
-        await downloadDemo(await signedResource(urls[index]), match.id, path);
-      }
+      const signedUrl = await resolveDownloadUrl(urls[index], match.id, process.env.FACEIT_DOWNLOADS_TOKEN || process.env.FACEIT_API_KEY);
+      await downloadDemo(signedUrl, match.id, path);
       const handle = await open(path, 'r');
       const header = await handle.read({ buffer: Buffer.alloc(8), position: 0, length: 8 }).then(result => result.buffer.toString()).finally(() => handle.close());
       if (header !== 'PBDEMS2\0') throw new Error('Downloaded file is not a CS2 demo');
@@ -77,7 +61,7 @@ async function processJob(job) {
     status = results.length === context.maps.length ? 'done' : 'retry';
     if (status !== 'done') failure = 'Some map demos are still unavailable';
   } catch (error) {
-    failure = error.accessRequired ? 'FACEIT Downloads access is required' : error.message.slice(0, 350);
+    failure = error.accessRequired ? `FACEIT Downloads access is required (${error.message})` : `${error.message}${error.cause?.code ? ` [${error.cause.code}]` : ''}`.slice(0, 350);
     if (error.accessRequired) status = 'access_required';
     else if (job.attempts >= 8) status = 'unavailable';
   } finally { await rm(directory, { recursive: true, force: true }); }
@@ -85,6 +69,7 @@ async function processJob(job) {
   const saved = await result(db.rpc('finish_match_demo_analysis', { p_match_id: job.match_id, p_lease_token: job.lease_token, p_results: results,
     p_status: status, p_error: failure || null, p_next_attempt_at: new Date(Date.now() + delay).toISOString() }));
   if (saved !== true) throw new Error('Demo analysis lease expired before saving');
+  if (status === 'access_required') accessBlockedUntil = Date.now() + 6 * 3600_000;
   console.log(JSON.stringify({ matchId: job.match_id, status, maps: results.length, error: failure || null }));
   await heartbeat(status === 'done' ? 'online' : status, `${job.match_id}: ${results.length} verified maps${failure ? `; ${failure}` : ''}`);
 }
@@ -92,9 +77,12 @@ async function processJob(job) {
 console.log('Demo statistics worker starting; concurrency=1; recent window=30 days');
 while (!stopped) {
   try {
-    const jobs = await result(db.rpc('claim_match_demo_analysis'));
-    if (jobs?.length) await processJob(jobs[0]);
-    else await heartbeat('online', 'No due demo analysis jobs');
+    if (Date.now() < accessBlockedUntil) await heartbeat('access_required', 'Waiting for FACEIT Downloads permission; retrying in six hours or after credentials change');
+    else {
+      const jobs = await result(db.rpc('claim_match_demo_analysis'));
+      if (jobs?.length) await processJob(jobs[0]);
+      else await heartbeat('online', 'No due demo analysis jobs');
+    }
   } catch (error) { console.error('Demo worker:', error.message?.slice(0, 350)); }
   if (!stopped) await pause(30_000);
 }
