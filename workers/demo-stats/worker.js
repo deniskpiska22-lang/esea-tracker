@@ -12,6 +12,9 @@ const db = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_R
   { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (url, init) => fetch(url, { ...init, signal: AbortSignal.timeout(20_000) }) } });
 let stopped = false;
 let accessBlockedUntil = 0;
+let providerFailures = 0;
+let blockedReason = '';
+let lastPausedHeartbeat = 0;
 process.on('SIGTERM', () => { stopped = true; });
 process.on('SIGINT', () => { stopped = true; });
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -47,7 +50,7 @@ async function processJob(job) {
     if (!urls.length) throw new Error('Demo is not available yet');
     for (let index = 0; index < urls.length; index++) {
       const path = join(directory, `map-${index}.dem`);
-      const signedUrl = await resolveDownloadUrl(urls[index], match.id, process.env.FACEIT_DOWNLOADS_TOKEN || process.env.FACEIT_API_KEY);
+      const signedUrl = await resolveDownloadUrl(urls[index], match.id, process.env.FACEIT_DOWNLOADS_TOKEN);
       await downloadDemo(signedUrl, match.id, path);
       const handle = await open(path, 'r');
       const header = await handle.read({ buffer: Buffer.alloc(8), position: 0, length: 8 }).then(result => result.buffer.toString()).finally(() => handle.close());
@@ -69,7 +72,17 @@ async function processJob(job) {
   const saved = await result(db.rpc('finish_match_demo_analysis', { p_match_id: job.match_id, p_lease_token: job.lease_token, p_results: results,
     p_status: status, p_error: failure || null, p_next_attempt_at: new Date(Date.now() + delay).toISOString() }));
   if (saved !== true) throw new Error('Demo analysis lease expired before saving');
-  if (status === 'access_required') accessBlockedUntil = Date.now() + 6 * 3600_000;
+  if (status === 'access_required') {
+    accessBlockedUntil = Date.now() + 6 * 3600_000;
+    blockedReason = 'Waiting for FACEIT Downloads permission; retrying in six hours or after credentials change';
+  } else if (/FACEIT Downloads HTTP 5\d\d/.test(failure)) {
+    providerFailures++;
+    if (providerFailures >= 3) {
+      accessBlockedUntil = Date.now() + 15 * 60_000;
+      blockedReason = 'FACEIT Downloads service failed three times; cooling down for 15 minutes';
+      providerFailures = 0;
+    }
+  } else if (status === 'done') providerFailures = 0;
   console.log(JSON.stringify({ matchId: job.match_id, status, maps: results.length, error: failure || null }));
   await heartbeat(status === 'done' ? 'online' : status, `${job.match_id}: ${results.length} verified maps${failure ? `; ${failure}` : ''}`);
 }
@@ -77,7 +90,12 @@ async function processJob(job) {
 console.log('Demo statistics worker starting; concurrency=1; recent window=30 days');
 while (!stopped) {
   try {
-    if (Date.now() < accessBlockedUntil) await heartbeat('access_required', 'Waiting for FACEIT Downloads permission; retrying in six hours or after credentials change');
+    if (!process.env.FACEIT_DOWNLOADS_TOKEN || Date.now() < accessBlockedUntil) {
+      if (Date.now() - lastPausedHeartbeat >= 300_000) {
+        await heartbeat('paused', process.env.FACEIT_DOWNLOADS_TOKEN ? blockedReason : 'FACEIT_DOWNLOADS_TOKEN is required; demo analysis is paused until a scoped Downloads token is configured');
+        lastPausedHeartbeat = Date.now();
+      }
+    }
     else {
       const jobs = await result(db.rpc('claim_match_demo_analysis'));
       if (jobs?.length) await processJob(jobs[0]);
