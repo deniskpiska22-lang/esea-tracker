@@ -52,6 +52,16 @@ test('concurrent archive readers share requests and absent new match IDs return 
   assert.equal(await loader.load('matches', ''), null); assert.equal(calls, 1);
   const empty = createHistoryLoader('/', async () => ({ ok: true, json: async () => ({}) }));
   assert.equal(await empty.load('stats', 'new-faceit-match'), null);
+  assert.equal(await empty.load('players', 'constructor'), null);
+  assert.equal(await empty.load('players', '__proto__'), null);
+});
+
+test('valid nickname and slug keys cannot collide with object prototype properties', () => {
+  const match = { matchId: 'test', teamSlug: 'constructor' };
+  const stat = { matchId: 'test', teams: [{ teamId: 'a', players: [{ nickname: '__proto__', kills: 12 }] }] };
+  const archive = buildHistoryArchive([match], { test: stat });
+  assert.deepEqual(archive.groups.teams[historyBucket('constructor')].constructor, [match]);
+  assert.equal(archive.groups.players[historyBucket('__proto__')].__proto__[0].stats.teams[0].players[0].kills, 12);
 });
 
 test('failed archive requests retry and the session cache is bounded', async () => {

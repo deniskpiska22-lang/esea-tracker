@@ -6,10 +6,10 @@ export function playerHistoryKey(nickname) {
 }
 
 export function buildHistoryArchive(matches, stats) {
-  const groups = Object.fromEntries(['teams', 'matches', 'stats', 'players'].map(kind => [kind, {}]));
+  const groups = Object.fromEntries(['teams', 'matches', 'stats', 'players'].map(kind => [kind, Object.create(null)]));
   const add = (kind, key, value, append = false) => {
     if (!key) return;
-    const bucket = groups[kind][historyBucket(key)] ||= {};
+    const bucket = groups[kind][historyBucket(key)] ||= Object.create(null);
     if (append) (bucket[key] ||= []).push(value);
     else bucket[key] = value;
   };

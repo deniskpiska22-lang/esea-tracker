@@ -4,7 +4,7 @@ export function createHistoryLoader(base, fetcher = fetch, maxBuckets = 24) {
   const requests = new Map();
   function loadFile(path) {
     if (requests.has(path)) return requests.get(path);
-    const pending = fetcher(base + path).then(response => {
+    const pending = fetcher(base + path, { signal: AbortSignal.timeout(10000) }).then(response => {
       if (!response.ok) throw new Error(`History request failed: ${response.status}`);
       return response.json();
     }).catch(error => {
@@ -20,7 +20,7 @@ export function createHistoryLoader(base, fetcher = fetch, maxBuckets = 24) {
     async load(kind, key) {
       if (!key) return null;
       const bucket = await loadFile(`${kind}/${historyBucket(key)}.json`);
-      return bucket[key] || null;
+      return Object.hasOwn(bucket, key) ? bucket[key] : null;
     },
     recent() { return loadFile('recent.json'); },
   };

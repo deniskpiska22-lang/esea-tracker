@@ -1739,9 +1739,8 @@ function Home() {
   const [staticResults, setStaticResults] = useState([]);
 
   useEffect(() => {
-    // Only reached once Supabase has actually responded with nothing
-    // usable — never during the brief initial loading window, so the
-    // ~7MB fallback chunk isn't fetched on a normal, working page load.
+    // Only use the small archive snapshot once the live feed has responded
+    // without usable data, never during the initial loading window.
     if (!databaseReady || databaseRows.length > 0) {
       return undefined;
     }
