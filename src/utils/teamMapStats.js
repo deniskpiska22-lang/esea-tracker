@@ -1,7 +1,8 @@
 import { ACTIVE_MAP_POOL, normalizeMapKey } from './activeMapPool.js';
+import { aggregateDemoRounds, verifiedTeamRounds } from './demoRoundStats.js';
 
 export const MAP_NAMES = [...ACTIVE_MAP_POOL, 'Overpass', 'Train', 'Vertigo', 'Cobblestone'];
-export const TEAM_MAP_COLUMNS = 'id,status,best_of,competition_id:raw_data->>competition_id,competition_name,scheduled_at,finished_at,team1_id,team1_name,team1_slug,team1_logo,team1_score,team2_id,team2_name,team2_slug,team2_logo,team2_score,map_scores,maps,veto_steps';
+export const TEAM_MAP_COLUMNS = 'id,status,best_of,competition_id:raw_data->>competition_id,competition_name,scheduled_at,finished_at,team1_id,team1_name,team1_slug,team1_logo,team1_score,team2_id,team2_name,team2_slug,team2_logo,team2_score,map_scores,maps,veto_steps,demo_round_stats';
 export const mapName = value => MAP_NAMES.find(name => normalizeMapKey(name) === normalizeMapKey(value)) || null;
 export const historyOpponentKey = opponent => opponent?.id || (opponent?.slug ? `slug:${opponent.slug}` : opponent?.name ? `name:${opponent.name}` : '');
 const list = value => {
@@ -39,7 +40,9 @@ export function normalizeTeamMapHistory(rows, teamId) {
       // A 1:0 award or a series score is not a played map. Keep real 13:0s.
       if (a === null || b === null || Math.max(a, b) < 13) return [];
       usedMaps.add(name);
-      return [{ map: name, teamScore: ownFirst ? a : b, opponentScore: ownFirst ? b : a }];
+      const teamScore = ownFirst ? a : b, opponentScore = ownFirst ? b : a;
+      const demo = list(row.demo_round_stats).find(result => normalizeMapKey(result.map) === normalizeMapKey(name));
+      return [{ map: name, teamScore, opponentScore, roundStats: verifiedTeamRounds(demo, teamId, teamScore, opponentScore) }];
     });
     // Exclude technical awards from both map results and veto denominators.
     if (!mapScores.length && Math.max(Number(row.team1_score), Number(row.team2_score)) <= 1) return [];
@@ -87,5 +90,6 @@ export function buildTeamMapStats(history, map, { now = Date.now(), days = 90, e
   const percent = (part, total) => total ? Math.round(part / total * 1000) / 10 : null;
   return { map: name, matches, played, wins, draws, losses: played - wins - draws, roundsWon, roundsLost, totalRounds: roundsWon + roundsLost,
     winRate: percent(wins, played), roundWinRate: percent(roundsWon, roundsWon + roundsLost),
-    pickRate: percent(picks, vetoes.length), banRate: percent(bans, vetoes.length), vetoMatches: vetoes.length };
+    pickRate: percent(picks, vetoes.length), banRate: percent(bans, vetoes.length), vetoMatches: vetoes.length,
+    demoRounds: aggregateDemoRounds(matches) };
 }

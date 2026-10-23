@@ -1,0 +1,11 @@
+{
+  "name": "esea-demo-stats-worker",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node worker.js" },
+  "engines": { "node": ">=24" },
+  "dependencies": {
+    "@laihoe/demoparser2": "0.42.0",
+    "@supabase/supabase-js": "2.110.5"
+  }
+}

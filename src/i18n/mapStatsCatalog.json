@@ -326,5 +326,117 @@
     "es": "Resultado",
     "fr": "Résultat",
     "it": "Risultato"
+  },
+  "Verified demo statistics": {
+    "ru": "Статистика по проверенным демкам",
+    "de": "Statistik aus geprüften Demos",
+    "pt": "Estatísticas de demos verificadas",
+    "es": "Estadísticas de demos verificadas",
+    "fr": "Statistiques des démos vérifiées",
+    "it": "Statistiche delle demo verificate"
+  },
+  "CT rounds": {
+    "ru": "Раунды за CT",
+    "de": "CT-Runden",
+    "pt": "Rounds de CT",
+    "es": "Rondas como CT",
+    "fr": "Rounds côté CT",
+    "it": "Round da CT"
+  },
+  "T rounds": {
+    "ru": "Раунды за T",
+    "de": "T-Runden",
+    "pt": "Rounds de T",
+    "es": "Rondas como T",
+    "fr": "Rounds côté T",
+    "it": "Round da T"
+  },
+  "Pistol rounds": {
+    "ru": "Пистолетные раунды",
+    "de": "Pistolenrunden",
+    "pt": "Rounds de pistola",
+    "es": "Rondas de pistolas",
+    "fr": "Rounds pistolet",
+    "it": "Round di pistola"
+  },
+  "CT pistols": {
+    "ru": "Пистолетки за CT",
+    "de": "CT-Pistolenrunden",
+    "pt": "Pistolas de CT",
+    "es": "Pistolas como CT",
+    "fr": "Pistolets côté CT",
+    "it": "Pistole da CT"
+  },
+  "T pistols": {
+    "ru": "Пистолетки за T",
+    "de": "T-Pistolenrunden",
+    "pt": "Pistolas de T",
+    "es": "Pistolas como T",
+    "fr": "Pistolets côté T",
+    "it": "Pistole da T"
+  },
+  "Overtime rounds": {
+    "ru": "Раунды в овертайме",
+    "de": "Verlängerungsrunden",
+    "pt": "Rounds na prorrogação",
+    "es": "Rondas de prórroga",
+    "fr": "Rounds en prolongation",
+    "it": "Round supplementari"
+  },
+  "Processed demos: {0} of {1} played maps.": {
+    "ru": "Обработаны демки: {0} из {1} сыгранных карт.",
+    "de": "Verarbeitete Demos: {0} von {1} gespielten Karten.",
+    "pt": "Demos processadas: {0} de {1} mapas jogados.",
+    "es": "Demos procesadas: {0} de {1} mapas jugados.",
+    "fr": "Démos traitées : {0} sur {1} cartes jouées.",
+    "it": "Demo elaborate: {0} di {1} mappe giocate."
+  },
+  "No verified demo statistics yet.": {
+    "ru": "Проверенная статистика по демкам пока недоступна.",
+    "de": "Noch keine geprüften Demo-Statistiken verfügbar.",
+    "pt": "Ainda não há estatísticas de demos verificadas.",
+    "es": "Todavía no hay estadísticas de demos verificadas.",
+    "fr": "Aucune statistique de démo vérifiée pour le moment.",
+    "it": "Statistiche delle demo verificate non ancora disponibili."
+  },
+  "Won: {0} / {1}": {
+    "ru": "Выиграно: {0} / {1}",
+    "de": "Gewonnen: {0} / {1}",
+    "pt": "Vitórias: {0} / {1}",
+    "es": "Ganadas: {0} / {1}",
+    "fr": "Gagnés : {0} / {1}",
+    "it": "Vinti: {0} / {1}"
+  },
+  "CT/T rates include overtime. Pistols are the opening rounds of the two regulation halves.": {
+    "ru": "Проценты за CT/T учитывают овертаймы. Пистолетки — первые раунды двух половин основного времени.",
+    "de": "CT/T-Quoten enthalten Verlängerungen. Pistolenrunden sind die ersten Runden der beiden regulären Halbzeiten.",
+    "pt": "As taxas de CT/T incluem prorrogação. Pistolas são os primeiros rounds das duas metades regulamentares.",
+    "es": "Los porcentajes CT/T incluyen la prórroga. Las pistolas son las primeras rondas de las dos mitades del tiempo reglamentario.",
+    "fr": "Les taux CT/T incluent les prolongations. Les pistolets sont les premiers rounds des deux mi-temps réglementaires.",
+    "it": "Le percentuali CT/T includono i supplementari. Le pistole sono i primi round delle due metà regolamentari."
+  },
+  "Regulation halves won": {
+    "ru": "Выигранные половины основного времени",
+    "de": "Gewonnene reguläre Halbzeiten",
+    "pt": "Metades regulamentares vencidas",
+    "es": "Mitades reglamentarias ganadas",
+    "fr": "Mi-temps réglementaires gagnées",
+    "it": "Metà regolamentari vinte"
+  },
+  "{0} wins, {1} draws in {2} halves": {
+    "ru": "{0} побед, {1} ничьих за {2} половины",
+    "de": "{0} Siege, {1} Unentschieden in {2} Halbzeiten",
+    "pt": "{0} vitórias, {1} empates em {2} metades",
+    "es": "{0} victorias, {1} empates en {2} mitades",
+    "fr": "{0} victoires, {1} nuls en {2} mi-temps",
+    "it": "{0} vittorie, {1} pareggi in {2} metà"
+  },
+  "Halves are compared by rounds won; the final half can be shortened. Overtime is excluded.": {
+    "ru": "Половины сравниваются по выигранным раундам; последняя половина может быть неполной. Овертаймы не учитываются.",
+    "de": "Halbzeiten werden nach gewonnenen Runden verglichen; die letzte kann verkürzt sein. Verlängerungen sind ausgeschlossen.",
+    "pt": "As metades são comparadas pelos rounds vencidos; a última pode ser mais curta. Prorrogações não são incluídas.",
+    "es": "Las mitades se comparan por rondas ganadas; la última puede ser más corta. Se excluye la prórroga.",
+    "fr": "Les mi-temps sont comparées selon les rounds gagnés ; la dernière peut être écourtée. Les prolongations sont exclues.",
+    "it": "Le metà si confrontano per round vinti; l’ultima può essere abbreviata. I supplementari sono esclusi."
   }
 }
