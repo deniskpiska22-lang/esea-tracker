@@ -1,6 +1,5 @@
 import { COUNTRY_CODES, countryName } from "../utils/countries.js";
 import CountryFlag from "../components/CountryFlag.jsx";
-import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import {
   useEffect,
@@ -13,7 +12,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 
 function getInitials(profile, displayName) {
   const source =
@@ -72,30 +71,8 @@ function FieldLabel({
   );
 }
 
-const STATUS_META = {
-  verified: {
-    label: "verified",
-    classes:
-      "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
-  },
-  pending: {
-    label: "pending",
-    classes:
-      "border-amber-500/25 bg-amber-500/10 text-amber-300",
-  },
-  rejected: {
-    label: "rejected",
-    classes:
-      "border-red-500/25 bg-red-500/10 text-red-300",
-  },
-  none: {
-    label: "none",
-    classes:
-      "border-gray-500/20 bg-gray-500/10 text-gray-400",
-  },
-};
-
 export default function EditProfilePage() {
+  const { teams } = useTeamCatalog();
   const { username } = useParams();
   const navigate = useNavigate();
   const { tr } = useLanguage();
@@ -167,7 +144,7 @@ export default function EditProfilePage() {
           second.name
         )
       ),
-    []
+    [teams]
   );
 
   const favoriteTeam = useMemo(
@@ -179,13 +156,6 @@ export default function EditProfilePage() {
       ) || null,
     [favoriteTeamSlug, sortedTeams]
   );
-
-  const verificationStatus =
-    profile?.verification_status || "none";
-
-  const statusMeta =
-    STATUS_META[verificationStatus] ||
-    STATUS_META.none;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -475,63 +445,6 @@ export default function EditProfilePage() {
               </div>
             </section>
 
-            {PROFESSIONAL_PROFILES_ENABLED && (
-            <section className="overflow-hidden rounded-[30px] border border-[#263548] bg-[#0f1722]">
-              <SectionHeader
-                eyebrow={tr("Профессиональная верификация", "Professional verification")}
-                title={tr("Профессиональный профиль", "Professional profile")}
-                description={tr("Команду, роль и статус нельзя менять вручную. Они обновляются после проверки заявки администратором.", "Team, role, and status cannot be changed manually. They are updated after an administrator reviews your request.")}
-              />
-
-              <div className="p-5 md:p-6">
-                <div
-                  className={`rounded-2xl border p-4 ${statusMeta.classes}`}
-                >
-                  <div className="font-black">
-                    {statusMeta.label === "verified"
-                        ? tr("Подтверждено", "Verified")
-                        : statusMeta.label === "pending"
-                          ? tr("Ожидает проверки", "Pending review")
-                          : statusMeta.label === "rejected"
-                            ? tr("Заявка отклонена", "Request rejected")
-                            : tr("Не подтверждено", "Not verified")}
-                  </div>
-
-                  <p className="mt-2 text-sm opacity-80">
-                    {verificationStatus ===
-                    "verified"
-                      ? tr("Команда и роль подтверждены администрацией.", "Team and role have been verified by an administrator.")
-                      : verificationStatus ===
-                          "pending"
-                        ? tr("Ваша заявка находится на проверке.", "Your request is under review.")
-                        : verificationStatus ===
-                            "rejected"
-                          ? tr("Заявку можно исправить и отправить повторно.", "You can update the request and submit it again.")
-                          : tr("Отправьте заявку, чтобы подтвердить связь с командой.", "Submit a request to verify your connection with the team.")}
-                  </p>
-                </div>
-
-                <Link
-                  to={`/profile/${encodeURIComponent(
-                    profile.username
-                  )}/verification`}
-                  className="mt-4 inline-flex rounded-2xl bg-orange-500 px-5 py-3 font-black text-white transition hover:bg-orange-400"
-                >
-                  {verificationStatus ===
-                  "pending"
-                    ? tr("Посмотреть заявку", "View request")
-                    : verificationStatus ===
-                        "verified"
-                      ? tr("Изменить профессиональную информацию", "Edit professional information")
-                      : verificationStatus ===
-                          "rejected"
-                        ? tr("Отправить повторно", "Submit again")
-                        : tr("Пройти верификацию", "Get verified")}
-                </Link>
-              </div>
-            </section>
-            )}
-
             {error && (
               <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
                 {error}
@@ -598,20 +511,6 @@ export default function EditProfilePage() {
                           <CountryFlag country={countryCode} />
                         </span>
                       )}
-
-                      {PROFESSIONAL_PROFILES_ENABLED && (<>
-                      <span>•</span>
-
-                      <span>
-                        {statusMeta.label === "verified"
-                        ? tr("Подтверждено", "Verified")
-                        : statusMeta.label === "pending"
-                          ? tr("Ожидает проверки", "Pending review")
-                          : statusMeta.label === "rejected"
-                            ? tr("Заявка отклонена", "Request rejected")
-                            : tr("Не подтверждено", "Not verified")}
-                      </span>
-                      </>)}
                     </div>
 
                     <p className="mt-4 line-clamp-4 text-sm leading-6 text-gray-400">

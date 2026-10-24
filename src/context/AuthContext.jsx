@@ -33,10 +33,6 @@ export function AuthProvider({ children }) {
         bio,
         country_code,
         favorite_team_slug,
-        account_type,
-        team_slug,
-        team_role,
-        verification_status,
         is_admin,
         created_at,
         updated_at

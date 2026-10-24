@@ -9,7 +9,7 @@ export function selectCatalogLanguage(catalog, language) {
 }
 
 export function localizedCatalogsPlugin() {
-  const catalogs = Object.fromEntries(['catalog', 'forumCatalog', 'mapStatsCatalog'].map(name => [name,
+  const catalogs = Object.fromEntries(['catalog', 'forumCatalog', 'mapStatsCatalog', 'adminCatalog'].map(name => [name,
     JSON.parse(readFileSync(new URL(`../src/i18n/${name}.json`, import.meta.url), 'utf8')),
   ]));
   return {
@@ -27,7 +27,8 @@ export function localizedCatalogsPlugin() {
           const dictionaries = await ({${loaders}})[currentLanguage()]();
           export const catalog = dictionaries.catalog;
           export const forumCatalog = dictionaries.forumCatalog;
-          export const mapStatsCatalog = dictionaries.mapStatsCatalog;`;
+          export const mapStatsCatalog = dictionaries.mapStatsCatalog;
+          export const adminCatalog = dictionaries.adminCatalog;`;
       }
       if (id.startsWith('\0virtual:locale-')) {
         const language = id.slice('\0virtual:locale-'.length);

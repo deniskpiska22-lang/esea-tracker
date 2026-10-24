@@ -1,4 +1,3 @@
-import { PROFESSIONAL_PROFILES_ENABLED } from "./lib/features.js";
 import TeamUrlProvider from "./components/TeamUrlProvider.jsx";
 import { tx } from "./i18n/translate.js";
 /* eslint-disable react-refresh/only-export-components -- entry point, nothing imports from it, so Fast Refresh boundaries don't apply */
@@ -45,8 +44,8 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const AuthCallbackPage = lazy(() => import("./pages/AuthCallbackPage"));
 const UserProfilePage = lazy(() => import("./pages/UserProfilePage"));
 const EditProfilePage = lazy(() => import("./pages/EditProfilePage"));
-const VerificationRequestPage = lazy(() => import("./pages/VerificationRequestPage"));
-const AdminVerificationPage = lazy(() => import("./pages/AdminVerificationPage"));
+const NewsArticlePage = lazy(() => import("./pages/NewsArticlePage"));
+const AdminPage = lazy(() => import("./pages/AdminPage"));
 const DataStatusPage = lazy(() => import("./pages/DataStatusPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const VetoPage = lazy(() => import("./pages/VetoPage"));
@@ -136,6 +135,7 @@ function Application() {
                       <Route path="/forum/topic/:id/:slug?" element={<ForumTopicPage />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/media" element={<MediaPage />} />
+                      <Route path="/media/:slug" element={<NewsArticlePage />} />
                       <Route path="/matches" element={<MatchesPage />} />
                       <Route path="/match/:id" element={<MatchPageRouter />} />
                       <Route path="/teams/:slug/matches" element={<MatchesPage />} />
@@ -155,8 +155,9 @@ function Application() {
                       <Route path="/players" element={<Navigate to="/" replace />} />
                       <Route path="/profile/:username" element={<UserProfilePage />} />
                       <Route path="/profile/:username/edit" element={<EditProfilePage />} />
-                      <Route path="/profile/:username/verification" element={PROFESSIONAL_PROFILES_ENABLED ? <VerificationRequestPage /> : <Navigate to="/" replace />} />
-                      <Route path="/admin/verifications" element={<AdminVerificationPage />} />
+                      <Route path="/profile/:username/verification" element={<Navigate to="../edit" relative="path" replace />} />
+                      <Route path="/admin" element={<AdminPage />} />
+                      <Route path="/admin/verifications" element={<Navigate to="/admin" replace />} />
                     </Route>
                   </Routes>
                 </Suspense>

@@ -38,6 +38,7 @@ function App() {
   }, []);
 
   const location = useLocation();
+  const isAdminRoute = /^\/admin(?:\/|$)/.test(location.pathname);
   const navigate = useNavigate();
   const { tr } = useLanguage();
 
@@ -468,9 +469,9 @@ function App() {
 
               {profile?.is_admin && (
                 <Link
-                  to="/admin/verifications"
+                  to="/admin"
                   className={`hidden h-11 items-center rounded-2xl border px-4 text-sm font-black transition xl:flex ${
-                    isActive("/admin/verifications")
+                    isActive("/admin")
                       ? "border-orange-500/50 bg-orange-500/10 text-orange-300"
                       : "border-white/[0.08] bg-white/[0.03] text-gray-400 hover:border-orange-500/30 hover:text-orange-300"
                   }`}
@@ -564,7 +565,7 @@ function App() {
 
                         {profile?.is_admin && (
                           <Link
-                            to="/admin/verifications"
+                            to="/admin"
                             onClick={closeMenu}
                             className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500/10"
                           >
@@ -907,15 +908,13 @@ function App() {
         </div>
       )}
 
-      <OneWinAds />
-      <PariSideRails />
+      {!isAdminRoute && <><OneWinAds /><PariSideRails /></>}
 
-      <div className="relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]">
+      <div className={`relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] ${isAdminRoute ? "max-w-[1660px]" : "min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]"}`}>
         <Suspense fallback={<div role="status" className="flex min-h-[calc(100vh-72px)] items-center justify-center text-sm font-semibold text-slate-500">{tx(" Loading... ")}</div>}>
           <Outlet />
         </Suspense>
-        <OneWinAds mobile />
-        <PariBanner placement="mobile_inline" className="mx-auto my-8 max-w-[400px] min-[1200px]:hidden" />
+        {!isAdminRoute && <><OneWinAds mobile /><PariBanner placement="mobile_inline" className="mx-auto my-8 max-w-[400px] min-[1200px]:hidden" /></>}
       </div>
 
       

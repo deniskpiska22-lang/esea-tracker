@@ -1,5 +1,4 @@
 import CountryFlag from "../components/CountryFlag.jsx";
-import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
@@ -17,7 +16,7 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
-import teams from "../data/teams";
+import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 
 const FINISHED_STATUSES = new Set([
   "FINISHED",
@@ -33,40 +32,6 @@ function isBugHunter(username) {
     String(username || "").trim().toLowerCase()
   );
 }
-
-const ACCOUNT_TYPE_LABELS = {
-  fan: {
-    ru: "Фанат",
-    en: "Fan",
-  },
-  player: {
-    ru: "Игрок",
-    en: "Player",
-  },
-  staff: {
-    ru: "Сотрудник команды",
-    en: "Team staff",
-  },
-};
-
-const TEAM_ROLE_LABELS = {
-  player: {
-    ru: "Игрок",
-    en: "Player",
-  },
-  coach: {
-    ru: "Тренер",
-    en: "Coach",
-  },
-  manager: {
-    ru: "Менеджер",
-    en: "Manager",
-  },
-  analyst: {
-    ru: "Аналитик",
-    en: "Analyst",
-  },
-};
 
 function formatDate(value, language) {
   if (!value) {
@@ -153,14 +118,6 @@ function getWinnerTeamId(match) {
   );
 }
 
-function getLocalizedLabel(dictionary, key, language, fallback) {
-  return (
-    dictionary[key]?.[language] ||
-    tx(dictionary[key]?.en) ||
-    fallback
-  );
-}
-
 function PanelTitle({
   eyebrow,
   title,
@@ -205,50 +162,6 @@ function BugHunterBadge({ compact = false }) {
           ✓
         </span>
       )}
-    </span>
-  );
-}
-
-function VerificationBadge({
-  status,
-  tr,
-}) {
-  const config = {
-    verified: {
-      icon: "✓",
-      label: tr("Подтверждено", "Verified"),
-      className:
-        "border-emerald-400/25 bg-emerald-400/10 text-emerald-300",
-    },
-    pending: {
-      icon: "◷",
-      label: tr("На проверке", "Pending"),
-      className:
-        "border-amber-400/25 bg-amber-400/10 text-amber-300",
-    },
-    rejected: {
-      icon: "×",
-      label: tr("Отклонено", "Rejected"),
-      className:
-        "border-red-400/25 bg-red-400/10 text-red-300",
-    },
-    none: {
-      icon: "○",
-      label: tr("Не подтверждено", "Not verified"),
-      className:
-        "border-white/10 bg-white/[0.03] text-gray-400",
-    },
-  };
-
-  const current =
-    config[status] || config.none;
-
-  return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] ${current.className}`}
-    >
-      <span>{current.icon}</span>
-      {current.label}
     </span>
   );
 }
@@ -339,242 +252,8 @@ function EmptyState({
   );
 }
 
-function ProfessionalPanel({
-  profile,
-  team,
-  isOwnProfile,
-  tr,
-  language,
-}) {
-  const accountType =
-    getLocalizedLabel(
-      ACCOUNT_TYPE_LABELS,
-      profile.account_type,
-      language,
-      tr("Профессиональный аккаунт", "Professional account")
-    );
-
-  const role =
-    getLocalizedLabel(
-      TEAM_ROLE_LABELS,
-      profile.team_role,
-      language,
-      tr("Роль не указана", "Role not specified")
-    );
-
-  const verificationPath =
-    `/profile/${encodeURIComponent(
-      profile.username
-    )}/verification`;
-
-  if (profile.account_type === "fan") {
-    return (
-      <section className="rounded-[26px] border border-white/[0.07] bg-[#0d141e] p-6">
-        <PanelTitle
-          eyebrow={tr("Карьера", "Career")}
-          title={tr("Профессиональный профиль", "Professional profile")}
-        />
-
-        <div className="mt-6">
-          <EmptyState
-            title={tr(
-              "Профессиональный статус не указан",
-              "No professional status"
-            )}
-            text={tr(
-              "Игроки, тренеры, менеджеры и аналитики могут подтвердить принадлежность к команде.",
-              "Players, coaches, managers, and analysts can verify their team affiliation."
-            )}
-            action={
-              isOwnProfile ? (
-                <Link
-                  to={verificationPath}
-                  className="mt-5 rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-black text-white transition hover:bg-orange-400"
-                >
-                  {tr("Пройти верификацию", "Get verified")}
-                </Link>
-              ) : null
-            }
-          />
-        </div>
-      </section>
-    );
-  }
-
-  if (!team) {
-    return (
-      <section className="relative overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#0d141e] p-6">
-        <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-orange-500/[0.08] blur-3xl" />
-
-        <div className="relative">
-          <PanelTitle
-            eyebrow={tr("Карьера", "Career")}
-            title={tr("Свободный агент", "Free agent")}
-            action={
-              <VerificationBadge
-                status={profile.verification_status}
-                tr={tr}
-              />
-            }
-          />
-
-          <div className="mt-7 rounded-2xl border border-orange-400/15 bg-orange-500/[0.05] p-6">
-            <div className="inline-flex rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-orange-300">{tx(" Free Agent ")}</div>
-
-            <div className="mt-4 text-3xl font-black tracking-tight text-white">
-              {accountType}
-            </div>
-
-            <p className="mt-3 text-sm leading-6 text-gray-400">
-              {tr(
-                "Профессиональный профиль подтверждён, но пользователь сейчас не состоит в команде.",
-                "The professional profile is verified, but the user is not currently on a team."
-              )}
-            </p>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-white/[0.07] bg-black/15 p-4">
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-600">
-                  {tr("Тип", "Type")}
-                </div>
-                <div className="mt-2 font-black text-white">
-                  {accountType}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/[0.07] bg-black/15 p-4">
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-600">
-                  {tr("Роль", "Role")}
-                </div>
-                <div className="mt-2 font-black text-white">
-                  {role}
-                </div>
-              </div>
-            </div>
-
-            {isOwnProfile && (
-              <Link
-                to={verificationPath}
-                className="mt-6 inline-flex rounded-xl border border-orange-400/25 bg-orange-500/10 px-4 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
-              >
-                {tr(
-                  "Изменить профессиональную информацию",
-                  "Edit professional information"
-                )}
-              </Link>
-            )}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="relative overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#0d141e] p-6">
-      <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-orange-500/[0.08] blur-3xl" />
-
-      <div className="relative">
-        <PanelTitle
-          eyebrow={tr("Карьера", "Career")}
-          title={tr("Текущая команда", "Current team")}
-          action={
-            <VerificationBadge
-              status={profile.verification_status}
-              tr={tr}
-            />
-          }
-        />
-
-        <div className="mt-7 flex flex-col gap-6 sm:flex-row sm:items-center">
-          <Link
-            to={`/team/${team.slug}`}
-            className="group shrink-0"
-          >
-            <TeamMark
-              team={team}
-              className="h-28 w-28 rounded-[26px]"
-            />
-          </Link>
-
-          <div className="min-w-0 flex-1">
-            <Link
-              to={`/team/${team.slug}`}
-              className="block truncate text-3xl font-black tracking-tight text-white transition hover:text-orange-400"
-            >
-              {team.name}
-            </Link>
-
-            <div className="mt-2 text-sm font-black text-orange-300">
-              {role}
-            </div>
-
-            <p className="mt-4 text-sm leading-6 text-gray-400">
-              {profile.verification_status === "verified"
-                ? tr(
-                    "Команда и роль подтверждены администрацией платформы.",
-                    "Team affiliation and role have been verified by the platform."
-                  )
-                : profile.verification_status === "pending"
-                  ? tr(
-                      "Заявка отправлена и ожидает проверки.",
-                      "The request has been submitted and is awaiting review."
-                    )
-                  : profile.verification_status === "rejected"
-                    ? tr(
-                        "Заявка отклонена. Информацию можно обновить и отправить повторно.",
-                        "The request was rejected. You can update the information and submit it again."
-                      )
-                    : tr(
-                        "Командная принадлежность пока не подтверждена.",
-                        "Team affiliation has not yet been verified."
-                      )}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-7 grid gap-3 border-t border-white/[0.07] pt-5 sm:grid-cols-2">
-          <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-600">
-              {tr("Тип аккаунта", "Account type")}
-            </div>
-
-            <div className="mt-2 font-black text-white">
-              {accountType}
-            </div>
-          </div>
-
-          <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-600">
-              {tr("Роль в команде", "Team role")}
-            </div>
-
-            <div className="mt-2 font-black text-white">
-              {role}
-            </div>
-          </div>
-        </div>
-
-        {isOwnProfile && (
-          <Link
-            to={verificationPath}
-            className="mt-6 inline-flex rounded-xl border border-orange-400/25 bg-orange-500/10 px-4 py-2.5 text-sm font-black text-orange-300 transition hover:bg-orange-500 hover:text-white"
-          >
-            {profile.verification_status === "pending"
-              ? tr("Посмотреть заявку", "View request")
-              : profile.verification_status === "rejected"
-                ? tr("Отправить повторно", "Submit again")
-                : tr(
-                    "Изменить профессиональную информацию",
-                    "Edit professional information"
-                  )}
-          </Link>
-        )}
-      </div>
-    </section>
-  );
-}
-
 export default function UserProfilePage() {
+  const { teams } = useTeamCatalog();
   const { tr, language } = useLanguage();
   const { username } = useParams();
 
@@ -617,10 +296,6 @@ export default function UserProfilePage() {
             bio,
             country_code,
             favorite_team_slug,
-            account_type,
-            team_slug,
-            team_role,
-            verification_status,
             created_at,
             updated_at
           `)
@@ -778,20 +453,7 @@ export default function UserProfilePage() {
           profile.favorite_team_slug
       ) || null
     );
-  }, [profile?.favorite_team_slug]);
-
-  const profileTeam = useMemo(() => {
-    if (!profile?.team_slug) {
-      return null;
-    }
-
-    return (
-      teams.find(
-        (team) =>
-          team.slug === profile.team_slug
-      ) || null
-    );
-  }, [profile?.team_slug]);
+  }, [profile, teams]);
 
   const isOwnProfile = Boolean(
     user?.id &&
@@ -932,22 +594,6 @@ export default function UserProfilePage() {
     );
   }
 
-  const accountType =
-    getLocalizedLabel(
-      ACCOUNT_TYPE_LABELS,
-      profile.account_type,
-      language,
-      tr("Пользователь", "User")
-    );
-
-  const teamRole =
-    getLocalizedLabel(
-      TEAM_ROLE_LABELS,
-      profile.team_role,
-      language,
-      null
-    );
-
   return (
     <main className="min-h-screen bg-[#060a0f] px-4 py-6 text-white md:px-8 md:py-10">
       <div className="mx-auto max-w-[1320px]">
@@ -971,13 +617,6 @@ export default function UserProfilePage() {
                     {getInitials(profile)}
                   </div>
                 )}
-
-                {PROFESSIONAL_PROFILES_ENABLED && profile.verification_status ===
-                  "verified" && (
-                  <div className="absolute -bottom-1 right-1 flex h-10 w-10 items-center justify-center rounded-full border-[5px] border-[#0a1018] bg-emerald-400 font-black text-[#07110c]">
-                    ✓
-                  </div>
-                )}
               </div>
 
               <div className="min-w-0 pt-24 md:pt-28 xl:pb-2 xl:pt-24">
@@ -999,23 +638,6 @@ export default function UserProfilePage() {
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center gap-2">
-                  {PROFESSIONAL_PROFILES_ENABLED && (<>
-                  <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-gray-300">
-                    {accountType}
-                  </span>
-
-                  {teamRole && (
-                    <span className="rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-orange-300">
-                      {teamRole}
-                    </span>
-                  )}
-
-                  <VerificationBadge
-                    status={profile.verification_status}
-                    tr={tr}
-                  />
-
-                  </>)}
 
                   {hasBugHunterBadge && (
                     <BugHunterBadge compact />
@@ -1105,7 +727,7 @@ export default function UserProfilePage() {
               />
             </div>
 
-            <div className={`mt-6 grid gap-6 ${PROFESSIONAL_PROFILES_ENABLED ? "xl:grid-cols-[0.82fr_1.18fr]" : ""}`}>
+            <div className="mt-6 grid gap-6">
               <div className="grid gap-6">
                 <section className="rounded-[26px] border border-white/[0.07] bg-[#0d141e] p-6">
                   <PanelTitle
@@ -1234,14 +856,6 @@ export default function UserProfilePage() {
                   )}
                 </section>
               </div>
-
-              {PROFESSIONAL_PROFILES_ENABLED && <ProfessionalPanel
-                profile={profile}
-                team={profileTeam}
-                isOwnProfile={isOwnProfile}
-                tr={tr}
-                language={language}
-              />}
             </div>
 
             <section className="mt-6 overflow-hidden rounded-[26px] border border-white/[0.07] bg-[#0d141e]">

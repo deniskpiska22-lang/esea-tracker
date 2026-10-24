@@ -1,5 +1,4 @@
 import CountryFlag from "../components/CountryFlag.jsx";
-import { PROFESSIONAL_PROFILES_ENABLED } from "../lib/features.js";
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { tx, tf } from "../i18n/translate.js";
@@ -27,11 +26,6 @@ const RatingHistoryChart = lazy(() => import("../components/RatingHistoryChart.j
 
 // Flip to true once the Analytics page has real content to show.
 const SHOW_ANALYTICS_TAB = false;
-
-// Public intake form for team descriptions/player photos — reviewed and
-// published by an admin via /admin/verifications (Teams tab), not automatic.
-const TEAM_VERIFICATION_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfWHCf0KLD7z49ds6j4Ua-H_aTDiUOYZdAhlNmH5jc2aTUxvg/viewform";
 
 const COUNTRY_NAMES = {
   RU: "Russia",
@@ -736,15 +730,6 @@ function TeamPage() {
                   <h1 className="mt-3 truncate text-4xl font-black tracking-tight text-white md:text-6xl">
                     {team.name}
                   </h1>
-
-                  {PROFESSIONAL_PROFILES_ENABLED && (
-                  <a
-                    href={TEAM_VERIFICATION_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-orange-300 transition hover:bg-orange-500 hover:text-white"
-                  >{tx(" Verification ")}</a>
-                  )}
 
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">

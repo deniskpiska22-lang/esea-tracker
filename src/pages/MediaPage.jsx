@@ -1,3 +1,4 @@
+import PublishedNews from "../components/PublishedNews.jsx";
 import { tx } from "../i18n/translate.js";
 import posts from "../data/posts"
 
@@ -12,6 +13,7 @@ function MediaPage() {
 
        
 
+        <PublishedNews />
         {/* FEED */}
         <div className="space-y-5">
 

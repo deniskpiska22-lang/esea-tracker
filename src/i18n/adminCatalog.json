@@ -1,0 +1,954 @@
+{
+  "Access": {
+    "ru": "Доступ",
+    "de": "Zugriff",
+    "pt": "Acesso",
+    "es": "Acceso",
+    "fr": "Accès",
+    "it": "Accesso"
+  },
+  "Admin navigation": {
+    "ru": "Разделы админки",
+    "de": "Admin-Navigation",
+    "pt": "Navegação administrativa",
+    "es": "Navegación de administración",
+    "fr": "Navigation d’administration",
+    "it": "Navigazione amministrativa"
+  },
+  "Administration": {
+    "ru": "Управление сайтом",
+    "de": "Verwaltung",
+    "pt": "Administração",
+    "es": "Administración",
+    "fr": "Administration",
+    "it": "Amministrazione"
+  },
+  "Administrators": {
+    "ru": "Администраторы",
+    "de": "Administratoren",
+    "pt": "Administradores",
+    "es": "Administradores",
+    "fr": "Administrateurs",
+    "it": "Amministratori"
+  },
+  "All divisions": {
+    "ru": "Все дивизионы",
+    "de": "Alle Divisionen",
+    "pt": "Todas as divisões",
+    "es": "Todas las divisiones",
+    "fr": "Toutes les divisions",
+    "it": "Tutte le divisioni"
+  },
+  "Article text": {
+    "ru": "Текст статьи",
+    "de": "Artikeltext",
+    "pt": "Texto do artigo",
+    "es": "Texto del artículo",
+    "fr": "Texte de l’article",
+    "it": "Testo dell’articolo"
+  },
+  "Background updates": {
+    "ru": "Фоновые обновления",
+    "de": "Hintergrundaktualisierungen",
+    "pt": "Atualizações em segundo plano",
+    "es": "Actualizaciones en segundo plano",
+    "fr": "Mises à jour en arrière-plan",
+    "it": "Aggiornamenti in background"
+  },
+  "Changes saved.": {
+    "ru": "Изменения сохранены.",
+    "de": "Änderungen gespeichert.",
+    "pt": "Alterações salvas.",
+    "es": "Cambios guardados.",
+    "fr": "Modifications enregistrées.",
+    "it": "Modifiche salvate."
+  },
+  "Choose a team from the directory to start editing.": {
+    "ru": "Выберите команду из списка для редактирования.",
+    "de": "Wähle ein Team aus dem Verzeichnis zum Bearbeiten.",
+    "pt": "Selecione uma equipe para editar.",
+    "es": "Selecciona un equipo del directorio para editar.",
+    "fr": "Sélectionnez une équipe pour la modifier.",
+    "it": "Seleziona una squadra da modificare."
+  },
+  "Close": {
+    "ru": "Закрыть",
+    "de": "Schließen",
+    "pt": "Fechar",
+    "es": "Cerrar",
+    "fr": "Fermer",
+    "it": "Chiudi"
+  },
+  "Community accounts": {
+    "ru": "Пользователи сайта",
+    "de": "Community-Konten",
+    "pt": "Contas da comunidade",
+    "es": "Cuentas de la comunidad",
+    "fr": "Comptes de la communauté",
+    "it": "Account della comunità"
+  },
+  "Community accounts and favorite teams.": {
+    "ru": "Аккаунты пользователей и любимые команды.",
+    "de": "Community-Konten und Lieblingsteams.",
+    "pt": "Contas e equipes favoritas.",
+    "es": "Cuentas y equipos favoritos.",
+    "fr": "Comptes et équipes favorites.",
+    "it": "Account e squadre preferite."
+  },
+  "Community pulse": {
+    "ru": "Активность сообщества",
+    "de": "Community-Aktivität",
+    "pt": "Atividade da comunidade",
+    "es": "Actividad de la comunidad",
+    "fr": "Activité de la communauté",
+    "it": "Attività della comunità"
+  },
+  "Control room": {
+    "ru": "Центр управления",
+    "de": "Kontrollzentrum",
+    "pt": "Central de controle",
+    "es": "Centro de control",
+    "fr": "Centre de contrôle",
+    "it": "Centro di controllo"
+  },
+  "Could not load overview. Other sections remain available.": {
+    "ru": "Не удалось загрузить обзор. Остальные разделы доступны.",
+    "de": "Übersicht konnte nicht geladen werden. Andere Bereiche bleiben verfügbar.",
+    "pt": "Não foi possível carregar o resumo. As outras seções continuam disponíveis.",
+    "es": "No se pudo cargar el resumen. Las demás secciones siguen disponibles.",
+    "fr": "Impossible de charger l’aperçu. Les autres rubriques restent disponibles.",
+    "it": "Impossibile caricare il riepilogo. Le altre sezioni restano disponibili."
+  },
+  "Could not load team content.": {
+    "ru": "Не удалось загрузить данные команды.",
+    "de": "Teamdaten konnten nicht geladen werden.",
+    "pt": "Não foi possível carregar os dados da equipe.",
+    "es": "No se pudieron cargar los datos del equipo.",
+    "fr": "Impossible de charger les données de l’équipe.",
+    "it": "Impossibile caricare i dati della squadra."
+  },
+  "Could not load this section. Please retry.": {
+    "ru": "Не удалось загрузить раздел. Попробуйте ещё раз.",
+    "de": "Dieser Bereich konnte nicht geladen werden. Bitte erneut versuchen.",
+    "pt": "Não foi possível carregar esta seção. Tente novamente.",
+    "es": "No se pudo cargar esta sección. Inténtalo de nuevo.",
+    "fr": "Impossible de charger cette rubrique. Réessayez.",
+    "it": "Impossibile caricare questa sezione. Riprova."
+  },
+  "Could not save changes. Please try again.": {
+    "ru": "Не удалось сохранить изменения. Попробуйте ещё раз.",
+    "de": "Änderungen konnten nicht gespeichert werden. Bitte erneut versuchen.",
+    "pt": "Não foi possível salvar as alterações. Tente novamente.",
+    "es": "No se pudieron guardar los cambios. Inténtalo de nuevo.",
+    "fr": "Impossible d’enregistrer les modifications. Réessayez.",
+    "it": "Impossibile salvare le modifiche. Riprova."
+  },
+  "Counts are refreshed with the overview.": {
+    "ru": "Счётчики обновляются вместе с обзором.",
+    "de": "Zähler werden mit der Übersicht aktualisiert.",
+    "pt": "Os contadores são atualizados com o resumo.",
+    "es": "Los contadores se actualizan con el resumen.",
+    "fr": "Les compteurs sont actualisés avec l’aperçu.",
+    "it": "I contatori si aggiornano con il riepilogo."
+  },
+  "Demo analysis": {
+    "ru": "Разбор демок",
+    "de": "Demo-Analyse",
+    "pt": "Análise de demos",
+    "es": "Análisis de demos",
+    "fr": "Analyse des démos",
+    "it": "Analisi delle demo"
+  },
+  "Demo processing needs download access from FACEIT. A paused worker does not mean match updates are stopped.": {
+    "ru": "Для разбора демок нужен доступ к скачиванию FACEIT. Пауза этого процесса не останавливает обновление матчей.",
+    "de": "Die Demo-Verarbeitung benötigt FACEIT-Downloadzugriff. Ein pausierter Worker stoppt keine Spielaktualisierungen.",
+    "pt": "O processamento de demos precisa de acesso ao download do FACEIT. Uma pausa não interrompe as atualizações das partidas.",
+    "es": "El análisis de demos necesita acceso a las descargas de FACEIT. Una pausa no detiene las actualizaciones de partidos.",
+    "fr": "L’analyse des démos nécessite l’accès aux téléchargements FACEIT. Une pause n’arrête pas les mises à jour des matchs.",
+    "it": "L’analisi delle demo richiede accesso ai download FACEIT. Una pausa non interrompe gli aggiornamenti delle partite."
+  },
+  "Descriptions, social links and player photos.": {
+    "ru": "Описания, ссылки и фотографии игроков.",
+    "de": "Beschreibungen, soziale Links und Spielerfotos.",
+    "pt": "Descrições, links sociais e fotos de jogadores.",
+    "es": "Descripciones, enlaces sociales y fotos de jugadores.",
+    "fr": "Descriptions, liens sociaux et photos des joueurs.",
+    "it": "Descrizioni, link social e foto dei giocatori."
+  },
+  "Drafts, articles and featured stories.": {
+    "ru": "Черновики, статьи и главные новости.",
+    "de": "Entwürfe, Artikel und hervorgehobene Meldungen.",
+    "pt": "Rascunhos, artigos e destaques.",
+    "es": "Borradores, artículos y noticias destacadas.",
+    "fr": "Brouillons, articles et actualités à la une.",
+    "it": "Bozze, articoli e notizie in evidenza."
+  },
+  "Edit article": {
+    "ru": "Редактировать статью",
+    "de": "Artikel bearbeiten",
+    "pt": "Editar artigo",
+    "es": "Editar artículo",
+    "fr": "Modifier l’article",
+    "it": "Modifica articolo"
+  },
+  "Editorial photos for the active roster. This does not change user accounts.": {
+    "ru": "Фотографии действующего состава для страниц команд. Они не связаны с аккаунтами пользователей.",
+    "de": "Redaktionelle Fotos des aktiven Kaders. Benutzerkonten bleiben unverändert.",
+    "pt": "Fotos editoriais do elenco ativo. Não alteram contas de usuários.",
+    "es": "Fotos editoriales de la plantilla activa. No cambian las cuentas de usuario.",
+    "fr": "Photos éditoriales de l’effectif actif. Les comptes restent inchangés.",
+    "it": "Foto editoriali della rosa attiva. Gli account restano invariati."
+  },
+  "Everyone can choose a favorite team in profile settings. Player verification is no longer used.": {
+    "ru": "Любимую команду можно выбрать в настройках профиля. Верификация игроков больше не используется.",
+    "de": "Jeder kann im Profil ein Lieblingsteam wählen. Die Spielerverifizierung wird nicht mehr verwendet.",
+    "pt": "Todos podem escolher uma equipe favorita no perfil. A verificação de jogadores foi removida.",
+    "es": "Todos pueden elegir un equipo favorito en su perfil. La verificación de jugadores ya no se utiliza.",
+    "fr": "Chacun peut choisir une équipe favorite dans son profil. La vérification des joueurs n’est plus utilisée.",
+    "it": "Tutti possono scegliere una squadra preferita nel profilo. La verifica dei giocatori non è più utilizzata."
+  },
+  "Everything in one place.": {
+    "ru": "Всё под контролем.",
+    "de": "Alles an einem Ort.",
+    "pt": "Tudo em um só lugar.",
+    "es": "Todo en un solo lugar.",
+    "fr": "Tout au même endroit.",
+    "it": "Tutto in un unico posto."
+  },
+  "Favorite teams": {
+    "ru": "Любимые команды",
+    "de": "Lieblingsteams",
+    "pt": "Equipes favoritas",
+    "es": "Equipos favoritos",
+    "fr": "Équipes favorites",
+    "it": "Squadre preferite"
+  },
+  "Featured article": {
+    "ru": "Главная новость",
+    "de": "Hervorgehobener Artikel",
+    "pt": "Artigo em destaque",
+    "es": "Artículo destacado",
+    "fr": "Article à la une",
+    "it": "Articolo in evidenza"
+  },
+  "Forum topics": {
+    "ru": "Темы форума",
+    "de": "Forenthemen",
+    "pt": "Tópicos do fórum",
+    "es": "Temas del foro",
+    "fr": "Sujets du forum",
+    "it": "Discussioni del forum"
+  },
+  "Full moderation queue": {
+    "ru": "Вся очередь модерации",
+    "de": "Vollständige Moderationsliste",
+    "pt": "Fila completa de moderação",
+    "es": "Cola completa de moderación",
+    "fr": "File complète de modération",
+    "it": "Coda completa di moderazione"
+  },
+  "Go directly to the tools you need.": {
+    "ru": "Быстрый переход к нужным инструментам.",
+    "de": "Direkt zu den benötigten Werkzeugen.",
+    "pt": "Acesse diretamente as ferramentas necessárias.",
+    "es": "Accede directamente a las herramientas que necesitas.",
+    "fr": "Accédez directement aux outils nécessaires.",
+    "it": "Accedi direttamente agli strumenti necessari."
+  },
+  "Heartbeat status from the update workers.": {
+    "ru": "Последние сигналы от процессов обновления.",
+    "de": "Heartbeat-Status der Aktualisierungsprozesse.",
+    "pt": "Status dos processos de atualização.",
+    "es": "Estado de los procesos de actualización.",
+    "fr": "État des processus de mise à jour.",
+    "it": "Stato dei processi di aggiornamento."
+  },
+  "Hide reply": {
+    "ru": "Скрыть ответ",
+    "de": "Antwort ausblenden",
+    "pt": "Ocultar resposta",
+    "es": "Ocultar respuesta",
+    "fr": "Masquer la réponse",
+    "it": "Nascondi risposta"
+  },
+  "Hide topic": {
+    "ru": "Скрыть тему",
+    "de": "Thema ausblenden",
+    "pt": "Ocultar tópico",
+    "es": "Ocultar tema",
+    "fr": "Masquer le sujet",
+    "it": "Nascondi discussione"
+  },
+  "Image URL": {
+    "ru": "Ссылка на изображение",
+    "de": "Bild-URL",
+    "pt": "URL da imagem",
+    "es": "URL de la imagen",
+    "fr": "URL de l’image",
+    "it": "URL immagine"
+  },
+  "Last heartbeat": {
+    "ru": "Последний сигнал",
+    "de": "Letzter Heartbeat",
+    "pt": "Último sinal",
+    "es": "Última señal",
+    "fr": "Dernier signal",
+    "it": "Ultimo segnale"
+  },
+  "Latest match data": {
+    "ru": "Обновление матчей",
+    "de": "Aktuelle Spieldaten",
+    "pt": "Dados recentes das partidas",
+    "es": "Datos recientes de partidos",
+    "fr": "Dernières données des matchs",
+    "it": "Ultimi dati delle partite"
+  },
+  "Latest stored match update": {
+    "ru": "Последнее обновление матча в базе",
+    "de": "Letzte gespeicherte Spielaktualisierung",
+    "pt": "Última atualização de partida salva",
+    "es": "Última actualización guardada de un partido",
+    "fr": "Dernière mise à jour de match enregistrée",
+    "it": "Ultimo aggiornamento di partita salvato"
+  },
+  "Manage content and keep the community running.": {
+    "ru": "Контент сайта, команды и сообщество.",
+    "de": "Inhalte und Community verwalten.",
+    "pt": "Gerencie o conteúdo e a comunidade.",
+    "es": "Gestiona el contenido y la comunidad.",
+    "fr": "Gérez le contenu et la communauté.",
+    "it": "Gestisci contenuti e comunità."
+  },
+  "Match updates and background processing.": {
+    "ru": "Обновления матчей и фоновые задачи.",
+    "de": "Spielaktualisierungen und Hintergrundprozesse.",
+    "pt": "Atualizações de partidas e tarefas em segundo plano.",
+    "es": "Actualizaciones de partidos y tareas en segundo plano.",
+    "fr": "Mises à jour des matchs et tâches en arrière-plan.",
+    "it": "Aggiornamenti delle partite e processi in background."
+  },
+  "New article": {
+    "ru": "Новая статья",
+    "de": "Neuer Artikel",
+    "pt": "Novo artigo",
+    "es": "Nuevo artículo",
+    "fr": "Nouvel article",
+    "it": "Nuovo articolo"
+  },
+  "New users this week": {
+    "ru": "Новых пользователей за неделю",
+    "de": "Neue Benutzer diese Woche",
+    "pt": "Novos usuários nesta semana",
+    "es": "Usuarios nuevos esta semana",
+    "fr": "Nouveaux utilisateurs cette semaine",
+    "it": "Nuovi utenti questa settimana"
+  },
+  "News": {
+    "ru": "Новости",
+    "de": "Nachrichten",
+    "pt": "Notícias",
+    "es": "Noticias",
+    "fr": "Actualités",
+    "it": "Notizie"
+  },
+  "Newsroom": {
+    "ru": "Редакция",
+    "de": "Redaktion",
+    "pt": "Redação",
+    "es": "Redacción",
+    "fr": "Rédaction",
+    "it": "Redazione"
+  },
+  "Next page": {
+    "ru": "Следующая страница",
+    "de": "Nächste Seite",
+    "pt": "Próxima página",
+    "es": "Página siguiente",
+    "fr": "Page suivante",
+    "it": "Pagina successiva"
+  },
+  "No active players found.": {
+    "ru": "Действующие игроки не найдены.",
+    "de": "Keine aktiven Spieler gefunden.",
+    "pt": "Nenhum jogador ativo encontrado.",
+    "es": "No se encontraron jugadores activos.",
+    "fr": "Aucun joueur actif trouvé.",
+    "it": "Nessun giocatore attivo trovato."
+  },
+  "No queue data available.": {
+    "ru": "Нет данных об очереди.",
+    "de": "Keine Warteschlangendaten verfügbar.",
+    "pt": "Sem dados da fila.",
+    "es": "No hay datos de la cola.",
+    "fr": "Aucune donnée de file disponible.",
+    "it": "Nessun dato sulla coda disponibile."
+  },
+  "No social links added.": {
+    "ru": "Ссылки ещё не добавлены.",
+    "de": "Noch keine sozialen Links hinzugefügt.",
+    "pt": "Nenhum link social adicionado.",
+    "es": "No se han añadido enlaces sociales.",
+    "fr": "Aucun lien social ajouté.",
+    "it": "Nessun link social aggiunto."
+  },
+  "No users match these filters.": {
+    "ru": "Нет пользователей с такими параметрами.",
+    "de": "Keine Benutzer mit diesen Filtern.",
+    "pt": "Nenhum usuário corresponde aos filtros.",
+    "es": "Ningún usuario coincide con estos filtros.",
+    "fr": "Aucun utilisateur ne correspond aux filtres.",
+    "it": "Nessun utente corrisponde ai filtri."
+  },
+  "No worker heartbeats received yet.": {
+    "ru": "Сигналы процессов пока не получены.",
+    "de": "Noch keine Worker-Heartbeats empfangen.",
+    "pt": "Nenhum sinal dos processos recebido.",
+    "es": "Aún no se han recibido señales de los procesos.",
+    "fr": "Aucun signal de processus reçu.",
+    "it": "Nessun segnale dai processi ricevuto."
+  },
+  "Nothing here yet.": {
+    "ru": "Пока здесь пусто.",
+    "de": "Hier ist noch nichts.",
+    "pt": "Ainda não há nada aqui.",
+    "es": "Todavía no hay nada aquí.",
+    "fr": "Rien pour le moment.",
+    "it": "Ancora nessun elemento."
+  },
+  "Official photo": {
+    "ru": "Официальное фото",
+    "de": "Offizielles Foto",
+    "pt": "Foto oficial",
+    "es": "Foto oficial",
+    "fr": "Photo officielle",
+    "it": "Foto ufficiale"
+  },
+  "Open profile": {
+    "ru": "Открыть профиль",
+    "de": "Profil öffnen",
+    "pt": "Abrir perfil",
+    "es": "Abrir perfil",
+    "fr": "Ouvrir le profil",
+    "it": "Apri profilo"
+  },
+  "Open reports": {
+    "ru": "Открытые жалобы",
+    "de": "Offene Meldungen",
+    "pt": "Denúncias abertas",
+    "es": "Denuncias abiertas",
+    "fr": "Signalements ouverts",
+    "it": "Segnalazioni aperte"
+  },
+  "Open upcoming matches": {
+    "ru": "Открыть ближайшие матчи",
+    "de": "Anstehende Spiele öffnen",
+    "pt": "Abrir próximas partidas",
+    "es": "Abrir próximos partidos",
+    "fr": "Ouvrir les prochains matchs",
+    "it": "Apri le prossime partite"
+  },
+  "Platform": {
+    "ru": "Площадка",
+    "de": "Plattform",
+    "pt": "Plataforma",
+    "es": "Plataforma",
+    "fr": "Plateforme",
+    "it": "Piattaforma"
+  },
+  "Player photos": {
+    "ru": "Фотографии игроков",
+    "de": "Spielerfotos",
+    "pt": "Fotos de jogadores",
+    "es": "Fotos de jugadores",
+    "fr": "Photos des joueurs",
+    "it": "Foto dei giocatori"
+  },
+  "Previous page": {
+    "ru": "Предыдущая страница",
+    "de": "Vorherige Seite",
+    "pt": "Página anterior",
+    "es": "Página anterior",
+    "fr": "Page précédente",
+    "it": "Pagina precedente"
+  },
+  "Profiles, registration dates and favorite teams.": {
+    "ru": "Профили, даты регистрации и любимые команды.",
+    "de": "Profile, Registrierungsdaten und Lieblingsteams.",
+    "pt": "Perfis, datas de registro e equipes favoritas.",
+    "es": "Perfiles, fechas de registro y equipos favoritos.",
+    "fr": "Profils, dates d’inscription et équipes favorites.",
+    "it": "Profili, date di registrazione e squadre preferite."
+  },
+  "Publish on site": {
+    "ru": "Опубликовать на сайте",
+    "de": "Auf der Website veröffentlichen",
+    "pt": "Publicar no site",
+    "es": "Publicar en el sitio",
+    "fr": "Publier sur le site",
+    "it": "Pubblica sul sito"
+  },
+  "Published articles": {
+    "ru": "Опубликованные статьи",
+    "de": "Veröffentlichte Artikel",
+    "pt": "Artigos publicados",
+    "es": "Artículos publicados",
+    "fr": "Articles publiés",
+    "it": "Articoli pubblicati"
+  },
+  "Quick actions": {
+    "ru": "Быстрые действия",
+    "de": "Schnellaktionen",
+    "pt": "Ações rápidas",
+    "es": "Acciones rápidas",
+    "fr": "Actions rapides",
+    "it": "Azioni rapide"
+  },
+  "Refresh": {
+    "ru": "Обновить",
+    "de": "Aktualisieren",
+    "pt": "Atualizar",
+    "es": "Actualizar",
+    "fr": "Actualiser",
+    "it": "Aggiorna"
+  },
+  "Registered": {
+    "ru": "Регистрация",
+    "de": "Registriert",
+    "pt": "Registro",
+    "es": "Registro",
+    "fr": "Inscription",
+    "it": "Registrazione"
+  },
+  "Registered accounts": {
+    "ru": "Зарегистрированные аккаунты",
+    "de": "Registrierte Konten",
+    "pt": "Contas registradas",
+    "es": "Cuentas registradas",
+    "fr": "Comptes inscrits",
+    "it": "Account registrati"
+  },
+  "Remove link": {
+    "ru": "Удалить ссылку",
+    "de": "Link entfernen",
+    "pt": "Remover link",
+    "es": "Eliminar enlace",
+    "fr": "Supprimer le lien",
+    "it": "Rimuovi link"
+  },
+  "Reports": {
+    "ru": "Жалобы",
+    "de": "Meldungen",
+    "pt": "Denúncias",
+    "es": "Denuncias",
+    "fr": "Signalements",
+    "it": "Segnalazioni"
+  },
+  "Reports awaiting review": {
+    "ru": "Жалобы на рассмотрении",
+    "de": "Meldungen zur Prüfung",
+    "pt": "Denúncias aguardando revisão",
+    "es": "Denuncias pendientes de revisión",
+    "fr": "Signalements à examiner",
+    "it": "Segnalazioni da esaminare"
+  },
+  "Reports, discussions and moderation.": {
+    "ru": "Жалобы, обсуждения и модерация.",
+    "de": "Meldungen, Diskussionen und Moderation.",
+    "pt": "Denúncias, discussões e moderação.",
+    "es": "Denuncias, debates y moderación.",
+    "fr": "Signalements, discussions et modération.",
+    "it": "Segnalazioni, discussioni e moderazione."
+  },
+  "Restore topic": {
+    "ru": "Восстановить тему",
+    "de": "Thema wiederherstellen",
+    "pt": "Restaurar tópico",
+    "es": "Restaurar tema",
+    "fr": "Restaurer le sujet",
+    "it": "Ripristina discussione"
+  },
+  "Review activity, update team pages and manage the community.": {
+    "ru": "Следите за активностью, обновляйте страницы команд и управляйте сообществом.",
+    "de": "Aktivität prüfen, Teamseiten aktualisieren und Community verwalten.",
+    "pt": "Acompanhe a atividade, atualize equipes e gerencie a comunidade.",
+    "es": "Revisa la actividad, actualiza equipos y gestiona la comunidad.",
+    "fr": "Suivez l’activité, actualisez les équipes et gérez la communauté.",
+    "it": "Controlla l’attività, aggiorna le squadre e gestisci la comunità."
+  },
+  "Save article": {
+    "ru": "Сохранить статью",
+    "de": "Artikel speichern",
+    "pt": "Salvar artigo",
+    "es": "Guardar artículo",
+    "fr": "Enregistrer l’article",
+    "it": "Salva articolo"
+  },
+  "Save links": {
+    "ru": "Сохранить ссылки",
+    "de": "Links speichern",
+    "pt": "Salvar links",
+    "es": "Guardar enlaces",
+    "fr": "Enregistrer les liens",
+    "it": "Salva link"
+  },
+  "Scheduled and ready matches": {
+    "ru": "Запланированные и готовые к старту",
+    "de": "Geplante und startbereite Spiele",
+    "pt": "Partidas agendadas e prontas",
+    "es": "Partidos programados y listos",
+    "fr": "Matchs programmés et prêts",
+    "it": "Partite programmate e pronte"
+  },
+  "Search teams": {
+    "ru": "Поиск команд",
+    "de": "Teams suchen",
+    "pt": "Buscar equipes",
+    "es": "Buscar equipos",
+    "fr": "Rechercher des équipes",
+    "it": "Cerca squadre"
+  },
+  "Search username or display name": {
+    "ru": "Поиск по нику или имени",
+    "de": "Benutzername oder Anzeigename suchen",
+    "pt": "Buscar apelido ou nome",
+    "es": "Buscar usuario o nombre",
+    "fr": "Rechercher un pseudo ou un nom",
+    "it": "Cerca nome utente o nome"
+  },
+  "Select a team to edit its page.": {
+    "ru": "Выберите команду для редактирования страницы.",
+    "de": "Wähle ein Team zum Bearbeiten seiner Seite.",
+    "pt": "Selecione uma equipe para editar sua página.",
+    "es": "Selecciona un equipo para editar su página.",
+    "fr": "Sélectionnez une équipe pour modifier sa page.",
+    "it": "Seleziona una squadra per modificarne la pagina."
+  },
+  "Select another team or retry.": {
+    "ru": "Выберите другую команду или повторите попытку.",
+    "de": "Anderes Team wählen oder erneut versuchen.",
+    "pt": "Selecione outra equipe ou tente novamente.",
+    "es": "Selecciona otro equipo o vuelve a intentarlo.",
+    "fr": "Sélectionnez une autre équipe ou réessayez.",
+    "it": "Seleziona un’altra squadra o riprova."
+  },
+  "Snapshot updated": {
+    "ru": "Обзор обновлён",
+    "de": "Übersicht aktualisiert",
+    "pt": "Resumo atualizado",
+    "es": "Resumen actualizado",
+    "fr": "Aperçu actualisé",
+    "it": "Riepilogo aggiornato"
+  },
+  "Statistics queue": {
+    "ru": "Очередь статистики",
+    "de": "Statistik-Warteschlange",
+    "pt": "Fila de estatísticas",
+    "es": "Cola de estadísticas",
+    "fr": "File des statistiques",
+    "it": "Coda delle statistiche"
+  },
+  "Status unavailable": {
+    "ru": "Статус недоступен",
+    "de": "Status nicht verfügbar",
+    "pt": "Status indisponível",
+    "es": "Estado no disponible",
+    "fr": "État indisponible",
+    "it": "Stato non disponibile"
+  },
+  "Summary": {
+    "ru": "Краткое описание",
+    "de": "Zusammenfassung",
+    "pt": "Resumo",
+    "es": "Resumen",
+    "fr": "Résumé",
+    "it": "Riepilogo"
+  },
+  "System": {
+    "ru": "Система",
+    "de": "System",
+    "pt": "Sistema",
+    "es": "Sistema",
+    "fr": "Système",
+    "it": "Sistema"
+  },
+  "Team directory": {
+    "ru": "Каталог команд",
+    "de": "Teamverzeichnis",
+    "pt": "Diretório de equipes",
+    "es": "Directorio de equipos",
+    "fr": "Répertoire des équipes",
+    "it": "Elenco squadre"
+  },
+  "Teams in catalog": {
+    "ru": "Команд в каталоге",
+    "de": "Teams im Verzeichnis",
+    "pt": "Equipes no diretório",
+    "es": "Equipos en el directorio",
+    "fr": "Équipes dans le répertoire",
+    "it": "Squadre nell’elenco"
+  },
+  "This article changed. Close and reopen it before saving.": {
+    "ru": "Статья уже изменена. Закройте и откройте её заново перед сохранением.",
+    "de": "Dieser Artikel wurde geändert. Vor dem Speichern schließen und neu öffnen.",
+    "pt": "Este artigo foi alterado. Feche e abra novamente antes de salvar.",
+    "es": "Este artículo ha cambiado. Ciérralo y ábrelo antes de guardar.",
+    "fr": "Cet article a été modifié. Fermez-le et rouvrez-le avant d’enregistrer.",
+    "it": "L’articolo è cambiato. Chiudilo e riaprilo prima di salvare."
+  },
+  "Title": {
+    "ru": "Заголовок",
+    "de": "Titel",
+    "pt": "Título",
+    "es": "Título",
+    "fr": "Titre",
+    "it": "Titolo"
+  },
+  "Topic unavailable": {
+    "ru": "Тема недоступна",
+    "de": "Thema nicht verfügbar",
+    "pt": "Tópico indisponível",
+    "es": "Tema no disponible",
+    "fr": "Sujet indisponible",
+    "it": "Discussione non disponibile"
+  },
+  "Tracked matches": {
+    "ru": "Матчей в базе",
+    "de": "Erfasste Spiele",
+    "pt": "Partidas registradas",
+    "es": "Partidos registrados",
+    "fr": "Matchs suivis",
+    "it": "Partite registrate"
+  },
+  "URL slug": {
+    "ru": "Адрес статьи",
+    "de": "URL-Kürzel",
+    "pt": "Identificador da URL",
+    "es": "Identificador de URL",
+    "fr": "Identifiant URL",
+    "it": "Identificatore URL"
+  },
+  "Unpin topic": {
+    "ru": "Открепить тему",
+    "de": "Thema lösen",
+    "pt": "Desafixar tópico",
+    "es": "Desfijar tema",
+    "fr": "Désépingler le sujet",
+    "it": "Rimuovi discussione in evidenza"
+  },
+  "Upcoming matches": {
+    "ru": "Ближайшие матчи",
+    "de": "Anstehende Spiele",
+    "pt": "Próximas partidas",
+    "es": "Próximos partidos",
+    "fr": "Prochains matchs",
+    "it": "Prossime partite"
+  },
+  "Use a valid HTTP or HTTPS URL.": {
+    "ru": "Укажите корректную ссылку HTTP или HTTPS.",
+    "de": "Gültige HTTP- oder HTTPS-URL angeben.",
+    "pt": "Use uma URL HTTP ou HTTPS válida.",
+    "es": "Usa una URL HTTP o HTTPS válida.",
+    "fr": "Utilisez une URL HTTP ou HTTPS valide.",
+    "it": "Usa un URL HTTP o HTTPS valido."
+  },
+  "Users supporting a team": {
+    "ru": "Пользователи с любимой командой",
+    "de": "Benutzer mit Lieblingsteam",
+    "pt": "Usuários com equipe favorita",
+    "es": "Usuarios con equipo favorito",
+    "fr": "Utilisateurs avec une équipe favorite",
+    "it": "Utenti con squadra preferita"
+  },
+  "Waiting for moderation": {
+    "ru": "Ожидают модерации",
+    "de": "Warten auf Moderation",
+    "pt": "Aguardando moderação",
+    "es": "Pendientes de moderación",
+    "fr": "En attente de modération",
+    "it": "In attesa di moderazione"
+  },
+  "With favorite team": {
+    "ru": "С любимой командой",
+    "de": "Mit Lieblingsteam",
+    "pt": "Com equipe favorita",
+    "es": "Con equipo favorito",
+    "fr": "Avec équipe favorite",
+    "it": "Con squadra preferita"
+  },
+  "Workspace": {
+    "ru": "Рабочее пространство",
+    "de": "Arbeitsbereich",
+    "pt": "Área de trabalho",
+    "es": "Espacio de trabajo",
+    "fr": "Espace de travail",
+    "it": "Area di lavoro"
+  },
+  "Write drafts and manage published articles.": {
+    "ru": "Создавайте черновики и редактируйте опубликованные статьи.",
+    "de": "Entwürfe schreiben und veröffentlichte Artikel verwalten.",
+    "pt": "Escreva rascunhos e gerencie artigos publicados.",
+    "es": "Escribe borradores y gestiona artículos publicados.",
+    "fr": "Rédigez des brouillons et gérez les articles publiés.",
+    "it": "Scrivi bozze e gestisci gli articoli pubblicati."
+  },
+  "Your site at a glance.": {
+    "ru": "Главное о состоянии сайта.",
+    "de": "Deine Website im Überblick.",
+    "pt": "Seu site em um resumo.",
+    "es": "Tu sitio de un vistazo.",
+    "fr": "Votre site en un coup d’œil.",
+    "it": "Il tuo sito a colpo d’occhio."
+  },
+  "access_required": {
+    "ru": "Нужен доступ",
+    "de": "Zugriff erforderlich",
+    "pt": "Acesso necessário",
+    "es": "Acceso necesario",
+    "fr": "Accès nécessaire",
+    "it": "Accesso necessario"
+  },
+  "failed": {
+    "ru": "Ошибка",
+    "de": "Fehlgeschlagen",
+    "pt": "Falhou",
+    "es": "Fallido",
+    "fr": "Échec",
+    "it": "Errore"
+  },
+  "Heartbeat overdue": {
+    "ru": "Давно нет сигнала",
+    "de": "Heartbeat überfällig",
+    "pt": "Sinal atrasado",
+    "es": "Señal atrasada",
+    "fr": "Signal en retard",
+    "it": "Segnale in ritardo"
+  },
+  "Refresh overview": {
+    "ru": "Обновить обзор",
+    "de": "Übersicht aktualisieren",
+    "pt": "Atualizar resumo",
+    "es": "Actualizar resumen",
+    "fr": "Actualiser l’aperçu",
+    "it": "Aggiorna riepilogo"
+  },
+  "Filter users": {
+    "ru": "Фильтр пользователей",
+    "de": "Benutzer filtern",
+    "pt": "Filtrar usuários",
+    "es": "Filtrar usuarios",
+    "fr": "Filtrer les utilisateurs",
+    "it": "Filtra utenti"
+  },
+  "Save description": {
+    "ru": "Сохранить описание",
+    "de": "Beschreibung speichern",
+    "pt": "Salvar descrição",
+    "es": "Guardar descripción",
+    "fr": "Enregistrer la description",
+    "it": "Salva descrizione"
+  },
+  "Team content": {
+    "ru": "Содержимое страницы команды",
+    "de": "Teamseiten-Inhalt",
+    "pt": "Conteúdo da equipe",
+    "es": "Contenido del equipo",
+    "fr": "Contenu de l’équipe",
+    "it": "Contenuti della squadra"
+  },
+  "Team editor": {
+    "ru": "Редактор команды",
+    "de": "Team-Editor",
+    "pt": "Editor da equipe",
+    "es": "Editor del equipo",
+    "fr": "Éditeur d’équipe",
+    "it": "Editor squadra"
+  },
+  "Photo URL": {
+    "ru": "Ссылка на фото",
+    "de": "Foto-URL",
+    "pt": "URL da foto",
+    "es": "URL de la foto",
+    "fr": "URL de la photo",
+    "it": "URL foto"
+  },
+  "Member": {
+    "ru": "Участник",
+    "de": "Mitglied",
+    "pt": "Membro",
+    "es": "Miembro",
+    "fr": "Membre",
+    "it": "Membro"
+  },
+  "done": {
+    "ru": "Готово",
+    "de": "Erledigt",
+    "pt": "Concluído",
+    "es": "Completado",
+    "fr": "Terminé",
+    "it": "Completato"
+  },
+  "processing": {
+    "ru": "В обработке",
+    "de": "In Bearbeitung",
+    "pt": "Processando",
+    "es": "Procesando",
+    "fr": "En cours",
+    "it": "In elaborazione"
+  },
+  "pending": {
+    "ru": "Ожидает",
+    "de": "Ausstehend",
+    "pt": "Pendente",
+    "es": "Pendiente",
+    "fr": "En attente",
+    "it": "In attesa"
+  },
+  "retry": {
+    "ru": "Повторная попытка",
+    "de": "Erneuter Versuch",
+    "pt": "Nova tentativa",
+    "es": "Reintento",
+    "fr": "Nouvelle tentative",
+    "it": "Nuovo tentativo"
+  },
+  "unavailable": {
+    "ru": "Недоступно",
+    "de": "Nicht verfügbar",
+    "pt": "Indisponível",
+    "es": "No disponible",
+    "fr": "Indisponible",
+    "it": "Non disponibile"
+  },
+  "completed": {
+    "ru": "Завершено",
+    "de": "Abgeschlossen",
+    "pt": "Concluído",
+    "es": "Completado",
+    "fr": "Terminé",
+    "it": "Completato"
+  },
+  "Article not found.": {
+    "ru": "Статья не найдена.",
+    "de": "Artikel nicht gefunden.",
+    "pt": "Artigo não encontrado.",
+    "es": "Artículo no encontrado.",
+    "fr": "Article introuvable.",
+    "it": "Articolo non trovato."
+  },
+  "cancelled": {
+    "ru": "Отменено",
+    "de": "Abgebrochen",
+    "pt": "Cancelado",
+    "es": "Cancelado",
+    "fr": "Annulé",
+    "it": "Annullato"
+  },
+  "paused": {
+    "ru": "Приостановлено",
+    "de": "Pausiert",
+    "pt": "Pausado",
+    "es": "Pausado",
+    "fr": "En pause",
+    "it": "In pausa"
+  }
+}

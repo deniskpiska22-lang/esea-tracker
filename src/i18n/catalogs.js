@@ -3,3 +3,4 @@
 export { default as catalog } from './catalog.json' with { type: 'json' };
 export { default as forumCatalog } from './forumCatalog.json' with { type: 'json' };
 export { default as mapStatsCatalog } from './mapStatsCatalog.json' with { type: 'json' };
+export { default as adminCatalog } from './adminCatalog.json' with { type: 'json' };
