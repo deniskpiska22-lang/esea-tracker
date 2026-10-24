@@ -1,3 +1,4 @@
+import { favoriteTeamByKey, favoriteTeamKey } from "../utils/favoriteTeams.js";
 import { COUNTRY_CODES, countryName } from "../utils/countries.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
@@ -147,15 +148,7 @@ export default function EditProfilePage() {
     [teams]
   );
 
-  const favoriteTeam = useMemo(
-    () =>
-      sortedTeams.find(
-        (team) =>
-          team.slug ===
-          favoriteTeamSlug
-      ) || null,
-    [favoriteTeamSlug, sortedTeams]
-  );
+  const favoriteTeam = useMemo(() => favoriteTeamByKey(sortedTeams, favoriteTeamSlug), [sortedTeams, favoriteTeamSlug]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -200,7 +193,7 @@ export default function EditProfilePage() {
             country_code:
               normalizedCountry || null,
             favorite_team_slug:
-              favoriteTeamSlug || null,
+              favoriteTeamKey(favoriteTeam, favoriteTeamSlug) || null,
             avatar_url:
               avatarUrl.trim() || null,
             updated_at:
@@ -396,9 +389,7 @@ export default function EditProfilePage() {
                   />
 
                   <select
-                    value={
-                      favoriteTeamSlug
-                    }
+                    value={favoriteTeamKey(favoriteTeam, favoriteTeamSlug)}
                     onChange={(event) =>
                       setFavoriteTeamSlug(
                         event.target.value
@@ -414,7 +405,7 @@ export default function EditProfilePage() {
                       (team) => (
                         <option
                           key={team.slug}
-                          value={team.slug}
+                          value={favoriteTeamKey(team)}
                         >
                           {team.name}
                         </option>

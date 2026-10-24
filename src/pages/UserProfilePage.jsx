@@ -1,3 +1,4 @@
+import { favoriteTeamByKey } from "../utils/favoriteTeams.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
@@ -441,19 +442,7 @@ export default function UserProfilePage() {
     loadProfileData();
   }, [loadProfileData]);
 
-  const favoriteTeam = useMemo(() => {
-    if (!profile?.favorite_team_slug) {
-      return null;
-    }
-
-    return (
-      teams.find(
-        (team) =>
-          team.slug ===
-          profile.favorite_team_slug
-      ) || null
-    );
-  }, [profile, teams]);
+  const favoriteTeam = useMemo(() => favoriteTeamByKey(teams, profile?.favorite_team_slug), [teams, profile]);
 
   const isOwnProfile = Boolean(
     user?.id &&

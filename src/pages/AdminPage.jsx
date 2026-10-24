@@ -1,3 +1,4 @@
+import { favoriteTeamByKey } from '../utils/favoriteTeams.js';
 import { useCallback, useMemo, useState } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { FiGrid, FiUsers, FiShield, FiFileText, FiActivity, FiArrowUpRight, FiRefreshCw, FiChevronRight } from 'react-icons/fi';
@@ -66,17 +67,16 @@ function Overview({ snapshot, loading, navigate }) {
   </div>;
 }
 function Users({ teams }) {
-  const teamBySlug = useMemo(() => new Map(teams.flatMap(team => [team.slug, team.profileSlug, ...(team.urlAliases || [])].filter(Boolean).map(slug => [slug, team]))), [teams]);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
   const [page, setPage] = useState(0);
   const [committed, setCommitted] = useState('');
   return <Panel title="Community accounts" description="Profiles, registration dates and favorite teams.">
     <form className="admin-toolbar" onSubmit={event => { event.preventDefault(); setCommitted(search); setPage(0); }}><Search value={search} onChange={setSearch} label="Search username or display name" /><button className="admin-btn" type="submit">{tx('Search')}</button><select aria-label={tx('Filter users')} value={filter} onChange={event => { setFilter(event.target.value); setPage(0); }}>{[['all', 'All users'], ['favorites', 'With favorite team'], ['none', 'No favorite team'], ['admins', 'Administrators']].map(([value, label]) => <option key={value} value={value}>{tx(label)}</option>)}</select></form>
-    <UserRows key={`${page}:${filter}:${committed}`} page={page} setPage={setPage} filter={filter} search={committed} teamBySlug={teamBySlug} />
+    <UserRows key={`${page}:${filter}:${committed}`} page={page} setPage={setPage} filter={filter} search={committed} teams={teams} />
   </Panel>;
 }
-function UserRows({ page, setPage, filter, search, teamBySlug }) {
+function UserRows({ page, setPage, filter, search, teams }) {
   const loader = useCallback(async () => {
     let query = supabase.from('profiles').select('id,username,display_name,avatar_url,country_code,favorite_team_slug,is_admin,created_at', { count: 'exact' }).order('created_at', { ascending: false }).order('id');
     const value = search.replace(/[^\p{L}\p{N}_ -]/gu, '').trim().slice(0, 100).replaceAll('_', '\\_');
@@ -90,7 +90,7 @@ function UserRows({ page, setPage, filter, search, teamBySlug }) {
   const { data, loading, error, refresh } = useAdminResource(loader);
   if (error) return <><Notice error>{tx('Could not load this section. Please retry.')}</Notice><button className="admin-btn" onClick={refresh}>{tx('Retry')}</button></>;
   return <>{loading ? <Empty>{tx('Loading...')}</Empty> : !data?.rows.length ? <Empty>{tx('No users match these filters.')}</Empty> : <div className="admin-table-wrap"><table className="admin-table"><thead><tr>{['User', 'Country', 'Favorite team', 'Access', 'Registered'].map(label => <th key={label}>{tx(label)}</th>)}</tr></thead><tbody>{data.rows.map(row => {
-    const favorite = teamBySlug.get(row.favorite_team_slug);
+    const favorite = favoriteTeamByKey(teams, row.favorite_team_slug);
     return <tr key={row.id}><td><Link to={`/profile/${encodeURIComponent(row.username)}`} className="admin-user"><span className="admin-avatar">{row.avatar_url ? <img src={row.avatar_url} alt="" loading="lazy" /> : (row.display_name || row.username).slice(0, 2).toUpperCase()}</span><span><strong>{row.display_name || row.username}</strong><small>@{row.username}</small></span></Link></td><td>{row.country_code ? <CountryFlag country={row.country_code} /> : '—'}</td><td>{favorite ? <Link className="admin-text-link" to={`/teams/${favorite.slug}`}>{favorite.name}</Link> : row.favorite_team_slug || '—'}</td><td><span className={`admin-badge ${row.is_admin ? 'accent' : ''}`}>{tx(row.is_admin ? 'Administrator' : 'Member')}</span></td><td><DateLabel value={row.created_at} /></td></tr>;
   })}</tbody></table></div>}{data && <Pager page={page} total={data.count} pageSize={25} onChange={setPage} />}</>;
 }

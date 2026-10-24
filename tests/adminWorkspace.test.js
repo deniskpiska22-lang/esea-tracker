@@ -46,3 +46,13 @@ test('professional verification endpoints are retired while favorite team update
   assert.match(edit, /favorite_team_slug:/);
   assert.doesNotMatch(edit, /verification|PROFESSIONAL_PROFILES/);
 });
+
+test('renamed favorite teams keep their original FACEIT identity in profiles and selects', async () => {
+  const { favoriteTeamByKey, favoriteTeamKey } = await import('../src/utils/favoriteTeams.js');
+  const renamed = { faceitTeamId: '7f46e5e4-a472-4945-a5fc-2f20b5b6725d', name: 'Grey Cardinal', slug: 'chikiryau-7f46e5e4', profileSlug: 'grey-cardinal' };
+  for (const key of ['chikiryau', renamed.slug, renamed.profileSlug, renamed.faceitTeamId]) assert.equal(favoriteTeamByKey([renamed], key), renamed);
+  assert.equal(favoriteTeamKey(renamed), renamed.faceitTeamId);
+  assert.equal(favoriteTeamByKey([], 'chikiryau'), null);
+  assert.equal(favoriteTeamByKey([renamed], '__proto__'), null);
+  assert.equal(favoriteTeamKey(null, 'unavailable-team'), 'unavailable-team');
+});
