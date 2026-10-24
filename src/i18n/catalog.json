@@ -7158,5 +7158,45 @@
     "es": "Tercera clasificatoria de Elisa Open Suomi 14. Ocho equipos se clasifican para la temporada, con un premio total de 5000 € y puntos VRS. Comienza el 21 de octubre de 2026 a las 18:00, hora de Finlandia. Eliminación directa, con partidos BO1 salvo los encuentros decisivos de la ronda de cuatro equipos, que son BO3. Se disputan todas las rondas para determinar los cabezas de serie de la temporada. Antes de participar, lee el reglamento en la pestaña Reglas. Los comentaristas de la comunidad pueden solicitar direcciones CSTV a tomi.dog en Discord.",
     "fr": "Troisième qualification pour Elisa Open Suomi 14. Huit équipes se qualifient pour la saison, dotée de 5000 € et de points VRS. Début le 21 octobre 2026 à 18 h, heure finlandaise. Élimination directe, avec des matchs BO1 sauf les rencontres décisives du tour à quatre équipes, jouées en BO3. Tous les tours sont disputés pour déterminer les têtes de série de la saison. Avant de participer, lire le règlement dans l’onglet Règles. Les commentateurs communautaires peuvent demander les adresses CSTV à tomi.dog sur Discord.",
     "it": "Terza qualificazione per Elisa Open Suomi 14. Otto squadre si qualificano per la stagione, con un montepremi di 5000 € e punti VRS. Inizio il 21 ottobre 2026 alle 18:00, ora finlandese. Eliminazione diretta, con partite BO1 tranne gli incontri decisivi del turno a quattro squadre, che sono BO3. Si disputano tutti i turni per definire le teste di serie della stagione. Prima di partecipare, leggere il regolamento nella scheda Regole. I commentatori della community possono richiedere gli indirizzi CSTV a tomi.dog su Discord."
+  },
+  "Likely": {
+    "ru": "Вероятно",
+    "de": "Voraussichtlich",
+    "pt": "Provável",
+    "es": "Probable",
+    "fr": "Probable",
+    "it": "Probabile"
+  },
+  "FACEIT lineup": {
+    "ru": "Состав FACEIT",
+    "de": "FACEIT-Aufstellung",
+    "pt": "Elenco FACEIT",
+    "es": "Plantilla FACEIT",
+    "fr": "Composition FACEIT",
+    "it": "Formazione FACEIT"
+  },
+  "Player not announced": {
+    "ru": "Игрок ещё не объявлен",
+    "de": "Spieler noch nicht bekannt",
+    "pt": "Jogador ainda não anunciado",
+    "es": "Jugador aún no anunciado",
+    "fr": "Joueur pas encore annoncé",
+    "it": "Giocatore non ancora annunciato"
+  },
+  "FACEIT lists {0}/5 players. Other shown players are a likely lineup based on match history and the registered roster.": {
+    "ru": "FACEIT указал {0}/5 игроков. Остальные показаны как вероятный состав по истории матчей и зарегистрированному ростеру.",
+    "de": "FACEIT nennt {0}/5 Spieler. Die übrigen angezeigten Spieler bilden eine voraussichtliche Aufstellung auf Basis der Matchhistorie und des registrierten Kaders.",
+    "pt": "A FACEIT indica {0}/5 jogadores. Os demais formam um elenco provável com base no histórico de partidas e no elenco registrado.",
+    "es": "FACEIT indica {0}/5 jugadores. Los demás forman una alineación probable basada en el historial de partidos y la plantilla registrada.",
+    "fr": "FACEIT indique {0}/5 joueurs. Les autres constituent une composition probable fondée sur les matchs précédents et l’effectif inscrit.",
+    "it": "FACEIT indica {0}/5 giocatori. Gli altri formano una formazione probabile basata sulle partite precedenti e sulla rosa registrata."
+  },
+  "FACEIT lists {0}/5 players. Remaining players have not been announced.": {
+    "ru": "FACEIT указал {0}/5 игроков. Остальные игроки пока не объявлены.",
+    "de": "FACEIT nennt {0}/5 Spieler. Die übrigen Spieler wurden noch nicht bekannt gegeben.",
+    "pt": "A FACEIT indica {0}/5 jogadores. Os demais jogadores ainda não foram anunciados.",
+    "es": "FACEIT indica {0}/5 jugadores. Los demás aún no se han anunciado.",
+    "fr": "FACEIT indique {0}/5 joueurs. Les autres joueurs n’ont pas encore été annoncés.",
+    "it": "FACEIT indica {0}/5 giocatori. Gli altri non sono ancora stati annunciati."
   }
 }

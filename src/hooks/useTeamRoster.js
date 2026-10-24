@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+const EMPTY_ROSTER = {
+  loading: false, error: null, starting: [], bench: [], former: [],
+  provisional: false, lineupSource: "current_roster",
+};
 
 function isoDaysAgo(days) {
   return new Date(
@@ -326,18 +330,22 @@ function buildRoster(
 export function useTeamRoster(
   teamId
 ) {
-  const [state, setState] =
-    useState({
-      loading:
-        Boolean(teamId),
-      error: null,
-      starting: [],
-      bench: [],
-      former: [],
-      provisional: false,
-      lineupSource:
-        "current_roster",
-    });
+  // A match can switch teams without remounting this hook. Never expose the
+  // previous team's players while the new roster request is in flight.
+  const [snapshot, setSnapshot] = useState(() => ({
+    teamId, value: { ...EMPTY_ROSTER, loading: Boolean(teamId) },
+  }));
+  const setState = useCallback((next) => {
+    setSnapshot(previous => ({
+      teamId,
+      value: typeof next === "function"
+        ? next(previous.teamId === teamId ? previous.value : EMPTY_ROSTER)
+        : next,
+    }));
+  }, [teamId]);
+  const state = snapshot.teamId === teamId
+    ? snapshot.value
+    : { ...EMPTY_ROSTER, loading: Boolean(teamId) };
 
   useEffect(() => {
     let cancelled = false;
@@ -555,7 +563,7 @@ export function useTeamRoster(
     return () => {
       cancelled = true;
     };
-  }, [teamId]);
+  }, [teamId, setState]);
 
   return state;
 }

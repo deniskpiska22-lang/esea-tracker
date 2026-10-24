@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useTeamRoster } from "../hooks/useTeamRoster";
 import { useLanguage } from "../context/LanguageContext";
 import { getPlayerId, PLAYER_SILHOUETTE } from "../utils/playerIdentity";
+import { formatLineupStat, resolveMatchLineup } from "../utils/matchLineups.js";
 
 function getTeamId(team) {
   return (
@@ -67,6 +68,8 @@ function PlayerTileBody({ player, team }) {
   return (
     <>
       <PlayerPortraitLayers player={player} team={team} />
+
+      {player.lineupInferred && <span className="absolute right-1 top-1 z-20 rounded border border-orange-400/25 bg-[#0c1219]/90 px-1.5 py-1 text-[8px] font-bold text-orange-300">{tx("Likely")}</span>}
 
       <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-center gap-1 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-1.5 pb-1.5 pt-6">
         <CountryFlag country={player?.country} size="sm" />
@@ -131,13 +134,20 @@ function PlayerCardSkeleton() {
   );
 }
 
+function UnannouncedPlayerCard() {
+  return <div aria-label={tx("Player not announced")} className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-dashed border-[#263244] bg-white/[0.02]">
+    <img src={PLAYER_SILHOUETTE} alt="" className="h-full w-full object-contain object-bottom opacity-30" />
+    <span className="absolute inset-x-0 bottom-2 text-center text-[10px] font-semibold text-slate-500">{tx("TBD")}</span>
+  </div>;
+}
+
 function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
   const { tr } = useLanguage();
 
   const showUnconfirmedHint =
     !roster.loading &&
     roster.starting.length > 0 &&
-    roster.lineupSource !== "match_history";
+    roster.provisional;
 
   return (
     <div className="rounded-2xl border border-[#263244] bg-[#0c1219] p-3">
@@ -167,6 +177,9 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
               onClick={() => onSelect(getPlayerId(player))}
             />
           ))}
+          {Array.from({ length: Math.max(0, 5 - roster.starting.length) }, (_, index) => roster.pendingPlayers
+            ? <PlayerCardSkeleton key={`pending-${index}`} />
+            : <UnannouncedPlayerCard key={`unannounced-${index}`} />)}
         </div>
       )}
 
@@ -177,10 +190,14 @@ function TeamLineupRow({ team, roster, selectedPlayerId, onSelect }) {
       )}
 
       {showUnconfirmedHint && (
-        <div className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7185a0]">
-          {tr("Вероятный состав", "Likely lineup")}
+        <div className="mt-3 text-center text-[#7185a0]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.14em]">{tr("Вероятный состав", "Likely lineup")}</div>
+          {roster.announcedCount > 0 && <p className="mx-auto mt-1 max-w-xl text-[10px] leading-relaxed">{roster.inferredCount > 0
+            ? tf("FACEIT lists {0}/5 players. Other shown players are a likely lineup based on match history and the registered roster.", roster.announcedCount)
+            : tf("FACEIT lists {0}/5 players. Remaining players have not been announced.", roster.announcedCount)}</p>}
         </div>
       )}
+      {!roster.loading && !roster.provisional && <div className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7185a0]">{tx("FACEIT lineup")}</div>}
     </div>
   );
 }
@@ -206,10 +223,7 @@ function CompareSidePlayer({ player, team }) {
 }
 
 function CompareStatRow({ label, value1, value2, decimals }) {
-  const format = (value) => {
-    const number = Number(value);
-    return Number.isFinite(number) ? number.toFixed(decimals) : "—";
-  };
+  const format = (value) => formatLineupStat(value, decimals);
 
   return (
     <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-lg border border-[#182231] bg-[#0f1720] px-2.5 py-1.5 sm:px-3">
@@ -285,13 +299,8 @@ export default function MatchLineups({ team1, team2 }) {
 
   const currentRoster1 = useTeamRoster(team1Id);
   const currentRoster2 = useTeamRoster(team2Id);
-  const withMatchRoster = (team, current) => {
-    if (!team.matchRoster?.length) return current;
-    const known = new Map([...current.starting, ...current.bench, ...current.former].map(p => [getPlayerId(p), p]));
-    return {...current, loading:false, starting:team.matchRoster.map(p => ({...known.get(getPlayerId(p)), ...p})), lineupSource:"match_roster"};
-  };
-  const roster1 = withMatchRoster(team1, currentRoster1);
-  const roster2 = withMatchRoster(team2, currentRoster2);
+  const roster1 = resolveMatchLineup(team1, currentRoster1);
+  const roster2 = resolveMatchLineup(team2, currentRoster2);
 
   const [selectedId1, setSelectedId1] = useState(null);
   const [selectedId2, setSelectedId2] = useState(null);

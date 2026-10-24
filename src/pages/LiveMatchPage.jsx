@@ -29,6 +29,7 @@ import { normalizeLiveVeto } from "../utils/liveMapComparison.js";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
+import { readMatchLineup } from "../utils/matchLineups.js";
 import OneWinMatchOdds from "../components/OneWinMatchOdds.jsx";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
@@ -204,6 +205,7 @@ function normalizeDatabaseMatch(row) {
       null,
 
     team1: {
+      ...readMatchLineup(row.raw_data, row.team1_id),
       id:
         row.team1_id ||
         null,
@@ -222,6 +224,7 @@ function normalizeDatabaseMatch(row) {
     },
 
     team2: {
+      ...readMatchLineup(row.raw_data, row.team2_id),
       id:
         row.team2_id ||
         null,

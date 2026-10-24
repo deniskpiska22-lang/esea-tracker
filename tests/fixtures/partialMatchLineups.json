@@ -1,0 +1,64 @@
+{
+  "teams": {
+    "faction1": {
+      "faction_id": "2f4aa01a-078b-4586-94f8-59161dd0b590",
+      "name": "TrafficPills Esports",
+      "roster": [
+        {
+          "player_id": "43edb54f-28ed-41fb-9996-c53c1602b32a",
+          "nickname": "taouser"
+        },
+        {
+          "player_id": "e310568c-c1f9-4725-b6e3-8ba7ca8ccffc",
+          "nickname": "F1n3tw"
+        },
+        {
+          "player_id": "c0216481-6d6f-4a69-b480-e1f3c4f0c36a",
+          "nickname": "LECY89"
+        },
+        {
+          "player_id": "8971bb8f-a5be-4cba-aa5e-5dc9836f638b",
+          "nickname": "Greatest333"
+        }
+      ],
+      "substitutes": [
+        {
+          "player_id": "42fd27d8-57af-43d7-abe5-c1c8ded9d96f",
+          "nickname": "-mowel"
+        },
+        {
+          "player_id": "c98fce5a-09c8-43c8-b699-8b8cd0ed6f69",
+          "nickname": "Minor"
+        }
+      ]
+    },
+    "faction2": {
+      "faction_id": "f871c675-61e9-4359-a207-4242fd571265",
+      "name": "k1LL3RZ",
+      "roster": [
+        {
+          "player_id": "dfb60d4a-ccd0-4060-9717-94d302e2bfed",
+          "nickname": "YURk3N"
+        },
+        {
+          "player_id": "7fdd17ab-73e4-4fbb-a1a8-122e13e77aad",
+          "nickname": "ValerKiN1337"
+        }
+      ],
+      "substitutes": [
+        {
+          "player_id": "95e0b600-8a30-4747-a311-6cd172b3fb73",
+          "nickname": "SEXYVLAD1K"
+        },
+        {
+          "player_id": "511c7567-9805-4596-a549-e8f6e46686e3",
+          "nickname": "for7una-"
+        },
+        {
+          "player_id": "8ce70612-a6ad-4489-9c78-4430b817f16a",
+          "nickname": "Mouread"
+        }
+      ]
+    }
+  }
+}

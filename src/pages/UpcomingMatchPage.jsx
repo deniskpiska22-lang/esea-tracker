@@ -28,6 +28,7 @@ import OneWinMatchOdds from "../components/OneWinMatchOdds.jsx";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import MatchLineups from "../components/MatchLineups";
+import { readMatchLineup } from "../utils/matchLineups.js";
 import LiveMapComparison from "../components/LiveMapComparison";
 import TournamentNameLink from "../components/TournamentNameLink";
 import { useTeamStats } from "../hooks/useTeamStats";
@@ -147,9 +148,6 @@ function findLocalTeam(faceitTeamId, fallbackName, catalog = teams) {
 }
 
 function normalizeDatabaseMatch(row) {
-  const rawMatch = parseJsonValue(row.raw_data, {});
-  const factions = Object.values(rawMatch.teams || {});
-  const matchRoster = (id) => (factions.find(t => t.faction_id === id)?.roster || []).map(p => ({...p, faceit_id:p.player_id}));
   const rawMapScores = parseJsonValue(
     row.map_scores,
     []
@@ -188,7 +186,7 @@ function normalizeDatabaseMatch(row) {
       null,
 
     team1: {
-      matchRoster: matchRoster(row.team1_id),
+      ...readMatchLineup(row.raw_data, row.team1_id),
       id:
         row.team1_id ||
         null,
@@ -207,7 +205,7 @@ function normalizeDatabaseMatch(row) {
     },
 
     team2: {
-      matchRoster: matchRoster(row.team2_id),
+      ...readMatchLineup(row.raw_data, row.team2_id),
       id:
         row.team2_id ||
         null,
