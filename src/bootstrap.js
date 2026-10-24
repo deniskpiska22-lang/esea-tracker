@@ -7,11 +7,10 @@ const destination = initialLanguageRedirect({
   search: window.location.search,
   hash: window.location.hash,
   preferredLanguage,
-  browserLanguages: navigator.languages?.length ? navigator.languages : [navigator.language],
 });
 if (destination) {
-  // Decide before fetching React and a locale dictionary, so first-time
-  // visitors do not load the entire Russian app before being sent to English.
+  // English is the default entrance. Decide before fetching the application
+  // and dictionary, while preserving a language chosen manually.
   window.location.replace(destination);
 } else {
   import('./main.jsx').catch(error => {

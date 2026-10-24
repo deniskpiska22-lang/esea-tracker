@@ -32,14 +32,14 @@ export function browserLanguage() {
   if (typeof navigator === 'undefined') return 'en';
   return preferredBrowserLanguage(navigator.languages?.length ? navigator.languages : [navigator.language]);
 }
-export function initialLanguageRedirect({ pathname = '/', search = '', hash = '', preferredLanguage, browserLanguages = [] } = {}) {
+export function initialLanguageRedirect({ pathname = '/', search = '', hash = '', preferredLanguage } = {}) {
   // The root is the language-neutral entrance. Localized links and existing
   // canonical entity URLs keep their language, including the Russian URLs.
   if (pathname !== '/') return null;
   const explicit = new URLSearchParams(search).get('ui_lang');
   const language = LANGUAGE_CODES.includes(explicit) ? explicit
     : LANGUAGE_CODES.includes(preferredLanguage) ? preferredLanguage
-      : preferredBrowserLanguage(browserLanguages);
+      : 'en';
   return language === 'ru' ? null : localizedPath('/', language) + search + hash;
 }
 export function currentLanguage() {
