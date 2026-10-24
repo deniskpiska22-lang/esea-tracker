@@ -20,13 +20,27 @@ export function localizedPath(pathname, language) {
   const path = stripLanguage(pathname || '/');
   return language === 'ru' ? path : `/${language}${path === '/' ? '' : path}`;
 }
-export function browserLanguage() {
-  if (typeof navigator === 'undefined') return 'en';
-  for (const value of navigator.languages || [navigator.language]) {
-    const code = value.toLowerCase().split('-')[0];
+export function preferredBrowserLanguage(values = []) {
+  for (const value of Array.isArray(values) ? values : []) {
+    if (typeof value !== 'string') continue;
+    const code = value.trim().toLowerCase().split(/[-_]/)[0];
     if (LANGUAGE_CODES.includes(code)) return code;
   }
   return 'en';
+}
+export function browserLanguage() {
+  if (typeof navigator === 'undefined') return 'en';
+  return preferredBrowserLanguage(navigator.languages?.length ? navigator.languages : [navigator.language]);
+}
+export function initialLanguageRedirect({ pathname = '/', search = '', hash = '', preferredLanguage, browserLanguages = [] } = {}) {
+  // The root is the language-neutral entrance. Localized links and existing
+  // canonical entity URLs keep their language, including the Russian URLs.
+  if (pathname !== '/') return null;
+  const explicit = new URLSearchParams(search).get('ui_lang');
+  const language = LANGUAGE_CODES.includes(explicit) ? explicit
+    : LANGUAGE_CODES.includes(preferredLanguage) ? preferredLanguage
+      : preferredBrowserLanguage(browserLanguages);
+  return language === 'ru' ? null : localizedPath('/', language) + search + hash;
 }
 export function currentLanguage() {
   return typeof window === 'undefined' ? 'ru' : languageFromPath(window.location.pathname);

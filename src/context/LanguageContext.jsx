@@ -80,8 +80,16 @@ export function LanguageProvider({ children }) {
   const language = currentLanguage();
   const setLanguage = useCallback((next) => {
     if (!LANGUAGE_CODES.includes(next)) return;
-    try { window.localStorage.setItem(STORAGE_KEY, next); } catch { /* Storage may be disabled. */ }
-    const destination = localizedPath(window.location.pathname, next) + window.location.search + window.location.hash;
+    let saved = false;
+    try { window.localStorage.setItem(STORAGE_KEY, next); saved = true; } catch { /* Storage may be disabled. */ }
+    const pathname = localizedPath(window.location.pathname, next);
+    const search = new URLSearchParams(window.location.search);
+    search.delete('ui_lang');
+    // A Russian homepage has no URL prefix. Retain an explicit manual choice
+    // in the URL when browser storage is unavailable, avoiding a redirect loop.
+    if (!saved && next === 'ru' && pathname === '/') search.set('ui_lang', 'ru');
+    const query = search.toString();
+    const destination = pathname + (query ? `?${query}` : '') + window.location.hash;
     if (destination !== window.location.pathname + window.location.search + window.location.hash) window.location.assign(destination);
   }, []);
   const resetLanguage = useCallback(() => setLanguage(browserLanguage()), [setLanguage]);

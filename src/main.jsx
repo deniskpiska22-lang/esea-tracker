@@ -4,6 +4,7 @@ import { tx } from "./i18n/translate.js";
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   BrowserRouter,
   Navigate,
@@ -12,7 +13,7 @@ import {
 } from "react-router-dom";
 
 import "./index.css";
-import { currentLanguage, LANGUAGE_CODES, localizedPath } from "./i18n/languages.js";
+import { currentLanguage } from "./i18n/languages.js";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
@@ -163,6 +164,7 @@ function Application() {
                 </Suspense>
 
                 <Analytics />
+                <SpeedInsights />
               </TeamUrlProvider>
               </AuthProvider>
             </LanguageProvider>
@@ -173,10 +175,4 @@ function Application() {
   );
 }
 
-let preferredLanguage;
-try { preferredLanguage = window.localStorage.getItem('esea-tracker-language'); } catch { /* Storage may be disabled. */ }
-if (window.location.pathname === '/' && preferredLanguage !== 'ru' && LANGUAGE_CODES.includes(preferredLanguage)) {
-  window.location.replace(localizedPath('/', preferredLanguage) + window.location.search + window.location.hash);
-} else {
-  ReactDOM.createRoot(document.getElementById("root")).render(<Application />);
-}
+ReactDOM.createRoot(document.getElementById("root")).render(<Application />);
