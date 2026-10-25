@@ -35,3 +35,11 @@ export function matchTeamSource(row) {
     avatar: row[`source_team${side}_logo`],
   })) };
 }
+
+export function normalizeFaceitFaction(catalog, faction = {}) {
+  return resolveMatchTeam(catalog, {
+    id: faction.premade_team_id || faction.faction_id || faction.team_id || faction.id || null,
+    name: faction.name || faction.nickname || 'TBD',
+    logo: faction.avatar || faction.logo || null,
+  }, { teams: { faction } });
+}

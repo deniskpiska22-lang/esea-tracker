@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { resolveMatchTeam, matchTeamSource } from '../src/utils/matchTeamIdentity.js';
+import { resolveMatchTeam, matchTeamSource, normalizeFaceitFaction } from '../src/utils/matchTeamIdentity.js';
 import { resolveRatingRow } from '../src/utils/resolveTeamRating.js';
 
 const advanced = { faceitTeamId: 'a8bffebf-1a2b-4bb3-9e3c-d159960580e7', name: 'OLDBOYS', slug: 'oldboys-pl-a8bffebf', logo: 'advanced.jpg' };
@@ -42,4 +42,14 @@ test('a known team ID cannot inherit a namesake rating even with its stale slug'
   assert.equal(resolveRatingRow({ ids: [openId], name: 'oldboys', slug: advanced.slug }, [entry]), null);
   assert.deepEqual(resolveRatingRow({ ids: [advanced.faceitTeamId], name: 'renamed' }, [entry]), entry.row);
   assert.deepEqual(resolveRatingRow({ name: 'oldboys' }, [entry]), entry.row);
+});
+
+test('live worker faction normalization never writes the Advanced namesake into Open10', () => {
+  const faction = raw.teams.faction2;
+  assert.deepEqual(normalizeFaceitFaction([advanced], faction), {
+    id: openId, name: 'OldBoys', logo: 'open10.jpg', slug: null,
+  });
+  const matched = normalizeFaceitFaction([advanced], raw.teams.faction1);
+  assert.equal(matched.slug, advanced.slug);
+  assert.equal(matched.logo, 'wrong-side.jpg');
 });

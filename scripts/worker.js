@@ -26,6 +26,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import teams from "../src/data/teams.generated.js";
+import { normalizeFaceitFaction } from "../src/utils/matchTeamIdentity.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseSecretKey =
@@ -280,18 +281,6 @@ const COMPARE_FIELDS = [
 // where FACEIT exposes the round score of the map currently in progress.
 const CANDIDATE_FIELDS = [...COMPARE_FIELDS, "raw_data", "id"];
 
-const normalizeName = (value = "") => value.replace(/\s+/g, "").toLowerCase();
-
-function localTeam(id, name) {
-  return (
-    teams.find((team) => team.faceitTeamId === id) ||
-    teams.find(
-      (team) => name && normalizeName(team.name) === normalizeName(name)
-    ) ||
-    null
-  );
-}
-
 function asIso(value) {
   if (!value) {
     return null;
@@ -304,22 +293,7 @@ function asIso(value) {
 }
 
 function normalizeFaction(faction = {}) {
-  const id =
-    faction.premade_team_id ||
-    faction.faction_id ||
-    faction.team_id ||
-    faction.id ||
-    null;
-
-  const name = faction.name || faction.nickname || "TBD";
-  const local = localTeam(id, name);
-
-  return {
-    id,
-    name: local?.name || name,
-    slug: local?.slug || null,
-    logo: local?.logo || faction.avatar || faction.logo || null,
-  };
+  return normalizeFaceitFaction(teams, faction);
 }
 
 function publicApiToPatch(data) {
