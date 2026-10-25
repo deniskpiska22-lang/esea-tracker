@@ -181,8 +181,8 @@ async function writeInBatches(jobs) {
 
 async function main() {
   const template = await readFile(templatePath, "utf8");
-  // Vercel serves fresh profiles through API routes; static hosts need snapshots.
-  const dynamicProfiles = process.env.VERCEL === "1";
+  // Both Node/Railway and Vercel serve fresh profiles through API routes.
+  const dynamicProfiles = process.env.VERCEL === "1" || process.env.VITE_HOSTING_PROVIDER === "railway";
   const catalog = dynamicProfiles ? [] : await loadCatalogForSeo();
   const uniqueTeams = [
     ...new Map(

@@ -5,6 +5,7 @@ export const config = {
 }
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
   try {
     if (req.method !== "POST") {
       return res.status(405).json({
@@ -27,6 +28,10 @@ export default async function handler(req, res) {
       })
     }
 
+    if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
+      return res.status(503).json({ success: false, error: 'Team submissions are temporarily unavailable' })
+    }
+
     const text = `
 📥 NEW TEAM SUBMISSION
 
@@ -40,6 +45,7 @@ export default async function handler(req, res) {
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
         method: "POST",
+        signal: AbortSignal.timeout(10000),
         headers: {
           "Content-Type": "application/json",
         },

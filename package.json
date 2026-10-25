@@ -42,7 +42,9 @@
     "stats:full": "node --env-file=.env.local scripts/fullSyncStatsToSupabase.js",
     "rosters:backfill": "node --env-file=.env.local scripts/backfillTeamPlayerAppearances.js",
     "stats:normalize": "node --env-file=.env.local scripts/backfillNormalizedMatchStats.js",
-    "stats:check": "node --env-file=.env.local scripts/checkNormalizedMatchStats.js"
+    "stats:check": "node --env-file=.env.local scripts/checkNormalizedMatchStats.js",
+    "start": "node server/startWeb.js",
+    "build:web": "npm run build && node scripts/compressWebAssets.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",
@@ -52,6 +54,7 @@
     "axios": "^1.17.0",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
+    "geoip-country": "5.0.202610240156",
     "node-cron": "^4.2.1",
     "node-fetch": "^3.3.2",
     "playwright": "^1.61.0",

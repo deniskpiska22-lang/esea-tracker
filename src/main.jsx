@@ -163,8 +163,8 @@ function Application() {
                   </Routes>
                 </Suspense>
 
-                <Analytics />
-                <SpeedInsights />
+                {import.meta.env.VITE_HOSTING_PROVIDER !== 'railway' && <Analytics />}
+                {import.meta.env.VITE_HOSTING_PROVIDER !== 'railway' && <SpeedInsights />}
               </TeamUrlProvider>
               </AuthProvider>
             </LanguageProvider>

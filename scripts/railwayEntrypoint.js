@@ -3,6 +3,7 @@ const processType = String(
 ).trim().toLowerCase();
 
 const entrypoints = {
+  web: "../server/startWeb.js",
   live: "./worker.js",
   automation: "./automationWorker.js",
   stats: "./statsWorker.js",

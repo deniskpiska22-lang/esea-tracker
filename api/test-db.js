@@ -1,32 +1,28 @@
-import { supabase } from "../lib/supabase.js";
+import { seoClient } from '../server/seoData.js';
 
 export default async function handler(request, response) {
+  response.setHeader('Cache-Control', 'no-store');
   try {
-    const { data, error } = await supabase
+    const { data, error } = await seoClient()
       .from("matches")
-      .select("*")
-      .limit(5);
+      .select('id')
+      .limit(1);
 
     if (error) {
-      console.error("Supabase error:", error);
-
-      return response.status(500).json({
-        ok: false,
-        error: error.message,
-        details: error,
-      });
+      throw error;
     }
 
     return response.status(200).json({
       ok: true,
-      matches: data,
+      reachable: true,
+      hasMatches: Boolean(data?.length),
     });
   } catch (error) {
-    console.error("API error:", error);
+    console.error('[database-health]', error.message);
 
-    return response.status(500).json({
+    return response.status(503).json({
       ok: false,
-      error: error.message,
+      reachable: false,
     });
   }
 }
