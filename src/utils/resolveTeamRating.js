@@ -1,9 +1,9 @@
 /**
  * Resolves which rating row in a candidate list belongs to a given team.
  *
- * Mirrors the server-side resolveTeam() in scripts/recalculateRatings.js:
- * match by id first, then by name only if the name is unique among the
- * candidates, then by slug/division to disambiguate ties. If a name matches
+ * A provided FACEIT ID is authoritative. Without an ID, match by name only
+ * if it is unique among the candidates, then by slug/division to disambiguate
+ * ties. If a name matches
  * more than one row and slug/division can't narrow it to exactly one, give
  * up rather than guessing — a duplicate team name must never silently
  * resolve to an unrelated team's rating.
@@ -23,6 +23,8 @@ export function resolveRatingRow(
     if (idMatch) {
       return idMatch.row;
     }
+    // A known FACEIT ID cannot inherit a namesake's rating or division.
+    return null;
   }
 
   if (!name) {

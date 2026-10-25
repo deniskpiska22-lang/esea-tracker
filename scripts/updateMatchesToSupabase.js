@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import teams from "../src/data/teams.generated.js";
+import { findCatalogTeam } from "../src/utils/teamIdentity.js";
 
 const CHAMPIONSHIP_IDS = [
   "6c713b0c-dd31-4bd8-9571-484f84a5272d",
@@ -88,11 +89,9 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 });
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const normalizeName = (value = "") => String(value).replace(/\s+/g, "").toLowerCase();
 
 function localTeam(id, name) {
-  return teams.find((team) => team.faceitTeamId === id) ||
-    teams.find((team) => normalizeName(team.name) === normalizeName(name)) || null;
+  return findCatalogTeam(teams, id, name);
 }
 
 function buildUrl(teamId, offset = 0) {

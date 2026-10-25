@@ -7,6 +7,7 @@ import { translateMatchStatus } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { findCatalogTeam } from "../utils/teamIdentity.js";
+import { resolveMatchTeam, matchTeamSource } from "../utils/matchTeamIdentity.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 
@@ -56,6 +57,10 @@ const MATCH_CARD_COLUMNS = [
   "team1_logo", "team1_score", "team2_id", "team2_name", "team2_slug",
   "team2_logo", "team2_score", "maps", "map_scores", "stats_synced",
   "detailed_results:raw_data->detailed_results",
+  "source_team1_id:raw_data->teams->faction1->>faction_id",
+  "source_team1_logo:raw_data->teams->faction1->>avatar",
+  "source_team2_id:raw_data->teams->faction2->>faction_id",
+  "source_team2_logo:raw_data->teams->faction2->>avatar",
 ].join(",");
 
 function scheduleAfterFirstPaint(callback) {
@@ -170,37 +175,9 @@ function getRatingTeamLogo(staticTeam, ratingRow) {
 }
 
 function mergeRatingTeams(ratingRows) {
-  const bySlug = new Map();
-  const byId = new Map();
-  const byName = new Map();
-
-  for (const team of teams) {
-    const slug = normalizeSlug(team?.slug);
-    const id = String(
-      team?.id ??
-        team?.teamId ??
-        team?.faceitTeamId ??
-        team?.faceit_team_id ??
-        ""
-    ).trim();
-    const name = normalizeName(team?.name);
-
-    if (slug) bySlug.set(slug, team);
-    if (id) byId.set(id, team);
-    if (name) byName.set(name, team);
-  }
-
   return (Array.isArray(ratingRows) ? ratingRows : [])
     .map((ratingRow) => {
-      const ratingSlug = normalizeSlug(getRatingRowSlug(ratingRow));
-      const ratingId = String(getRatingRowId(ratingRow) ?? "").trim();
-      const ratingName = normalizeName(getRatingRowName(ratingRow));
-
-      const staticTeam =
-        bySlug.get(ratingSlug) ??
-        byId.get(ratingId) ??
-        byName.get(ratingName) ??
-        null;
+      const staticTeam = findCatalogTeam(teams, getRatingRowId(ratingRow), getRatingRowName(ratingRow));
 
       const name =
         staticTeam?.name ||
@@ -307,7 +284,7 @@ function findTeamById(faceitTeamId) {
   return findCatalogTeam(teams, faceitTeamId, null);
 }
 
-function normalizeTeam(team) {
+function normalizeTeam(team, rawData) {
   if (!team) {
     return {
       id: null,
@@ -320,6 +297,7 @@ function normalizeTeam(team) {
     };
   }
 
+  team = resolveMatchTeam(teams, team, rawData);
   const localTeam =
     findCatalogTeam(teams, team.id || team.faceitTeamId, team.name);
 
@@ -656,13 +634,13 @@ function dbRowToMatch(row) {
       name: row.team1_name,
       slug: row.team1_slug,
       logo: row.team1_logo,
-    }),
+    }, matchTeamSource(row)),
     team2: normalizeTeam({
       id: row.team2_id,
       name: row.team2_name,
       slug: row.team2_slug,
       logo: row.team2_logo,
-    }),
+    }, matchTeamSource(row)),
   };
 }
 
@@ -694,7 +672,7 @@ function dbRowToResult(row) {
         name: row.team1_name,
         slug: row.team1_slug,
         logo: row.team1_logo,
-      }),
+      }, matchTeamSource(row)),
       score: row.team1_score ?? "-",
     },
     team2: {
@@ -703,7 +681,7 @@ function dbRowToResult(row) {
         name: row.team2_name,
         slug: row.team2_slug,
         logo: row.team2_logo,
-      }),
+      }, matchTeamSource(row)),
       score: row.team2_score ?? "-",
     },
   };

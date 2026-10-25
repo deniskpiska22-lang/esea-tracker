@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import upcomingMatches from "../src/data/upcomingMatches.js";
 import finishedMatches from "../src/data/matches.js";
 import teams from "../src/data/teams.generated.js";
+import { findCatalogTeam } from "../src/utils/teamIdentity.js";
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
@@ -36,25 +37,8 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function normalizeName(value = "") {
-  return value.replace(/\s+/g, "").toLowerCase();
-}
-
 function findLocalTeam(faceitTeamId, fallbackName) {
-  return teams.find((team) => {
-    if (
-      faceitTeamId &&
-      team.faceitTeamId === faceitTeamId
-    ) {
-      return true;
-    }
-
-    return (
-      fallbackName &&
-      normalizeName(team.name) ===
-        normalizeName(fallbackName)
-    );
-  });
+  return findCatalogTeam(teams, faceitTeamId, fallbackName);
 }
 
 function normalizeTeam(team = {}) {
@@ -129,12 +113,7 @@ function finishedToRow(match) {
       (team) => team.slug === match.teamSlug
     ) || null;
 
-  const team2 =
-    teams.find(
-      (team) =>
-        normalizeName(team.name) ===
-        normalizeName(match.opponentName)
-    ) || null;
+  const team2 = findLocalTeam(match.opponentId || match.opponentTeamId, match.opponentName);
 
   const [fallbackScore1, fallbackScore2] =
     String(match.boScore || "0:0")
