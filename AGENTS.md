@@ -4,7 +4,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project
 
-ESEA Tracker — a community site for tracking FACEIT ESEA CS2 tournaments, teams, matches, players and ratings. React 19 + Vite SPA frontend, Supabase (Postgres + Auth) as the backend, Vercel for hosting the frontend and serverless API, Railway for long-running background workers.
+ESEA Tracker — a community site for tracking FACEIT ESEA CS2 tournaments, teams, matches, players and ratings. React 19 + Vite SPA frontend, Supabase (Postgres + Auth) as the backend, Railway for the web/API service and separate long-running background workers. See `docs/railway-web.md` for web deployment and DNS cutover. `vercel.json` remains the shared routing contract; the previous Vercel deployment can still use it.
 
 ## Commands
 

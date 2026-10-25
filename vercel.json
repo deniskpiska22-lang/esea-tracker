@@ -23,6 +23,16 @@
       "permanent": true
     },
     {
+      "source": "/players",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(en|de|pt|es|fr|it)/players",
+      "destination": "/:lang",
+      "permanent": true
+    },
+    {
       "source": "/player/:key",
       "destination": "/players/:key",
       "permanent": true
