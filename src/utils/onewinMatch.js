@@ -4,6 +4,12 @@ export function isOneWinSourceOrigin(origin) {
 }
 const ACTIVE = new Set(['SCHEDULED', 'MATCH_STATUS_SCHEDULED', 'LIVE', 'ONGOING', 'READY', 'VOTING', 'CONFIGURING', 'PAUSED', 'MATCH_STATUS_ONGOING', 'MATCH_STATUS_READY', 'MATCH_STATUS_VOTING', 'MATCH_STATUS_CONFIGURING', 'MATCH_STATUS_PAUSED']);
 
+// Verified bookmaker abbreviations belong to a specific FACEIT roster. Do not
+// globally remove "Gaming", "Academy", etc. or match unrelated namesakes.
+const ONEWIN_TEAM_ALIASES = new Map([
+  ['1f98d0ae-c844-4356-adf6-70e9501aba2a', new Set(['lph'])],
+]);
+
 export function normalizeOddsTeam(name) {
   // Keep Academy, Junior, NXT, Team, etc. They identify different rosters.
   return String(name || '').normalize('NFKD').replace(/\p{Diacritic}/gu, '')
@@ -12,6 +18,12 @@ export function normalizeOddsTeam(name) {
 
 export function isOddsMatchActive(match) {
   return ACTIVE.has(String(match?.status || '').toUpperCase());
+}
+
+function matchesOddsTeam(name, id, providerName) {
+  const provider = normalizeOddsTeam(providerName);
+  return Boolean(provider && (normalizeOddsTeam(name) === provider ||
+    ONEWIN_TEAM_ALIASES.get(id)?.has(provider)));
 }
 
 export function findOneWinMatch(match, events) {
@@ -26,7 +38,9 @@ export function findOneWinMatch(match, events) {
     if (/replay|1x1|players-duel|outright/i.test(`${event.name} ${event.tournament?.slug}`)) return false;
     const first = normalizeOddsTeam(event.homeTeam?.name);
     const second = normalizeOddsTeam(event.awayTeam?.name);
-    const samePair = (left === first && right === second) || (left === second && right === first);
+    const samePair =
+      (matchesOddsTeam(left, match.team1_id, first) && matchesOddsTeam(right, match.team2_id, second)) ||
+      (matchesOddsTeam(left, match.team1_id, second) && matchesOddsTeam(right, match.team2_id, first));
     return samePair && Math.abs(Number(event.startAt) * 1000 - scheduled) <= 90 * 60_000;
   });
   // Never guess between two meetings of the same teams.
@@ -68,7 +82,7 @@ export function extractOneWinWinner(snapshot, event) {
 }
 
 export function orientOneWinOdds(match, event, prices) {
-  const homeFirst = normalizeOddsTeam(match.team1_name) === normalizeOddsTeam(event.homeTeam.name);
+  const homeFirst = matchesOddsTeam(match.team1_name, match.team1_id, event.homeTeam.name);
   return { team1: homeFirst ? prices.home : prices.away, team2: homeFirst ? prices.away : prices.home };
 }
 

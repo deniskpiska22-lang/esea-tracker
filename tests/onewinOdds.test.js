@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { buildOneWinMatchUrl, extractOneWinWinner, findOneWinMatch, normalizeOddsTeam, orientOneWinOdds } from '../src/utils/onewinMatch.js';
 import { readOneWinPage, readOneWinSnapshot } from '../server/onewinSource.js';
 import { createMatchOddsHandler } from '../api/match-odds.js';
+import { getOneWinOddsPreview } from '../src/utils/onewinOddsPreview.js';
 
 // Captured from the provider's public event feed and winner snapshot. The second
 // market is a map winner and must never be displayed as the match winner.
@@ -15,6 +16,51 @@ const match = {
 };
 const currentTime = Date.parse(fixture.capturedAt);
 const freshSnapshot = () => ({ data: structuredClone(snapshot), fetchedAt: currentTime });
+const dnkFixture = JSON.parse(readFileSync(new URL('./fixtures/onewin-dnk-lph-market.json', import.meta.url), 'utf8'));
+const dnkMatch = {
+  id: '1-19ff85af-b700-41a2-a23b-4722323b0a03', status: 'SCHEDULED', scheduled_at: '2026-10-26T18:00:00Z',
+  team1_id: '3c170b46-04a8-443a-9605-cfd3e03cd020', team1_name: 'DNK',
+  team2_id: '1f98d0ae-c844-4356-adf6-70e9501aba2a', team2_name: 'LPH Gaming',
+};
+
+test('captured design preview requires an explicit opt-in on the exact DNK match', () => {
+  for (const [id, search] of [[dnkMatch.id, ''], [dnkMatch.id, '?oddsPreview=0'], [match.id, '?oddsPreview=1']]) {
+    assert.equal(getOneWinOddsPreview(id, search), null);
+  }
+  const preview = getOneWinOddsPreview(dnkMatch.id, '?oddsPreview=1');
+  assert.equal(preview.matchId, dnkMatch.id);
+  assert.deepEqual(preview.team1, { name: 'DNK', price: 3.2 });
+  assert.deepEqual(preview.team2, { name: 'LPH Gaming', price: 1.3 });
+  assert.equal(preview.validForMs, undefined);
+  assert.equal(new URL(preview.href).searchParams.get('p'), 'g39d');
+  assert.equal(new URL(preview.href).pathname, '/betting/match/esport/dnk-vs-lph-42108768');
+});
+
+test('DNK vs LPH Gaming matches the captured LPH market only through its verified FACEIT identity', () => {
+  const { event } = dnkFixture;
+  assert.equal(findOneWinMatch(dnkMatch, [event]), event);
+  for (const team2_id of [undefined, 'other-roster']) {
+    assert.equal(findOneWinMatch({ ...dnkMatch, team2_id }, [event]), null);
+  }
+  assert.equal(findOneWinMatch({ ...dnkMatch, team2_id: 'other-roster', team2_name: 'LPH Academy' }, [event]), null);
+  assert.equal(findOneWinMatch({ ...dnkMatch, scheduled_at: '2026-10-26T17:59:59Z' }, [event]), null);
+  assert.equal(findOneWinMatch(dnkMatch, [event, { ...event, id: event.id + 1 }]), null);
+});
+
+test('verified abbreviations retain the correct prices in either site or provider orientation', () => {
+  const { event, snapshot } = dnkFixture;
+  const prices = extractOneWinWinner(snapshot, event);
+  assert.deepEqual(prices, { home: 3.2, away: 1.3 });
+  assert.deepEqual(orientOneWinOdds(dnkMatch, event, prices), { team1: 3.2, team2: 1.3 });
+  const reversed = { ...dnkMatch,
+    team1_id: dnkMatch.team2_id, team1_name: dnkMatch.team2_name,
+    team2_id: dnkMatch.team1_id, team2_name: dnkMatch.team1_name };
+  assert.equal(findOneWinMatch(reversed, [event]), event);
+  assert.deepEqual(orientOneWinOdds(reversed, event, prices), { team1: 1.3, team2: 3.2 });
+  const flippedEvent = { ...event, homeTeam: event.awayTeam, awayTeam: event.homeTeam };
+  assert.equal(findOneWinMatch(dnkMatch, [flippedEvent]), flippedEvent);
+  assert.deepEqual(orientOneWinOdds(dnkMatch, flippedEvent, { home: 1.3, away: 3.2 }), { team1: 3.2, team2: 1.3 });
+});
 
 test('matches the exact pair across punctuation, accents and orientation', () => {
   assert.equal(normalizeOddsTeam('TÉAM-B.I.G'), 'teambig');
@@ -137,6 +183,20 @@ test('endpoint returns correctly oriented fresh odds without caching or external
   assert.match(response.body.odds.href, /^\/api\/match-odds\?matchId=1-.*&action=visit$/);
   for (const header of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) assert.match(response.headers[header], /no-store/);
   assert.equal(calls[1][1], 'prematch');
+});
+
+test('the actual DNK match endpoint exposes fresh LPH prices and links to the verified bookmaker event', async () => {
+  const { response } = await request({ dbMatch: dnkMatch, events: [dnkFixture.event],
+    source: { data: dnkFixture.snapshot, fetchedAt: currentTime }, query: { matchId: dnkMatch.id } });
+  assert.equal(response.body.odds.matchId, dnkMatch.id);
+  assert.equal(response.body.odds.eventId, 42108768);
+  assert.deepEqual(response.body.odds.team1, { name: 'DNK', price: 3.2 });
+  assert.deepEqual(response.body.odds.team2, { name: 'LPH Gaming', price: 1.3 });
+  const visit = await request({ dbMatch: dnkMatch, events: [dnkFixture.event],
+    source: { data: dnkFixture.snapshot, fetchedAt: currentTime }, query: { matchId: dnkMatch.id, action: 'visit' } });
+  const target = new URL(visit.response.location);
+  assert.equal(target.pathname, '/betting/match/esport/dnk-vs-lph-42108768');
+  assert.equal(target.searchParams.get('p'), 'g39d');
 });
 
 test('geographic policy is checked before database or source reads', async () => {

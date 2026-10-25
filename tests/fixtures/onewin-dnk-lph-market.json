@@ -1,0 +1,71 @@
+{
+  "capturedAt": "2026-10-25T23:37:49.418Z",
+  "event": {
+    "id": 42108768,
+    "slug": "dnk-vs-lph",
+    "name": "DNK - LPH",
+    "sportId": 142,
+    "startAt": 1793043000,
+    "homeTeam": {
+      "id": 1722835,
+      "name": "DNK",
+      "position": 1,
+      "slug": "dnk"
+    },
+    "awayTeam": {
+      "id": 1578624,
+      "name": "LPH",
+      "position": 2,
+      "slug": "lph",
+      "logo": {
+        "url": "https://bstatic.live/icons/86a0ff6f87f127e79ff06698df7fbc0e4b03564b.webp"
+      }
+    },
+    "tournament": {
+      "id": 33755,
+      "slug": "esea-advanced-europe"
+    },
+    "serviceV2": "prematch",
+    "sourceOrigin": "https://one-vv8346.com"
+  },
+  "snapshot": {
+    "matchId": 42108768,
+    "oddsGroups": [
+      {
+        "baseOrder": 0,
+        "id": "53278",
+        "isBase": true,
+        "name": "Победитель ",
+        "oddsList": [
+          {
+            "cf": 3.2,
+            "id": "12:P:19079905:[1,[],[0],1,0,[]]",
+            "name": "DNK",
+            "outcome": "1",
+            "status": 1,
+            "ts": 1792968545196
+          },
+          {
+            "cf": 1.3,
+            "id": "12:P:19079905:[1,[],[0],1,3,[]]",
+            "name": "LPH",
+            "outcome": "2",
+            "status": 1,
+            "ts": 1792968545196
+          }
+        ],
+        "order": 0,
+        "outcomes": [
+          "1",
+          "2"
+        ],
+        "renderType": "cols-2",
+        "subgameIds": [
+          168
+        ]
+      }
+    ],
+    "ts": 1792968545196,
+    "isBaseOddsGroups": true
+  }
+}

@@ -47,7 +47,7 @@ export default createMatchOddsHandler({ loadMatch: async id => {
   const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error('Match database is not configured');
   const db = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
-  const { data, error } = await db.from('matches').select('id,status,scheduled_at,team1_name,team2_name')
+  const { data, error } = await db.from('matches').select('id,status,scheduled_at,team1_id,team1_name,team2_id,team2_name')
     .eq('id', id).abortSignal(AbortSignal.timeout(5000)).maybeSingle();
   if (error) throw new Error('Match lookup failed');
   return data;

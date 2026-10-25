@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import AdGeoGate from './AdGeoGate.jsx';
+import { getOneWinOddsPreview } from '../utils/onewinOddsPreview.js';
 
 const copy = {
   ru: { ad: 'Реклама', winner: 'Победитель матча', updated: 'Обновлено', open: 'Открыть матч в 1win', note: 'Коэффициенты могут измениться на 1win.' },
@@ -12,9 +14,17 @@ const copy = {
   it: { ad: 'Pubblicità', winner: 'Vincitore della partita', updated: 'Aggiornato', open: 'Apri la partita su 1win', note: 'Le quote possono cambiare su 1win.' },
 };
 
+const previewCopy = {
+  ru: { badge: 'Предпросмотр', captured: 'Снимок', note: 'Пример оформления. Коэффициенты зафиксированы и не обновляются; актуальные значения смотрите на 1win.' },
+  en: { badge: 'Preview', captured: 'Captured', note: 'Design preview. These captured odds do not update; check current prices on 1win.' },
+  de: { badge: 'Vorschau', captured: 'Erfasst', note: 'Designvorschau. Diese erfassten Quoten werden nicht aktualisiert. Aktuelle Quoten finden Sie bei 1win.' },
+  pt: { badge: 'Prévia', captured: 'Capturado', note: 'Prévia do visual. Estas odds são fixas e não são atualizadas; confira os valores atuais na 1win.' },
+  es: { badge: 'Vista previa', captured: 'Capturado', note: 'Vista previa del diseño. Estas cuotas capturadas no se actualizan; consulta las actuales en 1win.' },
+  fr: { badge: 'Aperçu', captured: 'Relevé', note: 'Aperçu du design. Ces cotes enregistrées ne sont pas actualisées ; consultez les cotes actuelles sur 1win.' },
+  it: { badge: 'Anteprima', captured: 'Rilevato', note: 'Anteprima del design. Queste quote rilevate non vengono aggiornate; consulta quelle attuali su 1win.' },
+};
+
 function OddsContent({ matchId }) {
-  const { language, locale } = useLanguage();
-  const labels = copy[language] || copy.en;
   const [result, setResult] = useState(null);
   useEffect(() => {
     let stopped = false;
@@ -67,12 +77,19 @@ function OddsContent({ matchId }) {
   }, [matchId]);
   const odds = result?.matchId === matchId ? result.data : null;
   if (!odds) return null;
-  const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
+  return <OddsCard odds={odds} />;
+}
+
+function OddsCard({ odds, preview = false }) {
+  const { language, locale } = useLanguage();
+  const labels = copy[language] || copy.en;
+  const sample = previewCopy[language] || previewCopy.en;
+  const updated = new Intl.DateTimeFormat(locale, { ...(preview ? { day: 'numeric', month: 'short' } : {}), hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
   return (
     <aside aria-label={`${labels.ad} · 1win · 18+`} className="mt-6 overflow-hidden rounded-2xl border border-sky-400/20 bg-gradient-to-br from-[#111e2c] to-[#101722]">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 px-5 py-3">
-        <div className="flex items-center gap-3"><span className="text-xl font-black italic tracking-tight text-white">1win</span><span className="text-xs text-slate-400">{labels.ad} · 18+</span></div>
-        <span className="text-xs text-slate-400">{labels.updated} <time dateTime={odds.updatedAt}>{updated}</time></span>
+        <div className="flex flex-wrap items-center gap-3"><span className="text-xl font-black italic tracking-tight text-white">1win</span><span className="text-xs text-slate-400">{labels.ad} · 18+</span>{preview && <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-2.5 py-1 text-[11px] font-bold text-amber-200">{sample.badge}</span>}</div>
+        <span className="text-xs text-slate-400">{preview ? sample.captured : labels.updated} <time dateTime={odds.updatedAt}>{updated}</time></span>
       </div>
       <div className="p-5">
         <p className="mb-3 text-sm font-semibold text-slate-300">{labels.winner}</p>
@@ -85,7 +102,7 @@ function OddsContent({ matchId }) {
           ))}
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs text-slate-500">{labels.note}</p>
+          <p className="max-w-xl text-xs text-slate-400">{preview ? sample.note : labels.note}</p>
           <a href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="rounded-lg bg-sky-400 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300">{labels.open} ↗</a>
         </div>
       </div>
@@ -94,5 +111,7 @@ function OddsContent({ matchId }) {
 }
 
 export default function OneWinMatchOdds({ matchId }) {
-  return <AdGeoGate><OddsContent key={matchId} matchId={matchId} /></AdGeoGate>;
+  const { search } = useLocation();
+  const preview = getOneWinOddsPreview(matchId, search);
+  return <AdGeoGate>{preview ? <OddsCard odds={preview} preview /> : <OddsContent key={matchId} matchId={matchId} />}</AdGeoGate>;
 }
