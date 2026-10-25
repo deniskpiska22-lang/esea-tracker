@@ -131,6 +131,20 @@ test('GEO policy uses only trusted Railway IP, ignores spoofed countries, and is
   assert.equal(requestCountry({ headers: { 'x-real-ip': '1.2.3.4' }, socket: { remoteAddress: '::ffff:5.6.7.8' } }, { trustRailway: false, lookup }), 'US');
 });
 
+test('large public match responses reuse their TTL and compressed representation', async t => {
+  let calls = 0;
+  const payload = 'tracked match data '.repeat(120000);
+  const base = await fixture(t, { handlers: {
+    'home-matches': (req, res) => res.setHeader('Cache-Control', 's-maxage=15').json({ calls: ++calls, payload }),
+  } });
+  for (let count = 0; count < 2; count++) {
+    const response = await fetch(base + '/api/home-matches');
+    assert.equal(response.headers.get('content-encoding'), 'gzip');
+    assert.deepEqual(await response.json(), { calls: 1, payload });
+    if (count) assert.equal(response.headers.get('age'), '0');
+  }
+});
+
 test('network-path request targets are rejected without open redirects', async t => {
   const base = await fixture(t);
   const status = await new Promise((resolve, reject) => {

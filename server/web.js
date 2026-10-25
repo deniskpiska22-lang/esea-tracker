@@ -70,7 +70,9 @@ export function createWebServer({ distDirectory = path.resolve('dist'), handlers
   function remember(key, response) {
     const control = response.headers['cache-control'] || '';
     const ttl = Number(control.match(/(?:^|,)\s*s-maxage=(\d+)/)?.[1]);
-    if (!ttl || /private|no-store/i.test(control) || response.statusCode !== 200 || response.headers['set-cookie'] || response.headers.vary || response.body.length > 1024 * 1024) return;
+    // The existing home API includes ~6 MB of tracked match data. Allow it to
+    // reuse its short public TTL while keeping the total cache bounded.
+    if (!ttl || /private|no-store/i.test(control) || response.statusCode !== 200 || response.headers['set-cookie'] || response.headers.vary || response.body.length > 8 * 1024 * 1024) return;
     cacheDelete(key);
     cache.set(key, { response, expires: now() + ttl * 1000, created: now() });
     cachedBytes += response.body.length;
@@ -179,7 +181,8 @@ export function createWebServer({ distDirectory = path.resolve('dist'), handlers
       if (compressible && !responseHeaders['content-encoding']) {
         responseHeaders.vary = [...new Set([...(responseHeaders.vary || '').split(',').map(value => value.trim()).filter(Boolean), 'Accept-Encoding'])].join(', ');
         if (body.length >= 1024 && acceptsGzip(req)) {
-          payload = await compress(body); responseHeaders['content-encoding'] = 'gzip';
+          output.gzipBody ||= await compress(body);
+          payload = output.gzipBody; responseHeaders['content-encoding'] = 'gzip';
         }
       }
       responseHeaders['content-length'] = payload.length;

@@ -33,7 +33,9 @@ dynamic sitemap pages run through the original API handlers. Static assets
 are served only from `dist`, with MIME types, conditional requests and gzip.
 
 Only successful anonymous GET responses with an explicit `s-maxage` opt in
-to the bounded process cache (128 entries, 32 MB, maximum 1 MB per entry).
+to the bounded process cache (128 entries, 32 MB of uncompressed bodies,
+maximum 8 MB per entry). The existing home match response fits this limit;
+its compressed representation is also reused during its short public TTL.
 Cookies, Authorization, private/no-store, Set-Cookie and Vary responses are
 excluded. Restarting clears the cache; fresh requests reload the existing DB.
 GEO ad policy, odds and individual forum topics retain no-store behavior.
