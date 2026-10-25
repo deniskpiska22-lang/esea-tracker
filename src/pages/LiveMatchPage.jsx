@@ -1571,6 +1571,7 @@ function FinishedMatchHero({
 }
 
 function LiveMatchPage() {
+  const { teams } = useTeamCatalog();
   const location = useLocation();
 
   const {
@@ -1851,12 +1852,14 @@ function LiveMatchPage() {
    */
   const leftLocalTeam = findLocalTeam(
     displayTeam1.id,
-    displayTeam1.name
+    displayTeam1.name,
+    teams
   );
 
   const rightLocalTeam = findLocalTeam(
     displayTeam2.id,
-    displayTeam2.name
+    displayTeam2.name,
+    teams
   );
 
   const team1FlagUrl = getCountryFlagUrl(
@@ -1876,12 +1879,12 @@ function LiveMatchPage() {
   const rightFallbackMatches = useStaticTeamMatches(rightLocalTeam?.slug);
 
   const { matches: leftAllMatches = [], loading: leftStatsLoading, error: leftStatsError } = useTeamStats(
-    leftLocalTeam?.slug,
+    displayTeam1.id || leftLocalTeam?.slug,
     leftFallbackMatches
   );
 
   const { matches: rightAllMatches = [], loading: rightStatsLoading, error: rightStatsError } = useTeamStats(
-    rightLocalTeam?.slug,
+    displayTeam2.id || rightLocalTeam?.slug,
     rightFallbackMatches
   );
 

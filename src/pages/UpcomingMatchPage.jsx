@@ -1721,12 +1721,12 @@ function UpcomingMatchPage() {
   const rightFallbackMatches = useStaticTeamMatches(rightLocalTeam?.slug);
 
   const { matches: leftAllMatches = [], loading: leftStatsLoading, error: leftStatsError } = useTeamStats(
-    leftLocalTeam?.slug,
+    displayTeam1.id || leftLocalTeam?.slug,
     leftFallbackMatches
   );
 
   const { matches: rightAllMatches = [], loading: rightStatsLoading, error: rightStatsError } = useTeamStats(
-    rightLocalTeam?.slug,
+    displayTeam2.id || rightLocalTeam?.slug,
     rightFallbackMatches
   );
 
