@@ -1,3 +1,5 @@
+import './index.css';
+import { requestHomeFeed } from './lib/homeFeedRequest.js';
 import { initialLanguageRedirect } from './i18n/languages.js';
 
 let preferredLanguage;
@@ -13,6 +15,9 @@ if (destination) {
   // and dictionary, while preserving a language chosen manually.
   window.location.replace(destination);
 } else {
+  if (/^\/(?:en|de|pt|es|fr|it)?\/?$/.test(window.location.pathname)) {
+    requestHomeFeed().catch(() => {});
+  }
   import('./main.jsx').catch(error => {
     console.error('Application entry could not load:', error);
     const recovery = document.getElementById('boot-recovery');

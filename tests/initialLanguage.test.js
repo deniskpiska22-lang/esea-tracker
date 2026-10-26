@@ -41,7 +41,7 @@ test('a manual Russian choice works even when storage is blocked', () => {
   assert.equal(initialLanguageRedirect({ search: '?ui_lang=invalid', browserLanguages: ['en-US'] }), '/en?ui_lang=invalid');
 });
 test('the English default works with blocked storage without loading the Russian application', () => {
-  const source = readFileSync('src/bootstrap.js', 'utf8').replace(/^import .*;\n/, '');
+  const source = readFileSync('src/bootstrap.js', 'utf8').replace(/^import .*;\n/gm, '');
   const redirects = [];
   let imports = 0;
   const script = new Script(source, { importModuleDynamically() { imports += 1; throw new Error('Unexpected app load'); } });

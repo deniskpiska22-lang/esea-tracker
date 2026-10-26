@@ -12,13 +12,12 @@ import {
   Route,
 } from "react-router-dom";
 
-import "./index.css";
 import { currentLanguage } from "./i18n/languages.js";
 
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop";
 import YandexMetrika from "./components/YandexMetrika";
-import Home from "./pages/Home";
+const Home = lazy(() => import("./pages/Home"));
 import MaintenancePage from "./pages/MaintenancePage";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
