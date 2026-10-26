@@ -991,14 +991,6 @@
     "fr": "En ligne maintenant",
     "it": "Online adesso"
   },
-  "Active in the last 60 seconds": {
-    "ru": "Активность за последние 60 секунд",
-    "de": "Aktiv in den letzten 60 Sekunden",
-    "pt": "Ativos nos últimos 60 segundos",
-    "es": "Activos en los últimos 60 segundos",
-    "fr": "Actifs dans les 60 dernières secondes",
-    "it": "Attivi negli ultimi 60 secondi"
-  },
   "Visitors today": {
     "ru": "Посетители сегодня",
     "de": "Besucher heute",
@@ -1150,5 +1142,13 @@
     "es": "Tabletas",
     "fr": "Tablettes",
     "it": "Tablet"
+  },
+  "Active in the last 3 minutes": {
+    "ru": "Активность за последние 3 минуты",
+    "de": "Aktiv in den letzten 3 Minuten",
+    "pt": "Ativos nos últimos 3 minutos",
+    "es": "Activos en los últimos 3 minutos",
+    "fr": "Actifs dans les 3 dernières minutes",
+    "it": "Attivi negli ultimi 3 minuti"
   }
 }

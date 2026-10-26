@@ -39,7 +39,7 @@ export default function TrafficPanel({ compact = false, onOpen }) {
   }, [revision]);
   const { data, error, loading } = state;
   const fresh = data && !error && Date.now() - Date.parse(data.generated_at) < 60_000;
-  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 60 seconds'], ['Visitors today', data?.today, 'Unique browsers today'], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday'], ['Visitors in 7 days', data?.week, 'Deduplicated across days']];
+  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes'], ['Visitors today', data?.today, 'Unique browsers today'], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday'], ['Visitors in 7 days', data?.week, 'Deduplicated across days']];
   const max = Math.max(1, ...(data?.days || []).map(day => day.visitors));
   return <Panel title="Site traffic" description="One browser counts once, even with several tabs." action={compact ? <button className="admin-btn" onClick={onOpen}>{tx('Open traffic')} <FiArrowUpRight /></button> : <button className="admin-btn" onClick={() => setRevision(value => value + 1)}><FiRefreshCw />{tx('Refresh')}</button>}>
     <div className="admin-stack" data-site-traffic="true">

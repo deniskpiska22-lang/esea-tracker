@@ -107,7 +107,7 @@ returning match contents or credentials.
 ## Private visitor statistics
 
 `/admin?section=traffic` (also summarized on the admin overview) shows online browsers
-with a heartbeat in the last 60 seconds, unique browsers today/yesterday and over
+with a heartbeat in the last 3 minutes, unique browsers today/yesterday and over
 7 days, a daily chart, last active pages, countries and device types. Calendar days
 use Europe/Moscow (UTC+3), displayed in the UI. Collection begins with this release;
 there is no historical backfill from Clarity/Vercel.
@@ -129,5 +129,5 @@ only aggregate data. The UI refreshes every 15 seconds, pauses while hidden, lab
 errors/stale snapshots, and is translated into all seven site languages.
 
 Validation: `node --test tests/siteTraffic.test.js tests/adminWorkspace.test.js tests/webServer.test.js`.
-Database checks also exercise five-tab deduplication, expiry, cross-midnight IDs,
+Database checks also exercise five-tab deduplication, three-minute expiry, cross-midnight IDs,
 service-role writes, anonymous denial and non-admin denial inside a rolled-back transaction.

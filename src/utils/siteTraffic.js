@@ -1,5 +1,4 @@
 export const PRESENCE_INTERVAL_MS = 20_000;
-export const ONLINE_WINDOW_MS = 60_000;
 export const VISITOR_KEY = 'esea.visitor.v1';
 export const PULSE_KEY = 'esea.presence.v1';
 export const VISITOR_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
