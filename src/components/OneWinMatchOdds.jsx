@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
-import AdGeoGate from './AdGeoGate.jsx';
+import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
+import TeamNativeAd from './TeamNativeAd.jsx';
 
 const copy = {
   ru: { ad: 'Реклама', winner: 'Победитель матча', updated: 'Обновлено', open: 'Открыть матч в 1win', note: 'Коэффициенты могут измениться на 1win.' },
@@ -14,6 +15,7 @@ const copy = {
 
 function OddsContent({ matchId, teams }) {
   const [result, setResult] = useState(null);
+  const [checked, setChecked] = useState(false);
   useEffect(() => {
     let stopped = false;
     let request;
@@ -40,9 +42,13 @@ function OddsContent({ matchId, teams }) {
         const valid = data?.matchId === matchId && remaining > 0 && remaining <= 20_000;
         if (valid) nextPoll = 8000;
         setResult(valid ? { matchId, data } : null);
+        setChecked(true);
         if (valid) expiry = setTimeout(() => setResult(null), remaining);
       } catch {
-        if (!stopped && current === generation) setResult(null);
+        if (!stopped && current === generation) {
+          setResult(null);
+          setChecked(true);
+        }
       } finally {
         clearTimeout(timeout);
         if (!stopped && current === generation) poll = setTimeout(refresh, nextPoll);
@@ -64,7 +70,7 @@ function OddsContent({ matchId, teams }) {
     };
   }, [matchId]);
   const odds = result?.matchId === matchId ? result.data : null;
-  if (!odds) return null;
+  if (!odds) return checked ? <TeamNativeAd placement="match_room_native" /> : null;
   return <OddsCard odds={odds} teams={teams} />;
 }
 
@@ -86,7 +92,7 @@ function OddsCard({ odds, teams = [] }) {
   const labels = copy[language] || copy.en;
   const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
   return (
-    <aside aria-label={`${labels.ad} · 1win · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
+    <aside data-match-odds={odds.matchId} aria-label={`${labels.ad} · 1win · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#38bdf814,transparent_65%)]" />
       <div className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-3 px-5 pb-4 pt-5 sm:px-6">
         <div className="flex items-center gap-3.5">
@@ -119,6 +125,17 @@ function OddsCard({ odds, teams = [] }) {
   );
 }
 
-export default function OneWinMatchOdds({ matchId, teams }) {
-  return <AdGeoGate><OddsContent key={matchId} matchId={matchId} teams={teams} /></AdGeoGate>;
+export default function OneWinMatchOdds({ matchId, teams, active = true }) {
+  const [policy, setPolicy] = useState(null);
+  useEffect(() => {
+    let mounted = true;
+    loadAdPolicy().then(result => { if (mounted) setPolicy(result); });
+    return () => { mounted = false; };
+  }, []);
+  if (isAdProviderEnabled(policy, 'onewin')) {
+    return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
+      : <TeamNativeAd placement="match_room_native" />;
+  }
+  if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" />;
+  return null;
 }

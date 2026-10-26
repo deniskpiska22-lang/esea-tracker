@@ -23,6 +23,7 @@ import { calculateMatchRating, normalizeDivisionName } from "../utils/teamRating
 import { ACTIVE_MAP_POOL, isActiveMap } from "../utils/activeMapPool";
 import { supabase } from "../lib/supabaseClient";
 import MatchComments from "../components/MatchComments";
+import OneWinMatchOdds from "../components/OneWinMatchOdds.jsx";
 import MatchMapResultsSection from "../components/MatchMapResults";
 import HeadToHeadCard from "../components/HeadToHeadCard";
 import TournamentNameLink from "../components/TournamentNameLink";
@@ -2066,6 +2067,8 @@ function MatchPage() {
             </div>
           </div>
         )}
+
+        <OneWinMatchOdds matchId={matchId} teams={[displayTeam1, displayTeam2]} active={!showFinishedSections} />
 
         {!showFinishedSections && !isLive && (
           <div className="mt-8">

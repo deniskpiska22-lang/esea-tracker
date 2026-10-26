@@ -2194,7 +2194,7 @@ function LiveMatchPage() {
           </div>
         )}
 
-        {!showFinishedSections && <OneWinMatchOdds matchId={matchId} teams={[displayTeam1, displayTeam2]} />}
+        <OneWinMatchOdds matchId={matchId} teams={[displayTeam1, displayTeam2]} active={!showFinishedSections} />
 
         {!showFinishedSections && (
           <div className="mt-8">

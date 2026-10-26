@@ -13,7 +13,7 @@ const copy = {
   it: { ad: 'Pubblicità', title: 'Confronta il tuo pronostico', body: 'Scopri le quote di {brand} per le partite di CS2.', open: 'Vedi le quote CS2', prematch: 'Pre-partita', note: 'Gioca responsabilmente.' },
 };
 
-export default function TeamNativeAd() {
+export default function TeamNativeAd({ placement = 'team_profile_native' }) {
   const { language } = useLanguage();
   const [policy, setPolicy] = useState(null);
   useEffect(() => {
@@ -30,8 +30,8 @@ export default function TeamNativeAd() {
   const pari = provider === 'pari';
   const brand = pari ? 'PARI' : '1win';
   const href = pari
-    ? 'https://clicks.af-pb06e2.com/click?offer_id=812&partner_id=34440&landing_id=88&utm_medium=affiliate&utm_source=esea_tracker&utm_campaign=pari_cs2_test&utm_content=team_profile_native'
-    : `/api/onewin?kind=click&lang=${language}&placement=team_profile_native`;
+    ? `https://clicks.af-pb06e2.com/click?offer_id=812&partner_id=34440&landing_id=88&utm_medium=affiliate&utm_source=esea_tracker&utm_campaign=pari_cs2_test&utm_content=${encodeURIComponent(placement)}`
+    : `/api/onewin?kind=click&lang=${language}&placement=${encodeURIComponent(placement)}`;
 
   return (
     <aside aria-label={`${labels.ad} · ${brand} · 18+`} data-team-native-ad={provider}
