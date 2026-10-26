@@ -1,55 +1,33 @@
-import { useEffect, useState } from 'react';
-import { FiActivity, FiArrowUpRight, FiRefreshCw } from 'react-icons/fi';
-import { supabase } from '../../lib/supabaseClient.js';
+import { useCallback } from 'react';
+import { FiActivity, FiArrowUpRight, FiRefreshCw, FiUsers, FiCalendar, FiBarChart2, FiMonitor, FiSmartphone } from 'react-icons/fi';
 import { tx } from '../../i18n/translate.js';
 import { currentLocale } from '../../i18n/languages.js';
-import { Panel, Notice, Empty, DateLabel } from './AdminUI.jsx';
+import { formatUserDateTime } from '../../utils/userTime.js';
+import { Panel, Notice, Empty, DateLabel, Skeleton } from './AdminUI.jsx';
 import CountryFlag from '../CountryFlag.jsx';
 import { countryName } from '../../utils/countries.js';
 import Link from '../SiteLink.jsx';
-
+import { useAdminData } from './adminDataContext.js';
+import { useAdminResource } from './useAdminResource.js';
 const format = value => Number(value).toLocaleString(currentLocale());
 export default function TrafficPanel({ compact = false, onOpen }) {
-  const [state, setState] = useState({ data: null, error: false, loading: true });
-  const [revision, setRevision] = useState(0);
-  useEffect(() => {
-    let stopped = false, timer, request;
-    const refresh = async () => {
-      clearTimeout(timer);
-      if (stopped || document.hidden) return;
-      request?.abort();
-      const controller = new AbortController();
-      request = controller;
-      const timeout = setTimeout(() => controller.abort(), 8000);
-      try {
-        const { data, error } = await supabase.rpc('admin_site_traffic').abortSignal(controller.signal);
-        if (error || !data) throw error || new Error('No snapshot');
-        if (!stopped && request === controller) setState({ data, error: false, loading: false });
-      } catch {
-        if (!stopped && request === controller) setState(previous => ({ ...previous, error: true, loading: false }));
-      } finally {
-        clearTimeout(timeout);
-        if (!stopped && request === controller && !document.hidden) timer = setTimeout(refresh, 15_000);
-      }
-    };
-    const visibility = () => { clearTimeout(timer); if (!document.hidden) refresh(); else request?.abort(); };
-    refresh();
-    document.addEventListener('visibilitychange', visibility);
-    return () => { stopped = true; clearTimeout(timer); request?.abort(); document.removeEventListener('visibilitychange', visibility); };
-  }, [revision]);
-  const { data, error, loading } = state;
-  const fresh = data && !error && Date.now() - Date.parse(data.generated_at) < 60_000;
-  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes'], ['Visitors today', data?.today, 'Unique browsers today'], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday'], ['Visitors in 7 days', data?.week, 'Deduplicated across days']];
-  const max = Math.max(1, ...(data?.days || []).map(day => day.visitors));
-  return <Panel title="Site traffic" description="One browser counts once, even with several tabs." action={compact ? <button className="admin-btn" onClick={onOpen}>{tx('Open traffic')} <FiArrowUpRight /></button> : <button className="admin-btn" onClick={() => setRevision(value => value + 1)}><FiRefreshCw />{tx('Refresh')}</button>}>
-    <div className="admin-stack" data-site-traffic="true">
-      <Notice error>{error && tx('Traffic data could not be refreshed. The previous snapshot may be outdated.')}</Notice>
-      <div className="admin-metrics admin-traffic-metrics">{metrics.map(([label, value, hint]) => <div key={label} className="admin-metric"><span>{label === 'Online now' && <FiActivity className={fresh ? 'admin-traffic-live' : ''} />}{tx(label)}</span><strong>{value == null ? loading ? '…' : '—' : format(value)}</strong><small>{tx(hint)}</small></div>)}</div>
-      {!compact && data && <>
-        <div className="admin-traffic-chart"><h3>{tx('Visitors by day')}</h3><div className="admin-traffic-bars" role="list" aria-label={tx('Visitors by day')}>{data.days.map(day => <div key={day.day} role="listitem"><strong>{format(day.visitors)}</strong><div className="admin-traffic-bar-track"><span style={{ height: `${day.visitors / max * 100}%` }} /></div><time dateTime={day.day}>{new Intl.DateTimeFormat(currentLocale(), { day: '2-digit', month: '2-digit', timeZone: 'UTC' }).format(new Date(day.day + 'T12:00:00Z'))}</time></div>)}</div></div>
-        <div className="admin-overview-grid"><div><h3 className="admin-traffic-heading">{tx('Active pages')}</h3><p className="admin-traffic-note">{tx('Last active page for each online browser.')}</p>{!data.pages.length ? <Empty>{tx('No active visitors right now.')}</Empty> : <dl className="admin-summary">{data.pages.map(page => <div key={page.path}><dt><Link className="admin-text-link admin-traffic-path" to={page.path}>{page.path}</Link></dt><dd>{format(page.visitors)}</dd></div>)}</dl>}</div><div><h3 className="admin-traffic-heading">{tx('Countries today')}</h3><dl className="admin-summary">{data.countries.map(row => <div key={row.country}><dt>{row.country ? <><CountryFlag country={row.country} /> <span>{countryName(row.country) || row.country}</span></> : tx('Unknown')}</dt><dd>{format(row.visitors)}</dd></div>)}</dl><h3 className="admin-traffic-heading">{tx('Devices today')}</h3><dl className="admin-summary">{data.devices.map(row => <div key={row.device}><dt>{tx({ desktop: 'Desktop', mobile: 'Mobile', tablet: 'Tablet' }[row.device])}</dt><dd>{format(row.visitors)}</dd></div>)}</dl></div></div>
-      </>}
-      <div className="admin-traffic-note">{data && <><span>{tx('Snapshot updated')}: <DateLabel value={data.generated_at} /></span><span>{tx('Tracking started')}: <DateLabel value={data.started_at} /></span></>}<span>{tx('Daily totals use Moscow time (UTC+3). Updates every 15 seconds.')}</span>{!compact && <span>{tx('Different devices, private browsing or cleared storage can count as separate visitors. Known bots are excluded; this is not an exact count of people.')}</span>}</div>
-    </div>
-  </Panel>;
+  const api = useAdminData();
+  const load = useCallback(options => api.loadTraffic(options), [api]);
+  const { data, error, loading, refreshing, refresh, checkedAt } = useAdminResource(load, { pollMs: 15_000 });
+  const fresh = data && !error && checkedAt - Date.parse(data.generated_at) < 60_000;
+  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes', FiActivity], ['Visitors today', data?.today, 'Unique browsers today', FiUsers], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday', FiCalendar], ['Visitors in 7 days', data?.week, 'Deduplicated across days', FiBarChart2]];
+  const days = compact ? (data?.days || []).slice(-7) : (data?.days || []), pages = data?.pages || [], countries = data?.countries || [], devices = data?.devices || [];
+  const max = Math.max(1, ...days.map(day => day.visitors));
+  const geographyMax = Math.max(1, ...countries.map(row => row.visitors));
+  return <section className="admin-traffic-module"><div className="admin-section-heading"><div><h2>{tx('Site traffic')} <span className={`admin-live-indicator ${fresh ? 'is-live' : ''}`}>{tx(fresh ? 'Online' : 'Status unavailable')}</span></h2><p>{tx('One browser counts once, even with several tabs.')}</p></div>{compact ? <button className="admin-text-action" onClick={onOpen}>{tx('Open traffic')} <FiArrowUpRight /></button> : <button className="admin-btn" disabled={refreshing} onClick={refresh}><FiRefreshCw className={refreshing ? 'admin-spin' : ''} />{tx('Refresh')}</button>}</div>
+    <Notice error>{error && tx('Traffic data could not be refreshed. The previous snapshot may be outdated.')}</Notice>
+    <div className="admin-metrics admin-traffic-metrics" data-site-traffic="true">{metrics.map(([label, value, hint, Icon], index) => <div key={label} className={`admin-metric ${index === 0 ? 'admin-metric-live' : ''}`}><span>{tx(label)}<Icon /></span><strong>{value == null ? loading ? <i className="admin-number-skeleton" /> : '—' : format(value)}{index === 0 && fresh && <span className="admin-pulse-dot" />}</strong><small>{tx(hint)}</small></div>)}</div>
+    <div className="admin-traffic-grid"><Panel title="Visitors by day" description="Daily totals use Moscow time (UTC+3). Updates every 15 seconds." action={<span className="admin-badge">{tx(compact ? 'Last 7 days' : 'Last 14 days')}</span>}>
+      {loading ? <Skeleton rows={4} /> : !days.length ? <Empty /> : <div className="admin-traffic-chart"><div className="admin-chart-scale"><span>{format(max)}</span><span>{format(Math.round(max / 2))}</span><span>0</span></div><div className="admin-traffic-bars" style={{ minWidth: `${days.length * 34}px` }} role="list" aria-label={tx('Visitors by day')}>{days.map((day, index) => <div key={day.day} role="listitem"><strong>{format(day.visitors)}</strong><div className="admin-traffic-bar-track"><span className={index === days.length - 1 ? 'is-today' : ''} style={{ height: `${day.visitors / max * 100}%` }} title={`${day.day}: ${day.visitors}`} /></div><time dateTime={day.day}>{formatUserDateTime(day.day + 'T12:00:00Z', { day: '2-digit', month: '2-digit' }, { timeZone: 'UTC' })}</time></div>)}</div></div>}
+    </Panel><Panel title="Active pages" description="Last active page for each online browser." action={<span className="admin-badge good">{fresh ? format(data.online) : '—'}</span>}>
+      {!fresh ? <Empty>{tx(loading ? 'Loading...' : 'Status unavailable')}</Empty> : !pages.length ? <Empty>{tx('No active visitors right now.')}</Empty> : <div className="admin-page-list">{pages.slice(0, compact ? 5 : 12).map(page => <div key={page.path}><span className="admin-status-dot online" /><Link to={page.path} target="_blank" rel="noopener noreferrer" title={page.path}>{page.path}</Link><b>{format(page.visitors)}</b></div>)}</div>}
+    </Panel></div>
+    {!compact && data && <div className="admin-overview-grid"><Panel title="Countries today"><div className="admin-geography">{countries.length ? countries.map(row => <div key={row.country || 'unknown'}><div><span>{row.country ? <><CountryFlag country={row.country} /> {countryName(row.country) || row.country}</> : tx('Unknown')}</span><b>{format(row.visitors)}</b></div><i><span style={{ width: `${row.visitors / geographyMax * 100}%` }} /></i></div>) : <Empty />}</div></Panel><Panel title="Devices today"><div className="admin-devices">{devices.map(row => { const Icon = row.device === 'desktop' ? FiMonitor : FiSmartphone; return <div key={row.device}><Icon /><span>{tx({ desktop: 'Desktop', mobile: 'Mobile', tablet: 'Tablet' }[row.device] || 'Unknown')}</span><strong>{format(row.visitors)}</strong></div>; })}</div></Panel></div>}
+    <div className="admin-traffic-note">{data && <><span>{tx('Snapshot updated')}: <DateLabel value={data.generated_at} /></span>{!compact && <span>{tx('Tracking started')}: <DateLabel value={data.started_at} /></span>}</>}{!compact && <span>{tx('Different devices, private browsing or cleared storage can count as separate visitors. Known bots are excluded; this is not an exact count of people.')}</span>}</div>
+  </section>;
 }

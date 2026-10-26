@@ -171,3 +171,20 @@ switch. The Vite PostCSS pass also scales responsive width thresholds by 0.8 and
 compensates viewport units by 1.25, so layouts behave like a browser zoomed out,
 rather than retaining the old narrow layout. Narrow touch/mobile layouts retain
 their existing dimensions. Browser zoom and accessibility controls remain available.
+
+
+## Admin workspace and visual preview
+
+The real `/admin` route still waits for the authenticated profile and requires
+`is_admin`. Its API adapter uses the existing authenticated Supabase client and
+server-side guards; no permissions or database schema are changed. Reads have
+cancellation and a 10-second timeout, refresh failures retain the last snapshot,
+and automatic refresh pauses in hidden tabs. Online remains a 180-second window.
+User/team filters, pages, selected teams and selected articles live in query
+parameters. Editors warn before discarding unsaved changes, and news updates
+retain the `updated_at` compare-and-swap condition.
+
+`/admin/preview` renders the same workspace with a separate frozen fixture API.
+It is explicitly labeled as sample data, excluded from indexing and presence
+tracking, and has no Supabase client or working write methods. Synthetic names
+and numbers must never be presented as real traffic or an authenticated test.

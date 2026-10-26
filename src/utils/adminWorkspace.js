@@ -4,10 +4,11 @@ export function adminSection(value) {
 }
 export function workerHealth(worker, now = Date.now()) {
   const status = String(worker?.status || '').toLowerCase();
+  // Explicitly paused/disabled jobs are not failed heartbeats.
+  if (['paused', 'access_required', 'disabled'].includes(status)) return 'paused';
   const ping = Date.parse(worker?.last_ping);
   if (!Number.isFinite(ping)) return 'unknown';
   if (now - ping > 15 * 60_000) return 'stale';
-  if (['paused', 'access_required', 'disabled'].includes(status)) return 'paused';
   if (['error', 'failed', 'offline', 'rate-limited', 'rate_limited'].includes(status)) return 'error';
   return 'online';
 }

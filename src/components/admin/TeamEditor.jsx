@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabaseClient.js';
+import { useAdminData } from './adminDataContext.js';
+import { useUnsavedChanges } from './useUnsavedChanges.js';
 import { tx } from '../../i18n/translate.js';
-import { safeWebUrl, cleanSocialLinks } from '../../utils/adminWorkspace.js';
+import { safeWebUrl } from '../../utils/adminWorkspace.js';
 import { Panel, Notice, Empty } from './AdminUI.jsx';
 import Link from '../SiteLink.jsx';
 export default function TeamEditor({ team }) {
+  const api = useAdminData();
+  const [baseline, setBaseline] = useState(null);
   const teamId = team.faceitTeamId || team.faceit_team_id;
   const [draft, setDraft] = useState(null);
   const [error, setError] = useState('');
@@ -14,35 +17,28 @@ export default function TeamEditor({ team }) {
   useEffect(() => {
     let active = true;
     if (!teamId) return;
-    Promise.all([
-      supabase.from('team_profiles').select('description,social_links').eq('team_id', teamId).maybeSingle(),
-      supabase.from('team_players').select('player_id,official_photo_url,official_photo_verified,players!team_players_player_id_fkey(nickname,avatar)').eq('team_id', teamId).eq('is_active', true),
-    ]).then(([content, roster]) => {
-      if (!active) return;
-      if (content.error || roster.error) { setError(tx('Could not load team content.')); return; }
-      setDraft({ description: content.data?.description || '', links: content.data?.social_links || [], players: (roster.data || []).map(row => ({ id: row.player_id, nickname: (Array.isArray(row.players) ? row.players[0] : row.players)?.nickname || '—', url: row.official_photo_url || '', official: row.official_photo_verified })) });
-    }).catch(() => { if (active) setError(tx('Could not load team content.')); });
-    return () => { active = false; };
-  }, [teamId, revision]);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10_000);
+    api.loadTeam({ teamId, signal: controller.signal }).then(content => {
+      if (active) { setDraft(content); setBaseline(content); }
+    }).catch(() => { if (active) setError(tx('Could not load team content.')); }).finally(() => clearTimeout(timeout));
+    return () => { active = false; clearTimeout(timeout); controller.abort(); };
+  }, [api, teamId, revision]);
   async function save(kind, player) {
     setBusy(true); setError(''); setMessage('');
     try {
-      let response;
-      if (kind === 'description') response = await supabase.rpc('upsert_team_profile', { p_team_id: teamId, p_description: draft.description.trim() || null });
-      if (kind === 'links') response = await supabase.rpc('set_team_social_links', { p_team_id: teamId, p_social_links: cleanSocialLinks(draft.links) });
-      if (kind === 'photo') {
-        const url = safeWebUrl(player.url);
-        if (url === null) throw new Error('Use a valid HTTP or HTTPS URL.');
-        response = await supabase.rpc('set_official_team_photo', { p_team_id: teamId, p_player_id: player.id, p_photo_url: url || null, p_verified: Boolean(url && player.official) });
-      }
-      if (response.error) throw response.error;
+      if (api.preview) { setMessage(tx('Preview only. Nothing was saved.')); return; }
+      await api.saveTeam({ kind, teamId, draft, player });
+      setBaseline(current => kind === 'description' ? { ...current, description: draft.description } : kind === 'links' ? { ...current, links: draft.links } : { ...current, players: current.players.map(row => row.id === player.id ? { ...player } : row) });
       setMessage(tx('Changes saved.'));
     } catch (error) { setError(tx(error.message === 'Use a valid HTTP or HTTPS URL.' ? error.message : 'Could not save changes. Please try again.')); }
     finally { setBusy(false); }
   }
   function editPlayer(id, patch) { setDraft(current => ({ ...current, players: current.players.map(row => row.id === id ? { ...row, ...patch } : row) })); }
-  return <div className="admin-stack"><Panel title={team.name} description="Team content" action={<Link to={`/teams/${team.slug}`} className="admin-btn">{tx('Open profile')} ↗</Link>}>
-    <Notice error>{error}</Notice>{error && !draft && <button className="admin-btn" onClick={() => { setError(''); setRevision(value => value + 1); }}>{tx('Retry')}</button>}<Notice>{message}</Notice>
+  const dirty = Boolean(draft && baseline && JSON.stringify(draft) !== JSON.stringify(baseline));
+  useUnsavedChanges(dirty);
+  return <fieldset disabled={busy} className="admin-stack admin-editor" data-admin-dirty={dirty ? 'true' : undefined}><Panel title={team.name} description="Team content" action={<Link to={`/teams/${team.slug}`} target="_blank" rel="noopener noreferrer" className="admin-btn">{tx('Open profile')} ↗</Link>}>
+    {dirty && <div className="admin-draft-indicator">● {tx('Unsaved changes')}</div>}<Notice error>{error}</Notice>{error && !draft && <button className="admin-btn" onClick={() => { setError(''); setRevision(value => value + 1); }}>{tx('Retry')}</button>}<Notice>{message}</Notice>
     {!draft ? <Empty>{error ? tx('Select another team or retry.') : tx('Loading...')}</Empty> : <div className="admin-stack">
       <label className="admin-field">{tx('Description')}<textarea rows={5} maxLength={20000} value={draft.description} onChange={event => setDraft({ ...draft, description: event.target.value })} /></label>
       <button disabled={busy} className="admin-btn primary" onClick={() => save('description')}>{tx('Save description')}</button>
@@ -60,5 +56,5 @@ export default function TeamEditor({ team }) {
       <label className="admin-check"><input type="checkbox" checked={Boolean(player.official)} onChange={event => editPlayer(player.id, { official: event.target.checked })} />{tx('Official photo')}</label>
       <button disabled={busy} className="admin-btn" onClick={() => save('photo', player)}>{tx('Save')}</button>
     </div>)}</div>
-  </Panel></> }</div>;
+  </Panel></> }</fieldset>;
 }

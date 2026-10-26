@@ -1150,5 +1150,149 @@
     "es": "Activos en los últimos 3 minutos",
     "fr": "Actifs dans les 3 dernières minutes",
     "it": "Attivi negli ultimi 3 minuti"
+  },
+  "Analytics": {
+    "ru": "Аналитика",
+    "de": "Analyse",
+    "pt": "Análise",
+    "es": "Análisis",
+    "fr": "Analyse",
+    "it": "Analisi"
+  },
+  "Management": {
+    "ru": "Управление",
+    "de": "Verwaltung",
+    "pt": "Gestão",
+    "es": "Gestión",
+    "fr": "Gestion",
+    "it": "Gestione"
+  },
+  "Operations": {
+    "ru": "Система",
+    "de": "Betrieb",
+    "pt": "Operações",
+    "es": "Operaciones",
+    "fr": "Opérations",
+    "it": "Operazioni"
+  },
+  "Preview": {
+    "ru": "Предпросмотр",
+    "de": "Vorschau",
+    "pt": "Prévia",
+    "es": "Vista previa",
+    "fr": "Aperçu",
+    "it": "Anteprima"
+  },
+  "Sample data": {
+    "ru": "Тестовые данные",
+    "de": "Beispieldaten",
+    "pt": "Dados de exemplo",
+    "es": "Datos de ejemplo",
+    "fr": "Données de démonstration",
+    "it": "Dati di esempio"
+  },
+  "Open admin": {
+    "ru": "Открыть админку",
+    "de": "Admin öffnen",
+    "pt": "Abrir administração",
+    "es": "Abrir administración",
+    "fr": "Ouvrir l’administration",
+    "it": "Apri amministrazione"
+  },
+  "Sample data. Changes are not saved and no live admin requests are made.": {
+    "ru": "Тестовые данные. Изменения не сохраняются, запросы к реальной админке не выполняются.",
+    "de": "Beispieldaten. Änderungen werden nicht gespeichert und es erfolgen keine echten Admin-Anfragen.",
+    "pt": "Dados de exemplo. As alterações não são salvas e nenhuma solicitação administrativa real é feita.",
+    "es": "Datos de ejemplo. Los cambios no se guardan ni se realizan solicitudes administrativas reales.",
+    "fr": "Données de démonstration. Les modifications ne sont pas enregistrées et aucune requête administrative réelle n’est envoyée.",
+    "it": "Dati di esempio. Le modifiche non vengono salvate e non vengono effettuate richieste amministrative reali."
+  },
+  "Needs attention": {
+    "ru": "Требует внимания",
+    "de": "Erfordert Aufmerksamkeit",
+    "pt": "Requer atenção",
+    "es": "Requiere atención",
+    "fr": "À vérifier",
+    "it": "Richiede attenzione"
+  },
+  "Review": {
+    "ru": "Проверить",
+    "de": "Prüfen",
+    "pt": "Revisar",
+    "es": "Revisar",
+    "fr": "Vérifier",
+    "it": "Controlla"
+  },
+  "{0} open reports · {1} workers to review": {
+    "ru": "Открытых жалоб: {0} · Воркеров для проверки: {1}",
+    "de": "{0} offene Meldungen · {1} Worker prüfen",
+    "pt": "{0} denúncias abertas · {1} processos a revisar",
+    "es": "{0} reportes abiertos · {1} procesos por revisar",
+    "fr": "{0} signalements ouverts · {1} processus à vérifier",
+    "it": "{0} segnalazioni aperte · {1} processi da controllare"
+  },
+  "Showing {0}–{1} of {2}": {
+    "ru": "Показано {0}–{1} из {2}",
+    "de": "{0}–{1} von {2}",
+    "pt": "Mostrando {0}–{1} de {2}",
+    "es": "Mostrando {0}–{1} de {2}",
+    "fr": "{0}–{1} sur {2}",
+    "it": "{0}–{1} di {2}"
+  },
+  "Unsaved changes": {
+    "ru": "Есть несохранённые изменения",
+    "de": "Ungespeicherte Änderungen",
+    "pt": "Alterações não salvas",
+    "es": "Cambios sin guardar",
+    "fr": "Modifications non enregistrées",
+    "it": "Modifiche non salvate"
+  },
+  "Discard unsaved changes?": {
+    "ru": "Отменить несохранённые изменения?",
+    "de": "Ungespeicherte Änderungen verwerfen?",
+    "pt": "Descartar alterações não salvas?",
+    "es": "¿Descartar los cambios sin guardar?",
+    "fr": "Abandonner les modifications non enregistrées ?",
+    "it": "Ignorare le modifiche non salvate?"
+  },
+  "Preview only. Nothing was saved.": {
+    "ru": "Это предпросмотр. Изменения не сохранены.",
+    "de": "Nur Vorschau. Es wurde nichts gespeichert.",
+    "pt": "Apenas prévia. Nada foi salvo.",
+    "es": "Solo vista previa. No se guardó nada.",
+    "fr": "Aperçu uniquement. Rien n’a été enregistré.",
+    "it": "Solo anteprima. Nessuna modifica salvata."
+  },
+  "Article preview": {
+    "ru": "Предпросмотр статьи",
+    "de": "Artikelvorschau",
+    "pt": "Prévia do artigo",
+    "es": "Vista previa del artículo",
+    "fr": "Aperçu de l’article",
+    "it": "Anteprima articolo"
+  },
+  "Demo administrator": {
+    "ru": "Демо-администратор",
+    "de": "Demo-Administrator",
+    "pt": "Administrador de demonstração",
+    "es": "Administrador de demostración",
+    "fr": "Administrateur de démonstration",
+    "it": "Amministratore demo"
+  },
+  "Last 7 days": {
+    "ru": "Последние 7 дней",
+    "de": "Letzte 7 Tage",
+    "pt": "Últimos 7 dias",
+    "es": "Últimos 7 días",
+    "fr": "7 derniers jours",
+    "it": "Ultimi 7 giorni"
+  },
+  "Last 14 days": {
+    "ru": "Последние 14 дней",
+    "de": "Letzte 14 Tage",
+    "pt": "Últimos 14 dias",
+    "es": "Últimos 14 días",
+    "fr": "14 derniers jours",
+    "it": "Ultimi 14 giorni"
   }
 }

@@ -45,6 +45,7 @@ const AuthCallbackPage = lazy(() => import("./pages/AuthCallbackPage"));
 const UserProfilePage = lazy(() => import("./pages/UserProfilePage"));
 const EditProfilePage = lazy(() => import("./pages/EditProfilePage"));
 const NewsArticlePage = lazy(() => import("./pages/NewsArticlePage"));
+const AdminPreviewPage = lazy(() => import("./pages/AdminPreviewPage"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
 const DataStatusPage = lazy(() => import("./pages/DataStatusPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
@@ -157,6 +158,7 @@ function Application() {
                       <Route path="/profile/:username/edit" element={<EditProfilePage />} />
                       <Route path="/profile/:username/verification" element={<Navigate to="../edit" relative="path" replace />} />
                       <Route path="/admin" element={<AdminPage />} />
+                      <Route path="/admin/preview" element={<AdminPreviewPage />} />
                       <Route path="/admin/verifications" element={<Navigate to="/admin" replace />} />
                     </Route>
                   </Routes>
