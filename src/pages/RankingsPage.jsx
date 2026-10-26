@@ -2,15 +2,11 @@ import { countryName } from "../utils/countries.js";
 import { scopeTeamRanks } from "../utils/teamRanks.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
-import { useLanguage } from "../context/LanguageContext.jsx";
-import { rankingRosterCopy } from "../i18n/rankingRoster.js";
 import { tx, translateError, tf } from "../i18n/translate.js";
 import {
   useEffect,
   useMemo,
   useState,
-  lazy,
-  Suspense,
 } from "react";
 
 
@@ -18,7 +14,6 @@ import teams from "../data/teams";
 import { supabase } from "../lib/supabaseClient";
 import { resolveRatingRow } from "../utils/resolveTeamRating";
 
-const RankingRosterPanel = lazy(() => import('../components/RankingRosterPanel.jsx'));
 
 const DIVISIONS = [
   "All",
@@ -446,9 +441,6 @@ function TeamLogo({
 
 
 function RankingsPage() {
-  const { language } = useLanguage();
-  const rosterLabels = rankingRosterCopy(language);
-  const [expandedTeamId, setExpandedTeamId] = useState(null);
   const [ratingRows, setRatingRows] =
     useState([]);
   const [loading, setLoading] =
@@ -1176,13 +1168,13 @@ useEffect(() => {
             </div>
           </div>
         ) : (
-          <div>
-            <div>
-              <div className="grid grid-cols-[56px_minmax(0,1fr)_82px] rounded-xl border border-white/5 bg-[#0f141a] px-3 py-3 text-[10px] font-bold uppercase tracking-wider text-gray-500 sm:grid-cols-[80px_minmax(0,1fr)_110px_130px] sm:px-4 sm:text-xs lg:grid-cols-[110px_minmax(0,2fr)_190px_170px]">
+          <div className="overflow-x-auto">
+            <div className="min-w-[900px]">
+              <div className="grid grid-cols-[110px_minmax(360px,2fr)_190px_170px] rounded-xl border border-white/5 bg-[#0f141a] px-4 py-3 text-xs font-bold uppercase tracking-wider text-gray-500">
                 <div>{tx("Rank")}</div>
                 <div>{tx("Team")}</div>
                 <div>{tx("Rating")}</div>
-                <div className="hidden sm:block">{tx("Division")}</div>
+                <div>{tx("Division")}</div>
               </div>
 
               <div className="mt-3 space-y-2">
@@ -1192,21 +1184,20 @@ useEffect(() => {
                 ) : (
                   filteredTeams.map(
                     (team) => {
-                      const teamKey = team.id ?? team.slug;
-                      const expanded = expandedTeamId === teamKey;
-                      const panelId = `ranking-roster-${String(teamKey).replace(/[^a-z0-9_-]/gi, '-')}`;
                       const countryName =
                         localizedCountry(team.country) ??
                         team.country ??
                         tx("Unknown country");
 
                       return (
-                        <div key={teamKey} className={`overflow-hidden rounded-xl border transition-colors ${expanded ? 'border-orange-400/25 bg-[#111b28]' : 'border-white/5 bg-[#0c1016] hover:border-orange-500/20'}`}>
-                        <div className="relative">
-                        <button type="button" aria-expanded={expanded} aria-controls={panelId}
-                          aria-label={`${expanded ? rosterLabels.hide : rosterLabels.show}: ${team.name}`}
-                          onClick={() => setExpandedTeamId(current => current === teamKey ? null : teamKey)}
-                          className="group grid w-full grid-cols-[56px_minmax(0,1fr)_82px] items-center px-3 py-3 text-left transition hover:bg-[#121a25] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-400 sm:grid-cols-[80px_minmax(0,1fr)_110px_130px] sm:px-4 lg:grid-cols-[110px_minmax(0,2fr)_190px_170px]">
+                        <Link
+                          key={
+                            team.id ??
+                            team.slug
+                          }
+                          to={`/teams/${team.slug}`}
+                          className="group relative grid grid-cols-[110px_minmax(360px,2fr)_190px_170px] items-center overflow-hidden rounded-xl border border-white/5 bg-[#0c1016] px-4 py-3 transition-all duration-200 hover:z-10 hover:-translate-y-[2px] hover:border-orange-500/20 hover:bg-[#121a25] hover:shadow-[0_14px_35px_rgba(0,0,0,0.6)]"
+                        >
                           <div className="flex items-center font-bold">
                             <span
                               className={
@@ -1218,15 +1209,14 @@ useEffect(() => {
                               #{team.rank}
                             </span>
 
-                            <span className="hidden sm:inline"><ChangeText
+                            <ChangeText
                               value={
                                 team.rankChange
                               }
-                            /></span>
+                            />
                           </div>
 
-                          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-                            <span className="hidden sm:inline-flex">
+                          <div className="flex min-w-0 items-center gap-3">
                             <CountryFlag
                               country={
                                 team.country
@@ -1235,7 +1225,6 @@ useEffect(() => {
                                 countryName
                               }
                             />
-                            </span>
 
                             <TeamLogo
                               src={team.logo}
@@ -1253,35 +1242,25 @@ useEffect(() => {
                             </div>
                           </div>
 
-                          <div className="flex items-center pr-9 sm:pr-0">
+                          <div className="flex items-center">
                             <span className="text-base font-bold text-white">
                               {team.points}
                             </span>
 
-                            <span className="hidden sm:inline"><ChangeText
+                            <ChangeText
                               value={
                                 team.pointsChange
                               }
-                            /></span>
+                            />
                           </div>
 
-                          <div className="hidden items-center justify-between gap-2 pr-10 sm:flex">
-                            <span title={team.division} className="block min-w-0 truncate rounded-md border border-orange-500/15 bg-orange-500/5 px-2.5 py-1 text-xs font-semibold text-orange-400">
+                          <div>
+                            <span className="inline-flex rounded-md border border-orange-500/15 bg-orange-500/5 px-2.5 py-1 text-sm font-semibold text-orange-400">
                               {team.division ||
                                 "—"}
                             </span>
-                            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" className={`h-4 w-4 shrink-0 text-slate-500 transition-transform ${expanded ? 'rotate-180 text-orange-300' : ''}`}><path d="m5 7 5 5 5-5" /></svg>
                           </div>
-                        </button>
-                        <Link to={`/teams/${encodeURIComponent(team.id || team.slug)}`} aria-label={`${rosterLabels.profile}: ${team.name}`} title={rosterLabels.profile}
-                          className="absolute right-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border border-white/5 text-slate-500 transition hover:border-orange-400/30 hover:bg-orange-400/10 hover:text-orange-300 focus-visible:outline-2 focus-visible:outline-orange-400 sm:right-3">
-                          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-4 w-4"><path d="M7 4h9v9m0-9L5 15M4 7H3v10h10v-1" /></svg>
                         </Link>
-                        </div>
-                        <div id={panelId} hidden={!expanded}>
-                          {expanded && <Suspense fallback={<p role="status" className="border-t border-white/5 p-5 text-sm text-slate-400">{rosterLabels.loading}</p>}><RankingRosterPanel team={team} /></Suspense>}
-                        </div>
-                        </div>
                       );
                     }
                   )
