@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
+import './TeamNativeAd.css';
 
 const copy = {
-  ru: { ad: 'Реклама', title: 'Киберспорт — ближе к игре', body: 'Линия CS2, коэффициенты и live на сайте букмекера.', open: 'Открыть', note: 'Играйте ответственно.' },
-  en: { ad: 'Advertisement', title: 'Esports. Closer to the game.', body: 'CS2 markets, odds and live events at the bookmaker.', open: 'Visit', note: 'Play responsibly.' },
-  de: { ad: 'Werbung', title: 'Esport. Näher am Spiel.', body: 'CS2-Wetten, Quoten und Live-Events beim Buchmacher.', open: 'Öffnen', note: 'Verantwortungsvoll spielen.' },
-  pt: { ad: 'Publicidade', title: 'Esports. Mais perto do jogo.', body: 'Mercados de CS2, odds e eventos ao vivo na casa de apostas.', open: 'Visitar', note: 'Jogue com responsabilidade.' },
-  es: { ad: 'Publicidad', title: 'Esports. Más cerca del juego.', body: 'Mercados de CS2, cuotas y eventos en vivo en la casa de apuestas.', open: 'Visitar', note: 'Juega con responsabilidad.' },
-  fr: { ad: 'Publicité', title: 'Esport. Au plus près du jeu.', body: 'Marchés CS2, cotes et événements en direct chez le bookmaker.', open: 'Visiter', note: 'Jouez de façon responsable.' },
-  it: { ad: 'Pubblicità', title: 'Esport. Più vicino al gioco.', body: 'Mercati CS2, quote ed eventi live sul sito del bookmaker.', open: 'Visita', note: 'Gioca responsabilmente.' },
+  ru: { ad: 'Реклама', title: 'Твой взгляд на игру.', body: 'Линия CS2 и live-коэффициенты на {brand}.', open: 'Смотреть линию', prematch: 'Прематч', note: 'Играйте ответственно.' },
+  en: { ad: 'Advertisement', title: 'Your take on the game.', body: 'CS2 markets and live odds on {brand}.', open: 'Explore markets', prematch: 'Pre-match', note: 'Play responsibly.' },
+  de: { ad: 'Werbung', title: 'Dein Blick aufs Spiel.', body: 'CS2-Märkte und Live-Quoten bei {brand}.', open: 'Wettangebot ansehen', prematch: 'Vor dem Spiel', note: 'Verantwortungsvoll spielen.' },
+  pt: { ad: 'Publicidade', title: 'O teu olhar sobre o jogo.', body: 'Mercados de CS2 e odds ao vivo na {brand}.', open: 'Ver mercados', prematch: 'Pré-jogo', note: 'Jogue com responsabilidade.' },
+  es: { ad: 'Publicidad', title: 'Tu visión del juego.', body: 'Mercados de CS2 y cuotas en vivo en {brand}.', open: 'Ver mercados', prematch: 'Prepartido', note: 'Juega con responsabilidad.' },
+  fr: { ad: 'Publicité', title: 'Ton regard sur le jeu.', body: 'Marchés CS2 et cotes en direct sur {brand}.', open: 'Voir les marchés', prematch: 'Avant-match', note: 'Jouez de façon responsable.' },
+  it: { ad: 'Pubblicità', title: 'Il tuo sguardo sul gioco.', body: 'Mercati CS2 e quote live su {brand}.', open: 'Esplora i mercati', prematch: 'Pre-partita', note: 'Gioca responsabilmente.' },
 };
 
 export default function TeamNativeAd() {
@@ -34,25 +35,30 @@ export default function TeamNativeAd() {
 
   return (
     <aside aria-label={`${labels.ad} · ${brand} · 18+`} data-team-native-ad={provider}
-      className="relative mt-6 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#101720]">
-      <div aria-hidden="true" className={`absolute inset-y-0 left-0 w-[3px] ${pari ? 'bg-[#28e5cd]' : 'bg-sky-400'}`} />
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-4 px-5 py-4 sm:flex-nowrap sm:px-6">
-        <div className={`flex h-14 w-20 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-[#080e16] text-[28px] font-black italic tracking-tighter ${pari ? 'text-[#28e5cd]' : 'text-white'}`} aria-hidden="true">{brand}</div>
-        <div className="min-w-0 flex-1 basis-[calc(100%-110px)] sm:basis-auto">
-          <div className="mb-1.5 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-            <span>{labels.ad}</span><span aria-hidden="true">·</span><span>18+</span><span className="ml-1 border-l border-white/10 pl-3 text-slate-400">CS2</span>
-          </div>
-          <h2 className="text-sm font-bold tracking-tight text-slate-100 sm:text-base">{labels.title}</h2>
-          <p className="mt-1 text-xs leading-relaxed text-slate-400">{labels.body}</p>
+      className={`team-native-ad team-native-ad--${provider}`}>
+      <div className="team-native-ad__watermark" aria-hidden="true">CS2</div>
+      <div className="team-native-ad__main">
+        <div className="team-native-ad__brand" aria-hidden="true">
+          {pari ? <span className="team-native-ad__wordmark">{brand}</span>
+            : <img className="team-native-ad__logo" src="/ads/onewin/onewin-logo.jpg" alt="" width="2048" height="1050" decoding="async" />}
+          <span className="team-native-ad__brand-caption">ESPORTS</span>
         </div>
-        <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer"
-          className={`inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-3 rounded-lg border px-4 py-2.5 text-xs font-bold transition focus-visible:outline-2 focus-visible:outline-offset-4 sm:w-auto ${pari ? 'border-[#28e5cd]/25 bg-[#28e5cd]/10 text-[#8af4e5] hover:bg-[#28e5cd]/20 focus-visible:outline-[#28e5cd]' : 'border-sky-300/25 bg-sky-400/10 text-sky-200 hover:bg-sky-400/20 focus-visible:outline-sky-300'}`}>
-          {labels.open} {brand}<svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10" /></svg>
-        </a>
+        <div className="team-native-ad__content">
+          <div className="team-native-ad__tags"><span>CS2</span><span>{labels.prematch}</span><span>LIVE</span></div>
+          <h2>{labels.title}</h2>
+          <p>{labels.body.replace('{brand}', brand)}</p>
+        </div>
+        <div className="team-native-ad__action">
+          <span className="team-native-ad__disclosure">{labels.ad} <span>18+</span></span>
+          <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${labels.open} · ${brand}`}>
+            {labels.open}<span className="team-native-ad__arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" /></svg></span>
+          </a>
+        </div>
       </div>
-      <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-t border-white/[0.045] px-5 py-2 text-[9px] leading-relaxed text-slate-500 sm:px-6">
-        <span>{pari ? 'ООО «БК «ПАРИ» · ИНН 7703365167' : '1win · CS2'}</span>
-        <span>18+ · {labels.note}</span>
+      <div className="team-native-ad__footer">
+        <span className="team-native-ad__footer-brand">{brand}<span aria-hidden="true"> / </span>CS2</span>
+        {pari && <span>ООО «БК «ПАРИ» · ИНН 7703365167</span>}
+        <span className="team-native-ad__responsible">18+ · {labels.note}</span>
       </div>
     </aside>
   );

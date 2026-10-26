@@ -1,0 +1,104 @@
+.team-native-ad {
+  --native-accent: #56baff;
+  --native-glow: #1688ff;
+  --native-cta-start: #319bff;
+  --native-cta-end: #0862dd;
+  position: relative;
+  isolation: isolate;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #4d9ddd3b;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 5% 0%, #1688ff20, transparent 55%), linear-gradient(110deg, #0e1b2b, #0e1826 58%, #112c48);
+  box-shadow: 0 12px 36px #00000024, inset 0 1px #ffffff09;
+}
+.team-native-ad--pari {
+  --native-accent: #65f4d9;
+  --native-glow: #24dfbc;
+  --native-cta-start: #7cf9df;
+  --native-cta-end: #22cfae;
+  border-color: #47d4b83b;
+  background: radial-gradient(ellipse at 5% 0%, #24dfbc20, transparent 55%), linear-gradient(110deg, #0e2427, #0e1b23 58%, #123b3c);
+}
+.team-native-ad::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--native-accent), transparent);
+  opacity: .6;
+}
+.team-native-ad::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 28px 55%;
+  background-image: linear-gradient(#ffffff04 1px, transparent 1px), linear-gradient(90deg, #ffffff04 1px, transparent 1px);
+  background-size: 20px 20px;
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.team-native-ad__watermark {
+  position: absolute;
+  z-index: -1;
+  right: 12px;
+  top: -27px;
+  color: #ffffff04;
+  font-size: 150px;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -.09em;
+  font-style: italic;
+  pointer-events: none;
+  user-select: none;
+}
+.team-native-ad__main { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 22px 28px; }
+.team-native-ad__brand { position: relative; display: flex; min-height: 76px; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #ffffff12; padding-right: 24px; }
+.team-native-ad__brand::before { content: ''; position: absolute; width: 72px; height: 36px; z-index: -1; background: var(--native-glow); filter: blur(28px); opacity: .27; }
+.team-native-ad__wordmark { color: #fff; font-size: 43px; line-height: 1; font-weight: 950; font-style: italic; letter-spacing: -.065em; }
+.team-native-ad__logo { display: block; width: 106px; max-width: 100%; height: auto; mix-blend-mode: screen; }
+.team-native-ad--pari .team-native-ad__wordmark { color: var(--native-accent); font-size: 36px; }
+.team-native-ad__brand-caption { margin-top: 8px; font-size: 8px; font-weight: 700; letter-spacing: .32em; color: #8cacc7; padding-left: 3px; }
+.team-native-ad__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+.team-native-ad__tags span { padding: 3px 7px; border: 1px solid #ffffff0d; border-radius: 4px; color: #8ea5ba; font-size: 8px; font-weight: 700; line-height: 1.2; letter-spacing: .07em; text-transform: uppercase; }
+.team-native-ad__tags span:first-child { color: var(--native-accent); border-color: #ffffff1a; background: #ffffff05; }
+.team-native-ad__content h2 { margin: 0; color: #f1f7ff; font-size: clamp(19px, 1.6vw, 24px); line-height: 1.2; font-weight: 800; letter-spacing: -.025em; text-wrap: balance; }
+.team-native-ad__content p { margin: 7px 0 0; color: #a3b4c7; font-size: 12px; line-height: 1.6; }
+.team-native-ad__action { display: flex; flex-direction: column; align-items: flex-end; gap: 11px; }
+.team-native-ad__disclosure { display: inline-flex; align-items: center; gap: 8px; color: #96a9bf; font-size: 9px; }
+.team-native-ad__disclosure span { border: 1px solid #ffffff20; border-radius: 4px; padding: 2px 4px; font-size: 8px; }
+.team-native-ad__action a { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 18px; border: 1px solid #ffffff25; border-radius: 10px; background: linear-gradient(135deg, var(--native-cta-start), var(--native-cta-end)); padding: 8px 10px 8px 17px; color: #fff; font-size: 12px; font-weight: 750; text-decoration: none; box-shadow: 0 4px 20px #00000025, inset 0 1px #ffffff25; transition: filter .18s, transform .18s; }
+.team-native-ad--pari .team-native-ad__action a { color: #052c27; }
+.team-native-ad__action a:hover { filter: brightness(1.13); transform: translateY(-1px); }
+.team-native-ad__action a:focus-visible { outline: 2px solid var(--native-accent); outline-offset: 4px; }
+.team-native-ad__arrow { display: flex; width: 27px; height: 27px; align-items: center; justify-content: center; border-radius: 6px; background: #00000012; }
+.team-native-ad__arrow svg { width: 17px; height: 17px; }
+.team-native-ad__footer { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; border-top: 1px solid #ffffff08; background: #00000012; padding: 8px 28px; color: #8498ae; font-size: 9px; line-height: 1.4; }
+.team-native-ad__footer-brand { color: #91a7be; font-size: 8px; font-weight: 750; letter-spacing: .07em; }
+.team-native-ad__footer-brand span { padding: 0 6px; color: #ffffff25; }
+.team-native-ad__responsible { margin-left: auto; }
+@media (max-width: 767px) {
+  .team-native-ad__main { grid-template-columns: 90px minmax(0, 1fr); padding: 20px; gap: 18px; }
+  .team-native-ad__brand { min-height: 64px; padding-right: 16px; }
+  .team-native-ad__wordmark { font-size: 36px; }
+  .team-native-ad--pari .team-native-ad__wordmark { font-size: 30px; }
+  .team-native-ad__action { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
+  .team-native-ad__action a { min-width: 155px; }
+  .team-native-ad__footer { padding: 8px 20px; }
+}
+@media (max-width: 399px) {
+  .team-native-ad__main { grid-template-columns: 68px minmax(0, 1fr); padding: 17px 15px; gap: 13px; }
+  .team-native-ad__brand { padding-right: 12px; }
+  .team-native-ad__wordmark { font-size: 30px; }
+  .team-native-ad--pari .team-native-ad__wordmark { font-size: 25px; }
+  .team-native-ad__brand-caption { font-size: 6px; letter-spacing: .2em; }
+  .team-native-ad__content h2 { font-size: 18px; }
+  .team-native-ad__content p { font-size: 11px; }
+  .team-native-ad__action { flex-wrap: wrap; }
+  .team-native-ad__action a { flex: 1; }
+  .team-native-ad__footer { padding: 8px 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-native-ad__action a { transition: none; }
+  .team-native-ad__action a:hover { transform: none; }
+}
