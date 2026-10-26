@@ -1294,5 +1294,69 @@
     "es": "Últimos 14 días",
     "fr": "14 derniers jours",
     "it": "Ultimi 14 giorni"
+  },
+  "Add link": {
+    "ru": "Добавить ссылку",
+    "de": "Link hinzufügen",
+    "pt": "Adicionar link",
+    "es": "Añadir enlace",
+    "fr": "Ajouter un lien",
+    "it": "Aggiungi link"
+  },
+  "Edit": {
+    "ru": "Изменить",
+    "de": "Bearbeiten",
+    "pt": "Editar",
+    "es": "Editar",
+    "fr": "Modifier",
+    "it": "Modifica"
+  },
+  "Draft": {
+    "ru": "Черновик",
+    "de": "Entwurf",
+    "pt": "Rascunho",
+    "es": "Borrador",
+    "fr": "Brouillon",
+    "it": "Bozza"
+  },
+  "Published": {
+    "ru": "Опубликовано",
+    "de": "Veröffentlicht",
+    "pt": "Publicado",
+    "es": "Publicado",
+    "fr": "Publié",
+    "it": "Pubblicato"
+  },
+  "No teams found.": {
+    "ru": "Команды не найдены.",
+    "de": "Keine Teams gefunden.",
+    "pt": "Nenhuma equipe encontrada.",
+    "es": "No se encontraron equipos.",
+    "fr": "Aucune équipe trouvée.",
+    "it": "Nessuna squadra trovata."
+  },
+  "URL": {
+    "ru": "Ссылка",
+    "de": "URL",
+    "pt": "URL",
+    "es": "URL",
+    "fr": "URL",
+    "it": "URL"
+  },
+  "replies": {
+    "ru": "ответов",
+    "de": "Antworten",
+    "pt": "respostas",
+    "es": "respuestas",
+    "fr": "réponses",
+    "it": "risposte"
+  },
+  "Error": {
+    "ru": "Ошибка",
+    "de": "Fehler",
+    "pt": "Erro",
+    "es": "Error",
+    "fr": "Erreur",
+    "it": "Errore"
   }
 }

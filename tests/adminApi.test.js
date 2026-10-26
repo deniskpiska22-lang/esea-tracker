@@ -48,3 +48,14 @@ test('invalid page URLs and paused workers have explicit safe states',()=>{
  assert.equal(workerHealth({status:'disabled'}),'paused');
  assert.equal(workerHealth({status:'paused',last_ping:'2020-01-01'}),'paused');
 });
+
+test('preview title is localized and excluded from search indexing',async()=>{
+ const { localizeSeo } = await import('../src/i18n/seo.js');
+ const { getSiteSeoMetadata } = await import('../src/utils/siteSeo.js');
+ const { translateText } = await import('../src/i18n/translate.js');
+ for(const language of ['ru','en','de','pt','es','fr','it']) {
+  const metadata=localizeSeo(getSiteSeoMetadata('/admin/preview'),language);
+  assert.ok(metadata.title.includes(translateText('Preview',language)));
+  assert.ok(metadata.robots.startsWith('noindex'));
+ }
+});

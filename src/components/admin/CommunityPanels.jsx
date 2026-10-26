@@ -3,7 +3,7 @@ import { useAdminData } from './adminDataContext.js';
 import { useAdminQuery, pageIndex } from './useAdminQuery.js';
 import { useUnsavedChanges } from './useUnsavedChanges.js';
 import { tx } from '../../i18n/translate.js';
-import { forumTopicPath } from '../../utils/forum.js';
+import { forumTopicPath, forumCategory } from '../../utils/forum.js';
 import { safeWebUrl } from '../../utils/adminWorkspace.js';
 import { useAdminResource } from './useAdminResource.js';
 import { Panel, Notice, Empty, DateLabel, Pager, Skeleton } from './AdminUI.jsx';
@@ -37,7 +37,7 @@ function ForumPageRows({ filter, page, setPage }) {
     {loading ? <Skeleton /> : error && !data ? <button className="admin-btn" onClick={refresh}>{tx('Retry')}</button> : !data?.rows.length ? <Empty>{tx(filter === 'reports' ? 'No unresolved reports.' : 'Nothing here yet.')}</Empty> : <div className="admin-stack">{data.rows.map(row => {
       const topic = filter === 'reports' ? row.topic : row;
       return <article className="admin-topic" key={row.id}><div className="admin-row-between"><Link className="admin-text-link" to={forumTopicPath(topic || { id: row.topic_id })}>{topic?.title || tx('Topic unavailable')}</Link><small><DateLabel value={row.created_at} /></small></div>
-        {filter === 'reports' ? <><p className="admin-report-reason">{row.reason}</p>{row.post && <blockquote>{row.post.body}</blockquote>}<div className="admin-actions"><button disabled={busy || Boolean(row.post ? row.post.hidden : topic?.hidden)} className="admin-btn" onClick={() => act(row.post ? 'hide_post' : 'moderate_topic', { topic_id: row.topic_id, post_id: row.post_id, hidden: true })}>{tx(row.post ? 'Hide reply' : 'Hide topic')}</button><button disabled={busy} className="admin-btn primary" onClick={() => act('resolve_report', { id: row.id })}>{tx('Resolve report')}</button></div></> : <><div className="admin-tags"><span>{tx(row.category)}</span><span>{String(row.language || 'en').toUpperCase()}</span><span>{row.reply_count} {tx('replies')}</span>{row.hidden && <span>{tx('Hidden')}</span>}</div><div className="admin-actions">{[['pinned', 'Pin topic', 'Unpin topic'], ['locked', 'Close topic', 'Reopen topic'], ['hidden', 'Hide topic', 'Restore topic']].map(([field, off, on]) => <button key={field} disabled={busy} className="admin-btn" onClick={() => act('moderate_topic', { topic_id: row.id, [field]: !row[field] })}>{tx(row[field] ? on : off)}</button>)}</div></>}
+        {filter === 'reports' ? <><p className="admin-report-reason">{row.reason}</p>{row.post && <blockquote>{row.post.body}</blockquote>}<div className="admin-actions"><button disabled={busy || Boolean(row.post ? row.post.hidden : topic?.hidden)} className="admin-btn" onClick={() => act(row.post ? 'hide_post' : 'moderate_topic', { topic_id: row.topic_id, post_id: row.post_id, hidden: true })}>{tx(row.post ? 'Hide reply' : 'Hide topic')}</button><button disabled={busy} className="admin-btn primary" onClick={() => act('resolve_report', { id: row.id })}>{tx('Resolve report')}</button></div></> : <><div className="admin-tags"><span>{tx(forumCategory(row.category).label)}</span><span>{String(row.language || 'en').toUpperCase()}</span><span>{row.reply_count} {tx('replies')}</span>{row.hidden && <span>{tx('Hidden')}</span>}</div><div className="admin-actions">{[['pinned', 'Pin topic', 'Unpin topic'], ['locked', 'Close topic', 'Reopen topic'], ['hidden', 'Hide topic', 'Restore topic']].map(([field, off, on]) => <button key={field} disabled={busy} className="admin-btn" onClick={() => act('moderate_topic', { topic_id: row.id, [field]: !row[field] })}>{tx(row[field] ? on : off)}</button>)}</div></>}
       </article>;
     })}</div>}
     {data && <Pager page={page} total={data.count} pageSize={20} onChange={setPage} />}
@@ -50,10 +50,11 @@ export function NewsPanel() {
   const setPage = value => update({ n_page: value });
   const selectedKey = params.get('n_edit');
   const [savedItem, setSavedItem] = useState(null);
+  const [editorVersion, setEditorVersion] = useState(0);
   const selected = useMemo(() => savedItem && String(savedItem.id || 'new') === selectedKey ? savedItem : selectedKey === 'new' ? { ...EMPTY_NEWS } : selectedKey ? { id: selectedKey } : null, [savedItem, selectedKey]);
-  const setSelected = row => { setSavedItem(row); update({ n_edit: row ? row.id || 'new' : null }); };
+  const setSelected = row => { setEditorVersion(version => version + 1); setSavedItem(row); update({ n_edit: row ? row.id || 'new' : null }); };
   const [revision, setRevision] = useState(0);
-  return <div className="admin-stack"><NewsRows key={`${page}:${revision}`} page={page} setPage={setPage} onSelect={row => { if (!document.querySelector('[data-admin-dirty="true"]') || window.confirm(tx('Discard unsaved changes?'))) setSelected(row); }} />{selected && <NewsEditor key={selected.id || 'new'} item={selected} onSaved={row => { setSelected(row); setRevision(value => value + 1); }} onClose={() => setSelected(null)} />}</div>;
+  return <div className="admin-stack"><NewsRows key={`${page}:${revision}`} page={page} setPage={setPage} onSelect={row => { if (!document.querySelector('[data-admin-dirty="true"]') || window.confirm(tx('Discard unsaved changes?'))) setSelected(row); }} />{selected && <NewsEditor key={`${selected.id || 'new'}:${editorVersion}`} item={selected} onSaved={row => { setSelected(row); setRevision(value => value + 1); }} onClose={() => setSelected(null)} />}</div>;
 }
 function NewsRows({ page, setPage, onSelect }) {
   const api = useAdminData();

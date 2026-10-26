@@ -40,7 +40,7 @@ export function localizeSeo(metadata, language, {kind, entity, section = ''} = {
     const label = DIRECTORY_LABELS[pathname] || ({
       '/login': 'Log in', '/register': 'Create account',
       '/auth/callback': 'Confirming your account…', '/data-status': 'Season import status',
-      '/admin': 'Admin panel', '/admin/verifications': 'Admin panel', '/forum/new': 'Create topic', '/forum/moderation': 'Forum moderation',
+      '/admin': 'Admin panel', '/admin/preview': 'Preview', '/admin/verifications': 'Admin panel', '/forum/new': 'Create topic', '/forum/moderation': 'Forum moderation',
     }[pathname]) || (/^\/calendar\/[^/]+$/.test(pathname) ? 'Tournament' :
       /^\/profile\/[^/]+\/edit$/.test(pathname) ? 'Edit profile' :
       /^\/profile\/[^/]+\/verification$/.test(pathname) ? 'Edit profile' :

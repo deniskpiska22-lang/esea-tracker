@@ -17,8 +17,10 @@ export function useAdminResource(loader, { pollMs = 0 } = {}) {
       setState(previous => ({ ...previous, loading: previous.data === null, refreshing: true, checkedAt: Date.now() }));
       try {
         const data = await loader({ signal: controller.signal });
-        settled = true;
-        if (active && request === controller) setState({ data, error: '', loading: false, refreshing: false, updatedAt: Date.now(), checkedAt: Date.now() });
+        if (active && request === controller) {
+          settled = true;
+          setState({ data, error: '', loading: false, refreshing: false, updatedAt: Date.now(), checkedAt: Date.now() });
+        }
       } catch (error) {
         if (active && request === controller) setState(previous => ({ ...previous, error: error?.message || 'Request failed', loading: false, refreshing: false }));
       } finally {
