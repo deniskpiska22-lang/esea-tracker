@@ -161,3 +161,13 @@ match lists and tournament pages return to their source. Explicit existing `from
 state is retained. Direct URLs/new tabs use the existing team-match fallback;
 external or malformed return addresses are rejected. Router paths omit the locale
 prefix because BrowserRouter supplies its language basename.
+
+
+## Desktop density
+
+Desktop viewports (1024 CSS px and wider at browser 100%) render the site at 80%
+using root CSS zoom, applied inline before the boot shell. There is no setting or
+switch. The Vite PostCSS pass also scales responsive width thresholds by 0.8 and
+compensates viewport units by 1.25, so layouts behave like a browser zoomed out,
+rather than retaining the old narrow layout. Narrow touch/mobile layouts retain
+their existing dimensions. Browser zoom and accessibility controls remain available.

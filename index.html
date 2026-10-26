@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style id="desktop-density">
+      /* esea-density-root */
+      /* Apply before the boot shell paints; touch layouts retain their size. */
+      @media screen and (min-width: 1024px) {
+        html { zoom: 0.8; }
+        body { min-height: 125vh; }
+      }
+    </style>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
       window.__YANDEX_METRIKA_ID__ = 112877211;
