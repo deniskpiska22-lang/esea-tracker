@@ -4,7 +4,6 @@ import { readFileSync } from 'node:fs';
 import { buildOneWinMatchUrl, extractOneWinWinner, findOneWinMatch, normalizeOddsTeam, orientOneWinOdds } from '../src/utils/onewinMatch.js';
 import { configuredOneWinSource, readOneWinPage, readOneWinSnapshot } from '../server/onewinSource.js';
 import { createMatchOddsHandler } from '../api/match-odds.js';
-import { getOneWinOddsPreview } from '../src/utils/onewinOddsPreview.js';
 
 test('public client configuration fixes the API origin and refuses incomplete or arbitrary sources', () => {
   assert.equal(configuredOneWinSource({}), null);
@@ -35,19 +34,6 @@ const dnkMatch = {
   team1_id: '3c170b46-04a8-443a-9605-cfd3e03cd020', team1_name: 'DNK',
   team2_id: '1f98d0ae-c844-4356-adf6-70e9501aba2a', team2_name: 'LPH Gaming',
 };
-
-test('captured design preview requires an explicit opt-in on the exact DNK match', () => {
-  for (const [id, search] of [[dnkMatch.id, ''], [dnkMatch.id, '?oddsPreview=0'], [match.id, '?oddsPreview=1']]) {
-    assert.equal(getOneWinOddsPreview(id, search), null);
-  }
-  const preview = getOneWinOddsPreview(dnkMatch.id, '?oddsPreview=1');
-  assert.equal(preview.matchId, dnkMatch.id);
-  assert.deepEqual(preview.team1, { name: 'DNK', price: 3.2 });
-  assert.deepEqual(preview.team2, { name: 'LPH Gaming', price: 1.3 });
-  assert.equal(preview.validForMs, undefined);
-  assert.equal(new URL(preview.href).searchParams.get('p'), 'g39d');
-  assert.equal(new URL(preview.href).pathname, '/betting/match/esport/dnk-vs-lph-42108768');
-});
 
 test('DNK vs LPH Gaming matches the captured LPH market only through its verified FACEIT identity', () => {
   const { event } = dnkFixture;

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import AdGeoGate from './AdGeoGate.jsx';
-import { getOneWinOddsPreview } from '../utils/onewinOddsPreview.js';
 
 const copy = {
   ru: { ad: 'Реклама', winner: 'Победитель матча', updated: 'Обновлено', open: 'Открыть матч в 1win', note: 'Коэффициенты могут измениться на 1win.' },
@@ -12,16 +10,6 @@ const copy = {
   es: { ad: 'Publicidad', winner: 'Ganador del partido', updated: 'Actualizado', open: 'Abrir partido en 1win', note: 'Las cuotas pueden cambiar en 1win.' },
   fr: { ad: 'Publicité', winner: 'Vainqueur du match', updated: 'Mis à jour', open: 'Ouvrir le match sur 1win', note: 'Les cotes peuvent changer sur 1win.' },
   it: { ad: 'Pubblicità', winner: 'Vincitore della partita', updated: 'Aggiornato', open: 'Apri la partita su 1win', note: 'Le quote possono cambiare su 1win.' },
-};
-
-const previewCopy = {
-  ru: { badge: 'Предпросмотр', captured: 'Снимок', note: 'Пример оформления. Коэффициенты зафиксированы и не обновляются; актуальные значения смотрите на 1win.' },
-  en: { badge: 'Preview', captured: 'Captured', note: 'Design preview. These captured odds do not update; check current prices on 1win.' },
-  de: { badge: 'Vorschau', captured: 'Erfasst', note: 'Designvorschau. Diese erfassten Quoten werden nicht aktualisiert. Aktuelle Quoten finden Sie bei 1win.' },
-  pt: { badge: 'Prévia', captured: 'Capturado', note: 'Prévia do visual. Estas odds são fixas e não são atualizadas; confira os valores atuais na 1win.' },
-  es: { badge: 'Vista previa', captured: 'Capturado', note: 'Vista previa del diseño. Estas cuotas capturadas no se actualizan; consulta las actuales en 1win.' },
-  fr: { badge: 'Aperçu', captured: 'Relevé', note: 'Aperçu du design. Ces cotes enregistrées ne sont pas actualisées ; consultez les cotes actuelles sur 1win.' },
-  it: { badge: 'Anteprima', captured: 'Rilevato', note: 'Anteprima del design. Queste quote rilevate non vengono aggiornate; consulta quelle attuali su 1win.' },
 };
 
 function OddsContent({ matchId, teams }) {
@@ -93,11 +81,10 @@ function ExternalArrow({ className = '' }) {
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}><path d="M7 17 17 7M7 7h10v10" /></svg>;
 }
 
-function OddsCard({ odds, teams = [], preview = false }) {
+function OddsCard({ odds, teams = [] }) {
   const { language, locale } = useLanguage();
   const labels = copy[language] || copy.en;
-  const sample = previewCopy[language] || previewCopy.en;
-  const updated = new Intl.DateTimeFormat(locale, { ...(preview ? { day: 'numeric', month: 'short' } : {}), hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
+  const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
   return (
     <aside aria-label={`${labels.ad} · 1win · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#38bdf814,transparent_65%)]" />
@@ -107,8 +94,7 @@ function OddsCard({ odds, teams = [], preview = false }) {
           <div><h2 className="text-base font-bold text-white sm:text-lg">{labels.winner}</h2><p className="mt-1 text-[11px] font-medium text-slate-400">{labels.ad} · 18+</p></div>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
-          {preview && <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-2.5 py-1 text-[10px] font-bold text-amber-200">{sample.badge}</span>}
-          <span className="flex items-center gap-1.5 text-[11px] text-slate-400"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true" className="h-3.5 w-3.5"><circle cx="8" cy="8" r="6" /><path d="M8 4.5V8l2.5 1.5" /></svg><span>{preview ? sample.captured : labels.updated} <time dateTime={odds.updatedAt}>{updated}</time></span></span>
+          <span className="flex items-center gap-1.5 text-[11px] text-slate-400"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true" className="h-3.5 w-3.5"><circle cx="8" cy="8" r="6" /><path d="M8 4.5V8l2.5 1.5" /></svg><span>{labels.updated} <time dateTime={odds.updatedAt}>{updated}</time></span></span>
         </div>
       </div>
       <div className="relative px-5 pb-5 sm:px-6 sm:pb-6">
@@ -126,7 +112,7 @@ function OddsCard({ odds, teams = [], preview = false }) {
         </div>
       </div>
       <div className="relative flex flex-col gap-4 border-t border-white/[0.06] bg-black/15 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p className="max-w-lg text-[11px] leading-relaxed text-slate-400">{preview ? sample.note : labels.note}</p>
+        <p className="max-w-lg text-[11px] leading-relaxed text-slate-400">{labels.note}</p>
         <a href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-3 rounded-xl border border-sky-200/30 bg-gradient-to-br from-sky-300 to-sky-400 px-5 py-3 text-sm font-bold text-[#052437] shadow-[0_4px_18px_#38bdf81a] transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300">{labels.open}<ExternalArrow className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
       </div>
     </aside>
@@ -134,7 +120,5 @@ function OddsCard({ odds, teams = [], preview = false }) {
 }
 
 export default function OneWinMatchOdds({ matchId, teams }) {
-  const { search } = useLocation();
-  const preview = getOneWinOddsPreview(matchId, search);
-  return <AdGeoGate>{preview ? <OddsCard odds={preview} teams={teams} preview /> : <OddsContent key={matchId} matchId={matchId} teams={teams} />}</AdGeoGate>;
+  return <AdGeoGate><OddsContent key={matchId} matchId={matchId} teams={teams} /></AdGeoGate>;
 }
