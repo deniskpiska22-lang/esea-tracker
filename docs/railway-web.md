@@ -40,6 +40,22 @@ Cookies, Authorization, private/no-store, Set-Cookie and Vary responses are
 excluded. Restarting clears the cache; fresh requests reload the existing DB.
 GEO ad policy, odds and individual forum topics retain no-store behavior.
 
+## Match odds
+
+`ONEWIN_PUBLIC_PARTNER_ID` and `ONEWIN_PUBLIC_SOURCE_ORIGIN` can supply the
+public configuration advertised by 1win's sportsbook client. These are not
+private account credentials. The API origin is fixed to the verified public
+feed; source mirrors must match the existing HTTPS allowlist. Without these
+variables, the source discovers settings from the supplied public landing URL.
+
+The service shares a 30-second event-list cache and a 10-second per-event odds
+cache across visitors. Active match pages poll every 8 seconds when odds are
+available, retry every 30 seconds when unavailable, and pause in hidden tabs.
+Prices expire after 20 seconds. Missing, suspended, stale or ambiguous markets
+hide the block; visits revalidate the market before the affiliate redirect.
+No separate paid worker or bookmaker account is required. Logs distinguish
+landing-page, template and event-feed failures.
+
 Vercel Analytics/Speed Insights are disabled for Railway builds. Existing
 Yandex Metrika and Clarity remain in the frontend.
 

@@ -2,9 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { buildOneWinMatchUrl, extractOneWinWinner, findOneWinMatch, normalizeOddsTeam, orientOneWinOdds } from '../src/utils/onewinMatch.js';
-import { readOneWinPage, readOneWinSnapshot } from '../server/onewinSource.js';
+import { configuredOneWinSource, readOneWinPage, readOneWinSnapshot } from '../server/onewinSource.js';
 import { createMatchOddsHandler } from '../api/match-odds.js';
 import { getOneWinOddsPreview } from '../src/utils/onewinOddsPreview.js';
+
+test('public client configuration fixes the API origin and refuses incomplete or arbitrary sources', () => {
+  assert.equal(configuredOneWinSource({}), null);
+  const env = { ONEWIN_PUBLIC_PARTNER_ID: '44ba10e5-7df2-47ab-a44d-dc93803c7a6e', ONEWIN_PUBLIC_SOURCE_ORIGIN: 'https://one-vv8346.com' };
+  assert.deepEqual(configuredOneWinSource(env), { apiUrl: 'https://api-gateway.top-parser.com', partnerId: env.ONEWIN_PUBLIC_PARTNER_ID, sourceOrigin: env.ONEWIN_PUBLIC_SOURCE_ORIGIN });
+  for (const patch of [
+    { ONEWIN_PUBLIC_PARTNER_ID: '' }, { ONEWIN_PUBLIC_PARTNER_ID: 'not-a-uuid' },
+    { ONEWIN_PUBLIC_SOURCE_ORIGIN: '' }, { ONEWIN_PUBLIC_SOURCE_ORIGIN: 'https://example.com' },
+    { ONEWIN_PUBLIC_SOURCE_ORIGIN: 'http://one-vv8346.com' },
+    { ONEWIN_PUBLIC_SOURCE_ORIGIN: 'https://one-vv8346.com:9000' },
+    { ONEWIN_PUBLIC_SOURCE_ORIGIN: 'https://user:pass@one-vv8346.com' },
+  ]) assert.throws(() => configuredOneWinSource({ ...env, ...patch }), /Invalid/);
+});
 
 // Captured from the provider's public event feed and winner snapshot. The second
 // market is a map winner and must never be displayed as the match winner.

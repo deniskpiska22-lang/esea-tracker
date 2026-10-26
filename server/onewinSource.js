@@ -1,6 +1,7 @@
 // Read-only public endpoints used by 1win's own sportsbook client.
 // No user accounts, private tokens, country spoofing, or bet placement.
 import { isOneWinSourceOrigin } from '../src/utils/onewinMatch.js';
+import process from 'node:process';
 
 const SOURCE = 'https://one-vv4852.com';
 const ALLOWED_API = 'https://api-gateway.top-parser.com';
@@ -25,9 +26,9 @@ function cached(key, ttl, read) {
   return entry.promise;
 }
 
-async function readText(url, options = {}) {
-  const response = await fetch(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(6000) });
-  if (!response.ok) throw new Error(`1win source returned HTTP ${response.status}`);
+async function readText(url, options = {}, source = 'source') {
+  const response = await fetch(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(12000) });
+  if (!response.ok) throw new Error(`1win ${source} returned HTTP ${response.status}`);
   const text = await response.text();
   if (text.length > 2_000_000) throw new Error('1win source response is too large');
   return text;
@@ -48,7 +49,7 @@ export async function readOneWinPage(fetchImpl = fetch) {
       url = destination;
       continue;
     }
-    if (!response.ok) throw new Error(`1win source returned HTTP ${response.status}`);
+    if (!response.ok) throw new Error(`1win configuration page returned HTTP ${response.status}`);
     const html = await response.text();
     if (html.length > 2_000_000) throw new Error('1win source response is too large');
     return { html, origin: url.origin };
@@ -56,7 +57,22 @@ export async function readOneWinPage(fetchImpl = fetch) {
   throw new Error('Too many 1win mirror redirects');
 }
 
+// These are public sportsbook client settings, not an account token or API
+// secret. Railway can read the public feed without fetching the landing page
+// on every cold start. Keep the API origin fixed and validate mirror hosts.
+export function configuredOneWinSource(env) {
+  const partnerId = env.ONEWIN_PUBLIC_PARTNER_ID?.trim();
+  const sourceOrigin = env.ONEWIN_PUBLIC_SOURCE_ORIGIN?.trim();
+  if (!partnerId && !sourceOrigin) return null;
+  if (!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(partnerId || '') || !isOneWinSourceOrigin(sourceOrigin)) {
+    throw new Error('Invalid public 1win configuration');
+  }
+  return { apiUrl: ALLOWED_API, partnerId, sourceOrigin };
+}
+
 export function getOneWinConfig() {
+  const configured = configuredOneWinSource(process.env);
+  if (configured) return Promise.resolve(configured);
   return cached('config', 6 * 60 * 60_000, async () => {
     const { html, origin } = await readOneWinPage();
     const initial = html.match(/window\.INITIAL_DATA\s*=\s*({[\s\S]*?})\s*;?\s*<\/script>/);
@@ -66,7 +82,7 @@ export function getOneWinConfig() {
     if (typeof path !== 'string' || !path.startsWith('/web/v2/sdui/templates/')) throw new Error('Invalid 1win template URL');
     const url = new URL(`/api${path}`, origin);
     if (url.origin !== origin) throw new Error('Invalid 1win template origin');
-    const templates = JSON.parse(await readText(url, { headers: { 'Accept-Language': 'ru-RU', 'X-Origin': new URL(origin).host } }));
+    const templates = JSON.parse(await readText(url, { headers: { 'Accept-Language': 'ru-RU', 'X-Origin': new URL(origin).host } }, 'configuration templates'));
     const config = templates.options?.moduleBetting?.find(item => item.name === 'Module_Betting')?.params;
     if (config?.apiUrl !== ALLOWED_API || !/^[a-f0-9-]{36}$/i.test(config.partnerId || '')) throw new Error('Unsupported 1win sportsbook configuration');
     return { apiUrl: config.apiUrl, partnerId: config.partnerId, sourceOrigin: origin };
@@ -80,7 +96,7 @@ export function getOneWinEvents(service) {
     const result = JSON.parse(await readText(`${config.apiUrl}/matches/get-many`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'x-lang': 'ru', 'x-external-partner-id': config.partnerId },
       body: JSON.stringify({ service, sportId: 142, includeSportType: 'esport', excludeSportType: 'polybet', limit: 100 }),
-    }));
+    }, 'event feed'));
     if (!Array.isArray(result.result?.items)) throw new Error('Invalid 1win event feed');
     // Do not silently match against an incomplete, capped feed.
     if (Number(result.result.meta?.total) > result.result.items.length) throw new Error('1win event feed exceeds the supported page size');
