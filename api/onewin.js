@@ -3,9 +3,12 @@ import path from 'node:path';
 import process from 'node:process';
 import { getAdPolicy } from './ad-policy.js';
 import { AD_LANGUAGES } from '../src/lib/adLanguage.js';
+import { getOneWinConfig } from '../server/onewinSource.js';
+import { isOneWinSourceOrigin } from '../src/utils/onewinMatch.js';
 
 const OFFER_URL = 'https://1win.com/?open=register&p=g39d';
-export default async function handler(req, res) {
+export function createOneWinAdHandler({ loadConfig = getOneWinConfig } = {}) {
+ return async function handler(req, res) {
   for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) {
     res.setHeader(name, 'private, no-store, max-age=0');
   }
@@ -13,7 +16,19 @@ export default async function handler(req, res) {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   if (!['GET', 'HEAD'].includes(req.method)) return res.status(405).end('Method not allowed');
   if (!getAdPolicy(req.headers['x-vercel-ip-country']).adsEnabled) return res.status(403).end('Unavailable');
-  if (req.query.kind === 'click') return res.redirect(302, OFFER_URL);
+  if (req.query.kind === 'click') {
+    if (req.query.destination === 'cs2') {
+      try {
+        const { sourceOrigin } = await loadConfig();
+        if (!isOneWinSourceOrigin(sourceOrigin)) throw new Error('Invalid mirror');
+        const target = new URL('/betting/esport/cs2-142', sourceOrigin);
+        target.searchParams.set('p', 'g39d');
+        return res.redirect(302, target.href);
+      } catch { return res.status(503).end('CS2 betting temporarily unavailable'); }
+    }
+    if (req.query.destination) return res.status(400).end('Unknown destination');
+    return res.redirect(302, OFFER_URL);
+  }
   if (req.query.kind !== 'image' || !AD_LANGUAGES.includes(req.query.lang)) return res.status(404).end('Not found');
   try {
     const image = await readFile(path.join(process.cwd(), 'server/ad-creatives', req.query.lang + '.jpeg'));
@@ -23,3 +38,6 @@ export default async function handler(req, res) {
     return res.status(503).end('Temporarily unavailable');
   }
 }
+
+}
+export default createOneWinAdHandler();

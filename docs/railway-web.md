@@ -141,3 +141,9 @@ matches with a link to bonus terms. It does not show Markets questions or poll
 user-provided `https://1win.com/?open=register&p=g39d`. Referral parameters can be
 verified in HTTP redirects; crediting registrations/deposits must be verified in
 the partner dashboard and cannot be guaranteed from the URL alone.
+
+
+Match fallback CTA now explicitly uses `destination=cs2`. The server resolves the
+validated configured 1win mirror and redirects to `/betting/esport/cs2-142?p=g39d`.
+It never sends this CTA to Markets or the registration landing. Other placements
+retain their existing destination; no query parameter may override the referral code.
