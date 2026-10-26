@@ -4,13 +4,13 @@ import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
 import './TeamNativeAd.css';
 
 const copy = {
-  ru: { ad: 'Реклама', title: 'Твой взгляд на игру.', body: 'Линия CS2 и live-коэффициенты на {brand}.', open: 'Смотреть линию', prematch: 'Прематч', note: 'Играйте ответственно.' },
-  en: { ad: 'Advertisement', title: 'Your take on the game.', body: 'CS2 markets and live odds on {brand}.', open: 'Explore markets', prematch: 'Pre-match', note: 'Play responsibly.' },
-  de: { ad: 'Werbung', title: 'Dein Blick aufs Spiel.', body: 'CS2-Märkte und Live-Quoten bei {brand}.', open: 'Wettangebot ansehen', prematch: 'Vor dem Spiel', note: 'Verantwortungsvoll spielen.' },
-  pt: { ad: 'Publicidade', title: 'O teu olhar sobre o jogo.', body: 'Mercados de CS2 e odds ao vivo na {brand}.', open: 'Ver mercados', prematch: 'Pré-jogo', note: 'Jogue com responsabilidade.' },
-  es: { ad: 'Publicidad', title: 'Tu visión del juego.', body: 'Mercados de CS2 y cuotas en vivo en {brand}.', open: 'Ver mercados', prematch: 'Prepartido', note: 'Juega con responsabilidad.' },
-  fr: { ad: 'Publicité', title: 'Ton regard sur le jeu.', body: 'Marchés CS2 et cotes en direct sur {brand}.', open: 'Voir les marchés', prematch: 'Avant-match', note: 'Jouez de façon responsable.' },
-  it: { ad: 'Pubblicità', title: 'Il tuo sguardo sul gioco.', body: 'Mercati CS2 e quote live su {brand}.', open: 'Esplora i mercati', prematch: 'Pre-partita', note: 'Gioca responsabilmente.' },
+  ru: { ad: 'Реклама', title: 'Сравни свой прогноз', body: 'Узнай, какие коэффициенты даёт {brand} на матчи CS2.', open: 'Посмотреть коэффициенты', prematch: 'Прематч', note: 'Играйте ответственно.' },
+  en: { ad: 'Advertisement', title: 'How does your prediction compare?', body: 'See the odds {brand} offers on CS2 matches.', open: 'See CS2 odds', prematch: 'Pre-match', note: 'Play responsibly.' },
+  de: { ad: 'Werbung', title: 'Vergleiche deine Prognose', body: 'Entdecke die Quoten von {brand} für CS2-Spiele.', open: 'Quoten ansehen', prematch: 'Vor dem Spiel', note: 'Verantwortungsvoll spielen.' },
+  pt: { ad: 'Publicidade', title: 'Compara o teu palpite', body: 'Descobre as odds da {brand} para os jogos de CS2.', open: 'Ver odds de CS2', prematch: 'Pré-jogo', note: 'Jogue com responsabilidade.' },
+  es: { ad: 'Publicidad', title: 'Compara tu pronóstico', body: 'Descubre las cuotas de {brand} para los partidos de CS2.', open: 'Ver cuotas de CS2', prematch: 'Prepartido', note: 'Juega con responsabilidad.' },
+  fr: { ad: 'Publicité', title: 'Compare ton pronostic', body: 'Découvre les cotes de {brand} pour les matchs CS2.', open: 'Voir les cotes CS2', prematch: 'Avant-match', note: 'Jouez de façon responsable.' },
+  it: { ad: 'Pubblicità', title: 'Confronta il tuo pronostico', body: 'Scopri le quote di {brand} per le partite di CS2.', open: 'Vedi le quote CS2', prematch: 'Pre-partita', note: 'Gioca responsabilmente.' },
 };
 
 export default function TeamNativeAd() {
