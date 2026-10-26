@@ -1,4 +1,15 @@
-import { currentLocale } from '../i18n/languages.js';
+// Preserve the browser's full regional tag (en-GB vs en-US), independently
+// of the selected translation language and of the visitor's time zone.
+export function getUserDateLocale(languages = typeof navigator === 'undefined' ? [] : navigator.languages?.length ? navigator.languages : [navigator.language]) {
+  for (const language of Array.isArray(languages) ? languages : []) {
+    if (typeof language !== 'string' || !language.trim()) continue;
+    try {
+      const [locale] = Intl.getCanonicalLocales(language.trim());
+      if (locale) return locale;
+    } catch { /* Ignore malformed browser preference entries. */ }
+  }
+  return Intl.DateTimeFormat().resolvedOptions().locale;
+}
 
 const formatters = new Map();
 function formatter(locale, options = {}) {
@@ -26,7 +37,7 @@ export function getTimeZoneLabel(date = new Date(), timeZone = getUserTimeZone()
     .formatToParts(date).find(part => part.type === 'timeZoneName')?.value || timeZone;
 }
 
-export function formatUserDateTime(value, options = {}, { locale = currentLocale(), timeZone = getUserTimeZone(), showTimeZone = true } = {}) {
+export function formatUserDateTime(value, options = {}, { locale = getUserDateLocale(), timeZone = getUserTimeZone(), showTimeZone = true } = {}) {
   if (value === null || value === undefined || value === '') return '';
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) return '';
