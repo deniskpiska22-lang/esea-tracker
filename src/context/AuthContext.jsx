@@ -1,134 +1,64 @@
+/* eslint-disable react-refresh/only-export-components -- context exports its provider and consumer hook */
 import {
   createContext,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
 import { supabase } from "../lib/supabaseClient";
 
+import { createAuthSessionLoader, INITIAL_AUTH_STATE } from "../utils/authSession.js";
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [session, setSession] = useState(null);
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const loadProfile = useCallback(async (userId) => {
-    if (!supabase || !userId) {
-      setProfile(null);
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from("profiles")
-      .select(`
-        id,
-        username,
-        display_name,
-        avatar_url,
-        bio,
-        country_code,
-        favorite_team_slug,
-        is_admin,
-        created_at,
-        updated_at
-      `)
-      .eq("id", userId)
-      .maybeSingle();
-
-    if (error) {
-      console.error("Failed to load profile:", error);
-      setProfile(null);
-      return;
-    }
-
-    setProfile(data);
-  }, []);
+  const [state, setState] = useState(INITIAL_AUTH_STATE);
+  const loaderRef = useRef(null);
 
   useEffect(() => {
-    let active = true;
-
+    const loader = createAuthSessionLoader({
+      onChange: setState,
+      loadProfile: async userId => {
+        const { data, error } = await supabase.from("profiles").select(`
+          id, username, display_name, avatar_url, bio, country_code,
+          favorite_team_slug, is_admin, created_at, updated_at
+        `).eq("id", userId).maybeSingle();
+        if (error) throw error;
+        return data;
+      },
+    });
+    loaderRef.current = loader;
     if (!supabase) {
-      setLoading(false);
-      return undefined;
+      loader.setSession(null);
+      return () => { loader.dispose(); loaderRef.current = null; };
     }
 
-    async function initializeAuth() {
-      try {
-        const {
-          data,
-          error,
-        } = await supabase.auth.getSession();
-
-        if (!active) {
-          return;
-        }
-
-        if (error) {
-          throw error;
-        }
-
-        const currentSession =
-          data?.session ?? null;
-
-        setSession(currentSession);
-        setUser(currentSession?.user ?? null);
-
-        if (currentSession?.user) {
-          await loadProfile(
-            currentSession.user.id
-          );
-        } else {
-          setProfile(null);
-        }
-      } catch (error) {
-        console.error(
-          "Failed to initialize auth:",
-          error
-        );
-
-        if (active) {
-          setSession(null);
-          setUser(null);
-          setProfile(null);
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
+    let authEventSeen = false;
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      authEventSeen = true;
+      loader.setSession(session, { reload: event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED' });
+    });
+    // INITIAL_SESSION normally supplies the restored session. Keep getSession
+    // as a fallback, but never overwrite a newer sign-in/sign-out event.
+    supabase.auth.getSession().then(({ data, error }) => {
+      if (authEventSeen) return;
+      if (error) throw error;
+      loader.setSession(data?.session ?? null);
+    }).catch(error => {
+      if (!authEventSeen) {
+        console.error("Failed to initialize auth:", error);
+        loader.setSession(null);
       }
-    }
-
-    initializeAuth();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(
-      (_event, nextSession) => {
-        setSession(nextSession);
-        setUser(nextSession?.user ?? null);
-
-        if (nextSession?.user) {
-          window.setTimeout(() => {
-            loadProfile(nextSession.user.id);
-          }, 0);
-        } else {
-          setProfile(null);
-        }
-
-        setLoading(false);
-      }
-    );
-
+    });
     return () => {
-      active = false;
+      loader.dispose();
+      loaderRef.current = null;
       subscription.unsubscribe();
     };
-  }, [loadProfile]);
+  }, []);
 
   async function signOut() {
     if (!supabase) {
@@ -146,30 +76,10 @@ export function AuthProvider({ children }) {
   }
 
   async function refreshProfile() {
-    if (!user?.id) {
-      setProfile(null);
-      return;
-    }
-
-    await loadProfile(user.id);
+    await loaderRef.current?.refreshProfile();
   }
 
-  const value = useMemo(
-    () => ({
-      session,
-      user,
-      profile,
-      loading,
-      signOut,
-      refreshProfile,
-    }),
-    [
-      session,
-      user,
-      profile,
-      loading,
-    ]
-  );
+  const value = useMemo(() => ({ ...state, signOut, refreshProfile }), [state]);
 
   return (
     <AuthContext.Provider value={value}>

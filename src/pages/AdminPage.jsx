@@ -28,8 +28,9 @@ const SECTIONS = [
 const EMPTY = {};
 const number = value => value == null ? '—' : Number(value).toLocaleString(currentLocale());
 export default function AdminPage() {
-  const { profile, loading } = useAuth();
+  const { user, profile, loading, profileError, refreshProfile } = useAuth();
   if (loading) return <main className="admin-workspace"><Empty>{tx('Loading...')}</Empty></main>;
+  if (user && profileError && !profile) return <main className="admin-workspace"><Empty><Notice error>{tx('Your profile is still loading. Please try again.')}</Notice><button type="button" className="admin-btn" onClick={refreshProfile}>{tx('Retry')}</button></Empty></main>;
   if (!profile?.is_admin) return <Navigate to="/" replace />;
   return <AdminWorkspace />;
 }
