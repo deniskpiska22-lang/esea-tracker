@@ -307,3 +307,36 @@ test('socket handles unavailable markets and refuses an untrusted source', async
   assert.equal(await pending, null);
   await assert.rejects(readOneWinSnapshot({ ...publicConfig, apiUrl: 'https://example.com' }, event.id), /Invalid odds source/);
 });
+
+
+const advancedAliases = JSON.parse(readFileSync(new URL('./fixtures/onewin-advanced-alias-markets.json', import.meta.url), 'utf8')).markets;
+test('captured Advanced pairs match shortened bookmaker names only for verified FACEIT rosters', () => {
+  for (const {match,event,snapshot} of advancedAliases) {
+    assert.equal(findOneWinMatch(match,[event]),event);
+    for (const side of [1,2]) {
+      assert.equal(findOneWinMatch({...match,[`team${side}_id`]:'other-roster'},[event]),null);
+      assert.equal(findOneWinMatch({...match,[`team${side}_id`]:undefined},[event]),null);
+    }
+    assert.equal(findOneWinMatch({...match,scheduled_at:'2026-10-27T18:00:00Z'},[event]),null);
+    assert.equal(findOneWinMatch(match,[event,{...event,id:event.id+1}]),null);
+    const prices=extractOneWinWinner(snapshot,event);
+    assert.ok(prices);
+    const reversed={...match,team1_name:match.team2_name,team1_id:match.team2_id,team2_name:match.team1_name,team2_id:match.team1_id};
+    assert.equal(findOneWinMatch(reversed,[event]),event);
+    assert.deepEqual(orientOneWinOdds(reversed,event,prices),{team1:prices.away,team2:prices.home});
+  }
+});
+test('real Advanced match APIs return captured prices and correct per-match affiliate redirects',async()=>{
+  for (const {match,event,snapshot} of advancedAliases) {
+    const options={dbMatch:match,events:[event],source:{data:snapshot,fetchedAt:currentTime},query:{matchId:match.id}};
+    const {response}=await request(options);
+    assert.equal(response.body.odds.eventId,event.id);
+    assert.equal(response.body.odds.team1.price,snapshot.oddsGroups[0].oddsList[0].cf);
+    assert.equal(response.body.odds.team2.price,snapshot.oddsGroups[0].oddsList[1].cf);
+    const visit=await request({...options,query:{matchId:match.id,action:'visit'}});
+    const target=new URL(visit.response.location);
+    assert.equal(target.hostname,'one-vv8346.com');
+    assert.equal(target.pathname,`/betting/match/esport/${event.slug}-${event.id}`);
+    assert.equal(target.searchParams.get('p'),'g39d');
+  }
+});

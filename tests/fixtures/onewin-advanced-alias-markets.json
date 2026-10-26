@@ -1,0 +1,233 @@
+{
+  "source": "Captured public 1win event feed and websocket snapshots; FACEIT identities verified against stored scheduled matches on 2026-10-26",
+  "markets": [
+    {
+      "event": {
+        "awayTeam": {
+          "id": 315224,
+          "name": "Diamant",
+          "position": 2,
+          "slug": "diamant"
+        },
+        "category": {
+          "id": 1610,
+          "slug": "esea"
+        },
+        "categoryId": 1610,
+        "competitors": [
+          {
+            "id": 1731460,
+            "name": "TTG",
+            "position": 1,
+            "slug": "ttg"
+          },
+          {
+            "id": 315224,
+            "name": "Diamant",
+            "position": 2,
+            "slug": "diamant"
+          }
+        ],
+        "createdAt": 1793019227,
+        "homeTeam": {
+          "id": 1731460,
+          "name": "TTG",
+          "position": 1,
+          "slug": "ttg"
+        },
+        "id": 42130141,
+        "isHot": false,
+        "logo": {
+          "url": "https://bstatic.live/icons/a93fd32f30aa2a2a3a5d3e4322d80f13b0c94d76.png"
+        },
+        "name": "TTG - Diamant",
+        "service": "PREMATCH",
+        "serviceV2": "prematch",
+        "slug": "ttg-vs-diamant",
+        "sport": {
+          "id": 142,
+          "isEsport": true,
+          "slug": "cs2",
+          "sportType": "esport",
+          "tag": "counter_strike2"
+        },
+        "sportId": 142,
+        "sportTag": "counter_strike2",
+        "startAt": 1793037600,
+        "tournament": {
+          "id": 33755,
+          "slug": "esea-advanced-europe"
+        },
+        "tournamentId": 33755,
+        "updatedAt": 1793023658063,
+        "sourceOrigin": "https://one-vv8346.com"
+      },
+      "snapshot": {
+        "matchId": 42130141,
+        "oddsGroups": [
+          {
+            "baseOrder": 0,
+            "id": "53278",
+            "isBase": true,
+            "name": "Победитель ",
+            "oddsList": [
+              {
+                "cf": 1.61,
+                "id": "12:P:19263768:[1,[],[0],1,0,[]]",
+                "name": "TTG",
+                "outcome": "1",
+                "status": 1,
+                "ts": 1793023658063
+              },
+              {
+                "cf": 2.17,
+                "id": "12:P:19263768:[1,[],[0],1,3,[]]",
+                "name": "Diamant",
+                "outcome": "2",
+                "status": 1,
+                "ts": 1793023658063
+              }
+            ],
+            "order": 0,
+            "outcomes": [
+              "1",
+              "2"
+            ],
+            "renderType": "cols-2",
+            "subgameIds": [
+              168
+            ]
+          }
+        ],
+        "ts": 1793023658063,
+        "isBaseOddsGroups": true
+      },
+      "match": {
+        "id": "1-5c1272ba-cb2a-4dfe-b8a4-1b6d51609643",
+        "status": "SCHEDULED",
+        "scheduled_at": "2026-10-26T18:00:00Z",
+        "team1_name": "TTG Esports",
+        "team2_name": "Diamant Esports",
+        "team1_id": "8de7892a-dc7a-4ac7-9620-f02522c75609",
+        "team2_id": "052f75bf-65dc-497c-86f2-e68880ec1171"
+      }
+    },
+    {
+      "event": {
+        "awayTeam": {
+          "id": 1591082,
+          "name": "Honved",
+          "position": 2,
+          "slug": "honved",
+          "logo": {
+            "url": "https://bstatic.live/icons/65ef358b7cac74b2b0effa4bfc1d7d9a9fe39923.webp"
+          }
+        },
+        "category": {
+          "id": 1610,
+          "slug": "esea"
+        },
+        "categoryId": 1610,
+        "competitors": [
+          {
+            "id": 1741251,
+            "name": "Growth Lab",
+            "position": 1,
+            "slug": "growth-lab"
+          },
+          {
+            "id": 1591082,
+            "name": "Honved",
+            "position": 2,
+            "slug": "honved",
+            "logo": {
+              "url": "https://bstatic.live/icons/65ef358b7cac74b2b0effa4bfc1d7d9a9fe39923.webp"
+            }
+          }
+        ],
+        "createdAt": 1793021854,
+        "homeTeam": {
+          "id": 1741251,
+          "name": "Growth Lab",
+          "position": 1,
+          "slug": "growth-lab"
+        },
+        "id": 42131672,
+        "isHot": false,
+        "logo": {
+          "url": "https://bstatic.live/icons/a93fd32f30aa2a2a3a5d3e4322d80f13b0c94d76.png"
+        },
+        "name": "Growth Lab - Honved",
+        "service": "PREMATCH",
+        "serviceV2": "prematch",
+        "slug": "growth-lab-vs-honved",
+        "sport": {
+          "id": 142,
+          "isEsport": true,
+          "slug": "cs2",
+          "sportType": "esport",
+          "tag": "counter_strike2"
+        },
+        "sportId": 142,
+        "sportTag": "counter_strike2",
+        "startAt": 1793039400,
+        "tournament": {
+          "id": 33755,
+          "slug": "esea-advanced-europe"
+        },
+        "tournamentId": 33755,
+        "updatedAt": 1793023770370,
+        "sourceOrigin": "https://one-vv8346.com"
+      },
+      "snapshot": {
+        "matchId": 42131672,
+        "oddsGroups": [
+          {
+            "baseOrder": 0,
+            "id": "53278",
+            "isBase": true,
+            "name": "Победитель ",
+            "oddsList": [
+              {
+                "cf": 2,
+                "id": "12:P:19269776:[1,[],[0],1,0,[]]",
+                "name": "Growth Lab",
+                "outcome": "1",
+                "status": 1,
+                "ts": 1793023770370
+              },
+              {
+                "cf": 1.72,
+                "id": "12:P:19269776:[1,[],[0],1,3,[]]",
+                "name": "Honved",
+                "outcome": "2",
+                "status": 1,
+                "ts": 1793023770370
+              }
+            ],
+            "order": 0,
+            "outcomes": [
+              "1",
+              "2"
+            ],
+            "renderType": "cols-2",
+            "subgameIds": [
+              168
+            ]
+          }
+        ],
+        "ts": 1793023770370,
+        "isBaseOddsGroups": true
+      },
+      "match": {
+        "id": "1-b71c9d69-da83-4724-9211-6af82d9d0ba8",
+        "status": "SCHEDULED",
+        "scheduled_at": "2026-10-26T18:30:00Z",
+        "team1_name": "Growth Lab Esport",
+        "team2_name": "LenovoLHonved",
+        "team1_id": "fe66f943-b5ab-46f6-9f43-c3ed3b9b904a",
+        "team2_id": "add80f4e-86e7-454a-8f3e-93c8349a39a3"
+      }
+    }
+  ]
+}
