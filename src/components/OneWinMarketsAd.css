@@ -1,0 +1,14 @@
+.onewin-markets-ad .team-native-ad__content h2 { font-size: 18px; line-height: 1.35; }
+.onewin-markets-ad__answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0 28px 20px; }
+.onewin-markets-ad__answer { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 49px; border: 1px solid; border-radius: 10px; padding: 10px 17px; font-size: 13px; font-weight: 600; text-decoration: none; transition: filter .18s; }
+.onewin-markets-ad__answer strong { font-size: 21px; font-variant-numeric: tabular-nums; }
+.onewin-markets-ad__answer--yes { color: #8be8c4; border-color: #43cf972e; background: #31bb8b14; }
+.onewin-markets-ad__answer--no { color: #f4a8b6; border-color: #f38e9c2e; background: #e26b8114; }
+.onewin-markets-ad__answer:hover { filter: brightness(1.2); }
+.onewin-markets-ad__answer:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (max-width: 767px) { .onewin-markets-ad__answers { padding: 0 20px 20px; } }
+@media (max-width: 399px) {
+  .onewin-markets-ad__answers { padding: 0 15px 17px; gap: 9px; }
+  .onewin-markets-ad .team-native-ad__content h2 { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .onewin-markets-ad__answer { transition: none; } }

@@ -1,0 +1,99 @@
+{
+  "capturedAt": "2026-10-26T12:43:52.834Z",
+  "event": {
+    "awayTeam": {
+      "id": 0,
+      "name": "-",
+      "position": 2,
+      "slug": ""
+    },
+    "category": {
+      "id": 2037,
+      "slug": "cybersport"
+    },
+    "categoryId": 2037,
+    "competitors": [
+      {
+        "id": 0,
+        "name": "Добавит ли Valve обмен наклеек до ноября?",
+        "position": 1,
+        "slug": ""
+      },
+      {
+        "id": 0,
+        "name": "-",
+        "position": 2,
+        "slug": ""
+      }
+    ],
+    "createdAt": 1782309519,
+    "homeTeam": {
+      "id": 0,
+      "name": "Добавит ли Valve обмен наклеек до ноября?",
+      "position": 1,
+      "slug": ""
+    },
+    "id": 36817484,
+    "isHot": false,
+    "logo": {
+      "url": "https://bstatic.live/icons/b58979334e13825985130a437a0d446f9e5fcd72.jpeg"
+    },
+    "name": "Добавит ли Valve обмен наклеек до ноября?",
+    "service": "PREMATCH",
+    "serviceV2": "prematch",
+    "slug": "will-valve-add-sticker-trade-ups-before-november",
+    "sport": {
+      "id": 107,
+      "isEsport": false,
+      "slug": "markets",
+      "sportType": "polybet",
+      "tag": "specials"
+    },
+    "sportId": 107,
+    "sportTag": "specials",
+    "startAt": 1793491200,
+    "tournament": {
+      "id": 46323,
+      "slug": "counter-strike"
+    },
+    "tournamentId": 46323,
+    "updatedAt": 1784321268945,
+    "sourceOrigin": "https://one-vv8346.com"
+  },
+  "snapshot": {
+    "matchId": 36817484,
+    "oddsGroups": [
+      {
+        "baseOrder": 1,
+        "id": "152410:2915226078",
+        "isBase": true,
+        "name": "Добавит ли Valve обмен наклеек до ноября?",
+        "oddsList": [
+          {
+            "cf": 4.2,
+            "id": "16:019ef948-313a-7d34-be29-969c41582e97",
+            "name": "Да",
+            "outcome": "yes",
+            "probability": 22,
+            "status": 1,
+            "ts": 1784321268945
+          },
+          {
+            "cf": 1.19,
+            "id": "16:019ef948-313a-7d50-be2a-475b9cb06a4d",
+            "name": "Нет",
+            "outcome": "no",
+            "probability": 78,
+            "status": 1,
+            "ts": 1784321268945
+          }
+        ],
+        "order": 1,
+        "renderType": "cols-2",
+        "subgameIds": []
+      }
+    ],
+    "ts": 1784321268945,
+    "isBaseOddsGroups": true
+  }
+}

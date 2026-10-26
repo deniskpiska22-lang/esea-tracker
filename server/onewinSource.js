@@ -106,13 +106,13 @@ export function getOneWinEvents(service) {
 
 // The provider publishes odds through Socket.IO/Engine.IO snapshots. Only
 // these few protocol messages are needed; close as soon as our snapshot arrives.
-export function readOneWinSnapshot(config, matchId, { WebSocketImpl = WebSocket, timeoutMs = 6000 } = {}) {
+export function readOneWinSnapshot(config, matchId, { WebSocketImpl = WebSocket, timeoutMs = 6000, language = 'ru' } = {}) {
   return new Promise((resolve, reject) => {
     const url = new URL(config.apiUrl);
     if (url.origin !== ALLOWED_API || !Number.isSafeInteger(matchId) || matchId <= 0) return reject(new Error('Invalid odds source'));
     url.protocol = 'wss:';
     url.pathname = '/push-server-v2/';
-    url.search = new URLSearchParams({ Language: 'ru', externalPartnerId: config.partnerId, EIO: '4', transport: 'websocket' }).toString();
+    url.search = new URLSearchParams({ Language: language, externalPartnerId: config.partnerId, EIO: '4', transport: 'websocket' }).toString();
     const socket = new WebSocketImpl(url.href);
     let settled = false;
     let subscribed = false;
@@ -146,9 +146,24 @@ export function readOneWinSnapshot(config, matchId, { WebSocketImpl = WebSocket,
   });
 }
 
-export function getOneWinSnapshot(matchId) {
-  return cached(`odds:${matchId}`, 10_000, async () => {
-    const data = await readOneWinSnapshot(await getOneWinConfig(), matchId);
+export function getOneWinSnapshot(matchId, language = 'ru') {
+  return cached(`odds:${language}:${matchId}`, 10_000, async () => {
+    const data = await readOneWinSnapshot(await getOneWinConfig(), matchId, { language });
     return { data, fetchedAt: Date.now() };
+  });
+}
+
+// Same public event feed used by the Markets client. Only the CS2 category is
+// requested; never import politics, crypto, or unrelated esports into the site.
+export function getOneWinMarketEvents(language = 'en') {
+  return cached(`markets:${language}`, 60_000, async () => {
+    const config = await getOneWinConfig();
+    const result = JSON.parse(await readText(`${config.apiUrl}/matches/get-many`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-lang': language, 'x-external-partner-id': config.partnerId },
+      body: JSON.stringify({ includeSportType: 'polybet', categoryId: 2037, tournamentId: 46323, limit: 100 }),
+    }, 'Markets event feed'));
+    if (!Array.isArray(result.result?.items)) throw new Error('Invalid 1win Markets feed');
+    return result.result.items.map(event => ({ ...event, sourceOrigin: config.sourceOrigin }));
   });
 }

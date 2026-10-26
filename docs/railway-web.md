@@ -42,6 +42,17 @@ GEO ad policy, odds and individual forum topics retain no-store behavior.
 
 ## Match odds
 
+Match rooms without fresh winner odds try `/api/onewin-markets?lang=en` for a
+current binary CS2 question from 1win Markets. The existing GEO policy still
+applies. Questions come from the public `polybet` feed (esports category 2037,
+Counter-Strike tournament 46323); yes/no probabilities come from fresh public
+snapshots, with a 60-second lifetime. The browser polls every
+15 seconds while visible. Event lists are shared for 60 seconds per language,
+and snapshots for 10 seconds. Closed, expired, suspended or unavailable
+questions fall back to the existing native advertisement. Question links
+revalidate the event before redirecting to its Markets page with `p=g39d`.
+This uses the existing public client settings and requires no new secrets.
+
 `ONEWIN_PUBLIC_PARTNER_ID` and `ONEWIN_PUBLIC_SOURCE_ORIGIN` can supply the
 public configuration advertised by 1win's sportsbook client. These are not
 private account credentials. The API origin is fixed to the verified public

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
 import TeamNativeAd from './TeamNativeAd.jsx';
+import OneWinMarketsAd from './OneWinMarketsAd.jsx';
 
 const copy = {
   ru: { ad: 'Реклама', winner: 'Победитель матча', updated: 'Обновлено', open: 'Открыть матч в 1win', note: 'Коэффициенты могут измениться на 1win.' },
@@ -70,7 +71,7 @@ function OddsContent({ matchId, teams }) {
     };
   }, [matchId]);
   const odds = result?.matchId === matchId ? result.data : null;
-  if (!odds) return checked ? <TeamNativeAd placement="match_room_native" /> : null;
+  if (!odds) return checked ? <OneWinMarketsAd /> : null;
   return <OddsCard odds={odds} teams={teams} />;
 }
 
@@ -134,7 +135,7 @@ export default function OneWinMatchOdds({ matchId, teams, active = true }) {
   }, []);
   if (isAdProviderEnabled(policy, 'onewin')) {
     return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
-      : <TeamNativeAd placement="match_room_native" />;
+      : <OneWinMarketsAd />;
   }
   if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" />;
   return null;
