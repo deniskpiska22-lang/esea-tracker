@@ -30,8 +30,8 @@ export default function TeamNativeAd() {
   const pari = provider === 'pari';
   const brand = pari ? 'PARI' : '1win';
   const href = pari
-    ? 'https://clicks.af-pb06e2.com/click?offer_id=812&partner_id=34440&landing_id=88&utm_medium=affiliate&utm_source=esea_tracker&utm_campaign=pari_cs2_test&utm_content=team_native_preview'
-    : `/api/onewin?kind=click&lang=${language}&placement=team_native_preview`;
+    ? 'https://clicks.af-pb06e2.com/click?offer_id=812&partner_id=34440&landing_id=88&utm_medium=affiliate&utm_source=esea_tracker&utm_campaign=pari_cs2_test&utm_content=team_profile_native'
+    : `/api/onewin?kind=click&lang=${language}&placement=team_profile_native`;
 
   return (
     <aside aria-label={`${labels.ad} · ${brand} · 18+`} data-team-native-ad={provider}
