@@ -131,3 +131,13 @@ errors/stale snapshots, and is translated into all seven site languages.
 Validation: `node --test tests/siteTraffic.test.js tests/adminWorkspace.test.js tests/webServer.test.js`.
 Database checks also exercise five-tab deduplication, three-minute expiry, cross-midnight IDs,
 service-role writes, anonymous denial and non-admin denial inside a rolled-back transaction.
+
+### Match fallback promotion
+
+The match-room fallback now keeps the native 1win design and advertises other CS2
+matches with a link to bonus terms. It does not show Markets questions or poll
+`onewin-markets`. Actual fresh match odds retain priority. Its CTA uses
+`/api/onewin?kind=click&lang=…&placement=match_room_native`, redirecting to the
+user-provided `https://1win.com/?open=register&p=g39d`. Referral parameters can be
+verified in HTTP redirects; crediting registrations/deposits must be verified in
+the partner dashboard and cannot be guaranteed from the URL alone.
