@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
-import TeamNativeAd from './TeamNativeAd.jsx';
+import './TeamNativeAd.css';
 import { MARKET_TTL_MS } from '../utils/onewinMarkets.js';
 import './OneWinMarketsAd.css';
 
@@ -12,6 +12,16 @@ const copy = {
   es: { ad: 'Publicidad', yes: 'Sí', no: 'No', open: 'Ver pregunta', source: 'Estimación del mercado', updated: 'Actualizado', note: 'Juega con responsabilidad.' },
   fr: { ad: 'Publicité', yes: 'Oui', no: 'Non', open: 'Voir la question', source: 'Estimation du marché', updated: 'Mis à jour', note: 'Jouez de façon responsable.' },
   it: { ad: 'Pubblicità', yes: 'Sì', no: 'No', open: 'Vedi la domanda', source: 'Stima del mercato', updated: 'Aggiornato', note: 'Gioca responsabilmente.' },
+};
+
+const browseCopy = {
+  ru: { title: 'Что будет дальше в CS2?', body: 'Открой вопросы и прогнозы на 1win Markets.', open: 'Открыть Markets' },
+  en: { title: 'What happens next in CS2?', body: 'Explore questions and predictions on 1win Markets.', open: 'Explore Markets' },
+  de: { title: 'Was passiert als Nächstes in CS2?', body: 'Entdecke Fragen und Prognosen bei 1win Markets.', open: 'Markets ansehen' },
+  pt: { title: 'O que vem a seguir no CS2?', body: 'Explora perguntas e previsões na 1win Markets.', open: 'Explorar Markets' },
+  es: { title: '¿Qué pasará ahora en CS2?', body: 'Descubre preguntas y pronósticos en 1win Markets.', open: 'Explorar Markets' },
+  fr: { title: 'Que va-t-il se passer dans CS2 ?', body: 'Découvre les questions et les pronostics sur 1win Markets.', open: 'Explorer Markets' },
+  it: { title: 'Cosa succederà in CS2?', body: 'Scopri domande e pronostici su 1win Markets.', open: 'Esplora Markets' },
 };
 
 export default function OneWinMarketsAd() {
@@ -71,12 +81,14 @@ export default function OneWinMarketsAd() {
   }, [language]);
 
   const market = result?.language === language ? result.data : null;
-  if (!market) return <TeamNativeAd placement="match_room_native" />;
   const labels = copy[language] || copy.en;
-  const href = `/api/onewin-markets?lang=${language}&action=visit&eventId=${market.eventId}`;
-  const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(new Date(market.updatedAt));
+  const browse = browseCopy[language] || browseCopy.en;
+  const href = market ? `/api/onewin-markets?lang=${language}&action=visit&eventId=${market.eventId}`
+    : `/api/onewin-markets?lang=${language}&action=browse`;
+  const updated = market ? new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(new Date(market.updatedAt)) : null;
+  const open = market ? labels.open : browse.open;
   return (
-    <aside className="team-native-ad team-native-ad--onewin onewin-markets-ad" data-onewin-markets={market.eventId} aria-label={`${labels.ad} · 1win Markets · 18+`}>
+    <aside className="team-native-ad team-native-ad--onewin onewin-markets-ad" data-onewin-markets={market?.eventId || 'browse'} aria-label={`${labels.ad} · 1win Markets · 18+`}>
       <div className="team-native-ad__watermark" aria-hidden="true">CS2</div>
       <div className="team-native-ad__main">
         <div className="team-native-ad__brand" aria-hidden="true">
@@ -85,23 +97,24 @@ export default function OneWinMarketsAd() {
         </div>
         <div className="team-native-ad__content">
           <div className="team-native-ad__tags"><span>CS2</span><span>1win Markets</span></div>
-          <h2>{market.title}</h2>
+          <h2>{market?.title || browse.title}</h2>
+          {!market && <p>{browse.body}</p>}
         </div>
         <div className="team-native-ad__action">
           <span className="team-native-ad__disclosure">{labels.ad} <span>18+</span></span>
-          <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer">{labels.open}<span className="team-native-ad__arrow" aria-hidden="true">↗</span></a>
+          <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer">{open}<span className="team-native-ad__arrow" aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div className="onewin-markets-ad__answers">
+      {market && <div className="onewin-markets-ad__answers">
         {[['yes', labels.yes], ['no', labels.no]].map(([side, label]) => (
           <a key={side} className={`onewin-markets-ad__answer onewin-markets-ad__answer--${side}`} href={href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${label}: ${market[side]}% · ${labels.open} · 1win Markets`}>
             <span>{label}</span><strong>{market[side]}%</strong>
           </a>
         ))}
-      </div>
+      </div>}
       <div className="team-native-ad__footer">
-        <span>1win Markets · {labels.source}</span>
-        <span>{labels.updated} <time dateTime={market.updatedAt}>{updated}</time></span>
+        <span>1win Markets{market ? ` · ${labels.source}` : ''}</span>
+        {market && <span>{labels.updated} <time dateTime={market.updatedAt}>{updated}</time></span>}
         <span className="team-native-ad__responsible">18+ · {labels.note}</span>
       </div>
     </aside>

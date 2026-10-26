@@ -49,7 +49,7 @@ Counter-Strike tournament 46323); yes/no probabilities come from fresh public
 snapshots, with a 60-second lifetime. The browser polls every
 15 seconds while visible. Event lists are shared for 60 seconds per language,
 and snapshots for 10 seconds. Closed, expired, suspended or unavailable
-questions fall back to the existing native advertisement. Question links
+questions fall back to a Markets category link without probabilities. Question links
 revalidate the event before redirecting to its Markets page with `p=g39d`.
 This uses the existing public client settings and requires no new secrets.
 

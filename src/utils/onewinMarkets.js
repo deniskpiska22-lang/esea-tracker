@@ -23,6 +23,13 @@ export function buildOneWinMarketUrl(event) {
   return url.href;
 }
 
+export function buildOneWinMarketsCategoryUrl(origin) {
+  if (!isOneWinSourceOrigin(origin)) return null;
+  const url = new URL('/betting/markets/cybersport-2037/counter-strike-46323', origin);
+  url.searchParams.set('p', 'g39d');
+  return url.href;
+}
+
 export function extractOneWinMarket(snapshot, event) {
   if (!event || !snapshot || snapshot.matchId !== event.id || snapshot.blocked || !Array.isArray(snapshot.oddsGroups)) return null;
   // Bind by the provider's event ID. Feed and snapshot translations can differ

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildOneWinMarketUrl, extractOneWinMarket, isOpenCs2Market } from '../src/utils/onewinMarkets.js';
+import { buildOneWinMarketUrl, buildOneWinMarketsCategoryUrl, extractOneWinMarket, isOpenCs2Market } from '../src/utils/onewinMarkets.js';
 import { createMarketsHandler } from '../api/onewin-markets.js';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/onewin-markets-public.json', import.meta.url), 'utf8'));
@@ -63,6 +63,7 @@ async function request({ country = 'AM', method = 'GET', query = {}, events = [e
   const calls = [];
   const handler = createMarketsHandler({
     now: () => currentTime,
+    loadConfig: async () => { calls.push(['config']); return { sourceOrigin: event.sourceOrigin }; },
     loadEvents: async language => { calls.push(['events', language]); if (fail) throw Error('unavailable'); return events; },
     loadSnapshot: async (id, language) => { calls.push(['snapshot', id, language]); return { data, fetchedAt }; },
   });
@@ -120,6 +121,21 @@ test('visits revalidate the chosen event and cannot override the destination or 
   const res = await request({ query: { action: 'visit', eventId: String(event.id), lang: 'en', url: 'https://evil.example', p: 'other' } });
   assert.equal(res.code, 302);
   assert.equal(res.href, buildOneWinMarketUrl(event));
-  assert.equal((await request({ query: { action: 'visit', eventId: String(event.id + 1) } })).code, 503);
-  assert.equal((await request({ query: { action: 'visit', eventId: String(event.id) }, fetchedAt: currentTime - 65_000 })).code, 503);
+  for (const options of [
+    { query: { action: 'visit', eventId: String(event.id + 1) } },
+    { query: { action: 'visit', eventId: String(event.id) }, fetchedAt: currentTime - 65_000 },
+  ]) {
+    const fallback = await request(options);
+    assert.equal(fallback.code, 302);
+    assert.equal(fallback.href, buildOneWinMarketsCategoryUrl(event.sourceOrigin));
+  }
+});
+
+test('the generic fallback opens only the fixed CS2 Markets category with the same referral', async () => {
+  const res = await request({ query: { action: 'browse', lang: 'en', url: 'https://evil.example', p: 'other' } });
+  assert.equal(res.code, 302);
+  assert.equal(res.href, 'https://one-vv8346.com/betting/markets/cybersport-2037/counter-strike-46323?p=g39d');
+  assert.deepEqual(res.calls, [['config']]);
+  assert.equal(buildOneWinMarketsCategoryUrl('https://evil.example'), null);
+  assert.deepEqual((await request({ country: 'RU', query: { action: 'browse' } })).calls, []);
 });
