@@ -1,3 +1,4 @@
+import MatchBackLink from '../components/MatchBackLink.jsx';
 import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
@@ -2096,14 +2097,7 @@ function LiveMatchPage() {
     <div className="min-h-screen bg-[#090f16] px-4 py-6 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[900px]">
         <div className="flex items-center justify-between gap-4">
-          <Link
-            to={
-              navigationSlug
-                ? `/teams/${navigationSlug}/matches`
-                : "/"
-            }
-            className="text-orange-400 hover:text-orange-300"
-          >{tx(" ← Back to Matches ")}</Link>
+          <MatchBackLink fallbackTeamSlug={navigationSlug} />
 
           {isLive && (
             <div className="animate-pulse rounded-full border border-red-500/30 bg-red-500/15 px-4 py-1 text-sm font-bold text-red-400">{tx(" ● LIVE ")}</div>

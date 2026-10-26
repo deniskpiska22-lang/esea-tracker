@@ -147,3 +147,17 @@ Match fallback CTA now explicitly uses `destination=cs2`. The server resolves th
 validated configured 1win mirror and redirects to `/betting/esport/cs2-142?p=g39d`.
 It never sends this CTA to Markets or the registration landing. Other placements
 retain their existing destination; no query parameter may override the referral code.
+
+
+PARI native CTAs for Russian visitors use `/api/pari?placement=…` instead of
+embedding the third-party affiliate tracking host in the page anchor. The endpoint
+checks trusted RU GEO and redirects with the unchanged offer812/partner34440/landing88
+and fixed campaign values. The visible CTA is localized as “Перейти в PARI”.
+
+
+Match links preserve their internal source path (including filters) in router state.
+All three match views share `MatchBackLink`: Home opens back to Home; team pages,
+match lists and tournament pages return to their source. Explicit existing `from`
+state is retained. Direct URLs/new tabs use the existing team-match fallback;
+external or malformed return addresses are rejected. Router paths omit the locale
+prefix because BrowserRouter supplies its language basename.

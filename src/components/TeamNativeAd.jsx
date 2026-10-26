@@ -13,6 +13,8 @@ const copy = {
   it: { ad: 'Pubblicità', title: 'Confronta il tuo pronostico', body: 'Scopri le quote di {brand} per le partite di CS2.', open: 'Vedi le quote CS2', prematch: 'Pre-partita', note: 'Gioca responsabilmente.' },
 };
 
+const pariOpen = { ru: 'Перейти в PARI', en: 'Visit PARI', de: 'Zu PARI', pt: 'Ir para a PARI', es: 'Ir a PARI', fr: 'Découvrir PARI', it: 'Vai su PARI' };
+
 export default function TeamNativeAd({ placement = 'team_profile_native' }) {
   const { language } = useLanguage();
   const [policy, setPolicy] = useState(null);
@@ -29,8 +31,9 @@ export default function TeamNativeAd({ placement = 'team_profile_native' }) {
   const labels = copy[language] || copy.en;
   const pari = provider === 'pari';
   const brand = pari ? 'PARI' : '1win';
+  const open = pari ? (pariOpen[language] || pariOpen.en) : labels.open;
   const href = pari
-    ? `https://clicks.af-pb06e2.com/click?offer_id=812&partner_id=34440&landing_id=88&utm_medium=affiliate&utm_source=esea_tracker&utm_campaign=pari_cs2_test&utm_content=${encodeURIComponent(placement)}`
+    ? `/api/pari?placement=${encodeURIComponent(placement)}`
     : `/api/onewin?kind=click&lang=${language}&placement=${encodeURIComponent(placement)}`;
 
   return (
@@ -50,8 +53,8 @@ export default function TeamNativeAd({ placement = 'team_profile_native' }) {
         </div>
         <div className="team-native-ad__action">
           <span className="team-native-ad__disclosure">{labels.ad} <span>18+</span></span>
-          <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${labels.open} · ${brand}`}>
-            {labels.open}<span className="team-native-ad__arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" /></svg></span>
+          <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${open} · ${brand}`}>
+            {open}<span className="team-native-ad__arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" /></svg></span>
           </a>
         </div>
       </div>

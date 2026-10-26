@@ -11,7 +11,7 @@ import geoip from 'geoip-country';
 import { redirects, headers, interpolate, resolveRewrite } from './webRouting.js';
 
 const compress = promisify(gzip);
-const API_NAMES = new Set(['ad-policy', 'home-matches', 'match', 'match-odds', 'onewin', 'onewin-markets', 'ping', 'seo-profile', 'seo-sitemap', 'site-presence', 'submit-team', 'team-stats', 'test-db', 'veto']);
+const API_NAMES = new Set(['ad-policy', 'home-matches', 'match', 'match-odds', 'onewin', 'onewin-markets', 'pari', 'ping', 'seo-profile', 'seo-sitemap', 'site-presence', 'submit-team', 'team-stats', 'test-db', 'veto']);
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp', '.avif': 'image/avif', '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.webm': 'video/webm', '.pdf': 'application/pdf' };
 const MAX_BODY = 64 * 1024;
 const MAX_CACHE_BYTES = 32 * 1024 * 1024;

@@ -1,8 +1,10 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { TeamUrlContext } from '../context/TeamUrlContext.js';
 import { teamPublicPath } from '../utils/teamProfileUrls.js';
-export default function SiteLink({ to, ...props }) {
+import { matchLinkState } from '../utils/matchNavigation.js';
+export default function SiteLink({ to, state, ...props }) {
   const teams = useContext(TeamUrlContext);
-  return <Link {...props} to={teamPublicPath(to, teams)} />;
+  const location = useLocation();
+  return <Link {...props} state={matchLinkState(to, location, state)} to={teamPublicPath(to, teams)} />;
 }
