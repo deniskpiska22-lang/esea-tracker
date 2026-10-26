@@ -102,3 +102,32 @@ Checks: `node --test tests/*.test.js`; production build; actual browser checks
 for home/upcoming filters, match lineups, map history, team/player profiles,
 forum and login. `/api/test-db` verifies public DB connectivity without
 returning match contents or credentials.
+
+
+## Private visitor statistics
+
+`/admin?section=traffic` (also summarized on the admin overview) shows online browsers
+with a heartbeat in the last 60 seconds, unique browsers today/yesterday and over
+7 days, a daily chart, last active pages, countries and device types. Calendar days
+use Europe/Moscow (UTC+3), displayed in the UI. Collection begins with this release;
+there is no historical backfill from Clarity/Vercel.
+
+`SitePresence` waits for the initial render, then sends a tiny same-origin JSON POST
+to `/api/site-presence` every 20 seconds while visible. A shared localStorage UUID
+and Web Lock coordinate tabs/windows. Without storage, collection is skipped instead
+of issuing unstable per-tab identities. The server hashes IDs, filters known bot user
+agents and coalesces writes within 15 seconds; the database primary key is (day, visitor).
+No raw IP, user ID, query string, referrer or authentication URLs are stored. A browser
+can have only one last active page. Distinct devices/private browsing can count twice;
+this is an estimate of browsers, not a verified count of people.
+
+The existing server Supabase secret is used; there are no new environment variables
+or services. Tables live in the unexposed `site_analytics` schema with RLS and no
+anon/authenticated table grants. Only service_role may call `record_site_presence`.
+`admin_site_traffic` delegates to the existing private administrator guard and returns
+only aggregate data. The UI refreshes every 15 seconds, pauses while hidden, labels
+errors/stale snapshots, and is translated into all seven site languages.
+
+Validation: `node --test tests/siteTraffic.test.js tests/adminWorkspace.test.js tests/webServer.test.js`.
+Database checks also exercise five-tab deduplication, expiry, cross-midnight IDs,
+service-role writes, anonymous denial and non-admin denial inside a rolled-back transaction.

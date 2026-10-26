@@ -11,7 +11,7 @@ import geoip from 'geoip-country';
 import { redirects, headers, interpolate, resolveRewrite } from './webRouting.js';
 
 const compress = promisify(gzip);
-const API_NAMES = new Set(['ad-policy', 'home-matches', 'match', 'match-odds', 'onewin', 'onewin-markets', 'ping', 'seo-profile', 'seo-sitemap', 'submit-team', 'team-stats', 'test-db', 'veto']);
+const API_NAMES = new Set(['ad-policy', 'home-matches', 'match', 'match-odds', 'onewin', 'onewin-markets', 'ping', 'seo-profile', 'seo-sitemap', 'site-presence', 'submit-team', 'team-stats', 'test-db', 'veto']);
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp', '.avif': 'image/avif', '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.mp4': 'video/mp4', '.webm': 'video/webm', '.pdf': 'application/pdf' };
 const MAX_BODY = 64 * 1024;
 const MAX_CACHE_BYTES = 32 * 1024 * 1024;
@@ -86,7 +86,7 @@ export function createWebServer({ distDirectory = path.resolve('dist'), handlers
     })());
     const output = responseAdapter(initialHeaders);
     const request = Object.assign(Object.create(req), { query, headers: { ...req.headers, 'x-vercel-ip-country': requestCountry(req, geoOptions) } });
-    // No API other than team submission accepts mutations.
+    // Explicitly allow JSON submissions and anonymous presence pulses.
     request.method = req.method === 'HEAD' ? 'GET' : req.method;
     if (request.method === 'POST') request.body = await parseBody(req);
     await handler(request, output);
@@ -146,7 +146,7 @@ export function createWebServer({ distDirectory = path.resolve('dist'), handlers
     if (pathname.startsWith('/api/')) {
       const name = pathname.slice(5).replace(/\/$/, '');
       if (!API_NAMES.has(name)) return responseAdapter().status(404).json({ error: 'Not found' });
-      if (!['GET', 'HEAD'].includes(req.method) && !(name === 'submit-team' && req.method === 'POST')) return responseAdapter().status(405).setHeader('Allow', name === 'submit-team' ? 'POST' : 'GET, HEAD').end('Method not allowed');
+      if (!['GET', 'HEAD'].includes(req.method) && !(['submit-team', 'site-presence'].includes(name) && req.method === 'POST')) return responseAdapter().status(405).setHeader('Allow', ['submit-team', 'site-presence'].includes(name) ? 'POST' : 'GET, HEAD').end('Method not allowed');
       return api(name, req, Object.fromEntries(url.searchParams), initialHeaders);
     }
     if (!['GET', 'HEAD'].includes(req.method)) return responseAdapter().status(405).setHeader('Allow', 'GET, HEAD').end('Method not allowed');

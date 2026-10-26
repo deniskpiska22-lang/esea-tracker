@@ -950,5 +950,205 @@
     "es": "Pausado",
     "fr": "En pause",
     "it": "In pausa"
+  },
+  "Site traffic": {
+    "ru": "Посещаемость",
+    "de": "Besucherstatistik",
+    "pt": "Tráfego do site",
+    "es": "Tráfico del sitio",
+    "fr": "Fréquentation",
+    "it": "Traffico del sito"
+  },
+  "Live visitors and daily audience.": {
+    "ru": "Текущий онлайн и аудитория по дням.",
+    "de": "Live-Besucher und tägliche Reichweite.",
+    "pt": "Visitantes online e audiência diária.",
+    "es": "Visitantes en directo y audiencia diaria.",
+    "fr": "Visiteurs en direct et audience quotidienne.",
+    "it": "Visitatori online e pubblico giornaliero."
+  },
+  "One browser counts once, even with several tabs.": {
+    "ru": "Один браузер учитывается один раз, даже с несколькими вкладками.",
+    "de": "Ein Browser zählt einmal, auch mit mehreren Tabs.",
+    "pt": "Um navegador conta uma vez, mesmo com várias abas.",
+    "es": "Un navegador cuenta una vez, incluso con varias pestañas.",
+    "fr": "Un navigateur compte une fois, même avec plusieurs onglets.",
+    "it": "Un browser conta una volta, anche con più schede."
+  },
+  "Open traffic": {
+    "ru": "Подробнее",
+    "de": "Statistik öffnen",
+    "pt": "Ver tráfego",
+    "es": "Ver tráfico",
+    "fr": "Voir les statistiques",
+    "it": "Apri statistiche"
+  },
+  "Online now": {
+    "ru": "Сейчас онлайн",
+    "de": "Jetzt online",
+    "pt": "Online agora",
+    "es": "En línea ahora",
+    "fr": "En ligne maintenant",
+    "it": "Online adesso"
+  },
+  "Active in the last 60 seconds": {
+    "ru": "Активность за последние 60 секунд",
+    "de": "Aktiv in den letzten 60 Sekunden",
+    "pt": "Ativos nos últimos 60 segundos",
+    "es": "Activos en los últimos 60 segundos",
+    "fr": "Actifs dans les 60 dernières secondes",
+    "it": "Attivi negli ultimi 60 secondi"
+  },
+  "Visitors today": {
+    "ru": "Посетители сегодня",
+    "de": "Besucher heute",
+    "pt": "Visitantes hoje",
+    "es": "Visitantes hoy",
+    "fr": "Visiteurs aujourd’hui",
+    "it": "Visitatori oggi"
+  },
+  "Unique browsers today": {
+    "ru": "Уникальные браузеры за сегодня",
+    "de": "Eindeutige Browser heute",
+    "pt": "Navegadores únicos hoje",
+    "es": "Navegadores únicos hoy",
+    "fr": "Navigateurs uniques aujourd’hui",
+    "it": "Browser unici oggi"
+  },
+  "Visitors yesterday": {
+    "ru": "Посетители вчера",
+    "de": "Besucher gestern",
+    "pt": "Visitantes ontem",
+    "es": "Visitantes ayer",
+    "fr": "Visiteurs hier",
+    "it": "Visitatori ieri"
+  },
+  "Unique browsers yesterday": {
+    "ru": "Уникальные браузеры за вчера",
+    "de": "Eindeutige Browser gestern",
+    "pt": "Navegadores únicos ontem",
+    "es": "Navegadores únicos ayer",
+    "fr": "Navigateurs uniques hier",
+    "it": "Browser unici ieri"
+  },
+  "Visitors in 7 days": {
+    "ru": "Посетители за 7 дней",
+    "de": "Besucher in 7 Tagen",
+    "pt": "Visitantes em 7 dias",
+    "es": "Visitantes en 7 días",
+    "fr": "Visiteurs sur 7 jours",
+    "it": "Visitatori in 7 giorni"
+  },
+  "Deduplicated across days": {
+    "ru": "Без повторного учёта в разные дни",
+    "de": "Ohne Mehrfachzählung über Tage",
+    "pt": "Sem duplicação entre dias",
+    "es": "Sin duplicados entre días",
+    "fr": "Sans doublons entre les jours",
+    "it": "Senza duplicati tra i giorni"
+  },
+  "Traffic data could not be refreshed. The previous snapshot may be outdated.": {
+    "ru": "Не удалось обновить посещаемость. Предыдущие данные могли устареть.",
+    "de": "Besucherdaten konnten nicht aktualisiert werden. Der vorherige Stand kann veraltet sein.",
+    "pt": "Não foi possível atualizar os dados. Os anteriores podem estar desatualizados.",
+    "es": "No se pudieron actualizar los datos. Los anteriores pueden estar desactualizados.",
+    "fr": "Impossible d’actualiser les données. Les précédentes peuvent être obsolètes.",
+    "it": "Impossibile aggiornare i dati. I precedenti potrebbero essere obsoleti."
+  },
+  "Visitors by day": {
+    "ru": "Посетители по дням",
+    "de": "Besucher pro Tag",
+    "pt": "Visitantes por dia",
+    "es": "Visitantes por día",
+    "fr": "Visiteurs par jour",
+    "it": "Visitatori per giorno"
+  },
+  "Active pages": {
+    "ru": "Страницы онлайн",
+    "de": "Aktive Seiten",
+    "pt": "Páginas ativas",
+    "es": "Páginas activas",
+    "fr": "Pages actives",
+    "it": "Pagine attive"
+  },
+  "Last active page for each online browser.": {
+    "ru": "Последняя активная страница каждого браузера онлайн.",
+    "de": "Zuletzt aktive Seite jedes Browsers online.",
+    "pt": "Última página ativa de cada navegador online.",
+    "es": "Última página activa de cada navegador en línea.",
+    "fr": "Dernière page active de chaque navigateur en ligne.",
+    "it": "Ultima pagina attiva di ogni browser online."
+  },
+  "No active visitors right now.": {
+    "ru": "Сейчас активных посетителей нет.",
+    "de": "Aktuell keine aktiven Besucher.",
+    "pt": "Nenhum visitante ativo agora.",
+    "es": "No hay visitantes activos ahora.",
+    "fr": "Aucun visiteur actif pour le moment.",
+    "it": "Nessun visitatore attivo al momento."
+  },
+  "Countries today": {
+    "ru": "Страны сегодня",
+    "de": "Länder heute",
+    "pt": "Países hoje",
+    "es": "Países hoy",
+    "fr": "Pays aujourd’hui",
+    "it": "Paesi oggi"
+  },
+  "Devices today": {
+    "ru": "Устройства сегодня",
+    "de": "Geräte heute",
+    "pt": "Dispositivos hoje",
+    "es": "Dispositivos hoy",
+    "fr": "Appareils aujourd’hui",
+    "it": "Dispositivi oggi"
+  },
+  "Tracking started": {
+    "ru": "Начало сбора",
+    "de": "Beginn der Erfassung",
+    "pt": "Início da coleta",
+    "es": "Inicio de la recopilación",
+    "fr": "Début de la collecte",
+    "it": "Inizio raccolta"
+  },
+  "Daily totals use Moscow time (UTC+3). Updates every 15 seconds.": {
+    "ru": "Итоги дня — по Москве (UTC+3). Обновление каждые 15 секунд.",
+    "de": "Tageswerte nach Moskauer Zeit (UTC+3). Aktualisierung alle 15 Sekunden.",
+    "pt": "Totais diários no horário de Moscou (UTC+3). Atualização a cada 15 segundos.",
+    "es": "Totales diarios en horario de Moscú (UTC+3). Actualización cada 15 segundos.",
+    "fr": "Totaux quotidiens à l’heure de Moscou (UTC+3). Actualisation toutes les 15 secondes.",
+    "it": "Totali giornalieri secondo l’ora di Mosca (UTC+3). Aggiornamento ogni 15 secondi."
+  },
+  "Different devices, private browsing or cleared storage can count as separate visitors. Known bots are excluded; this is not an exact count of people.": {
+    "ru": "Разные устройства, инкогнито или очистка данных могут учитываться как разные посетители. Известные боты исключены; это не точное число людей.",
+    "de": "Verschiedene Geräte, privates Surfen oder gelöschte Daten können als separate Besucher zählen. Bekannte Bots werden ausgeschlossen; dies ist keine exakte Personenzahl.",
+    "pt": "Dispositivos diferentes, navegação privada ou dados apagados podem contar como visitantes separados. Bots conhecidos são excluídos; não é uma contagem exata de pessoas.",
+    "es": "Distintos dispositivos, navegación privada o datos borrados pueden contar como visitantes separados. Se excluyen bots conocidos; no es un recuento exacto de personas.",
+    "fr": "Des appareils différents, la navigation privée ou des données effacées peuvent compter séparément. Les robots connus sont exclus ; ce n’est pas un décompte exact de personnes.",
+    "it": "Dispositivi diversi, navigazione privata o dati cancellati possono contare separatamente. I bot noti sono esclusi; non è un conteggio esatto delle persone."
+  },
+  "Desktop": {
+    "ru": "Компьютеры",
+    "de": "Computer",
+    "pt": "Computadores",
+    "es": "Ordenadores",
+    "fr": "Ordinateurs",
+    "it": "Computer"
+  },
+  "Mobile": {
+    "ru": "Телефоны",
+    "de": "Smartphones",
+    "pt": "Celulares",
+    "es": "Móviles",
+    "fr": "Téléphones",
+    "it": "Telefoni"
+  },
+  "Tablet": {
+    "ru": "Планшеты",
+    "de": "Tablets",
+    "pt": "Tablets",
+    "es": "Tabletas",
+    "fr": "Tablettes",
+    "it": "Tablet"
   }
 }

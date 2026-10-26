@@ -11,12 +11,14 @@ import { adminSection, filterAdminTeams, workerHealth } from '../utils/adminWork
 import { useAdminResource, requireData } from '../components/admin/useAdminResource.js';
 import { Panel, Notice, Empty, Search, Pager, DateLabel } from '../components/admin/AdminUI.jsx';
 import TeamEditor from '../components/admin/TeamEditor.jsx';
+import TrafficPanel from '../components/admin/TrafficPanel.jsx';
 import { ForumPanel, NewsPanel } from '../components/admin/CommunityPanels.jsx';
 import CountryFlag from '../components/CountryFlag.jsx';
 import Link from '../components/SiteLink.jsx';
 import '../components/admin/admin.css';
 const SECTIONS = [
   { id: 'overview', label: 'Overview', icon: FiGrid, description: 'Your site at a glance.' },
+  { id: 'traffic', label: 'Site traffic', icon: FiActivity, description: 'Live visitors and daily audience.' },
   { id: 'users', label: 'Users', icon: FiUsers, description: 'Community accounts and favorite teams.' },
   { id: 'teams', label: 'Teams', icon: FiShield, description: 'Descriptions, social links and player photos.' },
   { id: 'forum', label: 'Forum', icon: FiShield, description: 'Reports, discussions and moderation.' },
@@ -49,6 +51,7 @@ function AdminWorkspace() {
       <nav className="admin-mobile-nav" aria-label={tx('Admin navigation')}>{SECTIONS.map(({ id, label }) => <button key={id} aria-current={id === section ? 'page' : undefined} onClick={() => navigate(id)}>{tx(label)}</button>)}</nav>
       <div className="admin-content"><Notice error>{error && tx('Could not load overview. Other sections remain available.')}</Notice>
         {section === 'overview' && <Overview snapshot={snapshot} loading={loading} navigate={navigate} />}
+        {section === 'traffic' && <TrafficPanel />}
         {section === 'users' && <Users teams={teams} />}
         {section === 'teams' && <Teams teams={teams} />}
         {section === 'forum' && <ForumPanel />}
@@ -61,6 +64,7 @@ function AdminWorkspace() {
 function Overview({ snapshot, loading, navigate }) {
   const metrics = [['Users', snapshot.users, 'users', 'Registered accounts'], ['Favorite teams', snapshot.favorites, 'users', 'Users supporting a team'], ['Upcoming matches', snapshot.upcoming, 'system', 'Scheduled and ready matches'], ['Open reports', snapshot.reports, 'forum', 'Waiting for moderation']];
   return <div className="admin-stack"><section className="admin-welcome"><div><div className="admin-eyebrow">{tx('Control room')}</div><h2>{tx('Everything in one place.')}</h2><p>{tx('Review activity, update team pages and manage the community.')}</p></div><div className="admin-welcome-mark" aria-hidden="true"><FiActivity /></div></section>
+    <TrafficPanel compact onOpen={() => navigate('traffic')} />
     <div className="admin-metrics">{metrics.map(([label, value, section, hint]) => <button key={label} className="admin-metric" onClick={() => navigate(section)}><span>{tx(label)} <FiArrowUpRight /></span><strong>{loading && value == null ? '…' : number(value)}</strong><small>{tx(hint)}</small></button>)}</div>
     <div className="admin-overview-grid"><Panel title="Quick actions" description="Go directly to the tools you need."><div className="admin-quick-grid">{SECTIONS.slice(1).map(({ id, icon: Icon, label, description }) => <button key={id} onClick={() => navigate(id)}><Icon /><strong>{tx(label)}</strong><small>{tx(description)}</small><FiArrowUpRight /></button>)}</div></Panel><Panel title="Community pulse"><dl className="admin-summary">{[['New users this week', snapshot.new_users], ['Forum topics', snapshot.topics], ['Published articles', snapshot.published_news], ['Live matches', snapshot.live], ['Teams in catalog', snapshot.teams]].map(([label, value]) => <div key={label}><dt>{tx(label)}</dt><dd>{number(value)}</dd></div>)}</dl><div className="admin-info">{tx('Everyone can choose a favorite team in profile settings. Player verification is no longer used.')}</div></Panel></div>
     <Workers workers={snapshot.workers} loading={loading} compact />

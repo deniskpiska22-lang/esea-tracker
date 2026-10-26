@@ -153,3 +153,10 @@ test('network-path request targets are rejected without open redirects', async t
   });
   assert.equal(status, 400);
 });
+
+ test('presence accepts same-origin JSON pulses through the Railway API router', async t => {
+  const base = await fixture(t, { handlers: { 'site-presence': (req,res) => res.json(req.body) } });
+  const response = await fetch(base + '/api/site-presence', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ path: '/matches' }) });
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { path: '/matches' });
+ });
