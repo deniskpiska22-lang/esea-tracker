@@ -2,6 +2,7 @@ import Link from "./components/SiteLink.jsx";
 import { tx } from "./i18n/translate.js";
 import {
   Suspense,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -11,7 +12,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "./context/AuthContext";
 import { useLanguage } from "./context/LanguageContext";
-import { useTeamCatalog } from "./hooks/useTeamCatalog";
+import { TeamUrlContext } from "./context/TeamUrlContext.js";
 import { useTeamRanks } from "./hooks/useTeamRanks";
 import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
@@ -19,7 +20,7 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import { buildPlayerSearchIndex, searchPlayers } from "./utils/siteSearch.js";
 
 function App() {
-  const { teams } = useTeamCatalog();
+  const teams = useContext(TeamUrlContext);
   const [liveSearchPlayers, setLiveSearchPlayers] = useState([]);
   useEffect(() => {
     const shell = document.getElementById("app-boot-shell");
@@ -139,8 +140,8 @@ function App() {
   }, [normalizedSearch, teams]);
 
   const playerSearchIndex = useMemo(
-    () => buildPlayerSearchIndex(teams, searchablePlayers),
-    [teams, searchablePlayers]
+    () => showSearch ? buildPlayerSearchIndex(teams, searchablePlayers) : [],
+    [showSearch, teams, searchablePlayers]
   );
   const filteredPlayers = useMemo(
     () => searchPlayers(playerSearchIndex, liveSearchPlayers, normalizedSearch),

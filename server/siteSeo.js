@@ -5,12 +5,18 @@ const labels = [['/forum','Forum'],['/','Home'],['/rankings','Team rankings'],['
 export async function loadSiteMetadata(client, pathname) {
   const metadata = getSiteSeoMetadata(pathname);
   let body = `<nav aria-label="Site pages"><ul>${labels.filter(([url])=>url!==pathname).map(([url,label])=>`<li><a href="${url}">${label}</a></li>`).join('')}</ul></nav>`;
+  const [catalogRows, matchRows] = await Promise.all([
+    pathname === '/' || pathname === '/rankings'
+      ? result(client.from('team_catalog').select('team_id,team').order('team_id').limit(60)) : [],
+    pathname === '/' || pathname === '/matches'
+      ? result(client.from('matches').select('id,team1_name,team1_score,team2_name,team2_score,competition_name,finished_at').in('status',['FINISHED','MATCH_STATUS_FINISHED']).order('finished_at',{ascending:false,nullsFirst:false}).limit(24)) : [],
+  ]);
   if (pathname==='/' || pathname==='/rankings') {
-    const rows = await result(client.from('team_catalog').select('team_id,team').order('team_id').limit(60));
+    const rows = catalogRows;
     body += `<h2>Explore ESEA CS2 teams</h2><ul>${rows.filter(row=>row.team?.slug && row.team?.name).map(({team})=>`<li><a data-entity-link="true" href="/teams/${encodeURIComponent(team.slug)}">${escapeHtml(team.name)}</a>${team.division ? ` — ${escapeHtml(team.division)}` : ''}</li>`).join('')}</ul>`;
   }
   if (pathname==='/' || pathname==='/matches') {
-    const rows = await result(client.from('matches').select('id,team1_name,team1_score,team2_name,team2_score,competition_name,finished_at').in('status',['FINISHED','MATCH_STATUS_FINISHED']).order('finished_at',{ascending:false,nullsFirst:false}).limit(24));
+    const rows = matchRows;
     body += `<h2>Recent CS2 match results</h2><ul>${rows.map(m=>`<li><a data-entity-link="true" href="/match/${encodeURIComponent(m.id)}">${escapeHtml(m.team1_name)} ${escapeHtml(m.team1_score)}–${escapeHtml(m.team2_score)} ${escapeHtml(m.team2_name)}</a> — ${escapeHtml(m.competition_name)}</li>`).join('')}</ul>`;
   }
   if (pathname==='/players') {

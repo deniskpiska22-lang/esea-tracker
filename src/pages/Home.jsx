@@ -1,3 +1,6 @@
+import { formatUserDateTime } from "../utils/userTime.js";
+import { MATCH_CARD_COLUMNS } from "../utils/homeMatchColumns.js";
+import { requestHomeFeed } from "../lib/homeFeedRequest.js";
 import { loadRecentStaticMatches } from "../lib/staticHistory.js";
 import { loadHomeMatchFeed } from "../utils/homeMatchFeed.js";
 import { UPCOMING_DIVISIONS, countUpcomingDivisions, filterUpcomingDivision } from "../utils/upcomingDivisions.js";
@@ -50,18 +53,6 @@ const FINISHED_STATUSES = new Set([
 
 const UPCOMING_WINDOW_HOURS = 24;
 const RESULTS_LIMIT = 12;
-// Cards do not need the complete FACEIT response or player statistics.
-const MATCH_CARD_COLUMNS = [
-  "id", "competition_name", "status", "best_of", "scheduled_at",
-  "started_at", "finished_at", "team1_id", "team1_name", "team1_slug",
-  "team1_logo", "team1_score", "team2_id", "team2_name", "team2_slug",
-  "team2_logo", "team2_score", "maps", "map_scores", "stats_synced",
-  "detailed_results:raw_data->detailed_results",
-  "source_team1_id:raw_data->teams->faction1->>faction_id",
-  "source_team1_logo:raw_data->teams->faction1->>avatar",
-  "source_team2_id:raw_data->teams->faction2->>faction_id",
-  "source_team2_logo:raw_data->teams->faction2->>avatar",
-].join(",");
 
 function scheduleAfterFirstPaint(callback) {
   if (typeof window === "undefined") {
@@ -351,10 +342,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "short",
-  }).format(date);
+  return formatUserDateTime(date, { day: "2-digit", month: "short" });
 }
 
 function formatRelative(value) {
@@ -1552,13 +1540,18 @@ function Home() {
         Date.now() + UPCOMING_WINDOW_HOURS * 60 * 60 * 1000
       );
 
-      const response = await loadHomeMatchFeed(supabase, {
-        columns: MATCH_CARD_COLUMNS,
-        liveStatuses: LIVE_STATUSES,
-        now,
-        end,
-        resultsLimit: RESULTS_LIMIT,
-      });
+      let response;
+      try {
+        response = { data: await requestHomeFeed(), error: null };
+      } catch {
+        response = await loadHomeMatchFeed(supabase, {
+          columns: MATCH_CARD_COLUMNS,
+          liveStatuses: LIVE_STATUSES,
+          now,
+          end,
+          resultsLimit: RESULTS_LIMIT,
+        });
+      }
 
       if (cancelled) return;
 
@@ -1627,7 +1620,7 @@ function Home() {
       for (let from = 0; ; from += PAGE_SIZE) {
         const { data, error: pageError } = await supabase
           .from("current_team_ratings")
-          .select("*")
+          .select("team_id,team_name,points,points_change,rank_change,division,logo")
           .order("team_id")
           .range(from, from + PAGE_SIZE - 1);
 
@@ -1847,6 +1840,10 @@ function Home() {
   return (
     <main className="min-h-screen bg-[#090d12] text-white">
       <style>{`
+        .home-scrollbar > .grid > * {
+          content-visibility: auto;
+          contain-intrinsic-size: auto 180px;
+        }
         .home-scrollbar {
           scrollbar-width: thin;
           scrollbar-color: rgba(148, 163, 184, 0.28) transparent;

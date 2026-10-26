@@ -24,11 +24,7 @@ function formatDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(date);
+  return formatUserDateTime(date, { day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
 function getMapScores(row) {
