@@ -13,7 +13,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { isTeamAdPreview } from "../lib/teamAdPreview.js";
+import TeamNativeAd from "../components/TeamNativeAd.jsx";
 import staticTeams from "../data/teams";
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
@@ -280,6 +282,7 @@ function RankCard({
 
 function TeamPage() {
   const { slug } = useParams();
+  const nativeAdPreview = isTeamAdPreview(useLocation());
   const { teams, catalogLoading } = useTeamCatalog();
 
   const team = findTeamByRoute(teams, slug);
@@ -880,6 +883,8 @@ function TeamPage() {
             </div>
           </div>
         </section>
+
+        {nativeAdPreview && <TeamNativeAd />}
 
         {/* NAVIGATION */}
         <nav className="mt-7 overflow-x-auto border-b border-white/[0.07]">

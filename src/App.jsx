@@ -2,6 +2,7 @@ import Link from "./components/SiteLink.jsx";
 import OneWinAds from "./components/OneWinAds.jsx";
 import PariSideRails from "./components/PariSideRails.jsx";
 import PariBanner from "./components/PariBanner.jsx";
+import { isTeamAdPreview } from "./lib/teamAdPreview.js";
 import { tx } from "./i18n/translate.js";
 import {
   Suspense,
@@ -39,6 +40,7 @@ function App() {
 
   const location = useLocation();
   const isAdminRoute = /^\/admin(?:\/|$)/.test(location.pathname);
+  const nativeAdPreview = isTeamAdPreview(location);
   const navigate = useNavigate();
   const { tr } = useLanguage();
 
@@ -908,13 +910,13 @@ function App() {
         </div>
       )}
 
-      {!isAdminRoute && <><OneWinAds /><PariSideRails /></>}
+      {!isAdminRoute && !nativeAdPreview && <><OneWinAds /><PariSideRails /></>}
 
       <div className={`relative z-30 mx-auto min-h-[calc(100vh-72px)] w-full bg-[#05070a] ${isAdminRoute ? "max-w-[1660px]" : "min-[1200px]:w-[960px] min-[1360px]:w-[1040px] min-[1600px]:w-[1120px] min-[1850px]:w-[1180px]"}`}>
         <Suspense fallback={<div role="status" className="flex min-h-[calc(100vh-72px)] items-center justify-center text-sm font-semibold text-slate-500">{tx(" Loading... ")}</div>}>
           <Outlet />
         </Suspense>
-        {!isAdminRoute && <><OneWinAds mobile /><PariBanner placement="mobile_inline" className="mx-auto my-8 max-w-[400px] min-[1200px]:hidden" /></>}
+        {!isAdminRoute && !nativeAdPreview && <><OneWinAds mobile /><PariBanner placement="mobile_inline" className="mx-auto my-8 max-w-[400px] min-[1200px]:hidden" /></>}
       </div>
 
       
