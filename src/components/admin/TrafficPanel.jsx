@@ -20,7 +20,7 @@ export default function TrafficPanel({ compact = false, onOpen }) {
   const { data, error, loading, refreshing, refresh, checkedAt } = useAdminResource(load, { pollMs: 15_000 });
   const fresh = data && !error && checkedAt - Date.parse(data.generated_at) < 60_000;
   const summary = trafficPeriodSummary(data, period);
-  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes', FiActivity], ['Visitors today', data?.today, 'Unique browsers today', FiUsers], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday', FiCalendar], [summary.label, summary.value, 'Deduplicated across days', FiBarChart2]];
+  const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes', FiActivity], ['Visitors today', data?.today, 'Unique browsers today', FiUsers], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday', FiCalendar], ['Visitors in 7 days', data?.week, 'Deduplicated across days', FiBarChart2], ['Visitors in 30 days', data?.month, 'Deduplicated across days', FiCalendar]];
   const days = summary.days, pages = data?.pages || [], countries = data?.countries || [], devices = data?.devices || [];
   const max = Math.max(1, ...days.map(day => day.visitors));
   const geographyMax = Math.max(1, ...countries.map(row => row.visitors));

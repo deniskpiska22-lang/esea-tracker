@@ -191,4 +191,4 @@ and numbers must never be presented as real traffic or an authenticated test.
 
 ### Traffic periods
 
-The admin traffic panel offers 7, 14 and 30 days (`trafficDays` in the URL). The summary and chart use the same selected period; overview cards retain seven days. `admin_site_traffic()` returns `week`, `fortnight` and `month` as distinct browser counts, never sums of daily values. Daily history is limited to 30 days and starts on the collection start date. Online remains a rolling 180 seconds; administrator routes and hidden tabs send no presence. Today and the first collection day may be partial.
+The admin traffic panel offers 7, 14 and 30 days (`trafficDays` in the URL). Both overview and traffic panels always show separate 7-day and 30-day unique visitor cards. The period selector changes only the daily chart. `admin_site_traffic()` returns `week`, `fortnight` and `month` as distinct browser counts, never sums of daily values. Daily history is limited to 30 days and starts on the collection start date. Online remains a rolling 180 seconds; administrator routes and hidden tabs send no presence. Today and the first collection day may be partial.

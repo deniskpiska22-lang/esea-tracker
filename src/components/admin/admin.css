@@ -510,6 +510,9 @@
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:14px
 }
+.admin-traffic-metrics {
+  grid-template-columns:repeat(5,minmax(0,1fr))
+}
 .admin-metric {
   min-width:0;
   text-align:left;
@@ -1490,6 +1493,9 @@
   }
 }
 @media(max-width:1000px) {
+  .admin-traffic-metrics {
+    grid-template-columns:repeat(3,minmax(0,1fr))
+  }
   .admin-sidebar {
     width:190px;
     padding-inline:10px
