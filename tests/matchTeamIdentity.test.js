@@ -53,3 +53,17 @@ test('live worker faction normalization never writes the Advanced namesake into 
   assert.equal(matched.slug, advanced.slug);
   assert.equal(matched.logo, 'wrong-side.jpg');
 });
+
+test('renamed teams keep fresh match names and source crests instead of the bundled catalog name', () => {
+  const id = 'fe66f943-b5ab-46f6-9f43-c3ed3b9b904a';
+  const catalog = [{ faceitTeamId: id, name: 'A Great Chaos', slug: 'a-great-chaos-fe66f943', logo: 'old.jpg' }];
+  const team = { id, name: 'Growth Lab Esport', slug: catalog[0].slug, logo: 'current.jpg' };
+  assert.equal(resolveMatchTeam(catalog, team).name, 'Growth Lab Esport');
+  const compact = { source_team2_id: id, source_team2_name: 'Growth Lab Esport', source_team2_logo: 'source.jpg' };
+  const resolved = resolveMatchTeam(catalog, { ...team, name: 'A Great Chaos' }, matchTeamSource(compact));
+  assert.equal(resolved.name, 'Growth Lab Esport');
+  assert.equal(resolved.logo, 'source.jpg');
+  assert.equal(resolved.id, id);
+  assert.equal(resolved.slug, catalog[0].slug);
+  assert.equal(resolveMatchTeam(catalog, { id }).name, 'A Great Chaos');
+});

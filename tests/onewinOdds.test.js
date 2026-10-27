@@ -340,3 +340,34 @@ test('real Advanced match APIs return captured prices and correct per-match affi
     assert.equal(target.searchParams.get('p'),'g39d');
   }
 });
+
+const renamedPairs = JSON.parse(readFileSync(new URL('./fixtures/onewin-phantom-jumbo-markets.json', import.meta.url), 'utf8')).markets;
+test('Phantom Academy and JUMBO aliases identify the verified matches without matching other rosters', () => {
+  for (const { match, event, snapshot } of renamedPairs) {
+    assert.equal(findOneWinMatch(match, [event]), event);
+    const aliasSide = event.id === 42163892 ? 2 : 1;
+    for (const wrongId of [undefined, 'other-roster']) {
+      assert.equal(findOneWinMatch({ ...match, [`team${aliasSide}_id`]: wrongId }, [event]), null);
+    }
+    assert.equal(findOneWinMatch({ ...match, scheduled_at: '2026-10-28T19:30:00Z' }, [event]), null);
+    assert.equal(findOneWinMatch(match, [event, { ...event, id: event.id + 1 }]), null);
+    const prices = extractOneWinWinner(snapshot, event);
+    assert.ok(prices);
+    const reversed = { ...match, team1_id: match.team2_id, team1_name: match.team2_name, team2_id: match.team1_id, team2_name: match.team1_name };
+    assert.equal(findOneWinMatch(reversed, [event]), event);
+    assert.deepEqual(orientOneWinOdds(reversed, event, prices), { team1: prices.away, team2: prices.home });
+  }
+});
+test('both renamed pairs return whole-match prices and a mirror link with the existing referral code', async () => {
+  for (const { match, event, snapshot } of renamedPairs) {
+    const options = { dbMatch: match, events: [event], source: { data: snapshot, fetchedAt: currentTime }, query: { matchId: match.id } };
+    const { response } = await request(options);
+    assert.equal(response.body.odds.eventId, event.id);
+    assert.equal(response.body.odds.team1.name, match.team1_name);
+    assert.equal(response.body.odds.team2.name, match.team2_name);
+    const visit = await request({ ...options, query: { matchId: match.id, action: 'visit' } });
+    const url = new URL(visit.response.location);
+    assert.equal(url.pathname, `/betting/match/esport/${event.slug}-${event.id}`);
+    assert.equal(url.searchParams.get('p'), 'g39d');
+  }
+});

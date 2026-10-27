@@ -11,6 +11,8 @@ const ONEWIN_TEAM_ALIASES = new Map([
   ['8de7892a-dc7a-4ac7-9620-f02522c75609', new Set(['ttg'])],
   ['052f75bf-65dc-497c-86f2-e68880ec1171', new Set(['diamant'])],
   ['fe66f943-b5ab-46f6-9f43-c3ed3b9b904a', new Set(['growthlab'])],
+  ['96a5ba01-176e-4472-ac22-0e027c9093a7', new Set(['phantomacademy'])],
+  ['934a2bd0-fa66-4c02-ac92-00f742e7ec55', new Set(['jumbo'])],
   ['add80f4e-86e7-454a-8f3e-93c8349a39a3', new Set(['honved'])],
 ]);
 

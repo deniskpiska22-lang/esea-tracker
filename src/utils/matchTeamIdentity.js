@@ -23,7 +23,8 @@ export function resolveMatchTeam(catalog, team, rawData) {
   return {
     ...team,
     id,
-    name: source?.name || source?.nickname || local?.name || team.name,
+    // Match fields are refreshed independently of the slower catalog snapshot.
+    name: source?.name || source?.nickname || team.name || local?.name,
     slug: local?.slug || (conflict ? null : team.slug) || null,
     logo: source?.avatar || source?.logo || local?.logo || (conflict ? null : team.logo) || null,
   };
@@ -33,6 +34,7 @@ export function matchTeamSource(row) {
   return row.raw_data || { teams: [1, 2].map(side => ({
     faction_id: row[`source_team${side}_id`],
     avatar: row[`source_team${side}_logo`],
+    name: row[`source_team${side}_name`],
   })) };
 }
 

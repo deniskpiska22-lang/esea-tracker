@@ -298,9 +298,9 @@ function normalizeTeam(team, rawData) {
       team.faceitTeamId ||
       localTeam?.faceitTeamId ||
       null,
-    name: localTeam?.name || team.name || "TBD",
+    name: team.name || localTeam?.name || "TBD",
     slug: localTeam?.slug || team.slug || null,
-    logo: normalizeLogoUrl(localTeam?.logo || team.logo),
+    logo: normalizeLogoUrl(team.logo || localTeam?.logo),
     points: toNumber(localTeam?.points ?? team.points),
     division: localTeam?.division || team.division || null,
     rank: localTeam?.rank ?? team.rank ?? null,

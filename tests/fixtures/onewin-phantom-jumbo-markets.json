@@ -1,0 +1,163 @@
+{
+  "source": "Public 1win prematch feed and winner snapshots captured 2026-10-27; FACEIT roster IDs and scheduled times verified against match records.",
+  "markets": [
+    {
+      "match": {
+        "id": "1-6e2dd727-0d3c-43d3-b1fb-f97c1ec14c3b",
+        "team1_id": "71bc0f1d-ef25-4538-8a20-25d1c44bc8f5",
+        "team1_name": "ENRAGE",
+        "team2_id": "934a2bd0-fa66-4c02-ac92-00f742e7ec55",
+        "team2_name": "Jumbo team",
+        "status": "SCHEDULED",
+        "scheduled_at": "2026-10-27T19:30:00Z"
+      },
+      "event": {
+        "id": 42163892,
+        "sportId": 142,
+        "name": "ENRAGE - JUMBO",
+        "homeTeam": {
+          "id": 163636,
+          "name": "ENRAGE",
+          "position": 1,
+          "slug": "enrage"
+        },
+        "awayTeam": {
+          "id": 1642474,
+          "name": "JUMBO",
+          "position": 2,
+          "slug": "jumbo",
+          "logo": {
+            "url": "https://bstatic.live/icons/791806994ec513c69699d739e1242044d43b0337.webp"
+          }
+        },
+        "slug": "enrage-vs-jumbo",
+        "startAt": 1793129400,
+        "serviceV2": "prematch",
+        "tournament": {
+          "id": 33755,
+          "slug": "esea-advanced-europe"
+        },
+        "sourceOrigin": "https://one-vv8346.com"
+      },
+      "snapshot": {
+        "matchId": 42163892,
+        "oddsGroups": [
+          {
+            "baseOrder": 0,
+            "id": "53278",
+            "isBase": true,
+            "name": "Победитель ",
+            "oddsList": [
+              {
+                "cf": 1.96,
+                "id": "12:P:19282260:[1,[],[0],1,0,[]]",
+                "name": "ENRAGE",
+                "outcome": "1",
+                "status": 1,
+                "ts": 1793062282404
+              },
+              {
+                "cf": 1.75,
+                "id": "12:P:19282260:[1,[],[0],1,3,[]]",
+                "name": "JUMBO",
+                "outcome": "2",
+                "status": 1,
+                "ts": 1793062282404
+              }
+            ],
+            "order": 0,
+            "outcomes": [
+              "1",
+              "2"
+            ],
+            "renderType": "cols-2",
+            "subgameIds": [
+              168
+            ]
+          }
+        ],
+        "ts": 1793062282404,
+        "isBaseOddsGroups": true
+      }
+    },
+    {
+      "match": {
+        "id": "1-029d9df5-94fe-402b-bf0b-399bd693c1fd",
+        "team1_id": "96a5ba01-176e-4472-ac22-0e027c9093a7",
+        "team1_name": "Phantom Esports Academy",
+        "team2_id": "fe66f943-b5ab-46f6-9f43-c3ed3b9b904a",
+        "team2_name": "Growth Lab Esport",
+        "status": "SCHEDULED",
+        "scheduled_at": "2026-10-27T19:30:00Z"
+      },
+      "event": {
+        "id": 42163903,
+        "sportId": 142,
+        "name": "Phantom Academy - Growth Lab",
+        "homeTeam": {
+          "id": 1666337,
+          "name": "Phantom Academy",
+          "position": 1,
+          "slug": "phantom-academy",
+          "logo": {
+            "url": "https://bstatic.live/icons/c76e23dc4fc573344dbe11e8fc755b87d5cb05ca.webp"
+          }
+        },
+        "awayTeam": {
+          "id": 1741251,
+          "name": "Growth Lab",
+          "position": 2,
+          "slug": "growth-lab"
+        },
+        "slug": "phantom-academy-vs-growth-lab",
+        "startAt": 1793129400,
+        "serviceV2": "prematch",
+        "tournament": {
+          "id": 33755,
+          "slug": "esea-advanced-europe"
+        },
+        "sourceOrigin": "https://one-vv8346.com"
+      },
+      "snapshot": {
+        "matchId": 42163903,
+        "oddsGroups": [
+          {
+            "baseOrder": 0,
+            "id": "53278",
+            "isBase": true,
+            "name": "Победитель ",
+            "oddsList": [
+              {
+                "cf": 1.34,
+                "id": "12:P:19282243:[1,[],[0],1,0,[]]",
+                "name": "Phantom Academy",
+                "outcome": "1",
+                "status": 1,
+                "ts": 1793062320835
+              },
+              {
+                "cf": 3.01,
+                "id": "12:P:19282243:[1,[],[0],1,3,[]]",
+                "name": "Growth Lab",
+                "outcome": "2",
+                "status": 1,
+                "ts": 1793062320835
+              }
+            ],
+            "order": 0,
+            "outcomes": [
+              "1",
+              "2"
+            ],
+            "renderType": "cols-2",
+            "subgameIds": [
+              168
+            ]
+          }
+        ],
+        "ts": 1793062320835,
+        "isBaseOddsGroups": true
+      }
+    }
+  ]
+}
