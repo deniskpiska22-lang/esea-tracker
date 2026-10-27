@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { faceitEloPatch } from "./lib/faceitPlayerProfile.js";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY =
@@ -422,10 +423,6 @@ function buildPlayerRow(
   profile,
   fallback
 ) {
-  const cs2 =
-    profile?.games?.cs2 ||
-    {};
-
   return {
     faceit_id:
       profile?.player_id ||
@@ -452,17 +449,7 @@ function buildPlayerRow(
       profile?.steam_nickname ||
       null,
 
-    faceit_elo:
-      Number(
-        cs2.faceit_elo ||
-        0
-      ) || null,
-
-    faceit_level:
-      Number(
-        cs2.skill_level ||
-        0
-      ) || null,
+    ...faceitEloPatch(profile, fallback.faceitId),
 
     updated_at:
       new Date().toISOString(),

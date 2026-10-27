@@ -1,4 +1,6 @@
 import { countryName } from "../utils/countries.js";
+import { currentLocale } from "../i18n/languages.js";
+import { normalizeRankingCountry, rankingCountryOptions } from "../utils/rankingCountries.js";
 import { scopeTeamRanks } from "../utils/teamRanks.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
@@ -154,61 +156,6 @@ const REGION_BY_COUNTRY = {
 
 
 
-const POPULAR_COUNTRIES_BY_REGION = {
-  Europe: [
-    "DK",
-    "FI",
-    "FR",
-    "DE",
-    "NL",
-    "NO",
-    "PL",
-    "PT",
-    "RO",
-    "RU",
-    "SE",
-    "TR",
-    "UA",
-    "GB",
-  ],
-
-  "North America": [
-    "US",
-    "CA",
-    "MX",
-  ],
-
-  "South America": [
-    "BR",
-    "AR",
-    "CL",
-    "PE",
-    "UY",
-  ],
-
-  Asia: [
-    "CN",
-    "MN",
-    "JP",
-    "KR",
-    "IN",
-    "IL",
-    "KZ",
-  ],
-
-  Oceania: [
-    "AU",
-    "NZ",
-  ],
-
-  Africa: [
-    "ZA",
-    "EG",
-    "MA",
-    "TN",
-  ],
-};
-
 function normalizeText(value) {
   return String(value ?? "")
     .trim()
@@ -221,18 +168,6 @@ function normalizeSlug(value) {
     .replace(/[^a-z0-9а-яё-]/gi, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
-}
-
-function normalizeCountry(value) {
-  const country = String(value ?? "")
-    .trim()
-    .toUpperCase();
-
-  if (country === "UK") {
-    return "GB";
-  }
-
-  return country;
 }
 
 function normalizeDivision(value) {
@@ -363,7 +298,7 @@ function getLogo(staticTeam, ratingRow) {
 }
 
 function getCountry(staticTeam, ratingRow) {
-  return normalizeCountry(
+  return normalizeRankingCountry(
     ratingRow?.country ?? staticTeam?.country ??
       staticTeam?.countryCode ??
       staticTeam?.country_code ??
@@ -708,21 +643,6 @@ function RankingsPage() {
       }));
   }, [mergedTeams]);
 
-const teamCountByCountry = useMemo(() => {
-  const counts = {};
-
-  sortedTeams.forEach((team) => {
-    if (!team.country) {
-      return;
-    }
-
-    counts[team.country] =
-      (counts[team.country] || 0) + 1;
-  });
-
-  return counts;
-}, [sortedTeams]);
-
 const teamCountByRegion = useMemo(() => {
   const counts = {};
 
@@ -738,38 +658,11 @@ const teamCountByRegion = useMemo(() => {
   return counts;
 }, [sortedTeams]);
 
-const openedRegionCountries = useMemo(() => {
-  if (!openRegion) {
-    return [];
-  }
-
-  return (
-    POPULAR_COUNTRIES_BY_REGION[openRegion] || []
-  ).filter(
-    (countryCode) =>
-      Number(teamCountByCountry[countryCode]) > 0
+  const locale = currentLocale();
+  const openedRegionCountries = useMemo(
+    () => openRegion ? rankingCountryOptions(sortedTeams, openRegion, locale) : [],
+    [sortedTeams, openRegion, locale]
   );
-}, [openRegion, teamCountByCountry]);
-
-
-useEffect(() => {
-  if (selectedCountry === "All") {
-    return;
-  }
-
-  const countryRegion =
-    REGION_BY_COUNTRY[selectedCountry];
-
-  if (
-    selectedRegion !== "All" &&
-    countryRegion !== selectedRegion
-  ) {
-    setSelectedCountry("All");
-  }
-}, [
-  selectedRegion,
-  selectedCountry,
-]);
 
   const filteredTeams = useMemo(() => {
     const query = normalizeText(
@@ -1002,7 +895,7 @@ useEffect(() => {
                   </button>
                 </div>
 
-                <div className="p-3">
+                <div className="max-h-[360px] overflow-y-auto p-3">
                   {openedRegionCountries.length === 0 ? (
                     <div className="px-2 py-4 text-sm text-gray-500">{tx(" No countries with ranked teams found in this region. ")}</div>
                   ) : (
@@ -1031,7 +924,7 @@ useEffect(() => {
                       </button>
 
                       {openedRegionCountries.map(
-                        (countryCode) => {
+                        ({ code: countryCode, count }) => {
                           const active =
                             selectedCountry === countryCode;
 
@@ -1039,13 +932,10 @@ useEffect(() => {
                             localizedCountry(countryCode) ||
                             countryCode;
 
-                          const count =
-                            teamCountByCountry[countryCode] || 0;
-
                           return (
                             <button
                               type="button"
-                              key={countryCode}
+                              key={countryCode || "unknown"}
                               onClick={() => {
                                 setSelectedRegion(openRegion);
                                 setSelectedCountry(

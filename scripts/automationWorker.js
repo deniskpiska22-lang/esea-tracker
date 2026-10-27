@@ -41,6 +41,7 @@ let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
 let lastRosterAt = 0;
+let lastPlayerEloAt = 0;
 let lastWeeklySnapshotKey = null;
 
 function sleep(ms) {
@@ -142,6 +143,13 @@ async function runTask(name, scriptPath, args = [], extraEnv = {}) {
 
 async function runDueTasks() {
   const now = Date.now();
+
+  // Bounded background profile requests: roster endpoints do not carry CS2 ELO.
+  // Run before slower discovery so profile refresh cannot be starved by it.
+  if (lastPlayerEloAt === 0 || now - lastPlayerEloAt >= DISCOVERY_INTERVAL_MS) {
+    lastPlayerEloAt = now;
+    await runTask("player-faceit-elo", "scripts/refreshPlayerFaceitElo.js");
+  }
 
   if (lastStandingsAt === 0 || now - lastStandingsAt >= STANDINGS_INTERVAL_MS) {
     lastStandingsAt = now;
