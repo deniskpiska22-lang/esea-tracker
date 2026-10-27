@@ -22,3 +22,12 @@ export function trafficPeriodSummary(data, value) {
   const key = { 7: 'week', 14: 'fortnight', 30: 'month' }[period];
   return { period, label: { 7: 'Visitors in 7 days', 14: 'Visitors in 14 days', 30: 'Visitors in 30 days' }[period], value: data?.[key], days: (data?.days || []).slice(-period) };
 }
+
+export const COUNTRY_PERIODS = [1, 7, 30];
+export function countryPeriod(value) {
+  return COUNTRY_PERIODS.includes(Number(value)) ? Number(value) : 1;
+}
+export function trafficCountries(data, value) {
+  const period = countryPeriod(value);
+  return data?.countries_by_period?.[period] || (period === 1 ? data?.countries || [] : []);
+}

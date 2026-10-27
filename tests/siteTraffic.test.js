@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { pulsePresence } from '../src/lib/sitePresence.js';
-import { trafficPath, VISITOR_KEY, trafficPeriod, trafficPeriodSummary } from '../src/utils/siteTraffic.js';
+import { trafficPath, VISITOR_KEY, trafficPeriod, trafficPeriodSummary, countryPeriod, trafficCountries } from '../src/utils/siteTraffic.js';
 import { createPresenceHandler } from '../api/site-presence.js';
 
 function response() {
@@ -121,4 +121,23 @@ test('monthly traffic labels are translated into every supported language', asyn
       assert.notEqual(translateText(label, language), label);
     }
   }
+});
+
+test('country periods select independent backend-deduplicated lists and never substitute today for a missing month', () => {
+  const data = { countries: [{country:'DE',visitors:2}], countries_by_period: { 1: [{country:'DE',visitors:2}], 7: [{country:'US',visitors:5}], 30: [{country:'PL',visitors:9},{country:'',visitors:1}] } };
+  assert.equal(countryPeriod('30'), 30);
+  for (const invalid of [null, undefined, 'month', '14', 0, -1]) assert.equal(countryPeriod(invalid), 1);
+  assert.deepEqual(trafficCountries(data, 30), data.countries_by_period[30]);
+  assert.deepEqual(trafficCountries(data, 7), data.countries_by_period[7]);
+  assert.deepEqual(trafficCountries({countries:data.countries}, 1), data.countries);
+  assert.deepEqual(trafficCountries({countries:data.countries}, 30), []);
+});
+test('country preview periods count every browser once and country labels are translated', async () => {
+  const { PREVIEW_API } = await import('../src/components/admin/adminPreviewData.js');
+  const { translateText } = await import('../src/i18n/translate.js');
+  const data = await PREVIEW_API.loadTraffic();
+  for (const [period, total] of [[1,data.today],[7,data.week],[30,data.month]]) {
+    assert.equal(trafficCountries(data,period).reduce((sum,row)=>sum+row.visitors,0),total);
+  }
+  for (const language of ['ru','de','pt','es','fr','it']) for (const label of ['Countries','Country statistics period','Unique browsers by their latest IP country in the selected period.']) assert.notEqual(translateText(label,language),label);
 });

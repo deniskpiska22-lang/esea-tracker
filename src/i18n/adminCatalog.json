@@ -1414,5 +1414,37 @@
     "es": "El historial comienza al activar el contador; el día de hoy sigue en curso.",
     "fr": "L’historique commence à l’activation du suivi ; la journée est encore en cours.",
     "it": "Lo storico parte dall’attivazione del contatore; la giornata di oggi è ancora in corso."
+  },
+  "Countries": {
+    "ru": "Страны",
+    "de": "Länder",
+    "pt": "Países",
+    "es": "Países",
+    "fr": "Pays",
+    "it": "Paesi"
+  },
+  "Country statistics period": {
+    "ru": "Период статистики стран",
+    "de": "Zeitraum der Länderstatistik",
+    "pt": "Período das estatísticas por país",
+    "es": "Período de estadísticas por país",
+    "fr": "Période des statistiques par pays",
+    "it": "Periodo delle statistiche per paese"
+  },
+  "Unique browsers by their latest IP country in the selected period.": {
+    "ru": "Уникальные браузеры по стране IP последнего посещения за выбранный период.",
+    "de": "Eindeutige Browser nach dem letzten IP-Land im gewählten Zeitraum.",
+    "pt": "Navegadores únicos pelo país do IP da última visita no período selecionado.",
+    "es": "Navegadores únicos según el país de la IP de su última visita en el período seleccionado.",
+    "fr": "Navigateurs uniques selon le pays de leur dernière adresse IP sur la période choisie.",
+    "it": "Browser unici per paese IP dell’ultima visita nel periodo selezionato."
+  },
+  "Today": {
+    "ru": "Сегодня",
+    "de": "Heute",
+    "pt": "Hoje",
+    "es": "Hoy",
+    "fr": "Aujourd’hui",
+    "it": "Oggi"
   }
 }
