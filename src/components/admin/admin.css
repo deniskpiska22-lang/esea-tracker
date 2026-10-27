@@ -1671,3 +1671,6 @@
     transition:none
   }
 }
+
+.admin-traffic-period { width:auto; min-width:145px; padding:7px 10px; font-size:12px; }
+.admin-traffic-explanation { color:var(--muted); font-size:12px; line-height:1.7; margin:-6px 0 18px; max-width:960px; }

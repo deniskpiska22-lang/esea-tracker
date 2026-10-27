@@ -1358,5 +1358,61 @@
     "es": "Error",
     "fr": "Erreur",
     "it": "Errore"
+  },
+  "Visitors in 14 days": {
+    "ru": "Посетители за 14 дней",
+    "de": "Besucher in 14 Tagen",
+    "pt": "Visitantes em 14 dias",
+    "es": "Visitantes en 14 días",
+    "fr": "Visiteurs sur 14 jours",
+    "it": "Visitatori in 14 giorni"
+  },
+  "Visitors in 30 days": {
+    "ru": "Посетители за 30 дней",
+    "de": "Besucher in 30 Tagen",
+    "pt": "Visitantes em 30 dias",
+    "es": "Visitantes en 30 días",
+    "fr": "Visiteurs sur 30 jours",
+    "it": "Visitatori in 30 giorni"
+  },
+  "Last 30 days": {
+    "ru": "Последние 30 дней",
+    "de": "Letzte 30 Tage",
+    "pt": "Últimos 30 dias",
+    "es": "Últimos 30 días",
+    "fr": "30 derniers jours",
+    "it": "Ultimi 30 giorni"
+  },
+  "Traffic period": {
+    "ru": "Период посещаемости",
+    "de": "Besucherzeitraum",
+    "pt": "Período de visitas",
+    "es": "Período de visitas",
+    "fr": "Période de fréquentation",
+    "it": "Periodo delle visite"
+  },
+  "Daily totals cannot be added: the same browser counts once in the selected period.": {
+    "ru": "Итоги по дням нельзя складывать: один и тот же браузер учитывается один раз за выбранный период.",
+    "de": "Tageswerte werden nicht addiert: Derselbe Browser zählt im gewählten Zeitraum nur einmal.",
+    "pt": "Os totais diários não devem ser somados: o mesmo navegador conta uma vez no período selecionado.",
+    "es": "Los totales diarios no se suman: el mismo navegador cuenta una vez en el período seleccionado.",
+    "fr": "Les totaux quotidiens ne s’additionnent pas : un même navigateur compte une fois sur la période choisie.",
+    "it": "I totali giornalieri non si sommano: lo stesso browser conta una sola volta nel periodo selezionato."
+  },
+  "Admin pages and hidden tabs do not send activity.": {
+    "ru": "Админка и фоновые вкладки не отправляют активность.",
+    "de": "Admin-Seiten und verborgene Tabs senden keine Aktivität.",
+    "pt": "Páginas administrativas e abas em segundo plano não enviam atividade.",
+    "es": "Las páginas de administración y las pestañas ocultas no envían actividad.",
+    "fr": "Les pages d’administration et les onglets masqués n’envoient pas d’activité.",
+    "it": "Le pagine amministrative e le schede nascoste non inviano attività."
+  },
+  "History starts when tracking was enabled; today is still in progress.": {
+    "ru": "История доступна с момента запуска счётчика; сегодняшний день ещё не завершён.",
+    "de": "Der Verlauf beginnt mit der Aktivierung der Erfassung; der heutige Tag läuft noch.",
+    "pt": "O histórico começa na ativação do contador; o dia de hoje ainda está em andamento.",
+    "es": "El historial comienza al activar el contador; el día de hoy sigue en curso.",
+    "fr": "L’historique commence à l’activation du suivi ; la journée est encore en cours.",
+    "it": "Lo storico parte dall’attivazione del contatore; la giornata di oggi è ancora in corso."
   }
 }

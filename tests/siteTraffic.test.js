@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { pulsePresence } from '../src/lib/sitePresence.js';
-import { trafficPath, VISITOR_KEY } from '../src/utils/siteTraffic.js';
+import { trafficPath, VISITOR_KEY, trafficPeriod, trafficPeriodSummary } from '../src/utils/siteTraffic.js';
 import { createPresenceHandler } from '../api/site-presence.js';
 
 function response() {
@@ -91,4 +91,34 @@ test('database failure is visible to the tracker and does not poison coalescing'
   assert.equal((await handler(req,response())).code,503);
   assert.equal((await handler(req,response())).code,204);
   assert.equal(calls,2);
+});
+
+test('period selection only accepts 7, 14 or 30 days and uses backend-deduplicated totals', () => {
+  for (const value of [undefined, null, '', 'month', -1, 0, 31, Infinity]) assert.equal(trafficPeriod(value), 14);
+  const data = { week: 50, fortnight: 72, month: 94, days: Array.from({ length: 30 }, (_, i) => ({ day: `day-${i}`, visitors: 20 })) };
+  for (const [period, value] of [[7, 50], [14, 72], [30, 94]]) {
+    const result = trafficPeriodSummary(data, String(period));
+    assert.equal(result.period, period);
+    assert.equal(result.value, value);
+    assert.equal(result.days.length, period);
+    assert.equal(result.days.at(-1).day, 'day-29');
+    assert.equal(result.days[0].day, `day-${30 - period}`);
+  }
+  assert.equal(data.days.length, 30);
+});
+test('a newly enabled counter never fabricates earlier history or a missing monthly total', () => {
+  const days = [{ day: '2026-10-26', visitors: 16 }, { day: '2026-10-27', visitors: 37 }];
+  const result = trafficPeriodSummary({ month: 50, days }, 30);
+  assert.equal(result.value, 50);
+  assert.deepEqual(result.days, days);
+  assert.equal(trafficPeriodSummary({ week: 50, days }, 30).value, undefined);
+  assert.deepEqual(trafficPeriodSummary(null, 30).days, []);
+});
+test('monthly traffic labels are translated into every supported language', async () => {
+  const { translateText } = await import('../src/i18n/translate.js');
+  for (const language of ['ru', 'de', 'pt', 'es', 'fr', 'it']) {
+    for (const label of ['Visitors in 14 days', 'Visitors in 30 days', 'Last 30 days', 'Traffic period']) {
+      assert.notEqual(translateText(label, language), label);
+    }
+  }
 });
