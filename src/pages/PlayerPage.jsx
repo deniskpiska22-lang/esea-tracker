@@ -4,6 +4,8 @@ import Link from "../components/SiteLink.jsx";
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
+import { useLiveTeamIdentity } from "../hooks/useLiveTeamIdentity.js";
+import { resolvePlayerTeam } from "../utils/playerTeam.js";
 import {
   useEffect,
   useMemo,
@@ -1086,26 +1088,11 @@ function PlayerPage() {
     supabasePlayerMatches,
   ]);
 
-const currentTeam =
-  useMemo(() => {
-    const latestMatch =
-      playerMatches[0];
-
-    if (!latestMatch) {
-      return playerTeam;
-    }
-
-    return (
-      findLocalTeam(
-        latestMatch.teamId,
-        latestMatch.teamName
-      ) ||
-      playerTeam
-    );
-  }, [
-    playerMatches,
-    playerTeam,
-  ]);
+  const currentTeamCandidate = useMemo(
+    () => resolvePlayerTeam(teams, playerTeam, playerMatches[0]),
+    [teams, playerTeam, playerMatches]
+  );
+  const currentTeam = useLiveTeamIdentity(currentTeamCandidate);
 
     
 
