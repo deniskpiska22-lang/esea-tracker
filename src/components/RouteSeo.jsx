@@ -89,6 +89,8 @@ export default function RouteSeo() {
     const canonical = document.head.querySelector('link[rel="canonical"]')?.href;
     if (!canonical || stripLanguage(new URL(canonical).pathname) !== pathname) return null;
     try { return { routePath: pathname, canonicalPath: new URL(canonical).pathname, title: document.title,
+      heading: document.querySelector('#root h1')?.textContent,
+      alternates: [...document.head.querySelectorAll('link[rel="alternate"][hreflang]')].map(link => ({language: link.hreflang, url: link.href})),
       description: document.head.querySelector('meta[name="description"]')?.content || DEFAULT_DESCRIPTION,
       language: document.documentElement.lang,
       image: document.head.querySelector('meta[property="og:image"]')?.content,
@@ -122,7 +124,7 @@ export default function RouteSeo() {
   }, []);
 
   useEffect(() => {
-    const localized = metadata.language === language && metadata.alternates ? metadata : localizeSeo(metadata, language, {entity:findTeamByRoute(teams, decodeURIComponent(pathname.match(/^\/(?:teams|team)\/([^/]+)/)?.[1] || ''))});
+    const localized = metadata.language === language && metadata.alternates ? metadata : localizeSeo(metadata, language, {entity:metadata.matchEntity || findTeamByRoute(teams, decodeURIComponent(pathname.match(/^\/(?:teams|team)\/([^/]+)/)?.[1] || ''))});
     const canonicalUrl = new URL(
       localized.canonicalPath || pathname,
       SITE_ORIGIN

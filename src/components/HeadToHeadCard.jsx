@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "./SiteLink.jsx";
 import { tx } from "../i18n/translate.js";
 
@@ -12,7 +13,7 @@ import TournamentNameLink from "./TournamentNameLink";
 function HeadToHeadRow({ row, team1, team2, stripe }) {
   return (
     <Link
-      to={`/match/${row.matchId}`}
+      to={matchPublicPath({ ...row, team1, team2 })}
       className={`grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] items-center gap-3 border-b border-[#1d2634] px-4 py-2.5 text-sm transition-colors last:border-b-0 hover:bg-[#151e2b] ${
         stripe ? "bg-white/[0.035]" : ""
       }`}

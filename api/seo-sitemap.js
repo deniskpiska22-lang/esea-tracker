@@ -1,10 +1,11 @@
+import { matchPublicPath } from '../src/utils/matchUrls.js';
 import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
 import { teamSitemapEntries } from '../src/utils/teamSeo.js';
 import { seoClient, result } from '../server/seoData.js';
 import { ORIGIN, staticRoutes, sitemapXml } from '../server/profileSeo.js';
 const PAGE_SIZE=1000;
 // These pages' rendered SEO content changed in this release, even when match data did not.
-const SEO_CONTENT_UPDATED_AT='2026-10-10T12:20:00.000Z';
+const SEO_CONTENT_UPDATED_AT='2026-10-27T15:20:00.000Z';
 const contentUpdatedAt = value => value && new Date(value).getTime()>new Date(SEO_CONTENT_UPDATED_AT).getTime() ? value : SEO_CONTENT_UPDATED_AT;
 export default async function handler(req,res) {
   const kind=String(req.query.kind || 'index');
@@ -29,6 +30,13 @@ export default async function handler(req,res) {
           .select(`${idColumn},${nameColumn}`).in(idColumn,batch.map(row=>row.entity_id)))))).flat();
         const names=new Map(identities.map(entity=>[entity[idColumn],entity[nameColumn]]));
         for (const row of rows) if(names.get(row.entity_id)) row.url=`/${kind}/${encodeURIComponent(names.get(row.entity_id))}`;
+      }
+      if (kind==='matches' && rows.length) {
+        const batches=[];
+        for(let start=0;start<rows.length;start+=100) batches.push(rows.slice(start,start+100));
+        const matches=(await Promise.all(batches.map(batch=>result(client.from('matches').select('id,team1_id,team1_name,team2_id,team2_name').in('id',batch.map(row=>row.entity_id)))))).flat();
+        const paths=new Map(matches.map(match=>[match.id,matchPublicPath(match)]));
+        for (const row of rows) if(paths.get(row.entity_id)) row.url=paths.get(row.entity_id);
       }
       entries=rows.flatMap(r=>kind==='teams' ? teamSitemapEntries(`${ORIGIN}${r.url}`,contentUpdatedAt(r.updated_at)) : [{url:`${ORIGIN}${r.url}`,updatedAt:contentUpdatedAt(r.updated_at)}]);
       if(kind==='teams' && page===0) entries.unshift(...staticRoutes.map(route=>({url:`${ORIGIN}${route}`,updatedAt:SEO_CONTENT_UPDATED_AT})));

@@ -9,7 +9,7 @@ import {
 
 import { useParams } from "react-router-dom";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getMatchSeoMetadata, MATCH_SEO_COLUMNS } from "../utils/matchSeo.js";
 
 import { useStaticHistory } from "../hooks/useStaticHistory.js";
@@ -57,7 +57,8 @@ const FINISHED_STATUSES = new Set([
  * re-decide after the initial pick.
  */
 function MatchPageRouter() {
-  const { pathname } = useLocation();
+  const { pathname, search, hash, state } = useLocation();
+  const navigate = useNavigate();
   const {
     matchId: routeMatchId,
     id: routeId,
@@ -104,7 +105,6 @@ function MatchPageRouter() {
       .then(({ data }) => {
         if (!cancelled) {
           setResolved({ matchId, row: data || null });
-          if (data) window.dispatchEvent(new CustomEvent("match-seo-update", { detail: { ...getMatchSeoMetadata(data), routePath: pathname } }));
         }
       })
       .catch(() => {
@@ -116,7 +116,7 @@ function MatchPageRouter() {
     return () => {
       cancelled = true;
     };
-  }, [matchId, pathname]);
+  }, [matchId]);
 
   const loading =
     Boolean(supabase) &&
@@ -126,6 +126,14 @@ function MatchPageRouter() {
     resolved && resolved.matchId === matchId
       ? resolved.row
       : null;
+
+  useEffect(() => {
+    const record = dbRow || finishedMatch || upcomingMatch;
+    if (!record) return;
+    const metadata = getMatchSeoMetadata(record);
+    window.dispatchEvent(new CustomEvent("match-seo-update", { detail: { ...metadata, routePath: pathname } }));
+    if (pathname !== metadata.canonicalPath) navigate({ pathname: metadata.canonicalPath, search, hash }, { replace: true, state });
+  }, [dbRow, finishedMatch, upcomingMatch, pathname, search, hash, state, navigate]);
 
   if (loading || (!dbRow && staticRows === undefined)) {
     return <MatchLoading />;

@@ -8,7 +8,7 @@ function internalPath(value) {
 }
 export function isMatchPath(value) {
   const path = internalPath(value && typeof value === 'object' ? value.pathname : value);
-  return Boolean(path && /^\/(?:match\/[^/?#]+|(?:teams|team)\/[^/?#]+\/matches\/[^/?#]+)\/?(?:[?#].*)?$/.test(path));
+  return Boolean(path && /^\/(?:match\/[^/?#]+(?:\/[^/?#]+)?|(?:teams|team)\/[^/?#]+\/matches\/[^/?#]+)\/?(?:[?#].*)?$/.test(path));
 }
 function backLabel(path) {
   const pathname = path.split(/[?#]/)[0];

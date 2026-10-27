@@ -138,7 +138,7 @@ function Application() {
                       <Route path="/media" element={<MediaPage />} />
                       <Route path="/media/:slug" element={<NewsArticlePage />} />
                       <Route path="/matches" element={<MatchesPage />} />
-                      <Route path="/match/:id" element={<MatchPageRouter />} />
+                      <Route path="/match/:id/:matchSlug?" element={<MatchPageRouter />} />
                       <Route path="/teams/:slug/matches" element={<MatchesPage />} />
                       <Route path="/team/:slug/matches" element={<MatchesPage />} />
                       <Route path="/teams/:slug/stats" element={<StatsPage />} />

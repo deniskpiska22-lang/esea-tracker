@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
@@ -289,7 +290,7 @@ function StatsPage() {
                     {recentMatches.map((match) => (
                       <Link
                         key={match.matchId || match.id}
-                        to={`/match/${match.matchId || match.id}`}
+                        to={matchPublicPath(match)}
                         title={`${tx("vs")} ${match.opponentName || "Unknown"}`}
                         className={`flex h-11 min-w-11 items-center justify-center rounded-xl border px-3 text-sm font-black transition hover:-translate-y-0.5 ${
                           match.won

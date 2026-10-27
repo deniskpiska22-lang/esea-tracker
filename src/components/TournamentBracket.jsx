@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import { useRef } from "react";
 import {
   FiChevronLeft,
@@ -91,7 +92,7 @@ export function BracketMatchBox({ match, final = false }) {
   );
   return match?.matchId ? (
     <Link
-      to={`/match/${match.matchId}`}
+      to={matchPublicPath(match)}
       className="group block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
       aria-label={`${match.team1?.name || tx("TBD")} — ${match.team2?.name || tx("TBD")}`}
     >

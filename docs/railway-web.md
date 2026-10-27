@@ -194,3 +194,10 @@ and numbers must never be presented as real traffic or an authenticated test.
 The admin traffic panel offers 7, 14 and 30 days (`trafficDays` in the URL). Both overview and traffic panels always show separate 7-day and 30-day unique visitor cards. The period selector changes only the daily chart. `admin_site_traffic()` returns `week`, `fortnight` and `month` as distinct browser counts, never sums of daily values. Daily history is limited to 30 days and starts on the collection start date. Online remains a rolling 180 seconds; administrator routes and hidden tabs send no presence. Today and the first collection day may be partial.
 
 Countries have an independent `countryDays=1|7|30` selector. `countries_by_period` counts each browser once using its latest recorded IP country inside the selected window, including unknown countries. The expanded list has no top-15 cutoff. Country periods do not change the daily chart or the fixed weekly/monthly cards.
+
+
+### Match room URLs and SEO
+
+The public canonical is `/match/<FACEIT room ID>/<team-a>-vs-<team-b>` in every supported language. The ID alone identifies the room. Old ID-only URLs and outdated name suffixes permanently redirect (308) to the current canonical via `seo-profile`; the SPA also replaces old routes while retaining back-navigation state, query and hash. Named routes use the same original match ID for every API/statistics call. Match sitemaps and server-rendered links use the canonical helper; unavailable names use neutral team placeholders instead of UUIDs. New names may change the decorative suffix, never the room identity.
+
+FACEIT outbound links are constructed from the validated room ID using a concrete `en` URL. Stored `faceit_url` values from the Data API are not trusted because they may contain a literal `{lang}`. The ordinary match worker repairs these URLs during its next existing refresh; no bulk match or rating rewrite is needed.

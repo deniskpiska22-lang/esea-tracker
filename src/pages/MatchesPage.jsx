@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
@@ -85,6 +86,7 @@ function rowToTeamMatch(row, team) {
   const draw = hasScores && ownScore === opponentScore;
 
   return {
+    publicPath: matchPublicPath(row),
     id: row.id,
     kind,
     status: row.status,
@@ -275,7 +277,7 @@ function TeamMatches({ team, slug }) {
                   </h3>
                   <div className="divide-y divide-white/[0.06]">
                     {matches.map((match) => (
-                      <Link key={match.id} to={`/teams/${slug}/matches/${match.id}`}
+                      <Link key={match.id} to={match.publicPath || matchPublicPath({ ...match, teamName: team.name })}
                         className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 transition hover:bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-orange-400 sm:grid-cols-[160px_minmax(0,1fr)_auto] sm:px-6">
                         <div className="text-xs text-slate-400 sm:text-sm">
                           {match.kind === "live" && <span className="mb-1 block font-bold text-red-400">● {translateMatchStatus(match.status)}</span>}
@@ -321,7 +323,7 @@ function TeamMatches({ team, slug }) {
                 {matches.map((match) => (
                   <Link
                     key={match.matchId}
-                    to={`/teams/${slug}/matches/${match.matchId}`}
+                    to={match.publicPath || matchPublicPath({ ...match, teamName: team.name })}
                     className="flex flex-wrap items-center justify-between gap-y-3 rounded-xl border border-[#243041] bg-[#111823] px-6 py-4 transition-all duration-300 hover:translate-x-1 hover:border-orange-500/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]"
                   >
                     <div className="flex min-w-[180px] items-center gap-6">

@@ -1,3 +1,4 @@
+import { faceitMatchRoomUrl } from "../src/utils/faceitMatchUrl.js";
 import { createClient } from "@supabase/supabase-js";
 
 import upcomingMatches from "../src/data/upcomingMatches.js";
@@ -97,10 +98,7 @@ function upcomingToRow(match) {
     team2_score: 0,
     winner_id: null,
     faceit_url:
-      match.faceitUrl ||
-      `https://www.faceit.com/en/cs2/room/${
-        match.matchId || match.id
-      }`,
+      faceitMatchRoomUrl(match.matchId || match.id),
     raw_data: match,
     stats_synced: false,
     updated_at: new Date().toISOString(),
@@ -162,10 +160,7 @@ function finishedToRow(match) {
         ? team2?.faceitTeamId || null
         : null,
     faceit_url:
-      match.faceitUrl ||
-      `https://www.faceit.com/en/cs2/room/${
-        match.matchId || match.id
-      }`,
+      faceitMatchRoomUrl(match.matchId || match.id),
     raw_data: match,
     stats_synced: false,
     updated_at: new Date().toISOString(),
@@ -244,10 +239,7 @@ function faceitToPatch(data) {
         ? secondTeam.id
         : null,
     faceit_url:
-      data.faceit_url ||
-      `https://www.faceit.com/en/cs2/room/${
-        data.match_id || data.id
-      }`,
+      faceitMatchRoomUrl(data.match_id || data.id),
     raw_data: data,
     updated_at: new Date().toISOString(),
   };

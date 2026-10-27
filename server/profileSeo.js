@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../src/utils/matchUrls.js';
 import { localizeBody, alternateLanguages } from '../src/i18n/seo.js';
 import { LANGUAGES, localizedPath } from '../src/i18n/languages.js';
 import { translateText } from '../src/i18n/translate.js';
@@ -31,7 +32,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
       body: `${entity.teamName && entity.teamSlug ? `<p>Team: ${link(`/teams/${encodeURIComponent(entity.teamSlug)}`, entity.teamName)}</p>` : ''}
       ${metadata.aliases.length ? `<p>Aliases: ${metadata.aliases.map(escapeHtml).join(', ')}</p>` : ''}
       <dl>${facts.filter(([,v])=>v!=null && v!=='').map(([label,v])=>`<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(v)}</dd>`).join('')}</dl>
-      <h2>Recent tracked matches</h2>${recentMatches.length ? `<ul>${recentMatches.map(match=>`<li>${link(`/match/${encodeURIComponent(match.id)}`,`${match.team1_name} vs ${match.team2_name}: ${match.team1_score}–${match.team2_score}`)}${match.competition_name ? ` — ${escapeHtml(match.competition_name)}` : ''}</li>`).join('')}</ul>` : '<p>Statistics will appear after the first tracked matches.</p>'}`,
+      <h2>Recent tracked matches</h2>${recentMatches.length ? `<ul>${recentMatches.map(match=>`<li>${link(matchPublicPath(match),`${match.team1_name} vs ${match.team2_name}: ${match.team1_score}–${match.team2_score}`)}${match.competition_name ? ` — ${escapeHtml(match.competition_name)}` : ''}</li>`).join('')}</ul>` : '<p>Statistics will appear after the first tracked matches.</p>'}`,
       schema: { '@context':'https://schema.org', '@type':'Person', name:entity.nickname, identifier:entity.playerId,
         alternateName:metadata.aliases.length ? metadata.aliases : undefined, url:metadata.canonicalUrl,
         image:entity.avatar || undefined, nationality:entity.country || undefined,
@@ -51,7 +52,7 @@ export function profileMetadata(kind, entity, roster = [], section = '', recentM
     const otherScore = first ? match.team2_score : match.team1_score;
     const date = match.finished_at || match.scheduled_at;
     const validDate = date && !Number.isNaN(new Date(date).getTime());
-    return `<li>${validDate ? `<time datetime="${escapeHtml(new Date(date).toISOString())}">${escapeHtml(new Date(date).toISOString().slice(0,10))}</time> — ` : ''}${link(`/match/${encodeURIComponent(match.id)}`, `${entity.name} vs ${opponent || 'Opponent'}${ownScore != null && otherScore != null ? `: ${ownScore}–${otherScore}` : ''}`)}${match.competition_name ? ` — ${escapeHtml(match.competition_name)}` : ''}</li>`;
+    return `<li>${validDate ? `<time datetime="${escapeHtml(new Date(date).toISOString())}">${escapeHtml(new Date(date).toISOString().slice(0,10))}</time> — ` : ''}${link(matchPublicPath(match), `${entity.name} vs ${opponent || 'Opponent'}${ownScore != null && otherScore != null ? `: ${ownScore}–${otherScore}` : ''}`)}${match.competition_name ? ` — ${escapeHtml(match.competition_name)}` : ''}</li>`;
   }).join('');
   const parseList = value => {
     if (Array.isArray(value)) return value;

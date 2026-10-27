@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
@@ -1475,7 +1476,7 @@ const currentTeam =
                       (match, index) => (
                         <Link
                           key={`${match.matchId}-${index}`}
-                          to={`/match/${match.matchId}`}
+                          to={matchPublicPath(match)}
                           title={`${match.opponent?.teamName || "Unknown"} · ${match.rating.toFixed(2)}`}
                           className={`flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-xs font-black transition hover:-translate-y-0.5 ${
                             match.won
@@ -1610,7 +1611,7 @@ const currentTeam =
                     ) => (
                       <Link
                         key={`${match.matchId}-${index}`}
-                        to={`/match/${match.matchId}`}
+                        to={matchPublicPath(match)}
                         className="grid gap-4 px-5 py-4 transition hover:bg-[#141d29] sm:grid-cols-[110px_minmax(0,1fr)_90px_80px_80px] sm:items-center sm:px-6"
                       >
                         <div>

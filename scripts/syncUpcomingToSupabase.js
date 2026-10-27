@@ -1,3 +1,4 @@
+import { faceitMatchRoomUrl } from "../src/utils/faceitMatchUrl.js";
 import { createClient } from "@supabase/supabase-js";
 
 import upcomingMatches from "../src/data/upcomingMatches.js";
@@ -83,10 +84,7 @@ function normalizeMatch(match) {
     winner_id: null,
 
     faceit_url:
-      match.faceitUrl ||
-      `https://www.faceit.com/en/cs2/room/${
-        match.matchId || match.id
-      }`,
+      faceitMatchRoomUrl(match.matchId || match.id),
 
     raw_data: match,
 

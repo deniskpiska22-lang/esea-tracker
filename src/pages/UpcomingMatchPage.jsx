@@ -1,3 +1,5 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
+import { faceitMatchRoomUrl } from '../utils/faceitMatchUrl.js';
 import MatchBackLink from '../components/MatchBackLink.jsx';
 import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
@@ -245,8 +247,7 @@ function normalizeDatabaseMatch(row) {
       Boolean(row.stats_synced),
 
     faceitUrl:
-      row.faceit_url ||
-      `https://www.faceit.com/en/cs2/room/${row.id}`,
+      faceitMatchRoomUrl(row.id),
   };
 }
 
@@ -558,7 +559,7 @@ function RecentMatchesCard({
           {matches.map((item) => (
             <Link
               key={`${item.matchId}-${item.teamSlug}`}
-              to={`/match/${item.matchId}`}
+              to={matchPublicPath(item)}
               className="flex items-center justify-between border-b border-[#1d2634] px-5 py-3 transition-colors last:border-b-0 hover:bg-[#151e2b]"
             >
               <div>
@@ -1760,10 +1761,7 @@ function UpcomingMatchPage() {
     null;
 
   const displayFaceitUrl =
-    liveData?.faceitUrl ||
-    upcomingMatch?.faceitUrl ||
-    finishedMatch?.faceitUrl ||
-    "#";
+    faceitMatchRoomUrl(matchId);
 
   /*
    * Для кнопки Back приоритет имеет routeSlug.
@@ -1930,6 +1928,7 @@ function UpcomingMatchPage() {
       <div className="mx-auto max-w-[900px]">
         <div className="flex items-center justify-between gap-4">
           <MatchBackLink fallbackTeamSlug={navigationSlug} />
+          <h1 className="sr-only">{displayTeam1.name} vs {displayTeam2.name}</h1>
 
           {isLive && (
             <div className="animate-pulse rounded-full border border-red-500/30 bg-red-500/15 px-4 py-1 text-sm font-bold text-red-400">{tx(" ● LIVE ")}</div>

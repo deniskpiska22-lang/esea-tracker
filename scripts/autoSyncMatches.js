@@ -1,3 +1,4 @@
+import { faceitMatchRoomUrl } from "../src/utils/faceitMatchUrl.js";
 import { findCatalogTeam } from "../src/utils/teamIdentity.js";
 import "dotenv/config";
 import { spawn } from "node:child_process";
@@ -1693,7 +1694,7 @@ function internalToRow(match) {
       : null,
 
     faceit_url:
-      `https://www.faceit.com/en/cs2/room/${match.id}`,
+      faceitMatchRoomUrl(match.id),
 
     raw_data: match,
   };
@@ -1859,6 +1860,7 @@ function publicApiToPatch(data) {
                 : null
             ),
 
+    faceit_url: faceitMatchRoomUrl(data.match_id || data.id),
     raw_data: data,
   };
 }
@@ -2206,8 +2208,7 @@ function publicChampionshipMatchToRow(
       championship.name,
 
     faceit_url:
-      match?.faceit_url ||
-      `https://www.faceit.com/en/cs2/room/${id}`,
+      faceitMatchRoomUrl(id),
 
     raw_data: match,
   };
@@ -2511,9 +2512,7 @@ async function discoverSeasonFinalsByPlayerHistory(
               ) ||
               "ESEA Season Finals",
             faceit_url:
-              room?.faceit_url ||
-              match?.faceit_url ||
-              `https://www.faceit.com/en/cs2/room/${matchId}`,
+              faceitMatchRoomUrl(matchId),
             raw_data: room,
           };
 
@@ -2754,8 +2753,8 @@ function changed(
     return true;
   }
 
-  // publicApiToPatch() never sets championship_id/faceit_url (Data API v4
-  // doesn't carry them) — only compare fields the incoming patch actually
+  // publicApiToPatch() never sets championship_id (Data API v4
+  // does not carry it) — only compare fields the incoming patch actually
   // touches, not every COMPARE_FIELDS entry unconditionally.
   return COMPARE_FIELDS.filter(
     (field) =>

@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../src/utils/matchUrls.js';
 import { getSiteSeoMetadata } from '../src/utils/siteSeo.js';
 import { escapeHtml, ORIGIN } from './profileSeo.js';
 import { result } from './seoData.js';
@@ -17,7 +18,7 @@ export async function loadSiteMetadata(client, pathname) {
   }
   if (pathname==='/' || pathname==='/matches') {
     const rows = matchRows;
-    body += `<h2>Recent CS2 match results</h2><ul>${rows.map(m=>`<li><a data-entity-link="true" href="/match/${encodeURIComponent(m.id)}">${escapeHtml(m.team1_name)} ${escapeHtml(m.team1_score)}–${escapeHtml(m.team2_score)} ${escapeHtml(m.team2_name)}</a> — ${escapeHtml(m.competition_name)}</li>`).join('')}</ul>`;
+    body += `<h2>Recent CS2 match results</h2><ul>${rows.map(m=>`<li><a data-entity-link="true" href="${matchPublicPath(m)}">${escapeHtml(m.team1_name)} ${escapeHtml(m.team1_score)}–${escapeHtml(m.team2_score)} ${escapeHtml(m.team2_name)}</a> — ${escapeHtml(m.competition_name)}</li>`).join('')}</ul>`;
   }
   if (pathname==='/players') {
     const urls = await result(client.from('seo_profile_urls').select('entity_id').eq('kind','players').order('position').limit(60));

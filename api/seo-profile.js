@@ -73,7 +73,7 @@ export default async function handler(req,res) {
         metadata.body=metadata.body.replace(`<dd>${escapeIntro(english)}</dd>`,`<dd>${escapeIntro(localized)}</dd>`);
       } catch { /* Keep a supplied country name if the code is unknown. */ }
     }
-    const requestedPath = kind==='match' ? `/match/${encodeURIComponent(key)}` : kind==='team'?`/teams/${encodeURIComponent(key)}${section?`/${section}`:''}`:`/players/${encodeURIComponent(key)}`;
+    const requestedPath = kind==='match' ? `/match/${encodeURIComponent(key)}${typeof req.query.slug === "string" ? `/${encodeURIComponent(req.query.slug)}` : ""}` : kind==='team'?`/teams/${encodeURIComponent(key)}${section?`/${section}`:''}`:`/players/${encodeURIComponent(key)}`;
     if(localizedPath(requestedPath,language)!==metadata.canonicalPath) return res.redirect(308,metadata.canonicalPath);
     res.setHeader('Content-Type','text/html; charset=utf-8');
     res.setHeader('Cache-Control','public, max-age=0, s-maxage=60, stale-while-revalidate=60');

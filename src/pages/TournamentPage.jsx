@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
@@ -350,7 +351,7 @@ function MatchScheduleRow({ match }) {
   );
 
   if (match?.id) {
-    return <Link to={`/match/${match.id}`}>{content}</Link>;
+    return <Link to={matchPublicPath(match)}>{content}</Link>;
   }
 
   return content;

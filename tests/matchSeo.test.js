@@ -11,7 +11,7 @@ test('reported duplicate match has its own canonical, title, scores and readable
  const html=renderProfile(template,metadata);
  assert.match(html,/<title>UK RIPPER vs CloudPeppers 11–13/);
  assert.match(html,/Ancient: 11–13/);assert.match(html,/href="\/teams\/uk-ripper-one"/);assert.match(html,/href="\/players\/Example"/);
- assert.match(html,new RegExp(`rel="canonical" href="https://eseatracker.ru/match/${match.id}"`));
+ assert.match(html,new RegExp(`rel="canonical" href="https://eseatracker.ru/match/${match.id}/uk-ripper-vs-cloudpeppers"`));
  assert.equal((html.match(/<h1/g)||[]).length,1);assert.match(html,/<html lang="en">/);
  assert.deepEqual(metadata.schema['@graph'].find(node=>node['@type']==='WebPage').about.map(team=>team.identifier),['one','two']);
  assert.doesNotMatch(JSON.stringify(metadata.schema), /SportsEvent|EventScheduled|EventCancelled/);
@@ -45,4 +45,28 @@ test('match aliases redirect and match sitemap/profile rewrites precede SPA fall
  assert.ok(v.rewrites.find(r=>r.source==='/match/:key'));
  assert.match(v.rewrites.find(r=>r.source.startsWith('/sitemaps/')).source,/matches/);
  assert.equal(v.rewrites.at(-1).destination,'/index.html');
+});
+
+test('all languages keep team names, scores and the original indexed match canonical',async()=>{
+ const { localizeSeo } = await import('../src/i18n/seo.js');
+ for(const lang of ['ru','en','de','pt','es','fr','it']) {
+  const base=getMatchSeoMetadata(match);
+  const metadata=localizeSeo(base,lang,{entity:base.matchEntity});
+  const html=renderProfile(template,{...metadata,body:''});
+  assert.match(metadata.title,/UK RIPPER vs CloudPeppers 11–13/);
+  assert.ok(!metadata.title.includes(match.id));
+  assert.ok(!metadata.description.includes(match.id));
+  assert.equal(metadata.canonicalPath,`${lang==='ru'?'':'/'+lang}/match/${match.id}/uk-ripper-vs-cloudpeppers`);
+  assert.equal(metadata.alternates.length,8);
+  assert.match(html,/<meta property="og:title" content="UK RIPPER vs CloudPeppers 11–13/);
+  assert.equal(metadata.schema['@graph'][1].itemListElement[2].name,'UK RIPPER vs CloudPeppers');
+ }
+});
+test('bundled match fallback publishes readable names even without a database response',()=>{
+ const historic=getMatchSeoMetadata({matchId:match.id,teamName:'Team A',opponentName:'Team B',teamScore:13,opponentScore:7,date:'2026-10-27',season:'ESEA S59',bestOf:1});
+ assert.match(historic.title,/Team A vs Team B 13–7/);
+ const upcoming=getMatchSeoMetadata({matchId:match.id,status:'SCHEDULED',team1:{name:'Team A'},team2:{name:'Team B'},scheduledAt:'2026-10-28T19:00:00Z',bestOf:3});
+ assert.match(upcoming.title,/Team A vs Team B/);
+ assert.doesNotMatch(upcoming.title,/0–0/);
+ assert.equal(upcoming.canonicalPath,historic.canonicalPath);
 });

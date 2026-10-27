@@ -298,6 +298,10 @@
       "destination": "/api/seo-profile?kind=player&key=:key&lang=:lang"
     },
     {
+      "source": "/:lang(en|de|pt|es|fr|it)/match/:key/:slug",
+      "destination": "/api/seo-profile?kind=match&key=:key&lang=:lang&slug=:slug"
+    },
+    {
       "source": "/:lang(en|de|pt|es|fr|it)/match/:key",
       "destination": "/api/seo-profile?kind=match&key=:key&lang=:lang"
     },
@@ -352,6 +356,10 @@
     {
       "source": "/player/:key",
       "destination": "/api/seo-profile?kind=player&key=:key"
+    },
+    {
+      "source": "/match/:key/:slug",
+      "destination": "/api/seo-profile?kind=match&key=:key&slug=:slug"
     },
     {
       "source": "/match/:key",

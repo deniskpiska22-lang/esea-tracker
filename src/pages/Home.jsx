@@ -1,3 +1,4 @@
+import { matchPublicPath } from '../utils/matchUrls.js';
 import { formatUserDateTime } from "../utils/userTime.js";
 import { MATCH_CARD_COLUMNS } from "../utils/homeMatchColumns.js";
 import { requestHomeFeed } from "../lib/homeFeedRequest.js";
@@ -1064,7 +1065,7 @@ function HeroMatch({ match: data, loading = false }) {
   // not push the rest of the page down when they arrive.
   const match = data || { team1: {}, team2: {}, bestOf: 1 };
   const live = isLiveStatus(match.status);
-  const matchPath = `/match/${match.matchId || match.id}`;
+  const matchPath = matchPublicPath(match);
 
   return (
     <section aria-busy={loading} className="group relative self-start overflow-hidden rounded-[26px] border border-white/[0.08] bg-[#0c1117] p-5 shadow-2xl shadow-black/25 md:min-h-[420px] md:p-7">
@@ -1239,7 +1240,7 @@ function LiveCard({ match }) {
 
   return (
     <Link
-      to={`/match/${match.matchId || match.id}`}
+      to={matchPublicPath(match)}
       state={{ from: "/", label: "← Back to Home" }}
       className="group flex shrink-0 flex-col gap-1 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 transition hover:border-orange-500/25 hover:bg-white/[0.05] sm:px-3.5 sm:py-3"
     >
@@ -1313,7 +1314,7 @@ function LiveCard({ match }) {
 function MatchCard({ match }) {
   return (
     <Link
-      to={`/match/${match.matchId || match.id}`}
+      to={matchPublicPath(match)}
       state={{ from: "/", label: "← Back to Home" }}
       className="group rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-orange-500/25 hover:bg-[#10171f]"
     >
@@ -1364,7 +1365,7 @@ function ResultCard({ match }) {
 
   return (
     <Link
-      to={`/match/${match.matchId || match.id}`}
+      to={matchPublicPath(match)}
       state={{ from: "/", label: "← Back to Home" }}
       className="group rounded-2xl border border-white/[0.07] bg-[#0d131a] p-4 transition hover:-translate-y-0.5 hover:border-emerald-500/20 hover:bg-[#10171f]"
     >
@@ -1838,7 +1839,7 @@ function Home() {
   );
 
   const popularRecentMatchPath = popularRecentMatch
-    ? `/match/${popularRecentMatch.matchId || popularRecentMatch.id}`
+    ? matchPublicPath(popularRecentMatch)
     : null;
 
   return (
