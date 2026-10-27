@@ -165,12 +165,16 @@ function getRatingTeamLogo(staticTeam, ratingRow) {
   );
 }
 
-function mergeRatingTeams(ratingRows) {
+function mergeRatingTeams(ratingRows, activeMatches = []) {
+  const currentTeams = new Map(activeMatches.flatMap(match =>
+    [match.team1, match.team2].filter(team => team?.id).map(team => [team.id, team])));
   return (Array.isArray(ratingRows) ? ratingRows : [])
     .map((ratingRow) => {
       const staticTeam = findCatalogTeam(teams, getRatingRowId(ratingRow), getRatingRowName(ratingRow));
 
+      const currentTeam = currentTeams.get(getRatingRowId(ratingRow));
       const name =
+        currentTeam?.name ||
         getRatingRowName(ratingRow) ||
         staticTeam?.name ||
         tx("Unknown team");
@@ -191,7 +195,7 @@ function mergeRatingTeams(ratingRows) {
           slug,
         name,
         slug,
-        logo: getRatingTeamLogo(staticTeam, ratingRow),
+        logo: currentTeam?.logo || getRatingTeamLogo(staticTeam, ratingRow),
         division:
           staticTeam?.division ??
           ratingRow?.division ??
@@ -1741,7 +1745,7 @@ function Home() {
 
 
   const rankedTeams = useMemo(() => {
-    const syncedTeams = mergeRatingTeams(ratingRows);
+    const syncedTeams = mergeRatingTeams(ratingRows, activeMatches);
 
     if (syncedTeams.length > 0) {
       return syncedTeams;
@@ -1769,7 +1773,7 @@ function Home() {
         pointsChange: 0,
         rankChange: 0,
       }));
-  }, [ratingRows]);
+  }, [ratingRows, activeMatches]);
 
   const topTeams = useMemo(
     () => rankedTeams.slice(0, 8),
