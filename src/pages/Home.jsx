@@ -171,8 +171,8 @@ function mergeRatingTeams(ratingRows) {
       const staticTeam = findCatalogTeam(teams, getRatingRowId(ratingRow), getRatingRowName(ratingRow));
 
       const name =
-        staticTeam?.name ||
         getRatingRowName(ratingRow) ||
+        staticTeam?.name ||
         tx("Unknown team");
 
       const slug =
