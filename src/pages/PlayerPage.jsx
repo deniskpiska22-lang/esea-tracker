@@ -1,3 +1,4 @@
+import './PlayerPage.css';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
@@ -1312,8 +1313,8 @@ function PlayerPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#090f16] text-white">
-      <div className="mx-auto max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
+    <div className="player-profile min-h-screen text-white">
+      <div className="player-profile-shell mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <Link
           to={backLink}
           className="inline-flex items-center text-sm font-medium text-slate-400 transition hover:text-orange-300"
@@ -1321,15 +1322,15 @@ function PlayerPage() {
           {translateBackLabel(backLabel)}
         </Link>
 
-        <section className="relative mt-5 overflow-hidden rounded-[28px] border border-[#263244] bg-[#101722]">
+        <section className="player-hero relative mt-5 overflow-hidden border">
           <div className="absolute inset-0">
             <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
             <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-sky-500/5 blur-3xl" />
           </div>
 
-          <div className="relative grid gap-8 p-5 sm:p-7 lg:grid-cols-[260px_minmax(0,1fr)_310px] lg:p-9">
+          <div className="player-hero-grid relative grid">
             <div>
-              <div className="relative aspect-square flex items-end justify-center overflow-hidden rounded-[28px]">
+              <div className="player-portrait relative flex items-end justify-center overflow-hidden">
 
     {currentTeam?.logo && (
   <img
@@ -1352,7 +1353,7 @@ function PlayerPage() {
 
 </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="player-social mt-4 grid grid-cols-2 gap-3">
                 {faceitProfileUrl ? (
                   <a
                     href={faceitProfileUrl}
@@ -1402,7 +1403,7 @@ function PlayerPage() {
               </div>
             </div>
 
-            <div className="min-w-0">
+            <div className="player-identity min-w-0">
               <div className="flex flex-wrap items-center gap-3">
                 {(databasePlayer?.country ||
                   localPlayerInfo?.country) && (
@@ -1418,7 +1419,7 @@ function PlayerPage() {
                 )}
               </div>
 
-              <h1 className="mt-4 break-words text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="player-name mt-4 break-words font-black tracking-tight">
                 {decodedNickname}
               </h1>
 
@@ -1459,7 +1460,7 @@ function PlayerPage() {
 )}
               </div>
 
-              <div className="mt-8">
+              <div className="player-form mt-8">
                 <div className="flex items-end justify-between gap-4">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{tx(" Recent form ")}</div>
@@ -1507,8 +1508,8 @@ function PlayerPage() {
               )}
             </div>
 
-            <div className="grid content-start gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <div className={`rounded-3xl border p-6 ${ratingBackground(averageRating)}`}>
+            <div className="player-summary grid content-start gap-4">
+              <div className={`player-rating border ${ratingBackground(averageRating)}`}>
                 <div className="text-xs font-semibold uppercase tracking-[0.17em] text-slate-400">{tx(" Player rating ")}</div>
 
                 <div className={`mt-3 text-6xl font-black tracking-tight ${ratingColor(averageRating)}`}>
@@ -1565,7 +1566,12 @@ function PlayerPage() {
           </div>
         </section>
 
-        <section className="mt-6">
+        <nav className="player-section-nav" aria-label={tx("Player statistics")}>
+          <a href="#player-performance">{tx(" Performance ")}</a>
+          <a href="#player-matches">{tx(" Recent matches ")}</a>
+          <a href="#player-overview">{tx(" Overview ")}</a>
+        </nav>
+        <section id="player-performance" className="player-performance mt-6">
           <div className="mb-4 flex items-end justify-between">
             <div>
               <h2 className="text-2xl font-black">{tx(" Performance ")}</h2>
@@ -1588,8 +1594,8 @@ function PlayerPage() {
           </div>
         </section>
 
-        <section className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(340px,0.55fr)]">
-          <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
+        <section className="player-detail-grid mt-6 grid gap-6">
+          <div id="player-matches" className="player-match-panel overflow-hidden border">
             <div className="flex items-center justify-between border-b border-[#263244] px-5 py-5 sm:px-6">
               <div>
                 <h2 className="text-xl font-black">{tx(" Recent matches ")}</h2>
@@ -1690,7 +1696,7 @@ function PlayerPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
+            <div id="player-overview" className="player-overview-panel border p-6">
               <h2 className="text-xl font-black">{tx(" Overview ")}</h2>
 
               <div className="mt-5 space-y-4">
