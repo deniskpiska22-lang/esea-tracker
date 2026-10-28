@@ -37,6 +37,13 @@ const limited = maximum => {
   return new Transform({ transform(chunk, encoding, callback) { size += chunk.length; callback(size > maximum ? new Error('Demo exceeds size limit') : null, chunk); } });
 };
 
+export async function saveDemoResponse(response, destination, extension, signal) {
+  if (!response.body) throw new Error('Empty demo response');
+  if (Number(response.headers.get('content-length')) > 256 * 1024 * 1024) { await response.body.cancel(); throw new Error('Demo exceeds size limit'); }
+  const decompress = extension.endsWith('.zst') ? createZstdDecompress() : extension.endsWith('.gz') ? createGunzip() : new Transform({ transform(c, e, cb) { cb(null, c); } });
+  await pipeline(Readable.fromWeb(response.body), limited(256 * 1024 * 1024), decompress, limited(1024 * 1024 * 1024), createWriteStream(destination, { mode: 0o600 }), { signal });
+}
+
 export async function downloadDemo(value, matchId, destination, fetcher = fetch) {
   let url = demoUrl(value, matchId);
   if (!url) throw new Error('Untrusted demo resource');
@@ -55,10 +62,7 @@ export async function downloadDemo(value, matchId, destination, fetcher = fetch)
       error.accessRequired = [401, 403].includes(response.status);
       throw error;
     }
-    if (!response.body) throw new Error('Empty demo response');
-    if (Number(response.headers.get('content-length')) > 256 * 1024 * 1024) { await response.body.cancel(); throw new Error('Demo exceeds size limit'); }
-    const decompress = url.pathname.endsWith('.zst') ? createZstdDecompress() : url.pathname.endsWith('.gz') ? createGunzip() : new Transform({ transform(c, e, cb) { cb(null, c); } });
-    await pipeline(Readable.fromWeb(response.body), limited(256 * 1024 * 1024), decompress, limited(1024 * 1024 * 1024), createWriteStream(destination, { mode: 0o600 }), { signal });
+    await saveDemoResponse(response, destination, url.pathname, signal);
     return;
   }
   throw new Error('Too many demo redirects');

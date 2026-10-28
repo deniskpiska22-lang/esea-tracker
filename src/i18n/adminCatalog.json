@@ -881,33 +881,33 @@
   },
   "done": {
     "ru": "Готово",
-    "de": "Erledigt",
+    "de": "Fertig",
     "pt": "Concluído",
     "es": "Completado",
     "fr": "Terminé",
     "it": "Completato"
   },
   "processing": {
-    "ru": "В обработке",
-    "de": "In Bearbeitung",
+    "ru": "Обрабатывается",
+    "de": "Wird verarbeitet",
     "pt": "Processando",
     "es": "Procesando",
-    "fr": "En cours",
-    "it": "In elaborazione"
+    "fr": "Traitement",
+    "it": "Elaborazione"
   },
   "pending": {
-    "ru": "Ожидает",
-    "de": "Ausstehend",
-    "pt": "Pendente",
-    "es": "Pendiente",
+    "ru": "В очереди",
+    "de": "In der Warteschlange",
+    "pt": "Na fila",
+    "es": "En cola",
     "fr": "En attente",
-    "it": "In attesa"
+    "it": "In coda"
   },
   "retry": {
     "ru": "Повторная попытка",
     "de": "Erneuter Versuch",
     "pt": "Nova tentativa",
-    "es": "Reintento",
+    "es": "Nuevo intento",
     "fr": "Nouvelle tentative",
     "it": "Nuovo tentativo"
   },
@@ -1446,5 +1446,189 @@
     "es": "Hoy",
     "fr": "Aujourd’hui",
     "it": "Oggi"
+  },
+  "Demos": {
+    "ru": "Демки",
+    "de": "Demos",
+    "pt": "Demos",
+    "es": "Demos",
+    "fr": "Démos",
+    "it": "Demo"
+  },
+  "Pistol rounds and CT/T statistics from match demos.": {
+    "ru": "Пистолетные раунды и статистика CT/T из демок матчей.",
+    "de": "Pistolenrunden und CT/T-Statistiken aus Match-Demos.",
+    "pt": "Pistols e estatísticas CT/T das demos.",
+    "es": "Pistolas y estadísticas CT/T de las demos.",
+    "fr": "Pistols et statistiques CT/T des démos.",
+    "it": "Pistol e statistiche CT/T dalle demo."
+  },
+  "Match demo analysis": {
+    "ru": "Анализ демки матча",
+    "de": "Match-Demo-Analyse",
+    "pt": "Análise de demo da partida",
+    "es": "Análisis de demo del partido",
+    "fr": "Analyse de démo du match",
+    "it": "Analisi demo della partita"
+  },
+  "Upload a demo to calculate pistol wins and CT/T round win rates.": {
+    "ru": "Загрузите демку, чтобы посчитать пистолетки и процент выигранных раундов за CT/T.",
+    "de": "Lade eine Demo hoch, um Pistolenrunden und CT/T-Siegquoten zu berechnen.",
+    "pt": "Envie uma demo para calcular vitórias em pistols e taxas de vitória CT/T.",
+    "es": "Sube una demo para calcular pistolas ganadas y porcentajes de rondas CT/T.",
+    "fr": "Importez une démo pour calculer les pistols gagnés et les taux de victoire CT/T.",
+    "it": "Carica una demo per calcolare i pistol vinti e le percentuali CT/T."
+  },
+  "Automatic FACEIT downloads require separate Downloads API access. You can upload a demo you already have.": {
+    "ru": "Для автозагрузки из FACEIT нужен отдельный доступ Downloads API. Можно загрузить демку, которая у вас уже есть.",
+    "de": "Automatische FACEIT-Downloads benötigen separaten Downloads-API-Zugriff. Vorhandene Demos können hochgeladen werden.",
+    "pt": "Downloads automáticos do FACEIT exigem acesso à Downloads API. Você pode enviar uma demo que já possui.",
+    "es": "Las descargas automáticas de FACEIT requieren acceso a Downloads API. Puedes subir una demo que ya tengas.",
+    "fr": "Les téléchargements FACEIT automatiques nécessitent un accès à Downloads API. Vous pouvez importer une démo existante.",
+    "it": "I download automatici da FACEIT richiedono accesso a Downloads API. Puoi caricare una demo già disponibile."
+  },
+  "Match link or FACEIT ID": {
+    "ru": "Ссылка на матч или FACEIT ID",
+    "de": "Match-Link oder FACEIT-ID",
+    "pt": "Link da partida ou ID FACEIT",
+    "es": "Enlace del partido o ID FACEIT",
+    "fr": "Lien du match ou ID FACEIT",
+    "it": "Link partita o ID FACEIT"
+  },
+  "Find match": {
+    "ru": "Найти матч",
+    "de": "Match suchen",
+    "pt": "Encontrar partida",
+    "es": "Buscar partido",
+    "fr": "Chercher le match",
+    "it": "Trova partita"
+  },
+  "Enter a match link or FACEIT match ID.": {
+    "ru": "Введите ссылку на матч или его FACEIT ID.",
+    "de": "Gib einen Match-Link oder eine FACEIT-Match-ID ein.",
+    "pt": "Insira o link ou ID FACEIT da partida.",
+    "es": "Introduce el enlace o ID FACEIT del partido.",
+    "fr": "Saisissez le lien ou ID FACEIT du match.",
+    "it": "Inserisci il link o ID FACEIT della partita."
+  },
+  "Use a DEM, DEM.GZ or DEM.ZST file up to 256 MB.": {
+    "ru": "Выберите файл DEM, DEM.GZ или DEM.ZST размером до 256 МБ.",
+    "de": "Wähle eine DEM-, DEM.GZ- oder DEM.ZST-Datei bis 256 MB.",
+    "pt": "Use um arquivo DEM, DEM.GZ ou DEM.ZST de até 256 MB.",
+    "es": "Usa un archivo DEM, DEM.GZ o DEM.ZST de hasta 256 MB.",
+    "fr": "Utilisez un fichier DEM, DEM.GZ ou DEM.ZST de 256 Mo maximum.",
+    "it": "Usa un file DEM, DEM.GZ o DEM.ZST fino a 256 MB."
+  },
+  "Demo queued. Results appear after verification.": {
+    "ru": "Демка в очереди. Результаты появятся после проверки.",
+    "de": "Demo eingereiht. Ergebnisse erscheinen nach der Prüfung.",
+    "pt": "Demo na fila. Resultados após a verificação.",
+    "es": "Demo en cola. Los resultados aparecerán tras verificarla.",
+    "fr": "Démo en attente. Résultats après vérification.",
+    "it": "Demo in coda. Risultati dopo la verifica."
+  },
+  "Match not found.": {
+    "ru": "Матч не найден.",
+    "de": "Match nicht gefunden.",
+    "pt": "Partida não encontrada.",
+    "es": "Partido no encontrado.",
+    "fr": "Match introuvable.",
+    "it": "Partita non trovata."
+  },
+  "Files must match this game: map, Steam IDs and final score are verified. Temporary files are deleted after processing.": {
+    "ru": "Демка должна быть именно от этого матча: проверяются карта, Steam ID и итоговый счёт. После обработки временный файл удаляется.",
+    "de": "Die Demo muss zu diesem Match gehören: Karte, Steam-IDs und Endstand werden geprüft. Temporäre Dateien werden danach gelöscht.",
+    "pt": "A demo deve corresponder à partida: mapa, Steam IDs e placar final são verificados. Arquivos temporários são apagados após a análise.",
+    "es": "La demo debe corresponder al partido: se verifican mapa, Steam IDs y resultado. Los archivos temporales se eliminan después.",
+    "fr": "La démo doit correspondre au match : carte, Steam IDs et score final sont vérifiés. Les fichiers temporaires sont ensuite supprimés.",
+    "it": "La demo deve corrispondere alla partita: mappa, Steam ID e risultato sono verificati. I file temporanei vengono poi eliminati."
+  },
+  "Only finished matches can be analysed.": {
+    "ru": "Можно анализировать только завершённые матчи.",
+    "de": "Nur abgeschlossene Matches können analysiert werden.",
+    "pt": "Somente partidas encerradas podem ser analisadas.",
+    "es": "Solo se pueden analizar partidos finalizados.",
+    "fr": "Seuls les matchs terminés peuvent être analysés.",
+    "it": "Si possono analizzare solo partite terminate."
+  },
+  "Demo file": {
+    "ru": "Файл демки",
+    "de": "Demo-Datei",
+    "pt": "Arquivo da demo",
+    "es": "Archivo de demo",
+    "fr": "Fichier démo",
+    "it": "File demo"
+  },
+  "DEM, DEM.GZ or DEM.ZST · up to 256 MB · one file per map": {
+    "ru": "DEM, DEM.GZ или DEM.ZST · до 256 МБ · один файл на карту",
+    "de": "DEM, DEM.GZ oder DEM.ZST · bis 256 MB · eine Datei pro Karte",
+    "pt": "DEM, DEM.GZ ou DEM.ZST · até 256 MB · um arquivo por mapa",
+    "es": "DEM, DEM.GZ o DEM.ZST · hasta 256 MB · un archivo por mapa",
+    "fr": "DEM, DEM.GZ ou DEM.ZST · 256 Mo max. · un fichier par carte",
+    "it": "DEM, DEM.GZ o DEM.ZST · fino a 256 MB · un file per mappa"
+  },
+  "Uploading and queueing…": {
+    "ru": "Загрузка и постановка в очередь…",
+    "de": "Hochladen und einreihen…",
+    "pt": "Enviando para a fila…",
+    "es": "Subiendo y poniendo en cola…",
+    "fr": "Importation et mise en attente…",
+    "it": "Caricamento e inserimento in coda…"
+  },
+  "Upload and analyse": {
+    "ru": "Загрузить и проанализировать",
+    "de": "Hochladen und analysieren",
+    "pt": "Enviar e analisar",
+    "es": "Subir y analizar",
+    "fr": "Importer et analyser",
+    "it": "Carica e analizza"
+  },
+  "Verified map results": {
+    "ru": "Проверенные результаты карт",
+    "de": "Verifizierte Kartenergebnisse",
+    "pt": "Resultados de mapas verificados",
+    "es": "Resultados de mapas verificados",
+    "fr": "Résultats de cartes vérifiés",
+    "it": "Risultati mappe verificati"
+  },
+  "Preview only. No files are uploaded.": {
+    "ru": "Только предпросмотр. Файлы не загружаются.",
+    "de": "Nur Vorschau. Es werden keine Dateien hochgeladen.",
+    "pt": "Apenas prévia. Nenhum arquivo é enviado.",
+    "es": "Solo vista previa. No se suben archivos.",
+    "fr": "Aperçu uniquement. Aucun fichier importé.",
+    "it": "Solo anteprima. Nessun file viene caricato."
+  },
+  "Uploaded demos": {
+    "ru": "Загруженные демки",
+    "de": "Hochgeladene Demos",
+    "pt": "Demos enviadas",
+    "es": "Demos subidas",
+    "fr": "Démos importées",
+    "it": "Demo caricate"
+  },
+  "No demos uploaded for this match yet.": {
+    "ru": "Для этого матча ещё не загружены демки.",
+    "de": "Für dieses Match wurden noch keine Demos hochgeladen.",
+    "pt": "Nenhuma demo enviada para esta partida.",
+    "es": "Aún no hay demos subidas para este partido.",
+    "fr": "Aucune démo importée pour ce match.",
+    "it": "Nessuna demo caricata per questa partita."
+  },
+  "uploading": {
+    "ru": "Загружается",
+    "de": "Wird hochgeladen",
+    "pt": "Enviando",
+    "es": "Subiendo",
+    "fr": "Importation",
+    "it": "Caricamento"
+  },
+  "rejected": {
+    "ru": "Отклонено",
+    "de": "Abgelehnt",
+    "pt": "Rejeitado",
+    "es": "Rechazado",
+    "fr": "Rejeté",
+    "it": "Rifiutato"
   }
 }

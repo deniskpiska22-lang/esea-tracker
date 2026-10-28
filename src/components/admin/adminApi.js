@@ -1,4 +1,5 @@
 import { safeWebUrl, cleanSocialLinks } from '../../utils/adminWorkspace.js';
+import { demoUploadMatchId, validDemoUpload } from '../../utils/demoUpload.js';
 export function requireData(response) {
   if (response.error) throw response.error;
   return response.data;
@@ -14,6 +15,26 @@ export function createAdminApi(db) {
   const read = async (query, signal) => { const response = await (signal ? query.abortSignal(signal) : query); requireData(response); return response; };
   return {
     preview: false,
+    loadDemoMatch: async ({ matchId, signal }) => {
+      if (!demoUploadMatchId(matchId)) throw new Error('Enter a match link or FACEIT match ID.');
+      const [match, uploads] = await Promise.all([
+        read(db.from('matches').select('id,status,team1_name,team2_name,map_scores,demo_round_stats').eq('id', matchId).maybeSingle(), signal),
+        read(db.from('match_demo_uploads').select('id,file_name,size_bytes,status,last_error,created_at,updated_at').eq('match_id', matchId).order('created_at', { ascending: false }).limit(20), signal),
+      ]);
+      return { match: match.data, uploads: uploads.data || [] };
+    },
+    uploadDemo: async ({ matchId, file }) => {
+      if (!demoUploadMatchId(matchId) || !validDemoUpload(file)) throw new Error('Use a DEM, DEM.GZ or DEM.ZST file up to 256 MB.');
+      const prepared = requireData(await db.rpc('admin_prepare_demo_upload', { p_match_id: matchId, p_file_name: file.name, p_size_bytes: file.size }));
+      if (prepared.bucket !== 'match-demo-inbox' || !prepared.path.startsWith(`${matchId}/${prepared.id}.dem`)) throw new Error('Invalid upload destination');
+      try {
+        requireData(await db.storage.from('match-demo-inbox').upload(prepared.path, file, { contentType: 'application/octet-stream', upsert: false }));
+        requireData(await db.rpc('admin_commit_demo_upload', { p_upload_id: prepared.id }));
+      } catch (error) {
+        await db.rpc('admin_abort_demo_upload', { p_upload_id: prepared.id });
+        throw error;
+      }
+    },
     loadOverview: async ({ signal } = {}) => (await read(db.rpc('admin_overview'), signal)).data,
     loadTraffic: async ({ signal } = {}) => (await read(db.rpc('admin_site_traffic'), signal)).data,
     loadUsers: async ({ page = 0, filter = 'all', search = '', signal } = {}) => {

@@ -1,6 +1,24 @@
 // Reconstruct only the final, score-verified timeline. Restarts/round restores
 // may repeat round numbers; knife, warmup and surrender awards are never stats.
 const playedReasons = new Set([1, 7, 8, 9, 12]);
+const reasonIds = { target_bombed: 1, bomb_exploded: 1, bomb_defused: 7, ct_killed: 8, t_killed: 9, target_saved: 12, time_ran_out: 12 };
+export const demoSide = value => value === 'CT' ? 3 : value === 'T' ? 2 : [2, 3].includes(Number(value)) ? Number(value) : null;
+
+export function roundSnapshot(event, players, context, epoch) {
+  const side1 = sideForRoster(players, context.team1.steamIds), side2 = sideForRoster(players, context.team2.steamIds);
+  const score = side => {
+    const values = [...new Set(players.filter(p => demoSide(p.team_num) === side).map(p => p.team_rounds_total))];
+    return values.length === 1 && Number.isInteger(values[0]) ? values[0] : null;
+  };
+  const score1 = score(side1), score2 = score(side2);
+  const completed = Number.isInteger(score1) && Number.isInteger(score2) ? score1 + score2 : -1;
+  // Numeric Source2 events expose a zero-based round; newer string-valued
+  // events expose the completed-round count. Both must agree with the score.
+  const consistent = [completed - 1, completed].includes(event.total_rounds_played);
+  return { tick: event.tick, round: consistent ? completed - 1 : -1, winner: demoSide(event.winner),
+    reason: reasonIds[event.reason] ?? event.reason, warmup: event.is_warmup_period,
+    side1, side2, score1, score2, epoch };
+}
 const emptyTeam = id => ({ id, score: 0, ct: { won: 0, total: 0 }, t: { won: 0, total: 0 }, overtime: { won: 0, total: 0 },
   pistol: { won: 0, total: 0, ct: { won: 0, total: 0 }, t: { won: 0, total: 0 } }, halves: { won: 0, draws: 0, total: 0 } });
 
@@ -22,6 +40,7 @@ export function reconstructRounds(snapshots, expected) {
     before = round.tick;
   }
   const halfLength = rounds.findIndex(s => s.side1 !== rounds[0].side1);
+  if (rounds.some(round => round.epoch !== rounds[0].epoch)) throw new Error('Demo timeline crosses a match restart');
   if (![12, 15].includes(halfLength)) throw new Error('Unverified regulation half length');
   // Regulation determines the two pistol rounds. Overtime sides are read from
   // actual rosters, never inferred from an assumed first overtime side.
@@ -55,6 +74,6 @@ export function reconstructRounds(snapshots, expected) {
 
 export function sideForRoster(players, steamIds) {
   const ids = new Set(steamIds);
-  const votes = [2, 3].map(side => new Set(players.filter(p => ids.has(String(p.steamid)) && p.team_num === side).map(p => String(p.steamid))).size);
+  const votes = [2, 3].map(side => new Set(players.filter(p => ids.has(String(p.steamid)) && demoSide(p.team_num) === side).map(p => String(p.steamid))).size);
   return votes[0] >= 3 && votes[1] === 0 ? 2 : votes[1] >= 3 && votes[0] === 0 ? 3 : null;
 }

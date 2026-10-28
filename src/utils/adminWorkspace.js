@@ -1,4 +1,4 @@
-export const ADMIN_SECTIONS = ['overview', 'traffic', 'users', 'teams', 'forum', 'news', 'system'];
+export const ADMIN_SECTIONS = ['overview', 'traffic', 'users', 'teams', 'forum', 'news', 'demos', 'system'];
 export function adminSection(value) {
   return ADMIN_SECTIONS.includes(value) ? value : 'overview';
 }

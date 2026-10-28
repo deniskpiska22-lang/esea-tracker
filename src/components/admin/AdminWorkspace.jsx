@@ -9,6 +9,7 @@ import { useAdminResource } from './useAdminResource.js';
 import { Panel, Notice, Empty, Search, Pager, DateLabel, Skeleton } from './AdminUI.jsx';
 import TeamEditor from './TeamEditor.jsx';
 import TrafficPanel from './TrafficPanel.jsx';
+import DemoUploadsPanel from './DemoUploadsPanel.jsx';
 import { ForumPanel, NewsPanel } from './CommunityPanels.jsx';
 import CountryFlag from '../CountryFlag.jsx';
 import Link from '../SiteLink.jsx';
@@ -22,6 +23,7 @@ const SECTIONS = [
   { id: 'teams', label: 'Teams', icon: FiShield, description: 'Descriptions, social links and player photos.' },
   { id: 'forum', label: 'Forum', icon: FiMessageSquare, description: 'Reports, discussions and moderation.' },
   { id: 'news', label: 'News', icon: FiFileText, description: 'Drafts, articles and featured stories.' },
+  { id: 'demos', label: 'Demos', icon: FiFileText, description: 'Pistol rounds and CT/T statistics from match demos.' },
   { id: 'system', label: 'System', icon: FiActivity, description: 'Match updates and background processing.' },
 ];
 const EMPTY = {};
@@ -35,7 +37,7 @@ export default function AdminWorkspace({ teams, profile, preview = false }) {
   const { data, error, loading, refreshing, refresh } = useAdminResource(load, { pollMs: section === 'overview' || section === 'system' ? 60_000 : 0 });
   const snapshot = data || EMPTY;
   const navigate = id => { if (document.querySelector('[data-admin-dirty="true"]') && !window.confirm(tx('Discard unsaved changes?'))) return; const next = new URLSearchParams(params); next.set('section', id); setParams(next); };
-  const groups = [['Analytics', ['overview', 'traffic']], ['Management', ['users', 'teams', 'forum', 'news']], ['Operations', ['system']]];
+  const groups = [['Analytics', ['overview', 'traffic']], ['Management', ['users', 'teams', 'forum', 'news']], ['Operations', ['demos', 'system']]];
   const unhealthy = (snapshot.workers || []).filter(worker => ['stale', 'error'].includes(workerHealth(worker))).length;
   return <main className="admin-workspace"><div className="admin-frame">
     <aside className="admin-sidebar"><Link to={preview ? '/admin/preview' : '/admin'} className="admin-brand"><span className="admin-brand-icon">ET<span>↗</span></span><span>ESEA Tracker<small>{tx('Admin workspace')}</small></span></Link>
@@ -53,6 +55,7 @@ export default function AdminWorkspace({ teams, profile, preview = false }) {
         {section === 'teams' && <Teams teams={teams} />}
         {section === 'forum' && <ForumPanel />}
         {section === 'news' && <NewsPanel />}
+        {section === 'demos' && <DemoUploadsPanel />}
         {section === 'system' && <System snapshot={snapshot} loading={loading} />}
       </div><footer className="admin-footer"><span>ESEA Tracker <span> / </span> {tx('Admin workspace')}</span><span>{tx(preview ? 'Sample data' : 'Administrator')}</span></footer>
     </div>
