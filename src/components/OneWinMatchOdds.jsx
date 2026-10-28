@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
-import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
+import { isAdProviderEnabled, subscribeAdPolicy } from '../lib/adPolicy.js';
 import TeamNativeAd from './TeamNativeAd.jsx';
 import OneWinMarketsAd from './OneWinMarketsAd.jsx';
 
@@ -128,11 +128,7 @@ function OddsCard({ odds, teams = [] }) {
 
 export default function OneWinMatchOdds({ matchId, teams, active = true }) {
   const [policy, setPolicy] = useState(null);
-  useEffect(() => {
-    let mounted = true;
-    loadAdPolicy().then(result => { if (mounted) setPolicy(result); });
-    return () => { mounted = false; };
-  }, []);
+  useEffect(() => subscribeAdPolicy(setPolicy), []);
   if (isAdProviderEnabled(policy, 'onewin')) {
     return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
       : <OneWinMarketsAd />;

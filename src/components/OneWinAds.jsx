@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { selectAdLanguage } from '../lib/adLanguage.js';
-import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
+import { isAdProviderEnabled, subscribeAdPolicy } from '../lib/adPolicy.js';
 const labels = { ru: 'Реклама', en: 'Advertisement', de: 'Werbung', pt: 'Publicidade', es: 'Publicidad', fr: 'Publicité', it: 'Pubblicità' };
 const observed = new Set();
 function analytics(kind, data) {
@@ -51,7 +51,7 @@ export default function OneWinAds({ mobile = false }) {
   const [policy, setPolicy] = useState(null);
   const { language } = useLanguage();
   const { pathname } = useLocation();
-  useEffect(() => { let active = true; loadAdPolicy().then(p => { if (active) setPolicy(p); }); return () => { active = false; }; }, []);
+  useEffect(() => subscribeAdPolicy(setPolicy), []);
   if (!isAdProviderEnabled(policy, 'onewin')) return null;
   let explicit = language !== 'ru';
   try { explicit ||= !!localStorage.getItem('esea-tracker-language'); } catch { /* Browser preference still works without storage. */ }

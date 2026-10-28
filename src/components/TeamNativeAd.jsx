@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
-import { isAdProviderEnabled, loadAdPolicy } from '../lib/adPolicy.js';
+import { isAdProviderEnabled, subscribeAdPolicy } from '../lib/adPolicy.js';
 import './TeamNativeAd.css';
 
 const copy = {
@@ -18,11 +18,7 @@ const pariOpen = { ru: 'Перейти в PARI', en: 'Visit PARI', de: 'Zu PARI'
 export default function TeamNativeAd({ placement = 'team_profile_native' }) {
   const { language } = useLanguage();
   const [policy, setPolicy] = useState(null);
-  useEffect(() => {
-    let active = true;
-    loadAdPolicy().then(result => { if (active) setPolicy(result); });
-    return () => { active = false; };
-  }, []);
+  useEffect(() => subscribeAdPolicy(setPolicy), []);
 
   const provider = isAdProviderEnabled(policy, 'pari') ? 'pari'
     : isAdProviderEnabled(policy, 'onewin') ? 'onewin' : null;
