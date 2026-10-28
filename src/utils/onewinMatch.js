@@ -7,6 +7,8 @@ const ACTIVE = new Set(['SCHEDULED', 'MATCH_STATUS_SCHEDULED', 'LIVE', 'ONGOING'
 // Verified bookmaker abbreviations belong to a specific FACEIT roster. Do not
 // globally remove "Gaming", "Academy", etc. or match unrelated namesakes.
 const ONEWIN_TEAM_ALIASES = new Map([
+  ['51aa82a4-7ac4-49f2-8b88-f710dc0de1d6', new Set(['clutchain'])],
+  ['40ee7839-d6df-4086-8c8f-ca998c9aedbf', new Set(['hermine'])],
   ['1f98d0ae-c844-4356-adf6-70e9501aba2a', new Set(['lph'])],
   ['8de7892a-dc7a-4ac7-9620-f02522c75609', new Set(['ttg'])],
   ['052f75bf-65dc-497c-86f2-e68880ec1171', new Set(['diamant'])],
