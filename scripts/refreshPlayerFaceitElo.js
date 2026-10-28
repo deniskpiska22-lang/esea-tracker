@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import process from 'node:process';
 import { faceitEloPatch } from './lib/faceitPlayerProfile.js';
 import { retryAfterMs } from './lib/discoveryScan.js';
+import { playerEloCandidates } from './lib/playerEloQueue.js';
 
 const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
@@ -26,21 +27,16 @@ async function main() {
   try { state = JSON.parse(previous?.detail || '{}'); } catch { /* Old diagnostic text. */ }
   if (Number(state.retryAt) > Date.now()) return;
 
-  let query = db.from('players').select('faceit_id,team_players!inner(is_active,team_id)')
-    .eq('team_players.is_active', true).not('faceit_id', 'is', null);
-  if (teamId) query = query.eq('team_players.team_id', teamId);
-  else query = query.or(`faceit_profile_synced_at.is.null,faceit_profile_synced_at.lt.${new Date(Date.now() - 86400000).toISOString()}`);
-  const { data, error } = await query.order('faceit_profile_synced_at', { nullsFirst: true })
-    .order('faceit_id').limit(240);
-  if (error) throw error;
+  const data = await playerEloCandidates(db, { teamId });
   const started = Date.now();
   let saved = 0;
   let failed = 0;
   for (const player of data || []) {
     if (Date.now() - started >= 180000) break;
-    const response = await fetch(`https://open.faceit.com/data/v4/players/${encodeURIComponent(player.faceit_id)}`, {
+    let response;
+    try { response = await fetch(`https://open.faceit.com/data/v4/players/${encodeURIComponent(player.faceit_id)}`, {
       headers: { Authorization: `Bearer ${apiKey}`, Accept: 'application/json' }, signal: AbortSignal.timeout(10000),
-    });
+    }); } catch { failed += 1; await sleep(500); continue; }
     if (response.status === 429) {
       await checkpoint('cooldown', { saved, failed, retryAt: Date.now() + Math.max(900000, retryAfterMs(response.headers.get('retry-after'))) });
       return;

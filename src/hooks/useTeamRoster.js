@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import { loadMissingPlayerElo } from '../utils/playerElo.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const EMPTY_ROSTER = {
@@ -541,6 +542,13 @@ export function useTeamRoster(
             loading: false,
             error: null,
             ...result,
+          });
+          const visible = [...result.starting, ...result.bench, ...result.former];
+          void loadMissingPlayerElo(visible).then(patches => {
+            if (cancelled || !patches.size) return;
+            const hydrate = rows => rows.map(player => ({ ...player, ...patches.get(player.faceit_id) }));
+            setState(current => ({ ...current, starting: hydrate(current.starting),
+              bench: hydrate(current.bench), former: hydrate(current.former) }));
           });
         }
       } catch (error) {

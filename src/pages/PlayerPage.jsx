@@ -6,6 +6,7 @@ import { currentLocale } from "../i18n/languages.js";
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import { useLiveTeamIdentity } from "../hooks/useLiveTeamIdentity.js";
 import { resolvePlayerTeam } from "../utils/playerTeam.js";
+import { loadMissingPlayerElo } from '../utils/playerElo.js';
 import {
   useEffect,
   useMemo,
@@ -684,6 +685,19 @@ function PlayerPage() {
 
   const [databasePlayer, setDatabasePlayer] =
     useState(null);
+
+  const eloPlayerId = databasePlayer?.faceit_id;
+  const eloMissing = !(Number(databasePlayer?.faceit_elo) > 0);
+  useEffect(() => {
+    if (!eloPlayerId || !eloMissing) return;
+    let cancelled = false;
+    void loadMissingPlayerElo([{ faceit_id: eloPlayerId }]).then(patches => {
+      if (cancelled || !patches.has(eloPlayerId)) return;
+      setDatabasePlayer(current => current?.faceit_id === eloPlayerId
+        ? { ...current, ...patches.get(eloPlayerId) } : current);
+    });
+    return () => { cancelled = true; };
+  }, [eloPlayerId, eloMissing]);
 
   const [resolvedPlayerId, setResolvedPlayerId] =
     useState(routePlayerKey);

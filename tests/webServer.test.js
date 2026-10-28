@@ -25,6 +25,14 @@ async function fixture(t, options = {}) {
   return `http://127.0.0.1:${server.address().port}`;
 }
 
+test('player ELO route reaches the API without rewriting to the SPA', async t => {
+  const base = await fixture(t, { handlers: { 'player-elo': (req,res) => res.json({ ids: req.query.ids }) } });
+  const response = await fetch(base + '/api/player-elo?ids=one');
+  assert.equal(response.status,200);
+  assert.deepEqual(await response.json(),{ids:'one'});
+  assert.equal(response.headers.get('cache-control'),'no-store');
+});
+
 test('route contract covers every localized section, optional forum slug, and sitemap pages', () => {
   for (const lang of ['en', 'de', 'pt', 'es', 'fr', 'it']) {
     for (const section of ['matches', 'stats', 'analytics', 'veto']) {
