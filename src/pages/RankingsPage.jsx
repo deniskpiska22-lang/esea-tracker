@@ -1,3 +1,4 @@
+import { useTeamCatalog } from '../hooks/useTeamCatalog.js';
 import { countryName } from "../utils/countries.js";
 import { currentLocale } from "../i18n/languages.js";
 import { normalizeRankingCountry, rankingCountryOptions, RANKING_REGION_BY_COUNTRY } from "../utils/rankingCountries.js";
@@ -258,6 +259,9 @@ function TeamLogo({
 
 
 function RankingsPage() {
+  const { teams: currentCatalog } = useTeamCatalog();
+  const currentAvatars = useMemo(() => new Map(currentCatalog
+    .filter(team => team.faceitAvatar).map(team => [String(team.faceitTeamId), team.faceitAvatar])), [currentCatalog]);
   const [ratingRows, setRatingRows] =
     useState([]);
   const [loading, setLoading] =
@@ -479,7 +483,7 @@ function RankingsPage() {
             slug,
           slug,
           name,
-          logo: getLogo(
+          logo: currentAvatars.get(ratingId) || getLogo(
             staticTeam,
             ratingRow
           ),
@@ -497,6 +501,7 @@ function RankingsPage() {
 
     return fromRatings;
   }, [
+    currentAvatars,
     ratingRows,
     staticTeamIdentities,
     changePeriod,
