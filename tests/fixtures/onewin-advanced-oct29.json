@@ -1,0 +1,275 @@
+{
+  "matches": [
+    {
+      "id": "1-032609e6-a881-4e73-ab07-492b89a2821c",
+      "team1_id": "51aa82a4-7ac4-49f2-8b88-f710dc0de1d6",
+      "team1_name": "OldBoys",
+      "team2_id": "40ee7839-d6df-4086-8c8f-ca998c9aedbf",
+      "team2_name": "Hermine Esports",
+      "scheduled_at": "2026-10-29T18:00:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-8dd349b1-cc25-41ff-8aa6-ed0af6cba274",
+      "team1_id": "f3b3ace1-84f1-448c-bc88-e222e3d3f085",
+      "team1_name": "B8 Academy",
+      "team2_id": "23cfaf71-1a2d-4626-8b9b-7e2483c90ce5",
+      "team2_name": "BANGARANGA",
+      "scheduled_at": "2026-10-29T18:00:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-f42f979d-3560-42b6-840c-7335cb4eaa17",
+      "team1_id": "052f75bf-65dc-497c-86f2-e68880ec1171",
+      "team1_name": "Diamant Esports",
+      "team2_id": "ed8fcd14-5094-41e2-995a-c51b48c8504a",
+      "team2_name": "Young TigeRES",
+      "scheduled_at": "2026-10-29T18:00:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-7070f18e-2d18-4509-8869-db00ab965a85",
+      "team1_id": "e09a5784-3de2-4132-87f5-65e907bcc602",
+      "team1_name": "Fraternity",
+      "team2_id": "8b7c27bc-3837-4ffd-9e13-48b477b003b3",
+      "team2_name": "IC Prospect",
+      "scheduled_at": "2026-10-29T19:00:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-88e52548-dd0e-466b-9725-0074673f81ff",
+      "team1_id": "7536d4f2-21b1-42ec-b70b-e6c7bc5789d6",
+      "team1_name": "Esport BERG",
+      "team2_id": "052f75bf-65dc-497c-86f2-e68880ec1171",
+      "team2_name": "Diamant Esports",
+      "scheduled_at": "2026-10-29T19:30:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-843d74c5-e33f-49d0-be67-fd90a89ca39a",
+      "team1_id": "55cd0e38-d05f-4596-adda-8bf9887d775c",
+      "team1_name": "Spirit HU",
+      "team2_id": "dda1dfd9-8c7b-4709-bc08-d945226b53ca",
+      "team2_name": "YOUNGLINGS",
+      "scheduled_at": "2026-10-29T19:30:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-420a63a0-c570-447e-b7e2-3d38bf203c7d",
+      "team1_id": "91756434-05f3-43f9-8f6f-ee93918abc7a",
+      "team1_name": "The Chosen Few",
+      "team2_id": "a8bffebf-1a2b-4bb3-9e3c-d159960580e7",
+      "team2_name": "OLDBOYS",
+      "scheduled_at": "2026-10-29T19:30:00+00:00",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-19d7fb98-1862-4b30-bf40-b74dfee5c861",
+      "team1_id": "21710b6c-9292-46cc-aa42-606d3317776c",
+      "team1_name": "eSuba",
+      "team2_id": "51aa82a4-7ac4-49f2-8b88-f710dc0de1d6",
+      "team2_name": "OldBoys",
+      "scheduled_at": "2026-10-29T19:30:00+00:00",
+      "status": "SCHEDULED"
+    }
+  ],
+  "events": [
+    {
+      "id": 42262714,
+      "sportId": 142,
+      "name": "Clutchain - Hermine",
+      "homeTeam": {
+        "id": 1693808,
+        "name": "Clutchain",
+        "position": 1,
+        "slug": "clutchain",
+        "logo": {
+          "url": "https://bstatic.live/icons/0fc140c00450b3db251b0118d9b10105c1c37332.webp"
+        }
+      },
+      "awayTeam": {
+        "id": 1681642,
+        "name": "Hermine",
+        "position": 2,
+        "slug": "hermine",
+        "logo": {
+          "url": "https://bstatic.live/icons/c7c487b5cd1800d9ad0153a431879aacfa06aef5.webp"
+        }
+      },
+      "startAt": 1793296800,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42277952,
+      "sportId": 142,
+      "name": "B8 Academy - BANGARANGA",
+      "homeTeam": {
+        "id": 1657084,
+        "name": "B8 Academy",
+        "position": 1,
+        "slug": "b8-academy",
+        "logo": {
+          "url": "https://bstatic.live/icons/188ef4b57158d613341b1f5e6a5092765e929cb7.webp"
+        }
+      },
+      "awayTeam": {
+        "id": 1723777,
+        "name": "BANGARANGA",
+        "position": 2,
+        "slug": "bangaranga"
+      },
+      "startAt": 1793296800,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42277980,
+      "sportId": 142,
+      "name": "Diamant - Young TigeRES",
+      "homeTeam": {
+        "id": 315224,
+        "name": "Diamant",
+        "position": 1,
+        "slug": "diamant"
+      },
+      "awayTeam": {
+        "id": 1666094,
+        "name": "Young TigeRES",
+        "position": 2,
+        "slug": "young-tigeres"
+      },
+      "startAt": 1793296800,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42278014,
+      "sportId": 142,
+      "name": "Fraternity - Inner Circle Prospects",
+      "homeTeam": {
+        "id": 1710509,
+        "name": "Fraternity",
+        "position": 1,
+        "slug": "fraternity"
+      },
+      "awayTeam": {
+        "id": 1716808,
+        "name": "Inner Circle Prospects",
+        "position": 2,
+        "slug": "inner-circle-prospects"
+      },
+      "startAt": 1793300400,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42278041,
+      "sportId": 142,
+      "name": "BERG - Diamant",
+      "homeTeam": {
+        "id": 1688753,
+        "name": "BERG",
+        "position": 1,
+        "slug": "berg",
+        "logo": {
+          "url": "https://bstatic.live/icons/965797f542281dca98ca428313c057a54e387340.webp"
+        }
+      },
+      "awayTeam": {
+        "id": 315224,
+        "name": "Diamant",
+        "position": 2,
+        "slug": "diamant"
+      },
+      "startAt": 1793302200,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42278050,
+      "sportId": 142,
+      "name": "Spirit HU - YOUNGLINGS",
+      "homeTeam": {
+        "id": 1714578,
+        "name": "Spirit HU",
+        "position": 1,
+        "slug": "spirit-hu"
+      },
+      "awayTeam": {
+        "id": 1722918,
+        "name": "YOUNGLINGS",
+        "position": 2,
+        "slug": "younglings"
+      },
+      "startAt": 1793302200,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42278070,
+      "sportId": 142,
+      "name": "The Chosen Few - OLDBOYS",
+      "homeTeam": {
+        "id": 1738861,
+        "name": "The Chosen Few",
+        "position": 1,
+        "slug": "the-chosen-few"
+      },
+      "awayTeam": {
+        "id": 312119,
+        "name": "OLDBOYS",
+        "position": 2,
+        "slug": "oldboys",
+        "logo": {
+          "url": "https://bstatic.live/icons/759972ca97aa6dadc1011443a06a011bae5273cd.webp"
+        }
+      },
+      "startAt": 1793302200,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    },
+    {
+      "id": 42278094,
+      "sportId": 142,
+      "name": "eSuba - Clutchain",
+      "homeTeam": {
+        "id": 61380,
+        "name": "eSuba",
+        "position": 1,
+        "slug": "esuba",
+        "logo": {
+          "url": "https://bstatic.live/team-icons/12-61380.webp"
+        }
+      },
+      "awayTeam": {
+        "id": 1693808,
+        "name": "Clutchain",
+        "position": 2,
+        "slug": "clutchain",
+        "logo": {
+          "url": "https://bstatic.live/icons/0fc140c00450b3db251b0118d9b10105c1c37332.webp"
+        }
+      },
+      "startAt": 1793302200,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      }
+    }
+  ]
+}
