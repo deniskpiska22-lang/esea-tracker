@@ -1630,5 +1630,45 @@
     "es": "Rechazado",
     "fr": "Rejeté",
     "it": "Rifiutato"
+  },
+  "Pages visited today": {
+    "ru": "Посещаемость страниц сегодня",
+    "de": "Heute besuchte Seiten",
+    "pt": "Páginas visitadas hoje",
+    "es": "Páginas visitadas hoy",
+    "fr": "Pages visitées aujourd’hui",
+    "it": "Pagine visitate oggi"
+  },
+  "Unique browsers per page today. Repeat visits count once; one browser can visit several pages.": {
+    "ru": "Уникальные браузеры на каждой странице за сегодня. Повторные заходы считаются один раз; один посетитель может открыть несколько страниц.",
+    "de": "Eindeutige Browser je Seite heute. Wiederholte Besuche zählen einmal; ein Browser kann mehrere Seiten besuchen.",
+    "pt": "Navegadores únicos por página hoje. Visitas repetidas contam uma vez; um navegador pode visitar várias páginas.",
+    "es": "Navegadores únicos por página hoy. Las visitas repetidas cuentan una vez; un navegador puede visitar varias páginas.",
+    "fr": "Navigateurs uniques par page aujourd’hui. Les visites répétées comptent une fois ; un navigateur peut visiter plusieurs pages.",
+    "it": "Browser unici per pagina oggi. Le visite ripetute contano una volta; un browser può visitare più pagine."
+  },
+  "Search pages": {
+    "ru": "Поиск страниц",
+    "de": "Seiten suchen",
+    "pt": "Pesquisar páginas",
+    "es": "Buscar páginas",
+    "fr": "Rechercher des pages",
+    "it": "Cerca pagine"
+  },
+  "Page history started": {
+    "ru": "Начало истории страниц",
+    "de": "Beginn des Seitenverlaufs",
+    "pt": "Início do histórico de páginas",
+    "es": "Inicio del historial de páginas",
+    "fr": "Début de l’historique des pages",
+    "it": "Inizio della cronologia delle pagine"
+  },
+  "Page history is not available yet.": {
+    "ru": "История страниц пока недоступна.",
+    "de": "Der Seitenverlauf ist noch nicht verfügbar.",
+    "pt": "O histórico de páginas ainda não está disponível.",
+    "es": "El historial de páginas aún no está disponible.",
+    "fr": "L’historique des pages n’est pas encore disponible.",
+    "it": "La cronologia delle pagine non è ancora disponibile."
   }
 }

@@ -17,14 +17,15 @@ export function createPresenceHandler({ record, now = Date.now }) {
     const cleanPath = trafficPath(path);
     if (!VISITOR_ID.test(typeof visitorId === 'string' ? visitorId : '') || !cleanPath) return res.status(400).end();
     const visitor = createHash('sha256').update(`esea-traffic-v1:${visitorId}`).digest('hex');
+    const cacheKey = `${visitor}:${cleanPath}`;
     const time = now();
-    if (recent.has(visitor) && time - recent.get(visitor) < 15_000) return res.status(204).end();
+    if (recent.has(cacheKey) && time - recent.get(cacheKey) < 15_000) return res.status(204).end();
     // Bounded cache also coalesces in-flight writes from separate browser tabs.
     if (recent.size >= 20_000) for (const [key, timestamp] of recent) {
       if (time - timestamp >= 15_000 || recent.size >= 20_000) recent.delete(key);
       if (recent.size < 10_000) break;
     }
-    recent.set(visitor, time);
+    recent.set(cacheKey, time);
     const country = /^[A-Z]{2}$/.test(req.headers['x-vercel-ip-country'] || '') ? req.headers['x-vercel-ip-country'] : '';
     const agent = req.headers['user-agent'] || '';
     const device = /ipad|tablet/i.test(agent) ? 'tablet' : /mobile|android|iphone/i.test(agent) ? 'mobile' : 'desktop';
@@ -32,7 +33,7 @@ export function createPresenceHandler({ record, now = Date.now }) {
       await record({ p_visitor: visitor, p_path: cleanPath, p_country: country, p_device: device });
       return res.status(204).end();
     } catch {
-      recent.delete(visitor);
+      recent.delete(cacheKey);
       return res.status(503).end();
     }
   };

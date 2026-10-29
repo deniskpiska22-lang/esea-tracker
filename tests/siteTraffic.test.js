@@ -23,10 +23,10 @@ function browserFixture() {
   };
   return { browser, requests, values };
 }
-test('five concurrent tabs share one stable browser ID and one heartbeat', async () => {
+test('five concurrent tabs on the same page share one stable browser ID and one heartbeat', async () => {
   const { browser, requests, values } = browserFixture();
   const now = () => 100000;
-  await Promise.all(Array.from({ length: 5 }, (_,i) => pulsePresence({ browser, path: `/teams/team-${i}`, now })));
+  await Promise.all(Array.from({ length: 5 }, () => pulsePresence({ browser, path: '/teams/team', now })));
   assert.equal(requests.length, 1);
   assert.equal(requests[0].body.visitorId, values.get(VISITOR_KEY));
   const id = values.get(VISITOR_KEY);
@@ -140,4 +140,17 @@ test('country preview periods count every browser once and country labels are tr
     assert.equal(trafficCountries(data,period).reduce((sum,row)=>sum+row.visitors,0),total);
   }
   for (const language of ['ru','de','pt','es','fr','it']) for (const label of ['Countries','Country statistics period','Unique browsers by their latest IP country in the selected period.']) assert.notEqual(translateText(label,language),label);
+});
+
+test('rapid navigation records every page while retaining one browser identity', async () => {
+ const { browser, requests } = browserFixture();
+ for (const path of ['/', '/rankings', '/teams/example']) await pulsePresence({ browser, path, now: () => 100000 });
+ assert.equal(requests.length, 3);
+ assert.equal(new Set(requests.map(r => r.body.visitorId)).size, 1);
+ const records = [];
+ const handler = createPresenceHandler({record: async row => records.push(row), now: () => 100000});
+ const visitor = requests[0].body.visitorId;
+ for (const path of ['/', '/rankings', '/teams/example']) await handler(request(visitor, path), response());
+ assert.equal(records.length, 3);
+ assert.equal(new Set(records.map(r => r.p_visitor)).size, 1);
 });
