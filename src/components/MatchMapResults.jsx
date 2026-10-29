@@ -1,3 +1,4 @@
+import { parseVetoSteps, buildPickedTeamByMap, buildExpectedMapOrder, buildDisplayMaps, normalizeMapKey } from "../utils/matchMapResults.js";
 import { tx } from "../i18n/translate.js";
 import { useEffect, useState } from "react";
 
@@ -48,9 +49,9 @@ function MapResultRow({ map, index, team1, team2, demoUrl, pickedBy }) {
 
   const pickLabel =
     pickedBy === "team1"
-      ? `${team1.name} pick`
+      ? `${team1.name} ${tx("Picked")}`
       : pickedBy === "team2"
-        ? `${team2.name} pick`
+        ? `${team2.name} ${tx("Picked")}`
         : pickedBy === "decider"
           ? tx("Decider")
           : null;
@@ -189,75 +190,6 @@ function FinishedMapsPanel({
   );
 }
 
-function parseVetoSteps(payload, team1, team2) {
-  const tickets = payload?.payload?.tickets || payload?.tickets;
-
-  if (!Array.isArray(tickets)) {
-    return [];
-  }
-
-  const mapTicket = tickets.find(
-    (ticket) => ticket?.entity_type === "map"
-  );
-
-  const entities = mapTicket?.entities;
-
-  if (!Array.isArray(entities)) {
-    return [];
-  }
-
-  const sorted = entities
-    .slice()
-    .sort((a, b) => toNumber(a.round) - toNumber(b.round));
-
-  // FACEIT still stamps the last remaining map with status "pick" and a
-  // selected_by faction, as if a team chose it — but nobody did, it's just
-  // whatever was left after every ban/pick. Always treat the highest-round
-  // entry as the decider instead of trusting that attribution.
-  const deciderIndex = sorted.length - 1;
-
-  return sorted.map((entity, index) => ({
-    map: formatMapName(entity.guid),
-    action:
-      index === deciderIndex
-        ? tx("Decider")
-        : entity.status === "pick"
-          ? "Picked"
-          : "Banned",
-    team:
-      index === deciderIndex
-        ? null
-        : entity.selected_by === "faction1"
-          ? team1
-          : entity.selected_by === "faction2"
-            ? team2
-            : null,
-  }));
-}
-
-// team1/team2/"decider" keyed by lowercased map name, built from the
-// veto's "Picked"/"Decider" entries — used to badge each played map with
-// who chose it.
-function buildPickedTeamByMap(steps, team1, team2) {
-  const lookup = new Map();
-
-  steps
-    .filter((step) => step.action === "Picked" || step.action === "Decider")
-    .forEach((step) => {
-      const key = step.map.toLowerCase();
-
-      if (step.team === team1) {
-        lookup.set(key, "team1");
-      } else if (step.team === team2) {
-        lookup.set(key, "team2");
-      } else {
-        lookup.set(key, "decider");
-      }
-    });
-
-  return lookup;
-}
-
 function MapVetoCard({ steps, isLoading }) {
   const hasSteps = Array.isArray(steps) && steps.length > 0;
 
@@ -298,7 +230,7 @@ function MapVetoCard({ steps, isLoading }) {
                         : "text-rose-400"
                   }`}
                 >
-                  {step.action}
+                  {tx(step.action)}
                 </span>
                 <span className="font-bold text-white">{step.map}</span>
               </div>
@@ -323,63 +255,6 @@ function MapVetoCard({ steps, isLoading }) {
   );
 }
 
-// FACEIT only hands back a map's score once the map itself is finished, so a
-// live series shows nothing here until then. But the veto already reveals
-// the play order before a single round is fired: in a BO1 the last map left
-// standing after every ban IS the map, and in a BO3 the two picked maps plus
-// the leftover decider ARE map 1/2/3, in the order they were picked. Build
-// that predicted order from the veto's "Picked"/"Decider" steps (round order already
-// comes out of parseVetoSteps) so the panel can show map names immediately
-// and fill in real scores as FACEIT reports them, instead of waiting on the
-// synced match result.
-function buildExpectedMapOrder(steps) {
-  return steps
-    .filter((step) => step.action === "Picked" || step.action === "Decider")
-    .map((step) => step.map);
-}
-
-function normalizeMapKey(name) {
-  return formatMapName(name).toLowerCase();
-}
-
-function buildDisplayMaps(maps, expectedMapOrder) {
-  const realMaps = Array.isArray(maps) ? maps : [];
-  const realByKey = new Map(
-    realMaps.map((map) => [normalizeMapKey(map.map), map])
-  );
-
-  if (expectedMapOrder.length === 0) {
-    return realMaps;
-  }
-
-  const usedKeys = new Set();
-
-  const merged = expectedMapOrder.map((mapName) => {
-    const key = normalizeMapKey(mapName);
-    const real = realByKey.get(key);
-
-    usedKeys.add(key);
-
-    if (real) {
-      return real;
-    }
-
-    return { map: mapName, pending: true };
-  });
-
-  // Safety net: a real synced map the veto order didn't account for
-  // (mismatch between veto data and match data) still gets shown.
-  realMaps.forEach((map) => {
-    const key = normalizeMapKey(map.map);
-
-    if (!usedKeys.has(key)) {
-      merged.push(map);
-    }
-  });
-
-  return merged;
-}
-
 export default function MatchMapResultsSection({
   matchId,
   maps,
@@ -397,6 +272,8 @@ export default function MatchMapResultsSection({
     }
 
     let cancelled = false;
+    // Clear the previous match’s veto while its replacement request is loading.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSteps(null);
 
     fetch(`/api/veto?matchId=${encodeURIComponent(matchId)}`)

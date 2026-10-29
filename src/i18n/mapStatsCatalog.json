@@ -438,5 +438,21 @@
     "es": "Las mitades se comparan por rondas ganadas; la última puede ser más corta. Se excluye la prórroga.",
     "fr": "Les mi-temps sont comparées selon les rounds gagnés ; la dernière peut être écourtée. Les prolongations sont exclues.",
     "it": "Le metà si confrontano per round vinti; l’ultima può essere abbreviata. I supplementari sono esclusi."
+  },
+  "Picked": {
+    "ru": "Пик",
+    "de": "Gewählt",
+    "pt": "Escolhido",
+    "es": "Elegido",
+    "fr": "Choisie",
+    "it": "Scelta"
+  },
+  "Banned": {
+    "ru": "Бан",
+    "de": "Gesperrt",
+    "pt": "Banido",
+    "es": "Vetado",
+    "fr": "Bannie",
+    "it": "Bannata"
   }
 }
