@@ -1,3 +1,4 @@
+import { withCurrentTeamAvatar } from '../utils/teamAvatar.js';
 import { useEffect, useState } from "react";
 import staticTeams from "../data/teams.js";
 import { supabase } from "../lib/supabaseClient.js";
@@ -11,10 +12,10 @@ async function loadCatalog() {
   pending = (async () => {
     const byId = new Map(staticTeams.map((team) => [team.faceitTeamId, team]));
     for (let offset = 0; ; offset += 1000) {
-      const { data, error } = await supabase.from("team_catalog").select("team_id,team")
+      const { data, error } = await supabase.from("team_catalog").select("team_id,team,faceit_avatar_url")
         .order("team_id").range(offset, offset + 999);
       if (error) throw error;
-      for (const row of data || []) byId.set(row.team_id, { ...byId.get(row.team_id), ...row.team });
+      for (const row of data || []) byId.set(row.team_id, withCurrentTeamAvatar({ ...byId.get(row.team_id), ...row.team }, row.faceit_avatar_url));
       if ((data || []).length < 1000) break;
     }
     const urls = [], aliases = [];

@@ -1,3 +1,4 @@
+import { withCurrentTeamAvatar } from '../utils/teamAvatar.js';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient.js';
 
@@ -14,10 +15,10 @@ export function useLiveTeamIdentity(team) {
       running = true;
       try {
         const { data, error } = await supabase.from('team_catalog')
-          .select('team_id,team').eq('team_id', teamId).maybeSingle();
+          .select('team_id,team,faceit_avatar_url').eq('team_id', teamId).maybeSingle();
         if (error) throw error;
         if (!cancelled && data?.team && data.team_id === teamId) {
-          setSnapshot({ base: team, data: { ...data.team, faceitTeamId: data.team_id } });
+          setSnapshot({ base: team, data: withCurrentTeamAvatar({ ...data.team, faceitTeamId: data.team_id }, data.faceit_avatar_url) });
         }
       } catch (error) {
         console.warn('Team identity refresh unavailable:', error.message);

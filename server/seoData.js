@@ -1,3 +1,4 @@
+import { withCurrentTeamAvatar } from '../src/utils/teamAvatar.js';
 import { createClient } from '@supabase/supabase-js';
 import process from 'node:process';
 import staticTeams from '../src/data/teams.js';
@@ -20,11 +21,11 @@ export async function loadProfile(client,kind,key) {
     const entity = await result(client.from('matches').select(MATCH_SEO_COLUMNS).eq('id',key).maybeSingle());
     if (!entity) return null;
     const ids = [entity.team1_id, entity.team2_id].filter(Boolean);
-    let catalog = ids.length ? await result(client.from('team_catalog').select('team_id,team').in('team_id',ids)) : [];
+    let catalog = ids.length ? await result(client.from('team_catalog').select('team_id,team,faceit_avatar_url').in('team_id',ids)) : [];
     if (ids.length) {
       const urls=await result(client.from('team_profile_urls').select('team_id,slug').in('team_id',ids));
       const byId=new Map(urls.map(row=>[row.team_id,row.slug]));
-      catalog=catalog.map(row=>({...row,team:{...row.team,profileSlug:byId.get(row.team_id)}}));
+      catalog=catalog.map(row=>({...row,team:withCurrentTeamAvatar({...row.team,profileSlug:byId.get(row.team_id)},row.faceit_avatar_url)}));
     }
     const participants = await result(client.from('match_player_stats').select('faceit_player_id,nickname,team_id,kills,deaths,adr,rating').eq('match_id',key).limit(20))
       .catch(error => { console.warn('[seo-match-players]',error.message); return []; });
@@ -34,12 +35,12 @@ export async function loadProfile(client,kind,key) {
     const alias = await result(client.from('team_profile_aliases').select('team_id').eq('slug',key).maybeSingle());
     const targetId = alias?.team_id || (/^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(key) ? key : null);
     let row = await result(targetId
-      ? client.from('team_catalog').select('team_id,team,updated_at').eq('team_id',targetId).maybeSingle()
-      : client.from('team_catalog').select('team_id,team,updated_at').eq('team->>slug',key).maybeSingle());
+      ? client.from('team_catalog').select('team_id,team,updated_at,faceit_avatar_url').eq('team_id',targetId).maybeSingle()
+      : client.from('team_catalog').select('team_id,team,updated_at,faceit_avatar_url').eq('team->>slug',key).maybeSingle());
     if (!row) { const team=staticTeams.find(t=>targetId ? t.faceitTeamId===targetId : t.slug===key);if(team) row={team_id:team.faceitTeamId,team}; }
     if (row) {
       const url=await result(client.from('team_profile_urls').select('slug').eq('team_id',row.team_id).maybeSingle());
-      row.team={...row.team,profileSlug:url?.slug};
+      row.team=withCurrentTeamAvatar({...row.team,profileSlug:url?.slug},row.faceit_avatar_url);
     }
     if (!row) return null;
     const [links, recentMatches] = await Promise.all([
@@ -73,7 +74,10 @@ export async function loadProfile(client,kind,key) {
   let team = null;
   if(identity) {
     const links = await result(client.from('team_players').select('team_id').eq('player_id',identity.id).eq('is_active',true).order('joined_at',{ascending:false,nullsFirst:false}).limit(1));
-    if(links[0]) team = (await result(client.from('team_catalog').select('team').eq('team_id',links[0].team_id).maybeSingle()))?.team;
+    if(links[0]) {
+      const row = await result(client.from('team_catalog').select('team,faceit_avatar_url').eq('team_id',links[0].team_id).maybeSingle());
+      team = row ? withCurrentTeamAvatar(row.team, row.faceit_avatar_url) : null;
+    }
   }
   if(team) {
     const url=await result(client.from('team_profile_urls').select('slug').eq('team_id',team.faceitTeamId).maybeSingle());

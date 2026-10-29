@@ -1,3 +1,5 @@
+import process from 'node:process';
+import { validFaceitAvatar } from '../src/utils/teamAvatar.js';
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 import { runDiscoveryScan, retryAfterMs } from "./lib/discoveryScan.js";
@@ -95,10 +97,16 @@ async function fetchTeam(id) {
   }
   const team = await response.json();
   if (!Array.isArray(team.members) || !team.members.length) return null;
-  return { id: team.team_id || id, members: team.members };
+  if (team.team_id !== id) throw new Error('FACEIT team ID mismatch');
+  return { id, members: team.members, avatar: validFaceitAvatar(team.avatar) };
 }
 
 async function syncOneTeam(team) {
+  if (team.avatar) {
+    const { error } = await supabase.from('team_catalog').update({ faceit_avatar_url: team.avatar,
+      faceit_avatar_synced_at: new Date().toISOString() }).eq('team_id', team.id);
+    if (error) throw error;
+  }
   const members=[...new Map((team.members || []).map(normalizeMember).filter(Boolean).map(p=>[p.faceit_id,p])).values()];
   if (!members.length) return;
   const {data,error}=await supabase.rpc("sync_registered_team_roster",{p_team_id:team.id,p_members:members});

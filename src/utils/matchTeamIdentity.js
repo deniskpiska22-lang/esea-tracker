@@ -26,7 +26,7 @@ export function resolveMatchTeam(catalog, team, rawData) {
     // Match fields are refreshed independently of the slower catalog snapshot.
     name: source?.name || source?.nickname || team.name || local?.name,
     slug: local?.slug || (conflict ? null : team.slug) || null,
-    logo: source?.avatar || source?.logo || local?.logo || (conflict ? null : team.logo) || null,
+    logo: local?.faceitAvatar || source?.avatar || source?.logo || local?.logo || (conflict ? null : team.logo) || null,
   };
 }
 

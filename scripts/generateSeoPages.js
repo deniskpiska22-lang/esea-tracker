@@ -1,3 +1,4 @@
+import { withCurrentTeamAvatar } from '../src/utils/teamAvatar.js';
 import { LANGUAGE_CODES, localizedPath } from '../src/i18n/languages.js';
 import { localizeSeo } from '../src/i18n/seo.js';
 import { getSiteSeoMetadata } from '../src/utils/siteSeo.js';
@@ -78,7 +79,7 @@ async function loadCatalogForSeo() {
   const key = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key) return [];
   const client = createClient(url, key, {auth:{persistSession:false,autoRefreshToken:false}});
-  return (await fetchAllRows(client, "team_catalog", "team_id,team,updated_at", q => q.order("team_id"))).map(row => ({...row.team, updatedAt:row.updated_at}));
+  return (await fetchAllRows(client, "team_catalog", "team_id,team,updated_at,faceit_avatar_url", q => q.order("team_id"))).map(row => withCurrentTeamAvatar({...row.team, updatedAt:row.updated_at}, row.faceit_avatar_url));
 }
 
 async function loadPlayersForSeo() {
