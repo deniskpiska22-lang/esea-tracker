@@ -4,7 +4,7 @@ const PAGE_PULSE_KEY = 'esea.presence.path.v1';
 
 // A browser-wide lock covers ID creation AND the pulse. It prevents independent
 // windows/tabs from generating IDs or sending duplicate heartbeat requests.
-export async function pulsePresence({ browser = window, document = browser.document, path, now = Date.now } = {}) {
+export async function pulsePresence({ browser = window, document = browser.document, path, viewEvent, now = Date.now } = {}) {
   if (document.hidden || !trafficPath(path)) return false;
   const send = async () => {
     if (document.hidden) return false;
@@ -19,11 +19,11 @@ export async function pulsePresence({ browser = window, document = browser.docum
       previous = Number(storage.getItem(PULSE_KEY));
     } catch { return false; } // Do not invent per-tab IDs when storage is denied.
     const time = now();
-    if (previous > 0 && time >= previous && time - previous < PRESENCE_INTERVAL_MS && storage.getItem(PAGE_PULSE_KEY) === trafficPath(path)) return false;
+    if (!viewEvent && previous > 0 && time >= previous && time - previous < PRESENCE_INTERVAL_MS && storage.getItem(PAGE_PULSE_KEY) === trafficPath(path)) return false;
     const response = await browser.fetch('/api/site-presence', {
       method: 'POST', credentials: 'same-origin', cache: 'no-store',
       headers: { 'Content-Type': 'application/json', 'X-Site-Presence': '1' },
-      body: JSON.stringify({ visitorId, path: trafficPath(path) }),
+      body: JSON.stringify({ visitorId, path: trafficPath(path), ...(viewEvent ? { viewEvent } : {}) }),
       signal: browser.AbortSignal.timeout(5000),
     });
     if (!response.ok) return false;

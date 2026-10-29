@@ -1670,5 +1670,149 @@
     "es": "El historial de páginas aún no está disponible.",
     "fr": "L’historique des pages n’est pas encore disponible.",
     "it": "La cronologia delle pagine non è ancora disponibile."
+  },
+  "Traffic analytics": {
+    "ru": "Аналитика посещаемости",
+    "de": "Besuchsanalyse",
+    "pt": "Análise de tráfego",
+    "es": "Análisis de tráfico",
+    "fr": "Analyse du trafic",
+    "it": "Analisi del traffico"
+  },
+  "Analytics period": {
+    "ru": "Период аналитики",
+    "de": "Analysezeitraum",
+    "pt": "Período de análise",
+    "es": "Período de análisis",
+    "fr": "Période d’analyse",
+    "it": "Periodo di analisi"
+  },
+  "Detailed tracking started": {
+    "ru": "Начало подробного учёта",
+    "de": "Beginn der Detailerfassung",
+    "pt": "Início do acompanhamento detalhado",
+    "es": "Inicio del seguimiento detallado",
+    "fr": "Début du suivi détaillé",
+    "it": "Inizio del monitoraggio dettagliato"
+  },
+  "Unique visitors": {
+    "ru": "Уникальные посетители",
+    "de": "Eindeutige Besucher",
+    "pt": "Visitantes únicos",
+    "es": "Visitantes únicos",
+    "fr": "Visiteurs uniques",
+    "it": "Visitatori unici"
+  },
+  "Page views": {
+    "ru": "Просмотры страниц",
+    "de": "Seitenaufrufe",
+    "pt": "Visualizações de páginas",
+    "es": "Vistas de páginas",
+    "fr": "Pages vues",
+    "it": "Visualizzazioni di pagina"
+  },
+  "Previous period": {
+    "ru": "Предыдущий период",
+    "de": "Vorheriger Zeitraum",
+    "pt": "Período anterior",
+    "es": "Período anterior",
+    "fr": "Période précédente",
+    "it": "Periodo precedente"
+  },
+  "Not enough history": {
+    "ru": "Недостаточно истории",
+    "de": "Nicht genügend Verlauf",
+    "pt": "Histórico insuficiente",
+    "es": "Historial insuficiente",
+    "fr": "Historique insuffisant",
+    "it": "Cronologia insufficiente"
+  },
+  "Sources": {
+    "ru": "Источники переходов",
+    "de": "Zugriffsquellen",
+    "pt": "Fontes de tráfego",
+    "es": "Fuentes de tráfico",
+    "fr": "Sources de trafic",
+    "it": "Fonti di traffico"
+  },
+  "Entry pages": {
+    "ru": "Страницы входа",
+    "de": "Einstiegsseiten",
+    "pt": "Páginas de entrada",
+    "es": "Páginas de entrada",
+    "fr": "Pages d’entrée",
+    "it": "Pagine di ingresso"
+  },
+  "Browsers": {
+    "ru": "Браузеры",
+    "de": "Browser",
+    "pt": "Navegadores",
+    "es": "Navegadores",
+    "fr": "Navigateurs",
+    "it": "Browser"
+  },
+  "Operating systems": {
+    "ru": "Операционные системы",
+    "de": "Betriebssysteme",
+    "pt": "Sistemas operacionais",
+    "es": "Sistemas operativos",
+    "fr": "Systèmes d’exploitation",
+    "it": "Sistemi operativi"
+  },
+  "Direct / unknown": {
+    "ru": "Прямой / неизвестный",
+    "de": "Direkt / unbekannt",
+    "pt": "Direto / desconhecido",
+    "es": "Directo / desconocido",
+    "fr": "Direct / inconnu",
+    "it": "Diretto / sconosciuto"
+  },
+  "Search page views": {
+    "ru": "Поиск по просмотрам страниц",
+    "de": "Seitenaufrufe suchen",
+    "pt": "Pesquisar visualizações",
+    "es": "Buscar vistas de páginas",
+    "fr": "Rechercher des pages vues",
+    "it": "Cerca visualizzazioni"
+  },
+  "Page openings are counted separately from online heartbeats.": {
+    "ru": "Открытия страниц считаются отдельно от фоновых проверок онлайна.",
+    "de": "Seitenöffnungen werden getrennt von Online-Signalen gezählt.",
+    "pt": "Aberturas de páginas são contadas separadamente da atividade em segundo plano.",
+    "es": "Las aperturas de páginas se cuentan aparte de la actividad en segundo plano.",
+    "fr": "Les ouvertures de pages sont comptées séparément de l’activité en arrière-plan.",
+    "it": "Le aperture delle pagine sono contate separatamente dall’attività in background."
+  },
+  "A reload or a new page opening counts as a view; background activity does not.": {
+    "ru": "Перезагрузка или новое открытие страницы — просмотр; фоновая активность просмотров не добавляет.",
+    "de": "Neuladen oder Öffnen zählt als Aufruf; Hintergrundaktivität nicht.",
+    "pt": "Recarregar ou abrir uma página conta como visualização; atividade em segundo plano não.",
+    "es": "Recargar o abrir una página cuenta como vista; la actividad en segundo plano no.",
+    "fr": "Un rechargement ou une ouverture compte comme vue ; l’activité en arrière-plan ne compte pas.",
+    "it": "Un caricamento o una nuova apertura conta come visualizzazione; l’attività in background no."
+  },
+  "Sources and entry pages use each browser’s first observed visit in the selected period.": {
+    "ru": "Источник и страница входа определяются по первому учтённому визиту браузера за выбранный период.",
+    "de": "Quelle und Einstiegsseite stammen vom ersten erfassten Besuch je Browser im Zeitraum.",
+    "pt": "A fonte e a página de entrada usam a primeira visita registrada de cada navegador no período.",
+    "es": "La fuente y la página de entrada usan la primera visita registrada de cada navegador en el período.",
+    "fr": "La source et la page d’entrée correspondent à la première visite observée de chaque navigateur sur la période.",
+    "it": "Fonte e pagina di ingresso usano la prima visita osservata di ogni browser nel periodo."
+  },
+  "Today is incomplete; comparisons use the previous full calendar period.": {
+    "ru": "Сегодняшний день ещё не завершён; сравнение идёт с предыдущим полным календарным периодом.",
+    "de": "Heute ist unvollständig; der Vergleich nutzt den vorherigen vollständigen Kalenderzeitraum.",
+    "pt": "Hoje está incompleto; a comparação usa o período anterior completo.",
+    "es": "Hoy está incompleto; se compara con el período anterior completo.",
+    "fr": "La journée est en cours ; la comparaison utilise la période calendaire précédente complète.",
+    "it": "Oggi è incompleto; il confronto usa il periodo di calendario precedente completo."
+  },
+  "This period includes days before detailed tracking started.": {
+    "ru": "В период входят дни до начала подробного учёта.",
+    "de": "Dieser Zeitraum enthält Tage vor Beginn der Detailerfassung.",
+    "pt": "Este período inclui dias anteriores ao acompanhamento detalhado.",
+    "es": "Este período incluye días anteriores al seguimiento detallado.",
+    "fr": "Cette période inclut des jours antérieurs au suivi détaillé.",
+    "it": "Questo periodo include giorni precedenti al monitoraggio dettagliato."
   }
 }
