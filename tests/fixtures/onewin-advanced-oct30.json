@@ -1,0 +1,219 @@
+{
+  "matches": [
+    {
+      "id": "1-6746b1b3-f866-490a-860f-813af5cc6c1c",
+      "team1_id": "5e23d9f1-0864-4912-b819-b15bb477a243",
+      "team1_name": "regnum4games",
+      "team2_id": "40ee7839-d6df-4086-8c8f-ca998c9aedbf",
+      "team2_name": "Hermine Esports",
+      "scheduled_at": "2026-10-30T17:00:00Z",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-c868d96b-79b5-4b6a-937d-1cfd0823d516",
+      "team1_id": "91756434-05f3-43f9-8f6f-ee93918abc7a",
+      "team1_name": "The Chosen Few",
+      "team2_id": "55cd0e38-d05f-4596-adda-8bf9887d775c",
+      "team2_name": "Spirit HU",
+      "scheduled_at": "2026-10-30T17:00:00Z",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "1-e52c7738-1dc0-47ac-a5a8-7b2822a2a98a",
+      "team1_id": "68c9c60e-2f40-4bae-acf3-ae4712c74734",
+      "team1_name": "MTX",
+      "team2_id": "80473369-d322-499b-acfc-a8464edd132e",
+      "team2_name": "Fortress",
+      "scheduled_at": "2026-10-30T19:30:00Z",
+      "status": "SCHEDULED"
+    }
+  ],
+  "events": [
+    {
+      "awayTeam": {
+        "id": 1681642,
+        "name": "Hermine",
+        "position": 2,
+        "slug": "hermine",
+        "logo": {
+          "url": "https://bstatic.live/icons/c7c487b5cd1800d9ad0153a431879aacfa06aef5.webp"
+        }
+      },
+      "category": {
+        "id": 1610,
+        "slug": "esea"
+      },
+      "categoryId": 1610,
+      "competitors": [
+        {
+          "id": 1501355,
+          "name": "Regnum4Games",
+          "position": 1,
+          "slug": "regnum4games"
+        },
+        {
+          "id": 1681642,
+          "name": "Hermine",
+          "position": 2,
+          "slug": "hermine",
+          "logo": {
+            "url": "https://bstatic.live/icons/c7c487b5cd1800d9ad0153a431879aacfa06aef5.webp"
+          }
+        }
+      ],
+      "createdAt": 1793343895,
+      "homeTeam": {
+        "id": 1501355,
+        "name": "Regnum4Games",
+        "position": 1,
+        "slug": "regnum4games"
+      },
+      "id": 42330684,
+      "isHot": false,
+      "logo": {
+        "url": "https://bstatic.live/icons/a93fd32f30aa2a2a3a5d3e4322d80f13b0c94d76.png"
+      },
+      "name": "Regnum4Games - Hermine",
+      "service": "PREMATCH",
+      "serviceV2": "prematch",
+      "slug": "regnum4games-vs-hermine",
+      "sport": {
+        "id": 142,
+        "isEsport": true,
+        "slug": "cs2",
+        "sportType": "esport",
+        "tag": "counter_strike2"
+      },
+      "sportId": 142,
+      "sportTag": "counter_strike2",
+      "startAt": 1793379600,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      },
+      "tournamentId": 33755,
+      "updatedAt": 1793339646205,
+      "sourceOrigin": "https://one-vv8346.com"
+    },
+    {
+      "awayTeam": {
+        "id": 1714578,
+        "name": "Spirit HU",
+        "position": 2,
+        "slug": "spirit-hu"
+      },
+      "category": {
+        "id": 1610,
+        "slug": "esea"
+      },
+      "categoryId": 1610,
+      "competitors": [
+        {
+          "id": 1738861,
+          "name": "The Chosen Few",
+          "position": 1,
+          "slug": "the-chosen-few"
+        },
+        {
+          "id": 1714578,
+          "name": "Spirit HU",
+          "position": 2,
+          "slug": "spirit-hu"
+        }
+      ],
+      "createdAt": 1793343923,
+      "homeTeam": {
+        "id": 1738861,
+        "name": "The Chosen Few",
+        "position": 1,
+        "slug": "the-chosen-few"
+      },
+      "id": 42330713,
+      "isHot": false,
+      "logo": {
+        "url": "https://bstatic.live/icons/a93fd32f30aa2a2a3a5d3e4322d80f13b0c94d76.png"
+      },
+      "name": "The Chosen Few - Spirit HU",
+      "service": "PREMATCH",
+      "serviceV2": "prematch",
+      "slug": "the-chosen-few-vs-spirit-hu",
+      "sport": {
+        "id": 142,
+        "isEsport": true,
+        "slug": "cs2",
+        "sportType": "esport",
+        "tag": "counter_strike2"
+      },
+      "sportId": 142,
+      "sportTag": "counter_strike2",
+      "startAt": 1793379600,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      },
+      "tournamentId": 33755,
+      "updatedAt": 1793366485393,
+      "sourceOrigin": "https://one-vv8346.com"
+    },
+    {
+      "awayTeam": {
+        "id": 159981,
+        "name": "Fortress",
+        "position": 2,
+        "slug": "fortress"
+      },
+      "category": {
+        "id": 1610,
+        "slug": "esea"
+      },
+      "categoryId": 1610,
+      "competitors": [
+        {
+          "id": 1688798,
+          "name": "Matrix",
+          "position": 1,
+          "slug": "matrix"
+        },
+        {
+          "id": 159981,
+          "name": "Fortress",
+          "position": 2,
+          "slug": "fortress"
+        }
+      ],
+      "createdAt": 1793343941,
+      "homeTeam": {
+        "id": 1688798,
+        "name": "Matrix",
+        "position": 1,
+        "slug": "matrix"
+      },
+      "id": 42330720,
+      "isHot": false,
+      "logo": {
+        "url": "https://bstatic.live/icons/a93fd32f30aa2a2a3a5d3e4322d80f13b0c94d76.png"
+      },
+      "name": "Matrix - Fortress",
+      "service": "PREMATCH",
+      "serviceV2": "prematch",
+      "slug": "matrix-vs-fortress",
+      "sport": {
+        "id": 142,
+        "isEsport": true,
+        "slug": "cs2",
+        "sportType": "esport",
+        "tag": "counter_strike2"
+      },
+      "sportId": 142,
+      "sportTag": "counter_strike2",
+      "startAt": 1793388600,
+      "tournament": {
+        "id": 33755,
+        "slug": "esea-advanced-europe"
+      },
+      "tournamentId": 33755,
+      "updatedAt": 1793339683987,
+      "sourceOrigin": "https://one-vv8346.com"
+    }
+  ]
+}
