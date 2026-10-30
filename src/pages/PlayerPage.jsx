@@ -1573,8 +1573,6 @@ function PlayerPage() {
 
         <nav className={`player-section-nav ${profileTab === "teams" ? "showing-teams" : ""}`} aria-label={tx("Player statistics")}>
           <a href="#player-performance" onClick={()=>setProfileTab("overview")}>{tx(" Performance ")}</a>
-          <a href="#player-matches" onClick={()=>setProfileTab("overview")}>{tx(" Recent matches ")}</a>
-          <a href="#player-overview" onClick={()=>setProfileTab("overview")}>{tx(" Overview ")}</a>
           <button type="button" aria-pressed={profileTab === "teams"} onClick={()=>setProfileTab("teams")}>{tx("Teams")}</button>
         </nav>
         {profileTab === "teams" ? <PlayerTeamHistory key={resolvedPlayerId} matches={playerMatches} catalog={teams} loading={loadingStats} error={statsError} /> : <>
