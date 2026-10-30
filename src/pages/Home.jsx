@@ -1084,7 +1084,7 @@ function HeroMatch({ match: data, loading = false }) {
             to={matchPath}
             state={{ from: "/", label: "← Back to Home" }}
             className="text-[11px] font-black uppercase tracking-[0.24em] text-orange-400 transition hover:text-orange-300"
-          >{tx(" Match of the Day ")}</Link>
+          >{tx(live ? "Live now" : "Match of the Day")}</Link>
 
           <div className="flex items-center gap-2">
             <Link
