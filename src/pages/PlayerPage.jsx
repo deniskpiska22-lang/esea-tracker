@@ -14,12 +14,12 @@ import {
   useState,
 } from "react";
 
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import { useStaticPlayerHistory } from "../hooks/useStaticHistory.js";
 import teams from "../data/teams";
 import players from "../data/players";
-import playerTransfers from "../data/playerTransfers.json";
+import PlayerTeamHistory from "../components/PlayerTeamHistory.jsx";
 import playerAverageRatings from "../data/playerAverageRatings.json";
 import playerAliases from "../data/playerAliases";
 
@@ -646,6 +646,16 @@ function StatCard({
 
 function PlayerPage() {
   const { teams } = useTeamCatalog();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const profileTab = searchParams.get("tab") === "teams" ? "teams" : "overview";
+  function setProfileTab(tab) {
+    setSearchParams(previous => {
+      const next = new URLSearchParams(previous);
+      if (tab === "teams") next.set("tab", "teams");
+      else next.delete("tab");
+      return next;
+    }, { replace: true });
+  }
   const {
     playerId,
     nickname,
@@ -744,11 +754,6 @@ function PlayerPage() {
             decodedNickname
           )
       ) || null;
-
-  const transfers =
-    playerTransfers[
-      decodedNickname
-    ] || [];
 
   /*
    * В FACEIT URL нельзя подставлять UUID.
@@ -1032,8 +1037,8 @@ function PlayerPage() {
     if (loadingStats || !resolvedNickname || isFaceitPlayerId(resolvedNickname)) return;
     const target = `/players/${encodeURIComponent(resolvedNickname)}`;
     if (location.pathname === target) return;
-    navigate(target, { replace: true, state: location.state });
-  }, [loadingStats, resolvedNickname, location.pathname, location.state, navigate]);
+    navigate(target + location.search + location.hash, { replace: true, state: location.state });
+  }, [loadingStats, resolvedNickname, location.pathname, location.search, location.hash, location.state, navigate]);
 
   const staticHistory = useStaticPlayerHistory(decodedNickname);
   const supabasePlayerMatches =
@@ -1566,11 +1571,13 @@ function PlayerPage() {
           </div>
         </section>
 
-        <nav className="player-section-nav" aria-label={tx("Player statistics")}>
-          <a href="#player-performance">{tx(" Performance ")}</a>
-          <a href="#player-matches">{tx(" Recent matches ")}</a>
-          <a href="#player-overview">{tx(" Overview ")}</a>
+        <nav className={`player-section-nav ${profileTab === "teams" ? "showing-teams" : ""}`} aria-label={tx("Player statistics")}>
+          <a href="#player-performance" onClick={()=>setProfileTab("overview")}>{tx(" Performance ")}</a>
+          <a href="#player-matches" onClick={()=>setProfileTab("overview")}>{tx(" Recent matches ")}</a>
+          <a href="#player-overview" onClick={()=>setProfileTab("overview")}>{tx(" Overview ")}</a>
+          <button type="button" aria-pressed={profileTab === "teams"} onClick={()=>setProfileTab("teams")}>{tx("Teams")}</button>
         </nav>
+        {profileTab === "teams" ? <PlayerTeamHistory key={resolvedPlayerId} matches={playerMatches} catalog={teams} loading={loadingStats} error={statsError} /> : <>
         <section id="player-performance" className="player-performance mt-6">
           <div className="mb-4 flex items-end justify-between">
             <div>
@@ -1744,44 +1751,10 @@ function PlayerPage() {
               </div>
             </div>
 
-            {transfers.length > 0 && (
-              <div className="rounded-[24px] border border-[#263244] bg-[#101722] p-6">
-                <h2 className="text-xl font-black">{tx(" Team history ")}</h2>
 
-                <div className="mt-5 space-y-5">
-                  {transfers
-                    .slice()
-                    .reverse()
-                    .map(
-                      (
-                        transfer,
-                        index
-                      ) => (
-                        <div
-                          key={`${transfer.date}-${index}`}
-                          className="relative border-l border-[#344258] pl-5"
-                        >
-                          <div className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-orange-400" />
-
-                          <div className="font-bold text-white">
-                            {transfer.from}
-                            <span className="mx-2 text-slate-600">
-                              →
-                            </span>
-                            {transfer.to}
-                          </div>
-
-                          <div className="mt-1 text-xs text-slate-500">
-                            {transfer.date}
-                          </div>
-                        </div>
-                      )
-                    )}
-                </div>
-              </div>
-            )}
           </div>
         </section>
+        </>}
       </div>
     </div>
   );

@@ -454,5 +454,229 @@
     "es": "Vetado",
     "fr": "Bannie",
     "it": "Bannata"
+  },
+  "Loading team history…": {
+    "ru": "Загрузка истории команд…",
+    "de": "Teamhistorie wird geladen…",
+    "pt": "Carregando histórico de equipes…",
+    "es": "Cargando historial de equipos…",
+    "fr": "Chargement de l’historique des équipes…",
+    "it": "Caricamento della storia delle squadre…"
+  },
+  "Team history is temporarily unavailable.": {
+    "ru": "История команд временно недоступна.",
+    "de": "Die Teamhistorie ist vorübergehend nicht verfügbar.",
+    "pt": "O histórico de equipes está temporariamente indisponível.",
+    "es": "El historial de equipos no está disponible temporalmente.",
+    "fr": "L’historique des équipes est temporairement indisponible.",
+    "it": "La storia delle squadre è temporaneamente non disponibile."
+  },
+  "No recorded team appearances yet.": {
+    "ru": "Выступления за команды пока не записаны.",
+    "de": "Noch keine Teameinsätze erfasst.",
+    "pt": "Nenhuma participação por equipe registrada.",
+    "es": "Todavía no hay participaciones por equipo registradas.",
+    "fr": "Aucune participation en équipe enregistrée.",
+    "it": "Nessuna presenza in squadra registrata."
+  },
+  "RECORDED CAREER": {
+    "ru": "ИСТОРИЯ ВЫСТУПЛЕНИЙ",
+    "de": "ERFASSTE KARRIERE",
+    "pt": "CARREIRA REGISTRADA",
+    "es": "TRAYECTORIA REGISTRADA",
+    "fr": "CARRIÈRE ENREGISTRÉE",
+    "it": "CARRIERA REGISTRATA"
+  },
+  "Teams recorded": {
+    "ru": "Команд в истории",
+    "de": "Erfasste Teams",
+    "pt": "Equipes registradas",
+    "es": "Equipos registrados",
+    "fr": "Équipes enregistrées",
+    "it": "Squadre registrate"
+  },
+  "{0} recorded periods": {
+    "ru": "Периодов в истории: {0}",
+    "de": "{0} erfasste Zeiträume",
+    "pt": "{0} períodos registrados",
+    "es": "{0} períodos registrados",
+    "fr": "{0} périodes enregistrées",
+    "it": "{0} periodi registrati"
+  },
+  "Recorded matches": {
+    "ru": "Матчей в истории",
+    "de": "Erfasste Spiele",
+    "pt": "Partidas registradas",
+    "es": "Partidos registrados",
+    "fr": "Matchs enregistrés",
+    "it": "Partite registrate"
+  },
+  "With individual statistics": {
+    "ru": "С индивидуальной статистикой",
+    "de": "Mit individuellen Statistiken",
+    "pt": "Com estatísticas individuais",
+    "es": "Con estadísticas individuales",
+    "fr": "Avec statistiques individuelles",
+    "it": "Con statistiche individuali"
+  },
+  "First recorded match": {
+    "ru": "Первый известный матч",
+    "de": "Erstes erfasstes Spiel",
+    "pt": "Primeira partida registrada",
+    "es": "Primer partido registrado",
+    "fr": "Premier match enregistré",
+    "it": "Prima partita registrata"
+  },
+  "History available on ESEA Tracker": {
+    "ru": "По данным ESEA Tracker",
+    "de": "Laut ESEA Tracker",
+    "pt": "Histórico disponível no ESEA Tracker",
+    "es": "Historial disponible en ESEA Tracker",
+    "fr": "Historique disponible sur ESEA Tracker",
+    "it": "Storico disponibile su ESEA Tracker"
+  },
+  "Team appearances": {
+    "ru": "Выступления за команды",
+    "de": "Teameinsätze",
+    "pt": "Participações por equipe",
+    "es": "Participaciones por equipo",
+    "fr": "Participations en équipe",
+    "it": "Presenze in squadra"
+  },
+  "Recorded period": {
+    "ru": "Известный период",
+    "de": "Erfasster Zeitraum",
+    "pt": "Período registrado",
+    "es": "Período registrado",
+    "fr": "Période enregistrée",
+    "it": "Periodo registrato"
+  },
+  "Observed span": {
+    "ru": "Период наблюдения",
+    "de": "Beobachtungszeitraum",
+    "pt": "Intervalo observado",
+    "es": "Intervalo observado",
+    "fr": "Période observée",
+    "it": "Intervallo osservato"
+  },
+  "CAREER TIMELINE": {
+    "ru": "ТАЙМЛАЙН КАРЬЕРЫ",
+    "de": "KARRIEREZEITLEISTE",
+    "pt": "LINHA DO TEMPO DA CARREIRA",
+    "es": "CRONOLOGÍA DE CARRERA",
+    "fr": "CHRONOLOGIE DE CARRIÈRE",
+    "it": "CRONOLOGIA DELLA CARRIERA"
+  },
+  "Player journey": {
+    "ru": "Путь игрока",
+    "de": "Werdegang",
+    "pt": "Trajetória do jogador",
+    "es": "Trayectoria del jugador",
+    "fr": "Parcours du joueur",
+    "it": "Percorso del giocatore"
+  },
+  "From the first appearance to the latest recorded team": {
+    "ru": "От первого выступления до последней известной команды",
+    "de": "Vom ersten Einsatz bis zum zuletzt erfassten Team",
+    "pt": "Da primeira participação à última equipe registrada",
+    "es": "Desde la primera participación al último equipo registrado",
+    "fr": "De la première participation à la dernière équipe enregistrée",
+    "it": "Dalla prima presenza all’ultima squadra registrata"
+  },
+  "Full history": {
+    "ru": "Вся история",
+    "de": "Gesamter Verlauf",
+    "pt": "Todo o histórico",
+    "es": "Todo el historial",
+    "fr": "Tout l’historique",
+    "it": "Tutto lo storico"
+  },
+  "Timeline period": {
+    "ru": "Период графика",
+    "de": "Zeitraum der Zeitleiste",
+    "pt": "Período da linha do tempo",
+    "es": "Período de la cronología",
+    "fr": "Période de la chronologie",
+    "it": "Periodo della cronologia"
+  },
+  "Career timeline; scroll horizontally on small screens": {
+    "ru": "График карьеры; на узком экране прокручивается по горизонтали",
+    "de": "Karrierezeitleiste; auf kleinen Bildschirmen horizontal scrollen",
+    "pt": "Linha do tempo da carreira; role horizontalmente em telas pequenas",
+    "es": "Cronología de carrera; desplaza horizontalmente en pantallas pequeñas",
+    "fr": "Chronologie de carrière ; défilement horizontal sur petit écran",
+    "it": "Cronologia della carriera; scorrimento orizzontale su schermi piccoli"
+  },
+  "TEAM / PERIOD": {
+    "ru": "КОМАНДА / ЭТАП",
+    "de": "TEAM / ZEITRAUM",
+    "pt": "EQUIPE / PERÍODO",
+    "es": "EQUIPO / PERÍODO",
+    "fr": "ÉQUIPE / PÉRIODE",
+    "it": "SQUADRA / PERIODO"
+  },
+  "Latest recorded team": {
+    "ru": "Последняя известная команда",
+    "de": "Zuletzt erfasstes Team",
+    "pt": "Última equipe registrada",
+    "es": "Último equipo registrado",
+    "fr": "Dernière équipe enregistrée",
+    "it": "Ultima squadra registrata"
+  },
+  "Select period: {0}": {
+    "ru": "Выбрать период: {0}",
+    "de": "Zeitraum auswählen: {0}",
+    "pt": "Selecionar período: {0}",
+    "es": "Seleccionar período: {0}",
+    "fr": "Sélectionner une période : {0}",
+    "it": "Seleziona periodo: {0}"
+  },
+  "{0} d": {
+    "ru": "{0} дн.",
+    "de": "{0} T.",
+    "pt": "{0} d",
+    "es": "{0} d",
+    "fr": "{0} j",
+    "it": "{0} g"
+  },
+  "LATEST RECORDED PERIOD": {
+    "ru": "ПОСЛЕДНИЙ ИЗВЕСТНЫЙ ЭТАП",
+    "de": "ZULETZT ERFASSTER ZEITRAUM",
+    "pt": "ÚLTIMO PERÍODO REGISTRADO",
+    "es": "ÚLTIMO PERÍODO REGISTRADO",
+    "fr": "DERNIÈRE PÉRIODE ENREGISTRÉE",
+    "it": "ULTIMO PERIODO REGISTRATO"
+  },
+  "SELECTED PERIOD": {
+    "ru": "ВЫБРАННЫЙ ЭТАП",
+    "de": "AUSGEWÄHLTER ZEITRAUM",
+    "pt": "PERÍODO SELECIONADO",
+    "es": "PERÍODO SELECCIONADO",
+    "fr": "PÉRIODE SÉLECTIONNÉE",
+    "it": "PERIODO SELEZIONATO"
+  },
+  "Earlier appearances": {
+    "ru": "Предыдущие выступления",
+    "de": "Frühere Einsätze",
+    "pt": "Participações anteriores",
+    "es": "Participaciones anteriores",
+    "fr": "Participations précédentes",
+    "it": "Presenze precedenti"
+  },
+  "Select a period to see its statistics below": {
+    "ru": "Выберите этап на шкале — показатели появятся ниже",
+    "de": "Zeitraum auswählen, um unten Statistiken zu sehen",
+    "pt": "Selecione um período para ver as estatísticas abaixo",
+    "es": "Selecciona un período para ver sus estadísticas abajo",
+    "fr": "Sélectionnez une période pour voir ses statistiques ci-dessous",
+    "it": "Seleziona un periodo per vedere le statistiche qui sotto"
+  },
+  "Periods show the first and last recorded matches for each consecutive team, not confirmed transfer dates or continuous membership. Gaps and unrecorded matches may be missing. Statistics use recorded series, not individual maps.": {
+    "ru": "Периоды показывают первый и последний известный матч за каждую команду подряд, а не подтверждённые даты переходов или непрерывное пребывание в составе. Перерывы и незаписанные матчи могут отсутствовать. Статистика считается по сохранённым сериям, а не отдельным картам.",
+    "de": "Die Zeiträume zeigen das erste und letzte erfasste Spiel je aufeinanderfolgendem Team, keine bestätigten Transferdaten oder durchgehende Mitgliedschaft. Pausen und nicht erfasste Spiele können fehlen. Die Statistiken basieren auf erfassten Serien, nicht einzelnen Karten.",
+    "pt": "Os períodos mostram a primeira e a última partida registradas por cada equipe consecutiva, não datas confirmadas de transferência ou permanência contínua. Pausas e partidas não registradas podem não aparecer. As estatísticas usam séries registradas, não mapas individuais.",
+    "es": "Los períodos muestran el primer y último partido registrados con cada equipo consecutivo, no fechas confirmadas de fichaje ni permanencia continua. Pueden faltar pausas y partidos no registrados. Las estadísticas usan series registradas, no mapas individuales.",
+    "fr": "Les périodes indiquent le premier et le dernier match enregistrés pour chaque équipe successive, et non des dates de transfert confirmées ou une présence continue. Des pauses et des matchs peuvent manquer. Les statistiques portent sur les séries enregistrées, pas sur les cartes individuelles.",
+    "it": "I periodi mostrano la prima e l’ultima partita registrate per ogni squadra consecutiva, non date di trasferimento confermate o permanenza continua. Potrebbero mancare pause e partite non registrate. Le statistiche usano le serie registrate, non le singole mappe."
   }
 }
