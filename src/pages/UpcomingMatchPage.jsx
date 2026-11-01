@@ -1991,22 +1991,7 @@ function UpcomingMatchPage() {
               error={Boolean(leftStatsError || rightStatsError)}
             />
 
-            <div className="grid items-start gap-6 lg:grid-cols-2">
-            <VoteCard
-              matchId={matchId}
-              team1={displayTeam1}
-              team2={displayTeam2}
-            />
 
-            <MatchInformationCard
-              team1={displayTeam1}
-              team2={displayTeam2}
-              season={displaySeason}
-              date={displayDate}
-              bestOf={displayBestOf}
-              faceitUrl={displayFaceitUrl}
-            />
-            </div>
           </div>
         )}
 
@@ -2271,6 +2256,27 @@ function UpcomingMatchPage() {
             leftTeamSlug={historyLeftSlug} loading={leftStatsLoading || rightStatsLoading}
             error={Boolean(leftStatsError || rightStatsError)} />
         </div>
+
+        {!showFinishedSections && !isLive && (
+          <div className="mt-8" data-prematch-room-details>
+            <div className="grid items-start gap-6 lg:grid-cols-2">
+            <VoteCard
+              matchId={matchId}
+              team1={displayTeam1}
+              team2={displayTeam2}
+            />
+
+            <MatchInformationCard
+              team1={displayTeam1}
+              team2={displayTeam2}
+              season={displaySeason}
+              date={displayDate}
+              bestOf={displayBestOf}
+              faceitUrl={displayFaceitUrl}
+            />
+            </div>
+          </div>
+        )}
 
         {/* MATCH INFORMATION */}
 
