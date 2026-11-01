@@ -19,6 +19,7 @@ const ONEWIN_TEAM_ALIASES = new Map([
   ['934a2bd0-fa66-4c02-ac92-00f742e7ec55', new Set(['jumbo'])],
   ['add80f4e-86e7-454a-8f3e-93c8349a39a3', new Set(['honved'])],
   ['68c9c60e-2f40-4bae-acf3-ae4712c74734', new Set(['matrix'])],
+  ['5f2e9987-a2a3-4901-94cf-8fa9457f307b', new Set(['xi'])],
 ]);
 
 export function normalizeOddsTeam(name) {
