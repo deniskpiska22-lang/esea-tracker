@@ -734,8 +734,6 @@ function TeamPage() {
                     {team.name}
                   </h1>
 
-                  <div className="mt-4"><TeamShareButton team={team} /></div>
-
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
                       <span className="text-sm text-slate-500">{tx(" Site rating ")}</span>
@@ -759,6 +757,7 @@ function TeamPage() {
               </div>
 
               <div>
+                <div className="team-share-placement"><TeamShareButton team={team} /></div>
                 <div className="grid grid-cols-2 gap-3">
                   <RankCard
                     eyebrow={tx("World rank")}
