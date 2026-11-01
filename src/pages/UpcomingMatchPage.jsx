@@ -1,3 +1,4 @@
+import { recentPrematchResults, prematchHeadToHead } from "../utils/prematchHistory.js";
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { faceitMatchRoomUrl } from '../utils/faceitMatchUrl.js';
 import MatchBackLink from '../components/MatchBackLink.jsx';
@@ -459,24 +460,6 @@ function normalizeDisplayedMapScore(map, displayTeam1, displayTeam2) {
   };
 }
 
-function filterRecentMatches(matches) {
-  const threeMonthsAgo = new Date();
-
-  threeMonthsAgo.setMonth(
-    threeMonthsAgo.getMonth() - 3
-  );
-
-  return matches
-    .filter(
-      (item) =>
-        new Date(item.date) >= threeMonthsAgo
-    )
-    .sort(
-      (first, second) =>
-        new Date(second.date) -
-        new Date(first.date)
-    );
-}
 
 function getCountryFlagUrl(countryCode) {
   return countryCode && countryCode.length === 2
@@ -539,8 +522,9 @@ function TeamHero({
 
 function RecentMatchesCard({
   displayTeam,
-  localTeam,
   matches,
+  loading,
+  error,
 }) {
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
@@ -550,10 +534,8 @@ function RecentMatchesCard({
         </div>
       </div>
 
-      {!localTeam ? (
-        <div className="p-6 text-gray-500">{tx(" Team is not in CIS Rankings ")}</div>
-      ) : matches.length === 0 ? (
-        <div className="p-6 text-gray-500">{tx(" No recent matches ")}</div>
+      {matches.length === 0 ? (
+        <div className="p-6 text-gray-500">{loading ? tx("Loading matches...") : error ? tx("Match history is temporarily unavailable.") : tx("No recent matches")}</div>
       ) : (
         <div className="max-h-[340px] overflow-y-auto">
           {matches.map((item) => (
@@ -568,7 +550,7 @@ function RecentMatchesCard({
                 </div>
 
                 <div className="text-xs text-gray-500">
-                  {item.date}
+                  {formatUserDateTime(item.date, {year:"numeric",month:"short",day:"numeric"}, {timeZone:"UTC"})}
                 </div>
               </div>
 
@@ -1732,9 +1714,9 @@ function UpcomingMatchPage() {
     rightFallbackMatches
   );
 
-  const leftRecentMatches = filterRecentMatches(leftAllMatches);
+  const leftRecentMatches = recentPrematchResults(leftAllMatches, matchId);
 
-  const rightRecentMatches = filterRecentMatches(rightAllMatches);
+  const rightRecentMatches = recentPrematchResults(rightAllMatches, matchId);
 
   const displayScore = liveData
     ? `${liveData.team1Score} : ${liveData.team2Score}`
@@ -1857,38 +1839,12 @@ function UpcomingMatchPage() {
     }
   );
 
-  /*
-   * H2H строится из тех же live-подгруженных
-   * матчей (useTeamStats), что и Recent Matches,
-   * только если обе команды есть в локальном рейтинге.
-   */
-  const h2hMatches =
-    leftLocalTeam &&
-    rightLocalTeam
-      ? [
-          ...leftAllMatches.filter(
-            (item) =>
-              normalizeName(item.opponentName) ===
-              normalizeName(rightLocalTeam.name)
-          ),
-          ...rightAllMatches.filter(
-            (item) =>
-              normalizeName(item.opponentName) ===
-              normalizeName(leftLocalTeam.name)
-          ),
-        ]
-      : [];
-
-  const uniqueH2HMatches = [
-    ...new Map(
-      h2hMatches.map(
-        (item) => [
-          item.matchId,
-          item,
-        ]
-      )
-    ).values(),
-  ];
+  const { matches: uniqueH2HMatches, leftSlug: historyLeftSlug } = prematchHeadToHead(
+    leftAllMatches, rightAllMatches,
+    {id: displayTeam1.id, name: leftLocalTeam?.name || displayTeam1.name, slug: leftLocalTeam?.slug},
+    {id: displayTeam2.id, name: rightLocalTeam?.name || displayTeam2.name, slug: rightLocalTeam?.slug},
+    matchId
+  );
 
   const showFinishedSections =
     Boolean(finishedMatch) ||
@@ -2302,42 +2258,19 @@ function UpcomingMatchPage() {
             </div>
           )}
 
-        {/* RECENT MATCHES */}
-
-        {showFinishedSections && (
-          <div className="mt-8">
-            <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Recent Matches (Past 3 Months) ")}</h2>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <RecentMatchesCard
-                displayTeam={displayTeam1}
-                localTeam={leftLocalTeam}
-                matches={leftRecentMatches}
-              />
-
-              <RecentMatchesCard
-                displayTeam={displayTeam2}
-                localTeam={rightLocalTeam}
-                matches={rightRecentMatches}
-              />
-            </div>
+        {/* Team history is useful before the match, independently of its result. */}
+        <section className="mt-8" data-prematch-recent-results>
+          <h2 className="mb-4 text-2xl font-black tracking-tight">{tx("Recent Matches (Past 3 Months)")}</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <RecentMatchesCard displayTeam={displayTeam1} matches={leftRecentMatches} loading={leftStatsLoading} error={leftStatsError} />
+            <RecentMatchesCard displayTeam={displayTeam2} matches={rightRecentMatches} loading={rightStatsLoading} error={rightStatsError} />
           </div>
-        )}
-
-        {/* H2H */}
-
-        {showFinishedSections &&
-          leftLocalTeam &&
-          rightLocalTeam &&
-          uniqueH2HMatches.length >
-            0 && (
-            <HeadToHeadCard
-              matches={uniqueH2HMatches}
-              team1={displayTeam1}
-              team2={displayTeam2}
-              leftTeamSlug={leftLocalTeam.slug}
-            />
-          )}
+        </section>
+        <div data-prematch-head-to-head>
+          <HeadToHeadCard matches={uniqueH2HMatches} team1={displayTeam1} team2={displayTeam2}
+            leftTeamSlug={historyLeftSlug} loading={leftStatsLoading || rightStatsLoading}
+            error={Boolean(leftStatsError || rightStatsError)} />
+        </div>
 
         {/* MATCH INFORMATION */}
 

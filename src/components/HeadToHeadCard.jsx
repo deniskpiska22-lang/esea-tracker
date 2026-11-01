@@ -81,6 +81,8 @@ export default function HeadToHeadCard({
   team1,
   team2,
   leftTeamSlug,
+  loading = false,
+  error = false,
 }) {
   const { leftWins, rightWins } = countHeadToHeadMapWins(
     matches,
@@ -90,10 +92,20 @@ export default function HeadToHeadCard({
   const rows = buildHeadToHeadMapRows(matches, leftTeamSlug);
   const overtimeCount = rows.filter((row) => row.overtime).length;
 
+  if (matches.length === 0) return (
+    <section className="mt-8">
+      <h2 className="mb-4 text-2xl font-black tracking-tight">{tx("Head to Head")}</h2>
+      <div className="rounded-2xl border border-[#243041] bg-[#111823] p-6 text-slate-400">
+        {loading ? tx("Loading matches...") : error ? tx("Match history is temporarily unavailable.") : tx("No previous meetings found.")}
+      </div>
+    </section>
+  );
+
   return (
     <div className="mt-8">
       <h2 className="mb-4 text-2xl font-black tracking-tight">{tx(" Head to Head ")}</h2>
 
+      {error && <p className="mb-3 text-sm text-slate-400">{tx("Some match history could not be loaded.")}</p>}
       <div className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
         <div className="grid grid-cols-3 items-center border-b border-[#243041] p-6 text-center">
           <div className="flex flex-col items-center">

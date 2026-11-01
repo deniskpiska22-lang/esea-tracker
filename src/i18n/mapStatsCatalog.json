@@ -678,5 +678,29 @@
     "es": "Los períodos muestran el primer y último partido registrados con cada equipo consecutivo, no fechas confirmadas de fichaje ni permanencia continua. Pueden faltar pausas y partidos no registrados. Las estadísticas usan series registradas, no mapas individuales.",
     "fr": "Les périodes indiquent le premier et le dernier match enregistrés pour chaque équipe successive, et non des dates de transfert confirmées ou une présence continue. Des pauses et des matchs peuvent manquer. Les statistiques portent sur les séries enregistrées, pas sur les cartes individuelles.",
     "it": "I periodi mostrano la prima e l’ultima partita registrate per ogni squadra consecutiva, non date di trasferimento confermate o permanenza continua. Potrebbero mancare pause e partite non registrate. Le statistiche usano le serie registrate, non le singole mappe."
+  },
+  "Match history is temporarily unavailable.": {
+    "ru": "История матчей временно недоступна.",
+    "de": "Der Matchverlauf ist vorübergehend nicht verfügbar.",
+    "pt": "O histórico de partidas está temporariamente indisponível.",
+    "es": "El historial de partidos no está disponible temporalmente.",
+    "fr": "L’historique des matchs est temporairement indisponible.",
+    "it": "La cronologia delle partite è temporaneamente non disponibile."
+  },
+  "No previous meetings found.": {
+    "ru": "Предыдущие личные встречи не найдены.",
+    "de": "Keine früheren Begegnungen gefunden.",
+    "pt": "Nenhum confronto anterior encontrado.",
+    "es": "No se encontraron enfrentamientos anteriores.",
+    "fr": "Aucune rencontre précédente trouvée.",
+    "it": "Nessuno scontro precedente trovato."
+  },
+  "Some match history could not be loaded.": {
+    "ru": "Часть истории матчей не удалось загрузить.",
+    "de": "Ein Teil des Matchverlaufs konnte nicht geladen werden.",
+    "pt": "Não foi possível carregar parte do histórico de partidas.",
+    "es": "No se pudo cargar parte del historial de partidos.",
+    "fr": "Une partie de l’historique des matchs n’a pas pu être chargée.",
+    "it": "Impossibile caricare parte della cronologia delle partite."
   }
 }

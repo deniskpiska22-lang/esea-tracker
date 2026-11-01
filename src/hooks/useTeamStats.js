@@ -470,6 +470,8 @@ function normalizeDatabaseMatch(
       opponentName ||
       "Unknown",
 
+    opponentId: matchTeamIsFirst ? row.team2_id : row.team1_id,
+
     date:
       String(
         row.finished_at ||
