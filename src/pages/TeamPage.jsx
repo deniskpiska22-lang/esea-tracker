@@ -1,3 +1,4 @@
+import TeamShareButton from "../components/TeamShareButton.jsx";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
@@ -732,6 +733,8 @@ function TeamPage() {
                   <h1 className="mt-3 truncate text-4xl font-black tracking-tight text-white md:text-6xl">
                     {team.name}
                   </h1>
+
+                  <div className="mt-4"><TeamShareButton team={team} /></div>
 
                   <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
