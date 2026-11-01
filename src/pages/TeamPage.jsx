@@ -834,7 +834,6 @@ function TeamPage() {
                     )}
                   </div>
                 </div>
-                <div className="team-share-placement"><TeamShareButton team={team} /></div>
               </div>
             </div>
 
@@ -855,14 +854,6 @@ function TeamPage() {
                   value: `${winrate}%`,
                   cls: "text-orange-400",
                 },
-                {
-                  label: tx("Site rating"),
-                  value:
-                    rankingLoading
-                      ? "..."
-                      : currentRating || "—",
-                  cls: "text-white",
-                },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -881,6 +872,7 @@ function TeamPage() {
                   </p>
                 </div>
               ))}
+              <TeamShareButton team={team} variant="tile" />
             </div>
           </div>
         </section>
