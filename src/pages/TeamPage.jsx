@@ -478,6 +478,7 @@ function TeamPage() {
         new Date(dateValue);
 
       return {
+        date: dateValue,
         week:
           Number.isNaN(date.getTime())
             ? String(dateValue || "")
@@ -489,7 +490,7 @@ function TeamPage() {
                 }
               ),
         rating:
-          Number(row.points || 0),
+          row.points == null ? null : Number(row.points),
         rank:
           row.world_rank
             ? Number(row.world_rank)
@@ -966,7 +967,7 @@ function TeamPage() {
         {/* WEEKLY RATING HISTORY */}
         {!ratingHistoryLoading &&
           teamHistory.length >= 2 && (
-            <section className="mt-10 rounded-[28px] border border-white/[0.06] bg-[#101720] p-5 md:p-7">
+            <section className="mt-10 rounded-[18px] border border-[#2b3a4a] bg-gradient-to-br from-[#131e2a] to-[#101923] p-5 md:p-7">
               <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">{tx(" Progress ")}</div>
@@ -977,7 +978,7 @@ function TeamPage() {
                 <div className="rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-xs font-bold text-slate-500">{tx(" Weekly snapshots ")}</div>
               </div>
 
-              <div className="h-96">
+              <div>
                 <Suspense fallback={<div className="h-full w-full animate-pulse rounded-2xl bg-white/5" />}>
                   <RatingHistoryChart data={teamHistory} />
                 </Suspense>
