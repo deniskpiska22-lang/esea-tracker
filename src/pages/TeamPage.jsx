@@ -757,7 +757,6 @@ function TeamPage() {
               </div>
 
               <div>
-                <div className="team-share-placement"><TeamShareButton team={team} /></div>
                 <div className="grid grid-cols-2 gap-3">
                   <RankCard
                     eyebrow={tx("World rank")}
@@ -835,6 +834,7 @@ function TeamPage() {
                     )}
                   </div>
                 </div>
+                <div className="team-share-placement"><TeamShareButton team={team} /></div>
               </div>
             </div>
 
