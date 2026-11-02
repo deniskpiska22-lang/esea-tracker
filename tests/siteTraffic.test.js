@@ -154,3 +154,12 @@ test('rapid navigation records every page while retaining one browser identity',
  assert.equal(records.length, 3);
  assert.equal(new Set(records.map(r => r.p_visitor)).size, 1);
 });
+
+test('qualifying interaction upgrades a raw heartbeat immediately and then coalesces across tabs',async()=>{
+ const { browser,requests }=browserFixture();
+ await pulsePresence({browser,path:'/rankings',now:()=>100000});
+ const activity={visibleMs:6000,interactionAgeMs:100,event:{id:randomUUID()}};
+ await Promise.all(Array.from({length:5},()=>pulsePresence({browser,path:'/rankings',activity,now:()=>106000})));
+ assert.equal(requests.length,2);
+ assert.deepEqual(requests[1].body.activity,activity);
+});

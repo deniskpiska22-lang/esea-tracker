@@ -20,7 +20,9 @@ export default function TrafficPanel({ compact = false, onOpen }) {
   const period = compact ? 7 : trafficPeriod(params.get('trafficDays'));
   const countryDays = countryPeriod(params.get('countryDays'));
   const load = useCallback(options => api.loadTraffic(options), [api]);
-  const { data, error, loading, refreshing, refresh, checkedAt } = useAdminResource(load, { pollMs: 15_000 });
+  const { data: snapshot, error, loading, refreshing, refresh, checkedAt } = useAdminResource(load, { pollMs: 15_000 });
+  const [audience, setAudience] = useState('active');
+  const data = audience === 'active' ? snapshot?.active : snapshot;
   const fresh = data && !error && checkedAt - Date.parse(data.generated_at) < 60_000;
   const summary = trafficPeriodSummary(data, period);
   const metrics = [['Online now', fresh ? data.online : null, 'Active in the last 3 minutes', FiActivity], ['Visitors today', data?.today, 'Unique browsers today', FiUsers], ['Visitors yesterday', data?.yesterday, 'Unique browsers yesterday', FiCalendar], ['Visitors in 7 days', data?.week, 'Deduplicated across days', FiBarChart2], ['Visitors in 30 days', data?.month, 'Deduplicated across days', FiCalendar]];
@@ -29,6 +31,8 @@ export default function TrafficPanel({ compact = false, onOpen }) {
   const max = Math.max(1, ...days.map(day => day.visitors));
   const geographyMax = Math.max(1, ...countries.map(row => row.visitors));
   return <section className="admin-traffic-module"><div className="admin-section-heading"><div><h2>{tx('Site traffic')} <span className={`admin-live-indicator ${fresh ? 'is-live' : ''}`}>{tx(fresh ? 'Online' : 'Status unavailable')}</span></h2><p>{tx('One browser counts once, even with several tabs.')}</p></div>{compact ? <button className="admin-text-action" onClick={onOpen}>{tx('Open traffic')} <FiArrowUpRight /></button> : <button className="admin-btn" disabled={refreshing} onClick={refresh}><FiRefreshCw className={refreshing ? 'admin-spin' : ''} />{tx('Refresh')}</button>}</div>
+    <div className="admin-section-heading"><select className="admin-input" aria-label={tx('Visitor counting mode')} value={audience} onChange={event => setAudience(event.target.value)}><option value="active">{tx('Active visitors')}</option><option value="all">{tx('All browser visits')}</option></select></div>
+    <p className="admin-traffic-explanation">{tx(audience === 'active' ? 'Visible for at least 5 seconds with a recent click, scroll or keyboard action. An estimate, not proof of a human visitor. New history starts when this mode is enabled.' : 'Original browser counter, including visits without confirmed interaction. Historical data is preserved.')}</p>
     <Notice error>{error && tx('Traffic data could not be refreshed. The previous snapshot may be outdated.')}</Notice>
     <div className="admin-metrics admin-traffic-metrics" data-site-traffic="true">{metrics.map(([label, value, hint, Icon], index) => <div key={label} className={`admin-metric ${index === 0 ? 'admin-metric-live' : ''}`}><span>{tx(label)}<Icon /></span><strong>{value == null ? loading ? <i className="admin-number-skeleton" /> : '—' : format(value)}{index === 0 && fresh && <span className="admin-pulse-dot" />}</strong><small>{tx(hint)}</small></div>)}</div>
     {!compact && <p className="admin-traffic-explanation">{tx('Daily totals cannot be added: the same browser counts once in the selected period.')} {tx('Admin pages and hidden tabs do not send activity.')} {tx('History starts when tracking was enabled; today is still in progress.')}</p>}

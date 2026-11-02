@@ -1814,5 +1814,45 @@
     "es": "Este período incluye días anteriores al seguimiento detallado.",
     "fr": "Cette période inclut des jours antérieurs au suivi détaillé.",
     "it": "Questo periodo include giorni precedenti al monitoraggio dettagliato."
+  },
+  "Visitor counting mode": {
+    "ru": "Режим подсчёта посетителей",
+    "de": "Besucherzählung",
+    "pt": "Modo de contagem de visitantes",
+    "es": "Modo de recuento de visitantes",
+    "fr": "Mode de comptage des visiteurs",
+    "it": "Modalità di conteggio dei visitatori"
+  },
+  "Active visitors": {
+    "ru": "Активные посетители",
+    "de": "Aktive Besucher",
+    "pt": "Visitantes ativos",
+    "es": "Visitantes activos",
+    "fr": "Visiteurs actifs",
+    "it": "Visitatori attivi"
+  },
+  "All browser visits": {
+    "ru": "Все посещения браузеров",
+    "de": "Alle Browserbesuche",
+    "pt": "Todas as visitas de navegadores",
+    "es": "Todas las visitas de navegadores",
+    "fr": "Toutes les visites de navigateurs",
+    "it": "Tutte le visite dei browser"
+  },
+  "Visible for at least 5 seconds with a recent click, scroll or keyboard action. An estimate, not proof of a human visitor. New history starts when this mode is enabled.": {
+    "ru": "Страница видима не менее 5 секунд, есть недавний клик, прокрутка или нажатие клавиши. Это оценка, а не доказательство, что посетитель — человек. Новая история начинается с включения этого режима.",
+    "de": "Die Seite ist mindestens 5 Sekunden sichtbar, mit einem kürzlichen Klick, Scrollen oder Tastendruck. Eine Schätzung, kein Nachweis eines Menschen. Der Verlauf beginnt mit der Aktivierung dieses Modus.",
+    "pt": "Página visível por pelo menos 5 segundos, com clique, rolagem ou tecla recente. É uma estimativa, não uma prova de visita humana. O histórico começa com a ativação deste modo.",
+    "es": "Página visible al menos 5 segundos, con un clic, desplazamiento o pulsación reciente. Es una estimación, no una prueba de visita humana. El historial comienza al activar este modo.",
+    "fr": "Page visible au moins 5 secondes avec un clic, défilement ou appui récent. Une estimation, pas une preuve de visite humaine. L’historique commence à l’activation de ce mode.",
+    "it": "Pagina visibile per almeno 5 secondi con clic, scorrimento o tasto recente. È una stima, non una prova di visita umana. La cronologia inizia con l’attivazione di questa modalità."
+  },
+  "Original browser counter, including visits without confirmed interaction. Historical data is preserved.": {
+    "ru": "Прежний счётчик браузеров, включая посещения без подтверждённого взаимодействия. Старая история сохранена.",
+    "de": "Bisheriger Browserzähler, einschließlich Besuchen ohne bestätigte Interaktion. Historische Daten bleiben erhalten.",
+    "pt": "Contador original de navegadores, incluindo visitas sem interação confirmada. O histórico foi preservado.",
+    "es": "Contador original de navegadores, incluidas visitas sin interacción confirmada. Se conserva el historial.",
+    "fr": "Compteur initial des navigateurs, y compris les visites sans interaction confirmée. L’historique est conservé.",
+    "it": "Contatore originale dei browser, incluse le visite senza interazione confermata. I dati storici sono conservati."
   }
 }
