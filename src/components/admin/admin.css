@@ -1565,26 +1565,11 @@
     padding:20px 16px
   }
   .admin-mobile-nav {
-    display:flex;
-    overflow:auto;
-    gap:5px;
-    padding:0 16px 15px;
-    scrollbar-width:thin;
-    scrollbar-color:#344151 transparent
-  }
-  .admin-mobile-nav button {
-    white-space:nowrap;
-    padding:9px 13px;
-    border:1px solid #2a3544;
-    background:#111924;
-    border-radius:7px;
-    font-size:11px;
-    color:#8599b1
-  }
-  .admin-mobile-nav button[aria-current] {
-    color:#f3b789;
-    border-color:#ad784b50;
-    background:#f59a560b
+    display:grid;
+    gap:6px;
+    padding:0 16px 16px;
+    color:#aebdce;
+    font-weight:600
   }
   .admin-metrics {
     grid-template-columns:repeat(2,minmax(0,1fr))
@@ -1680,3 +1665,43 @@
 
 .admin-traffic-period { width:auto; min-width:145px; padding:7px 10px; font-size:12px; }
 .admin-traffic-explanation { color:var(--muted); font-size:12px; line-height:1.7; margin:-6px 0 18px; max-width:960px; }
+
+.admin-cell-label { display:none }
+
+@media(max-width:800px) {
+  .admin-workspace input:not([type=checkbox]), .admin-workspace select, .admin-workspace textarea {
+    min-height:44px;
+    min-width:0;
+    font-size:16px;
+  }
+  .admin-workspace .admin-btn, .admin-workspace .admin-text-action,
+  .admin-team-list button, .admin-pager button, .admin-topbar a { min-height:44px }
+  .admin-workspace .admin-btn { font-size:13px!important; white-space:normal }
+  .admin-workspace .admin-header-actions .admin-btn { font-size:0!important }
+  .admin-header > div:first-child, .admin-search, .admin-worker > div:nth-child(2) { min-width:0 }
+  .admin-panel-header, .admin-section-heading, .admin-pager { flex-wrap:wrap }
+  .admin-panel-header > *, .admin-section-heading > * { min-width:0; max-width:100% }
+  .admin-panel-header p, .admin-section-heading p, .admin-field, .admin-check { font-size:13px }
+  .admin-panel-header h2 { font-size:15px }
+  .admin-panel-body, .admin-topbar, .admin-team-layout > div { overflow-wrap:anywhere }
+  .admin-topbar { height:auto; min-height:49px; gap:8px }
+  .admin-topbar > div { flex-shrink:0 }
+  .admin-quick-grid, .admin-news-layout { grid-template-columns:minmax(0,1fr) }
+  .admin-social-row { grid-template-columns:minmax(0,1fr) 44px }
+  .admin-social-row > select { grid-column:1 / -1 }
+  .admin-social-row .admin-btn { width:44px }
+  .admin-photo-row { grid-template-columns:45px minmax(0,1fr) }
+  .admin-photo-row .admin-btn { grid-column:2; grid-row:auto }
+  .admin-photo-row .admin-check input { width:20px; height:20px; flex-shrink:0 }
+  .admin-table-wrap:has(.admin-user-table) { margin:0; overflow:visible }
+  .admin-user-table { display:block; min-width:0; white-space:normal; font-size:13px }
+  .admin-user-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%) }
+  .admin-user-table tbody { display:grid; gap:10px }
+  .admin-user-table tr { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:12px; border:1px solid var(--line); border-radius:8px }
+  .admin-user-table td, .admin-user-table td:first-child { min-width:0; padding:0; border:0 }
+  .admin-user-table td:first-child { grid-column:1/-1; padding-bottom:8px; border-bottom:1px solid var(--line) }
+  .admin-user-table .admin-user { min-height:44px }
+  .admin-user-table .admin-user > span:last-child { min-width:0 }
+  .admin-user-table .admin-cell-label { display:block; color:#9eacbd; font-size:11px; margin-bottom:4px }
+  .admin-user-table .admin-badge { white-space:normal; max-width:100% }
+}
