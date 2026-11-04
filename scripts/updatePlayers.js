@@ -1,9 +1,11 @@
 import fs from "fs";
+import process from "node:process";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
 
-const FACEIT_API_KEY = "1f7e7c47-0d9b-403e-9007-acd463de617b";
+const FACEIT_API_KEY = process.env.FACEIT_API_KEY;
+if (!FACEIT_API_KEY) throw new Error("FACEIT_API_KEY environment variable is required");
 
 const teams = (await import("../src/data/teams.generated.js")).default;
 
