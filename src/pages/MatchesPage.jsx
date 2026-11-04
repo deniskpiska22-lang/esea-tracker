@@ -324,9 +324,9 @@ function TeamMatches({ team, slug }) {
                   <Link
                     key={match.matchId}
                     to={match.publicPath || matchPublicPath({ ...match, teamName: team.name })}
-                    className="flex flex-wrap items-center justify-between gap-y-3 rounded-xl border border-[#243041] bg-[#111823] px-6 py-4 transition-all duration-300 hover:translate-x-1 hover:border-orange-500/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]"
+                    className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 rounded-xl border border-[#243041] bg-[#111823] px-4 py-3 transition-all duration-300 md:grid-cols-[auto_minmax(0,1fr)_auto] md:px-6 md:py-4 md:hover:translate-x-1 hover:border-orange-500/50 hover:shadow-[0_10px_30px_rgba(249,115,22,0.12)]"
                   >
-                    <div className="flex min-w-[180px] items-center gap-6">
+                    <div className="col-start-1 row-start-1 flex items-center gap-2 text-sm md:min-w-[180px] md:gap-6 md:text-base">
                       <span
                         className={`text-lg font-bold ${
                           match.result === "W"
@@ -342,8 +342,8 @@ function TeamMatches({ team, slug }) {
                       <span className="text-gray-500">{match.date}</span>
                     </div>
 
-                    <div className="flex min-w-0 flex-1 flex-wrap items-center justify-between gap-2 px-3 sm:px-8">
-                      <div className="text-lg font-bold text-white">
+                    <div className="col-start-1 row-start-2 min-w-0 md:col-start-2 md:row-start-1 md:flex md:flex-wrap md:items-center md:justify-between md:gap-2 md:px-5">
+                      <div className="min-w-0 font-bold text-white [overflow-wrap:anywhere] md:text-lg">
                         VS {match.opponentName}
                       </div>
 
@@ -354,8 +354,8 @@ function TeamMatches({ team, slug }) {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4">
-                      <div className="text-2xl font-black text-white">
+                    <div className="col-start-2 row-span-2 row-start-1 flex items-center gap-2 whitespace-nowrap md:col-start-3 md:row-span-1 md:gap-4">
+                      <div className="text-xl font-black tabular-nums text-white md:text-2xl">
                         {match.boScore}
                       </div>
 
