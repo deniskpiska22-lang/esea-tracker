@@ -1,3 +1,4 @@
+import "./TeamPage.css";
 import TeamShareButton from "../components/TeamShareButton.jsx";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
@@ -254,7 +255,7 @@ function RankCard({
   change,
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-black/15 p-4 backdrop-blur-sm">
+    <div className="team-profile__rank relative overflow-hidden rounded-2xl border border-white/[0.07] bg-black/15 p-4 backdrop-blur-sm">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/55 to-transparent" />
 
       <div className="flex items-center justify-between gap-3">
@@ -658,11 +659,11 @@ function TeamPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#080b10] px-4 py-8 text-white md:px-8">
+    <div className="team-profile min-h-screen bg-[#080b10] px-4 py-8 text-white md:px-8">
       <div className="mx-auto max-w-6xl">
 
         {/* HERO */}
-        <section className="relative overflow-hidden rounded-[32px] border border-white/[0.06] bg-gradient-to-br from-[#111821] via-[#0f151e] to-[#0b1017] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+        <section className="team-profile__hero relative overflow-hidden rounded-[32px] border border-white/[0.06] bg-gradient-to-br from-[#111821] via-[#0f151e] to-[#0b1017] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
           <div className="pointer-events-none absolute -left-28 -top-28 h-80 w-80 rounded-full bg-orange-500/10 blur-3xl" />
           <div className="pointer-events-none absolute -right-24 top-8 h-72 w-72 rounded-full bg-orange-400/[0.06] blur-3xl" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/80 to-transparent" />
@@ -675,12 +676,13 @@ function TeamPage() {
             />
           )}
 
-          <div className="relative p-6 md:p-10">
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-center">
+          <div className="team-profile__hero-content relative p-6 md:p-10">
+            <div className="team-profile__hero-grid grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-center">
 
-              <div className="flex flex-col items-center gap-6 md:flex-row md:items-center">
+              <div className="team-profile__identity flex flex-col items-center gap-6 md:flex-row md:items-center">
                 <div
   className="
+    team-profile__logo
     group
     relative
     h-36
@@ -721,7 +723,7 @@ function TeamPage() {
   />
 </div>
 
-                <div className="min-w-0 text-center md:text-left">
+                <div className="team-profile__name-block min-w-0 text-center md:text-left">
                   <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     {rankingData.countryCode && <CountryFlag country={rankingData.countryCode} className="h-6 w-8" />}
 
@@ -730,11 +732,11 @@ function TeamPage() {
                     </span>
                   </div>
 
-                  <h1 className="mt-3 truncate text-4xl font-black tracking-tight text-white md:text-6xl">
+                  <h1 className="team-profile__name mt-3 truncate text-4xl font-black tracking-tight text-white md:text-6xl">
                     {team.name}
                   </h1>
 
-                  <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                  <div className="team-profile__badges mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                     <div className="rounded-xl border border-orange-500/15 bg-orange-500/[0.08] px-4 py-2">
                       <span className="text-sm text-slate-500">{tx(" Site rating ")}</span>
 
@@ -837,7 +839,7 @@ function TeamPage() {
               </div>
             </div>
 
-            <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="team-profile__totals mt-9 grid grid-cols-2 gap-3 md:grid-cols-4">
               {[
                 {
                   label: tx("Wins"),
@@ -880,7 +882,7 @@ function TeamPage() {
         <TeamNativeAd />
 
         {/* NAVIGATION */}
-        <nav className="mt-7 overflow-x-auto border-b border-white/[0.07]">
+        <nav className="team-profile__tabs mt-7 overflow-x-auto border-b border-white/[0.07]">
           <div className="flex min-w-max gap-8">
             <Link
               to={`/teams/${slug}`}
@@ -961,7 +963,7 @@ function TeamPage() {
         {/* WEEKLY RATING HISTORY */}
         {!ratingHistoryLoading &&
           teamHistory.length >= 2 && (
-            <section className="mt-10 rounded-[18px] border border-[#2b3a4a] bg-gradient-to-br from-[#131e2a] to-[#101923] p-5 md:p-7">
+            <section className="team-profile__history mt-10 rounded-[18px] border border-[#2b3a4a] bg-gradient-to-br from-[#131e2a] to-[#101923] p-5 md:p-7">
               <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <div className="text-[11px] font-black uppercase tracking-[0.22em] text-orange-400">{tx(" Progress ")}</div>

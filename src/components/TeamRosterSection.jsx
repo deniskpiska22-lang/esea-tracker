@@ -79,7 +79,7 @@ function PlayerPortraitFrame({
     getTeamLogo(team);
 
   return (
-    <div className="relative mx-auto h-[142px] w-[142px] overflow-hidden rounded-[16px]">
+    <div className="relative mx-auto h-[100px] w-[100px] sm:h-[142px] sm:w-[142px] overflow-hidden rounded-[16px]">
       {teamLogo && (
         <img
           src={teamLogo}
@@ -143,7 +143,7 @@ function PlayerCard({
       className={[
         "group relative min-w-0 overflow-hidden",
         "rounded-[24px] border border-[#2a394c]",
-        "bg-[#121b27] px-6 pb-6 pt-8 text-center",
+        "bg-[#121b27] px-3 pb-4 pt-5 text-center sm:px-6 sm:pb-6 sm:pt-8",
         "transition duration-300",
         "hover:-translate-y-1 hover:border-[#445a74]",
         "hover:bg-[#15202d] hover:shadow-2xl",
@@ -172,7 +172,7 @@ function PlayerCard({
 
       <div
         className={[
-          "mt-7 text-[38px] font-black leading-none tracking-[-0.04em]",
+          "mt-4 text-[30px] sm:mt-7 sm:text-[38px] font-black leading-none tracking-[-0.04em]",
           style.text,
         ].join(" ")}
       >
@@ -183,9 +183,9 @@ function PlayerCard({
 
       <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#7185a0]">{tx(" Rating ")}</div>
 
-      <div className="mx-auto mt-6 h-px w-full bg-[#2c3b4e]" />
+      <div className="mx-auto mt-4 sm:mt-6 h-px w-full bg-[#2c3b4e]" />
 
-      <div className="mt-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#7185a0]">
+      <div className="mt-3 sm:mt-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#7185a0]">
         FACEIT ELO
       </div>
 
@@ -342,7 +342,7 @@ export default function TeamRosterSection({
         !roster.error &&
         visiblePlayers.length >
           0 && (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
             {visiblePlayers.map(
               (player) => {
                 const playerId =

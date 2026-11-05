@@ -1,0 +1,49 @@
+/* Mobile only: leave the desktop profile layout unchanged. */
+@media (max-width: 767px) {
+  .team-profile > div,
+  .team-profile__hero-grid > *,
+  .team-profile__name-block { min-width: 0; }
+  .team-profile { padding: 16px 12px 28px; }
+  .team-profile__hero { border-radius: 22px; }
+  .team-profile__hero-content { padding: 18px 14px; }
+  .team-profile__hero-grid { gap: 20px; }
+  .team-profile__identity { gap: 14px; }
+  .team-profile__logo { width: 88px; height: 88px; border-radius: 20px; }
+  .team-profile__name-block { width: 100%; }
+  .team-profile__name {
+    font-size: 30px;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .team-profile__badges { margin-top: 14px; gap: 8px; }
+  .team-profile__badges > div { padding: 7px 10px; }
+  .team-profile__rank { padding: 12px; }
+  .team-profile__rank > div { gap: 8px; flex-wrap: wrap; }
+  .team-profile__rank > div > div { min-width: 0; overflow-wrap: anywhere; }
+  .team-profile__rank .text-4xl { font-size: 30px; }
+  .team-profile__totals { margin-top: 18px; gap: 10px; }
+  .team-profile__totals > div { padding: 14px; }
+  .team-profile__totals .text-3xl { font-size: 26px; }
+  .team-profile__totals .team-share-trigger--tile {
+    padding: 12px;
+    gap: 8px;
+    font-size: 19px;
+    min-height: 92px;
+    overflow-wrap: anywhere;
+  }
+  .team-profile__totals .team-share-trigger__label small { font-size: 11px; }
+  .team-profile__tabs { margin-top: 20px; scroll-padding-inline: 8px; }
+  .team-profile__tabs > div { gap: 20px; }
+  .team-profile__tabs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 2px 14px;
+  }
+  .team-profile__history { margin-top: 24px; padding: 16px 12px; }
+  .team-profile__history h2 { font-size: 21px; }
+  .team-profile__history .rating-history__periods button,
+  .team-profile__history .rating-history__metrics button { min-height: 44px; }
+  .team-profile__history .rating-history__footer { flex-wrap: wrap; }
+}
