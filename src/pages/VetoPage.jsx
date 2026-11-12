@@ -3,7 +3,7 @@ import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
-import { useMemo } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
@@ -17,7 +17,7 @@ import {
 } from "../hooks/useTeamStats";
 import { formatMapName } from "../utils/formatMapName";
 import { isActiveMap } from "../utils/activeMapPool";
-import TournamentNameLink from "../components/TournamentNameLink";
+import "./VetoPage.css";
 
 // This tab is scoped to recent form rather than full team history — veto
 // tendencies (map pool, ban priorities) shift with roster/meta changes,
@@ -116,23 +116,6 @@ function groupBanOrderByPosition({ orders, rows }) {
     .filter((group) => group.entries.length > 0);
 }
 
-function getMapRatingTier(winrate, hasDecisions) {
-  if (!hasDecisions) return null;
-  if (winrate >= 70) return "S";
-  if (winrate >= 55) return "A";
-  if (winrate >= 45) return "B";
-  if (winrate >= 30) return "C";
-  return "D";
-}
-
-const TIER_STYLES = {
-  S: "border-emerald-400/60 bg-emerald-500/15 text-emerald-300",
-  A: "border-emerald-500/40 bg-emerald-500/10 text-emerald-400",
-  B: "border-amber-500/40 bg-amber-500/10 text-amber-400",
-  C: "border-orange-500/40 bg-orange-500/10 text-orange-400",
-  D: "border-rose-500/40 bg-rose-500/10 text-rose-400",
-};
-
 const MAP_IMAGE_ALIASES = {
   ancient: "ancient",
   anubis: "anubis",
@@ -168,330 +151,112 @@ function formatDate(value) {
   }).format(date);
 }
 
-function getWinrateTextClass(winrate) {
-  if (winrate >= 60) return "text-emerald-400";
-  if (winrate < 40) return "text-rose-400";
-  return "text-orange-400";
-}
+const VetoImages = createContext(null);
 
-function ordinalLabel(order) {
-  const suffixes = ["th", "st", "nd", "rd"];
-  const remainder = order % 100;
-
-  const suffix =
-    suffixes[(remainder - 20) % 10] ||
-    suffixes[remainder] ||
-    suffixes[0];
-
-  return `${order}${suffix}`;
-}
-
-const CARD_HOVER =
-  "transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[#ff8c32]/50 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.6)]";
-
-function MapThumb({ name, size = "h-7 w-11" }) {
-  const imageName = normalizeMapImageName(name);
-
+function MapThumb({ name, large = false }) {
+  const images = useContext(VetoImages);
+  const key = normalizeMapImageName(name);
   return (
-    <div
-      className={`relative shrink-0 overflow-hidden rounded-md border border-white/5 ${size}`}
-    >
-      <img
-        src={`/maps/${imageName}.png`}
-        alt=""
-        loading="lazy"
-        className="h-full w-full object-cover"
-        onError={(event) => {
-          event.currentTarget.style.display = "none";
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+    <img className={large ? "veto-map-art" : "veto-thumb"}
+      src={images?.[key] || `/maps/${key}.png`} alt="" loading="lazy"
+      onError={event => { event.currentTarget.hidden = true; }} />
+  );
+}
+
+function SummaryCard({ label, map, value, tone, children }) {
+  return (
+    <div className={`veto-summary-card ${tone || ""}`}>
+      <span>{tx(label)}</span>
+      <strong>{map ? formatMapName(map.name) : value ?? "—"}</strong>
+      {children && <small>{children}</small>}
     </div>
   );
 }
 
-function SectionEyebrow({ children }) {
-  return (
-    <div className="text-[13px] font-black uppercase tracking-[0.16em] text-[#ff8c32]">
-      {children}
-    </div>
-  );
-}
-
-function HeroStatCard({ label, value, valueClass }) {
-  return (
-    <div className="min-w-[108px] rounded-lg border border-white/5 bg-[#151e29] px-3 py-2">
-      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#587094]">
-        {tx(label)}
-      </div>
-      <div
-        className={`mt-0.5 truncate text-base font-black ${
-          valueClass || "text-white"
-        }`}
-      >
-        {value}
-      </div>
-    </div>
-  );
-}
-
-// Shared visual for both VETO FLOW (this team's own bans) and OPPONENT
-// TENDENCIES (opponents' bans against this team) — grouped by ban
-// position, largest bar on top, exactly how a coach reads a veto sheet.
-function BanOrderFlow({
-  eyebrow,
-  title,
-  description,
-  banOrderStats,
-  barClass,
-  loading,
-  emptyMessage,
-}) {
+function BanOrderFlow({ title, banOrderStats, opponent = false, loading }) {
   const groups = groupBanOrderByPosition(banOrderStats);
-
   return (
-    <section className="rounded-xl border border-white/5 bg-[#111923] p-4 sm:p-6">
-      <SectionEyebrow>{tx(eyebrow)}</SectionEyebrow>
-      <h2 className="mt-1 text-lg font-black sm:text-xl">{tx(title)}</h2>
-      {description && (
-        <p className="mt-1 max-w-2xl text-xs leading-relaxed text-[#6e87ad]">
-          {tx(description)}
-        </p>
-      )}
-
-      {groups.length > 0 ? (
-        <div className="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2 xl:grid-cols-3">
-          {groups.map((group) => (
-            <div key={group.order}>
-              <div className="mb-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#8ca2c2]">
-                {ordinalLabel(group.order)}{tx(" Ban ")}</div>
-              <div className="space-y-3">
-                {group.entries.map((entry) => (
-                  <div key={entry.name}>
-                    <div className="mb-1 flex items-center justify-between gap-2">
-                      <div className="flex min-w-0 items-center gap-2">
-                        <MapThumb name={entry.name} size="h-6 w-9" />
-                        <span className="truncate text-xs font-bold text-slate-200">
-                          {formatMapName(entry.name)}
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-sm font-black text-white">
-                        {entry.percent}%
-                      </span>
-                    </div>
-                    <div className="h-2.5 overflow-hidden rounded-full bg-[#0b1117]">
-                      <div
-                        className={`h-full rounded-full ${barClass}`}
-                        style={{ width: `${entry.percent}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+    <section className={`veto-flow-panel ${opponent ? "is-opponent" : ""}`}>
+      <h3>{tx(title)}</h3>
+      {groups.length ? groups.map(({ order, entries }, index) => (
+        <details key={order} className="veto-flow-order" open={index === 0}>
+          <summary>
+            <span className="veto-order-index">{String(order).padStart(2, "0")}</span>
+            <strong>{tx("Ban")} {order}</strong>
+            <span className="veto-flow-leader">{formatMapName(entries[0].name)} · {entries[0].percent}%</span>
+          </summary>
+          <div className="veto-flow-entries">
+            {entries.map(entry => (
+              <div key={entry.name} className="veto-flow-entry">
+                <MapThumb name={entry.name} />
+                <span>{formatMapName(entry.name)}</span>
+                <span className="veto-bar" aria-hidden="true"><i style={{ width: `${entry.percent}%` }} /></span>
+                <b>{entry.percent}%</b>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        !loading && (
-          <div className="py-10 text-center text-sm text-slate-500">
-            {emptyMessage}
+            ))}
           </div>
-        )
-      )}
+        </details>
+      )) : !loading && <p className="veto-empty">{tx("No veto data available for this team yet.")}</p>}
     </section>
   );
 }
 
-const ACTION_CHIP_STYLES = {
-  Picked: "border-emerald-500/35 bg-emerald-500/10 text-emerald-400",
-  Banned: "border-rose-500/35 bg-rose-500/10 text-rose-400",
-  Decider: "border-amber-500/35 bg-amber-500/10 text-amber-400",
-};
-
-function VetoStepChip({ step }) {
-  const sideLabel =
-    step.side === "team" ? "Us" : step.side === "opponent" ? "Opp" : "";
-
-  return (
-    <span
-      title={`${step.action}${sideLabel ? ` · ${sideLabel}` : ""}`}
-      className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-bold ${
-        ACTION_CHIP_STYLES[step.action] ||
-        "border-white/10 bg-[#0b1119] text-slate-400"
-      }`}
-    >
-      {formatMapName(step.map)}
-      {sideLabel && <span className="opacity-70">({sideLabel})</span>}
-    </span>
-  );
-}
-
-function OpponentAvatar({ name }) {
-  const initial =
-    String(name || "?")
-      .trim()
-      .charAt(0)
-      .toUpperCase() || "?";
-
-  return (
-    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#0b1119] text-xs font-black text-[#8ca2c2]">
-      {initial}
-    </div>
-  );
-}
-
-function MatchHistoryCard({ match }) {
+function MatchHistoryCard({ match, teamName, preview }) {
   const id = match.matchId || match.id;
-  const steps = Array.isArray(match.vetoSteps) ? match.vetoSteps : [];
-  const visibleSteps = steps.slice(0, 3);
-  const extraSteps = steps.length - visibleSteps.length;
-
+  const steps = match.vetoSteps || [];
   return (
-    <Link
-      to={`/match/${id}`}
-      className={`flex h-[70px] items-center gap-3 rounded-xl border border-white/5 bg-[#111923] px-3.5 sm:px-4 ${CARD_HOVER}`}
-    >
-      <OpponentAvatar name={match.opponentName} />
-
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-black text-slate-100">
-          vs {match.opponentName || tx("Unknown")}
-        </div>
-        <div className="mt-0.5 truncate text-[11px] font-semibold text-[#587094]">
-          {formatDate(match.date)}
-          {match.season && (
-            <>
-              {" · "}
-              <TournamentNameLink name={match.season} />
-            </>
-          )}
-        </div>
-      </div>
-
-      {visibleSteps.length > 0 && (
-        <div className="hidden shrink-0 items-center gap-1 md:flex">
-          {visibleSteps.map((step, index) => (
-            <VetoStepChip key={`${step.map}-${index}`} step={step} />
+    <details className="veto-match">
+      <summary>
+        <span className={`veto-result ${match.won ? "is-win" : ""}`}>{match.won ? tx("W") : tx("L")}</span>
+        <span className="veto-match-meta"><strong>{match.opponentName || tx("Unknown")}</strong>
+          <small>{formatDate(match.date)}{match.season ? ` · ${match.season}` : ""}</small>
+        </span>
+        <b className="veto-score">{match.boScore || `${match.teamScore ?? "—"} : ${match.opponentScore ?? "—"}`}</b>
+      </summary>
+      <div className="veto-match-expanded">
+        <ol className="veto-steps">
+          {steps.map((step, index) => (
+            <li key={index} data-action={step.action}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <MapThumb name={step.map} />
+              <div><b>{formatMapName(step.map)}</b><small>{step.side === "team" ? teamName : step.side === "opponent" ? match.opponentName : "—"}</small></div>
+              <em>{tx(step.action === "Picked" ? "Pick" : step.action === "Banned" ? "Ban" : step.action)}</em>
+            </li>
           ))}
-          {extraSteps > 0 && (
-            <span className="rounded-md border border-white/10 bg-[#0b1119] px-1.5 py-0.5 text-[10px] font-bold text-slate-400">
-              +{extraSteps}
-            </span>
-          )}
-        </div>
-      )}
-
-      <div className="shrink-0 text-right">
-        <div className="text-base font-black text-white">
-          {match.boScore ||
-            `${match.teamScore ?? 0} : ${match.opponentScore ?? 0}`}
-        </div>
+        </ol>
+        {preview ? <a href={`https://eseatracker.ru/match/${encodeURIComponent(id)}`} target="_blank" rel="noreferrer">{tx("Match Information")} ↗</a>
+          : <Link to={`/match/${id}`}>{tx("Match Information")} ↗</Link>}
       </div>
-
-      <div
-        className={`shrink-0 rounded-md px-2 py-1 text-[10px] font-black uppercase ${
-          match.won
-            ? "bg-emerald-500/10 text-emerald-400"
-            : "bg-rose-500/10 text-rose-400"
-        }`}
-      >
-        {match.won ? tx("W") : tx("L")}
-      </div>
-    </Link>
+    </details>
   );
 }
 
-function MapCard({ map, form, slug }) {
-  const imageName = normalizeMapImageName(map.name);
-  const hasDecisions = map.winsWhenPicked + map.lossesWhenPicked > 0;
-  const tier = getMapRatingTier(map.winrateWhenPicked, hasDecisions);
-  const recentResults = form?.recent || [];
-  const hasTrend = Boolean(form) && recentResults.length >= 2;
-  const trend = form?.trend || "flat";
-  const trendGlyph = trend === "up" ? "↑" : trend === "down" ? "↓" : "→";
-  const trendClass =
-    trend === "up"
-      ? "text-emerald-400"
-      : trend === "down"
-        ? "text-rose-400"
-        : "text-slate-500";
-
-  return (
-    <Link
-      to={`/team/${slug}/matches?map=${encodeURIComponent(map.name)}`}
-      className={`group relative block overflow-hidden rounded-xl border border-white/5 bg-[#111923] ${CARD_HOVER}`}
-    >
-      <div className="relative h-16 w-full overflow-hidden sm:h-20">
-        <img
-          src={`/maps/${imageName}.png`}
-          alt=""
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-200 ease-out group-hover:scale-105"
-          onError={(event) => {
-            event.currentTarget.style.display = "none";
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1119] via-[#0b1119]/35 to-transparent" />
-
-        {tier && (
-          <div
-            className={`absolute left-2 top-2 flex h-5 w-5 items-center justify-center rounded-md border text-[10px] font-black ${TIER_STYLES[tier]}`}
-            title={tf("Map rating: {0} tier", tier)}
-          >
-            {tier}
-          </div>
-        )}
-
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-2.5">
-          <div className="truncate text-sm font-black text-white drop-shadow">
-            {formatMapName(map.name)}
-          </div>
-
-          {recentResults.length > 0 && (
-            <div className="flex shrink-0 items-center gap-0.5">
-              {recentResults.map((won, index) => (
-                <span
-                  key={index}
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    won ? "bg-emerald-400" : "bg-rose-400"
-                  }`}
-                  title={won ? "Win" : "Loss"}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+function MapCard({ map, form, slug, preview }) {
+  const decided = map.winsWhenPicked + map.lossesWhenPicked;
+  const content = <>
+    <div className="veto-map-cover">
+      <MapThumb name={map.name} large />
+      <h3>{formatMapName(map.name)}</h3>
+    </div>
+    <div className="veto-map-body">
+      <div className="veto-map-win">
+        <div><span>{tx("Winrate when picked")}</span><strong>{decided ? `${map.winrateWhenPicked}%` : "—"}</strong></div>
+        {decided > 0 && <small>{map.winsWhenPicked}{tx("W")} · {map.lossesWhenPicked}{tx("L")}</small>}
       </div>
-
-      <div className="p-2.5 sm:p-3">
-        <div className="flex items-center justify-between">
-          <div
-            className={`text-xl font-black ${
-              hasDecisions
-                ? getWinrateTextClass(map.winrateWhenPicked)
-                : "text-slate-500"
-            }`}
-          >
-            {hasDecisions ? `${map.winrateWhenPicked}%` : "—"}
-          </div>
-
-          {hasTrend && (
-            <span
-              className={`text-base font-black ${trendClass}`}
-              title={tf("Recent form vs. overall — {0}", trend)}
-            >
-              {trendGlyph}
-            </span>
-          )}
-        </div>
-
-        <div className="mt-1.5 flex items-center gap-3 text-[10px] font-bold">
-          <span className="text-emerald-400">{map.pickRate}{tx("% pick")}</span>
-          <span className="text-rose-400">{map.banRate}{tx("% ban")}</span>
-        </div>
+      <div className="veto-map-rates">
+        <span className="is-pick"><b>{map.pickRate}%</b> {tx("Pick")}</span>
+        <span className="is-ban"><b>{map.banRate}%</b> {tx("Ban")}</span>
       </div>
-    </Link>
-  );
+      {form?.recent.length > 0 && <div className="veto-map-form" aria-label={tx("Recent form")}>
+        {form.recent.map((won, index) => <span key={index} className={won ? "is-win" : ""}>{won ? tx("W") : tx("L")}</span>)}
+        {form.recent.length >= 2 && <b className={form.trend === "up" ? "is-win" : form.trend === "down" ? "is-ban" : ""} title={tf("Recent form vs. overall — {0}", form.trend)}>{form.trend === "up" ? "↑" : form.trend === "down" ? "↓" : "→"}</b>}
+      </div>}
+    </div>
+  </>;
+  const target = `/team/${slug}/matches?map=${encodeURIComponent(map.name)}`;
+  return preview
+    ? <a className="veto-map-card" href={`https://eseatracker.ru${target}`} target="_blank" rel="noreferrer">{content}</a>
+    : <Link className="veto-map-card" to={target}>{content}</Link>;
 }
 
 function VetoPage() {
@@ -512,226 +277,87 @@ function VetoPage() {
   } = useTeamStats(slug, fallbackMatches);
   const recovering = useTeamVetoRecovery(team?.faceitTeamId, refresh);
 
-  // Everything on this tab is scoped to the last VETO_WINDOW_DAYS days —
-  // see the constant above for why. teamMatches itself (full history)
-  // still powers Overview/Statistics via useTeamStats elsewhere.
-  const recentMatches = useMemo(
-    () => teamMatches.filter(isWithinVetoWindow),
-    [teamMatches]
-  );
+  if (!team) return <main className="veto-page"><h1>{tx("Team not found")}</h1><Link to="/">{tx("← Back Home")}</Link></main>;
+  return <VetoDashboard key={team.faceitTeamId || slug} team={team} slug={slug} matches={teamMatches} loading={loading || recovering} error={error} />;
+}
 
-  // Same 90-day matches, but limited to the current active map pool before
-  // any veto aggregation.
-  const vetoEligibleMatches = useMemo(
-    () => stripInactiveMapSteps(recentMatches),
-    [recentMatches]
-  );
-
-  const vetoStats = useMemo(
-    () => buildVetoStats(vetoEligibleMatches),
-    [vetoEligibleMatches]
-  );
-
-  const ourBanOrder = useMemo(
-    () => buildTeamBanOrderStats(vetoEligibleMatches),
-    [vetoEligibleMatches]
-  );
-
-  const opponentBanOrder = useMemo(
-    () => buildOpponentBanOrderStats(vetoEligibleMatches),
-    [vetoEligibleMatches]
-  );
-
-  const mapFormByName = useMemo(
-    () => buildMapFormByName(recentMatches),
-    [recentMatches]
-  );
-
-  const matchesWithVeto = recentMatches.filter(
-    (match) => Array.isArray(match.vetoSteps) && match.vetoSteps.length > 0
-  );
-
-  const sortedVetoMatches = [...matchesWithVeto].sort(
-    (first, second) =>
-      new Date(second.date || 0).getTime() -
-      new Date(first.date || 0).getTime()
-  );
-
-  const mostPickedByUs =
-    vetoStats.filter((map) => map.pickRate > 0).sort((first, second) => second.pickRate - first.pickRate)[0] ||
-    null;
-
-  const mostBannedByUs =
-    vetoStats.filter((map) => map.banRate > 0).sort((first, second) => second.banRate - first.banRate)[0] ||
-    null;
-
-  const bestMapForUs =
-    [...vetoStats]
-      .filter((map) => map.winsWhenPicked + map.lossesWhenPicked > 0)
-      .sort(
-        (first, second) => second.winrateWhenPicked - first.winrateWhenPicked
-      )[0] || null;
-
-  if (!team) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0b1117] p-8 text-white">
-        <div className="text-center">
-          <h1 className="text-3xl font-black">{tx("Team not found")}</h1>
-          <Link
-            to="/"
-            className="mt-4 inline-block text-orange-400 transition hover:text-orange-300"
-          >{tx(" ← Back Home ")}</Link>
-        </div>
-      </div>
-    );
-  }
-
+export function VetoDashboard({ team, slug, matches, loading = false, error, preview = false, images = null }) {
+  const [sort, setSort] = useState("pick");
+  const [visibleMatches, setVisibleMatches] = useState(8);
+  const recentMatches = useMemo(() => preview ? matches : matches.filter(isWithinVetoWindow), [matches, preview]);
+  const eligible = useMemo(() => stripInactiveMapSteps(recentMatches), [recentMatches]);
+  const mapForm = useMemo(() => buildMapFormByName(recentMatches), [recentMatches]);
+  const maps = useMemo(() => buildVetoStats(eligible), [eligible]);
+  const ourBans = useMemo(() => buildTeamBanOrderStats(eligible), [eligible]);
+  const oppBans = useMemo(() => buildOpponentBanOrderStats(eligible), [eligible]);
+  const history = useMemo(() => recentMatches.filter(match => match.vetoSteps?.length)
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)), [recentMatches]);
+  const decisions = map => map.winsWhenPicked + map.lossesWhenPicked;
+  const favoritePick = [...maps].sort((a, b) => b.picked - a.picked).find(map => map.picked > 0);
+  const favoriteBan = [...maps].sort((a, b) => b.banned - a.banned).find(map => map.banned > 0);
+  const bestMap = [...maps].filter(decisions).sort((a, b) => b.winrateWhenPicked - a.winrateWhenPicked || decisions(b) - decisions(a))[0];
+  const rank = map => sort === "win" ? (decisions(map) ? map.winrateWhenPicked : -1) : sort === "ban" ? map.banned : map.picked;
+  const orderedMaps = [...maps].sort((a, b) => rank(b) - rank(a));
+  const coverage = recentMatches.length ? history.length / recentMatches.length * 100 : 0;
   return (
-    <main className="min-h-screen bg-[#0b1117] px-4 py-5 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1400px]">
-        <Link
-          to={`/team/${slug}`}
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-orange-400 transition hover:text-orange-300"
-        >{tx(" ← Back to Team ")}</Link>
-
-        {/* HERO */}
-        <section className="mt-3 rounded-xl border border-white/5 bg-[#111923] p-4 sm:p-5">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              {team.logo && (
-                <img
-                  src={team.logo}
-                  alt=""
-                  className="h-10 w-10 shrink-0 rounded-lg border border-white/10 object-cover"
-                />
-              )}
-              <div>
-                <div className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ff8c32]">
-                  {team.name}
-                </div>
-                <h1 className="mt-0.5 text-[26px] font-black uppercase leading-none tracking-tight">{tx(" Veto Analytics ")}</h1>
-                <div className="mt-1 text-[11px] font-semibold text-[#587094]">{tx(" Last ")}{VETO_WINDOW_DAYS}{tx(" days ")}</div>
-              </div>
+    <VetoImages.Provider value={images}>
+    <main className="veto-page">
+      <div className="veto-shell">
+        {preview ? <a className="veto-back" href={`https://eseatracker.ru/teams/${slug}`} target="_blank" rel="noreferrer">{tx("← Back to Team")}</a>
+          : <Link className="veto-back" to={`/team/${slug}`}>{tx("← Back to Team")}</Link>}
+        <header className="veto-hero" style={images?.nuke ? { "--veto-hero-image": `url(${images.nuke})` } : undefined}>
+          <div className="veto-hero-content">
+            <div className="veto-kicker"><i /> CS2 / {tx("Map veto")}</div>
+            <div className="veto-team">
+              {team.logo && <img src={team.logo} alt="" />}
+              <div><span>{team.name}</span><h1>{tx("Veto Analytics")}</h1></div>
             </div>
-
-            <div className="flex flex-wrap gap-2">
-              <HeroStatCard
-                label={tx("Matches")}
-                value={recentMatches.length}
-              />
-              <HeroStatCard
-                label={tx("Favorite Pick")}
-                value={
-                  mostPickedByUs ? formatMapName(mostPickedByUs.name) : "—"
-                }
-                valueClass="text-emerald-400"
-              />
-              <HeroStatCard
-                label={tx("Favorite Ban")}
-                value={
-                  mostBannedByUs ? formatMapName(mostBannedByUs.name) : "—"
-                }
-                valueClass="text-rose-400"
-              />
-              <HeroStatCard
-                label={tx("Best Map")}
-                value={
-                  bestMapForUs ? formatMapName(bestMapForUs.name) : "—"
-                }
-                valueClass="text-[#ff8c32]"
-              />
-            </div>
+            <p>{tx("Last")} {VETO_WINDOW_DAYS} {tx("days")}</p>
           </div>
+          <div className="veto-summary">
+            <SummaryCard label="Favorite Pick" map={favoritePick} tone="is-pick">{favoritePick && `${favoritePick.pickRate}%`}</SummaryCard>
+            <SummaryCard label="Favorite Ban" map={favoriteBan} tone="is-ban">{favoriteBan && `${favoriteBan.banRate}%`}</SummaryCard>
+            <SummaryCard label="Best Map" map={bestMap} tone="is-best">{bestMap && `${bestMap.winrateWhenPicked}% · ${bestMap.winsWhenPicked}${tx("W")} / ${bestMap.lossesWhenPicked}${tx("L")}`}</SummaryCard>
+          </div>
+          <div className="veto-coverage">
+            <span>{tf("Veto data: {0} of {1} matches", history.length, recentMatches.length)}</span>
+            <span className="veto-bar" aria-hidden="true"><i style={{ width: `${coverage}%` }} /></span>
+          </div>
+        </header>
+        {loading && <p className="veto-notice" role="status">{tx("Loading veto history...")}</p>}
+        {error && <p className="veto-notice">{translateError(error)}{tx(". Saved match data is shown.")}</p>}
 
-          {(loading || recovering) && (
-            <div className="mt-3 text-sm font-semibold text-slate-400">{tx(" Loading veto history... ")}</div>
-          )}
-
-          {!loading && recentMatches.length > 0 && (
-            <div className="mt-3 text-xs text-slate-400">
-              {tf("Veto data: {0} of {1} matches", matchesWithVeto.length, recentMatches.length)}
-            </div>
-          )}
-
-          {error && (
-            <div className="mt-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-sm text-yellow-300">
-              {translateError(error)}{tx(". Saved match data is shown. ")}</div>
-          )}
+        <section className="veto-section">
+          <div className="veto-section-head"><div><div className="veto-kicker">01 / CS2</div><h2>{tx("Veto flow")}</h2></div></div>
+          <div className="veto-flow-grid">
+            <BanOrderFlow title="How this team bans" banOrderStats={ourBans} loading={loading} />
+            <BanOrderFlow title="How opponents veto against this team" banOrderStats={oppBans} opponent loading={loading} />
+          </div>
         </section>
 
-        {/* VETO FLOW — this team's own ban order, the main section */}
-        <div className="mt-4">
-          <BanOrderFlow
-            eyebrow={tx("Veto flow")}
-            title={tx("How this team bans")}
-            description={tx("The order this team drops maps in their own veto — the first ban is their strongest signal of what they want off the table.")}
-            banOrderStats={ourBanOrder}
-            barClass="bg-gradient-to-r from-[#ff8c32] to-[#ffb066]"
-            loading={loading || recovering}
-            emptyMessage="No veto data available for this team yet."
-          />
-        </div>
-
-        {/* OPPONENT TENDENCIES */}
-        <div className="mt-4">
-          <BanOrderFlow
-            eyebrow={tx("Opponent tendencies")}
-            title={tx("How opponents veto against this team")}
-            description={tx("The order opponents drop maps when facing this team — a map almost always banned first is the one they fear least prepping for.")}
-            banOrderStats={opponentBanOrder}
-            barClass="bg-gradient-to-r from-rose-500 to-rose-400"
-            loading={loading || recovering}
-            emptyMessage="No veto data available for this team yet."
-          />
-        </div>
-
-        {/* MAP POOL */}
-        <section className="mt-4">
-          <div className="mb-3">
-            <SectionEyebrow>{tx("Map pool")}</SectionEyebrow>
+        <section className="veto-section">
+          <div className="veto-section-head">
+            <div><div className="veto-kicker">02 / CS2</div><h2>{tx("Map pool")}</h2></div>
+            {maps.length > 0 && <div className="veto-sort" role="group" aria-label={tx("Map pool")}>
+              {[["pick", "Pick"], ["ban", "Ban"], ["win", "Win rate"]].map(([key, label]) =>
+                <button key={key} type="button" aria-pressed={sort === key} onClick={() => setSort(key)}>{tx(label)}</button>)}
+            </div>}
           </div>
-
-          {vetoStats.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {vetoStats.map((map) => (
-                <MapCard
-                  key={map.name}
-                  map={map}
-                  form={mapFormByName[map.name.toLowerCase()]}
-                  slug={slug}
-                />
-              ))}
-            </div>
-          ) : (
-            !loading && !recovering && (
-              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No veto data available for this team yet. ")}</div>
-            )
-          )}
+          {maps.length > 0 ? <div className="veto-map-grid">{orderedMaps.map(map => <MapCard key={map.name} map={map}
+            form={mapForm[map.name.toLowerCase()]} slug={slug} preview={preview} />)}</div>
+            : !loading && <p className="veto-empty">{tx("No veto data available for this team yet.")}</p>}
         </section>
 
-        {/* MATCH HISTORY */}
-        <section className="mt-4 mb-6">
-          <div className="mb-3">
-            <SectionEyebrow>{tx("Match history")}</SectionEyebrow>
-          </div>
-
-          {sortedVetoMatches.length > 0 ? (
-            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
-              {sortedVetoMatches.map((match) => (
-                <MatchHistoryCard
-                  key={match.matchId || match.id}
-                  match={match}
-                />
-              ))}
-            </div>
-          ) : (
-            !loading && !recovering && (
-              <div className="rounded-xl border border-white/5 bg-[#111923] py-10 text-center text-sm text-slate-500">{tx(" No matches with veto data yet. ")}</div>
-            )
-          )}
+        <section className="veto-section">
+          <div className="veto-section-head"><div><div className="veto-kicker">03 / CS2</div><h2>{tx("Match history")}</h2></div><span className="veto-count">{history.length}</span></div>
+          {history.length ? <div className="veto-history-grid">{history.slice(0, visibleMatches).map(match =>
+            <MatchHistoryCard key={match.matchId || match.id} match={match} teamName={team.name} preview={preview} />)}</div>
+            : !loading && <p className="veto-empty">{tx("No matches with veto data yet.")}</p>}
+          {visibleMatches < history.length && <button className="veto-more" type="button" onClick={() => setVisibleMatches(n => n + 8)}>{tx("Show more")} ↓</button>}
         </section>
       </div>
     </main>
+    </VetoImages.Provider>
   );
 }
 

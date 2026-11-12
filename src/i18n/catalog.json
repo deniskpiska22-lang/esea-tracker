@@ -1,4 +1,20 @@
 {
+  "Winrate when picked": {
+    "ru": "Победы на своём пике",
+    "de": "Siegquote beim eigenen Pick",
+    "pt": "Vitórias no próprio pick",
+    "es": "Victorias en el mapa elegido",
+    "fr": "Victoires sur son choix",
+    "it": "Vittorie sulla propria scelta"
+  },
+  "Show more": {
+    "ru": "Показать ещё",
+    "de": "Mehr anzeigen",
+    "pt": "Mostrar mais",
+    "es": "Mostrar más",
+    "fr": "Afficher plus",
+    "it": "Mostra altro"
+  },
   "Fill in the team name, FACEIT link, and contact details.": {
     "ru": "Заполните название команды, ссылку FACEIT и контакт.",
     "de": "Teamname, FACEIT-Link und Kontaktdaten eingeben.",
