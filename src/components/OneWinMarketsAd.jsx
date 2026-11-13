@@ -1,8 +1,9 @@
 import { useLanguage } from '../context/LanguageContext.jsx';
 import './TeamNativeAd.css';
+import OneWinFeaturedOdds from './OneWinFeaturedOdds.jsx';
 
 const copy = {
-  ru: { ad: 'Реклама', title: 'Больше матчей CS2 на 1win', body: 'Смотри коэффициенты на другие матчи CS2. Промокод ETRACK — бонус к депозиту. Условия на 1win.', open: 'Перейти на 1win', note: 'Играйте ответственно.' },
+  ru: { ad: 'Реклама', title: 'Что ещё сыграют в CS2?', body: 'Смотри коэффициенты на другие матчи CS2. Промокод ETRACK — бонус к депозиту. Условия на 1win.', open: 'Вся линия CS2', note: 'Играйте ответственно.' },
   en: { ad: 'Advertisement', title: 'More CS2 matches on 1win', body: 'Explore odds on other CS2 matches. Promo code ETRACK offers a deposit bonus. Terms on 1win.', open: 'Explore 1win', note: 'Play responsibly.' },
   de: { ad: 'Werbung', title: 'Mehr CS2-Spiele bei 1win', body: 'Entdecke Quoten für weitere CS2-Spiele. Mit dem Promocode ETRACK gibt es einen Einzahlungsbonus. Bedingungen bei 1win.', open: 'Zu 1win', note: 'Verantwortungsvoll spielen.' },
   pt: { ad: 'Publicidade', title: 'Mais jogos de CS2 na 1win', body: 'Explora as odds de outros jogos de CS2. O código ETRACK oferece um bónus de depósito. Condições na 1win.', open: 'Ir para a 1win', note: 'Jogue com responsabilidade.' },
@@ -13,7 +14,7 @@ const copy = {
 
 // Keep the approved native layout as the fallback when this match has no odds.
 // Open the CS2 sportsbook on the configured mirror, preserving the affiliate code.
-export default function OneWinMarketsAd() {
+export default function OneWinMarketsAd({ matchId }) {
   const { language } = useLanguage();
   const labels = copy[language] || copy.en;
   const href = `/api/onewin?kind=click&destination=cs2&lang=${encodeURIComponent(language)}&placement=match_room_native`;
@@ -35,6 +36,7 @@ export default function OneWinMarketsAd() {
           <a href={href} target="_blank" rel="sponsored nofollow noopener noreferrer">{labels.open}<span className="team-native-ad__arrow" aria-hidden="true">↗</span></a>
         </div>
       </div>
+      <OneWinFeaturedOdds matchId={matchId} />
       <div className="team-native-ad__footer">
         <span className="team-native-ad__footer-brand">1win<span aria-hidden="true"> / </span>CS2</span>
         <span className="team-native-ad__responsible">18+ · {labels.note}</span>

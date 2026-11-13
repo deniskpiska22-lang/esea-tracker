@@ -371,3 +371,42 @@ test('both renamed pairs return whole-match prices and a mirror link with the ex
     assert.equal(url.searchParams.get('p'), 'g39d');
   }
 });
+
+test('featured odds prioritize major tournaments, skip the current pair and return only fresh match prices', async () => {
+  const makeEvent = (id, slug, startIn = 60) => ({
+    ...event, id, startAt: currentTime / 1000 + startIn, tournament: { slug },
+    homeTeam: { name: `Home ${id}` }, awayTeam: { name: `Away ${id}` },
+  });
+  const major = makeEvent(101, 'iem-chengdu', 180);
+  const stale = makeEvent(102, 'pgl-event');
+  const advanced = makeEvent(103, 'esea-advanced-europe', 240);
+  const current = { ...event, startAt: currentTime / 1000 + 20, tournament: { slug: 'blast-event' } };
+  const other = makeEvent(104, 'other-cs2-event', 10);
+  const lookedUp = [];
+  const handler = createMatchOddsHandler({
+    loadMatch: async () => match,
+    loadEvents: async () => [other, current, advanced, stale, major],
+    loadSnapshot: async id => {
+      lookedUp.push(id);
+      const selected = [major, stale, advanced, other].find(item => item.id === id);
+      const data = structuredClone(snapshot);
+      data.matchId = id;
+      for (const group of data.oddsGroups) for (const odd of group.oddsList) {
+        if (odd.outcome === '1') odd.name = selected.homeTeam.name;
+        if (odd.outcome === '2') odd.name = selected.awayTeam.name;
+      }
+      return { data, fetchedAt: currentTime - (id === stale.id ? 25_000 : 0) };
+    },
+    now: () => currentTime,
+  });
+  const res = { setHeader() {}, status() { return this; }, json(body) { this.body = body; } };
+  await handler({ method: 'GET', headers: { 'x-vercel-ip-country': 'AM' }, query: { matchId: match.id, action: 'featured' } }, res);
+  assert.deepEqual(res.body.featured.map(item => item.eventId), [major.id, advanced.id]);
+  assert.equal(new URL(res.body.featured[0].href).searchParams.get('p'), 'g39d');
+  assert.equal(res.body.featured[0].validForMs, 20_000);
+  assert.ok(!lookedUp.includes(current.id));
+  const count = lookedUp.length;
+  await handler({ method: 'GET', headers: { 'x-vercel-ip-country': 'RU' }, query: { matchId: match.id, action: 'featured' } }, res);
+  assert.equal(lookedUp.length, count);
+  assert.equal(res.body.featured, undefined);
+});

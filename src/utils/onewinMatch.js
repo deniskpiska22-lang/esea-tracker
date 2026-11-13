@@ -39,6 +39,14 @@ function matchesOddsTeam(name, id, providerName) {
     ONEWIN_TEAM_ALIASES.get(id)?.has(provider)));
 }
 
+export function sameOneWinPair(match, event) {
+  const first = event.homeTeam?.name;
+  const second = event.awayTeam?.name;
+  const left = name => matchesOddsTeam(match.team1_name, match.team1_id, name);
+  const right = name => matchesOddsTeam(match.team2_name, match.team2_id, name);
+  return (left(first) && right(second)) || (left(second) && right(first));
+}
+
 export function findOneWinMatch(match, events) {
   if (!isOddsMatchActive(match)) return null;
   const scheduled = Date.parse(match.scheduled_at);
@@ -49,12 +57,7 @@ export function findOneWinMatch(match, events) {
     if (Number(event.sportId) !== 142 || !Number.isSafeInteger(event.id) || event.id <= 0) return false;
     // Bookmakers also list simulated replays, outright winners and player duels.
     if (/replay|1x1|players-duel|outright/i.test(`${event.name} ${event.tournament?.slug}`)) return false;
-    const first = normalizeOddsTeam(event.homeTeam?.name);
-    const second = normalizeOddsTeam(event.awayTeam?.name);
-    const samePair =
-      (matchesOddsTeam(left, match.team1_id, first) && matchesOddsTeam(right, match.team2_id, second)) ||
-      (matchesOddsTeam(left, match.team1_id, second) && matchesOddsTeam(right, match.team2_id, first));
-    return samePair && Math.abs(Number(event.startAt) * 1000 - scheduled) <= 90 * 60_000;
+    return sameOneWinPair(match, event) && Math.abs(Number(event.startAt) * 1000 - scheduled) <= 90 * 60_000;
   });
   // Never guess between two meetings of the same teams.
   return candidates.length === 1 ? candidates[0] : null;

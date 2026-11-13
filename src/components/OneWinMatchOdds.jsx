@@ -71,7 +71,7 @@ function OddsContent({ matchId, teams }) {
     };
   }, [matchId]);
   const odds = result?.matchId === matchId ? result.data : null;
-  if (!odds) return checked ? <OneWinMarketsAd /> : null;
+  if (!odds) return checked ? <OneWinMarketsAd key={matchId} matchId={matchId} /> : null;
   return <OddsCard odds={odds} teams={teams} />;
 }
 
@@ -131,7 +131,7 @@ export default function OneWinMatchOdds({ matchId, teams, active = true }) {
   useEffect(() => subscribeAdPolicy(setPolicy), []);
   if (isAdProviderEnabled(policy, 'onewin')) {
     return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
-      : <OneWinMarketsAd />;
+      : <OneWinMarketsAd key={matchId} matchId={matchId} />;
   }
   if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" />;
   return null;

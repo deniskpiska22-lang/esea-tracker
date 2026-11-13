@@ -2,7 +2,48 @@ import process from 'node:process';
 import { createClient } from '@supabase/supabase-js';
 import { getAdPolicy } from './ad-policy.js';
 import { getOneWinEvents, getOneWinSnapshot } from '../server/onewinSource.js';
-import { buildOneWinMatchUrl, extractOneWinWinner, findOneWinMatch, isOddsMatchActive, orientOneWinOdds, ONEWIN_ODDS_TTL_MS } from '../src/utils/onewinMatch.js';
+import { buildOneWinMatchUrl, extractOneWinWinner, findOneWinMatch, isOddsMatchActive, orientOneWinOdds, normalizeOddsTeam, sameOneWinPair, ONEWIN_ODDS_TTL_MS } from '../src/utils/onewinMatch.js';
+
+// Prefer major events and ESEA Advanced over other upcoming CS2 matches.
+function tournamentPriority(event) {
+  const slug = event.tournament?.slug || '';
+  if (/major|iem-|blast-|esl-pro-league|pgl-|fissure-|esports-world-cup/i.test(slug)) return 2;
+  return /esea-advanced/i.test(slug) ? 1 : 0;
+}
+
+async function featuredOdds(match, { loadEvents, loadSnapshot, now }) {
+  const start = now();
+  const events = await loadEvents('prematch');
+  const seen = new Set();
+  const candidates = events.filter(event => {
+    const home = normalizeOddsTeam(event.homeTeam?.name);
+    const away = normalizeOddsTeam(event.awayTeam?.name);
+    const time = Number(event.startAt) * 1000;
+    return Number(event.sportId) === 142 && home && away && home !== away &&
+      time > start && time <= start + 48 * 60 * 60_000 &&
+      !/replay|1x1|players-duel|outright/i.test(`${event.name} ${event.tournament?.slug}`) &&
+      !sameOneWinPair(match, event) && buildOneWinMatchUrl(event);
+  }).sort((a, b) => tournamentPriority(b) - tournamentPriority(a) || a.startAt - b.startAt)
+    .filter(event => {
+      const pair = [event.homeTeam.name, event.awayTeam.name].map(normalizeOddsTeam).sort().join(':');
+      if (seen.has(pair)) return false;
+      seen.add(pair);
+      return true;
+    }).slice(0, 4);
+
+  const snapshots = await Promise.allSettled(candidates.map(event => loadSnapshot(event.id)));
+  return candidates.flatMap((event, index) => {
+    const snapshot = snapshots[index];
+    if (snapshot.status !== 'fulfilled') return [];
+    const prices = extractOneWinWinner(snapshot.value?.data, event);
+    const startsAt = Number(event.startAt) * 1000;
+    const validForMs = Math.min(ONEWIN_ODDS_TTL_MS - (now() - snapshot.value?.fetchedAt), startsAt - now());
+    if (!prices || !(validForMs > 0 && validForMs <= ONEWIN_ODDS_TTL_MS)) return [];
+    return [{ eventId: event.id, startsAt, validForMs, href: buildOneWinMatchUrl(event),
+      team1: { name: event.homeTeam.name, price: prices.home },
+      team2: { name: event.awayTeam.name, price: prices.away } }];
+  }).slice(0, 2);
+}
 
 export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents, loadSnapshot = getOneWinSnapshot, now = Date.now }) {
   return async (req, res) => {
@@ -13,9 +54,12 @@ export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents
     if (!getAdPolicy(req.headers['x-vercel-ip-country']).adsEnabled) return res.status(200).json({ odds: null });
     const id = req.query?.matchId;
     if (typeof id !== 'string' || !/^(?:1-)?[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(id)) return res.status(400).json({ odds: null });
-    if (req.query.action && req.query.action !== 'visit') return res.status(400).json({ odds: null });
+    if (req.query.action && !['visit', 'featured'].includes(req.query.action)) return res.status(400).json({ odds: null });
     try {
       const match = await loadMatch(id);
+      if (req.query.action === 'featured') {
+        return res.status(200).json({ featured: match ? await featuredOdds(match, { loadEvents, loadSnapshot, now }) : [] });
+      }
       if (!match || !isOddsMatchActive(match)) return res.status(200).json({ odds: null });
       const live = !['SCHEDULED', 'MATCH_STATUS_SCHEDULED'].includes(String(match.status).toUpperCase());
       const events = await loadEvents(live ? 'live' : 'prematch');

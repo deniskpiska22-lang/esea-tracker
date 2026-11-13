@@ -102,3 +102,16 @@
   .team-native-ad__action a { transition: none; }
   .team-native-ad__action a:hover { transform: none; }
 }
+
+.onewin-featured { position: relative; padding: 0 clamp(15px, 3vw, 28px) 16px; }
+.onewin-featured h3 { margin: 0 0 9px; color: #adc4dc; font-size: 12px; font-weight: 750; }
+.onewin-featured__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.onewin-featured__match { display: grid; gap: 5px; min-width: 0; padding: 10px 12px; border: 1px solid #6abaff36; border-radius: 11px; background: linear-gradient(130deg, #132b41, #0c1928); color: #edf6ff; text-decoration: none; }
+.onewin-featured__match:only-child { grid-column: 1 / -1; }
+.onewin-featured__match:hover, .onewin-featured__match:focus-visible { border-color: #76c8ff; background: #15344e; }
+.onewin-featured__match:focus-visible { outline: 2px solid #76c8ff; outline-offset: 2px; }
+.onewin-featured__meta, .onewin-featured__team { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.onewin-featured__meta { color: #a7c1db; font-size: 11px; }
+.onewin-featured__team strong { min-width: 0; overflow-wrap: anywhere; font-size: 13px; }
+.onewin-featured__team b { flex: none; padding: 2px 8px; border-radius: 6px; background: #6abaff20; color: #a8ddff; font-size: 15px; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .onewin-featured__grid { grid-template-columns: minmax(0, 1fr); } }
