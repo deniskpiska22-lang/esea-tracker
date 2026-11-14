@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { isAdProviderEnabled, subscribeAdPolicy } from '../lib/adPolicy.js';
 import './TeamNativeAd.css';
+import OneWinFeaturedOdds from './OneWinFeaturedOdds.jsx';
 
 const copy = {
   ru: { ad: 'Реклама', title: 'Сравни свой прогноз', body: 'Узнай, какие коэффициенты даёт {brand} на матчи CS2.', open: 'Посмотреть коэффициенты', prematch: 'Прематч', note: 'Играйте ответственно.' },
@@ -15,7 +16,7 @@ const copy = {
 
 const pariOpen = { ru: 'Перейти в PARI', en: 'Visit PARI', de: 'Zu PARI', pt: 'Ir para a PARI', es: 'Ir a PARI', fr: 'Découvrir PARI', it: 'Vai su PARI' };
 
-export default function TeamNativeAd({ placement = 'team_profile_native' }) {
+export default function TeamNativeAd({ placement = 'team_profile_native', matchId }) {
   const { language } = useLanguage();
   const [policy, setPolicy] = useState(null);
   useEffect(() => subscribeAdPolicy(setPolicy), []);
@@ -54,6 +55,7 @@ export default function TeamNativeAd({ placement = 'team_profile_native' }) {
           </a>
         </div>
       </div>
+      {pari && matchId && <OneWinFeaturedOdds key={matchId} matchId={matchId} provider="pari" />}
       <div className="team-native-ad__footer">
         <span className="team-native-ad__footer-brand">{brand}<span aria-hidden="true"> / </span>CS2</span>
         {pari && <span>ООО «БК «ПАРИ» · ИНН 7703365167</span>}

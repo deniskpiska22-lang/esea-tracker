@@ -13,9 +13,13 @@ const winner = {
   fr: 'Vainqueur du match', it: 'Vincitore della partita',
 };
 
-export default function OneWinFeaturedOdds({ matchId }) {
+export default function OneWinFeaturedOdds({ matchId, provider = "onewin" }) {
   const { language, locale } = useLanguage();
   const [events, setEvents] = useState([]);
+  const pari = provider === 'pari';
+  const action = pari ? 'pari-featured' : 'featured';
+  const maxAge = pari ? 60_000 : 20_000;
+  const refreshEvery = pari ? 45_000 : 8000;
   useEffect(() => {
     if (!matchId) return;
     let stopped = false;
@@ -31,20 +35,20 @@ export default function OneWinFeaturedOdds({ matchId }) {
       const timeout = setTimeout(() => request.abort(), 22_000);
       let next = 45_000;
       try {
-        const res = await fetch(`/api/match-odds?action=featured&matchId=${encodeURIComponent(matchId)}`, {
+        const res = await fetch(`/api/match-odds?action=${action}&matchId=${encodeURIComponent(matchId)}`, {
           cache: 'no-store', signal: request.signal,
         });
         const data = res.ok ? (await res.json()).featured : null;
         if (stopped || controller !== request || request.signal.aborted) return;
         const elapsed = performance.now() - start;
         const current = (Array.isArray(data) ? data : []).filter(event =>
-          event.validForMs > elapsed && event.validForMs <= 20_000);
+          event.validForMs > elapsed && event.validForMs <= maxAge);
         clearTimeout(expiry);
         setEvents(current);
         if (current.length) {
           const valid = Math.min(...current.map(event => event.validForMs)) - elapsed;
           expiry = setTimeout(() => setEvents([]), valid);
-          next = Math.min(8000, Math.max(1000, valid - 3000));
+          next = Math.min(refreshEvery, Math.max(1000, valid - 3000));
         }
       } catch {
         // The existing CS2 banner stays usable while the provider is unavailable.
@@ -67,7 +71,7 @@ export default function OneWinFeaturedOdds({ matchId }) {
       clearTimeout(expiry);
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [matchId]);
+  }, [matchId, action, maxAge, refreshEvery]);
 
   if (!events.length) return null;
   const time = new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -75,10 +79,14 @@ export default function OneWinFeaturedOdds({ matchId }) {
   return <section className="onewin-featured">
     <h3>{titles[language] || titles.en}</h3>
     <div className="onewin-featured__grid">
-      {events.map(event => <a key={event.eventId} href={event.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="onewin-featured__match">
-        <span className="onewin-featured__meta"><time dateTime={new Date(event.startsAt).toISOString()}>{time.format(event.startsAt)}</time><span>{winner[language] || winner.en} <span aria-hidden="true">↗</span></span></span>
+      {events.map(event => {
+        const Tag = pari ? 'div' : 'a';
+        const link = pari ? {} : { href: event.href, target: '_blank', rel: 'sponsored nofollow noopener noreferrer' };
+        return <Tag key={event.eventId} {...link} className="onewin-featured__match">
+        <span className="onewin-featured__meta"><time dateTime={new Date(event.startsAt).toISOString()}>{time.format(event.startsAt)}</time><span>{winner[language] || winner.en} {!pari && <span aria-hidden="true">↗</span>}</span></span>
         {[event.team1, event.team2].map(team => <span key={team.name} className="onewin-featured__team"><strong>{team.name}</strong><b>{price.format(team.price)}</b></span>)}
-      </a>)}
+        </Tag>;
+      })}
     </div>
   </section>;
 }

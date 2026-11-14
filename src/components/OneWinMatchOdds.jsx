@@ -133,6 +133,6 @@ export default function OneWinMatchOdds({ matchId, teams, active = true }) {
     return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
       : <OneWinMarketsAd key={matchId} matchId={matchId} />;
   }
-  if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" />;
+  if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" matchId={matchId} />;
   return null;
 }

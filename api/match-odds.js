@@ -1,3 +1,4 @@
+import { getPariLine, selectPariFeatured } from '../server/pariSource.js';
 import process from 'node:process';
 import { createClient } from '@supabase/supabase-js';
 import { getAdPolicy } from './ad-policy.js';
@@ -45,18 +46,25 @@ async function featuredOdds(match, { loadEvents, loadSnapshot, now }) {
   }).slice(0, 2);
 }
 
-export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents, loadSnapshot = getOneWinSnapshot, now = Date.now }) {
+export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents, loadSnapshot = getOneWinSnapshot, loadPari = getPariLine, now = Date.now }) {
   return async (req, res) => {
     for (const name of ['Cache-Control', 'CDN-Cache-Control', 'Vercel-CDN-Cache-Control']) res.setHeader(name, 'private, no-store, max-age=0');
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     if (!['GET', 'HEAD'].includes(req.method)) return res.status(405).end();
-    if (!getAdPolicy(req.headers['x-vercel-ip-country']).adsEnabled) return res.status(200).json({ odds: null });
+    const pari = req.query?.action === 'pari-featured';
+    const policy = getAdPolicy(req.headers['x-vercel-ip-country']);
+    if (pari ? !policy.pariEnabled : !policy.adsEnabled) {
+      return res.status(200).json(pari ? { featured: [] } : { odds: null });
+    }
     const id = req.query?.matchId;
     if (typeof id !== 'string' || !/^(?:1-)?[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(id)) return res.status(400).json({ odds: null });
-    if (req.query.action && !['visit', 'featured'].includes(req.query.action)) return res.status(400).json({ odds: null });
+    if (req.query.action && !['visit', 'featured', 'pari-featured'].includes(req.query.action)) return res.status(400).json({ odds: null });
     try {
       const match = await loadMatch(id);
+      if (pari) {
+        return res.status(200).json({ featured: match ? selectPariFeatured(await loadPari(), match, now()) : [] });
+      }
       if (req.query.action === 'featured') {
         return res.status(200).json({ featured: match ? await featuredOdds(match, { loadEvents, loadSnapshot, now }) : [] });
       }
@@ -80,8 +88,8 @@ export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents
         href: `/api/match-odds?matchId=${encodeURIComponent(match.id)}&action=visit`,
       } });
     } catch (error) {
-      console.warn('Match odds unavailable:', error instanceof Error ? error.message : 'source error');
-      return res.status(200).json({ odds: null });
+      console.warn(pari ? 'PARI odds unavailable:' : 'Match odds unavailable:', error instanceof Error ? error.message : 'source error');
+      return res.status(200).json(pari ? { featured: [] } : { odds: null });
     }
   };
 }
