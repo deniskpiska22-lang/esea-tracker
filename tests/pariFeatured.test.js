@@ -74,3 +74,27 @@ test('PARI uses the unique current match, orients reversed prices, and rejects s
     scheduled_at: new Date(now - 120_000).toISOString() }, now).live, true);
   assert.deepEqual(selectPariFeatured(line, {}, now).map(row => row.eventId), [1]);
 });
+
+test('TSA Green vs BANGARANGA receives its own PARI odds and is excluded from recommendations', async () => {
+  const match = {
+    id: '1-514f8a13-c145-4b85-a633-e2f2168aa29b', status: 'SCHEDULED',
+    scheduled_at: '2026-11-14T18:00:00Z',
+    team1_id: 'a9a2a7e0-5b29-4ba3-af56-e8056bb9ca23', team1_name: 'TSA Green',
+    team2_id: '23cfaf71-1a2d-4626-8b9b-7e2483c90ce5', team2_name: 'BANGARANGA',
+  };
+  const rows = parsePariLine({
+    sports: [sport(1, 'ESEA. Advanced Division')],
+    events: [event(69914356, 1, 'BANGARANGA', 'Team Spirit Academy Green')],
+    customFactors: [{ e: 69914356, factors: [{ f: 921, v: 2.1 }, { f: 923, v: 1.65 }] }],
+    eventBlocks: [],
+  }, now);
+  const line = { rows, fetchedAt: now };
+  const handler = createMatchOddsHandler({ loadMatch: async () => match, loadPari: async () => line, now: () => now });
+  const response = { setHeader() {}, status() { return this; }, json(body) { this.body = body; } };
+  await handler({ method: 'GET', headers: { 'x-vercel-ip-country': 'RU' },
+    query: { action: 'pari-match', matchId: match.id } }, response);
+  assert.deepEqual(response.body.odds.team1, { name: 'TSA Green', price: 1.65 });
+  assert.deepEqual(response.body.odds.team2, { name: 'BANGARANGA', price: 2.1 });
+  assert.deepEqual(selectPariFeatured(line, match, now), []);
+  assert.equal(selectPariMatchOdds(line, { ...match, team1_id: 'different-roster' }, now), null);
+});
