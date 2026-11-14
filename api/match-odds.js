@@ -1,4 +1,4 @@
-import { getPariLine, selectPariFeatured } from '../server/pariSource.js';
+import { getPariLine, selectPariFeatured, selectPariMatchOdds } from '../server/pariSource.js';
 import process from 'node:process';
 import { createClient } from '@supabase/supabase-js';
 import { getAdPolicy } from './ad-policy.js';
@@ -52,17 +52,22 @@ export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     if (!['GET', 'HEAD'].includes(req.method)) return res.status(405).end();
-    const pari = req.query?.action === 'pari-featured';
+    const pariFeatured = req.query?.action === 'pari-featured';
+    const pari = pariFeatured || req.query?.action === 'pari-match';
     const policy = getAdPolicy(req.headers['x-vercel-ip-country']);
     if (pari ? !policy.pariEnabled : !policy.adsEnabled) {
-      return res.status(200).json(pari ? { featured: [] } : { odds: null });
+      return res.status(200).json(pariFeatured ? { featured: [] } : { odds: null });
     }
     const id = req.query?.matchId;
     if (typeof id !== 'string' || !/^(?:1-)?[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(id)) return res.status(400).json({ odds: null });
-    if (req.query.action && !['visit', 'featured', 'pari-featured'].includes(req.query.action)) return res.status(400).json({ odds: null });
+    if (req.query.action && !['visit', 'featured', 'pari-featured', 'pari-match'].includes(req.query.action)) return res.status(400).json({ odds: null });
     try {
       const match = await loadMatch(id);
-      if (pari) {
+      if (pari && !pariFeatured) {
+        const odds = isOddsMatchActive(match) ? selectPariMatchOdds(await loadPari(), match, now()) : null;
+        return res.status(200).json({ odds });
+      }
+      if (pariFeatured) {
         return res.status(200).json({ featured: match ? selectPariFeatured(await loadPari(), match, now()) : [] });
       }
       if (req.query.action === 'featured') {
@@ -89,7 +94,7 @@ export function createMatchOddsHandler({ loadMatch, loadEvents = getOneWinEvents
       } });
     } catch (error) {
       console.warn(pari ? 'PARI odds unavailable:' : 'Match odds unavailable:', error instanceof Error ? error.message : 'source error');
-      return res.status(200).json(pari ? { featured: [] } : { odds: null });
+      return res.status(200).json(pariFeatured ? { featured: [] } : { odds: null });
     }
   };
 }

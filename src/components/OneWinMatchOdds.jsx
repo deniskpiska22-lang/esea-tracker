@@ -14,10 +14,17 @@ const copy = {
   it: { ad: 'Pubblicità', winner: 'Vincitore della partita', updated: 'Aggiornato', open: 'Apri la partita su 1win', note: 'Le quote possono cambiare su 1win.' },
 };
 
-function OddsContent({ matchId, teams }) {
+const pariOpen = {
+  ru: 'Перейти в PARI', en: 'Visit PARI', de: 'Zu PARI', pt: 'Ir para a PARI',
+  es: 'Ir a PARI', fr: 'Découvrir PARI', it: 'Vai su PARI',
+};
+
+function OddsContent({ matchId, teams, provider = '1win' }) {
+  const pari = provider === 'pari';
   const [result, setResult] = useState(null);
   const [checked, setChecked] = useState(false);
   useEffect(() => {
+    const maxAge = pari ? 60_000 : 20_000;
     let stopped = false;
     let request;
     let poll;
@@ -33,15 +40,15 @@ function OddsContent({ matchId, teams }) {
       const timeout = setTimeout(() => controller.abort(), 30_000);
       let nextPoll = 30_000;
       try {
-        const response = await fetch(`/api/match-odds?matchId=${encodeURIComponent(matchId)}`, {
+        const response = await fetch(`/api/match-odds?matchId=${encodeURIComponent(matchId)}${pari ? "&action=pari-match" : ""}`, {
           cache: 'no-store', credentials: 'same-origin', signal: controller.signal,
         });
         const data = response.ok ? (await response.json()).odds : null;
         if (stopped || current !== generation) return;
         clearTimeout(expiry);
         const remaining = Number(data?.validForMs) - (performance.now() - started);
-        const valid = data?.matchId === matchId && remaining > 0 && remaining <= 20_000;
-        if (valid) nextPoll = 8000;
+        const valid = data?.matchId === matchId && remaining > 0 && data.provider === provider && remaining <= maxAge;
+        if (valid) nextPoll = pari ? Math.min(45_000, Math.max(1000, remaining - 2500)) : 8000;
         setResult(valid ? { matchId, data } : null);
         setChecked(true);
         if (valid) expiry = setTimeout(() => setResult(null), remaining);
@@ -69,9 +76,12 @@ function OddsContent({ matchId, teams }) {
       clearTimeout(expiry);
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [matchId]);
+  }, [matchId, pari, provider]);
   const odds = result?.matchId === matchId ? result.data : null;
-  if (!odds) return checked ? <OneWinMarketsAd key={matchId} matchId={matchId} /> : null;
+  if (!odds) {
+    if (pari) return <TeamNativeAd placement="match_room_native" matchId={checked ? matchId : undefined} />;
+    return checked ? <OneWinMarketsAd key={matchId} matchId={matchId} /> : null;
+  }
   return <OddsCard odds={odds} teams={teams} />;
 }
 
@@ -91,13 +101,16 @@ function ExternalArrow({ className = '' }) {
 function OddsCard({ odds, teams = [] }) {
   const { language, locale } = useLanguage();
   const labels = copy[language] || copy.en;
+  const pari = odds.provider === 'pari';
+  const brand = pari ? 'PARI' : '1win';
+  const open = pari ? (pariOpen[language] || pariOpen.en) : labels.open;
   const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
   return (
-    <aside data-match-odds={odds.matchId} aria-label={`${labels.ad} · 1win · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
+    <aside data-match-odds={odds.matchId} data-odds-provider={brand} aria-label={`${labels.ad} · ${brand} · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#38bdf814,transparent_65%)]" />
       <div className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:px-5">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-14 shrink-0 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-xl font-black italic tracking-tighter text-white">1win</span>
+          <span className="flex h-9 w-14 shrink-0 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-xl font-black italic tracking-tighter text-white">{brand}</span>
           <div><h2 className="text-sm font-bold text-white sm:text-base">{labels.winner}</h2><p className="mt-0.5 text-[11px] font-medium text-slate-400">{labels.ad} · 18+</p></div>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
@@ -107,7 +120,7 @@ function OddsCard({ odds, teams = [] }) {
       <div className="relative px-4 pb-3 sm:px-5 sm:pb-4">
         <div className="relative grid gap-2 sm:grid-cols-2 sm:gap-5">
           {[odds.team1, odds.team2].map((team, index) => (
-            <a key={index} href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${team.name}: ${team.price.toFixed(2)} · 1win`}
+            <a key={index} href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" aria-label={`${team.name}: ${team.price.toFixed(2)} · ${brand}`}
               className="group relative flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.055] to-white/[0.015] p-3 transition duration-200 hover:border-sky-300/45 hover:bg-sky-400/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:p-3.5">
               <TeamAvatar key={teams[index]?.logo || team.name} name={team.name} logo={teams[index]?.logo} />
               <span className="min-w-0 flex-1"><span className="block break-words text-sm font-bold leading-snug text-slate-200 sm:text-base">{team.name}</span><span className="mt-1 block text-3xl font-black leading-none tracking-tight text-sky-200 tabular-nums transition group-hover:text-white sm:text-[34px]">{team.price.toFixed(2)}</span></span>
@@ -119,8 +132,8 @@ function OddsCard({ odds, teams = [] }) {
         </div>
       </div>
       <div className="relative flex flex-col gap-2 border-t border-white/[0.06] bg-black/15 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-        <p className="max-w-lg text-[11px] leading-relaxed text-slate-400">{labels.note}</p>
-        <a href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-3 rounded-xl border border-sky-200/30 bg-gradient-to-br from-sky-300 to-sky-400 px-4 py-2 text-sm font-bold text-[#052437] shadow-[0_4px_18px_#38bdf81a] transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300">{labels.open}<ExternalArrow className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+        <p className="max-w-lg text-[11px] leading-relaxed text-slate-400">{labels.note.replace("1win", brand)}{pari && <span className="block">ООО «БК «ПАРИ» · ИНН 7703365167</span>}</p>
+        <a href={odds.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-3 rounded-xl border border-sky-200/30 bg-gradient-to-br from-sky-300 to-sky-400 px-4 py-2 text-sm font-bold text-[#052437] shadow-[0_4px_18px_#38bdf81a] transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300">{open}<ExternalArrow className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
       </div>
     </aside>
   );
@@ -130,9 +143,11 @@ export default function OneWinMatchOdds({ matchId, teams, active = true }) {
   const [policy, setPolicy] = useState(null);
   useEffect(() => subscribeAdPolicy(setPolicy), []);
   if (isAdProviderEnabled(policy, 'onewin')) {
-    return active ? <OddsContent key={matchId} matchId={matchId} teams={teams} />
+    return active ? <OddsContent key={`onewin:${matchId}`} matchId={matchId} teams={teams} />
       : <OneWinMarketsAd key={matchId} matchId={matchId} />;
   }
-  if (isAdProviderEnabled(policy, 'pari')) return <TeamNativeAd placement="match_room_native" matchId={matchId} />;
+  if (isAdProviderEnabled(policy, 'pari')) return active
+    ? <OddsContent key={`pari:${matchId}`} matchId={matchId} teams={teams} provider="pari" />
+    : <TeamNativeAd placement="match_room_native" matchId={matchId} />;
   return null;
 }

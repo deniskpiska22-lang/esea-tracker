@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parsePariLine, selectPariFeatured } from '../server/pariSource.js';
+import { parsePariLine, selectPariFeatured, selectPariMatchOdds } from '../server/pariSource.js';
 import { createMatchOddsHandler } from '../api/match-odds.js';
 
 const now = Date.parse('2026-11-14T17:00:00Z');
@@ -50,4 +50,27 @@ test('PARI line is fetched only for the Russian placement and only for an existi
     assert.deepEqual(response.body, { featured: [] });
     assert.equal(calls, count);
   }
+});
+
+test('PARI uses the unique current match, orients reversed prices, and rejects stale or wrong-stage events', () => {
+  const rows = parsePariLine({
+    sports: [sport(1, 'ESEA. Advanced Division')],
+    events: [event(1, 1, 'B', 'A'), event(2, 1, 'X', 'Y', { place: 'live', startTime: now / 1000 - 120 })],
+    customFactors: [market(1), market(2)], eventBlocks: [],
+  }, now);
+  const line = { rows, fetchedAt: now - 5000 };
+  const match = { id: '1-01234567-89ab-cdef-0123-456789abcdef', status: 'SCHEDULED',
+    team1_name: 'A', team2_name: 'B', scheduled_at: new Date(now + 3600_000).toISOString() };
+  const odds = selectPariMatchOdds(line, match, now);
+  assert.deepEqual([odds.team1.price, odds.team2.price], [2.2, 1.67]);
+  assert.equal(odds.href, '/api/pari?placement=match_room_native');
+  assert.equal(odds.validForMs, 55_000);
+  assert.equal(selectPariMatchOdds(line, { ...match, status: 'FINISHED' }, now), null);
+  assert.equal(selectPariMatchOdds(line, { ...match, status: 'ONGOING' }, now), null);
+  assert.equal(selectPariMatchOdds(line, { ...match, scheduled_at: new Date(now + 48 * 3600_000).toISOString() }, now), null);
+  assert.equal(selectPariMatchOdds({ ...line, rows: [...rows, { ...rows.find(row => row.eventId === 1), eventId: 3 }] }, match, now), null);
+  assert.equal(selectPariMatchOdds(line, match, now + 60_000), null);
+  assert.equal(selectPariMatchOdds(line, { ...match, status: 'ONGOING', team1_name: 'X', team2_name: 'Y',
+    scheduled_at: new Date(now - 120_000).toISOString() }, now).live, true);
+  assert.deepEqual(selectPariFeatured(line, {}, now).map(row => row.eventId), [1]);
 });

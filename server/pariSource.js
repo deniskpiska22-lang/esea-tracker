@@ -1,4 +1,4 @@
-import { sameOneWinPair } from '../src/utils/onewinMatch.js';
+import { isOddsMatchActive, normalizeOddsTeam, orientOneWinOdds, sameOneWinPair } from '../src/utils/onewinMatch.js';
 
 const LINE = 'https://line-vk01-w.pb06e2-resources.ru/events/listBase?lang=ru&scopeMarket=2300';
 const MAX_BYTES = 24 * 1024 * 1024;
@@ -26,13 +26,14 @@ export function parsePariLine(data, now) {
 
   return data.events.flatMap(event => {
     const tournament = tournaments.get(event.sportId);
+    const live = event.place === "live";
     const startsAt = event.startTime * 1000;
     const team1 = typeof event.team1 === 'string' && event.team1.trim();
     const team2 = typeof event.team2 === 'string' && event.team2.trim();
     if (!tournament || !Number.isSafeInteger(event.id) || event.id <= 0 ||
-      event.level !== 1 || event.kind !== 1 || event.parentId || event.place !== 'line' ||
+      event.level !== 1 || event.kind !== 1 || event.parentId || (!live && event.place !== 'line') ||
       !team1 || !team2 || team1 === team2 || !Number.isFinite(startsAt) ||
-      startsAt <= now || startsAt > now + WINDOW_MS || blocked.has(event.id)) return [];
+      (live ? startsAt > now : startsAt <= now || startsAt > now + WINDOW_MS) || blocked.has(event.id)) return [];
 
     const markets = factors.get(event.id);
     if (!Array.isArray(markets)) return [];
@@ -41,7 +42,7 @@ export function parsePariLine(data, now) {
     const sides = [921, 923].map(code => markets.filter(row => row.f === code && row.p == null));
     if (sides.some(side => side.length !== 1 || !Number.isFinite(side[0].v) ||
       side[0].v <= 1 || side[0].v > 1000)) return [];
-    return [{ eventId: event.id, startsAt, tournament,
+    return [{ eventId: event.id, startsAt, tournament, live,
       team1: { name: team1, price: sides[0][0].v }, team2: { name: team2, price: sides[1][0].v } }];
   }).sort((a, b) => tournamentPriority(b.tournament) - tournamentPriority(a.tournament) || a.startsAt - b.startsAt);
 }
@@ -86,6 +87,7 @@ export function selectPariFeatured(line, currentMatch, now) {
   if (!(remaining > 0 && remaining <= PARI_TTL_MS)) return [];
   const seen = new Set();
   return line.rows.flatMap(row => {
+    if (row.live) return [];
     const validForMs = Math.min(row.startsAt - now, remaining);
     const pair = [row.team1.name, row.team2.name].map(name => name.toLowerCase()).sort().join(':');
     if (validForMs <= 0 || seen.has(pair) ||
@@ -93,4 +95,30 @@ export function selectPariFeatured(line, currentMatch, now) {
     seen.add(pair);
     return [{ ...row, validForMs }];
   }).slice(0, 2);
+}
+
+export function selectPariMatchOdds(line, match, now) {
+  if (!match || !isOddsMatchActive(match)) return null;
+  const scheduled = Date.parse(match.scheduled_at);
+  const names = [match.team1_name, match.team2_name].map(normalizeOddsTeam);
+  if (!Number.isFinite(scheduled) || names.some(name => !name) || names[0] === names[1]) return null;
+  const live = !['SCHEDULED', 'MATCH_STATUS_SCHEDULED'].includes(String(match.status).toUpperCase());
+  const rows = line.rows.filter(row => row.live === live &&
+    Math.abs(row.startsAt - scheduled) <= 90 * 60_000 &&
+    sameOneWinPair(match, { homeTeam: row.team1, awayTeam: row.team2 }));
+  if (rows.length !== 1) return null;
+  const row = rows[0];
+  const remaining = PARI_TTL_MS - (now - line.fetchedAt);
+  const validForMs = live ? remaining : Math.min(row.startsAt - now, remaining);
+  if (!(remaining <= PARI_TTL_MS && validForMs > 0)) return null;
+  const prices = orientOneWinOdds(match, { homeTeam: row.team1, awayTeam: row.team2 }, {
+    home: row.team1.price, away: row.team2.price,
+  });
+  return {
+    matchId: match.id, eventId: row.eventId, provider: 'pari', live,
+    team1: { name: match.team1_name, price: prices.team1 },
+    team2: { name: match.team2_name, price: prices.team2 },
+    updatedAt: new Date(line.fetchedAt).toISOString(), validForMs,
+    href: '/api/pari?placement=match_room_native',
+  };
 }
