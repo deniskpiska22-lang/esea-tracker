@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import { formatOddsDateTime } from '../utils/userTime.js';
 import { isAdProviderEnabled, subscribeAdPolicy } from '../lib/adPolicy.js';
 import TeamNativeAd from './TeamNativeAd.jsx';
 import OneWinMarketsAd from './OneWinMarketsAd.jsx';
@@ -104,7 +105,7 @@ function OddsCard({ odds, teams = [] }) {
   const pari = odds.provider === 'pari';
   const brand = pari ? 'PARI' : '1win';
   const open = pari ? (pariOpen[language] || pariOpen.en) : labels.open;
-  const updated = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(odds.updatedAt));
+  const updated = formatOddsDateTime(odds.updatedAt, { hour: '2-digit', minute: '2-digit', second: '2-digit' }, { locale, pari });
   return (
     <aside data-match-odds={odds.matchId} data-odds-provider={brand} aria-label={`${labels.ad} · ${brand} · 18+`} className="relative mt-6 overflow-hidden rounded-3xl border border-sky-300/20 bg-[#0e1723] shadow-[0_12px_40px_#00000025]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#38bdf814,transparent_65%)]" />

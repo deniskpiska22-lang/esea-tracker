@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import { formatOddsDateTime } from '../utils/userTime.js';
 
 const titles = {
   ru: 'Ближайшие матчи CS2', en: 'Upcoming CS2 matches', de: 'Anstehende CS2-Spiele',
@@ -74,7 +75,7 @@ export default function OneWinFeaturedOdds({ matchId, provider = "onewin" }) {
   }, [matchId, action, maxAge, refreshEvery]);
 
   if (!events.length) return null;
-  const time = new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const timeOptions = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
   const price = new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return <section className="onewin-featured">
     <h3>{titles[language] || titles.en}</h3>
@@ -83,7 +84,7 @@ export default function OneWinFeaturedOdds({ matchId, provider = "onewin" }) {
         const Tag = pari ? 'div' : 'a';
         const link = pari ? {} : { href: event.href, target: '_blank', rel: 'sponsored nofollow noopener noreferrer' };
         return <Tag key={event.eventId} {...link} className="onewin-featured__match">
-        <span className="onewin-featured__meta"><time dateTime={new Date(event.startsAt).toISOString()}>{time.format(event.startsAt)}</time><span>{winner[language] || winner.en} {!pari && <span aria-hidden="true">↗</span>}</span></span>
+        <span className="onewin-featured__meta"><time dateTime={new Date(event.startsAt).toISOString()}>{formatOddsDateTime(event.startsAt, timeOptions, { locale, pari })}</time><span>{winner[language] || winner.en} {!pari && <span aria-hidden="true">↗</span>}</span></span>
         {[event.team1, event.team2].map(team => <span key={team.name} className="onewin-featured__team"><strong>{team.name}</strong><b>{price.format(team.price)}</b></span>)}
         </Tag>;
       })}

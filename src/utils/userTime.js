@@ -44,3 +44,9 @@ export function formatUserDateTime(value, options = {}, { locale = getUserDateLo
   const text = formatter(locale, { ...options, timeZone, hourCycle: 'h23' }).format(date);
   return options.hour && showTimeZone ? `${text} ${getTimeZoneLabel(date, timeZone)}` : text;
 }
+
+export function formatOddsDateTime(value, options, { locale, pari = false } = {}) {
+  if (!pari) return formatUserDateTime(value, options, { locale });
+  const text = formatUserDateTime(value, options, { locale, timeZone: 'Europe/Moscow', showTimeZone: false });
+  return text ? `${text} МСК` : '';
+}
