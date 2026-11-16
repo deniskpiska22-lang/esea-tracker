@@ -57,6 +57,19 @@ function Overview({ profile }) {
         })}
       </Panel>
     </div>
+    {!!profile.mapHistory?.length && (
+      <details className="coach-panel coach-map-history">
+        <summary>{tx('Map results')}</summary>
+        {profile.mapHistory.map(map => (
+          <Link className="coach-row coach-match" key={`${map.id}:${map.team}:${map.map}`} to={`/match/${map.id}`}>
+            <span><b>{tx(map.map)}</b><small>{map.team} vs {map.opponent} · {formatDate(map.date)}</small></span>
+            <strong className={map.ownScore > map.otherScore ? 'coach-positive' : map.ownScore < map.otherScore ? 'coach-negative' : ''}>
+              {map.ownScore} : {map.otherScore}
+            </strong>
+          </Link>
+        ))}
+      </details>
+    )}
     <p className="coach-footnote">{tx('Only matches with the coach confirmed by FACEIT are counted.')}</p>
   </>;
 }
@@ -135,8 +148,8 @@ export default function CoachPage() {
         <div className="player-hero-grid relative grid">
           <div>
             <div className="player-portrait coach-portrait">
-              {team.logo && <img className="coach-watermark" src={team.logo} alt="" />}
-              <img className={profile.avatar ? 'coach-avatar' : 'coach-silhouette'} src={profile.avatar || '/player-silhouette.png'} alt="" />
+              {team.logo && <img className="absolute inset-0 h-full w-full scale-[1.3] object-contain opacity-[0.08] grayscale" src={team.logo} alt="" />}
+              <img className="coach-silhouette" src="/player-silhouette.png" alt="" />
             </div>
             <div className="player-social mt-2 grid">
               <a className="coach-faceit" href={`https://www.faceit.com/en/players/${encodeURIComponent(profile.nickname)}`} target="_blank" rel="noopener noreferrer">

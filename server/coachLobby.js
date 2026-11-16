@@ -34,7 +34,7 @@ export async function fetchCoachLobby(match) {
   const response = await fetch(`https://www.faceit.com/api/match/v2/match/${encodeURIComponent(match.id)}`, {
     headers: { accept: 'application/json' }, signal: AbortSignal.timeout(9000),
   });
-  if (!response.ok) throw new Error(`FACEIT room HTTP ${response.status}`);
+  if (!response.ok) throw Object.assign(new Error(`FACEIT room HTTP ${response.status}`), { status: response.status });
   const data = await response.json();
   const parsed = parseCoachLobby(data.payload, match);
   if (!parsed || finished(match.status) && !parsed.terminal) throw new Error('FACEIT room identity or status did not match');

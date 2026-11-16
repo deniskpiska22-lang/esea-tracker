@@ -41,8 +41,19 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     periodsByKey.set(key, period);
   }
   const periods = [...periodsByKey.values()].sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
-  const form = completed.filter(row => row.team.id === featured.team.id && Date.parse(row.date) >= now - 90 * day);
-  const maps = normalizeTeamMapHistory(form.map(row => row.match), featured.team.id).flatMap(row => row.mapScores);
+  const completedByTeam = new Map();
+  for (const row of completed) {
+    if (!completedByTeam.has(row.team.id)) completedByTeam.set(row.team.id, { team: row.team, matches: [] });
+    completedByTeam.get(row.team.id).matches.push(row.match);
+  }
+  const history = [...completedByTeam.values()].flatMap(({ team, matches }) =>
+    normalizeTeamMapHistory(matches, team.id).map(match => ({ ...match, team }))).sort(newestFirst);
+  const maps = history.filter(row => row.team.id === featured.team.id
+    && Date.parse(row.date) >= now - 90 * day && Date.parse(row.date) <= now).flatMap(row => row.mapScores);
+  const mapHistory = history.flatMap(row => row.mapScores.map(map => ({
+    id: row.id, date: row.date, team: row.team.name, opponent: row.opponent.name,
+    map: map.map, ownScore: map.teamScore, otherScore: map.opponentScore,
+  }))).slice(0, 30);
   const byMap = new Map();
   for (const map of maps) {
     const count = byMap.get(map.map) || { name: map.map, total: 0, won: 0 };
@@ -57,5 +68,5 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,
       best: comparison[0] || null, worst: comparison.length > 1 && comparison[0].won / comparison[0].total !== comparison.at(-1).won / comparison.at(-1).total
         ? comparison.at(-1) : null },
-    rounds: aggregateDemoRounds(maps) };
+    rounds: aggregateDemoRounds(maps), mapHistory };
 }

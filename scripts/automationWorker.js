@@ -35,14 +35,16 @@ const WEEKLY_SNAPSHOT_DAY_UTC = Number(
   process.env.WEEKLY_RATING_SNAPSHOT_DAY_UTC || 1
 );
 
+const COACH_INTERVAL_MS = 10 * 60 * 1000;
 const once = process.argv.includes("--once");
 let stopping = false;
-let activeChild = null;
+const activeChildren = new Set();
+let coachJob = null;
+let coachTimer;
 let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
 let lastRosterAt = 0;
-let lastCoachLobbiesAt = 0;
 let lastPlayerEloAt = 0;
 let lastWeeklySnapshotKey = null;
 
@@ -92,7 +94,7 @@ function runNodeScript(name, scriptPath, args = [], extraEnv = {}) {
       shell: false,
       env: { ...process.env, ...extraEnv },
     });
-    activeChild = child;
+    activeChildren.add(child);
     let lastErrorLine = "";
     child.stdout.on("data", chunk => process.stdout.write(chunk));
     child.stderr.on("data", chunk => {
@@ -106,7 +108,7 @@ function runNodeScript(name, scriptPath, args = [], extraEnv = {}) {
       if (settled) return;
       settled = true;
       clearTimeout(timeout);
-      if (activeChild === child) activeChild = null;
+      activeChildren.delete(child);
       resolve({ ...result, durationMs: Date.now() - startedAt });
     };
 
@@ -174,11 +176,6 @@ async function runDueTasks() {
     await runTask("roster-discovery", "scripts/syncTeamRosters.js");
   }
 
-  if (lastCoachLobbiesAt === 0 || now - lastCoachLobbiesAt >= 30 * 60 * 1000) {
-    lastCoachLobbiesAt = now;
-    await runTask("coach-lobbies", "scripts/syncCoachLobbies.js");
-  }
-
   if (lastBackfillAt === 0 || now - lastBackfillAt >= BACKFILL_INTERVAL_MS) {
     lastBackfillAt = now;
     await runTask("stats-backfill", "scripts/backfillMatchStatJobs.js", [], {
@@ -202,12 +199,23 @@ async function runDueTasks() {
   await heartbeat("online", "idle");
 }
 
+// Archive batches must not wait for a full standings or match-discovery run.
+function startCoachSync() {
+  if (stopping || coachJob) return coachJob;
+  coachJob = runNodeScript("coach-lobbies", "scripts/syncCoachLobbies.js").then(result => {
+    if (result.code !== 0) console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
+  }).finally(() => { coachJob = null; });
+  return coachJob;
+}
+
 async function main() {
   console.log(
     `[automation-worker] starting: discovery=${DISCOVERY_INTERVAL_MS}ms ` +
       `standings=${STANDINGS_INTERVAL_MS}ms backfill=${BACKFILL_INTERVAL_MS}ms`
   );
 
+  const firstCoachJob = startCoachSync();
+  if (!once) coachTimer = setInterval(startCoachSync, COACH_INTERVAL_MS).unref();
   do {
     try {
       await runDueTasks();
@@ -218,12 +226,14 @@ async function main() {
 
     if (!once && !stopping) await sleep(LOOP_INTERVAL_MS);
   } while (!once && !stopping);
+  await firstCoachJob;
 }
 
 function shutdown(signal) {
   console.log(`[automation-worker] received ${signal}`);
   stopping = true;
-  if (activeChild) activeChild.kill("SIGTERM");
+  clearInterval(coachTimer);
+  for (const child of activeChildren) child.kill("SIGTERM");
 }
 
 process.on("SIGTERM", () => shutdown("SIGTERM"));

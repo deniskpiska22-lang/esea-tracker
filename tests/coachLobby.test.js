@@ -43,4 +43,18 @@ test('profile excludes maps from unconfirmed and upcoming lobbies and technical 
   assert.equal(profile.observedAt, checkedAt);
   assert.deepEqual(profile.maps, { total: 1, won: 1, best: null, worst: null });
   assert.equal(profile.rounds.ct.total, 0);
+  assert.deepEqual(profile.mapHistory.map(({ id, map, ownScore }) => ({ id, map, ownScore })),
+    [{ id: base.id, map: 'Nuke', ownScore: 13 }]);
+});
+
+test('keeps older recorded maps in career history without skewing current team form', () => {
+  const now = Date.parse('2026-11-10T14:00:00Z');
+  const old = { ...base, id: `1-${uuid(19)}`, team1_id: uuid(20), team1_name: 'Former team',
+    finished_at: '2026-07-12T12:00:00Z', competition_name: 'S58 EU Entry - Regular Season',
+    team1_score: 8, team2_score: 13 };
+  const rows = [old, base].map(match => ({ ...parseCoachLobby(room({ match }), match), matches: match }));
+  const profile = buildCoachProfile(uuid(5), rows, new Map(), now);
+  assert.equal(profile.periods.length, 2);
+  assert.equal(profile.maps.total, 1);
+  assert.deepEqual(profile.mapHistory.map(map => map.id), [base.id, old.id]);
 });

@@ -5,7 +5,6 @@
 .coach-back:hover{color:var(--coach-accent)}
 .coach-portrait{position:relative;overflow:hidden;display:flex;align-items:end;justify-content:center}
 .coach-watermark{position:absolute;inset:0;margin:auto;width:90%;height:90%;object-fit:contain;opacity:.14}
-.coach-avatar{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .coach-silhouette{position:relative;width:100%;height:92%;object-fit:contain;object-position:center bottom}
 .coach-faceit{display:flex;align-items:center;justify-content:center;gap:6px;background:#0d1620;border:1px solid var(--coach-edge)}
 .coach-faceit img{width:18px;height:18px;object-fit:contain}
@@ -56,3 +55,5 @@
 .coach-selection{margin-top:12px;padding:10px;border:1px solid #7cddbf36;border-radius:8px;background:#7cddbf0b}
 @media(max-width:800px){.coach-metrics{grid-column:1/-1;grid-template-columns:1fr 1fr}.coach-identity{padding-block:5px}}
 @media(max-width:580px){.coach-columns{grid-template-columns:1fr}.coach-roster{grid-template-columns:repeat(3,minmax(0,1fr))}.coach-metric,.coach-career-stats>div{padding:8px}.coach-career-stats strong{font-size:16px}.coach-panel header,.coach-row,.coach-timeline{padding-inline:10px}.coach-metric strong{font-size:17px}.coach-metric-primary strong{font-size:25px}.coach-team-card{padding:6px;gap:6px}.coach-identity h1{margin-block:10px}.coach-profile .player-portrait{height:135px}}
+
+.coach-map-history{margin-top:16px}.coach-map-history summary{cursor:pointer;padding:14px 17px;font-size:15px;font-weight:800}.coach-map-history[open] summary{border-bottom:1px solid var(--coach-edge)}
