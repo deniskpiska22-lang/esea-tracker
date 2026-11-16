@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, Navigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { getCoachSeo } from '../utils/coachSeo.js';
 import useCoachData from '../hooks/useCoachData.js';
-import CoachPortrait from '../components/CoachPortrait.jsx';
 import CountryFlag from '../components/CountryFlag.jsx';
 import { coachTx as tx } from '../i18n/coachTranslate.js';
 import { tf } from '../i18n/translate.js';
@@ -222,7 +221,8 @@ export default function CoachPage({ playerRoute = false }) {
         <div className="player-hero-grid relative grid">
           <div>
             <div className="player-portrait coach-portrait">
-              <CoachPortrait avatar={profile.avatar} teamLogo={team.logo} />
+              {team.logo && <img src={team.logo} alt="" className="absolute inset-0 h-full w-full scale-[1.3] object-contain opacity-[0.08] grayscale" />}
+              <img src="/player-silhouette.png" alt="" className="relative z-10 h-[92%] object-contain" />
             </div>
             <div className="player-social mt-2 grid">
               <a className="coach-faceit" href={`https://www.faceit.com/en/players/${encodeURIComponent(profile.nickname)}`} target="_blank" rel="noopener noreferrer">
