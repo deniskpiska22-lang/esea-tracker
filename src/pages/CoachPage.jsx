@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { getCoachSeo } from '../utils/coachSeo.js';
 import useCoachData from '../hooks/useCoachData.js';
 import CountryFlag from '../components/CountryFlag.jsx';
 import { coachTx as tx } from '../i18n/coachTranslate.js';
@@ -109,17 +110,18 @@ function Career({ profile }) {
 
 export default function CoachPage() {
   const { coachId } = useParams();
+  const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
   const response = useCoachData('id', coachId);
   const profile = response?.data;
   const tab = params.get('tab') === 'teams' ? 'teams' : 'overview';
 
   useEffect(() => {
-    if (!profile) return;
-    const previousTitle = document.title;
-    document.title = `${profile.nickname} — ${tx('Coach')} | ESEA Tracker`;
-    return () => { document.title = previousTitle; };
-  }, [profile]);
+    if (!response) return;
+    window.dispatchEvent(new CustomEvent('coach-seo-update', {
+      detail: { ...getCoachSeo(coachId, profile, undefined, response.status === 404), routePath: pathname },
+    }));
+  }, [coachId, pathname, profile, response]);
 
   if (!profile) return <div className="player-profile px-5 py-16 text-center text-slate-300" role="status">
     {!response ? tx('Loading...') : response.status === 404 ? tx('Coach profile not found') : tx('Coach data temporarily unavailable')}

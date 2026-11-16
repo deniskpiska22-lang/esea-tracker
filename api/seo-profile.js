@@ -1,3 +1,6 @@
+import { loadCoachIdentity } from '../server/coachData.js';
+import { uuid } from '../server/coachLobby.js';
+import { getCoachSeo } from '../src/utils/coachSeo.js';
 import { loadForumMetadata } from '../server/forumSeo.js';
 import { localizeSeo } from '../src/i18n/seo.js';
 import { translateText } from '../src/i18n/translate.js';
@@ -16,12 +19,20 @@ let template;
 export default async function handler(req,res) {
   const language = String(req.query.lang || 'ru');
   if (!LANGUAGE_CODES.includes(language)) return res.status(404).end('Not found');
-  const kind = ['player','team','match','page','forum','team-map'].includes(req.query.kind) ? req.query.kind : 'team';
+  const kind = ['player','team','match','page','forum','team-map','coach'].includes(req.query.kind) ? req.query.kind : 'team';
   const key = String(req.query.key || '');
   const section = String(req.query.section || '');
   if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end(translateText('Page not found',language));
   try {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
+    if (kind === 'coach') {
+      const profile = uuid(key) ? await loadCoachIdentity(key) : null;
+      const status = profile ? 200 : 404;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', profile ? 'public, max-age=0, s-maxage=60' : 'no-store');
+      if (!profile) res.setHeader('X-Robots-Tag', 'noindex');
+      return res.status(status).send(renderProfile(template, getCoachSeo(key, profile, language, !profile), status));
+    }
     if (kind === 'team-map') {
       const map = mapName(req.query.map);
       if (!map) { res.setHeader('X-Robots-Tag', 'noindex'); return res.status(404).end(translateText('Map statistics not found', language)); }

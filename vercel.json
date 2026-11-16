@@ -258,6 +258,14 @@
   ],
   "rewrites": [
     {
+      "source": "/:lang(en|de|pt|es|fr|it)/coach/:key",
+      "destination": "/api/seo-profile?kind=coach&key=:key&lang=:lang"
+    },
+    {
+      "source": "/coach/:key",
+      "destination": "/api/seo-profile?kind=coach&key=:key"
+    },
+    {
       "source": "/:lang(en|de|pt|es|fr|it)/teams/:key/stats/:map",
       "destination": "/api/seo-profile?kind=team-map&key=:key&map=:map&lang=:lang"
     },

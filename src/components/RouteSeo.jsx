@@ -1,3 +1,4 @@
+import { getCoachSeo } from '../utils/coachSeo.js';
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { useLanguage } from '../context/LanguageContext';
 import { localizeSeo } from '../i18n/seo.js';
@@ -78,7 +79,8 @@ function getMetadata(pathname, teams) {
     };
   }
 
-  return getSiteSeoMetadata(pathname);
+  const coach = pathname.match(/^\/coach\/([a-f0-9-]+)$/i);
+  return coach ? getCoachSeo(coach[1]) : getSiteSeoMetadata(pathname);
 }
 
 export default function RouteSeo() {
@@ -111,11 +113,13 @@ export default function RouteSeo() {
       if (event.detail) setDynamicMetadata(event.detail);
     };
 
+    window.addEventListener("coach-seo-update", handlePlayerMetadata);
     window.addEventListener("forum-seo-update", handlePlayerMetadata);
     window.addEventListener("player-seo-update", handlePlayerMetadata);
     window.addEventListener("match-seo-update", handlePlayerMetadata);
     window.addEventListener("team-map-seo-update", handlePlayerMetadata);
     return () => {
+      window.removeEventListener("coach-seo-update", handlePlayerMetadata);
       window.removeEventListener("forum-seo-update", handlePlayerMetadata);
       window.removeEventListener("player-seo-update", handlePlayerMetadata);
       window.removeEventListener("match-seo-update", handlePlayerMetadata);

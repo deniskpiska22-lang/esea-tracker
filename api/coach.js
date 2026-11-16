@@ -1,21 +1,10 @@
-import process from 'node:process';
-import { createClient } from '@supabase/supabase-js';
+import { coachClient } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
 import { TEAM_MAP_COLUMNS } from '../src/utils/teamMapStats.js';
 
 const person = fields => fields.map(({ id, nickname, avatar }) => ({ id, nickname, avatar }));
-let client;
-function getClient() {
-  client ||= createClient(process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY, {
-      auth: { persistSession: false, autoRefreshToken: false },
-      global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(12000) }) },
-    });
-  return client;
-}
-
 export default async function handler(request, response) {
   if (request.method !== 'GET') return response.status(405).json({ error: 'Method not allowed' });
   const { id, team, match } = request.query || {};
@@ -23,7 +12,7 @@ export default async function handler(request, response) {
       (id != null && !uuid(id)) || (team != null && !uuid(team)) ||
       (match != null && !matchId(match))) return response.status(400).json({ error: 'Invalid coach, team or match ID' });
   try {
-    const db = getClient();
+    const db = coachClient();
     response.setHeader('Cache-Control', 'public, max-age=60, s-maxage=180');
     if (team) {
       const [row] = await result(db.rpc('esea_latest_coach_lobby', { p_team_id: team }));
