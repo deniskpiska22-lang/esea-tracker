@@ -1,6 +1,13 @@
 import { findCatalogTeam } from './teamIdentity.js';
 
 const DAY = 86400000;
+// This qualifier used a separate FACEIT roster ID for the same Jumbo team.
+// Scope the alias to career history so match records retain their source IDs.
+const careerTeamAliases = new Map([
+  ['b0fcb32f-15fd-4063-b0e9-4412046bed56', {
+    id: '934a2bd0-fa66-4c02-ac92-00f742e7ec55', name: 'Jumbo team',
+  }],
+]);
 export function observedDays(start, end) {
   // Calendar days in UTC: a midnight boundary counts as two observed dates.
   return Math.floor(end / DAY) - Math.floor(start / DAY) + 1;
@@ -16,9 +23,10 @@ export function buildPlayerTeamHistory(matches, catalog) {
   for (const match of matches) {
     const at = Date.parse(match.date);
     if (!match.matchId || seen.has(match.matchId) || !Number.isFinite(at)) continue;
-    const team = findCatalogTeam(catalog, match.teamId, match.teamName);
-    const id = match.teamId || team?.faceitTeamId;
-    const name = team?.name || match.teamName;
+    const alias = careerTeamAliases.get(match.teamId);
+    const team = findCatalogTeam(catalog, alias?.id || match.teamId, match.teamName);
+    const id = alias?.id || match.teamId || team?.faceitTeamId;
+    const name = team?.name || alias?.name || match.teamName;
     if (!name || name === 'Unknown') continue;
     seen.add(match.matchId);
     rows.push({ match, at, team, name, identity: id ? `id:${id}` : `name:${name.trim().toLowerCase()}` });

@@ -59,3 +59,21 @@
 .coach-map-history{margin-top:16px}.coach-map-history summary{cursor:pointer;padding:14px 17px;font-size:15px;font-weight:800}.coach-map-history[open] summary{border-bottom:1px solid var(--coach-edge)}
 
 .coach-track-days{display:block;padding-inline:5px;color:#c4e7da;font-size:10px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:clip}
+
+.coach-overview{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+.coach-stats-filter{display:flex;align-items:center;gap:8px;min-width:0;color:var(--coach-muted);font-size:12px}
+.coach-stats-filter select{min-width:0;max-width:100%;padding:7px 9px;border:1px solid var(--coach-edge);border-radius:7px;background:#0d1620;color:#eef4fb}
+.coach-rate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 12px 0}
+.coach-rate-card{display:grid;align-content:start;gap:5px;padding:10px;border:1px solid var(--coach-edge);border-radius:8px;background:#0d1620}
+.coach-rate-card strong{font-size:clamp(19px,3vw,26px);line-height:1.15;color:var(--coach-green);font-variant-numeric:tabular-nums}
+.coach-rate-card span{color:var(--coach-muted);font-size:11px;line-height:1.4}
+.coach-pool{overflow-x:auto}
+.coach-pool table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.coach-pool th,.coach-pool td{padding:9px 8px;border-bottom:1px solid #ffffff12;text-align:right}
+.coach-pool thead th{color:var(--coach-muted);font-size:11px}
+.coach-pool th:first-child{text-align:left;padding-left:13px}
+.coach-pool tbody tr:last-child>*{border-bottom:0}
+.coach-pool-rate{display:grid;justify-items:end;gap:3px;color:var(--coach-green);white-space:nowrap}
+.coach-pool-rate>span{display:block;width:min(100%,56px);min-width:24px;height:3px;border-radius:8px;background:linear-gradient(to right,var(--coach-green) var(--win-rate),#293543 var(--win-rate))}
+@media(max-width:880px){.coach-overview{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:430px){.coach-stats header{flex-wrap:wrap}.coach-pool th,.coach-pool td{padding-inline:5px}.coach-pool thead th{font-size:10px}.coach-rate-card{padding:7px}}

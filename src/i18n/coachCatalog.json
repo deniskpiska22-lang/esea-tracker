@@ -222,5 +222,77 @@
     "es": "Resultados del equipo en los períodos indicados por el entrenador.",
     "fr": "Résultats de l’équipe pendant les périodes indiquées par l’entraîneur.",
     "it": "Risultati della squadra nei periodi indicati dall’allenatore."
+  },
+  "Sample": {
+    "ru": "Выборка",
+    "de": "Auswahl",
+    "pt": "Seleção",
+    "es": "Selección",
+    "fr": "Sélection",
+    "it": "Selezione"
+  },
+  "Tracked career": {
+    "ru": "Вся история",
+    "de": "Erfasste Karriere",
+    "pt": "Carreira registada",
+    "es": "Trayectoria registrada",
+    "fr": "Carrière enregistrée",
+    "it": "Carriera registrata"
+  },
+  "Played": {
+    "ru": "Сыграно",
+    "de": "Gespielt",
+    "pt": "Jogadas",
+    "es": "Jugados",
+    "fr": "Jouées",
+    "it": "Giocate"
+  },
+  "Draws": {
+    "ru": "Ничьи",
+    "de": "Unentschieden",
+    "pt": "Empates",
+    "es": "Empates",
+    "fr": "Nuls",
+    "it": "Pareggi"
+  },
+  "Verified map results": {
+    "ru": "Подтверждённые результаты",
+    "de": "Bestätigte Kartenergebnisse",
+    "pt": "Resultados confirmados",
+    "es": "Resultados verificados",
+    "fr": "Résultats confirmés",
+    "it": "Risultati verificati"
+  },
+  "Demo round statistics": {
+    "ru": "Статистика раундов по демо",
+    "de": "Rundenstatistik aus Demos",
+    "pt": "Estatísticas de rondas por demo",
+    "es": "Estadísticas de rondas por demo",
+    "fr": "Statistiques des manches issues des démos",
+    "it": "Statistiche round dalle demo"
+  },
+  "Maps with demos": {
+    "ru": "Карты с демо",
+    "de": "Karten mit Demos",
+    "pt": "Mapas com demos",
+    "es": "Mapas con demos",
+    "fr": "Cartes avec démo",
+    "it": "Mappe con demo"
+  },
+  "Pistol round win rate": {
+    "ru": "Винрейт пистолетных раундов",
+    "de": "Siegrate bei Pistolenrunden",
+    "pt": "Taxa de vitória em rondas de pistola",
+    "es": "Tasa de victoria en rondas de pistola",
+    "fr": "Taux de victoire en manches de pistolet",
+    "it": "Percentuale di vittoria nei round di pistola"
+  },
+  "Match win rate excludes technical results. Map win rate uses only verified scores.": {
+    "ru": "Матчевый винрейт без технических результатов. В винрейт карт входят только карты с подтверждённым счётом.",
+    "de": "Die Matchsiegquote schließt technische Ergebnisse aus. Die Kartensiegquote nutzt nur bestätigte Ergebnisse.",
+    "pt": "A taxa de vitória em partidas exclui resultados técnicos. A taxa de vitória em mapas usa apenas resultados confirmados.",
+    "es": "La tasa de victoria en partidos excluye resultados técnicos. La de mapas solo usa marcadores verificados.",
+    "fr": "Le taux de victoire en match exclut les résultats techniques. Celui des cartes repose sur les scores confirmés.",
+    "it": "La percentuale di vittoria nelle partite esclude i risultati tecnici. Quella delle mappe usa solo punteggi verificati."
   }
 }

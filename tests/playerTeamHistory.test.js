@@ -21,3 +21,20 @@ test('single match and year boundaries have finite axis, inclusive observation d
  assert.equal(h.latest.days,2);const axis=careerAxis(h.last,h.last);assert.ok(axis.max>axis.min);assert.equal(axis.ticks.length,4);
  assert.deepEqual(buildPlayerTeamHistory([],catalog).periods,[]);
 });
+
+test('Jumbo qualifier roster shares one consecutive career period and the main team link', () => {
+  const main = '934a2bd0-fa66-4c02-ac92-00f742e7ec55';
+  const qualifier = 'b0fcb32f-15fd-4063-b0e9-4412046bed56';
+  const team = { faceitTeamId: main, name: 'Jumbo team', slug: 'jumbo-team' };
+  const career = buildPlayerTeamHistory([
+    match('1', main, '2026-07-31'),
+    match('2', qualifier, '2026-11-08', { teamName: 'JUMBO', teamScore: 9, opponent: { score: 13 } }),
+    match('3', main, '2026-11-10'),
+  ], [team]);
+  assert.equal(career.periods.length, 1);
+  assert.equal(career.latest.team, team);
+  assert.equal(career.latest.name, 'Jumbo team');
+  assert.equal(career.latest.count, 3);
+  assert.equal(career.teamCount, 1);
+  assert.equal(career.latest.matches[1].teamId, qualifier);
+});

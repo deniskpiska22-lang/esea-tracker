@@ -32,22 +32,69 @@ function Stat({ name, value, detail }) {
   return <div className="coach-row"><div>{name}{detail && <small>{detail}</small>}</div><strong>{value}</strong></div>;
 }
 
+function ResultsCard({ label, results }) {
+  return <div className="coach-rate-card">
+    <small>{tx(label)}</small>
+    <strong>{results.total ? rate(results.won, results.total) : '—'}</strong>
+    <span>{results.won} {tx('Wins')} · {results.lost} {tx('Losses')}
+      {results.drawn > 0 && ` · ${results.drawn} ${tx('Draws')}`}</span>
+  </div>;
+}
+
+function CoachStats({ stats }) {
+  const [scope, setScope] = useState('career');
+  const selected = scope === 'recent' ? stats.recent
+    : stats.teams.find(({ team }) => team.id === scope) || stats.career;
+  const { matches, maps, pool, rounds } = selected;
+  return <div className="coach-stack">
+    <section className="coach-panel coach-stats">
+      <header>
+        <h2>{tx('Team statistics')}</h2>
+        <label className="coach-stats-filter"><span>{tx('Sample')}</span>
+          <select value={scope} onChange={event => setScope(event.target.value)}>
+            <option value="career">{tx('Tracked career')}</option>
+            <option value="recent">{tx('Last 90 days')}</option>
+            {stats.teams.map(({ team }) => <option key={team.id} value={team.id}>{team.name}</option>)}
+          </select>
+        </label>
+      </header>
+      <div className="coach-rate-grid">
+        <ResultsCard label="Match win rate" results={matches} />
+        <ResultsCard label="Map win rate" results={maps} />
+        <div className="coach-rate-card">
+          <small>{tx('Maps played')}</small><strong>{maps.total}</strong>
+          <span>{tx('Matches')}: {matches.total}</span>
+        </div>
+      </div>
+      <p className="coach-note">{tx('Match win rate excludes technical results. Map win rate uses only verified scores.')}</p>
+    </section>
+    <Panel title={tx('Map pool')} subtitle={tx('Verified map results')}>
+      {pool.length ? <div className="coach-pool" role="region" tabIndex={0} aria-label={tx('Map pool')}>
+        <table>
+          <thead><tr>{['Map', 'Played', 'Wins', 'Losses', ...(maps.drawn ? ['Draws'] : []), 'Map win rate', 'Round win rate']
+            .map(label => <th scope="col" key={label}>{tx(label)}</th>)}</tr></thead>
+          <tbody>{pool.map(map => <tr key={map.name}>
+            <th scope="row">{tx(map.name)}</th><td>{map.total}</td><td>{map.won}</td><td>{map.lost}</td>
+            {maps.drawn > 0 && <td>{map.drawn}</td>}
+            <td><span className="coach-pool-rate">{rate(map.won, map.total)}
+              <span aria-hidden="true" style={{ '--win-rate': `${100 * map.won / map.total}%` }} /></span></td>
+            <td title={`${map.roundsWon} / ${map.roundsPlayed}`}>{rate(map.roundsWon, map.roundsPlayed)}</td>
+          </tr>)}</tbody>
+        </table>
+      </div> : <p className="coach-note">{tx('No verified map results yet.')}</p>}
+    </Panel>
+    {rounds.covered > 0 && <Panel title={tx('Demo round statistics')} subtitle={`${tx('Maps with demos')}: ${rounds.covered} / ${maps.total}`}>
+      {[['ct', 'CT round win rate'], ['t', 'T round win rate'], ['pistol', 'Pistol round win rate']].map(([key, label]) =>
+        rounds[key].total > 0 && <Stat key={key} name={tx(label)} value={rate(rounds[key].won, rounds[key].total)}
+          detail={`${tx('Rounds')}: ${rounds[key].won} / ${rounds[key].total}`} />)}
+    </Panel>}
+  </div>;
+}
+
 function Overview({ profile }) {
-  const { maps, rounds } = profile;
   return <>
-    <div className="coach-columns">
-      <Panel title={tx('Team statistics')} subtitle={tx('Last 90 days')}>
-        {maps.total ? <>
-          <Stat name={tx('Map win rate')} value={rate(maps.won, maps.total)} detail={`${tx('Maps')}: ${maps.total}`} />
-          {['ct', 't'].map(side => rounds[side].total > 0 && <Stat key={side}
-            name={side === 'ct' ? tx('CT round win rate') : tx('T round win rate')}
-            value={rate(rounds[side].won, rounds[side].total)}
-            detail={`${tx('Rounds')}: ${rounds[side].total}`} />)}
-          {[maps.best, maps.worst].map((map, index) => map && <Stat key={map.name}
-            name={index === 0 ? tx('Best map') : tx('Worst map')} value={`${tx(map.name)} · ${rate(map.won, map.total)}`}
-            detail={`${tx('Maps')}: ${map.total}`} />)}
-        </> : <p className="coach-note">{tx('No verified map results yet.')}</p>}
-      </Panel>
+    <div className="coach-columns coach-overview">
+      {profile.stats && <CoachStats stats={profile.stats} />}
       <Panel title={tx('Upcoming and recent matches')}>
         {profile.matches.map(match => {
           const won = match.ownScore > match.otherScore;
@@ -84,6 +131,7 @@ function Career({ profile }) {
   const { roster, periods, team, observedAt } = profile;
   const [selection, setSelection] = useState(null);
   const selected = periods.find(period => period.key === selection) || periods[0];
+  const timelinePeriods = periods.slice().sort((a, b) => Date.parse(a.first) - Date.parse(b.first));
   const start = Math.min(...periods.map(period => Date.parse(period.first)));
   const end = Math.max(...periods.map(period => Date.parse(period.last)), start + 86400000);
   const position = value => Math.max(2, Math.min(98, 2 + 96 * (Date.parse(value) - start) / (end - start)));
@@ -118,7 +166,7 @@ function Career({ profile }) {
     {selected && <Panel title={tx('Coaching timeline')}>
       <div className="coach-timeline">
         <div className="coach-axis"><span>{formatDate(new Date(start))}</span>{end - start > 86400000 && <span>{formatDate(new Date(end))}</span>}</div>
-        {periods.map(period => <div className="coach-track" key={period.key}>
+        {timelinePeriods.map(period => <div className="coach-track" key={period.key}>
           <span>{period.team.name}</span>
           <div><button type="button" title={dates(period)} aria-label={`${period.team.name}, ${dates(period)}`}
             aria-pressed={selected.key === period.key} onClick={() => setSelection(period.key)}
@@ -165,6 +213,7 @@ export default function CoachPage({ playerRoute = false }) {
     return <Navigate replace to={playerRolePath(profile.playerNickname, 'coach', tab)} />;
   }
   const { team, maps } = profile;
+  const career = profile.stats?.career;
   return <div className="player-profile coach-profile min-h-screen text-white">
     <main className="player-profile-shell mx-auto px-4 py-6 sm:px-6 lg:px-8">
       <Link className="coach-back" to={teamPath(team)}>← {team.name}</Link>
@@ -189,8 +238,8 @@ export default function CoachPage({ playerRoute = false }) {
             </Link>
           </div>
           <div className="coach-metrics">
-            <div className="coach-metric coach-metric-primary"><small>{tx('Team map win rate')} · {tx('Last 90 days')}</small>
-              <strong>{maps.total ? rate(maps.won, maps.total) : '—'}</strong><span>{tx('Maps')}: {maps.total}</span></div>
+            <div className="coach-metric coach-metric-primary"><small>{tx(career ? 'Match win rate' : 'Team map win rate')} · {tx(career ? 'Tracked career' : 'Last 90 days')}</small>
+              <strong>{career ? (career.matches.total ? rate(career.matches.won, career.matches.total) : '—') : (maps.total ? rate(maps.won, maps.total) : '—')}</strong><span>{career ? tx('Matches') : tx('Maps')}: {career ? career.matches.total : maps.total}</span></div>
             <div className="coach-metric"><small>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>
           </div>
         </div>

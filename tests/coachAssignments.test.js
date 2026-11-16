@@ -39,3 +39,28 @@ test('limits past tenure to Season 58 and current tenure to games from November 
   assert.equal(profile.periods[1].season, 58);
   assert.deepEqual(profile.periods.map(p => [p.matches, p.mapTotals.played]), [[1, 1], [1, 1]]);
 });
+
+test('separates results by team and date, and leaves walkovers out of win rates', () => {
+  const now = Date.parse('2026-11-16T12:00:00Z');
+  const coach = assignedCoach(person.id);
+  const archive = match('archive', old, 'S58 Europe Entry D', '2026-07-20T20:00:00Z');
+  const win = match('win', current, 'S59 EU Entry D', '2026-11-08T20:00:00Z');
+  const loss = { ...match('loss', current, 'S59 EU Entry D', '2026-11-09T20:00:00Z'),
+    team1_score: 0, team2_score: 2, best_of: 3, map_scores: [
+      { map: 'de_nuke', team1_score: 9, team2_score: 13 },
+      { map: 'de_mirage', team1_score: 5, team2_score: 13 },
+    ] };
+  const walkover = { ...win, id: 'walkover', team1_score: 1, team2_score: 0 };
+  const rows = [...assignedCoachRows([archive], old, coach, [], now),
+    ...assignedCoachRows([win, loss, walkover], current, coach, [], now)];
+  const { stats, periods } = buildCoachProfile(person.id, rows, new Map(), now);
+  assert.deepEqual(stats.career.matches, { total: 3, won: 2, lost: 1, drawn: 0 });
+  assert.deepEqual(stats.career.maps, { total: 4, won: 2, lost: 2, drawn: 0 });
+  assert.deepEqual(stats.career.pool[0], {
+    name: 'Nuke', total: 3, won: 2, lost: 1, drawn: 0, roundsWon: 35, roundsPlayed: 66,
+  });
+  assert.equal(stats.career.rounds.covered, 0);
+  assert.deepEqual(stats.recent.matches, { total: 2, won: 1, lost: 1, drawn: 0 });
+  assert.deepEqual(stats.teams.map(entry => [entry.team.id, entry.maps.total]), [[current.teamId, 3], [old.teamId, 1]]);
+  assert.equal(periods[0].matches, 3);
+});

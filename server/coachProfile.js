@@ -8,6 +8,37 @@ const matchDate = match => match.finished_at || match.scheduled_at;
 const season = value => Number(value?.match(/\b(?:season\s*|s)(\d+)\b/i)?.[1]) || null;
 const newestFirst = (a, b) => Date.parse(b.date) - Date.parse(a.date);
 
+function resultTotals() {
+  return { total: 0, won: 0, lost: 0, drawn: 0 };
+}
+
+function recordResult(stats, own, opponent) {
+  stats.total++;
+  stats[own > opponent ? 'won' : own < opponent ? 'lost' : 'drawn']++;
+}
+
+function summarize(matches) {
+  const matchResults = resultTotals(), mapResults = resultTotals(), pool = new Map(), maps = [];
+  for (const { display, mapScores } of matches) {
+    const scores = [display.ownScore, display.otherScore];
+    if (scores.every(value => value != null && value !== '' && Number.isInteger(Number(value)) && Number(value) >= 0)
+      && (mapScores.length || Math.max(...scores) > 1)) {
+      recordResult(matchResults, Number(scores[0]), Number(scores[1]));
+    }
+    for (const map of mapScores) {
+      const entry = pool.get(map.map) || { name: map.map, ...resultTotals(), roundsWon: 0, roundsPlayed: 0 };
+      recordResult(mapResults, map.teamScore, map.opponentScore);
+      recordResult(entry, map.teamScore, map.opponentScore);
+      entry.roundsWon += map.teamScore;
+      entry.roundsPlayed += map.teamScore + map.opponentScore;
+      pool.set(map.map, entry);
+      maps.push(map);
+    }
+  }
+  return { matches: matchResults, maps: mapResults, rounds: aggregateDemoRounds(maps),
+    pool: [...pool.values()].sort((a, b) => b.total - a.total || b.won / b.total - a.won / a.total || a.name.localeCompare(b.name)) };
+}
+
 export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now()) {
   const records = rows.flatMap(row => {
     const match = row.matches, date = match && matchDate(match);
@@ -29,11 +60,13 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     });
   }).sort(newestFirst);
   if (!records.length) return null;
-  const completed = records.filter(row => row.isFinished);
+  const completed = [...new Map(records.filter(row => row.isFinished && Date.parse(row.date) <= now)
+    .map(row => [`${row.match.id}:${row.team.id}`, row])).values()];
   const future = records.filter(row => !row.isFinished).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
   const activeTeamId = records.find(row => row.assignment?.current)?.team.id;
   const featured = future.find(row => row.team.id === activeTeamId)
     || completed.find(row => row.team.id === activeTeamId) || future[0] || completed[0];
+  if (!featured) return null;
   const identity = records.slice().sort((a, b) => Math.min(now, Date.parse(b.date)) - Math.min(now, Date.parse(a.date)))[0].person;
   const periodsByKey = new Map();
   for (const row of [...completed].reverse()) {
@@ -56,16 +89,26 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     })
     .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   const completedByTeam = new Map();
-  for (const row of completed) {
-    if (!completedByTeam.has(row.team.id)) completedByTeam.set(row.team.id, { team: row.team, matches: [] });
-    completedByTeam.get(row.team.id).matches.push(row.match);
+  const tracked = completed.map(row => ({
+    ...row,
+    mapScores: normalizeTeamMapHistory([row.match], row.team.id)[0]?.mapScores || [],
+  }));
+  for (const row of tracked) {
+    if (!completedByTeam.has(row.team.id)) completedByTeam.set(row.team.id, []);
+    completedByTeam.get(row.team.id).push(row);
   }
-  const history = [...completedByTeam.values()].flatMap(({ team, matches }) =>
-    normalizeTeamMapHistory(matches, team.id).map(match => ({ ...match, team }))).sort(newestFirst);
+  const history = tracked.filter(row => row.mapScores.length);
+  const stats = {
+    career: summarize(tracked),
+    recent: summarize(tracked.filter(row => Date.parse(row.date) >= now - 90 * day)),
+    teams: [...completedByTeam.values()].sort((a, b) =>
+      Number(b[0].team.id === featured.team.id) - Number(a[0].team.id === featured.team.id))
+      .map(rows => ({ team: rows[0].team, ...summarize(rows) })),
+  };
   const maps = history.filter(row => row.team.id === featured.team.id
     && Date.parse(row.date) >= now - 90 * day && Date.parse(row.date) <= now).flatMap(row => row.mapScores);
   const mapHistory = history.flatMap(row => row.mapScores.map(map => ({
-    id: row.id, date: row.date, team: row.team.name, opponent: row.opponent.name,
+    id: row.match.id, date: row.date, team: row.team.name, opponent: row.display.opponent,
     map: map.map, ownScore: map.teamScore, otherScore: map.opponentScore,
   }))).slice(0, 100);
   const byMap = new Map();
@@ -85,5 +128,5 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,
       best: comparison[0] || null, worst: comparison.length > 1 && comparison[0].won / comparison[0].total !== comparison.at(-1).won / comparison.at(-1).total
         ? comparison.at(-1) : null },
-    rounds: aggregateDemoRounds(maps), mapHistory };
+    rounds: aggregateDemoRounds(maps), mapHistory, stats };
 }
