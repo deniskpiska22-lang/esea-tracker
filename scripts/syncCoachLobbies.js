@@ -3,6 +3,7 @@ import { setTimeout as pause } from 'node:timers/promises';
 import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 import { fetchCoachLobby, matchId } from '../server/coachLobby.js';
+import { scanCoachLobbies } from '../server/coachLobbyScan.js';
 
 async function result(query) {
   const { data, error } = await query;
@@ -12,29 +13,28 @@ async function result(query) {
 
 const db = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY,
   { auth: { persistSession: false, autoRefreshToken: false } });
-const due = await result(db.rpc('esea_coach_lobbies_due'));
-const totals = { checked: 0, withCoaches: 0, failed: 0 };
-let cursor = 0;
-let accessDenied = false;
-await Promise.all(Array.from({ length: Math.min(4, due.length) }, async () => {
-  while (!accessDenied && cursor < due.length) {
-    const row = due[cursor++];
-    if (!matchId(row.id)) continue;
-    try {
-      const snapshot = await fetchCoachLobby(row);
-      await result(db.from('esea_coach_lobbies').upsert(snapshot));
-      totals.checked++;
-      if (snapshot.coach_ids.length) totals.withCoaches++;
-    } catch (error) {
-      totals.failed++;
-      if (error.status === 403 || error.status === 429) accessDenied = true;
-      console.warn(`[coach-lobbies] ${row.id}: ${error.message}`);
-      await result(db.from('esea_coach_lobbies').upsert({ match_id: row.id,
-        retry_at: new Date(Date.now() + (error.status === 429 ? 10 * 60000 : 12 * 3600000)).toISOString() }));
-    }
-    if (!accessDenied && cursor < due.length) await pause(350);
-  }
-}));
+const workerName = 'coach-lobbies';
+const saved = await result(db.from('worker_status').select('detail').eq('worker_name', workerName).maybeSingle());
+let state = {};
+try { state = JSON.parse(saved?.detail || '{}') || {}; } catch { /* Old or missing checkpoint. */ }
+
+const totals = await scanCoachLobbies({
+  state,
+  due: () => result(db.rpc('esea_coach_lobbies_due')),
+  fetchRoom: fetchCoachLobby,
+  saveRoom: snapshot => result(db.from('esea_coach_lobbies').upsert(snapshot)),
+  deferRoom: (id, retryAt) => result(db.from('esea_coach_lobbies').upsert({ match_id: id,
+    retry_at: new Date(retryAt).toISOString() })),
+  saveState: async (detail, status) => {
+    const at = new Date().toISOString();
+    await result(db.from('worker_status').upsert({
+      worker_name: workerName, detail: JSON.stringify(detail), status, last_ping: at, updated_at: at,
+    }, { onConflict: 'worker_name' }));
+  },
+  wait: () => pause(1000),
+  validId: matchId,
+  onError: (row, error) => console.warn(`[coach-lobbies] ${row.id}: ${error.message}`, error.diagnostics || ''),
+});
 console.log('[coach-lobbies]', totals);
-if (accessDenied) process.exitCode = 77;
-else if (due.length && !totals.checked && totals.failed) process.exitCode = 1;
+if (totals.denied) process.exitCode = 77;
+else if (totals.failed && !totals.checked) process.exitCode = 1;

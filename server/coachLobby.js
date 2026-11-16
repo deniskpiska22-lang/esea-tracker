@@ -29,12 +29,37 @@ export function parseCoachLobby(payload, match, checkedAt = new Date().toISOStri
     checked_at: checkedAt, retry_at: null, terminal: finished(payload.status) };
 }
 
+export function coachLobbyRejection(response, now = Date.now()) {
+  const { status, headers } = response;
+  const retryAfter = headers.get('retry-after')?.trim();
+  const requested = /^[0-9]{1,9}$/.test(retryAfter || '')
+    ? now + Number(retryAfter) * 1000 : Date.parse(retryAfter || '');
+  const server = (headers.get('server') || '').toLowerCase();
+  const contentType = (headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
+  return {
+    status,
+    retryAt: Math.max(now + 3600000, Number.isFinite(requested) ? requested : 0),
+    diagnostics: {
+      status,
+      server: ['cloudflare', 'envoy', 'nginx', 'akamai', 'awselb/2.0'].includes(server) ? server : 'other-or-missing',
+      format: contentType === 'application/json' || contentType.endsWith('+json') ? 'json'
+        : contentType === 'text/html' ? 'html' : 'other-or-missing',
+      challenge: headers.get('cf-mitigated')?.toLowerCase() === 'challenge',
+      retryAfter: Boolean(retryAfter),
+    },
+  };
+}
+
 export async function fetchCoachLobby(match) {
   if (!matchId(match.id)) throw new Error('Invalid FACEIT room ID');
   const response = await fetch(`https://www.faceit.com/api/match/v2/match/${encodeURIComponent(match.id)}`, {
     headers: { accept: 'application/json' }, signal: AbortSignal.timeout(9000),
   });
-  if (!response.ok) throw Object.assign(new Error(`FACEIT room HTTP ${response.status}`), { status: response.status });
+  if (!response.ok) {
+    const rejection = coachLobbyRejection(response);
+    await response.body?.cancel().catch(() => {});
+    throw Object.assign(new Error(`FACEIT room HTTP ${response.status}`), rejection);
+  }
   const data = await response.json();
   const parsed = parseCoachLobby(data.payload, match);
   if (!parsed || finished(match.status) && !parsed.terminal) throw new Error('FACEIT room identity or status did not match');
