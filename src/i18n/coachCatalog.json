@@ -150,5 +150,37 @@
     "es": "Las fechas muestran la primera y última partida confirmadas, no el contrato.",
     "fr": "Les dates indiquent les premier et dernier matchs confirmés, pas le contrat.",
     "it": "Le date mostrano la prima e l’ultima partita confermate, non il contratto."
+  },
+  "Profile role": {
+    "ru": "Роль в профиле",
+    "de": "Profilrolle",
+    "pt": "Função no perfil",
+    "es": "Rol del perfil",
+    "fr": "Rôle du profil",
+    "it": "Ruolo del profilo"
+  },
+  "Players and coaches": {
+    "ru": "Игроки и тренеры",
+    "de": "Spieler und Trainer",
+    "pt": "Jogadores e treinadores",
+    "es": "Jugadores y entrenadores",
+    "fr": "Joueurs et entraîneurs",
+    "it": "Giocatori e allenatori"
+  },
+  "Search teams, players or coaches...": {
+    "ru": "Поиск команд, игроков и тренеров…",
+    "de": "Teams, Spieler oder Trainer suchen…",
+    "pt": "Pesquisar equipas, jogadores ou treinadores…",
+    "es": "Buscar equipos, jugadores o entrenadores…",
+    "fr": "Rechercher une équipe, un joueur ou un entraîneur…",
+    "it": "Cerca squadre, giocatori o allenatori…"
+  },
+  "Enter a team name or a player or coach nickname": {
+    "ru": "Введи название команды или ник игрока либо тренера",
+    "de": "Gib einen Teamnamen oder den Namen eines Spielers oder Trainers ein",
+    "pt": "Introduz o nome da equipa ou o apelido do jogador ou treinador",
+    "es": "Introduce el nombre del equipo o el alias del jugador o entrenador",
+    "fr": "Saisis un nom d’équipe ou un pseudo de joueur ou d’entraîneur",
+    "it": "Inserisci il nome della squadra o il nickname di un giocatore o allenatore"
   }
 }

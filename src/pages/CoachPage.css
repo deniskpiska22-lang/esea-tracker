@@ -57,3 +57,5 @@
 @media(max-width:580px){.coach-columns{grid-template-columns:1fr}.coach-roster{grid-template-columns:repeat(3,minmax(0,1fr))}.coach-metric,.coach-career-stats>div{padding:8px}.coach-career-stats strong{font-size:16px}.coach-panel header,.coach-row,.coach-timeline{padding-inline:10px}.coach-metric strong{font-size:17px}.coach-metric-primary strong{font-size:25px}.coach-team-card{padding:6px;gap:6px}.coach-identity h1{margin-block:10px}.coach-profile .player-portrait{height:135px}}
 
 .coach-map-history{margin-top:16px}.coach-map-history summary{cursor:pointer;padding:14px 17px;font-size:15px;font-weight:800}.coach-map-history[open] summary{border-bottom:1px solid var(--coach-edge)}
+
+.coach-track-days{display:block;padding-inline:5px;color:#c4e7da;font-size:10px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:clip}

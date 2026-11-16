@@ -10,6 +10,7 @@ import {
   Navigate,
   Routes,
   Route,
+  useSearchParams,
 } from "react-router-dom";
 
 import { currentLanguage } from "./i18n/languages.js";
@@ -53,6 +54,11 @@ const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const VetoPage = lazy(() => import("./pages/VetoPage"));
 const CalendarPage = lazy(() => import("./pages/CalendarPage"));
 const TournamentPage = lazy(() => import("./pages/TournamentPage"));
+
+function PlayerProfileRoute() {
+  const [params] = useSearchParams();
+  return params.get("role") === "coach" ? <CoachPage playerRoute /> : <PlayerPage />;
+}
 
 function RouteLoading() {
   return (
@@ -152,8 +158,8 @@ function Application() {
                       <Route path="/teams/:slug/matches/:matchId" element={<MatchPageRouter />} />
                       <Route path="/team/:slug/matches/:matchId" element={<MatchPageRouter />} />
                       <Route path="/coach/:coachId" element={<CoachPage />} />
-                      <Route path="/player/:playerId" element={<PlayerPage />} />
-                      <Route path="/players/:playerId" element={<PlayerPage />} />
+                      <Route path="/player/:playerId" element={<PlayerProfileRoute />} />
+                      <Route path="/players/:playerId" element={<PlayerProfileRoute />} />
                       <Route path="/matches/:matchId" element={<MatchPageRouter />} />
                       <Route path="/players" element={<Navigate to="/" replace />} />
                       <Route path="/profile/:username" element={<UserProfilePage />} />

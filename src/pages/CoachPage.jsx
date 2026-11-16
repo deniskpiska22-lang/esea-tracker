@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { getCoachSeo } from '../utils/coachSeo.js';
 import useCoachData from '../hooks/useCoachData.js';
 import CountryFlag from '../components/CountryFlag.jsx';
 import { coachTx as tx } from '../i18n/coachTranslate.js';
+import { tf } from '../i18n/translate.js';
+import { playerRolePath } from '../utils/profileRoles.js';
+import ProfileRoleTabs from '../components/ProfileRoleTabs.jsx';
 import { currentLocale } from '../i18n/languages.js';
 import './PlayerPage.css';
 import './CoachPage.css';
@@ -101,7 +104,8 @@ function Career({ profile }) {
         <div className="coach-row" key={period.key}>
           <Link className="coach-team-inline" to={teamPath(period.team)}><TeamLogo team={period.team} />
             <span><b>{period.team.name}</b><small>{dates(period)}</small></span></Link>
-          <span>{period.season ? `${tx('Season')} ${period.season}` : `${tx('Matches')}: ${period.matches}`}</span>
+          <span className="text-right"><strong title={tx('Observed span')}>{tf('{0} d', period.days)}</strong>
+            <small>{period.season ? `${tx('Season')} ${period.season}` : `${tx('Matches')}: ${period.matches}`}</small></span>
         </div>) : <p className="coach-note">{tx('No completed matches confirmed yet.')}</p>}
     </Panel>
     {selected && <Panel title={tx('Coaching timeline')}>
@@ -111,35 +115,48 @@ function Career({ profile }) {
           <span>{period.team.name}</span>
           <div><button type="button" title={dates(period)} aria-label={`${period.team.name}, ${dates(period)}`}
             aria-pressed={selected.key === period.key} onClick={() => setSelection(period.key)}
-            style={{ '--start': `${position(period.first)}%`, '--span': `${position(period.last) - position(period.first)}%` }} /></div>
+            style={{ '--start': `${position(period.first)}%`, '--span': `${position(period.last) - position(period.first)}%` }}>
+            {position(period.last) - position(period.first) >= 12 && <span className="coach-track-days" aria-hidden="true">{tf('{0} d', period.days)}</span>}
+          </button></div>
         </div>)}
         <div className="coach-selection"><TeamLogo team={selected.team} /><div><b>{selected.team.name}</b>
-          <small>{dates(selected)} · {tx('Matches')}: {selected.matches}</small></div></div>
+          <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
     <p className="coach-footnote">{tx('Dates show the first and last confirmed match, not the full coaching contract.')}</p>
   </div>;
 }
 
-export default function CoachPage() {
-  const { coachId } = useParams();
+export default function CoachPage({ playerRoute = false }) {
+  const { coachId, playerId } = useParams();
   const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
-  const response = useCoachData('id', coachId);
+  const response = useCoachData(playerRoute ? 'player' : 'id', playerRoute ? playerId : coachId);
   const profile = response?.data;
   const tab = params.get('tab') === 'teams' ? 'teams' : 'overview';
+  function selectTab(nextTab) {
+    setParams(previous => {
+      const next = new URLSearchParams(previous);
+      if (nextTab === 'teams') next.set('tab', 'teams');
+      else next.delete('tab');
+      return next;
+    }, { replace: true });
+  }
 
   useEffect(() => {
     if (!response) return;
     window.dispatchEvent(new CustomEvent('coach-seo-update', {
-      detail: { ...getCoachSeo(coachId, profile, undefined, response.status === 404), routePath: pathname },
+      detail: { ...getCoachSeo(coachId || playerId, profile, undefined, response.status === 404), routePath: pathname },
     }));
-  }, [coachId, pathname, profile, response]);
+  }, [coachId, playerId, pathname, profile, response]);
 
   if (!profile) return <div className="player-profile px-5 py-16 text-center text-slate-300" role="status">
     {!response ? tx('Loading...') : response.status === 404 ? tx('Coach profile not found') : tx('Coach data temporarily unavailable')}
   </div>;
 
+  if (profile.playerNickname && !playerRoute) {
+    return <Navigate replace to={playerRolePath(profile.playerNickname, 'coach', tab)} />;
+  }
   const { team, maps } = profile;
   return <div className="player-profile coach-profile min-h-screen text-white">
     <main className="player-profile-shell mx-auto px-4 py-6 sm:px-6 lg:px-8">
@@ -171,11 +188,12 @@ export default function CoachPage() {
           </div>
         </div>
       </section>
+      {profile.playerNickname && <ProfileRoleTabs nickname={profile.playerNickname} active="coach" tab={tab} />}
       <nav className={`player-section-nav ${tab === 'teams' ? 'showing-teams' : ''}`} aria-label={tx('Coach profile')}>
-        <button type="button" aria-pressed={tab === 'overview'} onClick={() => setParams({})}>{tx('Overview')}</button>
-        <button type="button" aria-pressed={tab === 'teams'} onClick={() => setParams({ tab: 'teams' })}>{tx('Teams')}</button>
+        <button type="button" aria-pressed={tab === 'overview'} onClick={() => selectTab('overview')}>{tx('Overview')}</button>
+        <button type="button" aria-pressed={tab === 'teams'} onClick={() => selectTab('teams')}>{tx('Teams')}</button>
       </nav>
-      <div className="coach-content">{tab === 'teams' ? <Career key={coachId} profile={profile} /> : <Overview profile={profile} />}</div>
+      <div className="coach-content">{tab === 'teams' ? <Career key={profile.id} profile={profile} /> : <Overview profile={profile} />}</div>
     </main>
   </div>;
 }

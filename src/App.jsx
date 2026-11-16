@@ -18,11 +18,14 @@ import { supabase } from "./lib/supabaseClient";
 import RouteSeo from "./components/RouteSeo";
 import SitePresence from "./components/SitePresence.jsx";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import { buildPlayerSearchIndex, searchPlayers } from "./utils/siteSearch.js";
+import { coachTx } from "./i18n/coachTranslate.js";
+import { playerRolePath } from "./utils/profileRoles.js";
+import { buildPlayerSearchIndex, mergePeopleSearch, searchPlayerRating, searchPlayers } from "./utils/siteSearch.js";
 
 function App() {
   const teams = useContext(TeamUrlContext);
   const [liveSearchPlayers, setLiveSearchPlayers] = useState([]);
+  const [coachSearch, setCoachSearch] = useState(null);
   useEffect(() => {
     const shell = document.getElementById("app-boot-shell");
     if (!shell) return undefined;
@@ -126,6 +129,21 @@ function App() {
     return () => {cancelled = true; window.clearTimeout(timer);};
   }, [normalizedSearch,showSearch]);
 
+  useEffect(() => {
+    if (!showSearch || normalizedSearch.length < 2 || normalizedSearch.length > 80) return;
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch(`/api/coach?${new URLSearchParams({ search: normalizedSearch })}`, { signal: controller.signal });
+        const data = response.ok ? await response.json() : null;
+        if (!controller.signal.aborted) setCoachSearch({ query: normalizedSearch, coaches: data?.coaches || [] });
+      } catch {
+        if (!controller.signal.aborted) setCoachSearch({ query: normalizedSearch, coaches: [] });
+      }
+    }, 250);
+    return () => { window.clearTimeout(timer); controller.abort(); };
+  }, [normalizedSearch, showSearch]);
+
   const filteredTeams = useMemo(() => {
     if (!normalizedSearch) {
       return [];
@@ -145,8 +163,9 @@ function App() {
     [showSearch, teams, searchablePlayers]
   );
   const filteredPlayers = useMemo(
-    () => searchPlayers(playerSearchIndex, liveSearchPlayers, normalizedSearch),
-    [playerSearchIndex, liveSearchPlayers, normalizedSearch]
+    () => mergePeopleSearch(searchPlayers(playerSearchIndex, liveSearchPlayers, normalizedSearch),
+      coachSearch?.query === normalizedSearch ? coachSearch.coaches : [], normalizedSearch),
+    [playerSearchIndex, liveSearchPlayers, coachSearch, normalizedSearch]
   );
 
   function closeSearch() {
@@ -169,11 +188,9 @@ function App() {
 
   function openPlayer(player) {
     closeSearch();
-    navigate(
-      `/players/${encodeURIComponent(
-        player.faceit_id || player.nickname
-      )}`
-    );
+    navigate(player.isCoach
+      ? player.playerNickname ? playerRolePath(player.playerNickname, 'coach') : `/coach/${encodeURIComponent(player.faceit_id)}`
+      : playerRolePath(player.faceit_id || player.nickname));
   }
 
   function handleSearchKey(event) {
@@ -458,7 +475,7 @@ function App() {
                   ⌕
                 </span>
 
-                <span className="min-w-0 flex-1 truncate text-gray-500 transition group-hover:text-gray-300">{tx(" Search teams & players ")}</span>
+                <span className="min-w-0 flex-1 truncate text-gray-500 transition group-hover:text-gray-300">{coachTx("Search teams, players or coaches...")}</span>
 
                 <span className="rounded-md border border-white/[0.08] bg-white/[0.04] px-2 py-1 text-[10px] font-black text-gray-600">
                   Ctrl K
@@ -656,7 +673,7 @@ function App() {
                 onKeyDown={
                   handleSearchKey
                 }
-                placeholder={tx("Search teams or players...")}
+                placeholder={coachTx("Search teams, players or coaches...")}
                 className="min-w-0 flex-1 bg-transparent py-2 text-white outline-none placeholder:text-gray-600"
               />
 
@@ -672,7 +689,7 @@ function App() {
             <div className="max-h-[65vh] overflow-y-auto">
               {!normalizedSearch && (
                 <div className="p-10 text-center text-gray-500">
-                  {tr("Введите название команды или ник игрока", "Enter a team name or player nickname")}
+                  {coachTx("Enter a team name or a player or coach nickname")}
                 </div>
               )}
 
@@ -680,7 +697,7 @@ function App() {
                 filteredTeams.length ===
                   0 &&
                 filteredPlayers.length ===
-                  0 && (
+                  0 && (normalizedSearch.length < 2 || normalizedSearch.length > 80 || coachSearch?.query === normalizedSearch) && (
                   <div className="p-10 text-center text-gray-500">
                     {tr("Ничего не найдено", "Nothing found")}
                   </div>
@@ -746,14 +763,13 @@ function App() {
               {filteredPlayers.length >
                 0 && (
                 <div>
-                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">{tx(" Players ")}</div>
+                  <div className="px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-gray-600">{coachTx("Players and coaches")}</div>
 
                   {filteredPlayers.map(
-                    (player) => (
-                      <button
-                        key={
-                          player.nickname
-                        }
+                    (player) => {
+                      const rating = searchPlayerRating(player.rating);
+                      return <button
+                        key={player.faceit_id || player.nickname}
                         type="button"
                         onClick={() =>
                           openPlayer(
@@ -770,21 +786,19 @@ function App() {
                           </div>
 
                           <div className="mt-1 truncate text-xs text-gray-500">
-                            {player.team ||
-                              tx("Free agent")}
+                            {player.isCoach
+                              ? [player.playerNickname ? tx("Player") : null, coachTx("Coach"), player.team].filter(Boolean).join(" · ")
+                              : player.team || tx("Player")}
                           </div>
                         </div>
 
-                        {player.rating !==
-                          null && (
+                        {rating !== null && (
                           <div className="shrink-0 rounded-lg border border-orange-500/20 bg-orange-500/10 px-2.5 py-1 text-xs font-black text-orange-300">
-                            {Number(
-                              player.rating
-                            ).toFixed(2)}
+                            {rating}
                           </div>
                         )}
-                      </button>
-                    )
+                      </button>;
+                    }
                   )}
                 </div>
               )}

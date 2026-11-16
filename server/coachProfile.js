@@ -1,3 +1,4 @@
+import { observedDays } from '../src/utils/playerTeamHistory.js';
 import { finished, upcoming } from './coachLobby.js';
 import { normalizeTeamMapHistory } from '../src/utils/teamMapStats.js';
 import { aggregateDemoRounds } from '../src/utils/demoRoundStats.js';
@@ -40,7 +41,9 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     period.matches++;
     periodsByKey.set(key, period);
   }
-  const periods = [...periodsByKey.values()].sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
+  const periods = [...periodsByKey.values()]
+    .map(period => ({ ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)) }))
+    .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   const completedByTeam = new Map();
   for (const row of completed) {
     if (!completedByTeam.has(row.team.id)) completedByTeam.set(row.team.id, { team: row.team, matches: [] });

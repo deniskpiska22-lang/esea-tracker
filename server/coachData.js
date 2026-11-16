@@ -27,3 +27,20 @@ export async function loadCoachIdentity(id) {
   }
   return null;
 }
+
+export async function coachPlayerNames(db, ids) {
+  if (!ids.length) return new Map();
+  const { data, error } = await db.rpc('esea_coach_player_identities', { p_ids: ids });
+  if (error) throw error;
+  return new Map(data.map(player => [player.id, player.nickname]));
+}
+
+export async function resolvePlayerCoachId(db, nickname) {
+  const escaped = nickname.replace(/[\\%_]/g, '\\$&');
+  const { data, error } = await db.from('players').select('faceit_id').ilike('nickname', escaped).limit(2);
+  if (error) throw error;
+  if (data.length) return data.length === 1 ? data[0].faceit_id : null;
+  const alias = await db.from('player_profile_aliases').select('player_id').eq('nickname', nickname.toLowerCase()).maybeSingle();
+  if (alias.error) throw alias.error;
+  return alias.data?.player_id || null;
+}

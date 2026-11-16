@@ -39,6 +39,7 @@ test('profile excludes maps from unconfirmed and upcoming lobbies and technical 
     ({ ...parseCoachLobby(room({ match, coach: match === wrong ? membership(6) : membership(5) }), match, checkedAt), matches: match })),
   new Map(), now);
   assert.equal(profile.periods[0].matches, 2);
+  assert.equal(profile.periods[0].days, 1);
   assert.equal(profile.matches[0].id, queued.id);
   assert.equal(profile.observedAt, checkedAt);
   assert.deepEqual(profile.maps, { total: 1, won: 1, best: null, worst: null });

@@ -1,4 +1,6 @@
 import './PlayerPage.css';
+import ProfileRoleTabs from '../components/ProfileRoleTabs.jsx';
+import useCoachData from '../hooks/useCoachData.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
@@ -718,6 +720,8 @@ function PlayerPage() {
 
   const [statsError, setStatsError] =
     useState("");
+  const linkedCoach = useCoachData('identity',
+    !loadingStats && decodedNickname && isFaceitPlayerId(resolvedPlayerId) ? resolvedPlayerId : null)?.data;
 
   const playerTeam =
     teams.find((team) => team.activeSeasonParticipant !== false &&
@@ -1571,6 +1575,7 @@ function PlayerPage() {
           </div>
         </section>
 
+        {linkedCoach?.playerNickname && <ProfileRoleTabs nickname={linkedCoach.playerNickname} active="player" tab={profileTab} />}
         <nav className={`player-section-nav ${profileTab === "teams" ? "showing-teams" : ""}`} aria-label={tx("Player statistics")}>
           <a href="#player-performance" onClick={()=>setProfileTab("overview")}>{tx(" Performance ")}</a>
           <button type="button" aria-pressed={profileTab === "teams"} onClick={()=>setProfileTab("teams")}>{tx("Teams")}</button>

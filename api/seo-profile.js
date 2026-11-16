@@ -1,4 +1,5 @@
-import { loadCoachIdentity } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { playerRolePath } from '../src/utils/profileRoles.js';
 import { uuid } from '../server/coachLobby.js';
 import { getCoachSeo } from '../src/utils/coachSeo.js';
 import { loadForumMetadata } from '../server/forumSeo.js';
@@ -25,13 +26,22 @@ export default async function handler(req,res) {
   if(!key || key.length>150 || (section && !['matches','stats','analytics','veto'].includes(section))) return res.status(404).end(translateText('Page not found',language));
   try {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
-    if (kind === 'coach') {
-      const profile = uuid(key) ? await loadCoachIdentity(key) : null;
+    if (kind === 'coach' || (kind === 'player' && req.query.role === 'coach')) {
+      const db = coachClient();
+      const id = uuid(key) ? key : kind === 'player' ? await resolvePlayerCoachId(db, key) : null;
+      const coach = uuid(id) ? await loadCoachIdentity(id) : null;
+      const playerNickname = (await coachPlayerNames(db, coach ? [id] : [])).get(id);
+      const tab = req.query.tab === 'teams' ? 'teams' : '';
+      if (playerNickname && (kind === 'coach' || key !== playerNickname)) {
+        res.setHeader('Cache-Control', 'no-store');
+        return res.redirect(302, localizedPath(playerRolePath(playerNickname, 'coach', tab), language));
+      }
+      const profile = coach ? { ...coach, playerNickname } : null;
       const status = profile ? 200 : 404;
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.setHeader('Cache-Control', profile ? 'public, max-age=0, s-maxage=60' : 'no-store');
       if (!profile) res.setHeader('X-Robots-Tag', 'noindex');
-      return res.status(status).send(renderProfile(template, getCoachSeo(key, profile, language, !profile), status));
+      return res.status(status).send(renderProfile(template, getCoachSeo(id || key, profile, language, !profile), status));
     }
     if (kind === 'team-map') {
       const map = mapName(req.query.map);

@@ -31,3 +31,26 @@ export function searchPlayers(index, livePlayers, query, limit = 6) {
   }
   return results;
 }
+
+export function mergePeopleSearch(players, coaches, query, limit = 12) {
+  const coachingIds = new Set(coaches.map(coach => coach.id));
+  const people = [
+    ...coaches.map(coach => ({
+      ...players.find(player => player.faceit_id === coach.id),
+      nickname: coach.nickname, faceit_id: coach.id,
+      playerNickname: coach.playerNickname,
+      isCoach: true,
+    })),
+    ...players.filter(player => !coachingIds.has(player.faceit_id)),
+  ];
+  const priority = ({ nickname }) => {
+    const key = nickname.toLowerCase();
+    return key === query ? 0 : key.startsWith(query) ? 1 : 2;
+  };
+  return people.sort((a, b) => priority(a) - priority(b)).slice(0, limit);
+}
+
+export function searchPlayerRating(value) {
+  return value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value))
+    ? Number(value).toFixed(2) : null;
+}
