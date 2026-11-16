@@ -1,3 +1,5 @@
+import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
+import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/coachAssignments.js';
 import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
@@ -18,21 +20,41 @@ export default async function handler(request, response) {
     response.setHeader('Cache-Control', 'public, max-age=60, s-maxage=180');
     if (search != null) {
       const coaches = await result(db.rpc('find_esea_coaches', { p_query: search.trim() }));
-      const names = await coachPlayerNames(db, coaches.map(coach => coach.id));
-      return response.status(200).json({ coaches: coaches.map(coach => ({ ...coach, playerNickname: names.get(coach.id) || null })) });
+      const key = search.trim().toLowerCase();
+      const editorial = linkedPlayerProfiles.filter(profile =>
+        [profile.nickname, ...profile.aliases].some(nick => nick.toLowerCase().includes(key)))
+        .map(profile => assignedCoach(profile.id)).filter(Boolean);
+      const unique = [...new Map([...coaches, ...editorial].map(coach => {
+        const person = linkedPlayerProfile(coach.id);
+        const merged = person ? { ...coach, id: person.id, nickname: person.nickname } : coach;
+        return [merged.id, merged];
+      })).values()].slice(0, 8);
+      const names = await coachPlayerNames(db, unique.map(coach => coach.id));
+      return response.status(200).json({ coaches: unique.map(coach => ({
+        id: coach.id, nickname: coach.nickname, playerNickname: names.get(coach.id) || null,
+      })) });
     }
     if (identity) {
-      const coach = await loadCoachIdentity(identity);
-      const names = await coachPlayerNames(db, coach ? [identity] : []);
-      return response.status(200).json({ coach: coach ? { id: identity, nickname: coach.nickname } : null,
-        playerNickname: names.get(identity) || null });
+      const canonical = linkedPlayerProfile(identity)?.id || identity;
+      const coach = await loadCoachIdentity(canonical);
+      const names = await coachPlayerNames(db, coach ? [canonical] : []);
+      return response.status(200).json({ coach: coach ? { id: canonical, nickname: coach.nickname } : null,
+        playerNickname: names.get(canonical) || null });
     }
-    const coachId = player != null ? (uuid(player) ? player : await resolvePlayerCoachId(db, player.trim())) : id;
+    const lookup = player != null ? (uuid(player) ? player : await resolvePlayerCoachId(db, player.trim())) : id;
+    const linked = linkedPlayerProfile(lookup);
+    const coachId = linked?.id || lookup;
     if (player != null && !coachId) return response.status(404).json({ error: 'Coach not found' });
     if (team) {
       const [row] = await result(db.rpc('esea_latest_coach_lobby', { p_team_id: team }));
       const coaches = row?.teams.find(side => side.id === team)?.coaches || [];
-      return response.status(200).json({ coaches: person(coaches), matchId: row?.match_id, observedAt: row?.observed_at });
+      const editorial = coachAssignments.filter(assignment => assignment.teamId === team && assignment.current
+        && Date.parse(assignment.start) <= Date.now()).map(assignment => assignedCoach(assignment.coachId)).filter(Boolean);
+      const unique = [...new Map([...coaches, ...editorial].map(coach => {
+        const canonical = assignedCoach(coach.id) || coach;
+        return [canonical.id, canonical];
+      })).values()];
+      return response.status(200).json({ coaches: person(unique), matchId: row?.match_id, observedAt: row?.observed_at });
     }
     if (match) {
       const row = await result(db.from('esea_coach_lobbies').select('teams,terminal,checked_at').eq('match_id', match).maybeSingle());
@@ -41,9 +63,27 @@ export default async function handler(request, response) {
         .map(side => ({ id: side.id, name: side.name, coaches: person(side.coaches) })) : [] });
     }
 
-    const rows = await result(db.from('esea_coach_lobbies')
-      .select(`teams,terminal,checked_at,matches!inner(${TEAM_MAP_COLUMNS.replace('competition_id:raw_data->>competition_id,', '')})`)
-      .contains('coach_ids', [coachId]).order('checked_at', { ascending: false }).limit(400));
+    const columns = TEAM_MAP_COLUMNS.replace('competition_id:raw_data->>competition_id,', '');
+    const matchColumns = `${columns},started_at`;
+    const originalIds = [coachId, ...(linked?.linkedIds || [])];
+    const manual = assignedCoach(coachId);
+    const assignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
+    const now = Date.now();
+    const [lobbies, ...assignedMatches] = await Promise.all([
+      result(db.from('esea_coach_lobbies').select(`teams,terminal,checked_at,matches!inner(${columns})`)
+        .overlaps('coach_ids', originalIds).order('checked_at', { ascending: false }).limit(400)),
+      ...assignments.map(assignment => {
+        const query = db.from('matches').select(matchColumns)
+          .or(`team1_id.eq.${assignment.teamId},team2_id.eq.${assignment.teamId}`);
+        return result(query.order('scheduled_at', { ascending: false, nullsFirst: false }).limit(400));
+      }),
+    ]);
+    const editorialRows = assignments.flatMap((assignment, index) => assignedCoachRows(assignedMatches[index], assignment, manual, lobbies, now));
+    const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
+    const observed = lobbies.map(row => ({ ...row, teams: row.teams
+      .filter(side => !covered.has(`${row.matches.id}:${side.id}`))
+      .map(side => ({ ...side, coaches: side.coaches.map(coach => originalIds.includes(coach.id) && manual ? manual : coach) })) }));
+    const rows = [...editorialRows, ...observed];
     const ids = [...new Set(rows.flatMap(row => row.teams.filter(side => side.coaches.some(coach => coach.id === coachId)).map(side => side.id)))];
     const [teams, links, biography, playerNames] = ids.length ? await Promise.all([
       result(db.from('team_catalog').select('team_id,team,faceit_avatar_url').in('team_id', ids)),
@@ -53,7 +93,7 @@ export default async function handler(request, response) {
     ]) : [[], [], null, new Map()];
     const slugs = new Map(links.map(row => [row.team_id, row.slug]));
     const catalog = new Map(teams.map(row => [row.team_id, { name: row.team.name, logo: row.faceit_avatar_url || row.team.logo, slug: slugs.get(row.team_id) }]));
-    const profile = buildCoachProfile(coachId, rows, catalog);
+    const profile = buildCoachProfile(coachId, rows, catalog, now);
     if (!profile) return response.status(404).json({ error: 'Coach not found' });
     return response.status(200).json({ ...profile, playerNickname: playerNames.get(coachId) || null, country: profile.country || biography?.country || null });
   } catch (error) {

@@ -1,3 +1,5 @@
+import { linkedPlayerProfile } from '../data/linkedPlayerProfiles.js';
+
 export function buildPlayerSearchIndex(teams, fallbackPlayers) {
   const byName = new Map();
   const add = player => {
@@ -33,6 +35,14 @@ export function searchPlayers(index, livePlayers, query, limit = 6) {
 }
 
 export function mergePeopleSearch(players, coaches, query, limit = 12) {
+  const canonicalPlayers = new Map();
+  for (const player of players) {
+    const linked = linkedPlayerProfile(player.faceit_id || player.nickname);
+    const item = linked ? { ...player, faceit_id: linked.id, nickname: linked.nickname } : player;
+    const key = item.faceit_id || item.nickname.toLowerCase();
+    if (!canonicalPlayers.has(key)) canonicalPlayers.set(key, item);
+  }
+  players = [...canonicalPlayers.values()];
   const coachingIds = new Set(coaches.map(coach => coach.id));
   const people = [
     ...coaches.map(coach => ({

@@ -21,7 +21,7 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
       const isFinished = finished(match.status);
       const current = catalog.get(side.id);
       const team = { id: side.id, name: current?.name || side.name || match[`${own}_name`], logo: current?.logo || side.logo, slug: current?.slug };
-      return [{ person, side, team, date, match, isFinished, checkedAt: row.checked_at, display: {
+      return [{ person, side, team, date, match, assignment: side.assignment, isFinished, checkedAt: row.checked_at, display: {
         id: match.id, date, team, event: match.competition_name,
         opponent: match[`${other}_name`], ownScore: match[`${own}_score`],
         otherScore: match[`${other}_score`], finished: isFinished
@@ -31,18 +31,29 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   if (!records.length) return null;
   const completed = records.filter(row => row.isFinished);
   const future = records.filter(row => !row.isFinished).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-  const featured = future[0] || completed[0];
+  const activeTeamId = records.find(row => row.assignment?.current)?.team.id;
+  const featured = future.find(row => row.team.id === activeTeamId)
+    || completed.find(row => row.team.id === activeTeamId) || future[0] || completed[0];
   const identity = records.slice().sort((a, b) => Math.min(now, Date.parse(b.date)) - Math.min(now, Date.parse(a.date)))[0].person;
   const periodsByKey = new Map();
   for (const row of [...completed].reverse()) {
-    const s = season(row.match.competition_name), key = `${row.team.id}:${s ?? 'unknown'}`;
-    const period = periodsByKey.get(key) || { key, team: row.team, season: s, first: row.date, matches: 0 };
+    const s = row.assignment?.season ?? season(row.match.competition_name);
+    const key = row.assignment ? `${row.team.id}:assigned:${row.assignment.season || row.assignment.start}` : `${row.team.id}:${s ?? 'unknown'}`;
+    const period = periodsByKey.get(key) || {
+      key, team: row.team, season: s, first: row.assignment?.start || row.date, matches: 0,
+      assignment: row.assignment || null, matchRows: [],
+    };
     period.last = row.date;
     period.matches++;
+    period.matchRows.push(row.match);
     periodsByKey.set(key, period);
   }
   const periods = [...periodsByKey.values()]
-    .map(period => ({ ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)) }))
+    .map(({ matchRows, ...period }) => {
+      const maps = normalizeTeamMapHistory(matchRows, period.team.id).flatMap(match => match.mapScores);
+      return { ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)),
+        mapTotals: { played: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length } };
+    })
     .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   const completedByTeam = new Map();
   for (const row of completed) {
@@ -56,7 +67,7 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   const mapHistory = history.flatMap(row => row.mapScores.map(map => ({
     id: row.id, date: row.date, team: row.team.name, opponent: row.opponent.name,
     map: map.map, ownScore: map.teamScore, otherScore: map.opponentScore,
-  }))).slice(0, 30);
+  }))).slice(0, 100);
   const byMap = new Map();
   for (const map of maps) {
     const count = byMap.get(map.map) || { name: map.map, total: 0, won: 0 };
@@ -66,7 +77,10 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   }
   const comparison = [...byMap.values()].filter(map => map.total >= 3)
     .sort((a, b) => b.won / b.total - a.won / a.total || b.total - a.total || a.name.localeCompare(b.name));
-  return { ...identity, team: featured.team, roster: featured.side.roster, observedAt: featured.isFinished ? featured.date : featured.checkedAt,
+  const observedAt = featured.assignment
+    ? completed.find(row => row.team.id === featured.team.id)?.date || featured.assignment.start || featured.date
+    : featured.isFinished ? featured.date : featured.checkedAt;
+  return { ...identity, team: featured.team, assignment: featured.assignment || null, roster: featured.side.roster, observedAt,
     matches: [...future.slice(0, 3), ...completed.slice(0, 6)].map(row => row.display), periods,
     maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,
       best: comparison[0] || null, worst: comparison.length > 1 && comparison[0].won / comparison[0].total !== comparison.at(-1).won / comparison.at(-1).total

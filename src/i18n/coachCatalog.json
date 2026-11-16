@@ -182,5 +182,45 @@
     "es": "Introduce el nombre del equipo o el alias del jugador o entrenador",
     "fr": "Saisis un nom d’équipe ou un pseudo de joueur ou d’entraîneur",
     "it": "Inserisci il nome della squadra o il nickname di un giocatore o allenatore"
+  },
+  "Present": {
+    "ru": "по настоящее время",
+    "de": "heute",
+    "pt": "presente",
+    "es": "actualidad",
+    "fr": "aujourd’hui",
+    "it": "oggi"
+  },
+  "Latest match": {
+    "ru": "Последний матч",
+    "de": "Letztes Match",
+    "pt": "Última partida",
+    "es": "Última partida",
+    "fr": "Dernier match",
+    "it": "Ultima partita"
+  },
+  "Coaching team": {
+    "ru": "Команда тренера",
+    "de": "Trainiertes Team",
+    "pt": "Equipa treinada",
+    "es": "Equipo entrenado",
+    "fr": "Équipe entraînée",
+    "it": "Squadra allenata"
+  },
+  "Coaching periods provided by the coach.": {
+    "ru": "Тренерские периоды указаны самим тренером.",
+    "de": "Die Trainerzeiträume stammen vom Trainer.",
+    "pt": "Os períodos foram indicados pelo treinador.",
+    "es": "Los períodos fueron indicados por el entrenador.",
+    "fr": "Les périodes ont été indiquées par l’entraîneur.",
+    "it": "I periodi sono stati indicati dall’allenatore."
+  },
+  "Team results during the coaching periods provided by the coach.": {
+    "ru": "Результаты команд за периоды, указанные тренером.",
+    "de": "Teamergebnisse während der vom Trainer angegebenen Zeiträume.",
+    "pt": "Resultados da equipa nos períodos indicados pelo treinador.",
+    "es": "Resultados del equipo en los períodos indicados por el entrenador.",
+    "fr": "Résultats de l’équipe pendant les périodes indiquées par l’entraîneur.",
+    "it": "Risultati della squadra nei periodi indicati dall’allenatore."
   }
 }

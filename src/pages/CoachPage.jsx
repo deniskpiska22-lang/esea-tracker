@@ -12,7 +12,8 @@ import './PlayerPage.css';
 import './CoachPage.css';
 
 const formatDate = (value, options = { day: 'numeric', month: 'short', year: 'numeric' }) =>
-  new Intl.DateTimeFormat(currentLocale(), options).format(new Date(value));
+  new Intl.DateTimeFormat(currentLocale(), /^\d{4}-\d{2}-\d{2}$/.test(value)
+    ? { ...options, timeZone: 'UTC' } : options).format(new Date(value));
 const rate = (won, total) => new Intl.NumberFormat(currentLocale(), { style: 'percent', maximumFractionDigits: 1 }).format(won / total);
 const teamPath = team => `/teams/${encodeURIComponent(team.slug || team.id)}`;
 
@@ -73,7 +74,9 @@ function Overview({ profile }) {
         ))}
       </details>
     )}
-    <p className="coach-footnote">{tx('Only matches with the coach confirmed by FACEIT are counted.')}</p>
+    <p className="coach-footnote">{tx(profile.assignment
+      ? 'Team results during the coaching periods provided by the coach.'
+      : 'Only matches with the coach confirmed by FACEIT are counted.')}</p>
   </>;
 }
 
@@ -84,12 +87,15 @@ function Career({ profile }) {
   const start = Math.min(...periods.map(period => Date.parse(period.first)));
   const end = Math.max(...periods.map(period => Date.parse(period.last)), start + 86400000);
   const position = value => Math.max(2, Math.min(98, 2 + 96 * (Date.parse(value) - start) / (end - start)));
-  const dates = period => period.first === period.last ? formatDate(period.first) : `${formatDate(period.first)} — ${formatDate(period.last)}`;
+  const dates = period => {
+    if (period.assignment?.current) return `${formatDate(period.first)} — ${tx('Present')}`;
+    return period.first === period.last ? formatDate(period.first) : `${formatDate(period.first)} — ${formatDate(period.last)}`;
+  };
   return <div className="coach-stack">
     <div className="coach-career-stats">
       <div><span>{tx('Teams')}</span><strong>{new Set([team.id, ...periods.map(period => period.team.id)]).size}</strong></div>
-      <div><span>{tx('Confirmed matches')}</span><strong>{periods.reduce((sum, period) => sum + period.matches, 0)}</strong></div>
-      <div><span>{tx('Latest confirmation')}</span><strong className="coach-date">{formatDate(observedAt)}</strong></div>
+      <div><span>{tx(profile.assignment ? 'Matches' : 'Confirmed matches')}</span><strong>{periods.reduce((sum, period) => sum + period.matches, 0)}</strong></div>
+      <div><span>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</span><strong className="coach-date">{formatDate(observedAt)}</strong></div>
     </div>
     {!!roster.length && <Panel title={tx('Lineup from the match room')} subtitle={team.name}>
       <div className="coach-roster">{roster.map(player =>
@@ -99,13 +105,14 @@ function Career({ profile }) {
           <strong>{player.nickname}</strong>
         </Link>)}</div>
     </Panel>}
-    <Panel title={tx('Team history')} subtitle={tx('Confirmed matches')}>
+    <Panel title={tx('Team history')} subtitle={tx(profile.assignment ? 'Matches' : 'Confirmed matches')}>
       {periods.length ? periods.map(period =>
         <div className="coach-row" key={period.key}>
           <Link className="coach-team-inline" to={teamPath(period.team)}><TeamLogo team={period.team} />
             <span><b>{period.team.name}</b><small>{dates(period)}</small></span></Link>
           <span className="text-right"><strong title={tx('Observed span')}>{tf('{0} d', period.days)}</strong>
-            <small>{period.season ? `${tx('Season')} ${period.season}` : `${tx('Matches')}: ${period.matches}`}</small></span>
+            <small>{period.season ? `${tx('Season')} ${period.season} · ` : ''}{tx('Matches')}: {period.matches}</small>
+            {period.assignment && period.mapTotals.played > 0 && <small>{tx('Maps')}: {period.mapTotals.played} · {tx('Win rate')}: {rate(period.mapTotals.won, period.mapTotals.played)}</small>}</span>
         </div>) : <p className="coach-note">{tx('No completed matches confirmed yet.')}</p>}
     </Panel>
     {selected && <Panel title={tx('Coaching timeline')}>
@@ -123,7 +130,7 @@ function Career({ profile }) {
           <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
-    <p className="coach-footnote">{tx('Dates show the first and last confirmed match, not the full coaching contract.')}</p>
+    <p className="coach-footnote">{tx(profile.assignment ? 'Coaching periods provided by the coach.' : 'Dates show the first and last confirmed match, not the full coaching contract.')}</p>
   </div>;
 }
 
@@ -178,13 +185,13 @@ export default function CoachPage({ playerRoute = false }) {
             <div className="coach-tags">{profile.country && <CountryFlag country={profile.country} />}<span>{tx('Coach')}</span></div>
             <h1 className="player-name font-black">{profile.nickname}</h1>
             <Link className="coach-team-card" to={teamPath(team)}><TeamLogo team={team} />
-              <span><small>{tx('Confirmed in match room')}</small><b>{team.name} ↗</b></span>
+              <span><small>{tx(profile.assignment ? 'Coaching team' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
             </Link>
           </div>
           <div className="coach-metrics">
             <div className="coach-metric coach-metric-primary"><small>{tx('Team map win rate')} · {tx('Last 90 days')}</small>
               <strong>{maps.total ? rate(maps.won, maps.total) : '—'}</strong><span>{tx('Maps')}: {maps.total}</span></div>
-            <div className="coach-metric"><small>{tx('Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>
+            <div className="coach-metric"><small>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>
           </div>
         </div>
       </section>

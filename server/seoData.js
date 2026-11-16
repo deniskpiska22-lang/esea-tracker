@@ -1,3 +1,4 @@
+import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
 import { withCurrentTeamAvatar } from '../src/utils/teamAvatar.js';
 import { createClient } from '@supabase/supabase-js';
 import process from 'node:process';
@@ -52,6 +53,8 @@ export async function loadProfile(client,kind,key) {
     ]);
     return {entity:{...row.team,faceitTeamId:row.team_id},roster:links.map(l => Array.isArray(l.players)?l.players[0]:l.players).filter(Boolean),recentMatches};
   }
+  const linked = linkedPlayerProfile(key);
+  if (linked) key = linked.id;
   const aliasEntry=Object.entries(aliases).find(([name,old])=>name.toLowerCase()===key.toLowerCase() || old.some(n=>n.toLowerCase()===key.toLowerCase()));
   if(aliasEntry) key=aliasEntry[0];
   if (!/^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(key)) {

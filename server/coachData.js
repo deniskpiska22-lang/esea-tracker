@@ -1,3 +1,5 @@
+import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
+import { assignedCoach } from './coachAssignments.js';
 import process from 'node:process';
 import { createClient } from '@supabase/supabase-js';
 import { finished, upcoming } from './coachLobby.js';
@@ -13,6 +15,8 @@ export function coachClient() {
 }
 
 export async function loadCoachIdentity(id) {
+  const manual = assignedCoach(id);
+  if (manual) return manual;
   const { data, error } = await coachClient().from('esea_coach_lobbies')
     .select('teams,terminal,checked_at,matches!inner(status,scheduled_at)')
     .contains('coach_ids', [id]).order('checked_at', { ascending: false }).limit(30);
@@ -32,10 +36,17 @@ export async function coachPlayerNames(db, ids) {
   if (!ids.length) return new Map();
   const { data, error } = await db.rpc('esea_coach_player_identities', { p_ids: ids });
   if (error) throw error;
-  return new Map(data.map(player => [player.id, player.nickname]));
+  const names = new Map(data.map(player => [player.id, player.nickname]));
+  for (const id of ids) {
+    const manual = assignedCoach(id);
+    if (manual) names.set(manual.id, manual.nickname);
+  }
+  return names;
 }
 
 export async function resolvePlayerCoachId(db, nickname) {
+  const linked = linkedPlayerProfile(nickname);
+  if (linked) return linked.id;
   const escaped = nickname.replace(/[\\%_]/g, '\\$&');
   const { data, error } = await db.from('players').select('faceit_id').ilike('nickname', escaped).limit(2);
   if (error) throw error;

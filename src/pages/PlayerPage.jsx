@@ -1,3 +1,4 @@
+import { linkedPlayerProfile } from '../data/linkedPlayerProfiles.js';
 import './PlayerPage.css';
 import ProfileRoleTabs from '../components/ProfileRoleTabs.jsx';
 import useCoachData from '../hooks/useCoachData.js';
@@ -801,7 +802,7 @@ function PlayerPage() {
 
         let ratingRow = null;
 
-        let lookupPlayerKey = routePlayerKey;
+        let lookupPlayerKey = linkedPlayerProfile(routePlayerKey)?.id || routePlayerKey;
         if (!isFaceitPlayerId(lookupPlayerKey)) {
           const escapedNickname = decodedRouteValue.replace(/[\\%_]/g, "\\$&");
           const { data: identity, error: identityError } = await supabase.from("players")

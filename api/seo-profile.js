@@ -1,3 +1,4 @@
+import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
 import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { playerRolePath } from '../src/utils/profileRoles.js';
 import { uuid } from '../server/coachLobby.js';
@@ -28,7 +29,7 @@ export default async function handler(req,res) {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
     if (kind === 'coach' || (kind === 'player' && req.query.role === 'coach')) {
       const db = coachClient();
-      const id = uuid(key) ? key : kind === 'player' ? await resolvePlayerCoachId(db, key) : null;
+      const id = linkedPlayerProfile(key)?.id || (uuid(key) ? key : kind === 'player' ? await resolvePlayerCoachId(db, key) : null);
       const coach = uuid(id) ? await loadCoachIdentity(id) : null;
       const playerNickname = (await coachPlayerNames(db, coach ? [id] : [])).get(id);
       const tab = req.query.tab === 'teams' ? 'teams' : '';
@@ -95,7 +96,10 @@ export default async function handler(req,res) {
       } catch { /* Keep a supplied country name if the code is unknown. */ }
     }
     const requestedPath = kind==='match' ? `/match/${encodeURIComponent(key)}${typeof req.query.slug === "string" ? `/${encodeURIComponent(req.query.slug)}` : ""}` : kind==='team'?`/teams/${encodeURIComponent(key)}${section?`/${section}`:''}`:`/players/${encodeURIComponent(key)}`;
-    if(localizedPath(requestedPath,language)!==metadata.canonicalPath) return res.redirect(308,metadata.canonicalPath);
+    if(localizedPath(requestedPath,language)!==metadata.canonicalPath) {
+      const tab = kind === 'player' && req.query.tab === 'teams' ? '?tab=teams' : '';
+      return res.redirect(308,metadata.canonicalPath + tab);
+    }
     res.setHeader('Content-Type','text/html; charset=utf-8');
     res.setHeader('Cache-Control','public, max-age=0, s-maxage=60, stale-while-revalidate=60');
     return res.status(200).send(renderProfile(template,metadata));

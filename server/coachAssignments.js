@@ -1,0 +1,53 @@
+import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
+
+export const coachAssignments = [
+  {
+    coachId: '0871c9f5-cacc-460e-a44a-c85bb414ad5b',
+    teamId: '7f46e5e4-a472-4945-a5fc-2f20b5b6725d',
+    season: 58,
+  },
+  {
+    coachId: '0871c9f5-cacc-460e-a44a-c85bb414ad5b',
+    teamId: 'dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4',
+    start: '2026-11-07',
+    current: true,
+  },
+];
+
+export function assignedCoach(id) {
+  const person = linkedPlayerProfile(id);
+  if (!person || !coachAssignments.some(assignment => assignment.coachId === person.id)) return null;
+  return { id: person.id, nickname: person.nickname, country: 'RU' };
+}
+
+export function assignmentMatches(assignment, match) {
+  if (![match.team1_id, match.team2_id].includes(assignment.teamId)) return false;
+  if (assignment.season && !new RegExp(`^\\s*(?:ESEA\\s+(?:Season\\s+)?|S)${assignment.season}\\b`, 'i').test(match.competition_name || '')) return false;
+  // Ignore upstream zero dates. Prefer the start of a match so a game
+  // that spans midnight is attributed to the correct coaching period.
+  const day = [match.started_at, match.scheduled_at, match.finished_at].find(value => Date.parse(value) > Date.UTC(2000, 0));
+  return Boolean(day && (!assignment.start || Date.parse(day) >= Date.parse(assignment.start)));
+}
+
+export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
+  const existing = new Map(lobbyRows.map(row => [row.matches.id, row]));
+  const seen = new Set();
+  return matches.flatMap(match => {
+    if (!assignmentMatches(assignment, match) || seen.has(match.id)) return [];
+    seen.add(match.id);
+    const terminal = ['FINISHED', 'MATCH_STATUS_FINISHED'].includes(match.status);
+    const ownSide = match.team1_id === assignment.teamId ? 'team1' : 'team2';
+    const lobbySide = existing.get(match.id)?.teams.find(team => team.id === assignment.teamId);
+    const startedAt = [match.started_at, match.scheduled_at, match.finished_at].find(value => Date.parse(value) > Date.UTC(2000, 0));
+    return [{
+      terminal, checked_at: new Date(now).toISOString(),
+      matches: { ...match, finished_at: Date.parse(match.finished_at) > Date.UTC(2000, 0) ? match.finished_at : null,
+        scheduled_at: Date.parse(match.scheduled_at) > Date.UTC(2000, 0) ? match.scheduled_at : startedAt },
+      teams: [{
+        id: assignment.teamId, name: lobbySide?.name || match[`${ownSide}_name`],
+        logo: lobbySide?.logo || match[`${ownSide}_logo`], roster: lobbySide?.roster || [],
+        coaches: [coach], assignment,
+      }],
+    }];
+  });
+}
