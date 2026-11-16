@@ -1,3 +1,4 @@
+import MatchCoaches from "../components/MatchCoaches.jsx";
 import { tx } from "../i18n/translate.js";
 import {
   Suspense,
@@ -156,25 +157,13 @@ function MatchPageRouter() {
   const showFinishedSections =
     Boolean(finishedMatch) || apiSaysFinished;
 
-  if (isLive) {
-    return (
-      <Suspense fallback={<MatchLoading />}>
-        <LiveMatchPage />
-      </Suspense>
-    );
-  }
-
-  if (showFinishedSections) {
-    return (
-      <Suspense fallback={<MatchLoading />}>
-        <MatchPage />
-      </Suspense>
-    );
-  }
-
+  const Page = isLive ? LiveMatchPage : showFinishedSections ? MatchPage : UpcomingMatchPage;
+  const competition = dbRow?.competition_name || '';
+  const isEsea = /^\s*(?:ESEA\s|S\d+\s+(?:EU|NA|SA|AF|AS|OCE)\s)/i.test(competition);
   return (
     <Suspense fallback={<MatchLoading />}>
-      <UpcomingMatchPage />
+      <Page />
+      {isEsea && <MatchCoaches matchId={matchId} />}
     </Suspense>
   );
 }

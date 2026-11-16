@@ -1,0 +1,61 @@
+import { finished, upcoming } from './coachLobby.js';
+import { normalizeTeamMapHistory } from '../src/utils/teamMapStats.js';
+import { aggregateDemoRounds } from '../src/utils/demoRoundStats.js';
+
+const day = 86400000;
+const matchDate = match => match.finished_at || match.scheduled_at;
+const season = value => Number(value?.match(/\b(?:season\s*|s)(\d+)\b/i)?.[1]) || null;
+const newestFirst = (a, b) => Date.parse(b.date) - Date.parse(a.date);
+
+export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now()) {
+  const records = rows.flatMap(row => {
+    const match = row.matches, date = match && matchDate(match);
+    if (!match || !Number.isFinite(Date.parse(date)) ||
+      !((row.terminal && finished(match.status)) || (!row.terminal && upcoming(match.status)
+       && Date.parse(row.checked_at) >= now - 8 * 3600000 && Date.parse(date) > now - 12 * 3600000))) return [];
+    return row.teams.flatMap(side => {
+      const person = side.coaches.find(coach => coach.id === id);
+      if (!person || ![match.team1_id, match.team2_id].includes(side.id)) return [];
+      const first = side.id === match.team1_id, own = first ? 'team1' : 'team2', other = first ? 'team2' : 'team1';
+      const isFinished = finished(match.status);
+      const current = catalog.get(side.id);
+      const team = { id: side.id, name: current?.name || side.name || match[`${own}_name`], logo: current?.logo || side.logo, slug: current?.slug };
+      return [{ person, side, team, date, match, isFinished, checkedAt: row.checked_at, display: {
+        id: match.id, date, team, event: match.competition_name,
+        opponent: match[`${other}_name`], ownScore: match[`${own}_score`],
+        otherScore: match[`${other}_score`], finished: isFinished
+      } }];
+    });
+  }).sort(newestFirst);
+  if (!records.length) return null;
+  const completed = records.filter(row => row.isFinished);
+  const future = records.filter(row => !row.isFinished).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  const featured = future[0] || completed[0];
+  const identity = records.slice().sort((a, b) => Math.min(now, Date.parse(b.date)) - Math.min(now, Date.parse(a.date)))[0].person;
+  const periodsByKey = new Map();
+  for (const row of [...completed].reverse()) {
+    const s = season(row.match.competition_name), key = `${row.team.id}:${s ?? 'unknown'}`;
+    const period = periodsByKey.get(key) || { key, team: row.team, season: s, first: row.date, matches: 0 };
+    period.last = row.date;
+    period.matches++;
+    periodsByKey.set(key, period);
+  }
+  const periods = [...periodsByKey.values()].sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
+  const form = completed.filter(row => row.team.id === featured.team.id && Date.parse(row.date) >= now - 90 * day);
+  const maps = normalizeTeamMapHistory(form.map(row => row.match), featured.team.id).flatMap(row => row.mapScores);
+  const byMap = new Map();
+  for (const map of maps) {
+    const count = byMap.get(map.map) || { name: map.map, total: 0, won: 0 };
+    count.total++;
+    count.won += Number(map.teamScore > map.opponentScore);
+    byMap.set(map.map, count);
+  }
+  const comparison = [...byMap.values()].filter(map => map.total >= 3)
+    .sort((a, b) => b.won / b.total - a.won / a.total || b.total - a.total || a.name.localeCompare(b.name));
+  return { ...identity, team: featured.team, roster: featured.side.roster, observedAt: featured.isFinished ? featured.date : featured.checkedAt,
+    matches: [...future.slice(0, 3), ...completed.slice(0, 6)].map(row => row.display), periods,
+    maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,
+      best: comparison[0] || null, worst: comparison.length > 1 && comparison[0].won / comparison[0].total !== comparison.at(-1).won / comparison.at(-1).total
+        ? comparison.at(-1) : null },
+    rounds: aggregateDemoRounds(maps) };
+}

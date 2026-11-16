@@ -1,3 +1,4 @@
+import process from "node:process";
 import { spawn } from "node:child_process";
 import { createClient } from "@supabase/supabase-js";
 
@@ -41,6 +42,7 @@ let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
 let lastRosterAt = 0;
+let lastCoachLobbiesAt = 0;
 let lastPlayerEloAt = 0;
 let lastWeeklySnapshotKey = null;
 
@@ -170,6 +172,11 @@ async function runDueTasks() {
   if (lastRosterAt === 0 || now - lastRosterAt >= DISCOVERY_INTERVAL_MS) {
     lastRosterAt = now;
     await runTask("roster-discovery", "scripts/syncTeamRosters.js");
+  }
+
+  if (lastCoachLobbiesAt === 0 || now - lastCoachLobbiesAt >= 30 * 60 * 1000) {
+    lastCoachLobbiesAt = now;
+    await runTask("coach-lobbies", "scripts/syncCoachLobbies.js");
   }
 
   if (lastBackfillAt === 0 || now - lastBackfillAt >= BACKFILL_INTERVAL_MS) {

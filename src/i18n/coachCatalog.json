@@ -1,0 +1,154 @@
+{
+  "Coaching staff": {
+    "ru": "Тренерский штаб",
+    "de": "Trainerstab",
+    "pt": "Equipa técnica",
+    "es": "Cuerpo técnico",
+    "fr": "Staff technique",
+    "it": "Staff tecnico"
+  },
+  "Coach profile": {
+    "ru": "Профиль тренера",
+    "de": "Trainerprofil",
+    "pt": "Perfil do treinador",
+    "es": "Perfil del entrenador",
+    "fr": "Profil entraîneur",
+    "it": "Profilo allenatore"
+  },
+  "Coach profile not found": {
+    "ru": "Профиль тренера не найден",
+    "de": "Trainerprofil nicht gefunden",
+    "pt": "Perfil do treinador não encontrado",
+    "es": "Perfil del entrenador no encontrado",
+    "fr": "Profil entraîneur introuvable",
+    "it": "Profilo allenatore non trovato"
+  },
+  "Coach data temporarily unavailable": {
+    "ru": "Данные тренера временно недоступны",
+    "de": "Trainerdaten vorübergehend nicht verfügbar",
+    "pt": "Dados do treinador temporariamente indisponíveis",
+    "es": "Datos del entrenador temporalmente no disponibles",
+    "fr": "Données de l’entraîneur temporairement indisponibles",
+    "it": "Dati dell’allenatore temporaneamente non disponibili"
+  },
+  "Confirmed in match room": {
+    "ru": "Подтверждено в лобби",
+    "de": "Im Matchraum bestätigt",
+    "pt": "Confirmado na sala da partida",
+    "es": "Confirmado en la sala de la partida",
+    "fr": "Confirmé dans le salon du match",
+    "it": "Confermato nella stanza della partita"
+  },
+  "Confirmed matches": {
+    "ru": "Подтверждённые матчи",
+    "de": "Bestätigte Matches",
+    "pt": "Partidas confirmadas",
+    "es": "Partidas confirmadas",
+    "fr": "Matchs confirmés",
+    "it": "Partite confermate"
+  },
+  "Latest confirmation": {
+    "ru": "Последнее подтверждение",
+    "de": "Letzte Bestätigung",
+    "pt": "Última confirmação",
+    "es": "Última confirmación",
+    "fr": "Dernière confirmation",
+    "it": "Ultima conferma"
+  },
+  "Lineup from the match room": {
+    "ru": "Состав из лобби",
+    "de": "Aufstellung aus dem Matchraum",
+    "pt": "Formação da sala da partida",
+    "es": "Alineación de la sala de la partida",
+    "fr": "Composition du salon du match",
+    "it": "Formazione dalla stanza della partita"
+  },
+  "Team map win rate": {
+    "ru": "Винрейт команды по картам",
+    "de": "Karten-Siegquote des Teams",
+    "pt": "Vitórias da equipa por mapa",
+    "es": "Victorias del equipo por mapa",
+    "fr": "Victoires de l’équipe par carte",
+    "it": "Vittorie della squadra per mappa"
+  },
+  "Team statistics": {
+    "ru": "Статистика команды",
+    "de": "Teamstatistik",
+    "pt": "Estatísticas da equipa",
+    "es": "Estadísticas del equipo",
+    "fr": "Statistiques de l’équipe",
+    "it": "Statistiche della squadra"
+  },
+  "Last 90 days": {
+    "ru": "За последние 90 дней",
+    "de": "Letzte 90 Tage",
+    "pt": "Últimos 90 dias",
+    "es": "Últimos 90 días",
+    "fr": "90 derniers jours",
+    "it": "Ultimi 90 giorni"
+  },
+  "CT round win rate": {
+    "ru": "Победы в раундах за CT",
+    "de": "CT-Rundensiege",
+    "pt": "Vitórias em rondas CT",
+    "es": "Victorias en rondas CT",
+    "fr": "Victoires en rounds CT",
+    "it": "Vittorie nei round CT"
+  },
+  "T round win rate": {
+    "ru": "Победы в раундах за T",
+    "de": "T-Rundensiege",
+    "pt": "Vitórias em rondas T",
+    "es": "Victorias en rondas T",
+    "fr": "Victoires en rounds T",
+    "it": "Vittorie nei round T"
+  },
+  "No verified map results yet.": {
+    "ru": "Подтверждённых результатов по картам пока нет.",
+    "de": "Noch keine bestätigten Kartenergebnisse.",
+    "pt": "Ainda não há resultados de mapas verificados.",
+    "es": "Aún no hay resultados verificados por mapa.",
+    "fr": "Aucun résultat de carte vérifié pour le moment.",
+    "it": "Nessun risultato verificato per le mappe."
+  },
+  "Upcoming and recent matches": {
+    "ru": "Ближайшие и недавние матчи",
+    "de": "Anstehende und letzte Matches",
+    "pt": "Próximas e recentes partidas",
+    "es": "Próximas y últimas partidas",
+    "fr": "Matchs à venir et récents",
+    "it": "Prossime e ultime partite"
+  },
+  "Only matches with the coach confirmed by FACEIT are counted.": {
+    "ru": "Учитываются только матчи, где FACEIT указал тренера в лобби.",
+    "de": "Es zählen nur Matches mit von FACEIT bestätigtem Trainer.",
+    "pt": "Só contam partidas com treinador confirmado pela FACEIT.",
+    "es": "Solo cuentan las partidas con entrenador confirmado por FACEIT.",
+    "fr": "Seuls les matchs avec entraîneur confirmé par FACEIT sont comptés.",
+    "it": "Contano solo le partite con allenatore confermato da FACEIT."
+  },
+  "No completed matches confirmed yet.": {
+    "ru": "Подтверждённых завершённых матчей пока нет.",
+    "de": "Noch keine abgeschlossenen Matches bestätigt.",
+    "pt": "Ainda não há partidas concluídas confirmadas.",
+    "es": "Aún no hay partidas terminadas confirmadas.",
+    "fr": "Aucun match terminé confirmé pour le moment.",
+    "it": "Nessuna partita conclusa confermata."
+  },
+  "Coaching timeline": {
+    "ru": "Тренерский путь",
+    "de": "Trainerlaufbahn",
+    "pt": "Percurso como treinador",
+    "es": "Trayectoria como entrenador",
+    "fr": "Parcours d’entraîneur",
+    "it": "Carriera da allenatore"
+  },
+  "Dates show the first and last confirmed match, not the full coaching contract.": {
+    "ru": "Даты отражают первый и последний подтверждённые матчи, а не сроки контракта.",
+    "de": "Die Daten zeigen das erste und letzte bestätigte Match, nicht die Vertragslaufzeit.",
+    "pt": "As datas mostram a primeira e a última partida confirmadas, não o contrato.",
+    "es": "Las fechas muestran la primera y última partida confirmadas, no el contrato.",
+    "fr": "Les dates indiquent les premier et dernier matchs confirmés, pas le contrat.",
+    "it": "Le date mostrano la prima e l’ultima partita confermate, non il contratto."
+  }
+}

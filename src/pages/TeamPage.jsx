@@ -21,6 +21,7 @@ import staticTeams from "../data/teams";
 import { useTeamCatalog } from "../hooks/useTeamCatalog.js";
 import { useStaticTeamMatches } from "../hooks/useStaticHistory.js";
 import { useTeamStats } from "../hooks/useTeamStats";
+import TeamCoaches from "../components/TeamCoaches.jsx";
 import TeamRosterSection from "../components/TeamRosterSection";
 import { supabase } from "../lib/supabaseClient";
 import { resolveRatingRow } from "../utils/resolveTeamRating";
@@ -959,6 +960,8 @@ function TeamPage() {
           team={team}
           slug={slug}
         />
+
+        <TeamCoaches teamId={team.faceitTeamId || team.team_id} />
 
         {/* WEEKLY RATING HISTORY */}
         {!ratingHistoryLoading &&
