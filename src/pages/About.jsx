@@ -1,3 +1,4 @@
+import Link from "../components/SiteLink.jsx";
 import { tx } from "../i18n/translate.js";
 function About() {
   return (
@@ -85,6 +86,7 @@ function About() {
             <p className="text-gray-400 leading-7 mt-4">{tx(" The focus is on growing the scene and increasing the visibility of promising players. ")}</p>
 
             <div className="mt-6 space-y-2">
+              <Link to="/coaches" className="block text-orange-400 hover:text-orange-300">{tx("Coaches")} →</Link>
 
               <a
                 href="https://t.me/LisssTzz1"
