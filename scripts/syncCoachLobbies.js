@@ -15,9 +15,9 @@ const db = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_R
 const due = await result(db.rpc('esea_coach_lobbies_due'));
 const totals = { checked: 0, withCoaches: 0, failed: 0 };
 let cursor = 0;
-let rateLimited = false;
+let accessDenied = false;
 await Promise.all(Array.from({ length: Math.min(4, due.length) }, async () => {
-  while (!rateLimited && cursor < due.length) {
+  while (!accessDenied && cursor < due.length) {
     const row = due[cursor++];
     if (!matchId(row.id)) continue;
     try {
@@ -27,13 +27,14 @@ await Promise.all(Array.from({ length: Math.min(4, due.length) }, async () => {
       if (snapshot.coach_ids.length) totals.withCoaches++;
     } catch (error) {
       totals.failed++;
-      if (error.status === 429) rateLimited = true;
+      if (error.status === 403 || error.status === 429) accessDenied = true;
       console.warn(`[coach-lobbies] ${row.id}: ${error.message}`);
       await result(db.from('esea_coach_lobbies').upsert({ match_id: row.id,
         retry_at: new Date(Date.now() + (error.status === 429 ? 10 * 60000 : 12 * 3600000)).toISOString() }));
     }
-    if (!rateLimited && cursor < due.length) await pause(350);
+    if (!accessDenied && cursor < due.length) await pause(350);
   }
 }));
 console.log('[coach-lobbies]', totals);
-if (due.length && !totals.checked && totals.failed) process.exitCode = 1;
+if (accessDenied) process.exitCode = 77;
+else if (due.length && !totals.checked && totals.failed) process.exitCode = 1;

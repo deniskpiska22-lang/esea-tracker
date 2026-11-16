@@ -9,7 +9,8 @@ The automation worker checks eligible ESEA CS2 rooms in batches, refreshes
 recent upcoming rooms and stores finished observations. Historical batches
 run every ten minutes independently of standings and match discovery.
 They work back through the full tracked ESEA archive, reserving capacity
-for upcoming rooms. Room outages are retried without discarding evidence.
+for upcoming rooms. Room outages are retried without discarding evidence. A 403 or 429 stops
+the current batch and pauses the next Railway run for an hour.
 
 Team cards link directly to the coach profile. Profile career dates
 are dates of confirmed room appearances, not employment dates. Team map

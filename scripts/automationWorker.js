@@ -41,6 +41,7 @@ let stopping = false;
 const activeChildren = new Set();
 let coachJob = null;
 let coachTimer;
+let nextCoachAttemptAt = 0;
 let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
@@ -201,9 +202,14 @@ async function runDueTasks() {
 
 // Archive batches must not wait for a full standings or match-discovery run.
 function startCoachSync() {
-  if (stopping || coachJob) return coachJob;
+  if (stopping || coachJob || Date.now() < nextCoachAttemptAt) return coachJob;
   coachJob = runNodeScript("coach-lobbies", "scripts/syncCoachLobbies.js").then(result => {
-    if (result.code !== 0) console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
+    if (result.code === 77) {
+      nextCoachAttemptAt = Date.now() + 60 * 60 * 1000;
+      console.warn("[automation-worker] FACEIT denied or limited coach-room requests; backing off for one hour");
+    } else if (result.code !== 0) {
+      console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
+    }
   }).finally(() => { coachJob = null; });
   return coachJob;
 }
