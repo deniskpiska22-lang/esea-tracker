@@ -1,3 +1,4 @@
+import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
 import { recentPrematchResults, prematchHeadToHead } from "../utils/prematchHistory.js";
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { faceitMatchRoomUrl } from '../utils/faceitMatchUrl.js';
@@ -928,6 +929,8 @@ function RatingForecastCard({
   ratingRows,
   team1,
   team2,
+  catalogLogo1,
+  catalogLogo2,
   season,
   bestOf,
   loading,
@@ -1104,10 +1107,12 @@ function RatingForecastCard({
   const rows = [
     {
       team: team1,
+      catalogLogo: catalogLogo1,
       data: forecast?.team1,
     },
     {
       team: team2,
+      catalogLogo: catalogLogo2,
       data: forecast?.team2,
     },
   ];
@@ -1129,7 +1134,7 @@ function RatingForecastCard({
             <div className="text-center">{tx("If team loses")}</div>
           </div>
 
-          {rows.map(({ team, data }) => (
+          {rows.map(({ team, catalogLogo, data }) => (
             <div
               key={String(
                 team.id ||
@@ -1139,17 +1144,7 @@ function RatingForecastCard({
               className="grid grid-cols-[minmax(180px,1fr)_110px_150px_150px] items-center border-b border-[#222e3f] px-5 py-4 last:border-0 sm:px-6"
             >
               <div className="flex min-w-0 items-center gap-3">
-                {team.logo ? (
-                  <img
-                    src={team.logo}
-                    alt=""
-                    className="h-9 w-9 shrink-0 object-contain"
-                  />
-                ) : (
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#0b0f14] text-xs font-black text-slate-600">
-                    ?
-                  </div>
-                )}
+                <RatingForecastLogo catalogLogo={catalogLogo} matchLogo={team.logo} />
 
                 <div className="truncate font-bold text-white">
                   {team.name}
@@ -1972,6 +1967,8 @@ function UpcomingMatchPage() {
               ratingRows={ratingRows}
               team1={displayTeam1}
               team2={displayTeam2}
+              catalogLogo1={leftLocalTeam?.logo}
+              catalogLogo2={rightLocalTeam?.logo}
               season={displaySeason}
               bestOf={displayBestOf}
               loading={ratingsLoading}
