@@ -30,8 +30,9 @@ export function assignmentMatches(assignment, match) {
 }
 
 export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
-  const existing = new Map(lobbyRows.map(row => [row.matches.id, row]));
+  const existing = new Map(lobbyRows.map(row => [row.match_id || row.matches.id, row]));
   const seen = new Set();
+  const coachIds = new Set([coach.id, ...(linkedPlayerProfile(coach.id)?.linkedIds || [])]);
   return matches.flatMap(match => {
     if (!assignmentMatches(assignment, match) || seen.has(match.id)) return [];
     seen.add(match.id);
@@ -45,7 +46,7 @@ export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
         scheduled_at: Date.parse(match.scheduled_at) > Date.UTC(2000, 0) ? match.scheduled_at : startedAt },
       teams: [{
         id: assignment.teamId, name: lobbySide?.name || match[`${ownSide}_name`],
-        logo: lobbySide?.logo || match[`${ownSide}_logo`], roster: lobbySide?.roster || [],
+        logo: lobbySide?.logo || match[`${ownSide}_logo`], roster: (lobbySide?.roster || []).filter(player => !coachIds.has(player.id)),
         coaches: [coach], assignment,
       }],
     }];

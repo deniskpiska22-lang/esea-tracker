@@ -69,16 +69,19 @@ export default async function handler(request, response) {
     const manual = assignedCoach(coachId);
     const assignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
-    const [lobbies, ...assignedMatches] = await Promise.all([
+    const [lobbies, assignmentLobbies, ...assignedMatches] = await Promise.all([
       result(db.from('esea_coach_lobbies').select(`teams,terminal,checked_at,matches!inner(${columns})`)
         .overlaps('coach_ids', originalIds).order('checked_at', { ascending: false }).limit(400)),
+      assignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
+        .select('match_id,teams').overlaps('team_ids', [...new Set(assignments.filter(a => a.current).map(a => a.teamId))])
+        .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
       ...assignments.map(assignment => {
         const query = db.from('matches').select(matchColumns)
           .or(`team1_id.eq.${assignment.teamId},team2_id.eq.${assignment.teamId}`);
         return result(query.order('scheduled_at', { ascending: false, nullsFirst: false }).limit(400));
       }),
     ]);
-    const editorialRows = assignments.flatMap((assignment, index) => assignedCoachRows(assignedMatches[index], assignment, manual, lobbies, now));
+    const editorialRows = assignments.flatMap((assignment, index) => assignedCoachRows(assignedMatches[index], assignment, manual, [...lobbies, ...assignmentLobbies], now));
     const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
     const observed = lobbies.map(row => ({ ...row, teams: row.teams
       .filter(side => !covered.has(`${row.matches.id}:${side.id}`))

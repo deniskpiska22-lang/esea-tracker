@@ -64,3 +64,22 @@ test('separates results by team and date, and leaves walkovers out of win rates'
   assert.deepEqual(stats.teams.map(entry => [entry.team.id, entry.maps.total]), [[current.teamId, 3], [old.teamId, 1]]);
   assert.equal(periods[0].matches, 3);
 });
+
+test('uses the latest played lineup for the current team when the upcoming room has none', () => {
+  const now = Date.parse('2026-11-16T12:00:00Z');
+  const coach = assignedCoach(person.id);
+  const next = { ...match('next', current, 'S59 EU Entry D', '2026-11-16T19:30:00Z'),
+    status: 'SCHEDULED', finished_at: null };
+  const recent = match('recent', current, 'S59 EU Entry D', '2026-11-11T20:00:00Z');
+  const prior = match('prior', current, 'S59 EU Entry D', '2026-11-04T20:00:00Z');
+  const player = { id: 'player-one', nickname: 'PlayerOne' };
+  const retiredCoach = { id: person.linkedIds[0], nickname: '-LisssTzz-' };
+  const rosterRows = [
+    { match_id: recent.id, teams: [{ id: current.teamId, roster: [player, retiredCoach] }] },
+    { match_id: prior.id, teams: [{ id: current.teamId, roster: [{ id: 'player-two' }] }] },
+  ];
+  const rows = assignedCoachRows([next, recent, prior], current, coach, rosterRows, now);
+  assert.deepEqual(buildCoachProfile(person.id, rows, new Map(), now).roster, [player]);
+  const withoutRecent = assignedCoachRows([next, recent, prior], current, coach, rosterRows.slice(1), now);
+  assert.deepEqual(buildCoachProfile(person.id, withoutRecent, new Map(), now).roster, []);
+});

@@ -123,7 +123,9 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   const observedAt = featured.assignment
     ? completed.find(row => row.team.id === featured.team.id)?.date || featured.assignment.start || featured.date
     : featured.isFinished ? featured.date : featured.checkedAt;
-  return { ...identity, team: featured.team, assignment: featured.assignment || null, roster: featured.side.roster, observedAt,
+  const roster = featured.side.roster?.length ? featured.side.roster : completed.find(row =>
+    row.team.id === featured.team.id && row.side.roster?.length && Date.parse(row.date) >= now - 45 * day)?.side.roster || [];
+  return { ...identity, team: featured.team, assignment: featured.assignment || null, roster, observedAt,
     matches: [...future.slice(0, 3), ...completed.slice(0, 6)].map(row => row.display), periods,
     maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,
       best: comparison[0] || null, worst: comparison.length > 1 && comparison[0].won / comparison[0].total !== comparison.at(-1).won / comparison.at(-1).total
