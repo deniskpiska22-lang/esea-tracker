@@ -3,7 +3,7 @@ import { tf, tx } from "../i18n/translate.js";
 import { currentLocale } from "../i18n/languages.js";
 
 
-import tournaments from "../data/tournaments";
+import useTournamentSummaries from "../hooks/useTournamentSummaries.js";
 import { getTournamentStatus } from "../utils/tournaments";
 
 
@@ -20,6 +20,7 @@ function formatDate(value) {
   return new Intl.DateTimeFormat(currentLocale(), {
     day: "2-digit",
     month: "short",
+    timeZone: "UTC",
   }).format(date);
 }
 
@@ -40,6 +41,7 @@ function monthKey(value) {
   return new Intl.DateTimeFormat(currentLocale(), {
     month: "long",
     year: "numeric",
+    timeZone: "UTC",
   }).format(date);
 }
 
@@ -411,6 +413,7 @@ function EmptyCalendar() {
 }
 
 function CalendarPage() {
+  const tournaments = useTournamentSummaries();
   const withStatus = tournaments.map((tournament) => ({
     tournament,
     status: getTournamentStatus(tournament),

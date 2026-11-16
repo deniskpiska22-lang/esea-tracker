@@ -17,7 +17,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import upcomingMatches from "../data/upcomingMatches";
 import teams from "../data/teams";
-import tournaments from "../data/tournaments";
+import useTournamentSummaries from "../hooks/useTournamentSummaries.js";
 import { supabase } from "../lib/supabaseClient";
 import { getTournamentStatus } from "../utils/tournaments";
 import { resolveRatingRow } from "../utils/resolveTeamRating";
@@ -1791,12 +1791,13 @@ function Home() {
   const upcomingCounts = countUpcomingDivisions(upcoming);
   const filteredUpcoming = filterUpcomingDivision(upcoming, upcomingDivision);
 
+  const tournaments = useTournamentSummaries();
   const liveTournament = useMemo(
     () =>
       tournaments.find(
         (tournament) => getTournamentStatus(tournament) === "live"
       ) || null,
-    []
+    [tournaments]
   );
 
   const upcomingTournaments = useMemo(
@@ -1810,7 +1811,7 @@ function Home() {
             new Date(first.startDate) - new Date(second.startDate)
         )
         .slice(0, 4),
-    []
+    [tournaments]
   );
 
   const featuredBase =

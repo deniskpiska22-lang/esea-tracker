@@ -27,6 +27,7 @@ function tournamentFromDbRow(row) {
     location: row.location,
     startDate: row.start_date,
     endDate: row.end_date,
+    completedAt: row.completed_at,
     url: row.url,
     prizePool: row.prize_pool,
     description: row.description,
@@ -63,6 +64,7 @@ function formatDate(value) {
     day: "2-digit",
     month: "short",
     year: "numeric",
+    ...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? { timeZone: "UTC" } : {}),
   }).format(date);
 }
 

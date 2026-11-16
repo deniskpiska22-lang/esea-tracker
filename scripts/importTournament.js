@@ -43,7 +43,9 @@
 //   like a Major) are NOT reconstructed automatically yet — those still
 //   need the `groups` field hand-authored. This script only ever writes
 //   `bracket` or `matches`.
+import { resolveTournamentCompletion } from "./lib/tournamentCompletion.js";
 import fs from "fs/promises";
+import process from "node:process";
 import { pathToFileURL } from "node:url";
 
 import { createClient } from "@supabase/supabase-js";
@@ -158,7 +160,7 @@ function slugify(value) {
 
 function toIsoDate(ms) {
   if (!ms) return null;
-  return new Date(ms).toISOString().slice(0, 10);
+  return new Date(ms < 1e12 ? ms * 1000 : ms).toISOString().slice(0, 10);
 }
 
 function findLocalTeamByFaceitId(faceitTeamId) {
@@ -359,6 +361,7 @@ function entryFromDbRow(row) {
     location: row.location,
     startDate: row.start_date,
     endDate: row.end_date,
+    completedAt: row.completed_at,
     url: row.url,
     prizePool: row.prize_pool,
     description: row.description,
@@ -383,6 +386,7 @@ function entryToDbRow(entry) {
     location: entry.location,
     start_date: entry.startDate,
     end_date: entry.endDate,
+    completed_at: entry.completedAt,
     url: entry.url,
     prize_pool: entry.prizePool,
     description: entry.description,
@@ -472,6 +476,7 @@ export async function importTournament(championshipId, options = {}) {
     );
   }
 
+  const completedAt = resolveTournamentCompletion(meta, matches, existing?.completedAt);
   const entry = {
     id,
     championshipId,
@@ -480,7 +485,8 @@ export async function importTournament(championshipId, options = {}) {
     tier,
     location: options.location || existing?.location || "Online",
     startDate: toIsoDate(meta?.championship_start) || existing?.startDate || null,
-    endDate: existing?.endDate || toIsoDate(meta?.championship_start) || null,
+    endDate: completedAt?.slice(0, 10) || existing?.endDate || toIsoDate(meta?.championship_start) || null,
+    completedAt,
     url: meta?.faceit_url?.replace("{lang}", "en") || existing?.url || null,
     prizePool:
       meta?.total_prizes > 0
