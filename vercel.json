@@ -322,6 +322,10 @@
       "destination": "/api/seo-profile?kind=page&key=rankings&lang=:lang"
     },
     {
+      "source": "/:lang(en|de|pt|es|fr|it)/coaches",
+      "destination": "/api/seo-profile?kind=page&key=coaches&lang=:lang"
+    },
+    {
       "source": "/:lang(en|de|pt|es|fr|it)/matches",
       "destination": "/api/seo-profile?kind=page&key=matches&lang=:lang"
     },
@@ -380,6 +384,10 @@
     {
       "source": "/rankings",
       "destination": "/api/seo-profile?kind=page&key=rankings"
+    },
+    {
+      "source": "/coaches",
+      "destination": "/api/seo-profile?kind=page&key=coaches"
     },
     {
       "source": "/matches",

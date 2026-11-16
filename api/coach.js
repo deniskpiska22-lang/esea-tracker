@@ -3,21 +3,45 @@ import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/co
 import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
+import { buildCoachDirectory } from '../server/coachDirectory.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
 import { TEAM_MAP_COLUMNS } from '../src/utils/teamMapStats.js';
 
 const person = fields => fields.map(({ id, nickname, avatar }) => ({ id, nickname, avatar }));
 export default async function handler(request, response) {
   if (request.method !== 'GET') return response.status(405).json({ error: 'Method not allowed' });
-  const { id, team, match, search, player, identity } = request.query || {};
+  const { id, team, match, search, player, identity, directory } = request.query || {};
   const textKey = value => typeof value === 'string' && value.trim().length >= 2 && value.length <= 80;
-  if ([id, team, match, search, player, identity].filter(value => value != null).length !== 1 ||
+  if ([id, team, match, search, player, identity, directory].filter(value => value != null).length !== 1 ||
+      (directory != null && directory !== '1') ||
       (id != null && !uuid(id)) || (team != null && !uuid(team)) || (identity != null && !uuid(identity)) ||
       (match != null && !matchId(match)) || (search != null && !textKey(search)) ||
       (player != null && !textKey(player))) return response.status(400).json({ error: 'Invalid coach lookup' });
   try {
     const db = coachClient();
     response.setHeader('Cache-Control', 'public, max-age=60, s-maxage=180');
+    if (directory) {
+      const rows = [];
+      for (let offset = 0; ; offset += 500) {
+        const page = await result(db.from('esea_coach_lobbies')
+          .select('match_id,teams,terminal,checked_at,matches!inner(status,scheduled_at,finished_at,team1_id,team2_id)')
+          .neq('coach_ids', '{}').order('match_id').range(offset, offset + 499));
+        rows.push(...page);
+        if (page.length < 500) break;
+      }
+      const ids = [...new Set([...coachAssignments.map(item => item.teamId), ...rows.flatMap(row =>
+        row.teams.filter(side => side.coaches.length).map(side => side.id))])];
+      const catalog = [];
+      for (let offset = 0; offset < ids.length; offset += 150) {
+        catalog.push(...await result(db.from('team_catalog').select('team_id,team,faceit_avatar_url').in('team_id', ids.slice(offset, offset + 150))));
+      }
+      const entries = buildCoachDirectory(rows, new Map(catalog.map(row => [row.team_id, row])));
+      const names = new Map();
+      for (let offset = 0; offset < entries.length; offset += 150) {
+        for (const [id, name] of await coachPlayerNames(db, entries.slice(offset, offset + 150).map(entry => entry.id))) names.set(id, name);
+      }
+      return response.status(200).json({ coaches: entries.map(entry => ({ ...entry, playerNickname: names.get(entry.id) || null })) });
+    }
     if (search != null) {
       const coaches = await result(db.rpc('find_esea_coaches', { p_query: search.trim() }));
       const key = search.trim().toLowerCase();

@@ -294,5 +294,37 @@
     "es": "La tasa de victoria en partidos excluye resultados técnicos. La de mapas solo usa marcadores verificados.",
     "fr": "Le taux de victoire en match exclut les résultats techniques. Celui des cartes repose sur les scores confirmés.",
     "it": "La percentuale di vittoria nelle partite esclude i risultati tecnici. Quella delle mappe usa solo punteggi verificati."
+  },
+  "Coaches": {
+    "ru": "Тренеры",
+    "de": "Trainer",
+    "pt": "Treinadores",
+    "es": "Entrenadores",
+    "fr": "Entraîneurs",
+    "it": "Allenatori"
+  },
+  "Find a coach or team": {
+    "ru": "Поиск по нику или команде",
+    "de": "Trainer oder Team suchen",
+    "pt": "Procurar treinador ou equipa",
+    "es": "Buscar entrenador o equipo",
+    "fr": "Rechercher un entraîneur ou une équipe",
+    "it": "Cerca allenatore o squadra"
+  },
+  "Browse coaches from FACEIT match rooms and profiles with manually added history.": {
+    "ru": "Каталог тренеров из лобби FACEIT и профилей с добавленной вручную историей.",
+    "de": "Trainer aus FACEIT-Matchräumen und Profile mit manuell ergänzter Historie.",
+    "pt": "Treinadores das salas FACEIT e perfis com histórico adicionado manualmente.",
+    "es": "Entrenadores de salas FACEIT y perfiles con historial añadido manualmente.",
+    "fr": "Entraîneurs des salons FACEIT et profils avec un historique ajouté manuellement.",
+    "it": "Allenatori delle stanze FACEIT e profili con cronologia aggiunta manualmente."
+  },
+  "No coaches found.": {
+    "ru": "Тренеры не найдены.",
+    "de": "Keine Trainer gefunden.",
+    "pt": "Nenhum treinador encontrado.",
+    "es": "No se encontraron entrenadores.",
+    "fr": "Aucun entraîneur trouvé.",
+    "it": "Nessun allenatore trovato."
   }
 }

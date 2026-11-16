@@ -20,3 +20,14 @@ Team cards link directly to the coach profile. Profile career dates
 are dates of confirmed room appearances, not employment dates. Team map
 statistics count recent maps from rooms listing that coach, and round win
 rates only use verified demo stats with explicit coverage.
+
+The public /coaches directory uses the same saved lobby evidence and the
+existing editorial assignments. The portrait uses the public FACEIT avatar
+when available, and falls back to the team mark and silhouette.
+
+If FACEIT provides an authorized export of completed CS2 match rooms, pass
+one saved room JSON (or the original JSON response envelope) per file to:
+`node scripts/importCoachLobbies.js room.json ...`. Supply the usual server
+Supabase variables. Dry run is the default; add `--apply` to save. The import
+validates the stored result, both team IDs and explicit coach roles. It skips
+already finalized observations and does not query FACEIT or infer assignments.

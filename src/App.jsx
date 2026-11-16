@@ -392,6 +392,7 @@ function App() {
       path: "/about",
       label: tx("About"),
     },
+    { path: "/coaches", label: coachTx("Coaches") },
   ];
 
   async function handleSignOut() {
