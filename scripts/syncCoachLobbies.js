@@ -17,6 +17,10 @@ const workerName = 'coach-lobbies';
 const saved = await result(db.from('worker_status').select('detail').eq('worker_name', workerName).maybeSingle());
 let state = {};
 try { state = JSON.parse(saved?.detail || '{}') || {}; } catch { /* Old or missing checkpoint. */ }
+if (state.paused) {
+  console.log('[coach-lobbies] full sweep paused; using season-boundary discovery');
+  process.exit(0);
+}
 
 const totals = await scanCoachLobbies({
   state,

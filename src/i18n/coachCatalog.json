@@ -334,5 +334,21 @@
     "es": "Los días y los resultados se cuentan desde la incorporación a la plantilla de ESEA.",
     "fr": "Les jours et résultats sont comptés depuis l’entrée dans l’effectif ESEA.",
     "it": "Giorni e risultati sono calcolati dall’ingresso nel roster ESEA."
+  },
+  "Coach slot changed": {
+    "ru": "Смена тренерского слота",
+    "de": "Trainerplatz geändert",
+    "pt": "Mudança no lugar de treinador",
+    "es": "Cambio en el puesto de entrenador",
+    "fr": "Changement du poste de coach",
+    "it": "Cambio del posto allenatore"
+  },
+  "Match-room evidence does not establish a contract end date.": {
+    "ru": "Данные комнат матчей не подтверждают точную дату окончания работы.",
+    "de": "Matchräume belegen kein genaues Vertragsende.",
+    "pt": "Os dados das salas não confirmam a data de fim do contrato.",
+    "es": "Las salas de partido no confirman la fecha de fin del contrato.",
+    "fr": "Les données des matchs ne confirment pas la date de fin du contrat.",
+    "it": "I dati delle partite non confermano la data di fine contratto."
   }
 }
