@@ -35,7 +35,7 @@ const WEEKLY_SNAPSHOT_DAY_UTC = Number(
   process.env.WEEKLY_RATING_SNAPSHOT_DAY_UTC || 1
 );
 
-const COACH_INTERVAL_MS = 10 * 60 * 1000;
+const COACH_INTERVAL_MS = 3 * 60 * 60 * 1000;
 const once = process.argv.includes("--once");
 let stopping = false;
 const activeChildren = new Set();
@@ -203,15 +203,25 @@ async function runDueTasks() {
 // Archive batches must not wait for a full standings or match-discovery run.
 function startCoachSync() {
   if (stopping || coachJob || Date.now() < nextCoachAttemptAt) return coachJob;
-  coachJob = runNodeScript("coach-season-boundaries", "scripts/syncCoachSeasonBoundaries.js").then(result => {
+  coachJob = runNodeScript("coach-lobbies", "scripts/syncCoachLobbies.js").then(result => {
     if (result.code === 77) {
-      nextCoachAttemptAt = Date.now() + 60 * 60 * 1000;
-      console.warn("[automation-worker] coach boundary source paused or limited; checkpoint retained");
+      nextCoachAttemptAt = Date.now() + COACH_INTERVAL_MS;
+      console.warn("[automation-worker] coach source unavailable; next scheduled attempt in three hours");
     } else if (result.code !== 0) {
       console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
     }
   }).finally(() => { coachJob = null; });
   return coachJob;
+}
+
+async function scheduleCoachSync() {
+  try {
+    await startCoachSync();
+  } finally {
+    if (!once && !stopping) {
+      coachTimer = setTimeout(scheduleCoachSync, COACH_INTERVAL_MS).unref();
+    }
+  }
 }
 
 async function main() {
@@ -220,8 +230,7 @@ async function main() {
       `standings=${STANDINGS_INTERVAL_MS}ms backfill=${BACKFILL_INTERVAL_MS}ms`
   );
 
-  const firstCoachJob = startCoachSync();
-  if (!once) coachTimer = setInterval(startCoachSync, COACH_INTERVAL_MS).unref();
+  const firstCoachJob = scheduleCoachSync();
   do {
     try {
       await runDueTasks();
@@ -238,7 +247,7 @@ async function main() {
 function shutdown(signal) {
   console.log(`[automation-worker] received ${signal}`);
   stopping = true;
-  clearInterval(coachTimer);
+  clearTimeout(coachTimer);
   for (const child of activeChildren) child.kill("SIGTERM");
 }
 

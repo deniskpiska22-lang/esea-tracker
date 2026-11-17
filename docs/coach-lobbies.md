@@ -22,22 +22,17 @@ Roster evidence creates profiles and team links. Profile match, map and round
 statistics use explicit match-room observations or confirmed manual coaching
 periods. Roster confirmation dates are shown separately from match history.
 
-The full-room sweep is paused. automationWorker now runs
-scripts/syncCoachSeasonBoundaries.js instead. Phase one checks the first and
-last played match for each team/season from S57 onward; phase two walks
-neighbouring matches to narrow arrivals and departures. Teams with empty
-endpoints are searched backwards, since they may have had a coach mid-season.
-Existing terminal snapshots are reused for both teams. New batches contain at
-most 20 requests (COACH_BOUNDARY_BATCH_SIZE, maximum 40), two seconds apart;
-the cursor and phase are persisted across restarts. A 403 pauses the source
-until it is repaired; 429 honours the source cooldown. Neither is recorded as
-an absent coach. Starting a different queue does not bypass access denial.
+The full-room sweep is restored and scheduled once every three hours by
+scripts/automationWorker.js. scripts/syncCoachLobbies.js persists nextRunAt
+before making source requests, so restarts do not trigger extra attempts.
+Each bounded batch checks up to 192 due rooms, two seconds apart. Saved
+terminal rooms are reused; the queue retains all unprocessed matches.
+HTTP 403/429 stops the batch at the first denial. The next attempt is no
+sooner than the three-hour interval or the source Retry-After, whichever is
+later. A longer delay requested by FACEIT always takes precedence.
 
-esea_coach_season_bounds stores the last coached match and the next known
-match without that coach. The UI shows this interval, not a fabricated
-contract termination date. Unknown interior games and observed returns are
-explicitly retained as uncertainty. Two matching endpoints do not prove an
-uninterrupted tenure, and unobserved matches are not added to win rates.
-Manual owner assignments continue to take precedence. Authorized saved room
-JSON can be imported with scripts/importCoachLobbies.js, using --apply after
-inspecting its dry run.
+The season-boundary scanner is paused and no longer scheduled. Its saved
+bounds remain available in profiles as intervals between confirmed match
+rooms; these do not establish a contract termination date. Manual owner
+assignments retain priority. Authorized saved room JSON can be imported
+with scripts/importCoachLobbies.js, using --apply after inspecting its dry run.
