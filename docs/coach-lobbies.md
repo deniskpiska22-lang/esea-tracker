@@ -58,3 +58,26 @@ naming another coach for that team. That match is not credited to the current
 coach merely because their membership join date is older. Empty/missing coach
 slots are not proof of a departure, and explicit manual assignments retain
 priority. All relevant saved team rooms are paginated for this check.
+
+Dedicated service: coach-worker (RAILWAY_PROCESS_TYPE=coaches). Coach jobs no
+longer run in automationWorker. The coach worker has independent job states,
+heartbeats, timeouts and shutdown handling. A denied match-room source does
+not stop roster refresh or stored-role imports. External roster/room jobs
+retain their three-hour cadence and persistent source cooldowns.
+
+The existing team-leagues match feed already includes factions[].members[]
+with GAME_ROLE_COACH. esea_coach_match_rosters preserves that small payload
+before later Data API writes replace raw_data; ordinary discovery also saves
+it when score/status did not change. The dedicated worker consumes up to
+1,000 stored rooms per minute without another FACEIT match-room request.
+Only explicit coach roles are accepted; premade team and match IDs must match.
+Missing role data is not an empty coach slot. Existing terminal room evidence
+is never overwritten. Names use saved identities, with the official keyed
+Data API only for otherwise unknown coach IDs. Each source has its own
+cooldown, so blocked room requests do not prevent cache-backed progress.
+
+Railway service settings: builder RAILPACK; build command
+`node --check scripts/coachWorker.js`; start command
+`node scripts/railwayEntrypoint.js`; one replica, no public domain.
+SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY and FACEIT_API_KEY are service variable
+references to automation-worker; no secret values are copied into the repo.

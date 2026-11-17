@@ -35,13 +35,9 @@ const WEEKLY_SNAPSHOT_DAY_UTC = Number(
   process.env.WEEKLY_RATING_SNAPSHOT_DAY_UTC || 1
 );
 
-const COACH_INTERVAL_MS = 3 * 60 * 60 * 1000;
 const once = process.argv.includes("--once");
 let stopping = false;
 const activeChildren = new Set();
-let coachJob = null;
-let coachTimer;
-let nextCoachAttemptAt = 0;
 let lastStandingsAt = 0;
 let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
@@ -200,51 +196,12 @@ async function runDueTasks() {
   await heartbeat("online", "idle");
 }
 
-// Archive batches must not wait for a full standings or match-discovery run.
-function startCoachSync() {
-  if (stopping || coachJob || Date.now() < nextCoachAttemptAt) return coachJob;
-  coachJob = runNodeScript("coach-lobbies", "scripts/syncCoachLobbies.js").then(result => {
-    if (result.code === 77) {
-      nextCoachAttemptAt = Date.now() + COACH_INTERVAL_MS;
-      console.warn("[automation-worker] coach source unavailable; next scheduled attempt in three hours");
-    } else if (result.code !== 0) {
-      console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
-    }
-  }).finally(() => { coachJob = null; });
-  return coachJob;
-}
-
-async function scheduleCoachSync() {
-  try {
-    await Promise.all([startCoachSync(), refreshCoachRostersIfStale()]);
-  } finally {
-    if (!once && !stopping) {
-      coachTimer = setTimeout(scheduleCoachSync, COACH_INTERVAL_MS).unref();
-    }
-  }
-}
-
-async function refreshCoachRostersIfStale() {
-  const { data, error } = await supabase.from('worker_status').select('last_ping')
-    .eq('worker_name', 'coach-rosters').maybeSingle();
-  if (error) {
-    console.warn('[automation-worker] coach roster freshness check failed:', error.message);
-    return;
-  }
-  // GitHub normally refreshes these rosters. Fall back when its schedule stalls.
-  const lastPing = Date.parse(data?.last_ping);
-  if (!Number.isFinite(lastPing) || Date.now() - lastPing >= 4 * 60 * 60 * 1000) {
-    await runNodeScript('coach-rosters', 'scripts/syncCoachRosters.js', ['--apply']);
-  }
-}
-
 async function main() {
   console.log(
     `[automation-worker] starting: discovery=${DISCOVERY_INTERVAL_MS}ms ` +
       `standings=${STANDINGS_INTERVAL_MS}ms backfill=${BACKFILL_INTERVAL_MS}ms`
   );
 
-  const firstCoachJob = scheduleCoachSync();
   do {
     try {
       await runDueTasks();
@@ -255,13 +212,11 @@ async function main() {
 
     if (!once && !stopping) await sleep(LOOP_INTERVAL_MS);
   } while (!once && !stopping);
-  await firstCoachJob;
 }
 
 function shutdown(signal) {
   console.log(`[automation-worker] received ${signal}`);
   stopping = true;
-  clearTimeout(coachTimer);
   for (const child of activeChildren) child.kill("SIGTERM");
 }
 
