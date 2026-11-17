@@ -51,9 +51,32 @@ match counts agree between history and statistics; technical awards are not
 added to win rates. Automatic roster attribution yields to a saved room
 explicitly naming another coach for the same team.
 
-The owner's confirmed assignments in server/coachAssignments.js retain
-priority. LisssTzz remains the coach of Eclipse Enforcers Young from November
-7 regardless of his FACEIT substitute role or an empty coach slot.
+The owner's confirmed Eclipse Enforcers Young tenure starts November 7.
+Until an explicit coach slot is saved from a match room, its handoffOnCoachLobby
+assignment attributes team games from that date despite a substitute role or
+an empty slot. Subscription purchase or current-roster membership alone cannot
+release it. Historical Season 58 confirmation remains unchanged.
+
+esea_coach_assignment_handoffs stores one private checkpoint per opted-in
+manual tenure. A service-only trigger on normalized esea_coach_lobbies requires
+the actual coaches array, a recognized linked identity, matching premade team,
+ESEA match, valid status and a match date on/after the manual start. A pending
+room must be fresh. This uses the existing shared match feed, without new
+FACEIT requests. The checkpoint survives later empty slots, errors, overwrites
+and deletion of the source match. The seed mirrors the opted-in JS assignment.
+
+After that checkpoint, manual attribution ends exclusively at the handoff
+boundary. Roster/room automation takes over; the original start and prior wins
+are retained. A continuous first stint stays one timeline span even if the
+roster is confirmed before its first played game. Transfers and returns keep
+separate periods; newer coach-room evidence beats stale roster observations.
+The team badge uses the same released priority as the coach profile. It never
+reverts to the original manual override. Normal automatic attribution still
+requires saved room or roster evidence, so an unobserved departure cannot be
+given an exact date.
+
+Validation: node --test tests/coach*.test.js; tests/coachHandoff.sql checks the
+actual database trigger and permissions inside a rolled-back transaction.
 
 ## Deployment
 

@@ -11,6 +11,7 @@ export const coachAssignments = [
     teamId: 'dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4',
     start: '2026-11-07',
     current: true,
+    handoffOnCoachLobby: true,
   },
 ];
 
@@ -27,7 +28,8 @@ export function assignmentMatches(assignment, match) {
   // that spans midnight is attributed to the correct coaching period.
   const day = [match.started_at, match.scheduled_at, match.finished_at].find(value => Date.parse(value) > Date.UTC(2000, 0));
   return Boolean(day && (!assignment.start || Date.parse(day) >= Date.parse(assignment.start))
-    && (!assignment.end || Date.parse(day) <= Date.parse(assignment.end)));
+    && (!assignment.end || (assignment.endExclusive
+      ? Date.parse(day) < Date.parse(assignment.end) : Date.parse(day) <= Date.parse(assignment.end))));
 }
 
 export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {

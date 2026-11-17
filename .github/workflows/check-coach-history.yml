@@ -1,0 +1,35 @@
+name: Check coach history
+on:
+  pull_request:
+    paths:
+      - 'api/coach.js'
+      - 'server/coach*.js'
+      - 'server/storedCoachLobby.js'
+      - 'src/data/linkedPlayerProfiles.js'
+      - 'tests/coach*.test.js'
+      - 'tests/storedCoachLobby.test.js'
+      - 'package*.json'
+      - '.github/workflows/check-coach-history.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'api/coach.js'
+      - 'server/coach*.js'
+      - 'server/storedCoachLobby.js'
+      - 'src/data/linkedPlayerProfiles.js'
+      - 'tests/coach*.test.js'
+      - 'tests/storedCoachLobby.test.js'
+      - 'package*.json'
+      - '.github/workflows/check-coach-history.yml'
+jobs:
+  coach-history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/coach*.test.js tests/storedCoachLobby.test.js
+      - run: npx eslint api/coach.js server/coachAssignments.js server/coachHandoff.js server/coachData.js server/coachProfile.js
