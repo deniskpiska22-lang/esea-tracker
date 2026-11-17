@@ -1,32 +1,62 @@
-name: Check ESEA active team endpoint
+name: Verify coach tenure and stable lineups
 on:
   push:
     branches: [esea-coach-roster-smoke]
 permissions:
   contents: read
 jobs:
-  roster:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d0d1a2a8f17338874fd57136917d8c0a3fa86e43
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Inspect user-supplied public ESEA active team URL
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/coach*.test.js tests/recentTeamLineup.test.js
+      - name: Check profiles against live roster dates and matches
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
         run: |
           node --input-type=module <<'JS'
-          const url = 'https://www.faceit.com/api/team-leagues/v2/leagues/a14b8616-45b9-4581-8637-4dfd0b5f6af8/users/0871c9f5-cacc-460e-a44a-c85bb414ad5b/teams/active';
-          const response = await fetch(url, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(15000) });
-          console.log('HTTP', response.status, 'content-type', response.headers.get('content-type'));
-          if (response.ok) {
-            const data = await response.json();
-            function publicFields(value, depth = 0) {
-              if (depth > 10) return null;
-              if (Array.isArray(value)) return value.slice(0,30).map(item => publicFields(item, depth+1));
-              if (!value || typeof value !== 'object') return value;
-              return Object.fromEntries(Object.entries(value).filter(([key]) => !/token|secret|email|phone|birth|credential|address|cookie/i.test(key))
-                .map(([key,value]) => [key,publicFields(value,depth+1)]));
+          import assert from 'node:assert/strict';
+          import handler from './api/coach.js';
+          import { coachClient } from './server/coachData.js';
+          import { loadLastFivePlayedMatches, stableLineupPlayerIds } from './src/utils/recentTeamLineup.js';
+          const db = coachClient();
+          const { data: rows, error } = await db.from('esea_coach_rosters').select('coach_id,nickname').eq('active', true).order('coach_id').limit(1000);
+          assert.ifError(error);
+          const samples = [...new Set([
+            '0871c9f5-cacc-460e-a44a-c85bb414ad5b',
+            '8c861233-1fb7-4966-9cdc-2b99ea7e1cea',
+            '12ebf86c-20d1-4d8f-ac6b-d38a09fa7ae5',
+            ...rows.filter(row => ['Macho54','estxrossa','Tujnel'].includes(row.nickname)).map(row => row.coach_id),
+            ...rows.slice(0, 6).map(row => row.coach_id),
+          ])];
+          for (const id of samples) {
+            const response = { code: 200, setHeader() {}, status(code) { this.code = code; return this; }, json(body) { this.body = body; return this; } };
+            await handler({ method: 'GET', query: { id } }, response);
+            assert.equal(response.code, 200, 'Coach response for ' + id);
+            assert.ok(response.body.tenure?.days > 0, 'Known tenure for ' + id);
+            if (id === '0871c9f5-cacc-460e-a44a-c85bb414ad5b') {
+              assert.equal(response.body.team.id, 'dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4');
+              assert.equal(response.body.assignment.start, '2026-11-07');
             }
-            console.log(JSON.stringify(publicFields(data)));
+            console.log(JSON.stringify({ nickname: response.body.nickname, days: response.body.tenure.days,
+              matches: response.body.stats.career.matches.total, won: response.body.stats.career.matches.won }));
           }
+          const team = '036337bc-ab12-4ceb-83d8-fe08cebebce8';
+          const matches = await loadLastFivePlayedMatches(db, team);
+          assert.equal(matches.length, 5);
+          const appearances = await db.from('team_player_appearances').select('match_id,player_id').eq('team_id',team).in('match_id',matches.map(match => match.id));
+          assert.ifError(appearances.error);
+          const stable = stableLineupPlayerIds(matches, appearances.data);
+          assert.ok(stable.size <= 5);
+          console.log(JSON.stringify({ team, matches: matches.length, stablePlayers: stable.size, tbd: 5 - stable.size }));
           JS
