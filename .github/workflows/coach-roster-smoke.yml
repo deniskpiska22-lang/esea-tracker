@@ -1,4 +1,4 @@
-name: Verify coach tenure and stable lineups
+name: Probe historical coach rooms
 on:
   push:
     branches: [esea-coach-roster-smoke]
@@ -7,56 +7,28 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: d0d1a2a8f17338874fd57136917d8c0a3fa86e43
+          ref: main
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: node --test tests/coach*.test.js tests/recentTeamLineup.test.js
-      - name: Check profiles against live roster dates and matches
+      - name: Read historical match coach snapshot
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
         run: |
           node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          import handler from './api/coach.js';
           import { coachClient } from './server/coachData.js';
-          import { loadLastFivePlayedMatches, stableLineupPlayerIds } from './src/utils/recentTeamLineup.js';
+          import { fetchCoachLobby } from './server/coachLobby.js';
           const db = coachClient();
-          const { data: rows, error } = await db.from('esea_coach_rosters').select('coach_id,nickname').eq('active', true).order('coach_id').limit(1000);
-          assert.ifError(error);
-          const samples = [...new Set([
-            '0871c9f5-cacc-460e-a44a-c85bb414ad5b',
-            '8c861233-1fb7-4966-9cdc-2b99ea7e1cea',
-            '12ebf86c-20d1-4d8f-ac6b-d38a09fa7ae5',
-            ...rows.filter(row => ['Macho54','estxrossa','Tujnel'].includes(row.nickname)).map(row => row.coach_id),
-            ...rows.slice(0, 6).map(row => row.coach_id),
-          ])];
-          for (const id of samples) {
-            const response = { code: 200, setHeader() {}, status(code) { this.code = code; return this; }, json(body) { this.body = body; return this; } };
-            await handler({ method: 'GET', query: { id } }, response);
-            assert.equal(response.code, 200, 'Coach response for ' + id);
-            assert.ok(response.body.tenure?.days > 0, 'Known tenure for ' + id);
-            if (id === '0871c9f5-cacc-460e-a44a-c85bb414ad5b') {
-              assert.equal(response.body.team.id, 'dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4');
-              assert.equal(response.body.assignment.start, '2026-11-07');
-            }
-            console.log(JSON.stringify({ nickname: response.body.nickname, days: response.body.tenure.days,
-              matches: response.body.stats.career.matches.total, won: response.body.stats.career.matches.won }));
-          }
-          const team = '036337bc-ab12-4ceb-83d8-fe08cebebce8';
-          const matches = await loadLastFivePlayedMatches(db, team);
-          assert.equal(matches.length, 5);
-          const appearances = await db.from('team_player_appearances').select('match_id,player_id').eq('team_id',team).in('match_id',matches.map(match => match.id));
-          assert.ifError(appearances.error);
-          const stable = stableLineupPlayerIds(matches, appearances.data);
-          assert.ok(stable.size <= 5);
-          console.log(JSON.stringify({ team, matches: matches.length, stablePlayers: stable.size, tbd: 5 - stable.size }));
+          const {data, error} = await db.from('matches').select('id,team1_id,team2_id,status').eq('id','1-e8be358b-e985-4907-b428-0c439d47b685').single();
+          if(error) throw error;
+          const snapshot = await fetchCoachLobby(data);
+          console.log(JSON.stringify({id:snapshot.match_id, coaches:snapshot.teams.map(t=>({team:t.name,coaches:t.coaches.map(c=>c.nickname)}))}));
           JS
