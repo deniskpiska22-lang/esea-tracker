@@ -121,7 +121,7 @@ function Overview({ profile }) {
         ))}
       </details>
     )}
-    <p className="coach-footnote">{tx(profile.assignment
+    <p className="coach-footnote">{tx(profile.rosterBased ? 'Team results since the ESEA roster join date.' : profile.assignment
       ? 'Team results during the coaching periods provided by the coach.'
       : 'Only matches with the coach confirmed by FACEIT are counted.')}</p>
   </>;
@@ -165,7 +165,8 @@ function Career({ profile }) {
         <div className="coach-row" key={period.key}>
           <Link className="coach-team-inline" to={teamPath(period.team)}><TeamLogo team={period.team} />
             <span><b>{period.team.name}</b><small>{dates(period)}</small></span></Link>
-          <span className="text-right"><strong title={tx('Observed span')}>{tf('{0} d', period.days)}</strong>
+          <span className="text-right"><strong title={tx(period.assignment ? 'Days in team' : 'Observed span')}>{tf('{0} d', period.days)}</strong>
+            {period.winRate != null && <small>{tx('Win rate')}: {rate(period.winRate, 1)}</small>}
             <small>{period.season ? `${tx('Season')} ${period.season} · ` : ''}{tx('Matches')}: {period.matches}</small>
             {period.assignment && period.mapTotals.played > 0 && <small>{tx('Maps')}: {period.mapTotals.played} · {tx('Win rate')}: {rate(period.mapTotals.won, period.mapTotals.played)}</small>}</span>
         </div>) : <p className="coach-note">{tx('No completed matches confirmed yet.')}</p>}
@@ -185,7 +186,7 @@ function Career({ profile }) {
           <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
-    <p className="coach-footnote">{tx(profile.assignment ? 'Coaching periods provided by the coach.' : 'Dates show the first and last confirmed match, not the full coaching contract.')}</p>
+    <p className="coach-footnote">{tx(profile.rosterBased ? 'Days and team results use the ESEA roster join date.' : profile.assignment ? 'Coaching periods provided by the coach.' : 'Dates show the first and last confirmed match, not the full coaching contract.')}</p>
   </div>;
 }
 
@@ -241,13 +242,15 @@ export default function CoachPage({ playerRoute = false }) {
             <div className="coach-tags">{profile.country && <CountryFlag country={profile.country} />}<span>{tx('Coach')}</span></div>
             <h1 className="player-name font-black">{profile.nickname}</h1>
             <Link className="coach-team-card" to={teamPath(team)}><TeamLogo team={team} />
-              <span><small>{tx(profile.assignment ? 'Coaching team' : profile.registered ? 'Confirmed in ESEA roster' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
+              <span><small>{tx(profile.rosterBased ? 'Confirmed in ESEA roster' : profile.assignment ? 'Coaching team' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
             </Link>
           </div>
           <div className="coach-metrics">
             <div className="coach-metric coach-metric-primary"><small>{tx(career ? 'Match win rate' : 'Team map win rate')} · {tx(career ? 'Tracked career' : 'Last 90 days')}</small>
               <strong>{career ? (career.matches.total ? rate(career.matches.won, career.matches.total) : '—') : (maps.total ? rate(maps.won, maps.total) : '—')}</strong><span>{career ? tx('Matches') : tx('Maps')}: {career ? career.matches.total : maps.total}</span></div>
-            <div className="coach-metric"><small>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>
+            {profile.tenure && <div className="coach-metric"><small>{tx('Days in team')}</small>
+              <strong>{tf('{0} d', profile.tenure.days)}</strong><span>{formatDate(profile.tenure.first)} — {profile.tenure.current ? tx('Present') : formatDate(profile.tenure.last)}</span></div>}
+            {!profile.tenure && <div className="coach-metric"><small>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>}
           </div>
         </div>
       </section>

@@ -73,13 +73,13 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     Math.min(now, Date.parse(b.date)) - Math.min(now, Date.parse(a.date)))[0].person;
   const periodsByKey = new Map();
   for (const row of [...completed].reverse()) {
-    const s = row.assignment?.season ?? season(row.match.competition_name);
+    const s = row.assignment?.season ?? (row.assignment?.source === 'league_roster' ? null : season(row.match.competition_name));
     const key = row.assignment ? `${row.team.id}:assigned:${row.assignment.season || row.assignment.start}` : `${row.team.id}:${s ?? 'unknown'}`;
     const period = periodsByKey.get(key) || {
       key, team: row.team, season: s, first: row.assignment?.start || row.date, matches: 0,
       assignment: row.assignment || null, matchRows: [],
     };
-    period.last = row.date;
+    period.last = row.assignment?.current ? new Date(now).toISOString() : row.assignment?.end || row.date;
     period.matches++;
     period.matchRows.push(row.match);
     periodsByKey.set(key, period);
@@ -87,10 +87,27 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   const periods = [...periodsByKey.values()]
     .map(({ matchRows, ...period }) => {
       const maps = normalizeTeamMapHistory(matchRows, period.team.id).flatMap(match => match.mapScores);
+      const results = summarize(matchRows.map(match => {
+        const own = match.team1_id === period.team.id ? 'team1' : 'team2';
+        const other = own === 'team1' ? 'team2' : 'team1';
+        return { display: { ownScore: match[`${own}_score`], otherScore: match[`${other}_score`] },
+          mapScores: normalizeTeamMapHistory([match], period.team.id)[0]?.mapScores || [] };
+      })).matches;
       return { ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)),
+        winRate: results.total ? results.won / results.total : null, playedMatches: results.total,
+        matches: period.assignment?.source === 'league_roster' ? results.total : period.matches,
         mapTotals: { played: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length } };
     })
     .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
+  for (const registration of registrations) {
+    if (!registration.start || periods.some(period => period.team.id === registration.team.id && period.assignment)) continue;
+    const last = registration.current ? new Date(now).toISOString() : registration.observedAt;
+    periods.push({ key: `${registration.team.id}:roster:${registration.start}`, team: registration.team,
+      first: registration.start, last, days: observedDays(Date.parse(registration.start), Date.parse(last)),
+      season: null, matches: 0, playedMatches: 0, winRate: null, mapTotals: { played: 0, won: 0 },
+      assignment: { start: registration.start, current: registration.current, source: 'league_roster' } });
+  }
+  periods.sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   const completedByTeam = new Map();
   const tracked = completed.map(row => ({
     ...row,
@@ -131,7 +148,12 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   const registeredTeams = [...new Map(registrations.slice().reverse().map(({ team, season, observedAt, current }) =>
     [`${team.id}:${season}`, { team, season, observedAt, current }])).values()]
     .sort((a, b) => Number(b.current) - Number(a.current) || Date.parse(b.observedAt) - Date.parse(a.observedAt));
+  const tenure = periods.find(period => period.team.id === featured.team.id && period.assignment?.current)
+    || periods.find(period => period.team.id === featured.team.id);
   return { ...identity, team: featured.team, assignment: featured.assignment || null, roster, observedAt,
+    tenure: tenure ? { first: tenure.first, last: tenure.last, days: tenure.days, current: Boolean(tenure.assignment?.current),
+      source: tenure.assignment?.source || (tenure.assignment ? 'confirmed' : 'match_rooms') } : null,
+    rosterBased: featured.assignment?.source === 'league_roster' || Boolean(registered),
     registered: Boolean(registered), registeredTeams,
     matches: [...future.slice(0, 3), ...completed.slice(0, 6)].map(row => row.display), periods,
     maps: { total: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length,

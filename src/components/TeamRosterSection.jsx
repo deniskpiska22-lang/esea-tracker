@@ -323,7 +323,7 @@ export default function TeamRosterSection({
       cancelled = true;
     };
   }, [
-    faceitIds.join("|"),
+    faceitIds,
   ]);
 
   return (
@@ -338,10 +338,9 @@ export default function TeamRosterSection({
           </div>
         )}
 
-      {!roster.loading &&
-        !roster.error &&
-        visiblePlayers.length >
-          0 && (
+      {!roster.loading && !roster.error && (
+        <>
+          <p className="mb-3 text-xs text-slate-400">{tx('Players who appeared in each of the last five played matches. Unconfirmed positions are TBD.')}</p>
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
             {visiblePlayers.map(
               (player) => {
@@ -373,15 +372,17 @@ export default function TeamRosterSection({
                 );
               }
             )}
+            {Array.from({ length: 5 - visiblePlayers.length }, (_, index) => (
+              <div key={`tbd-${index}`} className="relative min-w-0 rounded-[24px] border border-[#2a394c] bg-[#121b27] px-3 pb-4 pt-5 text-center sm:px-6 sm:pb-6 sm:pt-8">
+                <div className="-mt-3 mb-3"><PlayerPortraitFrame player={{ nickname: 'TBD' }} team={team} /></div>
+                <strong className="block text-base font-black text-slate-400">TBD</strong>
+                <p className="mt-4 text-xs text-slate-500">{tx('Position not confirmed')}</p>
+              </div>
+            ))}
           </div>
+        </>
         )}
 
-      {!roster.loading &&
-        !roster.error &&
-        visiblePlayers.length ===
-          0 && (
-          <div className="rounded-2xl border border-white/[0.06] bg-[#101720] p-8 text-center text-slate-500">{tx(" No lineup has been calculated for this team yet. ")}</div>
-        )}
     </section>
   );
 }

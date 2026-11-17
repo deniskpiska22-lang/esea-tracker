@@ -310,5 +310,29 @@
     "es": "Confirmado en la plantilla de ESEA",
     "fr": "Confirmé dans l’effectif ESEA",
     "it": "Confermato nel roster ESEA"
+  },
+  "Days in team": {
+    "ru": "Дней в команде",
+    "de": "Tage im Team",
+    "pt": "Dias na equipa",
+    "es": "Días en el equipo",
+    "fr": "Jours dans l’équipe",
+    "it": "Giorni nella squadra"
+  },
+  "Team results since the ESEA roster join date.": {
+    "ru": "Результаты команды с даты вступления тренера в заявку ESEA.",
+    "de": "Teamergebnisse seit dem Beitritt zum ESEA-Kader.",
+    "pt": "Resultados da equipa desde a entrada no elenco da ESEA.",
+    "es": "Resultados del equipo desde la incorporación a la plantilla de ESEA.",
+    "fr": "Résultats de l’équipe depuis l’entrée dans l’effectif ESEA.",
+    "it": "Risultati della squadra dalla data di ingresso nel roster ESEA."
+  },
+  "Days and team results use the ESEA roster join date.": {
+    "ru": "Дни в команде и результаты считаются с даты вступления в заявку ESEA.",
+    "de": "Tage und Teamergebnisse werden ab dem Beitritt zum ESEA-Kader berechnet.",
+    "pt": "Os dias e os resultados são contados desde a entrada no elenco da ESEA.",
+    "es": "Los días y los resultados se cuentan desde la incorporación a la plantilla de ESEA.",
+    "fr": "Les jours et résultats sont comptés depuis l’entrée dans l’effectif ESEA.",
+    "it": "Giorni e risultati sono calcolati dall’ingresso nel roster ESEA."
   }
 }
