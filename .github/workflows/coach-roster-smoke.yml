@@ -1,4 +1,4 @@
-name: Check official FACEIT roster fields
+name: Check ESEA active team endpoint
 on:
   push:
     branches: [esea-coach-roster-smoke]
@@ -7,61 +7,26 @@ permissions:
 jobs:
   roster:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 2
     steps:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Check official team and coach identity
-        env:
-          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+      - name: Inspect user-supplied public ESEA active team URL
         run: |
           node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          const coach = '8c861233-1fb7-4966-9cdc-2b99ea7e1cea';
-          const team = '036337bc-ab12-4ceb-83d8-fe08cebebce8';
-          assert.ok(process.env.FACEIT_API_KEY, 'FACEIT server API key configured');
-          async function read(path) {
-            const response = await fetch('https://open.faceit.com/data/v4/' + path, {
-              headers: { Authorization: 'Bearer ' + process.env.FACEIT_API_KEY },
-              signal: AbortSignal.timeout(12000),
-            });
-            assert.equal(response.status, 200, 'FACEIT official Data API HTTP status for ' + path);
-            return response.json();
-          }
-          const player = await read('players?nickname=Aler1t514');
-          assert.equal(player.player_id, coach);
-          console.log(JSON.stringify({ nickname: player.nickname, player_id: player.player_id }));
-          const roster = await read('teams/' + team);
-          assert.equal(roster.team_id, team);
-          const members = Array.isArray(roster.members) ? roster.members : [];
-          const knownCoach = members.find(item => item.user_id === coach || item.id === coach);
-          const roles = entries => Object.fromEntries(Object.entries(entries || {}).filter(([k,v]) => /role|membership|position|coach/i.test(k) && typeof v === 'string'));
-          console.log(JSON.stringify({
-            teamType: roster.team_type,
-            publicFields: Object.keys(roster).sort(),
-            memberFields: Object.keys(knownCoach || members[0] || {}).sort(),
-            knownCoachRoles: roles(knownCoach),
-            otherMemberRoles: [...new Set(members.filter(item => item !== knownCoach).map(item => JSON.stringify(roles(item))))],
-            explicitCoachArray: Array.isArray(roster.coaches) ? roster.coaches.some(item => item?.user_id === coach || item?.id === coach || item === coach) : null,
-          }));
-          const membershipShape = item => Array.isArray(item?.memberships)
-            ? item.memberships.map(value => typeof value === 'string' ? value : Object.keys(value || {}))
-            : Object.keys(item?.memberships || {});
-          console.log(JSON.stringify({ coachMemberships: membershipShape(knownCoach), otherMemberships: [...new Set(members.filter(item => item !== knownCoach).map(item => JSON.stringify(membershipShape(item))))] }));
-          const match = await read('matches/1-09d43bdc-08a7-4ed0-8020-6902f6f217be');
-          console.log(JSON.stringify({ matchFactionFields: Object.values(match.teams || {}).map(side => Object.keys(side).sort()), containsVerifiedCoach: JSON.stringify(match.teams).includes(coach) }));
-          for (const path of [
-            'teams/7fd28968-fbdb-4f7e-814b-a741f2d1c594',
-            'leagues/a14b8616-45b9-4581-8637-4dfd0b5f6af8',
-            'leagues/a14b8616-45b9-4581-8637-4dfd0b5f6af8/seasons/59',
-          ]) {
-            const response = await fetch('https://open.faceit.com/data/v4/' + path, {
-              headers: { Authorization: 'Bearer ' + process.env.FACEIT_API_KEY }, signal: AbortSignal.timeout(12000),
-            });
-            const data = response.ok ? await response.json() : null;
-            console.log('Official league resource', path, response.status, JSON.stringify(Object.keys(data || {})),
-              data && /"coach(?:es|_id|_role)?"\s*:/i.test(JSON.stringify(data)));
-            if ([401,403,429].includes(response.status)) break;
+          const url = 'https://www.faceit.com/api/team-leagues/v2/leagues/a14b8616-45b9-4581-8637-4dfd0b5f6af8/users/0871c9f5-cacc-460e-a44a-c85bb414ad5b/teams/active';
+          const response = await fetch(url, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(15000) });
+          console.log('HTTP', response.status, 'content-type', response.headers.get('content-type'));
+          if (response.ok) {
+            const data = await response.json();
+            function publicFields(value, depth = 0) {
+              if (depth > 10) return null;
+              if (Array.isArray(value)) return value.slice(0,30).map(item => publicFields(item, depth+1));
+              if (!value || typeof value !== 'object') return value;
+              return Object.fromEntries(Object.entries(value).filter(([key]) => !/token|secret|email|phone|birth|credential|address|cookie/i.test(key))
+                .map(([key,value]) => [key,publicFields(value,depth+1)]));
+            }
+            console.log(JSON.stringify(publicFields(data)));
           }
           JS
