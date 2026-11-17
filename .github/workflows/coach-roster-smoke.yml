@@ -1,4 +1,4 @@
-name: Verify transfer-safe coach history
+name: Verify independent coach cache ingestion
 on:
   push:
     branches: [esea-coach-roster-smoke]
@@ -7,47 +7,21 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 8d8ced33dc308996aedac81b1abd5ec0281d38dd
+          ref: 9106fd4e053148f6f9ab2a75636398acdadd3d10
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: node --test tests/coach*.test.js tests/recentTeamLineup.test.js
-      - name: Verify live profiles and preserved owner assignment
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          import handler from './api/coach.js';
-          import {coachClient} from './server/coachData.js';
-          const db=coachClient();
-          const {data,error}=await db.from('esea_coach_roster_periods').select('coach_id').order('coach_id').limit(8);
-          assert.ifError(error);
-          const ids=[...new Set(['0871c9f5-cacc-460e-a44a-c85bb414ad5b','8c861233-1fb7-4966-9cdc-2b99ea7e1cea','12ebf86c-20d1-4d8f-ac6b-d38a09fa7ae5','003e1770-2fca-4e8d-895f-b087c6c4da30',...data.map(r=>r.coach_id)])];
-          for(const id of ids){
-            const res={code:200,setHeader(){},status(code){this.code=code;return this;},json(body){this.body=body;return this;}};
-            await handler({method:'GET',query:{id}},res);
-            assert.equal(res.code,200,id);
-            const p=res.body;
-            assert.equal(new Set(p.periods.map(r=>r.key)).size,p.periods.length);
-            assert.equal(p.periods.reduce((s,r)=>s+r.matches,0),p.stats.career.matches.total);
-            assert.ok(p.tenure.days>=1);
-            if(id==='0871c9f5-cacc-460e-a44a-c85bb414ad5b')assert.equal(p.team.id,'dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4');
-            console.log(JSON.stringify({nickname:p.nickname,periods:p.periods.length,matches:p.stats.career.matches.total}));
-          }
-          JS
-      - name: Check current roster refresh using the transactional history writer
-        continue-on-error: true
+      - run: node --test tests/coach*.test.js tests/storedCoachLobby.test.js tests/recentTeamLineup.test.js
+      - name: Import one batch from already saved match roles
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
           FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
-        run: node scripts/syncCoachRosters.js --team 036337bc-ab12-4ceb-83d8-fe08cebebce8 --apply
+        run: node scripts/syncStoredCoachLobbies.js
