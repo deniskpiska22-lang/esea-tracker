@@ -1,29 +1,28 @@
 # ESEA coaching profiles
 
-FACEIT's public room payload (match/v2/match) is the source. A coach comes
-only from a faction's explicit coaches array, not its active league roster,
-member list or substitutes. Both faction identities must match the saved
-match. A roster member not shown as a coach in the room does not count.
+Active ESEA league rosters come from the public team-leagues v2
+leagues/{leagueId}/users/{userId}/teams/active endpoint. The importer tries
+up to three known team members, validates the premade team ID, league team ID
+and ESEA league ID, and accepts members with game_role=coach whose membership
+has not ended. team_role controls permissions and is independent of coaching.
+FACEIT Data API supplies each coach's nickname and country.
 
-The automation worker checks eligible ESEA CS2 rooms in batches, refreshes
-recent upcoming rooms and stores finished observations. Historical batches
-run every ten minutes independently of standings and match discovery.
-They work back through the full tracked ESEA archive, reserving capacity
-for upcoming rooms. The batch uses one request at a time. Room outages are retried
-without discarding evidence. A 403 or 429 stops the batch and stores an upstream
-cooldown of at least one hour, honoring a longer Retry-After. Railway restarts
-keep the cooldown. Denied rooms stay in the queue; readiness is distinct from
-access to the lobby source. Logs record selected response metadata only, without
-cookies, tokens, or response bodies.
+scripts/syncCoachRosters.js defaults to a read-only batch. Use --team with a
+FACEIT team ID for one team, --apply to store observations, or --full to scan
+all currently tracked active-season teams. The scheduled workflow resumes
+from worker_status. Empty coach slots clear a previous active roster link.
+Failures retain the last evidence. HTTP 403/429 stops the batch and stores a
+cooldown. Storage transactions reject older concurrent observations.
 
-Team cards link directly to the coach profile. Profile career dates
-are dates of confirmed room appearances, not employment dates. Team map
-statistics count recent maps from rooms listing that coach, and round win
-rates only use verified demo stats with explicit coverage.
+The owner's confirmed assignments in server/coachAssignments.js take priority
+in team cards and profiles. LisssTzz remains the coach of Eclipse Enforcers
+Young from November 7, regardless of his FACEIT substitute role.
 
-If FACEIT provides an authorized export of completed CS2 match rooms, pass
-one saved room JSON (or the original JSON response envelope) per file to:
-`node scripts/importCoachLobbies.js room.json ...`. Supply the usual server
-Supabase variables. Dry run is the default; add `--apply` to save. The import
-validates the stored result, both team IDs and explicit coach roles. It skips
-already finalized observations and does not query FACEIT or infer assignments.
+Roster evidence creates profiles and team links. Profile match, map and round
+statistics use explicit match-room observations or confirmed manual coaching
+periods. Roster confirmation dates are shown separately from match history.
+
+The lobby archive worker still checks explicit faction coaches in eligible
+ESEA CS2 rooms. Finalized observations are retained. HTTP 403/429 persists a
+cooldown across worker restarts. Authorized saved room JSON can be imported
+with scripts/importCoachLobbies.js, using --apply after inspecting its dry run.
