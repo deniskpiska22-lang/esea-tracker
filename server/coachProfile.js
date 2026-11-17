@@ -1,3 +1,4 @@
+import { coachAssignmentKey as assignmentKey } from './coachHandoff.js';
 import { observedDays } from '../src/utils/playerTeamHistory.js';
 import { finished, upcoming } from './coachLobby.js';
 import { normalizeTeamMapHistory } from '../src/utils/teamMapStats.js';
@@ -7,8 +8,7 @@ const day = 86400000;
 const matchDate = match => match.finished_at || match.scheduled_at;
 const season = value => Number(value?.match(/\b(?:season\s*|s)(\d+)\b/i)?.[1]) || null;
 const newestFirst = (a, b) => Date.parse(b.date) - Date.parse(a.date);
-const assignmentKey = (teamId, assignment) => assignment.periodId ? `${teamId}:roster:${assignment.periodId}`
-  : `${teamId}:assigned:${assignment.season || assignment.start}`;
+
 
 function resultTotals() {
   return { total: 0, won: 0, lost: 0, drawn: 0 };
@@ -82,10 +82,11 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
       || season(previous.match.competition_name) !== s)) observedSegment++;
     const key = row.assignment ? assignmentKey(row.team.id, row.assignment) : `${row.team.id}:${s ?? 'unknown'}:${observedSegment}`;
     const period = periodsByKey.get(key) || {
-      key, team: row.team, season: s, first: row.assignment?.start || row.date, matches: 0,
+      key, team: row.team, season: s, first: row.assignment?.tenureStart || row.assignment?.start || row.date, matches: 0,
       assignment: row.assignment || null, matchRows: [],
     };
     period.last = row.assignment?.current ? new Date(now).toISOString() : row.assignment?.end || row.date;
+    period.assignment = row.assignment || period.assignment;
     period.matches++;
     period.matchRows.push(row.match);
     periodsByKey.set(key, period);
@@ -110,10 +111,19 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     const assignment = registration.assignment || { start: registration.start, current: registration.current,
       periodId: registration.periodId, source: 'league_roster' };
     const key = assignmentKey(registration.team.id, assignment);
-    if (!registration.start || periods.some(period => period.key === key)) continue;
+    if (!registration.start) continue;
     const last = registration.current ? new Date(now).toISOString() : registration.end || registration.observedAt;
+    const existing = periods.find(period => period.key === key);
+    if (existing) {
+      if (assignment.tenureKey) {
+        existing.assignment = assignment;
+        existing.last = last;
+        existing.days = observedDays(Date.parse(existing.first), Date.parse(last));
+      }
+      continue;
+    }
     periods.push({ key, team: registration.team,
-      first: registration.start, last, days: observedDays(Date.parse(registration.start), Date.parse(last)),
+      first: assignment.tenureStart || registration.start, last, days: observedDays(Date.parse(assignment.tenureStart || registration.start), Date.parse(last)),
       season: null, matches: 0, playedMatches: 0, winRate: null, mapTotals: { played: 0, won: 0 },
       assignment });
   }

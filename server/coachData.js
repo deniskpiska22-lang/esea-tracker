@@ -151,3 +151,10 @@ export async function loadCoachTeamLobbies(db, teamIds) {
     if (data.length < 500) return rows;
   }
 }
+
+export async function coachAssignmentHandoffs(db, ids) {
+  if (!ids.length) return [];
+  const { data, error } = await db.from('esea_coach_assignment_handoffs').select('*').in('coach_id', ids);
+  if (error) throw error;
+  return data;
+}
