@@ -2,14 +2,14 @@
 
 Active ESEA league rosters come from the public team-leagues v2
 leagues/{leagueId}/users/{userId}/teams/active endpoint. The importer tries
-up to three known team members, validates the premade team ID, league team ID
+known team members, validates the premade team ID, league team ID
 and ESEA league ID, and accepts members with game_role=coach whose membership
 has not ended. team_role controls permissions and is independent of coaching.
 FACEIT Data API supplies each coach's nickname and country.
 
 scripts/syncCoachRosters.js defaults to a read-only batch. Use --team with a
 FACEIT team ID for one team, --apply to store observations, or --full to scan
-all currently tracked active-season teams. The scheduled workflow resumes
+all currently tracked active-season teams. Use --missing to retry teams without a saved roster observation. The scheduled workflow resumes
 from worker_status. Empty coach slots clear a previous active roster link.
 Failures retain the last evidence. HTTP 403/429 stops the batch and stores a
 cooldown. Storage transactions reject older concurrent observations.
