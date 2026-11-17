@@ -123,9 +123,7 @@ function Overview({ profile }) {
         ))}
       </details>
     )}
-    <p className="coach-footnote">{tx(profile.rosterBased ? 'Team results during confirmed coaching periods.' : profile.assignment
-      ? 'Team results during the coaching periods provided by the coach.'
-      : 'Only matches with the coach confirmed by FACEIT are counted.')}</p>
+    <p className="coach-footnote">{tx('All played team matches during a coaching period count, even if the coach misses a game.')}</p>
   </>;
 }
 
@@ -198,7 +196,7 @@ function Career({ profile }) {
           <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
-    <p className="coach-footnote">{tx(profile.rosterBased ? 'Returns are separate periods. Unknown start dates use the first confirmation.' : profile.assignment ? 'Coaching periods provided by the coach.' : 'Dates show the first and last confirmed match, not the full coaching contract.')}</p>
+    <p className="coach-footnote">{tx('Five consecutive confirmed absences end a period before that run. Unknown lobbies do not count as absences. A return starts a new period.')}</p>
   </div>;
 }
 

@@ -1,7 +1,9 @@
-import { resolveCoachAssignments, continueCoachHandoffRooms, coachRoomTransferAt } from '../server/coachHandoff.js';
+import { currentTeamTenureCoaches } from '../server/coachTeamTenures.js';
+import { buildCoachTenures, COACH_ABSENCE_LIMIT } from '../server/coachTenures.js';
+import { resolveCoachAssignments } from '../server/coachHandoff.js';
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
 import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, coachRosterRows, coachAssignmentHandoffs, loadCoachLobbies, loadCoachTeamLobbies, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, coachRosterRows, coachAssignmentHandoffs, loadCoachLobbies, loadCoachTeamLobbies, loadCoachTeamMatches, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -52,30 +54,7 @@ export default async function handler(request, response) {
     const linked = linkedPlayerProfile(lookup);
     const coachId = linked?.id || lookup;
     if (player != null && !coachId) return response.status(404).json({ error: 'Coach not found' });
-    if (team) {
-      const [registration, [row], handoffs] = await Promise.all([
-        currentTeamCoach(db, team),
-        result(db.rpc('esea_latest_coach_lobby', { p_team_id: team })),
-        coachAssignmentHandoffs(db, coachAssignments.filter(assignment => assignment.teamId === team
-          && assignment.handoffOnCoachLobby).map(assignment => assignment.coachId)),
-      ]);
-      const coaches = registration ? (registration.coach_id ? [{ id: registration.coach_id, nickname: registration.nickname, avatar: null }] : [])
-        : row?.teams.find(side => side.id === team)?.coaches || [];
-      const editorial = resolveCoachAssignments(coachAssignments, [], handoffs).filter(assignment => assignment.teamId === team && assignment.current
-        && Date.parse(assignment.start) <= Date.now()).map(assignment => assignedCoach(assignment.coachId)).filter(Boolean);
-      const released = handoffs.filter(checkpoint => checkpoint.confirmed_at);
-      const ownerRooms = released.length ? await loadCoachLobbies(db,
-        [...new Set(released.flatMap(checkpoint => checkpoint.identity_ids))], 'id,status,started_at,scheduled_at,finished_at') : [];
-      const automatic = coaches.filter(coach => !released.some(checkpoint => checkpoint.identity_ids.includes(coach.id)
-        && Number.isFinite(coachRoomTransferAt(ownerRooms, checkpoint.coach_id, team,
-          Math.max(Date.parse(registration?.observed_at || row?.observed_at), Date.parse(checkpoint.handoff_at) - 1),
-          Date.now(), released))));
-      const unique = [...new Map((editorial.length ? editorial : automatic).map(coach => {
-        const canonical = assignedCoach(coach.id) || coach;
-        return [canonical.id, canonical];
-      })).values()];
-      return response.status(200).json({ coaches: person(unique), matchId: row?.match_id, observedAt: registration?.observed_at || row?.observed_at });
-    }
+    if (team) return response.status(200).json(await currentTeamTenureCoaches(db,team));
     if (match) {
       const row = await result(db.from('esea_coach_lobbies').select('teams,terminal,checked_at').eq('match_id', match).maybeSingle());
       const valid = row && (row.terminal || Date.parse(row.checked_at) >= Date.now() - 8 * 3600000);
@@ -96,24 +75,19 @@ export default async function handler(request, response) {
         .in('coach_id', originalIds).order('season', { ascending: false }).limit(200)),
       coachAssignmentHandoffs(db, manualAssignments.some(assignment => assignment.handoffOnCoachLobby) ? [coachId] : []),
     ]);
-    const assignments = resolveCoachAssignments(manualAssignments, registrations, handoffs, now, lobbies);
-    const coach = manual || { id: coachId, nickname: linked?.nickname || registrations[0]?.nickname,
-      country: registrations[0]?.country };
-    const teamIds = [...new Set(assignments.map(assignment => assignment.teamId))];
+    const seeds = resolveCoachAssignments(manualAssignments, registrations, handoffs, now, lobbies);
+    const roomCoach = lobbies.flatMap(row => row.teams.flatMap(side => side.coaches))
+      .find(person => originalIds.includes(person.id));
+    const coach = manual || { id: coachId, nickname: linked?.nickname || registrations[0]?.nickname || roomCoach?.nickname,
+      country: registrations[0]?.country || roomCoach?.country };
+    const teamIds = [...new Set([...seeds.map(assignment => assignment.teamId), ...lobbies.flatMap(row => row.teams
+      .filter(side => side.coaches.some(person => originalIds.includes(person.id))).map(side => side.id))])];
     const [teamEntries, assignmentLobbies] = await Promise.all([
       Promise.all(teamIds.map(async teamId => [teamId, await loadCoachTeamMatches(db, teamId, matchColumns)])),
       loadCoachTeamLobbies(db, teamIds),
     ]);
     const teamMatches = new Map(teamEntries);
-    const editorialRows = assignments.flatMap(assignment => assignedCoachRows(teamMatches.get(assignment.teamId),
-      assignment, coach, [...lobbies, ...assignmentLobbies], now));
-    const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
-    const observed = lobbies.map(row => ({ ...row, teams: row.teams
-      .filter(side => !covered.has(`${row.matches.id}:${side.id}`))
-      .map(side => ({ ...side, coaches: side.coaches.map(coach => originalIds.includes(coach.id) ? manual || { ...coach, id: coachId } : coach) })) }));
-    const rows = [...editorialRows, ...continueCoachHandoffRooms(observed, assignments, coachId, now, lobbies)];
-    const ids = [...new Set([...registrations.map(row => row.team_id), ...rows.flatMap(row => row.teams
-      .filter(side => side.coaches.some(coach => coach.id === coachId)).map(side => side.id))])];
+    const ids = [...new Set([...teamIds, ...registrations.map(row => row.team_id)])];
     const [teams, links, biography, playerNames] = ids.length ? await Promise.all([
       result(db.from('team_catalog').select('team_id,team,faceit_avatar_url').in('team_id', ids)),
       result(db.from('team_profile_urls').select('team_id,slug').in('team_id', ids)),
@@ -130,21 +104,22 @@ export default async function handler(request, response) {
         byTeam.set(row.team_id, { ...snapshot, activeSeasonParticipant: false });
       }
     }
-    const rosterEvidence = registrations.filter(row => catalog.has(row.team_id)).map(row => ({
-      person: { id: coachId, nickname: linked?.nickname || row.nickname, country: row.country },
-      team: { id: row.team_id, ...catalog.get(row.team_id) },
-      season: row.season, periodId: row.id, start: assignments.find(assignment => assignment.periodId === row.id)?.start || row.period_started_at || row.source_started_at,
-      end: assignments.find(assignment => assignment.periodId === row.id)?.end || row.ended_at || row.observed_at,
-      assignment: assignments.find(assignment => assignment.periodId === row.id),
-      observedAt: row.observed_at,
-      current: (assignments.find(assignment => assignment.periodId === row.id)?.current ?? row.active)
-        && byTeam.get(row.team_id)?.activeSeasonParticipant === true
-        && row.season === Number(byTeam.get(row.team_id)?.season)
-        && Date.parse(row.observed_at) >= now - 30 * 86400000,
-    }));
+    const assignments = buildCoachTenures({coachId,seeds,rooms:lobbies,teamMatches,
+      teamRooms:assignmentLobbies,now,catalog:byTeam});
+    const editorialRows = assignments.flatMap(assignment => assignedCoachRows(teamMatches.get(assignment.teamId)||[],
+      assignment, coach, [...lobbies,...assignmentLobbies], now));
+    const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
+    const observed = lobbies.map(row => ({ ...row, teams: row.teams
+      .filter(side => !covered.has(`${row.matches.id}:${side.id}`))
+      .map(side => ({ ...side, coaches: side.coaches.map(person => originalIds.includes(person.id) ? coach : person) })) }));
+    const rows = [...editorialRows,...observed];
+    const rosterEvidence = assignments.filter(assignment => assignment.source && catalog.has(assignment.teamId))
+      .map(assignment => ({person:coach,team:{id:assignment.teamId,...catalog.get(assignment.teamId)},
+        season:assignment.registeredSeason,periodId:assignment.periodId,assignment,start:assignment.start,
+        end:assignment.end,observedAt:assignment.observedAt,current:assignment.current}));
     const profile = buildCoachProfile(coachId, rows, catalog, now, rosterEvidence);
     if (!profile) return response.status(404).json({ error: 'Coach not found' });
-    return response.status(200).json({ ...profile, historyBounds,
+    return response.status(200).json({ ...profile, historyBounds, absenceLimit: COACH_ABSENCE_LIMIT,
       playerNickname: playerNames.get(coachId) || null, country: profile.country || biography?.country || null });
   } catch (error) {
     console.error('[coach]', error.message);
