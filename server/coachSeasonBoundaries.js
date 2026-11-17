@@ -13,7 +13,13 @@ export function coachBoundaryPlan(matches, phase = 'boundaries', now = Date.now(
   for (const id of ids) {
     const indices = matches.flatMap((match, index) => has(match, id) ? [index] : []);
     const first = indices[0], last = indices.at(-1);
-    for (const [index, reason] of [[last + 1, 'departure'], [first - 1, 'arrival']]) {
+    const after = matches.findIndex((match, index) => index > last && known(match) && !has(match, id));
+    const before = matches.findLastIndex((match, index) => index < first && known(match) && !has(match, id));
+    // Move inward from a known absence: last empty, penultimate empty, etc.
+    // Never use binary search: a coach may leave and return within a season.
+    const departure = after >= 0 ? after - 1 : last + 1;
+    const arrival = before >= 0 ? before + 1 : first - 1;
+    for (const [index, reason] of [[departure, 'departure'], [arrival, 'arrival']]) {
       if (index >= 0 && index < matches.length && usable(index)) return { index, reason, coachId: id };
     }
   }

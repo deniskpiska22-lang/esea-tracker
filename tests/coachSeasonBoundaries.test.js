@@ -38,3 +38,13 @@ test('different coaches and a return to the same team retain gaps in the evidenc
   assert.equal(bounds.find(row => row.coach_id === 'A').evidence.hasGaps, true);
   assert.equal(bounds.find(row => row.coach_id === 'B').evidence.after.id, '2');
 });
+
+test('a coach missing at the end is searched from the penultimate match backwards', () => {
+  const rows = [row(0,['A']),row(1),row(2),row(3),row(4,[])];
+  assert.equal(coachBoundaryPlan(rows).index, 3);
+  rows[3] = row(3,[]);
+  assert.equal(coachBoundaryPlan(rows).index, 2);
+  rows[2] = row(2,['A']);
+  assert.equal(coachBoundaryPlan(rows), null);
+  assert.equal(coachSeasonBounds({matches:rows})[0].evidence.after.id, '3');
+});
