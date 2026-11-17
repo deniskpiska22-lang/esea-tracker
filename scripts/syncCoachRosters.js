@@ -8,7 +8,7 @@ import { ESEA_LEAGUE_ID, parseLeagueCoachRoster } from './lib/coachLeagueRoster.
 import { retryAfterMs } from './lib/discoveryScan.js';
 
 const { values } = parseArgs({ options: {
-  apply: { type: 'boolean' }, full: { type: 'boolean' }, team: { type: 'string' },
+  apply: { type: 'boolean' }, full: { type: 'boolean' }, missing: { type: 'boolean' }, team: { type: 'string' },
 } });
 if (values.team && !uuid(values.team)) throw new Error('Invalid team ID');
 const db = coachClient();
@@ -19,7 +19,7 @@ async function result(query) {
 }
 const workerName = 'coach-rosters';
 const { active_season: season } = await result(db.from('rating_season_settings').select('active_season').single());
-const teams = [];
+let teams = [];
 for (let offset = 0; ; offset += 1000) {
   let query = db.from('team_catalog').select('team_id,team').eq('team->>activeSeasonParticipant', 'true')
     .eq('team->>season', String(season)).order('team_id').range(offset, offset + 999);
@@ -28,9 +28,25 @@ for (let offset = 0; ; offset += 1000) {
   teams.push(...page);
   if (page.length < 1000) break;
 }
-if (!teams.length) throw new Error('No active ESEA teams to scan');
+if (values.missing) {
+  const checked = new Set();
+  for (let offset = 0; ; offset += 1000) {
+    const page = await result(db.from('esea_coach_roster_checks').select('team_id').eq('season', season)
+      .order('team_id').range(offset, offset + 999));
+    for (const row of page) checked.add(row.team_id);
+    if (page.length < 1000) break;
+  }
+  teams = teams.filter(team => !checked.has(team.team_id));
+}
+if (!teams.length) {
+  if (values.missing) {
+    console.log('[coach-rosters] All active teams have saved roster observations');
+    process.exit(0);
+  }
+  throw new Error('No active ESEA teams to scan');
+}
 let state = {};
-if (values.apply && !values.team) {
+if (values.apply && !values.team && !values.missing) {
   const saved = await result(db.from('worker_status').select('detail').eq('worker_name', workerName).maybeSingle());
   try { state = JSON.parse(saved?.detail || '{}'); } catch { /* Previous human-readable status. */ }
 }
@@ -40,7 +56,7 @@ if (Number(state.retryAt || 0) > Date.now()) {
 }
 if (state.season !== season) state = { season };
 let index = Math.max(0, teams.findIndex(team => team.team_id === state.nextId));
-const maxTeams = values.full ? teams.length : Math.min(350, teams.length);
+const maxTeams = (values.full || values.missing) ? teams.length : Math.min(350, teams.length);
 const deadline = Date.now() + (values.full ? 40 * 60 * 1000 : 8 * 60 * 1000);
 const identities = new Map();
 const totals = { checked: 0, coaches: 0, saved: 0, empty: 0, unavailable: 0, failed: 0 };
@@ -65,7 +81,7 @@ async function identity(id) {
   return player;
 }
 async function checkpoint(status, retryAt = 0) {
-  if (!values.apply || values.team) return;
+  if (!values.apply || values.team || values.missing) return;
   const at = new Date().toISOString();
   await result(db.from('worker_status').upsert({ worker_name: workerName, status, last_ping: at, updated_at: at,
     detail: JSON.stringify({ season, nextId: teams[index].team_id, retryAt, ...totals }) }, { onConflict: 'worker_name' }));
@@ -76,14 +92,21 @@ for (let completed = 0; completed < maxTeams && Date.now() < deadline; completed
   let roster = null;
   let writing = false;
   try {
-    const users = [...new Set(team.team.playerIds || [])].filter(uuid).slice(0, 3);
+    const users = [...new Set(team.team.playerIds || [])].filter(uuid);
     for (const userId of users) {
       const url = `https://www.faceit.com/api/team-leagues/v2/leagues/${ESEA_LEAGUE_ID}/users/${userId}/teams/active`;
-      roster = parseLeagueCoachRoster(await fetchJson(url), team);
+      try {
+        roster = parseLeagueCoachRoster(await fetchJson(url), team);
+      } catch (error) {
+        // A former member can have no active league team. Try another member.
+        if (error.status !== 404) throw error;
+      }
       if (roster) break;
     }
     if (!roster) {
       totals.unavailable++;
+      console.warn('[coach-rosters]', team.team_id, 'No matching active roster for known members');
+      if (values.team) throw new Error('No matching active ESEA roster');
     } else {
       const player = roster.coachId ? await identity(roster.coachId) : null;
       if (player) totals.coaches++;

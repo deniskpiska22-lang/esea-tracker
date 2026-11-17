@@ -1,7 +1,7 @@
 name: Import ESEA coaches from active league rosters
 on:
   push:
-    branches: [esea-coaches-active-import]
+    branches: [esea-coaches-active-import, esea-coaches-active-recovery]
   workflow_dispatch:
   schedule:
     - cron: '17,47 * * * *'
@@ -40,7 +40,9 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
           FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
         run: |
-          if [ '${{ github.event_name }}' = 'push' ]; then
+          if [ '${{ github.ref_name }}' = 'esea-coaches-active-recovery' ]; then
+            node scripts/syncCoachRosters.js --apply --missing
+          elif [ '${{ github.event_name }}' = 'push' ]; then
             node scripts/syncCoachRosters.js --apply --full
           else
             node scripts/syncCoachRosters.js --apply
