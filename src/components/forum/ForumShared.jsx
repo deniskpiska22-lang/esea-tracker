@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../../hooks/useUserTimeSettings.js';
 import { FiArrowRight, FiMessageSquare } from "react-icons/fi";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -9,6 +10,7 @@ import { forumError } from "../../utils/forum.js";
 import { formatUserDateTime } from "../../utils/userTime.js";
 
 export function ForumDate({ value }) {
+  useUserTimeSettings();
   return (
     <time dateTime={value}>
       {formatUserDateTime(value, {
@@ -22,6 +24,7 @@ export function ForumDate({ value }) {
   );
 }
 export function ForumAuthor({ profile }) {
+  useUserTimeSettings();
   const label =
     profile?.display_name || profile?.username || tx("Community member");
   return (
@@ -53,6 +56,7 @@ export function ForumAuthor({ profile }) {
   );
 }
 export function ForumLoginNotice() {
+  useUserTimeSettings();
   const location = useLocation();
   return (
     <section className="forum-login-panel">
@@ -81,6 +85,7 @@ export function ForumLoginNotice() {
 }
 
 export function ForumAlert({ children }) {
+  useUserTimeSettings();
   return children ? (
     <p
       role="alert"
@@ -91,6 +96,7 @@ export function ForumAlert({ children }) {
   ) : null;
 }
 export function ForumReport({ topicId, postId }) {
+  useUserTimeSettings();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [reason, setReason] = useState("");

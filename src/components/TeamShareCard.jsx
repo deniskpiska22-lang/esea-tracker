@@ -1,10 +1,12 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import {validFaceitAvatar} from '../utils/teamAvatar.js';
-import {LANGUAGES} from '../i18n/languages.js';
 import {teamShareLabels} from './teamShareLabels.js';
 import {shareTeamUrl} from '../utils/teamShare.js';
 export default function TeamShareCard({team,snapshot,language,svgRef}){
- const l=teamShareLabels(language),locale=LANGUAGES.find(x=>x.code===language)?.locale||'en-US';
- const date=new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(snapshot.date));
+  useUserTimeSettings();
+ const l=teamShareLabels(language);
+ const date=formatUserDateTime(snapshot.date, {day:'numeric',month:'short',year:'numeric'});
  const change=snapshot.change,positive=change!==null&&change>=0,accent=change===null?'#8095a7':positive?'#91d5b7':'#e593a3';
  const name=team.name||'Team',size=Math.max(24,Math.min(42,690/(name.length*.57)));
  const region=team.region||team.sources?.find(s=>s.season===team.season)?.region||team.sources?.[0]?.region;
@@ -16,5 +18,5 @@ export default function TeamShareCard({team,snapshot,language,svgRef}){
  <path d="M50 291H1150" stroke="#314253"/><text x="50" y="333" fill="#9aafc0" fontSize="12" letterSpacing="2">{l.rank.toUpperCase()}</text><text x="45" y="466" fill="#efbe83" fontSize={snapshot.rank>999?94:118} fontWeight="800" letterSpacing="-5">{snapshot.rank?`#${snapshot.rank}`:'—'}</text>
  <path d="M405 333V475" stroke="#354859"/><text x="447" y="395" fill={accent} fontSize="49" fontWeight="700">{change===null?'—':`${positive?'↑':'↓'} ${Math.abs(change)}`}</text><text x="447" y="434" fill="#a1b7c6" fontSize="15">{l.places}</text><text x="447" y="461" fill="#6f879b" fontSize="12">{snapshot.previousRank?`#${snapshot.previousRank} → #${snapshot.rank}`:l.noChange}</text>
  <path d="M763 333V475" stroke="#354859"/><text x="811" y="340" fill="#91a7b9" fontSize="12">{l.results.toUpperCase()}</text><text x="808" y="410" fill="#e7eef3" fontSize="47" fontWeight="700">{snapshot.results?`${snapshot.results.wins} W / ${snapshot.results.losses} L`:'—'}</text>{snapshot.results?.form.map((v,i)=><g key={i}><rect x={812+i*42} y="438" width="31" height="27" rx="5" fill={v==='W'?'#183a30':'#3f2831'}/><text x={827+i*42} y="457" textAnchor="middle" fill={v==='W'?'#92d4b4':'#d68b9d'} fontSize="11" fontWeight="700">{v}</text></g>)}
- <path d="M50 514H1150" stroke="#314253"/><text x="50" y="557" fill="#c6d4e0" fontSize={Math.max(10,Math.min(16,1080/(url.length*.54)))}>{url}</text><text x="50" y="586" fill="#5d788d" fontSize="11">{snapshot.start} — {snapshot.end} · UTC</text><text x="1150" y="586" textAnchor="end" fill="#8ba1b3" fontSize="11">{snapshot.points??'—'} {l.points}</text></g></svg>;
+ <path d="M50 514H1150" stroke="#314253"/><text x="50" y="557" fill="#c6d4e0" fontSize={Math.max(10,Math.min(16,1080/(url.length*.54)))}>{url}</text><text x="50" y="586" fill="#5d788d" fontSize="11">{formatUserDateTime(`${snapshot.start}T00:00:00Z`, {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})} — {formatUserDateTime(`${snapshot.end}T00:00:00Z`, {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</text><text x="1150" y="586" textAnchor="end" fill="#8ba1b3" fontSize="11">{snapshot.points??'—'} {l.points}</text></g></svg>;
 }

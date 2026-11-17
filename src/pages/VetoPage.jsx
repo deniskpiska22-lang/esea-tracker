@@ -1,8 +1,10 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { createContext, useContext, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -144,11 +146,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
+  return formatUserDateTime(value, {day: "2-digit",month: "short",year: "numeric"});
 }
 
 const VetoImages = createContext(null);
@@ -164,6 +162,7 @@ function MapThumb({ name, large = false }) {
 }
 
 function SummaryCard({ label, map, value, tone, children }) {
+  useUserTimeSettings();
   return (
     <div className={`veto-summary-card ${tone || ""}`}>
       <span>{tx(label)}</span>
@@ -174,6 +173,7 @@ function SummaryCard({ label, map, value, tone, children }) {
 }
 
 function BanOrderFlow({ title, banOrderStats, opponent = false, loading }) {
+  useUserTimeSettings();
   const groups = groupBanOrderByPosition(banOrderStats);
   return (
     <section className={`veto-flow-panel ${opponent ? "is-opponent" : ""}`}>
@@ -202,6 +202,7 @@ function BanOrderFlow({ title, banOrderStats, opponent = false, loading }) {
 }
 
 function MatchHistoryCard({ match, teamName, preview }) {
+  useUserTimeSettings();
   const id = match.matchId || match.id;
   const steps = match.vetoSteps || [];
   return (
@@ -232,6 +233,7 @@ function MatchHistoryCard({ match, teamName, preview }) {
 }
 
 function MapCard({ map, form, slug, preview }) {
+  useUserTimeSettings();
   const decided = map.winsWhenPicked + map.lossesWhenPicked;
   const content = <>
     <div className="veto-map-cover">
@@ -282,6 +284,7 @@ function VetoPage() {
 }
 
 export function VetoDashboard({ team, slug, matches, loading = false, error, preview = false, images = null }) {
+  useUserTimeSettings();
   const [sort, setSort] = useState("pick");
   const [visibleMatches, setVisibleMatches] = useState(8);
   const recentMatches = useMemo(() => preview ? matches : matches.filter(isWithinVetoWindow), [matches, preview]);

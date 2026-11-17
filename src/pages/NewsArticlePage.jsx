@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient.js';
@@ -6,10 +7,12 @@ import { currentLanguage, localizedPath } from '../i18n/languages.js';
 import Link from '../components/SiteLink.jsx';
 import { formatUserDateTime } from '../utils/userTime.js';
 export default function NewsArticlePage() {
+  useUserTimeSettings();
   const { slug } = useParams();
   return <Article key={slug} slug={slug} />;
 }
 function Article({ slug }) {
+  useUserTimeSettings();
   const [state, setState] = useState({ loading: true, article: null, error: false });
   const [revision, setRevision] = useState(0);
   useEffect(() => {

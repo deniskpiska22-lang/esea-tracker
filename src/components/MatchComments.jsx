@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import Link from "./SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
@@ -25,7 +26,7 @@ function formatCommentDate(value) {
     return "";
   }
 
-  return formatUserDateTime(date, {
+  return formatUserDateTime(value, {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -47,6 +48,7 @@ function getInitials(profile) {
 }
 
 export default function MatchComments({ matchId }) {
+  useUserTimeSettings();
   const location = useLocation();
   const {
     user,

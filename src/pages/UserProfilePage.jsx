@@ -1,9 +1,10 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { favoriteTeamByKey } from "../utils/favoriteTeams.js";
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { formatUserDateTime } from "../utils/userTime.js";
 import { translateError } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { tx } from "../i18n/translate.js";
 import {
   useCallback,
@@ -49,17 +50,10 @@ function formatDate(value, language) {
       : tx("Unknown");
   }
 
-  return new Intl.DateTimeFormat(
-    currentLocale(),
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }
-  ).format(date);
+  return formatUserDateTime(value, {day: "2-digit",month: "long",year: "numeric"});
 }
 
-function formatDateTime(value, language) {
+function formatDateTime(value) {
   if (!value) {
     return "";
   }
@@ -70,7 +64,7 @@ function formatDateTime(value, language) {
     return "";
   }
 
-  return formatUserDateTime(date, {
+  return formatUserDateTime(value, {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -254,6 +248,7 @@ function EmptyState({
 }
 
 export default function UserProfilePage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const { tr, language } = useLanguage();
   const { username } = useParams();

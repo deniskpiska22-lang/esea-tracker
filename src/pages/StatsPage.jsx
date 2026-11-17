@@ -1,8 +1,10 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { tx, tf } from "../i18n/translate.js";
 import { useParams } from "react-router-dom";
 
@@ -48,11 +50,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
+  return formatUserDateTime(value, {day: "2-digit",month: "short",year: "numeric"});
 }
 
 function getWinrateTextClass(winrate) {
@@ -82,6 +80,7 @@ function getStreak(matches) {
 }
 
 function StatsPage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const { slug } = useParams();
 

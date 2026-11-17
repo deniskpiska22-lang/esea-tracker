@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { formatUserDateTime } from "../utils/userTime.js";
 import { MATCH_CARD_COLUMNS } from "../utils/homeMatchColumns.js";
@@ -9,7 +10,7 @@ import Link from "../components/SiteLink.jsx";
 import UserTime from "../components/UserTime.jsx";
 import { translateMatchStatus } from "../i18n/translate.js";
 import { tx, tf } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { findCatalogTeam } from "../utils/teamIdentity.js";
 import { resolveMatchTeam, matchTeamSource } from "../utils/matchTeamIdentity.js";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -338,7 +339,7 @@ function formatTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return tx("TBD");
 
-  return <UserTime value={date} />;
+  return <UserTime value={value} />;
 }
 
 function formatDate(value) {
@@ -347,7 +348,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
 
-  return formatUserDateTime(date, { day: "2-digit", month: "short" });
+  return formatUserDateTime(value, { day: "2-digit", month: "short" });
 }
 
 function formatRelative(value) {
@@ -883,15 +884,16 @@ function TrophyIcon({ className = "h-7 w-7" }) {
 }
 
 function TournamentCard({ tournament, isLive, index = 0 }) {
+  useUserTimeSettings();
   const startDate = tournament.startDate ? new Date(tournament.startDate) : null;
   const validStartDate = startDate && !Number.isNaN(startDate.getTime());
 
   const day = validStartDate
-    ? new Intl.DateTimeFormat(currentLocale(), { day: "2-digit" }).format(startDate)
+    ? formatUserDateTime(tournament.startDate, {day: "2-digit"})
     : "—";
 
   const month = validStartDate
-    ? new Intl.DateTimeFormat(currentLocale(), { month: "short" }).format(startDate).toUpperCase()
+    ? formatUserDateTime(tournament.startDate, {month: "short"}).toUpperCase()
     : tx("TBD");
 
   const dateRange = !tournament.startDate
@@ -977,16 +979,16 @@ function TournamentCard({ tournament, isLive, index = 0 }) {
 
 
 function CompactTournamentCard({ tournament, isLive = false }) {
+  useUserTimeSettings();
   const startDate = tournament.startDate ? new Date(tournament.startDate) : null;
   const validStartDate = startDate && !Number.isNaN(startDate.getTime());
 
   const day = validStartDate
-    ? new Intl.DateTimeFormat(currentLocale(), { day: "2-digit" }).format(startDate)
+    ? formatUserDateTime(tournament.startDate, {day: "2-digit"})
     : "—";
 
   const month = validStartDate
-    ? new Intl.DateTimeFormat(currentLocale(), { month: "short" })
-        .format(startDate)
+    ? formatUserDateTime(tournament.startDate, {month: "short"})
         .toUpperCase()
     : tx("TBD");
 
@@ -1060,6 +1062,7 @@ function SectionTitle({ title, action }) {
 }
 
 function HeroMatch({ match: data, loading = false }) {
+  useUserTimeSettings();
   const unavailable = !data;
   // Share the real layout with the loading/empty state so data and logos do
   // not push the rest of the page down when they arrive.
@@ -1194,6 +1197,7 @@ function HeroMatch({ match: data, loading = false }) {
 }
 
 function LiveCard({ match }) {
+  useUserTimeSettings();
   const statusLabel = translateMatchStatus(match.status);
 
   const elapsed = match.startedAt ? formatRelative(match.startedAt) : "";
@@ -1312,6 +1316,7 @@ function LiveCard({ match }) {
 }
 
 function MatchCard({ match }) {
+  useUserTimeSettings();
   return (
     <Link
       to={matchPublicPath(match)}
@@ -1358,6 +1363,7 @@ function MatchCard({ match }) {
 }
 
 function ResultCard({ match }) {
+  useUserTimeSettings();
   const firstScore = Number(match.team1.score);
   const secondScore = Number(match.team2.score);
   const firstWon = Number.isFinite(firstScore) && firstScore > secondScore;
@@ -1516,6 +1522,7 @@ function NewsCard({
 }
 
 function Home() {
+  useUserTimeSettings();
   const [upcomingDivision, setUpcomingDivision] = useState("All");
   const upcomingListRef = useRef(null);
   const [databaseRows, setDatabaseRows] = useState([]);

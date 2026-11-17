@@ -1,6 +1,8 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import {useId,useMemo,useState} from 'react';
 import {AreaChart,Area,XAxis,YAxis,Tooltip,ResponsiveContainer,CartesianGrid} from 'recharts';
-import {currentLanguage,currentLocale} from '../i18n/languages.js';
+import {currentLanguage} from '../i18n/languages.js';
 import {normalizeRatingHistory,filterRatingHistory,ratingHistoryChange} from '../utils/ratingHistory.js';
 import {ratingHistoryLabels} from './ratingHistoryLabels.js';
 import './RatingHistoryChart.css';
@@ -11,11 +13,12 @@ function Delta({value,rank=false}) {
     {value===null?'—':rank?`${value>0?'↑':value<0?'↓':'·'} ${Math.abs(value)}`:signed(value)}
   </span>;
 }
-function SnapshotTooltip({active,payload,labels,locale}) {
+function SnapshotTooltip({active,payload,labels}) {
+  useUserTimeSettings();
   if(!active || !payload?.length) return null;
   const row=payload[0].payload;
   return <div className="rating-history__tooltip">
-    <time>{new Intl.DateTimeFormat(locale,{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(row.date)}</time>
+    <time>{formatUserDateTime(row.date, {day:'numeric',month:'long',year:'numeric'})}</time>
     <div className="rating-history__tooltip-grid">
       <div><span>{labels.points}</span><strong>{row.rating??'—'}</strong><Delta value={row.pointsChange}/></div>
       <div><span>{labels.rank}</span><strong>{row.rank?`#${row.rank}`:'—'}</strong><Delta value={row.rankChange} rank/></div>
@@ -25,11 +28,11 @@ function SnapshotTooltip({active,payload,labels,locale}) {
   </div>;
 }
 export default function RatingHistoryChart({data}) {
+  useUserTimeSettings();
   const [months,setMonths]=useState(3);
   const [metric,setMetric]=useState('rating');
   const gradientId=`rating-history-${useId().replace(/:/g,'')}`;
   const labels=ratingHistoryLabels(currentLanguage());
-  const locale=currentLocale();
   const rows=useMemo(()=>normalizeRatingHistory(data),[data]);
   const shown=useMemo(()=>filterRatingHistory(rows,months),[rows,months]);
   const last=shown.at(-1);
@@ -37,7 +40,7 @@ export default function RatingHistoryChart({data}) {
   const rankChange=ratingHistoryChange(shown,'rank');
   const rankMode=metric==='rank';
   const available=shown.filter(row=>row[metric]!==null);
-  const shortDate=value=>new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',timeZone:'UTC'}).format(Number(value));
+  const shortDate=value=>formatUserDateTime(Number(value), {day:'numeric',month:'short'});
   const min=available.length?Math.min(...available.map(row=>row[metric])):0;
   const max=available.length?Math.max(...available.map(row=>row[metric])):1;
   const step=rankMode?Math.max(1,Math.ceil((max-min)/5)):Math.max(10,Math.ceil((max-min)/250)*50);
@@ -57,11 +60,11 @@ export default function RatingHistoryChart({data}) {
       <CartesianGrid vertical={false} stroke="#a0b0c0" strokeOpacity={.1} strokeDasharray="3 7"/>
       <XAxis dataKey="date" type="number" scale="time" domain={['dataMin','dataMax']} tickFormatter={shortDate} axisLine={false} tickLine={false} tick={{fill:'#8398ad',fontSize:11}} tickMargin={16} minTickGap={40} interval="preserveStartEnd" padding={{left:10,right:12}}/>
       <YAxis orientation="right" domain={[low,high]} ticks={ticks} reversed={rankMode} tickFormatter={value=>rankMode?`#${value}`:value} axisLine={false} tickLine={false} tick={{fill:'#7e94aa',fontSize:11}} width={rankMode?62:48} tickMargin={10} allowDecimals={false}/>
-      <Tooltip content={<SnapshotTooltip labels={labels} locale={locale}/>} cursor={{stroke:accent,strokeOpacity:.4,strokeDasharray:'4 5'}} wrapperStyle={{outline:'none'}}/>
+      <Tooltip content={<SnapshotTooltip labels={labels}/>} cursor={{stroke:accent,strokeOpacity:.4,strokeDasharray:'4 5'}} wrapperStyle={{outline:'none'}}/>
       <Area type="linear" baseValue={rankMode?high:low} dataKey={metric} stroke={accent} strokeWidth={2.5} fill={`url(#${gradientId})`} isAnimationActive={false} connectNulls={false}
         dot={({cx,cy,index,value})=>value!==null && (index===shown.length-1||available.length===1)?<g key={index}><circle cx={cx} cy={cy} r={9} fill={accent} opacity={.09}/><circle cx={cx} cy={cy} r={4} fill={accent} stroke="#14202c" strokeWidth={2}/></g>:<g key={index}/>}
         activeDot={{r:5,fill:accent,stroke:'#15202b',strokeWidth:3}}/>
     </AreaChart></ResponsiveContainer>}</div>
-    {shown.length>0&&<div className="rating-history__footer"><span>{new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(shown[0].date)} — {new Intl.DateTimeFormat(locale,{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(last.date)}</span><span>{labels.snapshots}: {shown.length}</span></div>}
+    {shown.length>0&&<div className="rating-history__footer"><span>{formatUserDateTime(shown[0].date, {day:'numeric',month:'short',year:'numeric'})} — {formatUserDateTime(last.date, {day:'numeric',month:'short',year:'numeric'})}</span><span>{labels.snapshots}: {shown.length}</span></div>}
   </div>;
 }

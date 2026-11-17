@@ -44,7 +44,8 @@
     "stats:normalize": "node --env-file=.env.local scripts/backfillNormalizedMatchStats.js",
     "stats:check": "node --env-file=.env.local scripts/checkNormalizedMatchStats.js",
     "start": "node server/startWeb.js",
-    "build:web": "npm run build && node scripts/compressWebAssets.js"
+    "build:web": "npm run build && node scripts/compressWebAssets.js",
+    "check:time": "node --test tests/userTime.test.js && eslint src --config eslint.time.config.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.5",

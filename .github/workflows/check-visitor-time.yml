@@ -1,0 +1,16 @@
+name: Check visitor time rule
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  visitor-time:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check:time

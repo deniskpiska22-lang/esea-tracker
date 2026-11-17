@@ -73,3 +73,7 @@ Short, periodic jobs (match sync every 5 min, stat-job processing) instead run v
 ### Supabase
 
 Schema lives in `supabase/migrations/*.sql`, applied in order. `supabase/functions/login-with-username` is the one Edge Function, used only to resolve a username to an email for login (email/password auth works without deploying it).
+
+## Visitor date and time rule
+
+Every browser-visible instant must use `src/utils/userTime.js` (`formatUserDateTime` or `UserTime`). Always follow the visitor's browser/device timezone and regional 12/24-hour and date preferences, independent of site language, IP, country or partner. Never force UTC, Moscow or another display zone at a call site. Components displaying dates subscribe with `useUserTimeSettings()` so device changes and local midnight update without a reload. Date-only calendar labels retain their calendar day; real timestamps convert to local time. Keep stored timestamps, API contracts and statistical calculation windows in UTC. ISO machine-readable attributes are allowed. ESLint enforces the shared formatter; extend its tests for new time behavior.

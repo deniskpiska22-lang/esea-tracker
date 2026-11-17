@@ -1,9 +1,9 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { findTeamByRoute } from "../utils/teamProfileUrls.js";
 import { translateError } from "../i18n/translate.js";
 import { tx, translateMatchStatus } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function formatDate(value) {
     return String(value);
   }
 
-  return formatUserDateTime(date, { day: "2-digit", month: "2-digit", year: "numeric" });
+  return formatUserDateTime(value, { day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
 function getMapScores(row) {
@@ -107,6 +107,7 @@ function rowToTeamMatch(row, team) {
 }
 
 function TeamMatches({ team, slug }) {
+  useUserTimeSettings();
   const location = useLocation();
   const mapFilter = new URLSearchParams(location.search).get("map");
 

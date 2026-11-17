@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { faceitMatchRoomUrl } from '../utils/faceitMatchUrl.js';
@@ -286,7 +287,7 @@ function formatDateTime(value) {
     return String(value);
   }
 
-  return formatUserDateTime(parsed, {
+  return formatUserDateTime(value, {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -306,7 +307,7 @@ function formatMatchTime(value) {
     return "--:--";
   }
 
-  return <UserTime value={parsed} />;
+  return <UserTime value={value} />;
 }
 
 function formatMatchDate(value) {
@@ -320,14 +321,7 @@ function formatMatchDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat(
-    currentLocale(),
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }
-  ).format(parsed);
+  return formatUserDateTime(value, {day: "2-digit",month: "long",year: "numeric"});
 }
 
 function formatMapName(value) {
@@ -947,6 +941,7 @@ function MatchInformationCard({
   bestOf,
   faceitUrl,
 }) {
+  useUserTimeSettings();
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
@@ -1449,6 +1444,7 @@ function FinishedMatchHero({
   team2FlagUrl,
   scoreLabel = "Series score",
 }) {
+  useUserTimeSettings();
   const [team1Score, team2Score] = String(score)
     .split(":")
     .map((value) => toNumber(value.trim()));
@@ -1568,6 +1564,7 @@ function FinishedMatchHero({
 }
 
 function LiveMatchPage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const location = useLocation();
 

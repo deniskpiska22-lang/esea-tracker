@@ -1,3 +1,5 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { useEffect, useState } from 'react';
 import { Link, Navigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { getCoachSeo } from '../utils/coachSeo.js';
@@ -12,8 +14,7 @@ import './PlayerPage.css';
 import './CoachPage.css';
 
 const formatDate = (value, options = { day: 'numeric', month: 'short', year: 'numeric' }) =>
-  new Intl.DateTimeFormat(currentLocale(), /^\d{4}-\d{2}-\d{2}$/.test(value)
-    ? { ...options, timeZone: 'UTC' } : options).format(new Date(value));
+  formatUserDateTime(value, options);
 const rate = (won, total) => new Intl.NumberFormat(currentLocale(), { style: 'percent', maximumFractionDigits: 1 }).format(won / total);
 const teamPath = team => `/teams/${encodeURIComponent(team.slug || team.id)}`;
 
@@ -92,6 +93,7 @@ function CoachStats({ stats }) {
 }
 
 function Overview({ profile }) {
+  useUserTimeSettings();
   return <>
     <div className="coach-columns coach-overview">
       {profile.stats && <CoachStats stats={profile.stats} />}
@@ -128,6 +130,7 @@ function Overview({ profile }) {
 }
 
 function Career({ profile }) {
+  useUserTimeSettings();
   const { roster, periods, team, observedAt } = profile;
   const [selection, setSelection] = useState(null);
   const selected = periods.find(period => period.key === selection) || periods[0];
@@ -200,6 +203,7 @@ function Career({ profile }) {
 }
 
 export default function CoachPage({ playerRoute = false }) {
+  useUserTimeSettings();
   const { coachId, playerId } = useParams();
   const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
