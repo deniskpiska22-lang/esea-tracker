@@ -36,3 +36,19 @@ bounds remain available in profiles as intervals between confirmed match
 rooms; these do not establish a contract termination date. Manual owner
 assignments retain priority. Authorized saved room JSON can be imported
 with scripts/importCoachLobbies.js, using --apply after inspecting its dry run.
+
+Coaching stints are stored separately in esea_coach_roster_periods. The
+record_esea_coach_roster transaction preserves completed stints, appends a new
+one on a return, and updates the same stint during continuous membership or
+a season rollover. An unchanged league membership date after a confirmed
+absence is not reused as the return date: the first new observation is shown
+instead. A departed stint stops at its last positive observation; this is not
+an exact contractual termination date. Team snapshots survive catalog removal.
+
+Profiles use all saved stints, including zero-match current stints. Career and
+per-team results retain previous teams. Match-room-only A/B/A observations
+are displayed as three periods instead of drawing an uninterrupted A span.
+Manual owner assignments retain priority. GitHub normally refreshes current
+rosters; the Railway automation cycle also runs a resumable roster batch when
+the shared coach-rosters heartbeat is more than four hours old. Lobby source
+failure does not prevent that separate roster refresh.

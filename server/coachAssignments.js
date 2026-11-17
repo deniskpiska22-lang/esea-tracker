@@ -55,14 +55,15 @@ export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
 }
 
 export function rosterCoachAssignments(rows, manualAssignments = [], now = Date.now()) {
-  return rows.filter(row => Date.parse(row.source_started_at) > Date.UTC(2000, 0)
-    && Date.parse(row.source_started_at) <= now
+  return rows.filter(row => Date.parse(row.period_started_at || row.source_started_at) > Date.UTC(2000, 0)
+    && Date.parse(row.period_started_at || row.source_started_at) <= now
     && !manualAssignments.some(assignment => assignment.teamId === row.team_id))
     .map(row => {
       const catalog = row.team_catalog?.team;
       const current = row.active && catalog?.activeSeasonParticipant === true
         && row.season === Number(catalog.season) && Date.parse(row.observed_at) >= now - 30 * 86400000;
-      return { coachId: row.coach_id, teamId: row.team_id, start: row.source_started_at,
-        end: current ? null : row.observed_at, current, source: 'league_roster', registeredSeason: row.season };
+      return { coachId: row.coach_id, teamId: row.team_id, start: row.period_started_at || row.source_started_at,
+        end: current ? null : row.ended_at || row.observed_at, current, source: 'league_roster',
+        periodId: row.id, startSource: row.start_source || 'league_membership', registeredSeason: row.season };
     });
 }

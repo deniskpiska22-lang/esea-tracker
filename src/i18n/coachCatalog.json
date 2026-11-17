@@ -350,5 +350,21 @@
     "es": "Las salas de partido no confirman la fecha de fin del contrato.",
     "fr": "Les données des matchs ne confirment pas la date de fin du contrat.",
     "it": "I dati delle partite non confermano la data di fine contratto."
+  },
+  "Team results during confirmed coaching periods.": {
+    "ru": "Результаты команды за подтверждённые периоды работы тренера.",
+    "de": "Teamergebnisse während bestätigter Trainerperioden.",
+    "pt": "Resultados da equipa nos períodos de treino confirmados.",
+    "es": "Resultados del equipo durante los periodos confirmados del entrenador.",
+    "fr": "Résultats de l’équipe pendant les périodes confirmées du coach.",
+    "it": "Risultati della squadra nei periodi confermati dell’allenatore."
+  },
+  "Returns are separate periods. Unknown start dates use the first confirmation.": {
+    "ru": "Возвращения показаны отдельными периодами. Если дата начала неизвестна, отсчёт идёт с первого подтверждения.",
+    "de": "Rückkehr zählt als eigener Zeitraum. Bei unbekanntem Beginn gilt die erste Bestätigung.",
+    "pt": "Cada regresso é um período separado. Se o início for desconhecido, usa-se a primeira confirmação.",
+    "es": "Cada regreso es un periodo separado. Si se desconoce el inicio, se usa la primera confirmación.",
+    "fr": "Chaque retour est une période distincte. Sans date de début connue, la première confirmation est utilisée.",
+    "it": "Ogni ritorno è un periodo separato. Se l’inizio è sconosciuto, si usa la prima conferma."
   }
 }

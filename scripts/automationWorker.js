@@ -216,11 +216,25 @@ function startCoachSync() {
 
 async function scheduleCoachSync() {
   try {
-    await startCoachSync();
+    await Promise.all([startCoachSync(), refreshCoachRostersIfStale()]);
   } finally {
     if (!once && !stopping) {
       coachTimer = setTimeout(scheduleCoachSync, COACH_INTERVAL_MS).unref();
     }
+  }
+}
+
+async function refreshCoachRostersIfStale() {
+  const { data, error } = await supabase.from('worker_status').select('last_ping')
+    .eq('worker_name', 'coach-rosters').maybeSingle();
+  if (error) {
+    console.warn('[automation-worker] coach roster freshness check failed:', error.message);
+    return;
+  }
+  // GitHub normally refreshes these rosters. Fall back when its schedule stalls.
+  const lastPing = Date.parse(data?.last_ping);
+  if (!Number.isFinite(lastPing) || Date.now() - lastPing >= 4 * 60 * 60 * 1000) {
+    await runNodeScript('coach-rosters', 'scripts/syncCoachRosters.js', ['--apply']);
   }
 }
 

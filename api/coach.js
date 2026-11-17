@@ -112,10 +112,19 @@ export default async function handler(request, response) {
     const slugs = new Map(links.map(row => [row.team_id, row.slug]));
     const catalog = new Map(teams.map(row => [row.team_id, { name: row.team.name, logo: row.faceit_avatar_url || row.team.logo, slug: slugs.get(row.team_id) }]));
     const byTeam = new Map(teams.map(row => [row.team_id, row.team]));
+    for (const row of registrations) if (!catalog.has(row.team_id)) {
+      const snapshot = row.team_catalog?.team || row.team_snapshot;
+      if (snapshot) {
+        catalog.set(row.team_id, { name: snapshot.name, logo: snapshot.logo, slug: slugs.get(row.team_id) });
+        byTeam.set(row.team_id, { ...snapshot, activeSeasonParticipant: false });
+      }
+    }
     const rosterEvidence = registrations.filter(row => catalog.has(row.team_id)).map(row => ({
       person: { id: coachId, nickname: linked?.nickname || row.nickname, country: row.country },
       team: { id: row.team_id, ...catalog.get(row.team_id) },
-      season: row.season, start: row.source_started_at,
+      season: row.season, periodId: row.id, start: row.period_started_at || row.source_started_at,
+      end: row.ended_at || row.observed_at,
+      assignment: assignments.find(assignment => assignment.periodId === row.id),
       observedAt: row.observed_at,
       current: row.active && byTeam.get(row.team_id)?.activeSeasonParticipant === true
         && row.season === Number(byTeam.get(row.team_id)?.season)
