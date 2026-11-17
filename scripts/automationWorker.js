@@ -214,14 +214,23 @@ function startCoachSync() {
   return coachJob;
 }
 
+async function scheduleCoachSync() {
+  try {
+    await startCoachSync();
+  } finally {
+    if (!once && !stopping) {
+      coachTimer = setTimeout(scheduleCoachSync, COACH_INTERVAL_MS).unref();
+    }
+  }
+}
+
 async function main() {
   console.log(
     `[automation-worker] starting: discovery=${DISCOVERY_INTERVAL_MS}ms ` +
       `standings=${STANDINGS_INTERVAL_MS}ms backfill=${BACKFILL_INTERVAL_MS}ms`
   );
 
-  const firstCoachJob = startCoachSync();
-  if (!once) coachTimer = setInterval(startCoachSync, COACH_INTERVAL_MS).unref();
+  const firstCoachJob = scheduleCoachSync();
   do {
     try {
       await runDueTasks();
@@ -238,7 +247,7 @@ async function main() {
 function shutdown(signal) {
   console.log(`[automation-worker] received ${signal}`);
   stopping = true;
-  clearInterval(coachTimer);
+  clearTimeout(coachTimer);
   for (const child of activeChildren) child.kill("SIGTERM");
 }
 
