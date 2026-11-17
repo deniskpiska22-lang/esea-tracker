@@ -62,7 +62,8 @@ test('separates results by team and date, and leaves walkovers out of win rates'
   assert.equal(stats.career.rounds.covered, 0);
   assert.deepEqual(stats.recent.matches, { total: 2, won: 1, lost: 1, drawn: 0 });
   assert.deepEqual(stats.teams.map(entry => [entry.team.id, entry.maps.total]), [[current.teamId, 3], [old.teamId, 1]]);
-  assert.equal(periods[0].matches, 3);
+  assert.equal(periods[0].matches, 2);
+  assert.equal(periods[0].confirmations, 3);
 });
 
 test('uses the latest played lineup for the current team when the upcoming room has none', () => {

@@ -102,7 +102,7 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
       })).matches;
       return { ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)),
         winRate: results.total ? results.won / results.total : null, playedMatches: results.total,
-        matches: period.assignment?.source === 'league_roster' ? results.total : period.matches,
+        matches: results.total, confirmations: period.matches,
         mapTotals: { played: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length } };
     })
     .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
