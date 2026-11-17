@@ -35,7 +35,7 @@ const WEEKLY_SNAPSHOT_DAY_UTC = Number(
   process.env.WEEKLY_RATING_SNAPSHOT_DAY_UTC || 1
 );
 
-const COACH_INTERVAL_MS = 10 * 60 * 1000;
+const COACH_INTERVAL_MS = 3 * 60 * 60 * 1000;
 const once = process.argv.includes("--once");
 let stopping = false;
 const activeChildren = new Set();
@@ -203,10 +203,10 @@ async function runDueTasks() {
 // Archive batches must not wait for a full standings or match-discovery run.
 function startCoachSync() {
   if (stopping || coachJob || Date.now() < nextCoachAttemptAt) return coachJob;
-  coachJob = runNodeScript("coach-season-boundaries", "scripts/syncCoachSeasonBoundaries.js").then(result => {
+  coachJob = runNodeScript("coach-lobbies", "scripts/syncCoachLobbies.js").then(result => {
     if (result.code === 77) {
-      nextCoachAttemptAt = Date.now() + 60 * 60 * 1000;
-      console.warn("[automation-worker] coach boundary source paused or limited; checkpoint retained");
+      nextCoachAttemptAt = Date.now() + COACH_INTERVAL_MS;
+      console.warn("[automation-worker] coach source unavailable; next scheduled attempt in three hours");
     } else if (result.code !== 0) {
       console.warn(`[automation-worker] coach-lobbies failed: ${result.error || result.code}`);
     }

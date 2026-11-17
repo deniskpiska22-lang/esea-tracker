@@ -18,7 +18,7 @@ const saved = await result(db.from('worker_status').select('detail').eq('worker_
 let state = {};
 try { state = JSON.parse(saved?.detail || '{}') || {}; } catch { /* Old or missing checkpoint. */ }
 if (state.paused) {
-  console.log('[coach-lobbies] full sweep paused; using season-boundary discovery');
+  console.log('[coach-lobbies] paused by operator');
   process.exit(0);
 }
 
@@ -35,7 +35,7 @@ const totals = await scanCoachLobbies({
       worker_name: workerName, detail: JSON.stringify(detail), status, last_ping: at, updated_at: at,
     }, { onConflict: 'worker_name' }));
   },
-  wait: () => pause(1000),
+  wait: () => pause(2000),
   validId: matchId,
   onError: (row, error) => console.warn(`[coach-lobbies] ${row.id}: ${error.message}`, error.diagnostics || ''),
 });
