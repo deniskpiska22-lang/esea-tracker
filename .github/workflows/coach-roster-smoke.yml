@@ -45,4 +45,10 @@ jobs:
             otherMemberRoles: [...new Set(members.filter(item => item !== knownCoach).map(item => JSON.stringify(roles(item))))],
             explicitCoachArray: Array.isArray(roster.coaches) ? roster.coaches.some(item => item?.user_id === coach || item?.id === coach || item === coach) : null,
           }));
+          const membershipShape = item => Array.isArray(item?.memberships)
+            ? item.memberships.map(value => typeof value === 'string' ? value : Object.keys(value || {}))
+            : Object.keys(item?.memberships || {});
+          console.log(JSON.stringify({ coachMemberships: membershipShape(knownCoach), otherMemberships: [...new Set(members.filter(item => item !== knownCoach).map(item => JSON.stringify(membershipShape(item))))] }));
+          const match = await read('matches/1-09d43bdc-08a7-4ed0-8020-6902f6f217be');
+          console.log(JSON.stringify({ matchFactionFields: Object.values(match.teams || {}).map(side => Object.keys(side).sort()), containsVerifiedCoach: JSON.stringify(match.teams).includes(coach) }));
           JS
