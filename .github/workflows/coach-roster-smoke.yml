@@ -1,4 +1,4 @@
-name: Probe historical coach rooms
+name: Verify direct public match API
 on:
   push:
     branches: [esea-coach-roster-smoke]
@@ -25,10 +25,13 @@ jobs:
         run: |
           node --input-type=module <<'JS'
           import { coachClient } from './server/coachData.js';
-          import { fetchCoachLobby } from './server/coachLobby.js';
+          import { parseCoachLobby } from './server/coachLobby.js';
           const db = coachClient();
           const {data, error} = await db.from('matches').select('id,team1_id,team2_id,status').eq('id','1-e8be358b-e985-4907-b428-0c439d47b685').single();
           if(error) throw error;
-          const snapshot = await fetchCoachLobby(data);
+          const response = await fetch('https://api.faceit.com/match/v2/match/' + data.id, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(15000) });
+          if (!response.ok) throw new Error('Public API HTTP ' + response.status);
+          const snapshot = parseCoachLobby((await response.json()).payload, data);
+          if (!snapshot?.terminal) throw new Error('Public API room identity mismatch');
           console.log(JSON.stringify({id:snapshot.match_id, coaches:snapshot.teams.map(t=>({team:t.name,coaches:t.coaches.map(c=>c.nickname)}))}));
           JS
