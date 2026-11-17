@@ -366,5 +366,21 @@
     "es": "Cada regreso es un periodo separado. Si se desconoce el inicio, se usa la primera confirmación.",
     "fr": "Chaque retour est une période distincte. Sans date de début connue, la première confirmation est utilisée.",
     "it": "Ogni ritorno è un periodo separato. Se l’inizio è sconosciuto, si usa la prima conferma."
+  },
+  "All played team matches during a coaching period count, even if the coach misses a game.": {
+    "ru": "Учитываются все сыгранные матчи команды за период работы тренера, даже если он пропустил игру.",
+    "de": "Alle gespielten Team-Matches während einer Trainerphase zählen, auch wenn der Trainer ein Spiel verpasst.",
+    "pt": "Contam todos os jogos disputados pela equipa durante o período do treinador, mesmo quando ele falta a uma partida.",
+    "es": "Se cuentan todos los partidos disputados por el equipo durante la etapa del entrenador, aunque se pierda alguno.",
+    "fr": "Tous les matchs joués par l’équipe pendant la période de l’entraîneur comptent, même s’il manque une rencontre.",
+    "it": "Contano tutte le partite giocate dalla squadra durante il periodo del coach, anche se salta una gara."
+  },
+  "Five consecutive confirmed absences end a period before that run. Unknown lobbies do not count as absences. A return starts a new period.": {
+    "ru": "Пять подтверждённых пропусков подряд закрывают период перед началом этой серии. Неизвестные лобби не считаются пропусками. Возвращение открывает новый период.",
+    "de": "Fünf bestätigte Fehlspiele in Folge beenden die Phase vor dieser Serie. Unbekannte Lobbys zählen nicht als Abwesenheit. Eine Rückkehr beginnt eine neue Phase.",
+    "pt": "Cinco ausências confirmadas consecutivas encerram o período antes dessa sequência. Lobbies desconhecidos não contam como ausências. O regresso inicia um novo período.",
+    "es": "Cinco ausencias confirmadas consecutivas cierran la etapa antes de esa racha. Los lobbies desconocidos no cuentan como ausencias. El regreso inicia una nueva etapa.",
+    "fr": "Cinq absences confirmées consécutives clôturent la période avant cette série. Les lobbys inconnus ne comptent pas comme absences. Un retour ouvre une nouvelle période.",
+    "it": "Cinque assenze confermate consecutive chiudono il periodo prima della serie. Le lobby sconosciute non contano come assenze. Il ritorno apre un nuovo periodo."
   }
 }

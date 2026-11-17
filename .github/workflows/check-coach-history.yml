@@ -4,6 +4,8 @@ on:
     paths:
       - 'api/coach.js'
       - 'server/coach*.js'
+      - 'src/pages/CoachPage.jsx'
+      - 'src/i18n/coachCatalog.json'
       - 'server/storedCoachLobby.js'
       - 'src/data/linkedPlayerProfiles.js'
       - 'tests/coach*.test.js'
@@ -15,6 +17,8 @@ on:
     paths:
       - 'api/coach.js'
       - 'server/coach*.js'
+      - 'src/pages/CoachPage.jsx'
+      - 'src/i18n/coachCatalog.json'
       - 'server/storedCoachLobby.js'
       - 'src/data/linkedPlayerProfiles.js'
       - 'tests/coach*.test.js'
@@ -32,4 +36,4 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: node --test tests/coach*.test.js tests/storedCoachLobby.test.js
-      - run: npx eslint api/coach.js server/coachAssignments.js server/coachHandoff.js server/coachData.js server/coachProfile.js
+      - run: npx eslint api/coach.js server/coachAssignments.js server/coachHandoff.js server/coachData.js server/coachProfile.js server/coachTenures.js server/coachTeamTenures.js
