@@ -294,5 +294,21 @@
     "es": "La tasa de victoria en partidos excluye resultados técnicos. La de mapas solo usa marcadores verificados.",
     "fr": "Le taux de victoire en match exclut les résultats techniques. Celui des cartes repose sur les scores confirmés.",
     "it": "La percentuale di vittoria nelle partite esclude i risultati tecnici. Quella delle mappe usa solo punteggi verificati."
+  },
+  "ESEA roster confirmations": {
+    "ru": "Подтверждения в заявках ESEA",
+    "de": "ESEA-Kaderbestätigungen",
+    "pt": "Confirmações no elenco da ESEA",
+    "es": "Confirmaciones en plantillas de ESEA",
+    "fr": "Confirmations dans les effectifs ESEA",
+    "it": "Conferme nei roster ESEA"
+  },
+  "Confirmed in ESEA roster": {
+    "ru": "Подтверждён в заявке ESEA",
+    "de": "Im ESEA-Kader bestätigt",
+    "pt": "Confirmado no elenco da ESEA",
+    "es": "Confirmado en la plantilla de ESEA",
+    "fr": "Confirmé dans l’effectif ESEA",
+    "it": "Confermato nel roster ESEA"
   }
 }

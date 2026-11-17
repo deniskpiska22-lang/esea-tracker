@@ -1,0 +1,47 @@
+name: Import ESEA coaches from active league rosters
+on:
+  push:
+    branches: [esea-coaches-active-import]
+  workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: esea-coach-rosters
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Check coach profile and roster regressions
+        run: node --test tests/coach*.test.js
+      - name: Verify Eclipse Enforcers and the owner team before import
+        if: github.event_name == 'push'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+        run: |
+          node scripts/syncCoachRosters.js --team 036337bc-ab12-4ceb-83d8-fe08cebebce8
+          node scripts/syncCoachRosters.js --team dcb2f3b3-72b5-4e7a-b8c5-921e1c3eeee4
+      - name: Import a resumable roster batch
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_SECRET_KEY }}
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+        run: |
+          if [ '${{ github.event_name }}' = 'push' ]; then
+            node scripts/syncCoachRosters.js --apply --full
+          else
+            node scripts/syncCoachRosters.js --apply
+          fi
