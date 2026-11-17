@@ -139,3 +139,15 @@ export async function loadCoachLobbies(db, ids, columns) {
     if (data.length < 500) return rows;
   }
 }
+
+export async function loadCoachTeamLobbies(db, teamIds) {
+  if (!teamIds.length) return [];
+  const rows = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await db.from('esea_coach_lobbies').select('match_id,teams,terminal,checked_at')
+      .overlaps('team_ids', teamIds).order('match_id').range(offset, offset + 499);
+    if (error) throw error;
+    rows.push(...data);
+    if (data.length < 500) return rows;
+  }
+}
