@@ -79,12 +79,14 @@ export default async function handler(request, response) {
     const manual = assignedCoach(coachId);
     const manualAssignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
-    const [lobbies, assignmentLobbies, registrations] = await Promise.all([
+    const [lobbies, assignmentLobbies, registrations, historyBounds] = await Promise.all([
       loadCoachLobbies(db, originalIds, columns),
       manualAssignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
         .select('match_id,teams').overlaps('team_ids', [...new Set(manualAssignments.filter(a => a.current).map(a => a.teamId))])
         .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
       coachRosterRows(db, originalIds),
+      result(db.from('esea_coach_season_bounds').select('team_id,season,evidence')
+        .in('coach_id', originalIds).order('season', { ascending: false }).limit(200)),
     ]);
     const assignments = [...manualAssignments, ...rosterCoachAssignments(registrations, manualAssignments, now)];
     const coach = manual || { id: coachId, nickname: linked?.nickname || registrations[0]?.nickname,
@@ -121,7 +123,8 @@ export default async function handler(request, response) {
     }));
     const profile = buildCoachProfile(coachId, rows, catalog, now, rosterEvidence);
     if (!profile) return response.status(404).json({ error: 'Coach not found' });
-    return response.status(200).json({ ...profile, playerNickname: playerNames.get(coachId) || null, country: profile.country || biography?.country || null });
+    return response.status(200).json({ ...profile, historyBounds,
+      playerNickname: playerNames.get(coachId) || null, country: profile.country || biography?.country || null });
   } catch (error) {
     console.error('[coach]', error.message);
     response.setHeader('Cache-Control', 'no-store');

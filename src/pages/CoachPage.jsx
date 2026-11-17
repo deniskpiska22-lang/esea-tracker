@@ -139,6 +139,14 @@ function Career({ profile }) {
     if (period.assignment?.current) return `${formatDate(period.first)} — ${tx('Present')}`;
     return period.first === period.last ? formatDate(period.first) : `${formatDate(period.first)} — ${formatDate(period.last)}`;
   };
+  const departure = period => {
+    if (period.assignment) return null;
+    const bounds = profile.historyBounds?.find(row => row.team_id === period.team.id && row.season === period.season)?.evidence;
+    if (!bounds?.after) return null;
+    return <small title={tx('Match-room evidence does not establish a contract end date.')}>
+      {tx('Coach slot changed')}: {formatDate(bounds.last.date)} — {formatDate(bounds.after.date)}
+    </small>;
+  };
   return <div className="coach-stack">
     <div className="coach-career-stats">
       <div><span>{tx('Teams')}</span><strong>{new Set([team.id, ...periods.map(period => period.team.id)]).size}</strong></div>
@@ -168,6 +176,7 @@ function Career({ profile }) {
           <span className="text-right"><strong title={tx(period.assignment ? 'Days in team' : 'Observed span')}>{tf('{0} d', period.days)}</strong>
             {period.winRate != null && <small>{tx('Win rate')}: {rate(period.winRate, 1)}</small>}
             <small>{period.season ? `${tx('Season')} ${period.season} · ` : ''}{tx('Matches')}: {period.matches}</small>
+            {departure(period)}
             {period.assignment && period.mapTotals.played > 0 && <small>{tx('Maps')}: {period.mapTotals.played} · {tx('Win rate')}: {rate(period.mapTotals.won, period.mapTotals.played)}</small>}</span>
         </div>) : <p className="coach-note">{tx('No completed matches confirmed yet.')}</p>}
     </Panel>
