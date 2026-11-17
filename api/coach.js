@@ -1,6 +1,6 @@
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
 import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, coachRosterRows, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -19,16 +19,22 @@ export default async function handler(request, response) {
     const db = coachClient();
     response.setHeader('Cache-Control', 'public, max-age=60, s-maxage=180');
     if (search != null) {
-      const coaches = await result(db.rpc('find_esea_coaches', { p_query: search.trim() }));
+      const [lobbyCoaches, rosterCoaches] = await Promise.all([
+        result(db.rpc('find_esea_coaches', { p_query: search.trim() })),
+        findRosterCoaches(db, search.trim()),
+      ]);
       const key = search.trim().toLowerCase();
       const editorial = linkedPlayerProfiles.filter(profile =>
         [profile.nickname, ...profile.aliases].some(nick => nick.toLowerCase().includes(key)))
         .map(profile => assignedCoach(profile.id)).filter(Boolean);
-      const unique = [...new Map([...coaches, ...editorial].map(coach => {
+      const unique = [...new Map([...lobbyCoaches, ...rosterCoaches, ...editorial].map(coach => {
         const person = linkedPlayerProfile(coach.id);
         const merged = person ? { ...coach, id: person.id, nickname: person.nickname } : coach;
         return [merged.id, merged];
-      })).values()].slice(0, 8);
+      })).values()].sort((a, b) => {
+        const priority = name => name.toLowerCase() === key ? 0 : name.toLowerCase().startsWith(key) ? 1 : 2;
+        return priority(a.nickname) - priority(b.nickname) || a.nickname.localeCompare(b.nickname);
+      }).slice(0, 8);
       const names = await coachPlayerNames(db, unique.map(coach => coach.id));
       return response.status(200).json({ coaches: unique.map(coach => ({
         id: coach.id, nickname: coach.nickname, playerNickname: names.get(coach.id) || null,
@@ -46,15 +52,19 @@ export default async function handler(request, response) {
     const coachId = linked?.id || lookup;
     if (player != null && !coachId) return response.status(404).json({ error: 'Coach not found' });
     if (team) {
-      const [row] = await result(db.rpc('esea_latest_coach_lobby', { p_team_id: team }));
-      const coaches = row?.teams.find(side => side.id === team)?.coaches || [];
+      const [registration, [row]] = await Promise.all([
+        currentTeamCoach(db, team),
+        result(db.rpc('esea_latest_coach_lobby', { p_team_id: team })),
+      ]);
+      const coaches = registration ? [{ id: registration.coach_id, nickname: registration.nickname, avatar: null }]
+        : row?.teams.find(side => side.id === team)?.coaches || [];
       const editorial = coachAssignments.filter(assignment => assignment.teamId === team && assignment.current
         && Date.parse(assignment.start) <= Date.now()).map(assignment => assignedCoach(assignment.coachId)).filter(Boolean);
       const unique = [...new Map([...coaches, ...editorial].map(coach => {
         const canonical = assignedCoach(coach.id) || coach;
         return [canonical.id, canonical];
       })).values()];
-      return response.status(200).json({ coaches: person(unique), matchId: row?.match_id, observedAt: row?.observed_at });
+      return response.status(200).json({ coaches: person(unique), matchId: row?.match_id, observedAt: registration?.observed_at || row?.observed_at });
     }
     if (match) {
       const row = await result(db.from('esea_coach_lobbies').select('teams,terminal,checked_at').eq('match_id', match).maybeSingle());
@@ -69,12 +79,13 @@ export default async function handler(request, response) {
     const manual = assignedCoach(coachId);
     const assignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
-    const [lobbies, assignmentLobbies, ...assignedMatches] = await Promise.all([
+    const [lobbies, assignmentLobbies, registrations, ...assignedMatches] = await Promise.all([
       result(db.from('esea_coach_lobbies').select(`teams,terminal,checked_at,matches!inner(${columns})`)
         .overlaps('coach_ids', originalIds).order('checked_at', { ascending: false }).limit(400)),
       assignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
         .select('match_id,teams').overlaps('team_ids', [...new Set(assignments.filter(a => a.current).map(a => a.teamId))])
         .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
+      coachRosterRows(db, originalIds),
       ...assignments.map(assignment => {
         const query = db.from('matches').select(matchColumns)
           .or(`team1_id.eq.${assignment.teamId},team2_id.eq.${assignment.teamId}`);
@@ -85,9 +96,10 @@ export default async function handler(request, response) {
     const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
     const observed = lobbies.map(row => ({ ...row, teams: row.teams
       .filter(side => !covered.has(`${row.matches.id}:${side.id}`))
-      .map(side => ({ ...side, coaches: side.coaches.map(coach => originalIds.includes(coach.id) && manual ? manual : coach) })) }));
+      .map(side => ({ ...side, coaches: side.coaches.map(coach => originalIds.includes(coach.id) ? manual || { ...coach, id: coachId } : coach) })) }));
     const rows = [...editorialRows, ...observed];
-    const ids = [...new Set(rows.flatMap(row => row.teams.filter(side => side.coaches.some(coach => coach.id === coachId)).map(side => side.id)))];
+    const ids = [...new Set([...registrations.map(row => row.team_id), ...rows.flatMap(row => row.teams
+      .filter(side => side.coaches.some(coach => coach.id === coachId)).map(side => side.id))])];
     const [teams, links, biography, playerNames] = ids.length ? await Promise.all([
       result(db.from('team_catalog').select('team_id,team,faceit_avatar_url').in('team_id', ids)),
       result(db.from('team_profile_urls').select('team_id,slug').in('team_id', ids)),
@@ -96,7 +108,17 @@ export default async function handler(request, response) {
     ]) : [[], [], null, new Map()];
     const slugs = new Map(links.map(row => [row.team_id, row.slug]));
     const catalog = new Map(teams.map(row => [row.team_id, { name: row.team.name, logo: row.faceit_avatar_url || row.team.logo, slug: slugs.get(row.team_id) }]));
-    const profile = buildCoachProfile(coachId, rows, catalog, now);
+    const byTeam = new Map(teams.map(row => [row.team_id, row.team]));
+    const rosterEvidence = registrations.filter(row => catalog.has(row.team_id)).map(row => ({
+      person: { id: coachId, nickname: linked?.nickname || row.nickname, country: row.country },
+      team: { id: row.team_id, ...catalog.get(row.team_id) },
+      season: row.season,
+      observedAt: row.observed_at,
+      current: row.active && byTeam.get(row.team_id)?.activeSeasonParticipant === true
+        && row.season === Number(byTeam.get(row.team_id)?.season)
+        && Date.parse(row.observed_at) >= now - 30 * 86400000,
+    }));
+    const profile = buildCoachProfile(coachId, rows, catalog, now, rosterEvidence);
     if (!profile) return response.status(404).json({ error: 'Coach not found' });
     return response.status(200).json({ ...profile, playerNickname: playerNames.get(coachId) || null, country: profile.country || biography?.country || null });
   } catch (error) {

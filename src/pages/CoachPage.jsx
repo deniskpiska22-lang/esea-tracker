@@ -153,6 +153,13 @@ function Career({ profile }) {
           <strong>{player.nickname}</strong>
         </Link>)}</div>
     </Panel>}
+    {!!profile.registeredTeams?.length && <Panel title={tx('ESEA roster confirmations')}>
+      {profile.registeredTeams.map(({ team, season, observedAt }) => <div className="coach-row" key={`${team.id}:${season}`}>
+        <Link className="coach-team-inline" to={teamPath(team)}><TeamLogo team={team} />
+          <span><b>{team.name}</b><small>{tx('Season')} {season}</small></span></Link>
+        <small>{formatDate(observedAt)}</small>
+      </div>)}
+    </Panel>}
     <Panel title={tx('Team history')} subtitle={tx(profile.assignment ? 'Matches' : 'Confirmed matches')}>
       {periods.length ? periods.map(period =>
         <div className="coach-row" key={period.key}>
@@ -234,7 +241,7 @@ export default function CoachPage({ playerRoute = false }) {
             <div className="coach-tags">{profile.country && <CountryFlag country={profile.country} />}<span>{tx('Coach')}</span></div>
             <h1 className="player-name font-black">{profile.nickname}</h1>
             <Link className="coach-team-card" to={teamPath(team)}><TeamLogo team={team} />
-              <span><small>{tx(profile.assignment ? 'Coaching team' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
+              <span><small>{tx(profile.assignment ? 'Coaching team' : profile.registered ? 'Confirmed in ESEA roster' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
             </Link>
           </div>
           <div className="coach-metrics">

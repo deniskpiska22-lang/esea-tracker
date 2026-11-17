@@ -27,3 +27,21 @@ one saved room JSON (or the original JSON response envelope) per file to:
 Supabase variables. Dry run is the default; add `--apply` to save. The import
 validates the stored result, both team IDs and explicit coach roles. It skips
 already finalized observations and does not query FACEIT or infer assignments.
+
+## Active ESEA rosters
+
+The public team page shows an explicit Coach slot in Active League Roster.
+The separate roster import reads this slot for teams registered in the
+current ESEA season and resolves each displayed nickname through FACEIT Data
+API. Older roster confirmations survive replacements and are visible in
+the coach profile. A current team card uses confirmations from the last
+30 days. Match and map totals continue to use the existing match evidence.
+
+Install the Playwright Chromium build with `npx playwright install chromium`.
+With the server-side FACEIT and Supabase environment variables set, run
+`node scripts/syncCoachRosters.js --team 036337bc-ab12-4ceb-83d8-fe08cebebce8`
+to check Eclipse Enforcers. The default is a dry run. After applying the
+roster migration, use `--apply --limit 100` for a batch and pass its
+`nextAfter` value as `--after` for the next batch. A missing or ambiguous
+coach slot yields no observation. A 403, 429 or verification page halts
+the batch. Run this import separately from recurring match work.

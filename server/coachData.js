@@ -14,10 +14,42 @@ export function coachClient() {
   return client;
 }
 
+const rosterColumns = 'coach_id,team_id,season,nickname,country,observed_at,active';
+const recentRoster = () => new Date(Date.now() - 30 * 86400000).toISOString();
+
+export async function coachRosterRows(db, ids) {
+  const { data, error } = await db.from('esea_coach_rosters').select(rosterColumns)
+    .in('coach_id', ids).order('observed_at', { ascending: false }).limit(50);
+  if (error) throw error;
+  return data;
+}
+
+export async function currentTeamCoach(db, teamId) {
+  const { data, error } = await db.from('esea_coach_rosters')
+    .select(`${rosterColumns},team_catalog!inner(team)`).eq('team_id', teamId).eq('active', true)
+    .eq('team_catalog.team->>activeSeasonParticipant', 'true')
+    .gte('observed_at', recentRoster()).order('observed_at', { ascending: false }).limit(8);
+  if (error) throw error;
+  return data.find(row => row.season === Number(row.team_catalog.team.season)) || null;
+}
+
+export async function findRosterCoaches(db, text) {
+  const escaped = text.replace(/[\\%_]/g, '\\$&');
+  const { data, error } = await db.from('esea_coach_rosters').select('coach_id,nickname')
+    .ilike('nickname', `%${escaped}%`).order('active', { ascending: false })
+    .order('observed_at', { ascending: false }).limit(32);
+  if (error) throw error;
+  const matching = data.filter(row => row.nickname.toLowerCase().includes(text.toLowerCase()));
+  return [...new Map(matching.reverse().map(row => [row.coach_id, { id: row.coach_id, nickname: row.nickname }])).values()];
+}
+
 export async function loadCoachIdentity(id) {
   const manual = assignedCoach(id);
   if (manual) return manual;
-  const { data, error } = await coachClient().from('esea_coach_lobbies')
+  const db = coachClient();
+  const [roster] = await coachRosterRows(db, [id]);
+  if (roster) return { id, nickname: roster.nickname, country: roster.country };
+  const { data, error } = await db.from('esea_coach_lobbies')
     .select('teams,terminal,checked_at,matches!inner(status,scheduled_at)')
     .contains('coach_ids', [id]).order('checked_at', { ascending: false }).limit(30);
   if (error) throw error;
