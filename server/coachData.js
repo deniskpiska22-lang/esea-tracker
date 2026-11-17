@@ -94,7 +94,10 @@ export async function resolvePlayerCoachId(db, nickname) {
   if (alias.data?.player_id) return alias.data.player_id;
   const roster = await db.from('esea_coach_rosters').select('coach_id').ilike('nickname', escaped).limit(20);
   if (roster.error) throw roster.error;
-  const ids = [...new Set(roster.data.map(row => row.coach_id))];
+  const observed = await db.rpc('find_esea_coaches', { p_query: nickname });
+  if (observed.error) throw observed.error;
+  const ids = [...new Set([...roster.data.map(row => row.coach_id),
+    ...observed.data.filter(row => row.nickname.toLowerCase() === nickname.toLowerCase()).map(row => row.id)])];
   return ids.length === 1 ? ids[0] : null;
 }
 
@@ -109,4 +112,16 @@ export async function loadCoachTeamMatches(db, teamId, columns) {
     if (data.length < 500) break;
   }
   return rows;
+}
+
+export async function loadCoachLobbies(db, ids, columns) {
+  const rows = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await db.from('esea_coach_lobbies')
+      .select(`teams,terminal,checked_at,matches!inner(${columns})`)
+      .overlaps('coach_ids', ids).order('match_id').range(offset, offset + 499);
+    if (error) throw error;
+    rows.push(...data);
+    if (data.length < 500) return rows;
+  }
 }
