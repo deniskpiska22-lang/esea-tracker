@@ -1,6 +1,6 @@
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
 import { assignedCoach, assignedCoachRows, coachAssignments, rosterCoachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, coachRosterRows, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, coachRosterRows, loadCoachLobbies, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -80,8 +80,7 @@ export default async function handler(request, response) {
     const manualAssignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
     const [lobbies, assignmentLobbies, registrations] = await Promise.all([
-      result(db.from('esea_coach_lobbies').select(`teams,terminal,checked_at,matches!inner(${columns})`)
-        .overlaps('coach_ids', originalIds).order('checked_at', { ascending: false }).limit(400)),
+      loadCoachLobbies(db, originalIds, columns),
       manualAssignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
         .select('match_id,teams').overlaps('team_ids', [...new Set(manualAssignments.filter(a => a.current).map(a => a.teamId))])
         .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
