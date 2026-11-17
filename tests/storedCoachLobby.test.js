@@ -55,3 +55,13 @@ test('ordinary discovery caches explicit roles even without a changed score and 
  assert.equal(calls[0].name,'capture_esea_discovery_coach_roles');
  assert.deepEqual(calls[0].args.p_rows.map(r=>r.id),[match.id]);
 });
+
+test('restarting after retirement drops the old room job without disturbing pending roster refresh',async()=>{
+ const state={jobs:{lobbies:{nextAt:0,running:true,result:{code:77}},rosters:{nextAt:9000}}};
+ const called=[];
+ await runCoachJobs({jobs:[{name:'cached',interval:60000},{name:'rosters',interval:3*3600000}],state,
+  run:async job=>{called.push(job.name);return{code:0};},save:async()=>{},now:()=>1000});
+ assert.deepEqual(called,['cached']);
+ assert.equal(state.jobs.lobbies,undefined);
+ assert.equal(state.jobs.rosters.nextAt,9000);
+});

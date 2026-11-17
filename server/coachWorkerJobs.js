@@ -1,4 +1,6 @@
 export async function runCoachJobs({ jobs, state, run, save, now = Date.now, stopping = () => false }) {
+  const enabled = new Set(jobs.map(job => job.name));
+  for (const name of Object.keys(state.jobs)) if (!enabled.has(name)) delete state.jobs[name];
   for (const job of jobs) {
     if (stopping()) break;
     const previous = state.jobs[job.name] || {};
