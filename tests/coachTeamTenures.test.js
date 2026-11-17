@@ -1,16 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { coachAssignments } from '../server/coachAssignments.js';
 import { currentTeamTenureCoaches } from '../server/coachTeamTenures.js';
 const coach={id:'coach',nickname:'Coach'},team='team',now=Date.parse('2026-11-30T12:00:00Z');
-function database(absences,{unknown=false}={}) {
+function database(absences,{unknown=false,teamId=team}={}) {
   const matches=Array.from({length:absences+1},(_,i)=>({id:`match-${i}`,status:'FINISHED',competition_name:'S59 EU Main',
-    team1_id:team,team2_id:'opponent',team1_score:13,team2_score:8,maps:['Nuke'],best_of:1,
+    team1_id:teamId,team2_id:'opponent',team1_score:13,team2_score:8,maps:['Nuke'],best_of:1,
     started_at:`2026-11-${String(i+1).padStart(2,'0')}T18:00:00Z`,finished_at:`2026-11-${String(i+1).padStart(2,'0')}T19:00:00Z`}));
   const rooms=matches.filter((m,i)=>!unknown||i!==3).map((match,i)=>({match_id:match.id,matches:match,terminal:true,
-    checked_at:match.finished_at,coach_ids:i===0?[coach.id]:[],team_ids:[team,'opponent'],
-    teams:[{id:team,name:'Team',roster:[],coaches:i===0?[coach]:[]}]}));
+    checked_at:match.finished_at,coach_ids:i===0?[coach.id]:[],team_ids:[teamId,'opponent'],
+    teams:[{id:teamId,name:'Team',roster:[],coaches:i===0?[coach]:[]}]}));
   const tables={matches,esea_coach_lobbies:rooms,esea_coach_roster_periods:[],esea_coach_assignment_handoffs:[],
-    team_catalog:[{team_id:team,team:{name:'Team',season:59,activeSeasonParticipant:true}}]};
+    team_catalog:[{team_id:teamId,team:{name:'Team',season:59,activeSeasonParticipant:true}}]};
   return {from(name){let rows=[...(tables[name]||[])],single=false;const query={
     select(){return query;},order(){return query;},eq(key,value){rows=rows.filter(r=>r[key]===value);return query;},
     in(key,values){rows=rows.filter(r=>values.includes(r[key]));return query;},
@@ -29,4 +30,10 @@ test('team badge retains its coach through four empty slots and removes him on t
 test('unknown room data prevents a false five-game removal from the team badge',async()=>{
   const result=await currentTeamTenureCoaches(database(7,{unknown:true}),team,now);
   assert.deepEqual(result.coaches.map(p=>p.id),[coach.id]);
+});
+
+test('pending owner bootstrap keeps the team badge exclusive despite an unresolved former coach',async()=>{
+  const owner=coachAssignments[1];
+  const result=await currentTeamTenureCoaches(database(4,{teamId:owner.teamId}),owner.teamId,now);
+  assert.deepEqual(result.coaches.map(p=>p.id),[owner.coachId]);
 });
