@@ -1,3 +1,5 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { useMemo, useState } from 'react';
 import Link from './SiteLink.jsx';
 import { tx, tf } from '../i18n/translate.js';
@@ -19,24 +21,25 @@ function TeamName({period}) {
   return key ? <Link to={`/teams/${encodeURIComponent(key)}`}>{period.name}</Link> : <span>{period.name}</span>;
 }
 function date(value, full=false) {
-  return new Date(value).toLocaleDateString(currentLocale(),{year:'numeric',month:full?'long':'short',...(full?{day:'numeric'}:{}),timeZone:'UTC'});
+  return formatUserDateTime(value, {year:'numeric',month:full?'long':'short',...(full?{day:'numeric'}:{})});
 }
 function decimal(value, digits=1) {
   return value === null ? '—' : value.toLocaleString(currentLocale(),{minimumFractionDigits:digits,maximumFractionDigits:digits});
 }
 export default function PlayerTeamHistory({matches, catalog, loading, error}) {
+  useUserTimeSettings();
   const career = useMemo(()=>buildPlayerTeamHistory(matches,catalog),[matches,catalog]);
   const [selectedKey,setSelectedKey] = useState(null);
   const [openKey,setOpenKey] = useState(null);
   const [year,setYear] = useState('all');
-  const availableYears = [...new Set(career.periods.flatMap(p=>[new Date(p.start).getUTCFullYear(),new Date(p.end).getUTCFullYear()]))].sort((a,b)=>b-a);
+  const availableYears = [...new Set(career.periods.flatMap(p=>[new Date(p.start).getFullYear(),new Date(p.end).getFullYear()]))].sort((a,b)=>b-a);
   const activeYear = year === 'all' || availableYears.includes(Number(year)) ? year : 'all';
-  const filtered = career.periods.filter(p=>activeYear==='all' || (p.start<Date.UTC(Number(activeYear)+1,0,1) && p.end>=Date.UTC(Number(activeYear),0,1)));
+  const filtered = career.periods.filter(p=>activeYear==='all' || (p.start<new Date(Number(activeYear)+1,0,1).getTime() && p.end>=new Date(Number(activeYear),0,1).getTime()));
   const selected = filtered.find(p=>p.key===selectedKey) || filtered.at(-1);
   if (loading && !career.periods.length) return <div className="player-career career-message" role="status">{tx('Loading team history…')}</div>;
   if (!career.periods.length) return <div className="player-career career-message">{error ? tx('Team history is temporarily unavailable.') : tx('No recorded team appearances yet.')}</div>;
-  const start = activeYear==='all'?career.first:Date.UTC(Number(activeYear),0,1);
-  const end = activeYear==='all'?career.last:Math.min(Date.UTC(Number(activeYear)+1,0,1)-1,career.last);
+  const start = activeYear==='all'?career.first:new Date(Number(activeYear),0,1).getTime();
+  const end = activeYear==='all'?career.last:Math.min(new Date(Number(activeYear)+1,0,1).getTime()-1,career.last);
   const axis = careerAxis(start,end);
   const position = at => (at-axis.min)/(axis.max-axis.min)*100;
   const latestPosition = position(career.last);
@@ -56,6 +59,7 @@ export default function PlayerTeamHistory({matches, catalog, loading, error}) {
   </section>;
 }
 function PeriodRow({period:p,open,onToggle}) {
+  useUserTimeSettings();
   const id=`career-${encodeURIComponent(p.key)}`;
   return <><tr className={p.latest?'current-row':''}><td><strong>{date(p.start)} — {date(p.end)}</strong><small>{tx(p.latest?'Latest recorded team':'Earlier appearances')}</small></td><td><div className="team-cell"><TeamLogo period={p}/><b><TeamName period={p}/></b></div></td><td>{p.days} <span className="subtle">{tx('days')}</span></td><td>{p.count}</td><td><span className={p.winRate>=50?'positive':'subtle'}>{p.winRate===null?'—':`${decimal(p.winRate,0)}%`}</span>{p.winRate!==null?<div className="win-track"><i style={{width:`${p.winRate}%`}}/></div>:null}</td><td><button type="button" className="stats-button" aria-expanded={open} aria-controls={open?id:undefined} onClick={onToggle}>{tx(open?'Hide':'Statistics')} <span aria-hidden="true">{open?'−':'↗'}</span></button></td></tr>{open?<tr className="detail-row" id={id}><td colSpan="6"><div className="period-detail"><div><small>{tx('Rating')}</small><strong>{decimal(p.rating,2)}</strong></div><div><small>ADR</small><strong>{decimal(p.adr)}</strong></div><div><small>{tx('Recorded matches')}</small><strong>{p.count}</strong></div><p>{date(p.start,true)} — {date(p.end,true)}</p></div><div className="career-recent-matches">{[...p.matches].reverse().slice(0,5).map(m=><Link key={m.matchId} to={matchPublicPath({matchId:m.matchId,teamName:m.teamName,opponentName:m.opponent?.teamName})}><span>{date(Date.parse(m.date),true)}</span><strong>{m.teamName} vs {m.opponent?.teamName || tx('Unknown')}</strong><b>{m.teamScore}:{m.opponent?.score ?? '—'}</b><span aria-hidden="true">↗</span></Link>)}</div></td></tr>:null}</>;
 }

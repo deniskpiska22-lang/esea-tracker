@@ -1,3 +1,4 @@
+import { parseUserDate, calendarDateParts } from './userTime.js';
 import tournaments from "../data/tournaments.js";
 
 function normalizeTournamentName(value = "") {
@@ -23,12 +24,12 @@ export function findTournamentByName(name) {
 export function getTournamentStatus(tournament, now = Date.now()) {
   const completed = Date.parse(tournament?.completedAt);
   if (Number.isFinite(completed) && completed <= now) return "finished";
-  const start = Date.parse(tournament?.startDate);
-  // Calendar dates include the whole final day, including one-day qualifiers.
-  const endValue = /^\d{4}-\d{2}-\d{2}$/.test(tournament?.endDate || "")
-    ? `${tournament.endDate}T23:59:59.999Z`
-    : tournament?.endDate;
-  const end = Date.parse(endValue);
+  const start = parseUserDate(tournament?.startDate)?.getTime() ?? NaN;
+  const parsedEnd = parseUserDate(tournament?.endDate);
+  const endDate = parsedEnd && new Date(parsedEnd.getTime());
+  // A date-only tournament ends at the visitor's local end of that calendar day.
+  if (endDate && calendarDateParts(tournament?.endDate)) endDate.setHours(23, 59, 59, 999);
+  const end = endDate?.getTime() ?? NaN;
 
   if (Number.isNaN(start) || Number.isNaN(end)) {
     return "upcoming";

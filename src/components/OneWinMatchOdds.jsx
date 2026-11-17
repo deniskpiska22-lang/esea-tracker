@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { formatOddsDateTime } from '../utils/userTime.js';
@@ -100,6 +101,7 @@ function ExternalArrow({ className = '' }) {
 }
 
 function OddsCard({ odds, teams = [] }) {
+  useUserTimeSettings();
   const { language, locale } = useLanguage();
   const labels = copy[language] || copy.en;
   const pari = odds.provider === 'pari';
@@ -141,6 +143,7 @@ function OddsCard({ odds, teams = [] }) {
 }
 
 export default function OneWinMatchOdds({ matchId, teams, active = true }) {
+  useUserTimeSettings();
   const [policy, setPolicy] = useState(null);
   useEffect(() => subscribeAdPolicy(setPolicy), []);
   if (isAdProviderEnabled(policy, 'onewin')) {

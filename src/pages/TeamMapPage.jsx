@@ -1,3 +1,5 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -40,9 +42,10 @@ function Filter({ label, value, onChange, children }) {
 }
 
 export default function TeamMapPage() {
+  useUserTimeSettings();
   const { slug, map: routeMap } = useParams();
   const [search, setSearch] = useSearchParams();
-  const { locale, language } = useLanguage();
+  const { language } = useLanguage();
   const [loaded, setLoaded] = useState(null);
   const [retry, setRetry] = useState(0);
   const [shown, setShown] = useState(25);
@@ -92,7 +95,7 @@ export default function TeamMapPage() {
   const context = new URLSearchParams(search);
   const matchId = search.get('match');
   const back = /^(?:1-)?[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(matchId || '') ? `/match/${matchId}` : `/teams/${encodeURIComponent(team.profileSlug || team.faceitTeamId)}/stats`;
-  const formatDate = value => new Intl.DateTimeFormat(locale, { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(value));
+  const formatDate = value => formatUserDateTime(value, {day: '2-digit',month: 'short',year: 'numeric'});
   return <main className="mx-auto w-full max-w-6xl space-y-6 px-4 py-7 text-white sm:px-6">
     <Link to={back} className="inline-flex items-center gap-2 text-sm font-bold text-orange-400 transition hover:text-orange-300">← {tx(matchId ? 'Back to match' : 'Map Statistics')}</Link>
     <header className={`${card} relative bg-cover bg-center`} style={{ backgroundImage: `linear-gradient(90deg,#0d1520f5,#0d1520bb),url(/maps/${normalizeMapKey(selectedMap)}.png)` }}>

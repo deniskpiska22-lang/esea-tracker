@@ -1,3 +1,4 @@
+import { formatUserDateTime } from '../utils/userTime.js';
 import { getTeamContext } from '../utils/teamSeo.js';
 import { LANGUAGES, LANGUAGE_CODES, localizedPath, stripLanguage } from './languages.js';
 import { translateText } from './translate.js';
@@ -66,7 +67,7 @@ export function localizeSeo(metadata, language, {kind, entity, section = ''} = {
       const finished = ['FINISHED','MATCH_STATUS_FINISHED'].includes(entity.status);
       if (finished && entity.team1_score!=null && entity.team2_score!=null) title=`${name} ${entity.team1_score}–${entity.team2_score} — ${t('Match Information')} | ESEA Tracker`;
       const date=entity.scheduled_at || entity.started_at || entity.finished_at;
-      description += ` ${[entity.competition_name, date && !Number.isNaN(new Date(date).getTime()) ? new Date(date).toISOString().slice(0,10) : ''].filter(Boolean).join(' · ')}`;
+      description += ` ${[entity.competition_name, date && !Number.isNaN(new Date(date).getTime()) ? formatUserDateTime(date, {year:'numeric',month:'2-digit',day:'2-digit'}) : ''].filter(Boolean).join(' · ')}`;
     }
   }
   const canonicalPath = localizedPath(pathname,language);

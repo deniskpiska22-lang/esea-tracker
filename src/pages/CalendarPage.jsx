@@ -1,6 +1,8 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import Link from "../components/SiteLink.jsx";
 import { tf, tx } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 
 
 import useTournamentSummaries from "../hooks/useTournamentSummaries.js";
@@ -17,11 +19,7 @@ function formatDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "short",
-    timeZone: "UTC",
-  }).format(date);
+  return formatUserDateTime(value, {day: "2-digit",month: "short"});
 }
 
 function formatDateRange(startDate, endDate) {
@@ -38,11 +36,7 @@ function monthKey(value) {
     return tx("Date TBD");
   }
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(date);
+  return formatUserDateTime(value, {month: "long",year: "numeric"});
 }
 
 function CalendarIcon() {
@@ -194,6 +188,7 @@ function StatusBadge({ status }) {
 }
 
 function TournamentListRow({ tournament, status = "upcoming", featured = false }) {
+  useUserTimeSettings();
   const teamsCount = Array.isArray(tournament.teams)
     ? tournament.teams.length
     : 0;
@@ -413,6 +408,7 @@ function EmptyCalendar() {
 }
 
 function CalendarPage() {
+  useUserTimeSettings();
   const tournaments = useTournamentSummaries();
   const withStatus = tournaments.map((tournament) => ({
     tournament,

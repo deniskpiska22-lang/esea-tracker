@@ -1,3 +1,5 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { linkedPlayerProfile } from '../data/linkedPlayerProfiles.js';
 import './PlayerPage.css';
 import ProfileRoleTabs from '../components/ProfileRoleTabs.jsx';
@@ -6,7 +8,7 @@ import { matchPublicPath } from '../utils/matchUrls.js';
 import CountryFlag from "../components/CountryFlag.jsx";
 import Link from "../components/SiteLink.jsx";
 import { tx, translateError, translateBackLabel, tf } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { useTeamCatalog } from "../hooks/useTeamCatalog";
 import { useLiveTeamIdentity } from "../hooks/useLiveTeamIdentity.js";
 import { resolvePlayerTeam } from "../utils/playerTeam.js";
@@ -94,14 +96,7 @@ function formatDate(value) {
     return "—";
   }
 
-  return date.toLocaleDateString(
-    currentLocale(),
-    {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }
-  );
+  return formatUserDateTime(value, {day: "2-digit",month: "short",year: "numeric"});
 }
 
 function ratingColor(value) {
@@ -648,6 +643,7 @@ function StatCard({
 }
 
 function PlayerPage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const [searchParams, setSearchParams] = useSearchParams();
   const profileTab = searchParams.get("tab") === "teams" ? "teams" : "overview";

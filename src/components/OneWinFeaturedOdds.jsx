@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { formatOddsDateTime } from '../utils/userTime.js';
@@ -15,6 +16,7 @@ const winner = {
 };
 
 export default function OneWinFeaturedOdds({ matchId, provider = "onewin" }) {
+  useUserTimeSettings();
   const { language, locale } = useLanguage();
   const [events, setEvents] = useState([]);
   const pari = provider === 'pari';

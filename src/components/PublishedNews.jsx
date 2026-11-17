@@ -1,9 +1,11 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient.js';
 import Link from './SiteLink.jsx';
 import { tx } from '../i18n/translate.js';
 import { formatUserDateTime } from '../utils/userTime.js';
 export default function PublishedNews() {
+  useUserTimeSettings();
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     let active = true;

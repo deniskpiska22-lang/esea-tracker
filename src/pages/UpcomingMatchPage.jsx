@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
 import { recentPrematchResults, prematchHeadToHead } from "../utils/prematchHistory.js";
 import { matchPublicPath } from '../utils/matchUrls.js';
@@ -264,7 +265,7 @@ function formatDateTime(value) {
     return String(value);
   }
 
-  return formatUserDateTime(parsed, {
+  return formatUserDateTime(value, {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -284,7 +285,7 @@ function formatMatchTime(value) {
     return "--:--";
   }
 
-  return <UserTime value={parsed} />;
+  return <UserTime value={value} />;
 }
 
 function formatMatchDate(value) {
@@ -298,14 +299,7 @@ function formatMatchDate(value) {
     return String(value);
   }
 
-  return new Intl.DateTimeFormat(
-    currentLocale(),
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }
-  ).format(parsed);
+  return formatUserDateTime(value, {day: "2-digit",month: "long",year: "numeric"});
 }
 
 function formatMapName(value) {
@@ -527,6 +521,7 @@ function RecentMatchesCard({
   loading,
   error,
 }) {
+  useUserTimeSettings();
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl border border-[#243041] bg-[#111823]">
       <div className="border-b border-[#243041] px-5 py-4">
@@ -551,7 +546,7 @@ function RecentMatchesCard({
                 </div>
 
                 <div className="text-xs text-gray-500">
-                  {formatUserDateTime(item.date, {year:"numeric",month:"short",day:"numeric"}, {timeZone:"UTC"})}
+                  {formatUserDateTime(item.date, {year:"numeric",month:"short",day:"numeric"}, {})}
                 </div>
               </div>
 
@@ -774,6 +769,7 @@ function MatchInformationCard({
   bestOf,
   faceitUrl,
 }) {
+  useUserTimeSettings();
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
@@ -1274,6 +1270,7 @@ function FinishedMatchHero({
   stats,
   isLive,
 }) {
+  useUserTimeSettings();
   const mvp = useMemo(
     () => getMatchMvp(stats),
     [stats]
@@ -1429,6 +1426,7 @@ function FinishedMatchHero({
 }
 
 function UpcomingMatchPage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const location = useLocation();
 

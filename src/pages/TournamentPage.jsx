@@ -1,8 +1,10 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import { matchPublicPath } from '../utils/matchUrls.js';
 import Link from "../components/SiteLink.jsx";
 import { translateTournamentText } from "../i18n/translate.js";
 import { tx } from "../i18n/translate.js";
-import { currentLocale } from "../i18n/languages.js";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useParams } from "react-router-dom";
@@ -60,12 +62,7 @@ function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
 
-  return new Intl.DateTimeFormat(currentLocale(), {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    ...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? { timeZone: "UTC" } : {}),
-  }).format(date);
+  return formatUserDateTime(value, {day: "2-digit",month: "short",year: "numeric"});
 }
 
 function formatDateRange(startDate, endDate) {
@@ -233,6 +230,7 @@ function PrizeDistributionCard({ entry }) {
 }
 
 function MapPoolGrid({ maps }) {
+  useUserTimeSettings();
   return (
     <div className="grid grid-cols-2 gap-3 p-5 sm:grid-cols-3 sm:gap-4 sm:p-7 lg:grid-cols-4 xl:grid-cols-5">
       {maps.map((map) => {
@@ -360,6 +358,7 @@ function MatchScheduleRow({ match }) {
 }
 
 function MatchesSchedule({ matches }) {
+  useUserTimeSettings();
   const groups = new Map();
 
   matches.forEach((match) => {
@@ -418,6 +417,7 @@ function GroupSection({ group }) {
 }
 
 function TournamentPage() {
+  useUserTimeSettings();
   const { id } = useParams();
 
   const staticTournament = tournaments.find((item) => item.id === id) || null;

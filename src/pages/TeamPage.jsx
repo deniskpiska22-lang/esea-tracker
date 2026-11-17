@@ -1,3 +1,5 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
+import { formatUserDateTime } from '../utils/userTime.js';
 import "./TeamPage.css";
 import TeamShareButton from "../components/TeamShareButton.jsx";
 import CountryFlag from "../components/CountryFlag.jsx";
@@ -283,6 +285,7 @@ function RankCard({
 }
 
 function TeamPage() {
+  useUserTimeSettings();
   const { slug } = useParams();
   const { teams, catalogLoading } = useTeamCatalog();
 
@@ -485,13 +488,7 @@ function TeamPage() {
         week:
           Number.isNaN(date.getTime())
             ? String(dateValue || "")
-            : date.toLocaleDateString(
-                currentLocale(),
-                {
-                  month: "short",
-                  day: "numeric",
-                }
-              ),
+            : formatUserDateTime(dateValue, {month: "short",day: "numeric"}),
         rating:
           row.points == null ? null : Number(row.points),
         rank:

@@ -1,3 +1,4 @@
+import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
 import { matchPublicPath } from '../utils/matchUrls.js';
 import { faceitMatchRoomUrl } from '../utils/faceitMatchUrl.js';
@@ -276,7 +277,7 @@ function formatDateTime(value) {
     return String(value);
   }
 
-  return formatUserDateTime(parsed, {
+  return formatUserDateTime(value, {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -902,6 +903,7 @@ function MatchInformationCard({
   bestOf,
   faceitUrl,
 }) {
+  useUserTimeSettings();
   return (
     <section className="overflow-hidden rounded-[24px] border border-[#263244] bg-[#101722]">
       <div className="border-b border-[#243041] px-5 py-4">
@@ -1403,6 +1405,7 @@ function FinishedMatchHero({
   team1FlagUrl,
   team2FlagUrl,
 }) {
+  useUserTimeSettings();
   const [team1Score, team2Score] = String(score)
     .split(":")
     .map((value) => toNumber(value.trim()));
@@ -1520,6 +1523,7 @@ function FinishedMatchHero({
 }
 
 function MatchPage() {
+  useUserTimeSettings();
   const { teams } = useTeamCatalog();
   const location = useLocation();
 
