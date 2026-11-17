@@ -16,9 +16,6 @@ const jobs=[
   {name:'cached',script:'scripts/syncStoredCoachLobbies.js',interval:60000},
   {name:'rosters',script:'scripts/syncCoachRosters.js',args:['--apply'],interval:3*3600000,
     eligibleAt:async()=>{const row=await readStatus('coach-rosters');const at=Date.parse(row?.last_ping);return Number.isFinite(at)?at+30*60000:0;}},
-  {name:'lobbies',script:'scripts/syncCoachLobbies.js',interval:3*3600000,
-    eligibleAt:async()=>{const row=await readStatus('coach-lobbies');let detail={};try{detail=JSON.parse(row?.detail||'{}');}catch{/* Fresh source. */}
-      return detail.paused?Date.now()+3*3600000:Math.max(Number(detail.nextRunAt)||0,Number(detail.retryAt)||0);}},
 ];
 async function heartbeat(){
   const at=new Date().toISOString();
@@ -41,7 +38,7 @@ async function run(job){
 }
 const stop=()=>{stopping=true;child?.kill('SIGTERM');};
 process.on('SIGTERM',stop);process.on('SIGINT',stop);
-console.log('[coach-worker] cached roles every minute; network collectors every three hours');
+console.log('[coach-worker] shared match roles every minute; roster refresh every three hours; direct room polling retired');
 const timer=setInterval(()=>heartbeat().catch(error=>console.warn('[coach-worker] heartbeat',error.message)),30000).unref();
 try{
  do{
