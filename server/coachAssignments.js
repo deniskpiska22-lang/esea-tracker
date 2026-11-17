@@ -26,7 +26,8 @@ export function assignmentMatches(assignment, match) {
   // Ignore upstream zero dates. Prefer the start of a match so a game
   // that spans midnight is attributed to the correct coaching period.
   const day = [match.started_at, match.scheduled_at, match.finished_at].find(value => Date.parse(value) > Date.UTC(2000, 0));
-  return Boolean(day && (!assignment.start || Date.parse(day) >= Date.parse(assignment.start)));
+  return Boolean(day && (!assignment.start || Date.parse(day) >= Date.parse(assignment.start))
+    && (!assignment.end || Date.parse(day) <= Date.parse(assignment.end)));
 }
 
 export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
@@ -51,4 +52,17 @@ export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
       }],
     }];
   });
+}
+
+export function rosterCoachAssignments(rows, manualAssignments = [], now = Date.now()) {
+  return rows.filter(row => Date.parse(row.source_started_at) > Date.UTC(2000, 0)
+    && Date.parse(row.source_started_at) <= now
+    && !manualAssignments.some(assignment => assignment.teamId === row.team_id))
+    .map(row => {
+      const catalog = row.team_catalog?.team;
+      const current = row.active && catalog?.activeSeasonParticipant === true
+        && row.season === Number(catalog.season) && Date.parse(row.observed_at) >= now - 30 * 86400000;
+      return { coachId: row.coach_id, teamId: row.team_id, start: row.source_started_at,
+        end: current ? null : row.observed_at, current, source: 'league_roster', registeredSeason: row.season };
+    });
 }

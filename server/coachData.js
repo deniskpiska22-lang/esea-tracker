@@ -14,11 +14,11 @@ export function coachClient() {
   return client;
 }
 
-const rosterColumns = 'coach_id,team_id,season,nickname,country,observed_at,active';
+const rosterColumns = 'coach_id,team_id,season,nickname,country,source_started_at,observed_at,active';
 const recentRoster = () => new Date(Date.now() - 30 * 86400000).toISOString();
 
 export async function coachRosterRows(db, ids) {
-  const { data, error } = await db.from('esea_coach_rosters').select(rosterColumns)
+  const { data, error } = await db.from('esea_coach_rosters').select(`${rosterColumns},team_catalog!inner(team)`)
     .in('coach_id', ids).order('observed_at', { ascending: false }).limit(50);
   if (error) throw error;
   return data;
@@ -96,4 +96,17 @@ export async function resolvePlayerCoachId(db, nickname) {
   if (roster.error) throw roster.error;
   const ids = [...new Set(roster.data.map(row => row.coach_id))];
   return ids.length === 1 ? ids[0] : null;
+}
+
+export async function loadCoachTeamMatches(db, teamId, columns) {
+  const rows = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await db.from('matches').select(columns)
+      .or(`team1_id.eq.${teamId},team2_id.eq.${teamId}`)
+      .order('id').range(offset, offset + 499);
+    if (error) throw error;
+    rows.push(...data);
+    if (data.length < 500) break;
+  }
+  return rows;
 }

@@ -702,5 +702,21 @@
     "es": "No se pudo cargar parte del historial de partidos.",
     "fr": "Une partie de l’historique des matchs n’a pas pu être chargée.",
     "it": "Impossibile caricare parte della cronologia delle partite."
+  },
+  "Players who appeared in each of the last five played matches. Unconfirmed positions are TBD.": {
+    "ru": "Игроки, сыгравшие в каждом из последних пяти матчей. Неподтверждённые места — TBD.",
+    "de": "Spieler, die in jedem der letzten fünf gespielten Matches eingesetzt wurden. Unbestätigte Plätze sind TBD.",
+    "pt": "Jogadores que participaram em cada um dos últimos cinco jogos disputados. As posições não confirmadas são TBD.",
+    "es": "Jugadores que participaron en cada uno de los últimos cinco partidos disputados. Las posiciones sin confirmar son TBD.",
+    "fr": "Joueurs présents dans chacun des cinq derniers matchs joués. Les places non confirmées sont indiquées TBD.",
+    "it": "Giocatori presenti in ognuna delle ultime cinque partite giocate. I posti non confermati sono indicati con TBD."
+  },
+  "Position not confirmed": {
+    "ru": "Место не подтверждено",
+    "de": "Platz nicht bestätigt",
+    "pt": "Posição não confirmada",
+    "es": "Posición sin confirmar",
+    "fr": "Place non confirmée",
+    "it": "Posto non confermato"
   }
 }

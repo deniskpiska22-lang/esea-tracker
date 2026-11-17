@@ -1,6 +1,6 @@
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
-import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, coachRosterRows, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { assignedCoach, assignedCoachRows, coachAssignments, rosterCoachAssignments } from '../server/coachAssignments.js';
+import { coachClient, coachPlayerNames, coachRosterRows, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -77,22 +77,24 @@ export default async function handler(request, response) {
     const matchColumns = `${columns},started_at`;
     const originalIds = [coachId, ...(linked?.linkedIds || [])];
     const manual = assignedCoach(coachId);
-    const assignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
+    const manualAssignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
-    const [lobbies, assignmentLobbies, registrations, ...assignedMatches] = await Promise.all([
+    const [lobbies, assignmentLobbies, registrations] = await Promise.all([
       result(db.from('esea_coach_lobbies').select(`teams,terminal,checked_at,matches!inner(${columns})`)
         .overlaps('coach_ids', originalIds).order('checked_at', { ascending: false }).limit(400)),
-      assignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
-        .select('match_id,teams').overlaps('team_ids', [...new Set(assignments.filter(a => a.current).map(a => a.teamId))])
+      manualAssignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
+        .select('match_id,teams').overlaps('team_ids', [...new Set(manualAssignments.filter(a => a.current).map(a => a.teamId))])
         .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
       coachRosterRows(db, originalIds),
-      ...assignments.map(assignment => {
-        const query = db.from('matches').select(matchColumns)
-          .or(`team1_id.eq.${assignment.teamId},team2_id.eq.${assignment.teamId}`);
-        return result(query.order('scheduled_at', { ascending: false, nullsFirst: false }).limit(400));
-      }),
     ]);
-    const editorialRows = assignments.flatMap((assignment, index) => assignedCoachRows(assignedMatches[index], assignment, manual, [...lobbies, ...assignmentLobbies], now));
+    const assignments = [...manualAssignments, ...rosterCoachAssignments(registrations, manualAssignments, now)];
+    const coach = manual || { id: coachId, nickname: linked?.nickname || registrations[0]?.nickname,
+      country: registrations[0]?.country };
+    const teamIds = [...new Set(assignments.map(assignment => assignment.teamId))];
+    const teamMatches = new Map(await Promise.all(teamIds.map(async teamId =>
+      [teamId, await loadCoachTeamMatches(db, teamId, matchColumns)])));
+    const editorialRows = assignments.flatMap(assignment => assignedCoachRows(teamMatches.get(assignment.teamId),
+      assignment, coach, [...lobbies, ...assignmentLobbies], now));
     const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));
     const observed = lobbies.map(row => ({ ...row, teams: row.teams
       .filter(side => !covered.has(`${row.matches.id}:${side.id}`))
@@ -112,7 +114,7 @@ export default async function handler(request, response) {
     const rosterEvidence = registrations.filter(row => catalog.has(row.team_id)).map(row => ({
       person: { id: coachId, nickname: linked?.nickname || row.nickname, country: row.country },
       team: { id: row.team_id, ...catalog.get(row.team_id) },
-      season: row.season,
+      season: row.season, start: row.source_started_at,
       observedAt: row.observed_at,
       current: row.active && byTeam.get(row.team_id)?.activeSeasonParticipant === true
         && row.season === Number(byTeam.get(row.team_id)?.season)

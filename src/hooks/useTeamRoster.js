@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import { loadLastFivePlayedMatches, stableLineupPlayerIds } from '../utils/recentTeamLineup.js';
 import { loadMissingPlayerElo } from '../utils/playerElo.js';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -7,12 +8,6 @@ const EMPTY_ROSTER = {
   loading: false, error: null, starting: [], bench: [], former: [],
   provisional: false, lineupSource: "current_roster",
 };
-
-function isoDaysAgo(days) {
-  return new Date(
-    Date.now() - days * DAY_MS
-  ).toISOString();
-}
 
 function normalizePlayer(link) {
   const joinedPlayer =
@@ -38,7 +33,8 @@ function normalizePlayer(link) {
 
 function buildRoster(
   links,
-  appearances
+  appearances,
+  recentMatches
 ) {
   const metrics = new Map();
   const matches = new Map();
@@ -259,23 +255,9 @@ function buildRoster(
         player.isActive
     );
 
-  /*
-   * Основной состав обязателен:
-   * всегда показываем до пяти
-   * активных игроков.
-   *
-   * При наличии lineup evidence
-   * первые пять — игроки последнего
-   * матча, затем самые активные.
-   */
-  const starting =
-    active.slice(0, 5);
-
-  const hasLineupEvidence =
-    starting.some(
-      (player) =>
-        player.matches180 > 0
-    );
+  const stableIds = stableLineupPlayerIds(recentMatches, appearances);
+  const starting = roster.filter(player => stableIds.has(player.playerId)).slice(0, 5);
+  const startingIds = new Set(starting.map(player => player.playerId));
 
   return {
     starting:
@@ -284,18 +266,13 @@ function buildRoster(
           ...player,
           lineupStatus:
             "starting",
-          lineupSource:
-            player.playedLastMatch
-              ? "last_match"
-              : hasLineupEvidence
-                ? "match_history"
-                : "current_roster",
+          lineupSource: 'last_five_matches',
         })
       ),
 
     bench:
       active
-        .slice(5)
+        .filter(player => !startingIds.has(player.playerId))
         .map(
           (player) => ({
             ...player,
@@ -308,7 +285,7 @@ function buildRoster(
       roster
         .filter(
           (player) =>
-            !player.isActive
+            !player.isActive && !startingIds.has(player.playerId)
         )
         .map(
           (player) => ({
@@ -318,13 +295,10 @@ function buildRoster(
           })
         ),
 
-    provisional:
-      false,
+    provisional: recentMatches.length < 5 || starting.length < 5,
 
-    lineupSource:
-      hasLineupEvidence
-        ? "match_history"
-        : "current_roster",
+    lineupSource: 'last_five_matches',
+    recentMatchCount: recentMatches.length,
   };
 }
 
@@ -494,47 +468,21 @@ export function useTeamRoster(
             };
           });
 
-        const {
-          data:
-            appearanceRows,
-          error:
-            appearancesError,
-        } = await supabase
-          .from(
-            "team_player_appearances"
-          )
-          .select(
-            "player_id,match_id,played_at"
-          )
-          .eq(
-            "team_id",
-            teamId
-          )
-          .gte(
-            "played_at",
-            isoDaysAgo(180)
-          )
-          .order(
-            "played_at",
-            {
-              ascending: false,
-            }
-          );
-
-        if (
-          appearancesError
-        ) {
-          console.warn(
-            "Appearances unavailable:",
-            appearancesError.message
-          );
+        const recentMatches = await loadLastFivePlayedMatches(supabase, teamId);
+        let appearanceRows = [];
+        if (recentMatches.length) {
+          const { data, error } = await supabase.from('team_player_appearances')
+            .select('player_id,match_id,played_at').eq('team_id', teamId)
+            .in('match_id', recentMatches.map(match => match.id));
+          if (error) throw error;
+          appearanceRows = data || [];
         }
 
         const result =
           buildRoster(
             linksWithRatings,
-            appearanceRows ||
-              []
+            appearanceRows,
+            recentMatches
           );
 
         if (!cancelled) {
