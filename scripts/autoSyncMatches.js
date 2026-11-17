@@ -2934,6 +2934,12 @@ async function upsertOnlyChanged(
     }
   }
 
+  // Preserve discovered coaching roles even when score/status did not change.
+  try {
+    await cacheDiscoveryCoachRoles(supabase, alignedRows);
+  } catch (error) {
+    console.warn('[match-sync] coach role cache:', error.message);
+  }
   return {
     insertedOrChanged:
       changedRows.length,
@@ -4762,3 +4768,4 @@ main().catch((error) => {
 
   process.exitCode = 1;
 });
+import { cacheDiscoveryCoachRoles } from './lib/cacheDiscoveryCoachRoles.js';
