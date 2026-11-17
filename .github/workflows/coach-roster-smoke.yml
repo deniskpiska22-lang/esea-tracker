@@ -1,0 +1,51 @@
+name: Check public ESEA coach source
+on:
+  push:
+    branches: [esea-coach-roster-smoke]
+permissions:
+  contents: read
+jobs:
+  roster:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Read one public team page and confirm a coach
+        env:
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+        run: |
+          node --input-type=module <<'JS'
+          import { chromium } from 'playwright';
+          import { coachNicknameFromRoster } from './scripts/lib/faceitCoachRoster.js';
+          import assert from 'node:assert/strict';
+          const team = '036337bc-ab12-4ceb-83d8-fe08cebebce8';
+          const browser = await chromium.launch();
+          try {
+            const page = await browser.newPage({ locale: 'en-US' });
+            const response = await page.goto('https://www.faceit.com/en/teams/' + team, { waitUntil: 'domcontentloaded', timeout: 20000 });
+            assert.equal(response?.status(), 200, 'Public FACEIT team page status');
+            await page.getByRole('heading', { name: 'Active League Roster', exact: true }).waitFor({ timeout: 12000 });
+            await page.getByRole('button', { name: 'Season 59', exact: true }).waitFor({ timeout: 12000 });
+            const session = await page.context().newCDPSession(page);
+            const { nodes } = await session.send('Accessibility.getFullAXTree');
+            const nickname = coachNicknameFromRoster(nodes, team, 59);
+            assert.equal(nickname, 'Aler1t514');
+            assert.ok(process.env.FACEIT_API_KEY, 'FACEIT API key configured');
+            const lookup = new URL('https://open.faceit.com/data/v4/players');
+            lookup.searchParams.set('nickname', nickname);
+            const player = await fetch(lookup, { headers: { Authorization: 'Bearer ' + process.env.FACEIT_API_KEY }, signal: AbortSignal.timeout(12000) });
+            assert.equal(player.status, 200, 'FACEIT Data API lookup status');
+            const data = await player.json();
+            assert.equal(data.player_id, '8c861233-1fb7-4966-9cdc-2b99ea7e1cea');
+            console.log('Eclipse Enforcers / Season 59 / Aler1t514 / ' + data.player_id);
+          } finally {
+            await browser.close();
+          }
+          JS
