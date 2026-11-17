@@ -7,6 +7,8 @@ const day = 86400000;
 const matchDate = match => match.finished_at || match.scheduled_at;
 const season = value => Number(value?.match(/\b(?:season\s*|s)(\d+)\b/i)?.[1]) || null;
 const newestFirst = (a, b) => Date.parse(b.date) - Date.parse(a.date);
+const assignmentKey = (teamId, assignment) => assignment.periodId ? `${teamId}:roster:${assignment.periodId}`
+  : `${teamId}:assigned:${assignment.season || assignment.start}`;
 
 function resultTotals() {
   return { total: 0, won: 0, lost: 0, drawn: 0 };
@@ -62,19 +64,23 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
   const completed = [...new Map(records.filter(row => row.isFinished && Date.parse(row.date) <= now)
     .map(row => [`${row.match.id}:${row.team.id}`, row])).values()];
   const future = records.filter(row => !row.isFinished).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-  const activeTeamId = records.find(row => row.assignment?.current)?.team.id;
   const registration = registrations.find(row => row.current);
+  const manualRoom = records.find(row => row.assignment?.current && row.assignment.source !== 'league_roster');
+  const activeTeamId = manualRoom?.team.id || registration?.team.id || records.find(row => row.assignment?.current)?.team.id;
   const room = future.find(row => row.team.id === activeTeamId)
     || completed.find(row => row.team.id === activeTeamId) || future[0] || completed[0];
-  const registered = room?.assignment?.current ? null : registration || (!room ? registrations[0] : null);
-  const featured = registered || room;
+  const registered = manualRoom ? null : registration || (!room ? registrations[0] : null);
+  const featured = manualRoom || registered || room;
   if (!featured) return null;
   const identity = registered?.person || records.slice().sort((a, b) =>
     Math.min(now, Date.parse(b.date)) - Math.min(now, Date.parse(a.date)))[0].person;
   const periodsByKey = new Map();
+  let previous = null, observedSegment = 0;
   for (const row of [...completed].reverse()) {
     const s = row.assignment?.season ?? (row.assignment?.source === 'league_roster' ? null : season(row.match.competition_name));
-    const key = row.assignment ? `${row.team.id}:assigned:${row.assignment.season || row.assignment.start}` : `${row.team.id}:${s ?? 'unknown'}`;
+    if (!row.assignment && (!previous || previous.assignment || previous.team.id !== row.team.id
+      || season(previous.match.competition_name) !== s)) observedSegment++;
+    const key = row.assignment ? assignmentKey(row.team.id, row.assignment) : `${row.team.id}:${s ?? 'unknown'}:${observedSegment}`;
     const period = periodsByKey.get(key) || {
       key, team: row.team, season: s, first: row.assignment?.start || row.date, matches: 0,
       assignment: row.assignment || null, matchRows: [],
@@ -83,6 +89,7 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     period.matches++;
     period.matchRows.push(row.match);
     periodsByKey.set(key, period);
+    previous = row;
   }
   const periods = [...periodsByKey.values()]
     .map(({ matchRows, ...period }) => {
@@ -95,17 +102,20 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
       })).matches;
       return { ...period, days: observedDays(Date.parse(period.first), Date.parse(period.last)),
         winRate: results.total ? results.won / results.total : null, playedMatches: results.total,
-        matches: period.assignment?.source === 'league_roster' ? results.total : period.matches,
+        matches: results.total, confirmations: period.matches,
         mapTotals: { played: maps.length, won: maps.filter(map => map.teamScore > map.opponentScore).length } };
     })
     .sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   for (const registration of registrations) {
-    if (!registration.start || periods.some(period => period.team.id === registration.team.id && period.assignment)) continue;
-    const last = registration.current ? new Date(now).toISOString() : registration.observedAt;
-    periods.push({ key: `${registration.team.id}:roster:${registration.start}`, team: registration.team,
+    const assignment = registration.assignment || { start: registration.start, current: registration.current,
+      periodId: registration.periodId, source: 'league_roster' };
+    const key = assignmentKey(registration.team.id, assignment);
+    if (!registration.start || periods.some(period => period.key === key)) continue;
+    const last = registration.current ? new Date(now).toISOString() : registration.end || registration.observedAt;
+    periods.push({ key, team: registration.team,
       first: registration.start, last, days: observedDays(Date.parse(registration.start), Date.parse(last)),
       season: null, matches: 0, playedMatches: 0, winRate: null, mapTotals: { played: 0, won: 0 },
-      assignment: { start: registration.start, current: registration.current, source: 'league_roster' } });
+      assignment });
   }
   periods.sort((a, b) => Date.parse(b.last) - Date.parse(a.last));
   const completedByTeam = new Map();
@@ -152,6 +162,7 @@ export function buildCoachProfile(id, rows, catalog = new Map(), now = Date.now(
     || periods.find(period => period.team.id === featured.team.id);
   return { ...identity, team: featured.team, assignment: featured.assignment || null, roster, observedAt,
     tenure: tenure ? { first: tenure.first, last: tenure.last, days: tenure.days, current: Boolean(tenure.assignment?.current),
+      startSource: tenure.assignment?.startSource || null,
       source: tenure.assignment?.source || (tenure.assignment ? 'confirmed' : 'match_rooms') } : null,
     rosterBased: featured.assignment?.source === 'league_roster' || Boolean(registered),
     registered: Boolean(registered), registeredTeams,

@@ -18,10 +18,24 @@ const rosterColumns = 'coach_id,team_id,season,nickname,country,source_started_a
 const recentRoster = () => new Date(Date.now() - 30 * 86400000).toISOString();
 
 export async function coachRosterRows(db, ids) {
-  const { data, error } = await db.from('esea_coach_rosters').select(`${rosterColumns},team_catalog!inner(team)`)
-    .in('coach_id', ids).order('observed_at', { ascending: false }).limit(50);
-  if (error) throw error;
-  return data;
+  const rows = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await db.from('esea_coach_roster_periods')
+      .select(`${rosterColumns},id,period_started_at,start_source,ended_at,team_snapshot`)
+      .in('coach_id', ids).order('observed_at', { ascending: false }).order('id').range(offset, offset + 499);
+    if (error) throw error;
+    rows.push(...data);
+    if (data.length < 500) break;
+  }
+  const teams = new Map();
+  const teamIds = [...new Set(rows.map(row => row.team_id))];
+  for (let offset = 0; offset < teamIds.length; offset += 200) {
+    const { data, error } = await db.from('team_catalog').select('team_id,team').in('team_id', teamIds.slice(offset, offset + 200));
+    if (error) throw error;
+    for (const row of data) teams.set(row.team_id, row.team);
+  }
+  return rows.map(row => ({ ...row, team_catalog: { team: teams.get(row.team_id)
+    || { ...row.team_snapshot, activeSeasonParticipant: false } } }));
 }
 
 export async function currentTeamCoach(db, teamId) {
@@ -41,7 +55,7 @@ export async function currentTeamCoach(db, teamId) {
 
 export async function findRosterCoaches(db, text) {
   const escaped = text.replace(/[\\%_]/g, '\\$&');
-  const { data, error } = await db.from('esea_coach_rosters').select('coach_id,nickname')
+  const { data, error } = await db.from('esea_coach_roster_periods').select('coach_id,nickname')
     .ilike('nickname', `%${escaped}%`).order('active', { ascending: false })
     .order('observed_at', { ascending: false }).limit(32);
   if (error) throw error;
@@ -92,7 +106,7 @@ export async function resolvePlayerCoachId(db, nickname) {
   const alias = await db.from('player_profile_aliases').select('player_id').eq('nickname', nickname.toLowerCase()).maybeSingle();
   if (alias.error) throw alias.error;
   if (alias.data?.player_id) return alias.data.player_id;
-  const roster = await db.from('esea_coach_rosters').select('coach_id').ilike('nickname', escaped).limit(20);
+  const roster = await db.from('esea_coach_roster_periods').select('coach_id').ilike('nickname', escaped).limit(20);
   if (roster.error) throw roster.error;
   const observed = await db.rpc('find_esea_coaches', { p_query: nickname });
   if (observed.error) throw observed.error;

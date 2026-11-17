@@ -38,7 +38,8 @@ test('profile excludes maps from unconfirmed and upcoming lobbies and technical 
   const profile = buildCoachProfile(uuid(5), [base, queued, wrong, award].map(match =>
     ({ ...parseCoachLobby(room({ match, coach: match === wrong ? membership(6) : membership(5) }), match, checkedAt), matches: match })),
   new Map(), now);
-  assert.equal(profile.periods[0].matches, 2);
+  assert.equal(profile.periods[0].matches, 1);
+  assert.equal(profile.periods[0].confirmations, 2);
   assert.equal(profile.periods[0].days, 1);
   assert.equal(profile.matches[0].id, queued.id);
   assert.equal(profile.observedAt, checkedAt);
