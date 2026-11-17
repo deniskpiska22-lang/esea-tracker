@@ -24,6 +24,11 @@ export async function currentTeamTenureCoaches(db,teamId,now=Date.now()) {
     loadCoachTeamMatches(db,teamId,columns),
     coachAssignmentHandoffs(db,candidates.filter(id=>coachAssignments.some(assignment=>assignment.coachId===id&&assignment.handoffOnCoachLobby))),
   ]);
+  // Keep the explicit owner bootstrap exclusive until its saved lobby handoff.
+  const editorial=resolveCoachAssignments(coachAssignments.filter(assignment=>assignment.teamId===teamId),[],handoffs,now)
+    .filter(assignment=>assignment.current&&Date.parse(assignment.start)<=now);
+  if(editorial.length)return {coaches:editorial.map(assignment=>assignedCoach(assignment.coachId)).filter(Boolean)
+    .map(person=>({id:person.id,nickname:person.nickname,avatar:null})),observedAt:editorial[0].start,matchId:null};
   const catalog=new Map(registrations.map(row=>[row.team_id,row.team_catalog?.team]));
   if(team?.team)catalog.set(teamId,team.team);
   const coaches=[];
