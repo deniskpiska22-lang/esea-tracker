@@ -1,6 +1,6 @@
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
 import { assignedCoach, assignedCoachRows, coachAssignments, rosterCoachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, coachRosterRows, loadCoachLobbies, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, coachRosterRows, loadCoachLobbies, loadCoachTeamLobbies, loadCoachTeamMatches, currentTeamCoach, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -79,11 +79,8 @@ export default async function handler(request, response) {
     const manual = assignedCoach(coachId);
     const manualAssignments = manual ? coachAssignments.filter(assignment => assignment.coachId === coachId) : [];
     const now = Date.now();
-    const [lobbies, assignmentLobbies, registrations, historyBounds] = await Promise.all([
+    const [lobbies, registrations, historyBounds] = await Promise.all([
       loadCoachLobbies(db, originalIds, columns),
-      manualAssignments.some(assignment => assignment.current) ? result(db.from('esea_coach_lobbies')
-        .select('match_id,teams').overlaps('team_ids', [...new Set(manualAssignments.filter(a => a.current).map(a => a.teamId))])
-        .order('checked_at', { ascending: false }).limit(100)).catch(() => []) : [],
       coachRosterRows(db, originalIds),
       result(db.from('esea_coach_season_bounds').select('team_id,season,evidence')
         .in('coach_id', originalIds).order('season', { ascending: false }).limit(200)),
@@ -92,8 +89,11 @@ export default async function handler(request, response) {
     const coach = manual || { id: coachId, nickname: linked?.nickname || registrations[0]?.nickname,
       country: registrations[0]?.country };
     const teamIds = [...new Set(assignments.map(assignment => assignment.teamId))];
-    const teamMatches = new Map(await Promise.all(teamIds.map(async teamId =>
-      [teamId, await loadCoachTeamMatches(db, teamId, matchColumns)])));
+    const [teamEntries, assignmentLobbies] = await Promise.all([
+      Promise.all(teamIds.map(async teamId => [teamId, await loadCoachTeamMatches(db, teamId, matchColumns)])),
+      loadCoachTeamLobbies(db, teamIds),
+    ]);
+    const teamMatches = new Map(teamEntries);
     const editorialRows = assignments.flatMap(assignment => assignedCoachRows(teamMatches.get(assignment.teamId),
       assignment, coach, [...lobbies, ...assignmentLobbies], now));
     const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));

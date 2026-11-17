@@ -39,7 +39,11 @@ export function assignedCoachRows(matches, assignment, coach, lobbyRows, now) {
     seen.add(match.id);
     const terminal = ['FINISHED', 'MATCH_STATUS_FINISHED'].includes(match.status);
     const ownSide = match.team1_id === assignment.teamId ? 'team1' : 'team2';
-    const lobbySide = existing.get(match.id)?.teams.find(team => team.id === assignment.teamId);
+    const lobby = existing.get(match.id);
+    const lobbySide = lobby?.teams.find(team => team.id === assignment.teamId);
+    const validEvidence = lobby?.terminal || Date.parse(lobby?.checked_at) >= now - 8 * 3600000;
+    if (assignment.source === 'league_roster' && validEvidence && lobbySide?.coaches?.length
+      && !lobbySide.coaches.some(person => coachIds.has(person.id))) return [];
     const startedAt = [match.started_at, match.scheduled_at, match.finished_at].find(value => Date.parse(value) > Date.UTC(2000, 0));
     return [{
       terminal, checked_at: new Date(now).toISOString(),

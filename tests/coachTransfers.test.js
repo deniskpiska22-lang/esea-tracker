@@ -68,3 +68,14 @@ test('match-room history A to B to A does not draw one uninterrupted A stint', (
   assert.equal(profile.stats.career.matches.total,3);
   assert.equal(profile.stats.teams.find(row=>row.team.id==='A').matches.total,2);
 });
+
+test('a current roster does not inherit matches explicitly coached by someone else; manual assignments retain priority', () => {
+  const [assignment] = rosterCoachAssignments([period('A-1','A','2026-11-01')],[],now);
+  const game = match('other-coach','A','2026-11-10');
+  const room = {match_id:game.id,terminal:true,checked_at:'2026-11-17',
+    teams:[{id:'A',coaches:[{id:'another',nickname:'Former coach'}],roster:[]}]};
+  assert.equal(assignedCoachRows([game],assignment,coach,[room],now).length,0);
+  assert.equal(assignedCoachRows([game],{...assignment,source:undefined},coach,[room],now).length,1);
+  const empty = {...room,teams:[{id:'A',coaches:[],roster:[]}]};
+  assert.equal(assignedCoachRows([game],assignment,coach,[empty],now).length,1);
+});

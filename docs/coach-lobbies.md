@@ -52,3 +52,9 @@ Manual owner assignments retain priority. GitHub normally refreshes current
 rosters; the Railway automation cycle also runs a resumable roster batch when
 the shared coach-rosters heartbeat is more than four hours old. Lobby source
 failure does not prevent that separate roster refresh.
+
+Automatic roster-based result attribution yields to a saved room explicitly
+naming another coach for that team. That match is not credited to the current
+coach merely because their membership join date is older. Empty/missing coach
+slots are not proof of a departure, and explicit manual assignments retain
+priority. All relevant saved team rooms are paginated for this check.
