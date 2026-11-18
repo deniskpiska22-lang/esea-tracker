@@ -3,7 +3,7 @@
 .player-rankings-eyebrow{font-size:11px;font-weight:800;letter-spacing:.17em;color:#ffb65e}
 .player-rankings h1{font-size:clamp(29px,5vw,46px);font-weight:900;letter-spacing:-.04em;margin:9px 0}
 .player-rankings-hero p,.player-rankings-note{color:#9eafc2;font-size:13px;line-height:1.6}
-.player-rankings-filters{display:grid;grid-template-columns:1fr 1fr 1fr 1.3fr auto;gap:12px;align-items:end;margin-top:24px}
+.player-rankings-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) 1.2fr auto;gap:12px;align-items:end;margin-top:24px}
 .player-rankings-filters label{display:grid;gap:7px;min-width:0;font-size:12px;color:#a7bbcf}
 .player-rankings-filters select,.player-rankings-filters input,.player-rankings-filters button{width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid #304254;border-radius:10px;background:#111923;color:#e7eef6;font-size:13px}
 .player-rankings-filters button{color:#ffbb6e;cursor:pointer}
@@ -29,5 +29,5 @@
 .player-rankings-rating{font-size:19px;font-weight:850;color:#76ddc0}
 .player-rankings-number{color:#8da2b6;font-weight:800}
 .player-rankings-empty{padding:40px 12px;text-align:center;color:#a7bbcf}
-@media(max-width:900px){.player-rankings-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.player-rankings-filters button{grid-column:1/-1}}
+@media(max-width:1100px){.player-rankings-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.player-rankings-filters button{grid-column:1/-1}}
 @media(max-width:540px){.player-rankings{padding:20px 12px 40px}.player-rankings-hero{padding:20px}.player-rankings-podium{gap:7px}.player-rankings-leader{padding:12px 6px}.rank-player-portrait{width:75px;height:85px}.player-rankings-place{font-size:14px;top:9px;left:9px}.player-rankings-leader-name{font-size:13px;gap:4px}.player-rankings-leader strong{font-size:24px}.player-rankings td,.player-rankings th{padding:12px 10px}}
