@@ -1,6 +1,7 @@
 // Versioned crosswalk: the league leaders (~700 points) overlap HLTV #100–120.
 // This is our rating policy, not HLTV's points or Valve's VRS.
 export const QUALIFIER_POLICY_VERSION = 'hltv-crosswalk-v1';
+export const LEAGUE_CALIBRATION_TEAM_IDS = ['523a3f42-5446-4cf1-b131-b29b519e81bd', '053839e3-d2ff-40a1-998b-cd6c5c1e9083'];
 export const QUALIFIER_REFERENCE = Object.freeze({ points: 700, rank: 110, slope: 160 });
 export const isQualifierCompetition = (name) => /(?:qual(?:if|\b)|karsinta|квалиф)/i.test(String(name || ''));
 export const coreIds = (roster) => [...new Set((roster || []).map(p => typeof p === 'string' ? p : p.player_id).filter(Boolean))];

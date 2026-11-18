@@ -29,7 +29,7 @@ async function main() {
   const {data:season,error:seasonError}=await db.from('rating_seasons').select('rating_from').eq('season',settings.active_season).single(); if(seasonError)throw seasonError;
   const [matches,catalog,saved,identities]=await Promise.all([
     rows('matches','id,competition_name,scheduled_at,finished_at,rating_teams:raw_data->teams',q=>q.gte('scheduled_at',season.rating_from || '2026-01-01').or('competition_name.ilike.%qual%,competition_name.ilike.%karsinta%,competition_name.ilike.%квалиф%')),
-    rows('team_catalog','team_id,team'), rows('hltv_ranking_snapshots','*'), rows('hltv_player_identities','*'),
+    rows('team_catalog','team_id,players:team->players'), rows('hltv_ranking_snapshots','*'), rows('hltv_player_identities','*'),
   ]);
   const sides=[]; const dates=new Set([previousMonday(Date.now()-86400000)]);
   for(const match of matches) {
@@ -40,7 +40,7 @@ async function main() {
     // Previous Monday's list, with next-day activation; also covers Monday games.
     dates.add(previousMonday(at-86400000));
   }
-  for(const row of catalog) if(Array.isArray(row.team?.players))sides.push(row.team.players.map(norm));
+  for(const row of catalog) if(Array.isArray(row.players))sides.push(row.players.map(norm));
   const cache=new Map(identities.map(i=>[i.hltv_id,i]));
   const curated=JSON.parse(await readFile(new URL('./config/hltvPlayerLinks.json',import.meta.url),'utf8'));
   for(const link of curated) {
@@ -87,4 +87,4 @@ async function main() {
   console.log(JSON.stringify({updated,failed,requests,identityLinks:[...cache.values()].filter(i=>i.faceit_id).length}));
   if(!updated)throw new Error('No usable HLTV snapshots; existing ratings preserved');
 }
-main().catch(e=>{console.error(e);process.exitCode=1;});
+main().catch(async e=>{console.error(e);process.exitCode=1;const now=new Date().toISOString();await db.from('worker_status').upsert({worker_name:'hltv-strength-source',status:'error',detail:String(e.stack||e.message).slice(0,12000),last_ping:now,updated_at:now},{onConflict:'worker_name'});});

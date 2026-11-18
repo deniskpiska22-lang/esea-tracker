@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import process from "node:process";
 import { belongsToRatingPeriod } from "./lib/seasonParticipants.js";
 import { isUnplayedQualifierResult, QUALIFIER_RATING_COLUMNS } from "./lib/qualifierRating.js";
-import { isQualifierCompetition, snapshotAt, calibrateLeagueAnchor, describeQualifierOpponent, coreIds, QUALIFIER_POLICY_VERSION } from "../src/utils/qualifierStrength.js";
+import { isQualifierCompetition, snapshotAt, calibrateLeagueAnchor, describeQualifierOpponent, coreIds, QUALIFIER_POLICY_VERSION, LEAGUE_CALIBRATION_TEAM_IDS } from "../src/utils/qualifierStrength.js";
 import { writeFile } from "node:fs/promises";
 
 import {
@@ -551,7 +551,6 @@ async function main() {
       team2_id,
       team2_name,
       team2_score,
-      rating_teams:raw_data->teams,
       ${QUALIFIER_RATING_COLUMNS}
     `,
     orderColumn: "finished_at",
@@ -582,6 +581,18 @@ async function main() {
     `Матчей рейтингового периода S${activeSeason.season}: ${matches.length}`,
   );
 
+  // Fetch the larger roster fragment only for qualifier rooms and the two
+  // owner-confirmed calibration teams. Never download every historical roster
+  // on each post-match rating replay.
+  const rosterMatchIds = matches.filter(match => isQualifierCompetition(match.competition_name) ||
+    [match.team1_id,match.team2_id].some(id => LEAGUE_CALIBRATION_TEAM_IDS.includes(id))).map(match => match.id);
+  const matchRosters = new Map();
+  for(let i=0;i<rosterMatchIds.length;i+=200) {
+    const rows=await fetchAllRows({table:'matches',select:'id,rating_teams:raw_data->teams',orderColumn:'id',
+      filters:[{type:'in',column:'id',value:rosterMatchIds.slice(i,i+200)}]});
+    for(const row of rows)matchRosters.set(row.id,row.rating_teams);
+  }
+  for(const match of matches)match.rating_teams=matchRosters.get(match.id);
   const hltvSnapshots = await fetchAllRows({ table: "hltv_ranking_snapshots", select: "ranking_date,source_url,teams", orderColumn: "ranking_date" });
   const rostersByTeam = new Map();
   const observations = new Map();
@@ -1006,12 +1017,13 @@ const finalRows = Array.from(
   );
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
   console.error(
     "\nОшибка пересчета рейтинга:",
   );
 
   console.error(error);
-
+  const now=new Date().toISOString();
+  await supabase.from('worker_status').upsert({worker_name:'qualifier-rating-replay',status:'error',detail:String(error.stack||error.message).slice(0,12000),last_ping:now,updated_at:now},{onConflict:'worker_name'});
   process.exitCode = 1;
 });
