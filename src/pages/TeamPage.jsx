@@ -958,7 +958,7 @@ function TeamPage() {
           slug={slug}
         />
 
-        <TeamCoaches teamId={team.faceitTeamId || team.team_id} />
+        <TeamCoaches teamId={team.faceitTeamId || team.team_id} teamLogo={team.logo} />
 
         {/* WEEKLY RATING HISTORY */}
         {!ratingHistoryLoading &&
