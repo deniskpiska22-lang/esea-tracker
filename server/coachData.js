@@ -21,7 +21,7 @@ export async function coachRosterRows(db, ids) {
   const rows = [];
   for (let offset = 0; ; offset += 500) {
     const { data, error } = await db.from('esea_coach_roster_periods')
-      .select(`${rosterColumns},id,period_started_at,start_source,ended_at,team_snapshot`)
+      .select(`${rosterColumns},id,period_started_at,first_seen_at,start_source,ended_at,team_snapshot`)
       .in('coach_id', ids).order('observed_at', { ascending: false }).order('id').range(offset, offset + 499);
     if (error) throw error;
     rows.push(...data);
@@ -169,7 +169,7 @@ export async function coachTeamRegistrations(db, teamIds) {
       const rows=[];
       for(let offset=0;;offset+=500) {
         const {data,error}=await db.from('esea_coach_roster_periods')
-          .select(`${rosterColumns},id,period_started_at,start_source,ended_at,team_snapshot`)
+          .select(`${rosterColumns},id,period_started_at,first_seen_at,start_source,ended_at,team_snapshot`)
           .in('team_id',ids).order('observed_at',{ascending:false}).order('id').range(offset,offset+499);
         if(error)throw error;rows.push(...data);if(data.length<500)return rows;
       }

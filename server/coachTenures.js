@@ -28,6 +28,9 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
   for(const seed of seeds.filter(seed=>seed.source==='league_roster')) {
     const start=Date.parse(seed.start);
     if(Number.isFinite(start)&&start<=now) events.push({at:start,kind:'positive',team:seed.teamId,seed});
+    const confirmed=Date.parse(seed.confirmedAt);
+    if(seed.current&&Number.isFinite(confirmed)&&confirmed>start&&confirmed<=now)
+      events.push({at:confirmed,kind:'positive',team:seed.teamId,seed,confirmation:true});
   }
   // Official registration intervals prove replacements independently of room
   // attendance. Preserve historical handoffs even after the replacement leaves.
@@ -41,7 +44,10 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
       .map(other=>linkedPlayerProfile(other.coachId)?.id||other.coachId));
     // Explicit concurrent coaching staff is not a confirmed replacement.
     if(concurrent.size!==1)continue;
-    events.push({at:start,kind:'replacement',team:seed.teamId});
+    events.push({at:start,kind:'replacement',team:seed.teamId,replacementCoachIds:[id]});
+    const confirmed=Date.parse(seed.confirmedAt);
+    if(seed.current&&Number.isFinite(confirmed)&&confirmed>start&&confirmed<=now)
+      events.push({at:confirmed,kind:'replacement',team:seed.teamId,replacementCoachIds:[id]});
   }
   const roomByMatch=new Map(teamRooms.map(room=>[room.match_id||room.matches?.id,room]));
   for(const room of rooms) {
@@ -50,7 +56,26 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
     const when=Math.min(at(room.matches),Date.parse(room.checked_at));
     if(!Number.isFinite(when)||when>now) continue;
     for(const side of room.teams) if(side.coaches?.some(person=>ids.has(person.id)))
-      events.push({at:when,kind:'positive',team:side.id,matchId:room.matches.id});
+      events.push({at:when,kind:'positive',team:side.id,matchId:room.matches.id,staff:side.coaches.map(person=>linkedPlayerProfile(person.id)?.id||person.id)});
+  }
+  // Explicit coaching slots are confirmation, not a guess from player names.
+  // A different solo coach closes the former tenure; an empty/unknown room
+  // still uses the five-game fallback. Repeated staff are handled below.
+  const teamMatchById=new Map([...teamMatches.values()].flat().map(match=>[match.id,match]));
+  for(const room of teamRooms) {
+    const match=room.matches||teamMatchById.get(room.match_id);
+    if(!match||!validRoom({...room,matches:match},now)||protectedMatch(match))continue;
+    const when=Math.min(at(match),Date.parse(room.checked_at));
+    if(!Number.isFinite(when)||when>now)continue;
+    for(const side of room.teams) {
+      const present=[...new Set((side.coaches||[]).map(p=>linkedPlayerProfile(p.id)?.id||p.id).filter(Boolean))];
+      if(!present.length||present.some(id=>ids.has(id)))continue;
+      const registered=new Set(replacements.filter(seed=>seed.teamId===side.id
+        &&Date.parse(seed.start)<=when&&(!seed.end||Date.parse(seed.end)>when))
+        .map(seed=>linkedPlayerProfile(seed.coachId)?.id||seed.coachId));
+      if(registered.size>1&&[...ids].some(id=>registered.has(id)))continue;
+      events.push({at:when,kind:'replacement',team:side.id,replacementCoachIds:present});
+    }
   }
   for(const [team,matches] of teamMatches) for(const match of matches) {
     const when=at(match);
@@ -58,7 +83,7 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
     const room=roomByMatch.get(match.id),side=room?.teams.find(side=>side.id===team);
     const known=room?.terminal && Array.isArray(side?.coaches);
     const present=known&&side.coaches.some(person=>ids.has(person.id));
-    events.push({at:when,kind:'game',team,id:match.id,known:Boolean(known),present});
+    events.push({at:when,kind:'game',team,id:match.id,known:Boolean(known),present,staff:present?side.coaches.map(person=>linkedPlayerProfile(person.id)?.id||person.id):[]});
   }
   const priority={manual:0,positive:1,game:2,replacement:3};
   events.sort((a,b)=>a.at-b.at||priority[a.kind]-priority[b.kind]||String(a.id||a.matchId||a.team).localeCompare(String(b.id||b.matchId||b.team)));
@@ -71,6 +96,7 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
   }
   function positive(event) {
     if(current?.teamId===event.team) {
+      for(const id of event.staff||[])if(!ids.has(id))current.coStaffIds.add(id);
       current.observedAt=instant(event.at);
       if(!event.seed){current.absences=[];current.absentMatches=0;}
       if(event.matchId)current.lastCoachMatchId=event.matchId;
@@ -79,7 +105,12 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
       }
       return;
     }
-    const prior=periods.some(period=>period.teamId===event.team);
+    if(event.confirmation&&current&&current.teamId!==event.team)return;
+    const previous=periods.filter(period=>period.teamId===event.team).at(-1);
+    const prior=Boolean(previous);
+    // A fresh role confirmation can prove return after a replacement, but
+    // cannot resurrect a tenure closed by five absences or a real transfer.
+    if(event.confirmation&&prior&&previous.endReason!=='confirmed_replacement')return;
     // A late first roster observation is not a return to a match coach slot.
     if(event.seed?.startSource==='first_observed'&&prior&&current?.teamId!==event.team)return;
     close(event.at,'transfer');
@@ -88,7 +119,7 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
     const seed=event.seed||{};
     current={...seed,coachId,teamId:event.team,start:instant(event.at),end:null,current:true,
       source:seed.source||'match_rooms',tenureKey:seed.tenureKey||`${event.team}:tenure:${instant(event.at)}`,
-      observedAt:instant(event.at),lastCoachMatchId:event.matchId||null,absences:[],absentMatches:0};
+      observedAt:instant(event.at),lastCoachMatchId:event.matchId||null,absences:[],absentMatches:0,coStaffIds:new Set((event.staff||[]).filter(id=>!ids.has(id)))};
     if(ownerContinuation) {
       current.tenureKey=coachAssignmentKey(event.team,ownerContinuation);
       current.tenureStart=ownerContinuation.start;
@@ -102,15 +133,19 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
   for(const event of events) {
     if(event.kind==='manual'){close(event.at,'confirmed_assignment');continue;}
     if(event.kind==='positive'){positive(event);continue;}
-    if(event.kind==='replacement'){if(current?.teamId===event.team)close(event.at,'confirmed_replacement');continue;}
+    if(event.kind==='replacement'){
+      if(current?.teamId===event.team&&!(event.replacementCoachIds||[]).some(id=>current.coStaffIds.has(id)))
+        close(event.at,'confirmed_replacement');
+      continue;
+    }
     if(event.present){positive({...event,matchId:event.id});continue;}
     if(!current||current.teamId!==event.team)continue;
     if(!event.known){current.absences=[];current.absentMatches=0;continue;}
     current.absences.push(event.at);current.absentMatches=current.absences.length;
     if(current.absences.length===COACH_ABSENCE_LIMIT)close(current.absences[0],'five_absences');
   }
-  return [...manual,...periods.map(({absences,...period})=>{
-    void absences;
+  return [...manual,...periods.map(({absences,coStaffIds,...period})=>{
+    void absences;void coStaffIds;
     const team=catalog.get(period.teamId);
     // An inactive archived team has no current badge; the unresolved tenure still
     // covers its known games and can continue if the team becomes active again.

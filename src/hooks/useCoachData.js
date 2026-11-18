@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function useCoachData(key, value) {
-  const url = value ? `/api/coach?${new URLSearchParams({ [key]: value })}` : null;
+  const url = value ? `/api/coach?${new URLSearchParams({ [key]: value, v: 'confirmed-tenures-2' })}` : null;
   const [response, setResponse] = useState(null);
   useEffect(() => {
     if (!url) return;
