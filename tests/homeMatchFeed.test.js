@@ -75,3 +75,13 @@ test('a match moving from scheduled to live renders only its live state', async 
   assert.equal(response.data.length,1);
   assert.equal(response.data[0].status,'ONGOING');
 });
+
+test('the match directory retains future fixtures beyond the homepage day window', async () => {
+  const response=await loadHomeMatchFeed(fakeDatabase([
+    {id:'old',status:'SCHEDULED',scheduled_at:'2026-10-18T19:00:00Z'},
+    {id:'next-week',status:'SCHEDULED',scheduled_at:'2026-10-26T19:00:00Z'},
+    {id:'next-month',status:'SCHEDULED',scheduled_at:'2026-11-26T19:00:00Z'},
+  ]),{...options,end:null,resultsLimit:250});
+  assert.equal(response.error,null);
+  assert.deepEqual(response.data.map(m=>m.id),['next-week','next-month']);
+});

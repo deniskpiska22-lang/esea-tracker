@@ -168,3 +168,25 @@ test('network-path request targets are rejected without open redirects', async t
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { path: '/matches' });
  });
+
+test('unknown pages return localized real 404s without the misleading boot timeout', async t => {
+  const base=await fixture(t);
+  for (const [lang,heading,home] of [['en','Page not found','/en'],['de','Seite nicht gefunden','/de'],['','Страница не найдена','/']]) {
+    const response=await fetch(`${base}/${lang ? lang+'/' : ''}missing-audit-page`);
+    const html=await response.text();
+    assert.equal(response.status,404);
+    assert.match(response.headers.get('x-robots-tag'),/noindex/);
+    assert.ok(html.includes(heading),html);
+    assert.ok(html.includes(`href="${home}"`));
+    assert.doesNotMatch(html,/SPA entry|boot-recovery|Загрузка заняла/);
+  }
+});
+
+test('application fallback continues serving auth, admin and profile deep links', async t => {
+  const base=await fixture(t);
+  for (const pathname of ['/login','/en/register','/de/auth/callback','/admin/preview','/en/admin/verifications','/fr/profile/test/edit','/it/data-status']) {
+    const response=await fetch(base+pathname);
+    assert.equal(response.status,200,pathname);
+    assert.match(await response.text(),/SPA entry/);
+  }
+});

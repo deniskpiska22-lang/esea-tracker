@@ -16,9 +16,11 @@ export async function loadHomeMatchFeed(client, { columns, liveStatuses, now, en
   // exhaust the response limit before the first scheduled match is read.
   const [live, upcoming, finished] = await Promise.all([
     readActivePages(() => client.from('matches').select(columns).in('status', [...liveStatuses])),
-    readActivePages(() => client.from('matches').select(columns)
-      .in('status', ['SCHEDULED', 'MATCH_STATUS_SCHEDULED'])
-      .gte('scheduled_at', now.toISOString()).lte('scheduled_at', end.toISOString())),
+    readActivePages(() => {
+      const query = client.from('matches').select(columns)
+        .in('status', ['SCHEDULED', 'MATCH_STATUS_SCHEDULED']).gte('scheduled_at', now.toISOString());
+      return end ? query.lte('scheduled_at', end.toISOString()) : query;
+    }),
     client.from('matches').select(columns).in('status', ['FINISHED', 'MATCH_STATUS_FINISHED'])
       .order('finished_at', { ascending: false, nullsFirst: false }).limit(resultsLimit),
   ]);

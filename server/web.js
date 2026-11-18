@@ -8,7 +8,9 @@ import { createHash } from 'node:crypto';
 import { gzip } from 'node:zlib';
 import { promisify } from 'node:util';
 import geoip from 'geoip-country';
-import { redirects, headers, interpolate, resolveRewrite } from './webRouting.js';
+import { redirects, headers, interpolate, resolveRewrite, isSpaPath } from './webRouting.js';
+
+import { notFoundPage } from './notFoundPage.js';
 
 const compress = promisify(gzip);
 const API_NAMES = new Set(['ad-policy', 'coach', 'home-matches', 'match', 'match-odds', 'onewin', 'onewin-markets', 'pari', 'ping', 'player-elo', 'seo-profile', 'seo-sitemap', 'site-presence', 'submit-team', 'team-stats', 'team-share', 'test-db', 'veto']);
@@ -155,6 +157,7 @@ export function createWebServer({ distDirectory = path.resolve('dist'), handlers
     const file = await staticFile(pathname, initialHeaders, req);
     if (file) return file;
     if (/^\/(?:assets|ads|_vercel)\//.test(pathname) || path.extname(pathname)) return responseAdapter().status(404).end('Not found');
+    if (!isSpaPath(pathname)) return responseAdapter(initialHeaders).status(404).setHeader('Content-Type','text/html; charset=utf-8').setHeader('X-Robots-Tag','noindex, follow').end(notFoundPage(pathname));
     return await staticFile('/index.html', initialHeaders, req) || responseAdapter().status(503).end('Build unavailable');
   }
 

@@ -1,3 +1,4 @@
+import { fixTx } from '../i18n/siteFixes.js';
 import { useTeamCatalog } from '../hooks/useTeamCatalog.js';
 import { countryName } from "../utils/countries.js";
 import { currentLocale } from "../i18n/languages.js";
@@ -585,6 +586,10 @@ const teamCountByRegion = useMemo(() => {
     searchQuery,
   ]);
 
+  const [renderPage,setRenderPage] = useState(null);
+  const renderKey = JSON.stringify([selectedDivision,selectedRegion,selectedCountry,searchQuery]);
+  const renderLimit = renderPage?.key === renderKey ? renderPage.limit : 100;
+
   const filtersActive =
     selectedDivision !== "All" ||
     selectedRegion !== "All" ||
@@ -959,7 +964,7 @@ const teamCountByRegion = useMemo(() => {
                 0 ? (
                   <div className="rounded-xl border border-white/5 bg-[#0c1016] p-10 text-center text-gray-500">{tx(" No teams found ")}</div>
                 ) : (
-                  filteredTeams.map(
+                  filteredTeams.slice(0,renderLimit).map(
                     (team) => {
                       const countryName =
                         localizedCountry(team.country) ??
@@ -1043,6 +1048,7 @@ const teamCountByRegion = useMemo(() => {
                   )
                 )}
               </div>
+              {filteredTeams.length > renderLimit && <button type="button" className="mt-5 min-h-11 rounded-xl border border-slate-700 px-6 text-orange-400" onClick={()=>setRenderPage({key:renderKey,limit:renderLimit+100})}>{fixTx('Load more')} · {renderLimit} / {filteredTeams.length}</button>}
             </div>
           </div>
         )}

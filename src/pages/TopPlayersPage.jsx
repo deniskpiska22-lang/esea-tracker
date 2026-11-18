@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabaseClient.js';
 import { playersTx as tx } from '../i18n/playerRankings.js';
 import { currentLocale } from '../i18n/languages.js';
 import { countryName, COUNTRY_CODES } from '../utils/countries.js';
+import { fixTx } from '../i18n/siteFixes.js';
 import './TopPlayersPage.css';
 
 const divisions = ['Advanced','Main','Intermediate','Entry','Open10'];
@@ -29,10 +30,13 @@ export default function TopPlayersPage() {
   const country = COUNTRY_CODES.includes((params.get('country') || '').toUpperCase()) ? params.get('country').toUpperCase() : '';
   const minimum = thresholds.includes(Number(params.get('min'))) ? Number(params.get('min')) : 5;
   const search = (params.get('q') || '').slice(0,80);
-  const key = JSON.stringify([division,region,minimum,search,country]);
+  const [retry,setRetry] = useState(0);
+  const key = JSON.stringify([division,region,minimum,search,country,retry]);
+  const [notice,setNotice] = useState('');
   const [result, setResult] = useState(null);
   const current = result?.key === key ? result : null;
   function change(name, value) {
+    setNotice('');
     setParams(previous => { const next = new URLSearchParams(previous);
       if (value) next.set(name,value); else next.delete(name); return next;
     }, { replace: true });
@@ -41,29 +45,33 @@ export default function TopPlayersPage() {
   useEffect(() => {
     let stopped = false;
     let active = false;
+    let controller;
     async function load() {
       if (active || document.hidden) return;
       active = true;
+      controller = new AbortController();
+      const timeout = setTimeout(()=>controller.abort(),15000);
       try {
         if (!supabase) throw new Error('Supabase unavailable');
         const { data, error } = await supabase.rpc('get_player_leaderboard_page', {
           p_division: division || null, p_region: region || null, p_min_matches: minimum, p_search: search, p_country: country || null,
-        });
+        }).abortSignal(controller.signal);
         if (error) throw error;
         if (!stopped) {
           if (country && data.selected_country !== country) {
+            setNotice('Country filter cleared: fewer than 100 players match the selected filters.');
             setParams(previous => { const next = new URLSearchParams(previous); next.delete('country'); return next; }, {replace:true});
           } else setResult({ key, players: data.players || [], countries: data.countries || [], error: false });
         }
       } catch {
         if (!stopped) setResult({ key, players: [], error: true });
-      } finally { active = false; }
+      } finally { clearTimeout(timeout); active = false; }
     }
     const debounce = setTimeout(load, search ? 250 : 0);
     const interval = setInterval(load, 60000);
     document.addEventListener('visibilitychange',load);
-    return () => { stopped = true; clearTimeout(debounce); clearInterval(interval); document.removeEventListener('visibilitychange',load); };
-  }, [division,region,minimum,search,country,key,setParams]);
+    return () => { stopped = true; controller?.abort(); clearTimeout(debounce); clearInterval(interval); document.removeEventListener('visibilitychange',load); };
+  }, [division,region,minimum,search,country,key,setParams,retry]);
 
   const countries = (current?.countries || []).filter(row => countryName(row.code)).sort((a,b) => countryName(a.code).localeCompare(countryName(b.code),currentLocale()));
   const players = current?.players || [];
@@ -90,11 +98,12 @@ export default function TopPlayersPage() {
         {thresholds.map(n=><option key={n} value={n}>{n}+</option>)}
       </select></label>
       <label>{tx('Search nickname')}<input type="search" maxLength={80} value={search} onChange={e=>change('q',e.target.value)} /></label>
-      <button type="button" onClick={()=>setParams({},{replace:true})}>{tx('Reset filters')}</button>
+      <button type="button" onClick={()=>{setNotice('');setParams({},{replace:true});}}>{tx('Reset filters')}</button>
     </form>
     <p className="player-rankings-note">{tx('Ranks are calculated within the selected filters.')} {tx('Only countries with at least 100 players under the selected filters are shown.')}</p>
+    {notice && <p role="status" className="player-rankings-note">{fixTx(notice)}</p>}
     {!current ? <p role="status" className="player-rankings-empty">{tx('Loading...')}</p>
-      : current.error ? <p role="alert" className="player-rankings-empty">{tx('Automatic statistics are temporarily unavailable')}</p>
+      : current.error ? <p role="alert" className="player-rankings-empty">{tx('Automatic statistics are temporarily unavailable')} <button className="ml-3 min-h-11 text-orange-400" onClick={()=>setRetry(n=>n+1)}>{fixTx('Retry loading')}</button></p>
       : !players.length ? <p role="status" className="player-rankings-empty">{tx('No players match these filters.')}</p>
       : <>
         {!search && <div className="player-rankings-podium">{players.slice(0,3).map((player,index)=>
@@ -104,7 +113,7 @@ export default function TopPlayersPage() {
             <div className="player-rankings-leader-name">{player.country && <CountryFlag country={player.country} />}{player.nickname}</div>
             <span className="player-rankings-team">{player.team_name || '—'}</span>
             <strong>{number(player.rating)}</strong>
-            <small>{player.matches_played} {tx('Matches')}</small>
+            <small>{tx('Matches')}: {player.matches_played}</small>
           </Link>)}</div>}
         <div className="player-rankings-table" role="region" aria-label={tx('Top 100 players')} tabIndex={0}>
           <table>

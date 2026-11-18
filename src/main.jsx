@@ -35,6 +35,8 @@ const ForumPage = lazy(() => import("./pages/ForumPage"));
 const ForumTopicPage = lazy(() => import("./pages/ForumTopicPage"));
 const About = lazy(() => import("./pages/About"));
 const MediaPage = lazy(() => import("./pages/MediaPage"));
+const MatchDirectoryPage = lazy(() => import('./pages/MatchDirectoryPage.jsx'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 const MatchesPage = lazy(() => import("./pages/MatchesPage"));
 const TopPlayersPage = lazy(() => import("./pages/TopPlayersPage.jsx"));
 const StatsPage = lazy(() => import("./pages/StatsPage"));
@@ -145,7 +147,7 @@ function Application() {
                       <Route path="/about" element={<About />} />
                       <Route path="/media" element={<MediaPage />} />
                       <Route path="/media/:slug" element={<NewsArticlePage />} />
-                      <Route path="/matches" element={<MatchesPage />} />
+                      <Route path="/matches" element={<MatchDirectoryPage />} />
                       <Route path="/match/:id/:matchSlug?" element={<MatchPageRouter />} />
                       <Route path="/teams/:slug/matches" element={<MatchesPage />} />
                       <Route path="/team/:slug/matches" element={<MatchesPage />} />
@@ -168,6 +170,7 @@ function Application() {
                       <Route path="/profile/:username/verification" element={<Navigate to="../edit" relative="path" replace />} />
                       <Route path="/admin" element={<AdminPage />} />
                       <Route path="/admin/preview" element={<AdminPreviewPage />} />
+                      <Route path="*" element={<NotFoundPage />} />
                       <Route path="/admin/verifications" element={<Navigate to="/admin" replace />} />
                     </Route>
                   </Routes>

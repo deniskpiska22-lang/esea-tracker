@@ -1,3 +1,4 @@
+import { fixTx } from '../i18n/siteFixes.js';
 import { coachPath, coachLookupKey } from "../utils/coachPath.js";
 import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { formatUserDateTime } from '../utils/userTime.js';
@@ -198,7 +199,8 @@ export default function CoachPage({ playerRoute = false }) {
   const { coachId, playerId } = useParams();
   const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
-  const response = useCoachData(playerRoute ? 'player' : coachLookupKey(coachId), playerRoute ? playerId : coachId);
+  const [retry,setRetry] = useState(0);
+  const response = useCoachData(playerRoute ? 'player' : coachLookupKey(coachId), playerRoute ? playerId : coachId,retry);
   const profile = response?.data;
   const tab = params.get('tab') === 'teams' ? 'teams' : 'overview';
   function selectTab(nextTab) {
@@ -218,7 +220,8 @@ export default function CoachPage({ playerRoute = false }) {
   }, [coachId, playerId, pathname, profile, response]);
 
   if (!profile) return <div className="player-profile px-5 py-16 text-center text-slate-300" role="status">
-    {!response ? tx('Loading...') : response.status === 404 ? tx('Coach profile not found') : tx('Coach data temporarily unavailable')}
+    <p>{!response ? tx('Loading...') : response.status === 404 ? tx('Coach profile not found') : tx('Coach data temporarily unavailable')}</p>
+    {response && response.status !== 404 && <button className="mt-4 min-h-11 rounded-xl border border-slate-700 px-5 text-orange-400" onClick={()=>setRetry(n=>n+1)}>{fixTx('Retry loading')}</button>}
   </div>;
 
   if (!playerRoute && (profile.playerNickname || (profile.nickname && coachId !== profile.nickname))) {

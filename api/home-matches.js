@@ -1,7 +1,8 @@
+import process from 'node:process';
 import { loadHomeMatchFeed } from '../src/utils/homeMatchFeed.js';
 import { MATCH_CARD_COLUMNS } from '../src/utils/homeMatchColumns.js';
-let cardsCache;
-let cardsPending;
+const feedCache = new Map();
+const feedPending = new Map();
 const LIVE_STATUSES = new Set(['LIVE', 'READY', 'STARTED', 'ONGOING', 'IN_PROGRESS', 'RUNNING', 'VOTING', 'CONFIGURING', 'PAUSED', 'MATCH_STATUS_READY', 'MATCH_STATUS_LIVE', 'MATCH_STATUS_STARTED', 'MATCH_STATUS_ONGOING', 'MATCH_STATUS_VOTING', 'MATCH_STATUS_CONFIGURING', 'MATCH_STATUS_PAUSED']);
 export async function loadCards(client, now = new Date()) {
   return loadHomeMatchFeed(client, { columns: MATCH_CARD_COLUMNS, liveStatuses: LIVE_STATUSES,
@@ -33,16 +34,24 @@ export default async function handler(request, response) {
       }
     );
 
-    if (request.query?.view === 'cards') {
-      if (!cardsCache || Date.now() - cardsCache.at >= 15000) {
-        cardsPending ||= loadCards(supabase).then(result => {
-          if (result.error) throw result.error;
-          cardsCache = { at: Date.now(), rows: result.data };
-        }).finally(() => { cardsPending = null; });
-        await cardsPending;
+    if (['cards','directory'].includes(request.query?.view)) {
+      const view = request.query.view;
+      let cached = feedCache.get(view);
+      if (!cached || Date.now() - cached.at >= 15000) {
+        if (!feedPending.has(view)) {
+          const request = view === 'cards' ? loadCards(supabase) : loadHomeMatchFeed(supabase, {
+            columns: MATCH_CARD_COLUMNS, liveStatuses: LIVE_STATUSES, now: new Date(), end: null, resultsLimit: 250,
+          });
+          feedPending.set(view, request.then(result => {
+            if (result.error) throw result.error;
+            feedCache.set(view, {at: Date.now(), rows: result.data});
+          }).finally(() => feedPending.delete(view)));
+        }
+        await feedPending.get(view);
+        cached = feedCache.get(view);
       }
       response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=15, stale-while-revalidate=30');
-      return response.status(200).json({ ok: true, rows: cardsCache.rows });
+      return response.status(200).json({ ok: true, rows: cached.rows });
     }
 
     const now = new Date().toISOString();

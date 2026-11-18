@@ -6,6 +6,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   globalIgnores(['dist']),
+  { files: ['api/**/*.js','server/**/*.js','scripts/**/*.{js,mjs}','tests/**/*.{js,mjs}'], languageOptions: { globals: globals.node } },
   {
     files: ['src/**/*.{js,jsx}'],
     ignores: ['src/utils/userTime.js'],
