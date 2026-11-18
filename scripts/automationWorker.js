@@ -44,6 +44,7 @@ let lastBackfillAt = 0;
 let lastRosterAt = 0;
 let lastPlayerEloAt = 0;
 let lastTournamentAt = 0;
+let lastQualifierStrengthAt = 0;
 let lastWeeklySnapshotKey = null;
 
 function sleep(ms) {
@@ -150,6 +151,12 @@ async function runDueTasks() {
   if(lastTournamentAt===0||now-lastTournamentAt>=3*60*1000) {
     lastTournamentAt=now;
     await runTask('tournament-refresh','scripts/tournamentWorker.js',['--once']);
+  }
+
+  if (lastQualifierStrengthAt === 0 || now-lastQualifierStrengthAt >= 12*60*60*1000) {
+    lastQualifierStrengthAt=now;
+    const refreshed=await runTask('qualifier-opponent-strength','scripts/syncQualifierStrength.js');
+    if(refreshed)await runTask('qualifier-rating-replay','scripts/recalculateRatings.js',['--apply']);
   }
 
   // Bounded background profile requests: roster endpoints do not carry CS2 ELO.
