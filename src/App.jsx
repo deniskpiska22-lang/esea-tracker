@@ -382,6 +382,10 @@ function App() {
       label: tx("Rankings"),
     },
     {
+      path: "/players",
+      label: tx("Players"),
+    },
+    {
       path: "/calendar",
       label: tx("Events"),
     },

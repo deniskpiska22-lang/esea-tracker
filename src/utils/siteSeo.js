@@ -5,6 +5,10 @@ export const pageMetadata = {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
   },
+  "/players": {
+    title: "Топ-100 игроков ESEA CS2 | ESEA Tracker",
+    description: "Рейтинг игроков ESEA CS2: топ-100 по рейтингу, фильтры по дивизиону и региону, ADR, K/D и матчи.",
+  },
   "/rankings": {
     title: "Рейтинг команд ESEA CS2 | ESEA Tracker",
     description:

@@ -28,6 +28,7 @@ const WRITE_BATCH_SIZE = 250;
 const staticPages = [
   "",
   "/rankings",
+  "/players",
   "/matches",
   "/calendar",
   "/about",

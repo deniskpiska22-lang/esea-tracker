@@ -36,6 +36,7 @@ const ForumTopicPage = lazy(() => import("./pages/ForumTopicPage"));
 const About = lazy(() => import("./pages/About"));
 const MediaPage = lazy(() => import("./pages/MediaPage"));
 const MatchesPage = lazy(() => import("./pages/MatchesPage"));
+const TopPlayersPage = lazy(() => import("./pages/TopPlayersPage.jsx"));
 const StatsPage = lazy(() => import("./pages/StatsPage"));
 const TeamMapPage = lazy(() => import("./pages/TeamMapPage.jsx"));
 const MatchPageRouter = lazy(() => import("./pages/MatchPageRouter"));
@@ -161,7 +162,7 @@ function Application() {
                       <Route path="/player/:playerId" element={<PlayerProfileRoute />} />
                       <Route path="/players/:playerId" element={<PlayerProfileRoute />} />
                       <Route path="/matches/:matchId" element={<MatchPageRouter />} />
-                      <Route path="/players" element={<Navigate to="/" replace />} />
+                      <Route path="/players" element={<TopPlayersPage />} />
                       <Route path="/profile/:username" element={<UserProfilePage />} />
                       <Route path="/profile/:username/edit" element={<EditProfilePage />} />
                       <Route path="/profile/:username/verification" element={<Navigate to="../edit" relative="path" replace />} />

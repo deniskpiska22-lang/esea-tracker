@@ -1,0 +1,33 @@
+.player-rankings{max-width:1280px;margin:auto;padding:32px 20px 60px;color:#eef4fa}
+.player-rankings-hero{padding:30px;border:1px solid #293746;border-radius:24px;background:radial-gradient(ellipse at 100% 0,#174c4b55,transparent 65%),linear-gradient(120deg,#28231f,#111923 55%)}
+.player-rankings-eyebrow{font-size:11px;font-weight:800;letter-spacing:.17em;color:#ffb65e}
+.player-rankings h1{font-size:clamp(29px,5vw,46px);font-weight:900;letter-spacing:-.04em;margin:9px 0}
+.player-rankings-hero p,.player-rankings-note{color:#9eafc2;font-size:13px;line-height:1.6}
+.player-rankings-filters{display:grid;grid-template-columns:1fr 1fr 1fr 1.3fr auto;gap:12px;align-items:end;margin-top:24px}
+.player-rankings-filters label{display:grid;gap:7px;min-width:0;font-size:12px;color:#a7bbcf}
+.player-rankings-filters select,.player-rankings-filters input,.player-rankings-filters button{width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid #304254;border-radius:10px;background:#111923;color:#e7eef6;font-size:13px}
+.player-rankings-filters button{color:#ffbb6e;cursor:pointer}
+.player-rankings-note{margin:14px 0}
+.player-rankings-podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 25px}
+.player-rankings-leader{position:relative;display:grid;justify-items:center;gap:6px;overflow:hidden;border:1px solid #2a3a49;background:linear-gradient(145deg,#14232d,#111923);border-radius:18px;padding:18px}
+.player-rankings-leader:first-child{border-color:#b77b3d;background:linear-gradient(145deg,#342d22,#111923)}
+.player-rankings-place{position:absolute;top:15px;left:16px;font-size:20px;font-weight:900;color:#ffb65e}
+.rank-player-portrait{width:110px;height:110px;position:relative;display:flex;align-items:end;justify-content:center}
+.rank-player-logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.13;filter:grayscale(1)}
+.rank-player-silhouette{height:92%;position:relative;object-fit:contain}
+.player-rankings-leader-name{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:800;overflow-wrap:anywhere}
+.player-rankings-leader strong{font-size:31px;line-height:1.2;color:#76ddc0;font-weight:900}
+.player-rankings-team,.player-rankings-leader small{font-size:12px;color:#99adbf;text-align:center}
+.player-rankings-table{overflow:auto;border:1px solid #293746;border-radius:16px;background:#101923}
+.player-rankings table{border-collapse:collapse;width:100%;min-width:740px;font-size:13px;text-align:left;font-variant-numeric:tabular-nums}
+.player-rankings thead{background:#16222e;font-size:11px;letter-spacing:.06em;color:#9cb0c5;text-transform:uppercase}
+.player-rankings td,.player-rankings th{padding:14px 15px;border-bottom:1px solid #233342}
+.player-rankings tbody tr:hover{background:#182835}
+.player-rankings tbody tr:last-child>*{border-bottom:0}
+.player-rankings td small{display:block;font-size:10px;color:#91a5bc;margin-top:3px}
+.player-rankings-person{display:flex;align-items:center;gap:8px;font-weight:750;min-height:24px}
+.player-rankings-rating{font-size:19px;font-weight:850;color:#76ddc0}
+.player-rankings-number{color:#8da2b6;font-weight:800}
+.player-rankings-empty{padding:40px 12px;text-align:center;color:#a7bbcf}
+@media(max-width:900px){.player-rankings-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.player-rankings-filters button{grid-column:1/-1}}
+@media(max-width:540px){.player-rankings{padding:20px 12px 40px}.player-rankings-hero{padding:20px}.player-rankings-podium{gap:7px}.player-rankings-leader{padding:12px 6px}.rank-player-portrait{width:75px;height:85px}.player-rankings-place{font-size:14px;top:9px;left:9px}.player-rankings-leader-name{font-size:13px;gap:4px}.player-rankings-leader strong{font-size:24px}.player-rankings td,.player-rankings th{padding:12px 10px}}
