@@ -1000,8 +1000,14 @@ const finalRows = Array.from(
     if (team.isCurrentTeam || !observation || !team.teamId || team.teamId.startsWith('historical:')) continue;
     if (Date.now()-Date.parse(observation.at)>30*86400000)continue;
     const strength = describeQualifierOpponent(team, observation.roster, latestSnapshot, previewAnchor);
+    // Only the verified ranked accounts may transfer HLTV strength to another
+    // room. Two stand-ins plus one ranked player are not a professional core.
+    const rankedCore = latestSnapshot?.teams.find(t => t.id === strength.hltvId);
+    const previewRoster = strength.source === 'hltv'
+      ? (rankedCore?.players || []).map(p=>p.faceitId).filter(id=>id && observation.roster.includes(id))
+      : observation.roster;
     previews.push({team_id:team.teamId,team_name:team.teamName,points:strength.points,
-      matches_played:team.matchesPlayed,strength,roster_ids:observation.roster,observed_at:observation.at,updated_at:nowIso});
+      matches_played:team.matchesPlayed,strength,roster_ids:previewRoster,observed_at:observation.at,updated_at:nowIso});
   }
   for(let i=0;i<previews.length;i+=200) {
     const {error} = await supabase.from('qualifier_opponent_ratings').upsert(previews.slice(i,i+200));
