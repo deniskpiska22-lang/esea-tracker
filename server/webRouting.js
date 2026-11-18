@@ -56,5 +56,5 @@ export function resolveRewrite(pathname, search) {
 // Public content routes use SEO rewrites above. Only these application routes
 // need the SPA fallback; unknown paths must have an actual 404 response.
 export function isSpaPath(pathname) {
-  return /^(?:\/(?:en|de|pt|es|fr|it))?\/(?:login|register|auth\/callback|data-status|admin(?:\/(?:preview|verifications))?|profile\/[^/]+(?:\/(?:edit|verification))?)\/?$/.test(pathname);
+  return /^(?:\/(?:en|de|pt|es|fr|it))?\/(?:login|register|auth\/callback|data-status|forum\/(?:new|moderation)|calendar\/[^/]+|media\/[^/]+|teams\/[^/]+\/matches\/[^/]+|admin(?:\/(?:preview|verifications))?|profile\/[^/]+(?:\/(?:edit|verification))?)\/?$/.test(pathname);
 }
