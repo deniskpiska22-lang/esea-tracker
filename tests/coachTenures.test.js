@@ -64,9 +64,9 @@ test('technical awards and canceled matches do not advance or reset the played-g
   const result=run(matches,matches.map((m,i)=>room(m,i===0)));
   assert.equal(result.periods[0].end,date(2));assert.equal(result.profile.stats.career.matches.total,1);
 });
-test('a different person in the coach slot is an absence, not an immediate termination',()=>{
+test('a known coaching staff member can cover a match without an immediate termination',()=>{
   const matches=[game(1),game(2),game(3)];
-  const rooms=[room(matches[0],true),room(matches[1],false,{teams:[{id:A,coaches:[{id:'substitute-coach'}]}]}),room(matches[2],true)];
+  const rooms=[room(matches[0],true,{teams:[{id:A,coaches:[person,{id:'substitute-coach'}]}]}),room(matches[1],false,{teams:[{id:A,coaches:[{id:'substitute-coach'}]}]}),room(matches[2],true)];
   const result=run(matches,rooms);assert.equal(result.periods.length,1);assert.equal(result.profile.stats.career.matches.total,3);
 });
 test('room-only histories count every intervening team game, including missing room data',()=>{

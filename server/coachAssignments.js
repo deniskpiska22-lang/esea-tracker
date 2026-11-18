@@ -67,6 +67,6 @@ export function rosterCoachAssignments(rows, manualAssignments = [], now = Date.
         && row.season === Number(catalog.season) && Date.parse(row.observed_at) >= now - 30 * 86400000;
       return { coachId: row.coach_id, teamId: row.team_id, start: row.period_started_at || row.source_started_at,
         end: current ? null : row.ended_at || row.observed_at, current, source: 'league_roster',
-        periodId: row.id, startSource: row.start_source || 'league_membership', registeredSeason: row.season };
+        periodId: row.id, confirmedAt: row.first_seen_at || row.observed_at, startSource: row.start_source || 'league_membership', registeredSeason: row.season };
     });
 }
