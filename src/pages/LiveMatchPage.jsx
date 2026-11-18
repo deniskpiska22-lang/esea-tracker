@@ -1,3 +1,4 @@
+import { usesNewQualifierPolicy } from "../utils/qualifierStrength.js";
 import { appendQualifierOpponents, validatedForecastRow, forecastStrength } from "../utils/qualifierForecast.js";
 import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
@@ -1226,6 +1227,7 @@ function RatingForecastCard({
 
     const team1Wins = calculateMatchRating({
       competitionName: season,
+      qualifierPolicyEnabled: usesNewQualifierPolicy({competition_name:season}),
       winnerStrength: forecastStrength(team1Row),
       loserStrength: forecastStrength(team2Row),
       winnerPoints: team1Points,
@@ -1242,6 +1244,7 @@ function RatingForecastCard({
 
     const team2Wins = calculateMatchRating({
       competitionName: season,
+      qualifierPolicyEnabled: usesNewQualifierPolicy({competition_name:season}),
       winnerStrength: forecastStrength(team2Row),
       loserStrength: forecastStrength(team1Row),
       winnerPoints: team2Points,

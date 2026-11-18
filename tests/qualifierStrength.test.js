@@ -2,12 +2,12 @@ import { belongsToRatingPeriod } from "../scripts/lib/seasonParticipants.js";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { calculateMatchRating, normalizeDivisionName } from '../src/utils/teamRating.js';
-import { isQualifierCompetition,rankToLeagueStrength,snapshotAt,findRankedCore,calibrateLeagueAnchor,describeQualifierOpponent } from '../src/utils/qualifierStrength.js';
+import { usesNewQualifierPolicy,isQualifierCompetition,rankToLeagueStrength,snapshotAt,findRankedCore,calibrateLeagueAnchor,describeQualifierOpponent } from '../src/utils/qualifierStrength.js';
 import { parseRanking,parseFaceitIdentity } from '../scripts/lib/hltvRankings.js';
 import { validatedForecastRow } from '../src/utils/qualifierForecast.js';
 const league = points => ({source:'league',points});
 const external = (rank,anchorPoints=700) => ({source:'hltv',points:rankToLeagueStrength(rank,anchorPoints),anchorPoints,rank});
-const win = (own, opponent, extra={}) => calculateMatchRating({competitionName:'CCT Open Qualifier',winnerPoints:own,loserPoints:opponent.points,winnerScore:1,loserScore:0,winnerMatchesPlayed:20,loserMatchesPlayed:20,winnerStrength:league(own),loserStrength:opponent,...extra});
+const win = (own, opponent, extra={}) => calculateMatchRating({competitionName:'CCT Open Qualifier',qualifierPolicyEnabled:true,winnerPoints:own,loserPoints:opponent.points,winnerScore:1,loserScore:0,winnerMatchesPlayed:20,loserMatchesPlayed:20,winnerStrength:league(own),loserStrength:opponent,...extra});
 const snapshot = {ranking_date:'2026-11-16',source_url:'https://www.hltv.org/ranking/teams/2026/november/16',teams:[{id:12960,name:'Fire Flux',rank:116,players:['a','b','c','d','e'].map(faceitId=>({faceitId}))}]};
 
 test('HLTV strength has the same scale as our league; stronger opponents earn progressively more',()=>{
@@ -26,7 +26,7 @@ test('no flat bonus: favourite farms almost nothing; losses to elite opponents a
  assert.equal(win(950,league(85)).winnerChange,0);
  assert.ok(win(900,league(250)).loserChange===0);
  assert.equal(win(250,external(40)).loserChange,-39);
- const eliteWins=calculateMatchRating({competitionName:'Open Qualifier',winnerPoints:900,loserPoints:250,winnerStrength:external(40),loserStrength:league(250),winnerScore:1,loserScore:0});
+ const eliteWins=calculateMatchRating({competitionName:'Open Qualifier',qualifierPolicyEnabled:true,winnerPoints:900,loserPoints:250,winnerStrength:external(40),loserStrength:league(250),winnerScore:1,loserScore:0});
  assert.equal(eliteWins.loserChange,0);
  assert.ok(win(250,external(1),{winnerScore:3,loserScore:0}).winnerChange<=60);
  assert.ok(win(250,external(40),{winnerScore:2,loserScore:0}).winnerChange>39);
@@ -66,9 +66,9 @@ test('HLTV account parser accepts only unique explicit account links, ignores FP
 });
 test('a cached external team cannot inherit an old cores strength in the forecast',()=>{
  const row={is_external:true,strength:{source:'results'},roster_ids:['a','b','c','d','e']};
- assert.equal(validatedForecastRow(row,{matchRoster:['x','y','z']},'Open Qualifier'),null);
+ assert.equal(validatedForecastRow(row,{matchRoster:['x','y','z']},'West EU - RES Showdown 5: BLAST Open Qualifier'),null);
  assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c']},'S59 EU Main'),null);
- assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c']},'Open Qualifier'),row);
+ assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c']},'West EU - RES Showdown 5: BLAST Open Qualifier'),row);
 });
 test('common qualifier titles are detected without interpreting an ESEA season as a qualifier',()=>{
  for(const name of ['XPrime Championship S2 | 5x5 - Qual 3','Elisa avoin karsinta','BLAST Open Qualifier','Open qualification 1'])assert.equal(isQualifierCompetition(name),true);
@@ -85,14 +85,24 @@ test('independent event season numbers are not mistaken for ESEA seasons',()=>{
 });
 
 test('Open Qualifier is not the ESEA Open division and cannot mask external strength',()=>{
- assert.equal(normalizeDivisionName('CCT 2026 Contenders Europe 11 - Open Qualifier 1'),'Unknown');
+ assert.equal(normalizeDivisionName('CCT 2026 Contenders Europe 11 - Open Qualifier 1',true),'Unknown');
  assert.equal(normalizeDivisionName('S59 EU Open10'),'Open10');
- const outside={points:85,matchesPlayed:0,isLeagueTeam:normalizeDivisionName('Open Qualifier')!=='Unknown'};
+ const outside={points:85,matchesPlayed:0,isLeagueTeam:normalizeDivisionName('Open Qualifier',true)!=='Unknown'};
  assert.equal(describeQualifierOpponent(outside,['a','b','c'],snapshot,700).source,'hltv');
 });
 
 test('a future room needs three ranked accounts, not one professional plus two cached stand-ins',()=>{
  const row={is_external:true,strength:{source:'hltv',rankingDate:new Date(Date.now()-2*86400000).toISOString().slice(0,10)},roster_ids:['a','b','c']};
- assert.equal(validatedForecastRow(row,{matchRoster:['a','standin1','standin2','x','y']},'Open Qualifier'),null);
- assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c','standin1','standin2']},'Open Qualifier'),row);
+ assert.equal(validatedForecastRow(row,{matchRoster:['a','standin1','standin2','x','y']},'West EU - RES Showdown 5: BLAST Open Qualifier'),null);
+ assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c','standin1','standin2']},'West EU - RES Showdown 5: BLAST Open Qualifier'),row);
+});
+
+test('only approved scheduled qualifiers opt into the policy; copied names and old events remain legacy',()=>{
+ assert.equal(usesNewQualifierPolicy({competition_name:'CCT 2026 Contenders Europe 11 - Open Qualifier 1',competition_id:'caf0ec12-d4a6-4d35-8916-f2f3122b4c37'}),false);
+ assert.equal(usesNewQualifierPolicy({competition_name:'West EU - RES Showdown 5: BLAST Open Qualifier',competition_id:'other-old-id'}),false);
+ assert.equal(usesNewQualifierPolicy({competition_name:'West EU - RES Showdown 5: BLAST Open Qualifier',competition_id:'178fd18c-6ff1-40dd-8ce3-dee96b764331'}),true);
+ assert.equal(normalizeDivisionName('Old Open Qualifier'),'Open');
+ const old=calculateMatchRating({competitionName:'Old Open Qualifier',winnerPoints:250,loserPoints:700,winnerScore:1,loserScore:0,division:'Main',winnerMatchesPlayed:20,loserMatchesPlayed:20});
+ assert.equal(old.qualifier,false);
+ assert.equal(old.winnerChange,22);
 });

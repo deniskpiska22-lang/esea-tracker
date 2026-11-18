@@ -25,3 +25,5 @@ if(process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || process
  if(error)throw error;
 }
 if(games.length && !verified.length)throw new Error('No verified HLTV opponents: refusing to apply an unverified crosswalk');
+
+if(!games.length && changes.some(c=>c.delta!==0))throw new Error('Legacy history changed before any approved new qualifier: publication must remain paused');

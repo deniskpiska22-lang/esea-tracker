@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import process from "node:process";
 import { belongsToRatingPeriod } from "./lib/seasonParticipants.js";
 import { isUnplayedQualifierResult, QUALIFIER_RATING_COLUMNS } from "./lib/qualifierRating.js";
-import { isQualifierCompetition, snapshotAt, calibrateLeagueAnchor, describeQualifierOpponent, coreIds, QUALIFIER_POLICY_VERSION, LEAGUE_CALIBRATION_TEAM_IDS } from "../src/utils/qualifierStrength.js";
+import { isQualifierCompetition, snapshotAt, calibrateLeagueAnchor, describeQualifierOpponent, coreIds, usesNewQualifierPolicy, QUALIFIER_POLICY_VERSION, LEAGUE_CALIBRATION_TEAM_IDS } from "../src/utils/qualifierStrength.js";
 import { writeFile } from "node:fs/promises";
 
 import {
@@ -155,7 +155,7 @@ function isPlaceholderName(value) {
 
 function getMatchDivision(match) {
   return normalizeDivisionName(
-    match.competition_name,
+    match.competition_name, usesNewQualifierPolicy(match),
   );
 }
 
@@ -310,7 +310,7 @@ function createHistoricalTeamState({
     division: normalizedDivision,
 
     isCurrentTeam: false,
-    isLeagueTeam: normalizedDivision !== "Unknown",
+    isLeagueTeam: false,
 
     initialPoints,
     points: initialPoints,
@@ -379,6 +379,7 @@ function resolveTeam({
   matchDivision,
   ratingsById,
   ratingsByName,
+  strictIdentity = false,
 }) {
   const normalizedId =
     normalizeTeamId(teamId);
@@ -404,7 +405,7 @@ function resolveTeam({
   }
 
   const candidates =
-    normalizedId ? [] : ratingsByName.get(normalizedName) || [];
+    normalizedId && strictIdentity ? [] : ratingsByName.get(normalizedName) || [];
 
   if (candidates.length === 1) {
     return {
@@ -551,6 +552,7 @@ async function main() {
       team2_id,
       team2_name,
       team2_score,
+      rating_competition_id:raw_data->>competition_id,
       ${QUALIFIER_RATING_COLUMNS}
     `,
     orderColumn: "finished_at",
@@ -651,6 +653,7 @@ async function main() {
       matchDivision,
       ratingsById,
       ratingsByName,
+      strictIdentity: usesNewQualifierPolicy(match),
     });
 
     const resolvedTeam2 = resolveTeam({
@@ -659,6 +662,7 @@ async function main() {
       matchDivision,
       ratingsById,
       ratingsByName,
+      strictIdentity: usesNewQualifierPolicy(match),
     });
 
     if (
@@ -732,7 +736,7 @@ async function main() {
         observations.set(team.teamId, { roster: ids, at: match.finished_at || match.scheduled_at });
       }
     }
-    const qualifier = isQualifierCompetition(match.competition_name);
+    const qualifier = usesNewQualifierPolicy(match);
     const snapshot = qualifier ? snapshotAt(hltvSnapshots, getMatchTimestamp(match)) : null;
     const anchor = qualifier ? calibrateLeagueAnchor(ratingsById.values(), rostersByTeam, snapshot) : null;
     // A historical roster is useful for calibration, but cannot confirm the
@@ -753,6 +757,7 @@ async function main() {
     const calculation =
       calculateMatchRating({
         competitionName: match.competition_name,
+        qualifierPolicyEnabled: qualifier,
         winnerStrength: series.team1Won ? strength1 : strength2,
         loserStrength: series.team1Won ? strength2 : strength1,
         winnerPoints: winner.points,
@@ -987,6 +992,17 @@ const finalRows = Array.from(
     "\nЗаписываю итоговый рейтинг в Supabase...",
   );
 
+  const {data:publicationControl,error:controlError}=await supabase.from('rating_publication_control').select('paused').eq('id',true).single();
+  if(controlError)throw controlError;
+  if(publicationControl.paused && !qualifierAudit.length) {
+    console.log('Publication paused by owner: historical ratings remain unchanged. Waiting for a played approved scheduled qualifier.');
+    return;
+  }
+  if(publicationControl.paused && qualifierAudit.length) {
+    // The owner authorised the policy for these specific future championships.
+    const {error}=await supabase.from('rating_publication_control').update({paused:false,reason:'First played approved scheduled qualifier; legacy historical policy retained',updated_at:nowIso}).eq('id',true);
+    if(error)throw error;
+  }
   // Persist explanations only in apply mode; repeated replays upsert by match.
   for (let i=0;i<qualifierAudit.length;i+=200) {
     const {error} = await supabase.from('qualifier_rating_audit').upsert(qualifierAudit.slice(i,i+200));

@@ -1,4 +1,4 @@
-import { coreIds, isQualifierCompetition, rankingEffectiveAt } from './qualifierStrength.js';
+import { coreIds, usesNewQualifierPolicy, rankingEffectiveAt } from './qualifierStrength.js';
 
 export async function appendQualifierOpponents(db, leagueRows) {
   const all = [...leagueRows];
@@ -18,7 +18,7 @@ export async function appendQualifierOpponents(db, leagueRows) {
 
 export function validatedForecastRow(row, team, competitionName) {
   if (!row?.is_external) return row;
-  if (!isQualifierCompetition(competitionName)) return null;
+  if (!usesNewQualifierPolicy({competition_name:competitionName})) return null;
   const ids = coreIds(team?.matchRoster);
   const cached = new Set(row.roster_ids || []);
   // A new lineup cannot inherit another lineup's rank through the team ID.

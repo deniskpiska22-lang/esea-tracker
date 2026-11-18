@@ -1,8 +1,21 @@
-# Qualifier opponent strength (hltv-crosswalk-v1)
+# Scheduled qualifier policy — owner scope correction
 
-League match calculations and season seeds are unchanged. All qualifier titles
-(including `Qual 3`, qualification and Finnish `karsinta`) share the same policy.
-No tier/prize pool/title bonus, placement bonus or per-map bonus is awarded.
+The previous global recalculation was cancelled. All 1,917 current teams were
+restored from the preserved legacy-formula report, with zero field mismatches.
+A private backup preserves the previous values and all 558 audit records.
+
+Only championship IDs in `scripts/config/trackedTournaments.json` that are
+qualifiers use `hltv-crosswalk-v2-scheduled`. ID matching is authoritative;
+old championships and their historical results retain the legacy formula,
+division parsing, period selection and team resolution. Forecasts without a
+lobby can use only an exact approved event name (ignoring a prize suffix).
+
+Publication is paused in `rating_publication_control`. A database trigger
+protects the displayed ratings even from older deployed writers. The replay
+leaves publication paused while no played approved qualifier exists. Once
+one of those future qualifiers has an eligible finished match, the replay
+can resume publication, keeping all historical results on their old policy.
+GitHub verification workflows now only produce dry-run reports.
 
 Our initial crosswalk places HLTV #110 at 700 internal points, based on the
 owner's Fire Flux (#116 HLTV / 699 points) and LAG (#102 / 697 points) examples.
@@ -46,7 +59,7 @@ preserve cached evidence; no anti-bot bypass. At most 240 source
 request attempts per run, 20-second timeouts and 300ms spacing; pause after two consecutive network failures. Refresh every 12 hours
 through automation, followed by the deterministic current-season replay.
 The workflow bootstraps source history, compares the old/new derived ratings,
-and publishes only on main after tests and a comparison with real HLTV matches.
+and never publishes points from CI.
 Weekly rating snapshots and old season seeds are not rewritten.
 
 The replay stores explanations in `qualifier_rating_audit` and external-only

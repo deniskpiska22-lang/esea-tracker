@@ -2,7 +2,7 @@ name: Verify qualifier rating policy
 on:
   workflow_dispatch:
   push:
-    branches: [main, ratings/qualifier-strength]
+    branches: [main, ratings/qualifier-strength, ratings/scheduled-only]
     paths:
       - 'src/utils/qualifier*.js'
       - 'src/utils/teamRating.js'
@@ -52,9 +52,3 @@ jobs:
         with:
           name: qualifier-rating-review
           path: qualifier-*.json
-      - name: Apply verified current-season ratings
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-        run: node scripts/recalculateRatings.js --apply
