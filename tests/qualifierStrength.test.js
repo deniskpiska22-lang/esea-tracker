@@ -1,7 +1,7 @@
 import { belongsToRatingPeriod } from "../scripts/lib/seasonParticipants.js";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { calculateMatchRating } from '../src/utils/teamRating.js';
+import { calculateMatchRating, normalizeDivisionName } from '../src/utils/teamRating.js';
 import { isQualifierCompetition,rankToLeagueStrength,snapshotAt,findRankedCore,calibrateLeagueAnchor,describeQualifierOpponent } from '../src/utils/qualifierStrength.js';
 import { parseRanking,parseFaceitIdentity } from '../scripts/lib/hltvRankings.js';
 import { validatedForecastRow } from '../src/utils/qualifierForecast.js';
@@ -82,4 +82,11 @@ test('independent event season numbers are not mistaken for ESEA seasons',()=>{
   assert.equal(belongsToRatingPeriod({competition_name,finished_at:'2026-09-01T00:00:00Z'},season),false);
  }
  assert.equal(belongsToRatingPeriod({competition_name:'S58 EU Advanced',finished_at:'2026-11-01T00:00:00Z'},season),false);
+});
+
+test('Open Qualifier is not the ESEA Open division and cannot mask external strength',()=>{
+ assert.equal(normalizeDivisionName('CCT 2026 Contenders Europe 11 - Open Qualifier 1'),'Unknown');
+ assert.equal(normalizeDivisionName('S59 EU Open10'),'Open10');
+ const outside={points:85,matchesPlayed:0,isLeagueTeam:normalizeDivisionName('Open Qualifier')!=='Unknown'};
+ assert.equal(describeQualifierOpponent(outside,['a','b','c'],snapshot,700).source,'hltv');
 });

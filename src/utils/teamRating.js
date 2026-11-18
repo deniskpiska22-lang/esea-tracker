@@ -94,6 +94,7 @@ export const RATING_CONFIG = Object.freeze({
  * Приводит названия дивизионов FACEIT к единому формату.
  */
 export function normalizeDivisionName(division) {
+  if (isQualifierCompetition(division)) return "Unknown";
   const value = String(division ?? "").trim().toLowerCase();
 
   if (value.includes("advanced")) return "Advanced";
