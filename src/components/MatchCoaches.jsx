@@ -1,3 +1,4 @@
+import { coachPath } from "../utils/coachPath.js";
 import CoachPortrait from './CoachPortrait.jsx';
 import { Link } from 'react-router-dom';
 import useCoachData from '../hooks/useCoachData.js';
@@ -11,7 +12,7 @@ export default function MatchCoaches({ matchId }) {
     <div className="grid gap-3 sm:grid-cols-2">{teams.map(team => <div key={team.id}>
       <div className="mb-1 text-xs text-slate-400">{team.name}</div>
       {team.coaches.map(coach => <Link className="flex min-w-0 items-center gap-2 py-2 font-bold hover:text-orange-300"
-        to={`/coach/${coach.id}`} key={coach.id}>
+        to={coachPath(coach)} key={coach.id}>
         <CoachPortrait teamLogo={team.logo} className="size-8 rounded-md" />
         <span className="min-w-0 break-all">{coach.nickname}</span><span aria-hidden="true">↗</span>
       </Link>)}</div>)}</div>

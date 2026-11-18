@@ -3,7 +3,7 @@ import { buildCoachTenures, COACH_ABSENCE_LIMIT } from '../server/coachTenures.j
 import { resolveCoachAssignments } from '../server/coachHandoff.js';
 import { linkedPlayerProfile, linkedPlayerProfiles } from '../src/data/linkedPlayerProfiles.js';
 import { assignedCoach, assignedCoachRows, coachAssignments } from '../server/coachAssignments.js';
-import { coachClient, coachPlayerNames, coachRosterRows, coachAssignmentHandoffs, loadCoachLobbies, loadCoachTeamLobbies, loadCoachTeamMatches, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
+import { coachClient, coachPlayerNames, coachRosterRows, coachTeamRegistrations, coachAssignmentHandoffs, loadCoachLobbies, loadCoachTeamLobbies, loadCoachTeamMatches, findRosterCoaches, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { result } from '../server/seoData.js';
 import { uuid, matchId } from '../server/coachLobby.js';
 import { buildCoachProfile } from '../server/coachProfile.js';
@@ -86,9 +86,10 @@ export default async function handler(request, response) {
       country: registrations[0]?.country || roomCoach?.country };
     const teamIds = [...new Set([...seeds.map(assignment => assignment.teamId), ...lobbies.flatMap(row => row.teams
       .filter(side => side.coaches.some(person => originalIds.includes(person.id))).map(side => side.id))])];
-    const [teamEntries, assignmentLobbies] = await Promise.all([
+    const [teamEntries, assignmentLobbies, teamRegistrations] = await Promise.all([
       Promise.all(teamIds.map(async teamId => [teamId, await loadCoachTeamMatches(db, teamId, matchColumns)])),
       loadCoachTeamLobbies(db, teamIds),
+      coachTeamRegistrations(db, teamIds),
     ]);
     const teamMatches = new Map(teamEntries);
     const ids = [...new Set([...teamIds, ...registrations.map(row => row.team_id)])];
@@ -109,7 +110,7 @@ export default async function handler(request, response) {
       }
     }
     const assignments = buildCoachTenures({coachId,seeds,rooms:lobbies,teamMatches,
-      teamRooms:assignmentLobbies,now,catalog:byTeam});
+      teamRooms:assignmentLobbies,teamRegistrations,now,catalog:byTeam});
     const editorialRows = assignments.flatMap(assignment => assignedCoachRows(teamMatches.get(assignment.teamId)||[],
       assignment, coach, [...lobbies,...assignmentLobbies], now));
     const covered = new Set(editorialRows.flatMap(row => row.teams.map(side => `${row.matches.id}:${side.id}`)));

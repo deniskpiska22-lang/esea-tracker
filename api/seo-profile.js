@@ -1,3 +1,4 @@
+import { coachPath } from '../src/utils/coachPath.js';
 import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
 import { coachClient, coachPlayerNames, loadCoachIdentity, resolvePlayerCoachId } from '../server/coachData.js';
 import { playerRolePath } from '../src/utils/profileRoles.js';
@@ -29,13 +30,17 @@ export default async function handler(req,res) {
     template ||= await readFile(path.join(process.cwd(),'dist/index.html'),'utf8');
     if (kind === 'coach' || (kind === 'player' && req.query.role === 'coach')) {
       const db = coachClient();
-      const id = linkedPlayerProfile(key)?.id || (uuid(key) ? key : kind === 'player' ? await resolvePlayerCoachId(db, key) : null);
+      const id = linkedPlayerProfile(key)?.id || (uuid(key) ? key : await resolvePlayerCoachId(db, key));
       const coach = uuid(id) ? await loadCoachIdentity(id) : null;
       const playerNickname = (await coachPlayerNames(db, coach ? [id] : [])).get(id);
       const tab = req.query.tab === 'teams' ? 'teams' : '';
       if (playerNickname && (kind === 'coach' || key !== playerNickname)) {
         res.setHeader('Cache-Control', 'no-store');
         return res.redirect(302, localizedPath(playerRolePath(playerNickname, 'coach', tab), language));
+      }
+      if (coach && kind === 'coach' && key !== coach.nickname) {
+        res.setHeader('Cache-Control', 'no-store');
+        return res.redirect(302, localizedPath(coachPath(coach, tab), language));
       }
       const profile = coach ? { ...coach, playerNickname } : null;
       const status = profile ? 200 : 404;

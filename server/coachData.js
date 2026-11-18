@@ -158,3 +158,25 @@ export async function coachAssignmentHandoffs(db, ids) {
   if (error) throw error;
   return data;
 }
+
+// Peer coach registrations establish an explicit replacement, independently of
+// missing match rooms. Return the same catalogue context as coachRosterRows.
+export async function coachTeamRegistrations(db, teamIds) {
+  const ids=[...new Set(teamIds)];
+  if(!ids.length)return [];
+  const [registrations,teams]=await Promise.all([
+    (async()=>{
+      const rows=[];
+      for(let offset=0;;offset+=500) {
+        const {data,error}=await db.from('esea_coach_roster_periods')
+          .select(`${rosterColumns},id,period_started_at,start_source,ended_at,team_snapshot`)
+          .in('team_id',ids).order('observed_at',{ascending:false}).order('id').range(offset,offset+499);
+        if(error)throw error;rows.push(...data);if(data.length<500)return rows;
+      }
+    })(),
+    db.from('team_catalog').select('team_id,team').in('team_id',ids).then(({data,error})=>{if(error)throw error;return data;}),
+  ]);
+  const catalog=new Map(teams.map(row=>[row.team_id,row.team]));
+  return registrations.map(row=>({...row,team_catalog:{team:catalog.get(row.team_id)
+    || {...row.team_snapshot,activeSeasonParticipant:false}}}));
+}

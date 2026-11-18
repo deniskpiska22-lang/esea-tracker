@@ -18,7 +18,7 @@ test('role views share the player canonical URL and keep the teams tab', () => {
   assert.equal(playerRolePath('gameNick', 'coach', 'teams'), '/players/gameNick?role=coach&tab=teams');
   assert.equal(playerRolePath('gameNick', 'player', 'teams'), '/players/gameNick?tab=teams');
   assert.equal(getCoachSeo('id', { nickname: 'coachNick', playerNickname: 'gameNick' }, 'en').canonicalPath, '/en/players/gameNick');
-  assert.equal(getCoachSeo('id', { nickname: 'onlyCoach' }, 'en').canonicalPath, '/en/coach/id');
+  assert.equal(getCoachSeo('id', { nickname: 'onlyCoach' }, 'en').canonicalPath, '/en/coach/onlyCoach');
 });
 
 test('search skips absent and invalid ratings', () => {

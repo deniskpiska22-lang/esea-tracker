@@ -1,18 +1,18 @@
 import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
 import { coachAssignments, assignedCoach } from './coachAssignments.js';
-import { coachRosterRows, coachAssignmentHandoffs, loadCoachTeamMatches, loadCoachTeamLobbies, loadCoachLobbies } from './coachData.js';
+import { coachRosterRows, coachTeamRegistrations, coachAssignmentHandoffs, loadCoachTeamMatches, loadCoachTeamLobbies, loadCoachLobbies } from './coachData.js';
 import { resolveCoachAssignments } from './coachHandoff.js';
 import { buildCoachTenures } from './coachTenures.js';
 import { TEAM_MAP_COLUMNS } from '../src/utils/teamMapStats.js';
 import { result } from './seoData.js';
 
 export async function currentTeamTenureCoaches(db,teamId,now=Date.now()) {
-  const [teamRooms,rosterIds,team] = await Promise.all([
+  const [teamRooms,teamRegistrations,team] = await Promise.all([
     loadCoachTeamLobbies(db,[teamId]),
-    result(db.from('esea_coach_roster_periods').select('coach_id').eq('team_id',teamId)),
+    coachTeamRegistrations(db,[teamId]),
     result(db.from('team_catalog').select('team').eq('team_id',teamId).maybeSingle()),
   ]);
-  const candidates=[...new Set([...rosterIds.map(row=>row.coach_id),
+  const candidates=[...new Set([...teamRegistrations.map(row=>row.coach_id),
     ...teamRooms.flatMap(room=>room.teams.filter(side=>side.id===teamId).flatMap(side=>side.coaches.map(person=>person.id))),
     ...coachAssignments.filter(assignment=>assignment.teamId===teamId).map(assignment=>assignment.coachId)]
     .map(id=>linkedPlayerProfile(id)?.id||id))];
@@ -39,7 +39,7 @@ export async function currentTeamTenureCoaches(db,teamId,now=Date.now()) {
     const ownRooms=rooms.filter(room=>room.teams.some(side=>side.coaches.some(person=>ids.has(person.id))));
     const manual=coachAssignments.filter(assignment=>assignment.coachId===id);
     const seeds=resolveCoachAssignments(manual,ownRegistrations,handoffs,now,ownRooms);
-    const periods=buildCoachTenures({coachId:id,seeds,rooms:ownRooms,teamMatches:new Map([[teamId,matches]]),teamRooms,now,catalog});
+    const periods=buildCoachTenures({coachId:id,seeds,rooms:ownRooms,teamMatches:new Map([[teamId,matches]]),teamRooms,teamRegistrations,now,catalog});
     const current=periods.find(period=>period.teamId===teamId&&period.current&&Date.parse(period.start)<=now);
     if(!current)continue;
     const identity=assignedCoach(id)||ownRooms.flatMap(room=>room.teams.flatMap(side=>side.coaches)).find(person=>ids.has(person.id))

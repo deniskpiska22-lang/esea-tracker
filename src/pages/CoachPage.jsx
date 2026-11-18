@@ -1,3 +1,4 @@
+import { coachPath, coachLookupKey } from "../utils/coachPath.js";
 import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { formatUserDateTime } from '../utils/userTime.js';
 import { useEffect, useState } from 'react';
@@ -7,7 +8,6 @@ import useCoachData from '../hooks/useCoachData.js';
 import CountryFlag from '../components/CountryFlag.jsx';
 import { coachTx as tx } from '../i18n/coachTranslate.js';
 import { tf } from '../i18n/translate.js';
-import { playerRolePath } from '../utils/profileRoles.js';
 import ProfileRoleTabs from '../components/ProfileRoleTabs.jsx';
 import { currentLocale } from '../i18n/languages.js';
 import './PlayerPage.css';
@@ -189,7 +189,7 @@ function Career({ profile }) {
           <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
-    <p className="coach-footnote">{tx('Five consecutive confirmed absences end a period before that run. Unknown lobbies do not count as absences. A return starts a new period.')}</p>
+    <p className="coach-footnote">{tx('A confirmed replacement or transfer closes the period. Otherwise, five consecutive confirmed absences end it before that run. Unknown lobbies do not count as absences. A return starts a new period.')}</p>
   </div>;
 }
 
@@ -198,7 +198,7 @@ export default function CoachPage({ playerRoute = false }) {
   const { coachId, playerId } = useParams();
   const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
-  const response = useCoachData(playerRoute ? 'player' : 'id', playerRoute ? playerId : coachId);
+  const response = useCoachData(playerRoute ? 'player' : coachLookupKey(coachId), playerRoute ? playerId : coachId);
   const profile = response?.data;
   const tab = params.get('tab') === 'teams' ? 'teams' : 'overview';
   function selectTab(nextTab) {
@@ -221,8 +221,8 @@ export default function CoachPage({ playerRoute = false }) {
     {!response ? tx('Loading...') : response.status === 404 ? tx('Coach profile not found') : tx('Coach data temporarily unavailable')}
   </div>;
 
-  if (profile.playerNickname && !playerRoute) {
-    return <Navigate replace to={playerRolePath(profile.playerNickname, 'coach', tab)} />;
+  if (!playerRoute && (profile.playerNickname || (profile.nickname && coachId !== profile.nickname))) {
+    return <Navigate replace to={coachPath(profile, tab)} />;
   }
   const { team, maps } = profile;
   const career = profile.stats?.career;
@@ -246,7 +246,7 @@ export default function CoachPage({ playerRoute = false }) {
             <div className="coach-tags">{profile.country && <CountryFlag country={profile.country} />}<span>{tx('Coach')}</span></div>
             <h1 className="player-name font-black">{profile.nickname}</h1>
             <Link className="coach-team-card" to={teamPath(team)}><TeamLogo team={team} />
-              <span><small>{tx('Coaching team')}</small><b>{team.name} ↗</b></span>
+              <span><small>{tx('Coaching team')}</small><b>{team.name}</b></span>
             </Link>
           </div>
           <div className="coach-metrics">
