@@ -58,12 +58,12 @@ test('legacy and www redirects retain filters and never turn into cached pages',
   let response = await fetch(base + '/en/team/squad/stats/nuke?period=3m', { redirect: 'manual' });
   assert.equal(response.status, 308);
   assert.equal(response.headers.get('location'), '/en/teams/squad/stats/nuke?period=3m');
-  // The client already sends the retired players directory home; direct visits
-  // must behave the same instead of entering the unavailable SEO directory.
-  for (const [pathname, destination] of [['/players', '/'], ['/en/players', '/en'], ['/de/players', '/de']]) {
-    const directory = await fetch(base + pathname, { redirect: 'manual' });
-    assert.equal(directory.status, 308);
-    assert.equal(directory.headers.get('location'), destination);
+  // The restored player directory must accept direct visits with filters.
+  for (const [pathname, lang] of [['/players', undefined], ['/en/players', 'en'], ['/de/players', 'de']]) {
+    const directory = await fetch(base + pathname + '?division=Advanced&region=Europe', { redirect: 'manual' });
+    assert.equal(directory.status, 200);
+    assert.equal(directory.headers.get('location'), null);
+    assert.deepEqual(await directory.json(), { kind: 'page', key: 'players', division: 'Advanced', region: 'Europe', ...(lang ? {lang} : {}) });
   }
   await fetch(base + '/en');
   const location = await new Promise((resolve, reject) => {
