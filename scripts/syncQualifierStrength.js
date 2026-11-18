@@ -16,10 +16,15 @@ async function rows(table, select, configure = q => q) {
   }
 }
 let sourceBlocked = false;
+let consecutiveNetworkFailures = 0;
+let requestAttempts = 0;
 async function html(url) {
   if(sourceBlocked)throw new Error('HLTV temporarily unavailable; requests paused');
   await wait(300);
-  const response=await fetch(url,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'ESEA-Tracker/1.0 (+https://eseatracker.ru)'}});
+  if(++requestAttempts>240)throw new Error('HLTV request budget reached');
+  let response;
+  try { response=await fetch(url,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'ESEA-Tracker/1.0 (+https://eseatracker.ru)'}});consecutiveNetworkFailures=0; }
+  catch(error) { if(++consecutiveNetworkFailures>=2)sourceBlocked=true;throw error; }
   if([403,429].includes(response.status))sourceBlocked=true;
   if(!response.ok)throw new Error(`HLTV HTTP ${response.status}`);
   const text=await response.text(); if(text.length>4_000_000)throw new Error('Oversized HLTV response'); return text;
@@ -84,6 +89,8 @@ async function main() {
     if(error)throw error; updated++;
     console.log(`HLTV ${date}: ${snapshot.teams.length} teams, ${snapshot.teams.filter(t=>t.players.filter(p=>p.faceitId).length>=3).length} verified cores`);
   }
+  const now=new Date().toISOString();
+  await db.from('worker_status').upsert({worker_name:'hltv-strength-source',status:sourceBlocked?'error':'online',detail:JSON.stringify({updated,failed,requests:requestAttempts,sourceBlocked}),last_ping:now,updated_at:now},{onConflict:'worker_name'});
   console.log(JSON.stringify({updated,failed,requests,identityLinks:[...cache.values()].filter(i=>i.faceit_id).length}));
   if(!updated)throw new Error('No usable HLTV snapshots; existing ratings preserved');
 }

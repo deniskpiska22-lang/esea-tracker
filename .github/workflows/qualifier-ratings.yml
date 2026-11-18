@@ -42,6 +42,8 @@ jobs:
         run: |
           node scripts/syncQualifierStrength.js
           git show 8765d3445b37ccdd58950e81a05830f98da11649:scripts/recalculateRatings.js > scripts/.qualifierBaseline.js
+          git show 8765d3445b37ccdd58950e81a05830f98da11649:src/utils/teamRating.js > src/utils/.qualifierBaselineRating.js
+          node --input-type=module -e "import fs from 'node:fs';const p='scripts/.qualifierBaseline.js';fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace('../src/utils/teamRating.js','../src/utils/.qualifierBaselineRating.js'));"
           node scripts/.qualifierBaseline.js --report=qualifier-before.json
           node scripts/recalculateRatings.js --report=qualifier-after.json
           node scripts/compareQualifierRatingPolicies.js qualifier-before.json qualifier-after.json

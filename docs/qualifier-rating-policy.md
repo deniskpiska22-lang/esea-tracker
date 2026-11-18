@@ -42,8 +42,8 @@ Historical raw match rosters supply identity at that time, not today's roster.
 
 `syncQualifierStrength.js` caches source snapshots and profile links, checks
 the ranking date/top 30/unique IDs, and pauses HTTP requests on 403/429. Errors
-preserve cached evidence; no anti-bot bypass. At most 240 successful source
-requests per run, 20-second timeouts and 300ms spacing. Refresh every 12 hours
+preserve cached evidence; no anti-bot bypass. At most 240 source
+request attempts per run, 20-second timeouts and 300ms spacing; pause after two consecutive network failures. Refresh every 12 hours
 through automation, followed by the deterministic current-season replay.
 The workflow bootstraps source history, compares the old/new derived ratings,
 and publishes only on main after tests and a comparison with real HLTV matches.
