@@ -151,8 +151,8 @@ function Career({ profile }) {
   return <div className="coach-stack">
     <div className="coach-career-stats">
       <div><span>{tx('Teams')}</span><strong>{new Set([team.id, ...periods.map(period => period.team.id)]).size}</strong></div>
-      <div><span>{tx(profile.assignment ? 'Matches' : 'Confirmed matches')}</span><strong>{periods.reduce((sum, period) => sum + period.matches, 0)}</strong></div>
-      <div><span>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</span><strong className="coach-date">{formatDate(observedAt)}</strong></div>
+      <div><span>{tx('Matches')}</span><strong>{periods.reduce((sum, period) => sum + period.matches, 0)}</strong></div>
+      <div><span>{tx('Latest match')}</span><strong className="coach-date">{formatDate(observedAt)}</strong></div>
     </div>
     {!!roster.length && <Panel title={tx('Lineup from the match room')} subtitle={team.name}>
       <div className="coach-roster">{roster.map(player =>
@@ -162,14 +162,7 @@ function Career({ profile }) {
           <strong>{player.nickname}</strong>
         </Link>)}</div>
     </Panel>}
-    {!!profile.registeredTeams?.length && <Panel title={tx('ESEA roster confirmations')}>
-      {profile.registeredTeams.map(({ team, season, observedAt }) => <div className="coach-row" key={`${team.id}:${season}`}>
-        <Link className="coach-team-inline" to={teamPath(team)}><TeamLogo team={team} />
-          <span><b>{team.name}</b><small>{tx('Season')} {season}</small></span></Link>
-        <small>{formatDate(observedAt)}</small>
-      </div>)}
-    </Panel>}
-    <Panel title={tx('Team history')} subtitle={tx(profile.assignment ? 'Matches' : 'Confirmed matches')}>
+    <Panel title={tx('Team history')} subtitle={tx('Matches')}>
       {periods.length ? periods.map(period =>
         <div className="coach-row" key={period.key}>
           <Link className="coach-team-inline" to={teamPath(period.team)}><TeamLogo team={period.team} />
@@ -253,7 +246,7 @@ export default function CoachPage({ playerRoute = false }) {
             <div className="coach-tags">{profile.country && <CountryFlag country={profile.country} />}<span>{tx('Coach')}</span></div>
             <h1 className="player-name font-black">{profile.nickname}</h1>
             <Link className="coach-team-card" to={teamPath(team)}><TeamLogo team={team} />
-              <span><small>{tx(profile.rosterBased ? 'Confirmed in ESEA roster' : profile.assignment ? 'Coaching team' : 'Confirmed in match room')}</small><b>{team.name} ↗</b></span>
+              <span><small>{tx('Coaching team')}</small><b>{team.name} ↗</b></span>
             </Link>
           </div>
           <div className="coach-metrics">
@@ -261,7 +254,7 @@ export default function CoachPage({ playerRoute = false }) {
               <strong>{career ? (career.matches.total ? rate(career.matches.won, career.matches.total) : '—') : (maps.total ? rate(maps.won, maps.total) : '—')}</strong><span>{career ? tx('Matches') : tx('Maps')}: {career ? career.matches.total : maps.total}</span></div>
             {profile.tenure && <div className="coach-metric"><small>{tx(profile.tenure.startSource === 'first_observed' || profile.tenure.source === 'match_rooms' ? 'Observed span' : 'Days in team')}</small>
               <strong>{tf('{0} d', profile.tenure.days)}</strong><span>{formatDate(profile.tenure.first)} — {profile.tenure.current ? tx('Present') : formatDate(profile.tenure.last)}</span></div>}
-            {!profile.tenure && <div className="coach-metric"><small>{tx(profile.assignment ? 'Latest match' : 'Latest confirmation')}</small><strong>{formatDate(profile.observedAt)}</strong></div>}
+            {!profile.tenure && <div className="coach-metric"><small>{tx('Latest match')}</small><strong>{formatDate(profile.observedAt)}</strong></div>}
           </div>
         </div>
       </section>

@@ -1,8 +1,9 @@
+import CoachPortrait from './CoachPortrait.jsx';
 import { Link } from 'react-router-dom';
 import useCoachData from '../hooks/useCoachData.js';
 import { coachTx as tx } from '../i18n/coachTranslate.js';
 
-export default function TeamCoaches({ teamId }) {
+export default function TeamCoaches({ teamId, teamLogo }) {
   const coaches = useCoachData('team', teamId)?.data?.coaches;
   if (!coaches?.length) return null;
 
@@ -11,18 +12,13 @@ export default function TeamCoaches({ teamId }) {
       aria-label={tx('Coaching staff')}
       className={`mt-4 grid gap-2.5 ${coaches.length > 1 ? 'sm:grid-cols-2' : ''}`}
     >
-      {coaches.map(({ id, nickname, avatar }) => (
+      {coaches.map(({ id, nickname }) => (
         <Link
           key={id}
           to={`/coach/${id}`}
           className="group flex min-w-0 items-center gap-3 rounded-xl border border-[#2b3a4a] bg-linear-to-r from-[#201b18] via-[#131e2a] to-[#101923] px-3 py-2.5 text-white transition-colors hover:border-orange-400/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300 sm:gap-4 sm:px-4"
         >
-          <img
-            className="size-12 shrink-0 rounded-lg bg-[#182532] object-cover ring-1 ring-white/10"
-            loading="lazy"
-            src={avatar || '/player-silhouette.png'}
-            alt=""
-          />
+          <CoachPortrait teamLogo={teamLogo} />
           <span className="min-w-0 grow">
             <span className="block text-[10px] font-bold tracking-widest text-[#ffb45f] uppercase">
               {tx('Coach')}

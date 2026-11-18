@@ -58,8 +58,12 @@ export default async function handler(request, response) {
     if (match) {
       const row = await result(db.from('esea_coach_lobbies').select('teams,terminal,checked_at').eq('match_id', match).maybeSingle());
       const valid = row && (row.terminal || Date.parse(row.checked_at) >= Date.now() - 8 * 3600000);
-      return response.status(200).json({ teams: valid ? row.teams.filter(side => side.coaches.length)
-        .map(side => ({ id: side.id, name: side.name, coaches: person(side.coaches) })) : [] });
+      const sides = valid ? row.teams.filter(side => side.coaches.length) : [];
+      const catalog = sides.length ? await result(db.from('team_catalog')
+        .select('team_id,team,faceit_avatar_url').in('team_id', sides.map(side => side.id))) : [];
+      const logos = new Map(catalog.map(team => [team.team_id, team.faceit_avatar_url || team.team?.logo]));
+      return response.status(200).json({ teams: sides.map(side => ({ id: side.id, name: side.name,
+        logo: logos.get(side.id) || side.logo || null, coaches: person(side.coaches) })) });
     }
 
     const columns = TEAM_MAP_COLUMNS.replace('competition_id:raw_data->>competition_id,', '');
