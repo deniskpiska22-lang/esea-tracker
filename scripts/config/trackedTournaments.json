@@ -1,0 +1,182 @@
+[
+  {
+    "championshipId": "3772a957-ef30-490f-9546-4ac53ec5bcb5",
+    "id": "xprime-championship-s2-5x5-qual-3-prize-3000-usd",
+    "name": "XPrime Championship S2 | 5x5 - Qual 3 | Prize: 3000 USD",
+    "tier": "C",
+    "prizePool": "$3,000"
+  },
+  {
+    "championshipId": "1d35847e-7f2c-4cf1-a892-c1e5a227eddd",
+    "id": "liga-stavok-narodnaya-liga-contest-iii-prize-175-000-rub",
+    "name": "LIGA STAVOK NARODNAYA LIGA CONTEST III | Prize: 175 000 RUB",
+    "tier": "C",
+    "prizePool": "175,000 RUB"
+  },
+  {
+    "championshipId": "b5cefd3d-9749-493e-8840-c0ded66608ee",
+    "id": "adriatic-eu-res-showdown-5-blast-open-qualifier",
+    "name": "Adriatic EU - RES Showdown 5: BLAST Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "178fd18c-6ff1-40dd-8ce3-dee96b764331",
+    "id": "west-eu-res-showdown-5-blast-open-qualifier",
+    "name": "West EU - RES Showdown 5: BLAST Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "ed81e127-b27e-435b-a4af-351415608285",
+    "id": "nordic-res-showdown-5-blast-open-qualifier",
+    "name": "Nordic - RES Showdown 5: BLAST Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "9f4b9ec3-9168-4cb6-80c2-1964edea46fd",
+    "id": "east-eu-res-showdown-5-blast-open-qualifier",
+    "name": "East EU - RES Showdown 5: BLAST Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "fff6b1ee-921f-4faa-af9e-80aa64ac07d8",
+    "id": "south-america-1-res-showdown-5-blast-open-qualifier",
+    "name": "South America 1 - RES Showdown 5: BLAST Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "7658fd43-46f1-4592-8870-66f9ae9f859d",
+    "id": "xprime-championship-s2-5x5-qual-4-prize-3000-usd",
+    "name": "XPrime Championship S2 | 5x5 - Qual 4 | Prize: 3000 USD",
+    "tier": "C",
+    "prizePool": "$3,000"
+  },
+  {
+    "championshipId": "8f007b45-801a-4986-aca7-a7e54b0e7c15",
+    "id": "perfect-match-lan-torino-13-dicembre-qualifier-a",
+    "name": "PERFECT MATCH - LAN TORINO 13 DICEMBRE - QUALIFIER A",
+    "tier": "C"
+  },
+  {
+    "championshipId": "27eff155-c098-427d-81e8-35bfa4e043c0",
+    "id": "liga-stavok-narodnaya-liga-tour-iv-open-qualification-1-prize-1-000-000-rub",
+    "name": "LIGA STAVOK NARODNAYA LIGA TOUR IV OPEN QUALIFICATION 1 | Prize: 1 000 000 RUB",
+    "tier": "C",
+    "prizePool": "1,000,000 RUB"
+  },
+  {
+    "championshipId": "42ea136a-e21a-4aa3-b944-fd2f0b74c367",
+    "id": "liga-stavok-narodnaya-liga-tour-iv-open-qualification-2-prize-1-000-000-rub",
+    "name": "LIGA STAVOK NARODNAYA LIGA TOUR IV OPEN QUALIFICATION 2 | Prize: 1 000 000 RUB",
+    "tier": "C",
+    "prizePool": "1,000,000 RUB"
+  },
+  {
+    "championshipId": "6e82a710-2c86-47ba-aeff-afcf8cb7ecb1",
+    "id": "liga-stavok-narodnaya-liga-tour-iv-open-qualification-3-prize-1-000-000-rub",
+    "name": "LIGA STAVOK NARODNAYA LIGA TOUR IV OPEN QUALIFICATION 3 | Prize: 1 000 000 RUB",
+    "tier": "C",
+    "prizePool": "1,000,000 RUB"
+  },
+  {
+    "championshipId": "c1f11bb8-2053-4348-ab8a-026ae46f3d0a",
+    "id": "cyberclash-season-3-lan-open-qualifier-1",
+    "name": "CyberClash Season 3 LAN | Open Qualifier 1",
+    "tier": "C"
+  },
+  {
+    "championshipId": "6f25913f-5c75-45c4-8680-c6eb5a1dfa53",
+    "id": "cyberclash-season-3-lan-open-qualifier-2",
+    "name": "CyberClash Season 3 LAN | Open Qualifier 2",
+    "tier": "C"
+  },
+  {
+    "championshipId": "b95cc5a3-3551-4ff9-90d2-f3ed05ea52d2",
+    "id": "cyberclash-season-3-lan-open-qualifier-3",
+    "name": "CyberClash Season 3 LAN | Open Qualifier 3",
+    "tier": "C"
+  },
+  {
+    "championshipId": "88003415-64b1-403b-9423-d83254f174fb",
+    "id": "epicbet-open-2-iceland-open-qualifier",
+    "name": "Epicbet Open 2 - Iceland Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "cb8af33e-3272-456f-a3ed-0c0602ff8fdf",
+    "id": "epicbet-open-2-norway-open-qualifier",
+    "name": "Epicbet Open 2 - Norway Open Qualifier",
+    "tier": "C"
+  },
+  {
+    "championshipId": "68b43845-7046-4aca-a15b-e9444e4e03cd",
+    "id": "cct-2026-contenders-europe-12-open-qualifier-1",
+    "name": "CCT 2026 Contenders Europe 12 - Open Qualifier 1",
+    "tier": "B"
+  },
+  {
+    "championshipId": "a282cb4d-6ea5-46fc-98ad-2effa00f87b6",
+    "id": "perfect-match-lan-torino-13-dicembre-qualifier-b",
+    "name": "PERFECT MATCH - LAN TORINO 13 DICEMBRE - QUALIFIER B",
+    "tier": "C"
+  },
+  {
+    "championshipId": "8e4d922b-1c29-489c-9c63-262aee3830ab",
+    "id": "cct-2026-contenders-europe-12-open-qualifier-2",
+    "name": "CCT 2026 Contenders Europe 12 - Open Qualifier 2",
+    "tier": "B"
+  },
+  {
+    "championshipId": "8e96cfec-ed00-437c-935e-f1e46d359862",
+    "id": "cyberclash-season-3-lan-open-qualifier-4",
+    "name": "CyberClash Season 3 LAN | Open Qualifier 4",
+    "tier": "C"
+  },
+  {
+    "championshipId": "734bf5a5-6e9a-46a5-bb0b-98e0190573d7",
+    "id": "hungarian-league-lan-cup-1",
+    "name": "Hungarian League LAN CUP 1",
+    "tier": "C",
+    "location": "LAN"
+  },
+  {
+    "championshipId": "bed1f463-e216-48be-adfb-e210b64a33f6",
+    "id": "hungarian-league-lan-cup-2",
+    "name": "Hungarian League LAN CUP 2",
+    "tier": "C",
+    "location": "LAN"
+  },
+  {
+    "championshipId": "28af15a2-ad1f-4cc3-891b-bed181d7c0a2",
+    "id": "hungarian-league-lan-cup-3",
+    "name": "Hungarian League LAN CUP 3",
+    "tier": "C",
+    "location": "LAN"
+  },
+  {
+    "championshipId": "f487b220-4541-4c67-b65d-2eee703e5469",
+    "id": "hungarian-league-lan-cup-4",
+    "name": "Hungarian League LAN CUP 4",
+    "tier": "C",
+    "location": "LAN"
+  },
+  {
+    "championshipId": "1f6a8cdf-4565-4b24-97fb-e74dc0654981",
+    "id": "hungarian-league-lan-cup-5",
+    "name": "Hungarian League LAN CUP 5",
+    "tier": "C",
+    "location": "LAN"
+  },
+  {
+    "championshipId": "c8a1c733-8bdd-497a-94b7-4ef611a69195",
+    "id": "februar-27-300k-huf-landonto-budapest",
+    "name": "Februar 27 300K HUF Landonto BUDAPEST",
+    "tier": "C",
+    "location": "Budapest, Hungary"
+  },
+  {
+    "championshipId": "3db021f2-c01d-4247-abf5-f3263d4a4f61",
+    "id": "mpl-community-by-gorilla-energy-4",
+    "name": "MPL Community by GORILLA ENERGY 4",
+    "tier": "C"
+  }
+]

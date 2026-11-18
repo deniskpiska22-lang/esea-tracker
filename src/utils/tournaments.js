@@ -1,3 +1,4 @@
+import { lifecycleStatus } from './tournamentLifecycle.js';
 import { parseUserDate, calendarDateParts } from './userTime.js';
 import tournaments from "../data/tournaments.js";
 
@@ -30,6 +31,10 @@ export function getTournamentStatus(tournament, now = Date.now()) {
   // A date-only tournament ends at the visitor's local end of that calendar day.
   if (endDate && calendarDateParts(tournament?.endDate)) endDate.setHours(23, 59, 59, 999);
   const end = endDate?.getTime() ?? NaN;
+  const lifecycle = lifecycleStatus(tournament, now);
+  if (lifecycle === "finished") return lifecycle;
+  if (Number.isFinite(start) && now < start) return "upcoming";
+  if (lifecycle) return lifecycle;
 
   if (Number.isNaN(start) || Number.isNaN(end)) {
     return "upcoming";

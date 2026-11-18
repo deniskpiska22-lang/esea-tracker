@@ -1,0 +1,28 @@
+name: Import tracked tournaments
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/config/trackedTournaments.json']
+permissions:
+  contents: read
+concurrency:
+  group: import-tracked-tournaments
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Import registry through official FACEIT API
+        env:
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: node scripts/tournamentWorker.js --once --registry-only

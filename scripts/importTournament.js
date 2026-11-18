@@ -43,7 +43,7 @@
 //   like a Major) are NOT reconstructed automatically yet — those still
 //   need the `groups` field hand-authored. This script only ever writes
 //   `bracket` or `matches`.
-import { resolveTournamentCompletion } from "./lib/tournamentCompletion.js";
+import { resolveTournamentCompletion, tournamentLifecycle, tournamentTimestamp } from "./lib/tournamentCompletion.js";
 import fs from "fs/promises";
 import process from "node:process";
 import { pathToFileURL } from "node:url";
@@ -84,6 +84,7 @@ const DATA_PATH = new URL("../src/data/tournaments.generated.json", import.meta.
 async function fetchOpenApi(url) {
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${FACEIT_API_KEY}` },
+    signal: AbortSignal.timeout(20000),
   });
 
   if (res.status === 404) {
@@ -91,32 +92,34 @@ async function fetchOpenApi(url) {
   }
 
   if (!res.ok) {
-    throw new Error(`${url} -> ${res.status} ${await res.text()}`);
+    throw new Error(`${url} -> ${res.status} ${(await res.text()).slice(0,240)}`);
   }
 
   return res.json();
 }
 
 async function fetchWebApi(url) {
-  const res = await fetch(url, { headers: WEB_API_HEADERS });
+  const res = await fetch(url, { headers: WEB_API_HEADERS, signal: AbortSignal.timeout(12000) });
 
   if (!res.ok) {
-    throw new Error(`${url} -> ${res.status} ${await res.text()}`);
+    throw new Error(`${url} -> ${res.status} ${(await res.text()).slice(0,240)}`);
   }
 
   return res.json();
 }
 
-async function fetchAllOpenApiPages(urlBuilder, limit = 20, hardCap = 2000) {
+async function fetchAllOpenApiPages(urlBuilder, limit = 100, hardCap = 10000) {
   const all = [];
   let offset = 0;
 
   while (true) {
     const json = await fetchOpenApi(urlBuilder(offset, limit));
-    const items = json?.items || [];
+    if (!Array.isArray(json?.items)) throw new Error("Malformed championship page; refusing partial data");
+    const items = json.items;
     all.push(...items);
 
-    if (items.length < limit || offset > hardCap) {
+    if (items.length >= limit && offset + limit >= hardCap) throw new Error("Championship pagination limit reached; refusing a partial import");
+    if (items.length < limit) {
       break;
     }
 
@@ -179,11 +182,11 @@ const EXCLUDED_SUBSCRIPTION_STATUSES = new Set([
 
 function buildTeams(subscriptions) {
   const confirmed = subscriptions.filter(
-    (sub) => !EXCLUDED_SUBSCRIPTION_STATUSES.has(sub.status)
+    (sub) => (sub.team?.id || sub.team?.team_id) && !EXCLUDED_SUBSCRIPTION_STATUSES.has(sub.status)
   );
 
   return confirmed.map((sub) => {
-    const local = findLocalTeamByFaceitId(sub.team.id);
+    const local = findLocalTeamByFaceitId(sub.team.id || sub.team.team_id);
 
     return {
       name: sub.team.name,
@@ -362,6 +365,7 @@ function entryFromDbRow(row) {
     startDate: row.start_date,
     endDate: row.end_date,
     completedAt: row.completed_at,
+    lifecycle: row.lifecycle,
     url: row.url,
     prizePool: row.prize_pool,
     description: row.description,
@@ -387,6 +391,7 @@ function entryToDbRow(entry) {
     start_date: entry.startDate,
     end_date: entry.endDate,
     completed_at: entry.completedAt,
+    lifecycle: entry.lifecycle,
     url: entry.url,
     prize_pool: entry.prizePool,
     description: entry.description,
@@ -444,11 +449,29 @@ export async function importTournament(championshipId, options = {}) {
       `${OPEN_API_BASE}/championships/${championshipId}/matches?type=all&offset=${offset}&limit=${limit}`
   );
 
-  const subscriptions = await fetchAllSubscriptions(championshipId);
+  if (meta?.game_id && meta.game_id !== 'cs2') throw new Error('Championship is not CS2');
+  let subscriptions=[];
+  try {
+    subscriptions=await fetchAllOpenApiPages((offset,limit)=>
+      `${OPEN_API_BASE}/championships/${championshipId}/subscriptions?offset=${offset}&limit=${limit}`,10);
+  } catch (error) {
+    console.warn(`Official subscriptions unavailable: ${error.message}`);
+    try { subscriptions=await fetchAllSubscriptions(championshipId); }
+    catch (fallbackError) { console.warn(`Optional website roster unavailable: ${fallbackError.message}`); }
+  }
 
   console.log(`Found ${matches.length} matches, ${subscriptions.length} team subscriptions.`);
 
   const teamsList = buildTeams(subscriptions);
+  if (!teamsList.length) {
+    const participants=new Map();
+    for (const match of matches) for (const side of Object.values(match.teams||{})) {
+      if(!side.faction_id)continue;
+      const local=findLocalTeamByFaceitId(side.faction_id);
+      participants.set(side.faction_id,{name:side.name||'TBD',logo:local?.logo||side.avatar||null,slug:local?.slug||null});
+    }
+    teamsList.push(...(participants.size?[...participants.values()]:existing?.teams||[]));
+  }
   const localMatchCount = teamsList.filter((t) => t.slug).length;
 
   console.log(
@@ -477,21 +500,26 @@ export async function importTournament(championshipId, options = {}) {
   }
 
   const completedAt = resolveTournamentCompletion(meta, matches, existing?.completedAt);
+  const lifecycle = tournamentLifecycle(meta,matches);
+  const knownDates=[lifecycle.scheduledEndAt,...matches.flatMap(match=>[match.scheduled_at,match.finished_at])
+    .map(tournamentTimestamp)].filter(value=>Number.isFinite(value)&&value>0);
+  const scheduledEnd=knownDates.length?new Date(Math.max(...knownDates)).toISOString().slice(0,10):null;
   const entry = {
     id,
     championshipId,
-    name: meta?.name || existing?.name || championshipId,
+    name: meta?.name || existing?.name || options.name || championshipId,
     logo: meta?.avatar || existing?.logo || null,
     tier,
     location: options.location || existing?.location || "Online",
     startDate: toIsoDate(meta?.championship_start) || existing?.startDate || null,
-    endDate: completedAt?.slice(0, 10) || existing?.endDate || toIsoDate(meta?.championship_start) || null,
+    endDate: completedAt?.slice(0,10) || scheduledEnd || existing?.endDate || toIsoDate(meta?.championship_start) || null,
     completedAt,
-    url: meta?.faceit_url?.replace("{lang}", "en") || existing?.url || null,
-    prizePool:
+    lifecycle,
+    url: meta?.faceit_url?.replace("{lang}", "en") || existing?.url || `https://www.faceit.com/en/championship/${championshipId}`,
+    prizePool: options.prizePool || existing?.prizePool || (
       meta?.total_prizes > 0
         ? `$${meta.total_prizes.toLocaleString("en-US")}`
-        : existing?.prizePool || null,
+        : null),
     description: meta?.description || existing?.description || null,
     formats: existing?.formats || null,
     teams: teamsList,

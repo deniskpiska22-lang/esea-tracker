@@ -7214,5 +7214,13 @@
     "es": "FACEIT indica {0}/5 jugadores. Los demás aún no se han anunciado.",
     "fr": "FACEIT indique {0}/5 joueurs. Les autres joueurs n’ont pas encore été annoncés.",
     "it": "FACEIT indica {0}/5 giocatori. Gli altri non sono ancora stati annunciati."
+  },
+  "Awaiting schedule": {
+    "ru": "Ожидание расписания",
+    "de": "Warten auf den Spielplan",
+    "pt": "Aguardando calendário",
+    "es": "Esperando calendario",
+    "fr": "En attente du calendrier",
+    "it": "In attesa del calendario"
   }
 }

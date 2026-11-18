@@ -90,4 +90,9 @@
 // pipeline once a championship_id is added to scripts/matchSyncConfig.js,
 // any participant that IS a tracked team has its rating affected
 // automatically; nothing tournament-specific is needed for that.
-export { default } from "./tournaments.generated.json" with { type: "json" };
+import generated from './tournaments.generated.json' with {type:'json'};
+import registry from '../../scripts/config/trackedTournaments.json' with {type:'json'};
+const known=new Set(generated.map(event=>event.championshipId));
+export default [...generated,...registry.filter(event=>!known.has(event.championshipId)).map(event=>({...event,
+  startDate:null,endDate:null,completedAt:null,teams:[],location:event.location||'Online',
+  url:`https://www.faceit.com/en/championship/${event.championshipId}`,lifecycle:{sourceStatus:null,checkedAt:null}}))];

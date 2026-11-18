@@ -43,6 +43,7 @@ let lastDiscoveryAt = 0;
 let lastBackfillAt = 0;
 let lastRosterAt = 0;
 let lastPlayerEloAt = 0;
+let lastTournamentAt = 0;
 let lastWeeklySnapshotKey = null;
 
 function sleep(ms) {
@@ -145,6 +146,12 @@ async function runTask(name, scriptPath, args = [], extraEnv = {}) {
 async function runDueTasks() {
   const now = Date.now();
 
+  // Tournament lifecycle must not wait behind player/standings backlogs.
+  if(lastTournamentAt===0||now-lastTournamentAt>=3*60*1000) {
+    lastTournamentAt=now;
+    await runTask('tournament-refresh','scripts/tournamentWorker.js',['--once']);
+  }
+
   // Bounded background profile requests: roster endpoints do not carry CS2 ELO.
   // Run before slower discovery so profile refresh cannot be starved by it.
   if (lastPlayerEloAt === 0 || now - lastPlayerEloAt >= DISCOVERY_INTERVAL_MS) {
@@ -161,7 +168,6 @@ async function runDueTasks() {
     lastDiscoveryAt = now;
     // Keep imported qualifier brackets and match rows current through the
     // deployed automation service as well as the dedicated tournament worker.
-    await runTask("tournament-refresh", "scripts/tournamentWorker.js", ["--once"]);
     await runTask("match-discovery", "scripts/autoSyncMatches.js", [], {
       RUN_POST_MATCH_PIPELINE: "0",
       RUN_WEEKLY_RATING_SNAPSHOT: "0",
