@@ -1,6 +1,8 @@
 import { currentLanguage } from './languages.js';
 import { translateText } from './translate.js';
 const labels = {
+  Asia: ['Азия','Asien','Ásia','Asia','Asie','Asia'],
+  Oceania: ['Океания','Ozeanien','Oceânia','Oceanía','Océanie','Oceania'],
   'Top 100 players': ['Топ-100 игроков','Top 100 Spieler','Top 100 jogadores','Top 100 jugadores','Top 100 joueurs','Top 100 giocatori'],
   'All divisions': ['Все дивизионы','Alle Divisionen','Todas as divisões','Todas las divisiones','Toutes les divisions','Tutte le divisioni'],
   'All regions': ['Все регионы','Alle Regionen','Todas as regiões','Todas las regiones','Toutes les régions','Tutte le regioni'],
