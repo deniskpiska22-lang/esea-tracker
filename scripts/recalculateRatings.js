@@ -572,7 +572,9 @@ async function main() {
     ],
   });
 
-  const matches = allMatches.filter((match) => belongsToRatingPeriod(match, activeSeason));
+  const replayCutoff = process.env.RATING_REPLAY_CUTOFF ? Date.parse(process.env.RATING_REPLAY_CUTOFF) : Infinity;
+  if(Number.isNaN(replayCutoff))throw new Error('Invalid rating replay cutoff');
+  const matches = allMatches.filter((match) => belongsToRatingPeriod(match, activeSeason) && getMatchTimestamp(match)<=replayCutoff);
   matches.sort(
     (first, second) =>
       getMatchTimestamp(first) -
