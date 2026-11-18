@@ -1,3 +1,4 @@
+import { isQualifierCompetition, qualifierRatingParameters } from "./qualifierStrength.js";
 /**
  * teamRating.js
  *
@@ -93,6 +94,7 @@ export const RATING_CONFIG = Object.freeze({
  * Приводит названия дивизионов FACEIT к единому формату.
  */
 export function normalizeDivisionName(division) {
+  if (isQualifierCompetition(division)) return "Unknown";
   const value = String(division ?? "").trim().toLowerCase();
 
   if (value.includes("advanced")) return "Advanced";
@@ -361,6 +363,9 @@ export function calculateMatchRating({
   division,
   region = "Unknown",
   resultMultiplier = 1,
+  competitionName = "",
+  winnerStrength = null,
+  loserStrength = null,
   winnerMatchesPlayed = 0,
   loserMatchesPlayed = 0,
   config = {},
@@ -381,10 +386,12 @@ export function calculateMatchRating({
   }
 
   const normalizedDivision = normalizeDivisionName(division);
-  const kFactor = getDivisionKFactor(normalizedDivision);
+  const qualifier = isQualifierCompetition(competitionName);
+  const qualifierSettings = qualifierRatingParameters(winnerStrength, loserStrength);
+  const kFactor = qualifier ? qualifierSettings.kFactor : getDivisionKFactor(normalizedDivision);
 
   const normalizedRegion = normalizeRegionName(region);
-  const regionMultiplier = getRegionMultiplier(normalizedRegion);
+  const regionMultiplier = qualifier ? 1 : getRegionMultiplier(normalizedRegion);
 
   const normalizedResultMultiplier = clamp(
     Number(resultMultiplier) || 1,
@@ -393,8 +400,8 @@ export function calculateMatchRating({
   );
 
   const winnerExpected = getExpectedScore(
-    currentWinnerPoints,
-    currentLoserPoints,
+    qualifier ? (winnerStrength?.points ?? currentWinnerPoints) : currentWinnerPoints,
+    qualifier ? (loserStrength?.points ?? currentLoserPoints) : currentLoserPoints,
     settings.ratingScale,
   );
 
@@ -405,12 +412,12 @@ export function calculateMatchRating({
     loserScore,
   );
 
-  const winnerProvisionalMultiplier = getProvisionalMultiplier(
+  const winnerProvisionalMultiplier = qualifier ? qualifierSettings.confidence : getProvisionalMultiplier(
     winnerMatchesPlayed,
     settings,
   );
 
-  const loserProvisionalMultiplier = getProvisionalMultiplier(
+  const loserProvisionalMultiplier = qualifier ? qualifierSettings.confidence : getProvisionalMultiplier(
     loserMatchesPlayed,
     settings,
   );
@@ -441,18 +448,18 @@ export function calculateMatchRating({
   const winnerChange = Math.round(
     clamp(
       rawWinnerChange,
-      1,
-      settings.maximumSingleMatchChange,
+      qualifier ? 0 : 1,
+      qualifier ? 60 : settings.maximumSingleMatchChange,
     ),
   );
 
   const loserChange = -Math.round(
     clamp(
       rawLoserChange,
-      1,
-      settings.maximumSingleMatchChange,
+      qualifier ? 0 : 1,
+      qualifier ? 60 : settings.maximumSingleMatchChange,
     ),
-  );
+  ) || 0;
 
   const winnerNewPoints = clamp(
     currentWinnerPoints + winnerChange,
@@ -475,6 +482,8 @@ export function calculateMatchRating({
   return {
     winnerChange,
     loserChange,
+    qualifier,
+    ...(qualifier ? { winnerStrength, loserStrength } : {}),
 
     winnerNewPoints,
     loserNewPoints,
@@ -521,6 +530,9 @@ export function applyMatchToTeams({
   division,
   region = "Unknown",
   resultMultiplier = 1,
+  competitionName = "",
+  winnerStrength = null,
+  loserStrength = null,
   config,
 }) {
   if (!winner || !loser) {
@@ -555,6 +567,9 @@ export function applyMatchToTeams({
     division,
     region,
     resultMultiplier,
+    competitionName,
+    winnerStrength,
+    loserStrength,
     winnerMatchesPlayed,
     loserMatchesPlayed,
     config,

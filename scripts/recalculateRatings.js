@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import process from "node:process";
 import { belongsToRatingPeriod } from "./lib/seasonParticipants.js";
 import { isUnplayedQualifierResult, QUALIFIER_RATING_COLUMNS } from "./lib/qualifierRating.js";
+import { isQualifierCompetition, snapshotAt, calibrateLeagueAnchor, describeQualifierOpponent, coreIds, QUALIFIER_POLICY_VERSION, LEAGUE_CALIBRATION_TEAM_IDS } from "../src/utils/qualifierStrength.js";
 import { writeFile } from "node:fs/promises";
 
 import {
@@ -262,6 +263,7 @@ function createInitialRatingState(row, seed, isCurrentTeam = true) {
   return {
   teamId: normalizeTeamId(row.team_id),
   isCurrentTeam,
+  isLeagueTeam: division !== "Unknown" || isCurrentTeam,
     teamName: row.team_name,
     normalizedName: normalizeTeamName(
       row.team_name,
@@ -308,6 +310,7 @@ function createHistoricalTeamState({
     division: normalizedDivision,
 
     isCurrentTeam: false,
+    isLeagueTeam: normalizedDivision !== "Unknown",
 
     initialPoints,
     points: initialPoints,
@@ -401,7 +404,7 @@ function resolveTeam({
   }
 
   const candidates =
-    ratingsByName.get(normalizedName) || [];
+    normalizedId ? [] : ratingsByName.get(normalizedName) || [];
 
   if (candidates.length === 1) {
     return {
@@ -578,6 +581,22 @@ async function main() {
     `Матчей рейтингового периода S${activeSeason.season}: ${matches.length}`,
   );
 
+  // Fetch the larger roster fragment only for qualifier rooms and the two
+  // owner-confirmed calibration teams. Never download every historical roster
+  // on each post-match rating replay.
+  const rosterMatchIds = matches.filter(match => isQualifierCompetition(match.competition_name) ||
+    [match.team1_id,match.team2_id].some(id => LEAGUE_CALIBRATION_TEAM_IDS.includes(id))).map(match => match.id);
+  const matchRosters = new Map();
+  for(let i=0;i<rosterMatchIds.length;i+=200) {
+    const rows=await fetchAllRows({table:'matches',select:'id,rating_teams:raw_data->teams',orderColumn:'id',
+      filters:[{type:'in',column:'id',value:rosterMatchIds.slice(i,i+200)}]});
+    for(const row of rows)matchRosters.set(row.id,row.rating_teams);
+  }
+  for(const match of matches)match.rating_teams=matchRosters.get(match.id);
+  const hltvSnapshots = await fetchAllRows({ table: "hltv_ranking_snapshots", select: "ranking_date,source_url,teams", orderColumn: "ranking_date" });
+  const rostersByTeam = new Map();
+  const observations = new Map();
+  const qualifierAudit = [];
   let processed = 0;
 
   let resolvedTeam1ByName = 0;
@@ -703,6 +722,26 @@ async function main() {
       continue;
     }
 
+    const side1 = match.rating_teams?.faction1;
+    const side2 = match.rating_teams?.faction2;
+    for (const [team, side] of [[team1, side1], [team2, side2]]) {
+      const ids = coreIds(side?.roster);
+      // The roster must belong to this actual FACEIT faction.
+      if (side?.faction_id === team.teamId && ids.length >= 3 && ids.length <= 5) {
+        rostersByTeam.set(team.teamId, ids);
+        observations.set(team.teamId, { roster: ids, at: match.finished_at || match.scheduled_at });
+      }
+    }
+    const qualifier = isQualifierCompetition(match.competition_name);
+    const snapshot = qualifier ? snapshotAt(hltvSnapshots, getMatchTimestamp(match)) : null;
+    const anchor = qualifier ? calibrateLeagueAnchor(ratingsById.values(), rostersByTeam, snapshot) : null;
+    // A historical roster is useful for calibration, but cannot confirm the
+    // core playing a new qualifier room. Only that room's roster is evidence.
+    const strength1 = qualifier ? describeQualifierOpponent(team1,
+      side1?.faction_id === team1.teamId ? side1.roster : [], snapshot, anchor) : null;
+    const strength2 = qualifier ? describeQualifierOpponent(team2,
+      side2?.faction_id === team2.teamId ? side2.roster : [], snapshot, anchor) : null;
+
     const winner = series.team1Won
       ? team1
       : team2;
@@ -713,6 +752,9 @@ async function main() {
 
     const calculation =
       calculateMatchRating({
+        competitionName: match.competition_name,
+        winnerStrength: series.team1Won ? strength1 : strength2,
+        loserStrength: series.team1Won ? strength2 : strength1,
         winnerPoints: winner.points,
         loserPoints: loser.points,
 
@@ -742,6 +784,16 @@ async function main() {
         loserMatchesPlayed:
           loser.matchesPlayed,
       });
+
+    if (qualifier) qualifierAudit.push({ season: activeSeason.season, match_id: match.id,
+      policy_version: QUALIFIER_POLICY_VERSION, detail: {
+        competitionName: match.competition_name, at: match.finished_at || match.scheduled_at,
+        team1Id: team1.teamId, team2Id: team2.teamId,
+        team1Strength: strength1, team2Strength: strength2, anchor,
+        team1Change: series.team1Won ? calculation.winnerChange : calculation.loserChange,
+        team2Change: series.team1Won ? calculation.loserChange : calculation.winnerChange,
+        winnerExpected: calculation.winnerExpected, kFactor: calculation.kFactor,
+      } });
 
     winner.previousPoints =
       winner.points;
@@ -880,10 +932,11 @@ const finalRows = Array.from(
   const reportPath = process.argv.find(arg => arg.startsWith("--report="))?.slice("--report=".length);
   if (reportPath) {
     await writeFile(reportPath, JSON.stringify({
-      season: activeSeason.season, processed, excludedQualifierMatches, ratings: finalRows,
+      season: activeSeason.season, policyVersion: QUALIFIER_POLICY_VERSION, processed, excludedQualifierMatches, ratings: finalRows, qualifierAudit,
     }, null, 2));
   }
 
+  console.log(`Qualifier policy ${QUALIFIER_POLICY_VERSION}: ${qualifierAudit.length} matches, ${qualifierAudit.filter(a => [a.detail.team1Strength,a.detail.team2Strength].some(s => s.source === 'hltv')).length} HLTV opponents`);
   console.log("\nПредварительный TOP 20:");
 
   leaderboard.forEach((team, index) => {
@@ -934,6 +987,26 @@ const finalRows = Array.from(
     "\nЗаписываю итоговый рейтинг в Supabase...",
   );
 
+  // Persist explanations only in apply mode; repeated replays upsert by match.
+  for (let i=0;i<qualifierAudit.length;i+=200) {
+    const {error} = await supabase.from('qualifier_rating_audit').upsert(qualifierAudit.slice(i,i+200));
+    if(error)throw error;
+  }
+  const latestSnapshot = snapshotAt(hltvSnapshots, Date.now());
+  const previewAnchor = calibrateLeagueAnchor(ratingsById.values(), rostersByTeam, latestSnapshot);
+  const previews = [];
+  for (const team of ratingsById.values()) {
+    const observation = observations.get(team.teamId);
+    if (team.isCurrentTeam || !observation || !team.teamId || team.teamId.startsWith('historical:')) continue;
+    if (Date.now()-Date.parse(observation.at)>30*86400000)continue;
+    const strength = describeQualifierOpponent(team, observation.roster, latestSnapshot, previewAnchor);
+    previews.push({team_id:team.teamId,team_name:team.teamName,points:strength.points,
+      matches_played:team.matchesPlayed,strength,roster_ids:observation.roster,observed_at:observation.at,updated_at:nowIso});
+  }
+  for(let i=0;i<previews.length;i+=200) {
+    const {error} = await supabase.from('qualifier_opponent_ratings').upsert(previews.slice(i,i+200));
+    if(error)throw error;
+  }
   const { error: publishError } = await supabase.rpc("publish_season_ratings", {
     p_season: activeSeason.season, p_rows: finalRows,
   });
@@ -944,12 +1017,13 @@ const finalRows = Array.from(
   );
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
   console.error(
     "\nОшибка пересчета рейтинга:",
   );
 
   console.error(error);
-
+  const now=new Date().toISOString();
+  await supabase.from('worker_status').upsert({worker_name:'qualifier-rating-replay',status:'error',detail:String(error.stack||error.message).slice(0,12000),last_ping:now,updated_at:now},{onConflict:'worker_name'});
   process.exitCode = 1;
 });

@@ -1,3 +1,4 @@
+import { isQualifierCompetition } from "../../src/utils/qualifierStrength.js";
 // Select only the small result fragment, not raw_data's player rosters/veto.
 export const QUALIFIER_RATING_COLUMNS = "map_scores,rating_details:raw_data->detailed_results";
 
@@ -20,7 +21,7 @@ function mapScores(match) {
 
 export function isUnplayedQualifierResult(match) {
   if (!["FINISHED", "MATCH_STATUS_FINISHED"].includes(match.status)) return false;
-  if (!/(qualif|karsinta|квалиф)/i.test(match.competition_name || "")) return false;
+  if (!isQualifierCompetition(match.competition_name)) return false;
 
   const maps = mapScores(match);
   // FACEIT also exposes technical map results in otherwise complete series.

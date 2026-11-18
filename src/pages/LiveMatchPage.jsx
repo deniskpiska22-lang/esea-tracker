@@ -1,3 +1,4 @@
+import { appendQualifierOpponents, validatedForecastRow, forecastStrength } from "../utils/qualifierForecast.js";
 import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import RatingForecastLogo from "../components/RatingForecastLogo.jsx";
 import { matchPublicPath } from '../utils/matchUrls.js';
@@ -1110,7 +1111,7 @@ function buildRankMap(rows, replacements = new Map()) {
           : getRatingPoints(row),
       };
     })
-    .filter((item) => getRatingMatchesPlayed(item.row) >= 3)
+    .filter((item) => !item.row.is_external && getRatingMatchesPlayed(item.row) >= 3)
     .sort((first, second) =>
       second.points - first.points ||
       getRatingMatchesPlayed(second.row) -
@@ -1141,10 +1142,10 @@ function RatingForecastCard({
 }) {
   const forecast = useMemo(() => {
     const team1Row =
-      findTeamRating(ratingRows, team1);
+      validatedForecastRow(findTeamRating(ratingRows, team1), team1, season);
 
     const team2Row =
-      findTeamRating(ratingRows, team2);
+      validatedForecastRow(findTeamRating(ratingRows, team2), team2, season);
 
     const team1Points = team1Row
       ? getRatingPoints(team1Row)
@@ -1169,6 +1170,8 @@ function RatingForecastCard({
 
     const baseResult = {
       team1: {
+        external: Boolean(team1Row?.is_external),
+        strength: team1Row?.strength,
         available: team1Available,
         points: team1Available
           ? team1Points
@@ -1186,6 +1189,8 @@ function RatingForecastCard({
         lossRank: null,
       },
       team2: {
+        external: Boolean(team2Row?.is_external),
+        strength: team2Row?.strength,
         available: team2Available,
         points: team2Available
           ? team2Points
@@ -1220,6 +1225,9 @@ function RatingForecastCard({
       getForecastSeriesScore(bestOf);
 
     const team1Wins = calculateMatchRating({
+      competitionName: season,
+      winnerStrength: forecastStrength(team1Row),
+      loserStrength: forecastStrength(team2Row),
       winnerPoints: team1Points,
       loserPoints: team2Points,
       winnerScore,
@@ -1233,6 +1241,9 @@ function RatingForecastCard({
     });
 
     const team2Wins = calculateMatchRating({
+      competitionName: season,
+      winnerStrength: forecastStrength(team2Row),
+      loserStrength: forecastStrength(team1Row),
       winnerPoints: team2Points,
       loserPoints: team1Points,
       winnerScore,
@@ -1352,6 +1363,13 @@ function RatingForecastCard({
 
                 <div className="truncate font-bold text-white">
                   {team.name}
+                  {validatedForecastRow(findTeamRating(ratingRows, team), team, season)?.is_external && (
+                    <div className="mt-1 text-[10px] font-normal text-slate-400">
+                      {findTeamRating(ratingRows, team)?.strength?.source === 'hltv'
+                        ? `HLTV #${findTeamRating(ratingRows, team).strength.rank} · ≈ ${findTeamRating(ratingRows, team).points} ${tx("pt")}`
+                        : tx("Unranked")}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1366,6 +1384,12 @@ function RatingForecastCard({
                   <div className="text-center text-sm text-slate-600">
                     …
                   </div>
+                </>
+              ) : data?.available && data.external ? (
+                <>
+                  <div className="text-center text-sm text-slate-300">≈ {data.points}</div>
+                  <div className="text-center text-sm text-slate-600">—</div>
+                  <div className="text-center text-sm text-slate-600">—</div>
                 </>
               ) : data?.available ? (
                 <>
@@ -1699,9 +1723,8 @@ function LiveMatchPage() {
           if (page.length < PAGE_SIZE) break;
         }
 
-        if (!cancelled) {
-          setRatingRows(allRows);
-        }
+        const withOpponents = await appendQualifierOpponents(supabase, allRows);
+        if (!cancelled) setRatingRows(withOpponents);
       } catch (error) {
         console.warn("Rating forecast unavailable:", error.message);
         if (!cancelled) setRatingRows([]);

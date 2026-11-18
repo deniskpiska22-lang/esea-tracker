@@ -1,3 +1,4 @@
+import { isQualifierCompetition } from "../../src/utils/qualifierStrength.js";
 import { createClient } from "@supabase/supabase-js";
 import { spawn } from "node:child_process";
 import process from "node:process";
@@ -70,7 +71,7 @@ export async function syncSeasonParticipants(report, entities) {
 // All earlier-season league results are already represented in the fixed seed.
 // Non-league tournaments keep influencing ratings after the season transition.
 export function belongsToRatingPeriod(match, season) {
-  const namedSeason = String(match.competition_name || "").match(/(?:\bS|\bSeason\s+)(\d+)\b/i);
+  const namedSeason = !isQualifierCompetition(match.competition_name) && String(match.competition_name || "").match(/(?:\bS|\bSeason\s+)(\d+)\b/i);
   if (!season?.rating_from) return !namedSeason || Number(namedSeason[1]) <= (season?.season ?? Infinity);
   if (namedSeason) return Number(namedSeason[1]) === season.season;
   const at = Date.parse(match.finished_at || match.scheduled_at);

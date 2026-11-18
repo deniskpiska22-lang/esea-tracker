@@ -1,0 +1,60 @@
+name: Verify qualifier rating policy
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, ratings/qualifier-strength]
+    paths:
+      - 'src/utils/qualifier*.js'
+      - 'src/utils/teamRating.js'
+      - 'scripts/recalculateRatings.js'
+      - 'scripts/lib/seasonParticipants.js'
+      - 'scripts/compareQualifierRatingPolicies.js'
+      - 'scripts/config/hltvPlayerLinks.json'
+      - 'scripts/syncQualifierStrength.js'
+      - '.github/workflows/qualifier-ratings.yml'
+  pull_request:
+    paths: ['src/utils/*Rating.js', 'src/utils/qualifier*.js', 'scripts/*Ratings.js', 'scripts/lib/hltvRankings.js', 'tests/qualifier*.test.js']
+permissions:
+  contents: read
+concurrency:
+  group: qualifier-ratings-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/qualifier*.test.js
+      - run: npx eslint src/utils/qualifierStrength.js src/utils/qualifierForecast.js src/utils/teamRating.js scripts/lib/hltvRankings.js scripts/syncQualifierStrength.js scripts/compareQualifierRatingPolicies.js scripts/recalculateRatings.js scripts/lib/qualifierRating.js scripts/automationWorker.js
+      - name: Refresh evidence and compare with previous policy
+        if: github.event_name != 'pull_request'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          node scripts/syncQualifierStrength.js
+          git show 8765d3445b37ccdd58950e81a05830f98da11649:scripts/recalculateRatings.js > scripts/.qualifierBaseline.js
+          git show 8765d3445b37ccdd58950e81a05830f98da11649:src/utils/teamRating.js > src/utils/.qualifierBaselineRating.js
+          node --input-type=module -e "import fs from 'node:fs';const p='scripts/.qualifierBaseline.js';fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace('../src/utils/teamRating.js','../src/utils/.qualifierBaselineRating.js'));"
+          node scripts/.qualifierBaseline.js --report=qualifier-before.json
+          node scripts/recalculateRatings.js --report=qualifier-after.json
+          node scripts/compareQualifierRatingPolicies.js qualifier-before.json qualifier-after.json
+      - uses: actions/upload-artifact@v4
+        if: always() && github.event_name != 'pull_request'
+        with:
+          name: qualifier-rating-review
+          path: qualifier-*.json
+      - name: Apply verified current-season ratings
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: node scripts/recalculateRatings.js --apply
