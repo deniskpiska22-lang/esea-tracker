@@ -382,5 +382,13 @@
     "es": "Cinco ausencias confirmadas consecutivas cierran la etapa antes de esa racha. Los lobbies desconocidos no cuentan como ausencias. El regreso inicia una nueva etapa.",
     "fr": "Cinq absences confirmées consécutives clôturent la période avant cette série. Les lobbys inconnus ne comptent pas comme absences. Un retour ouvre une nouvelle période.",
     "it": "Cinque assenze confermate consecutive chiudono il periodo prima della serie. Le lobby sconosciute non contano come assenze. Il ritorno apre un nuovo periodo."
+  },
+  "A confirmed replacement or transfer closes the period. Otherwise, five consecutive confirmed absences end it before that run. Unknown lobbies do not count as absences. A return starts a new period.": {
+    "ru": "Подтверждённая замена или переход закрывает период. Иначе он закрывается после пяти подтверждённых пропусков подряд, перед началом этой серии. Неизвестные лобби не считаются пропусками. Возвращение открывает новый период.",
+    "de": "Ein bestätigter Trainerwechsel oder Transfer beendet die Phase. Andernfalls beenden fünf bestätigte Fehlspiele in Folge sie vor Beginn dieser Serie. Unbekannte Lobbys zählen nicht als Abwesenheit. Eine Rückkehr beginnt eine neue Phase.",
+    "pt": "Uma substituição ou transferência confirmada encerra o período. Caso contrário, cinco ausências confirmadas consecutivas encerram-no antes dessa sequência. Lobbies desconhecidos não contam como ausências. O regresso inicia um novo período.",
+    "es": "Un reemplazo o traspaso confirmado cierra la etapa. De lo contrario, cinco ausencias confirmadas consecutivas la cierran antes de esa racha. Los lobbies desconocidos no cuentan como ausencias. El regreso inicia una nueva etapa.",
+    "fr": "Un remplacement ou transfert confirmé clôture la période. Sinon, cinq absences confirmées consécutives la clôturent avant cette série. Les lobbys inconnus ne comptent pas comme absences. Un retour ouvre une nouvelle période.",
+    "it": "Una sostituzione o un trasferimento confermato chiude il periodo. Altrimenti, cinque assenze confermate consecutive lo chiudono prima della serie. Le lobby sconosciute non contano come assenze. Il ritorno apre un nuovo periodo."
   }
 }

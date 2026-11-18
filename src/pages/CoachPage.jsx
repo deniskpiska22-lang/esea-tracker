@@ -189,7 +189,7 @@ function Career({ profile }) {
           <small>{dates(selected)} · {tf('{0} d', selected.days)} · {tx('Matches')}: {selected.matches}</small></div></div>
       </div>
     </Panel>}
-    <p className="coach-footnote">{tx('Five consecutive confirmed absences end a period before that run. Unknown lobbies do not count as absences. A return starts a new period.')}</p>
+    <p className="coach-footnote">{tx('A confirmed replacement or transfer closes the period. Otherwise, five consecutive confirmed absences end it before that run. Unknown lobbies do not count as absences. A return starts a new period.')}</p>
   </div>;
 }
 
