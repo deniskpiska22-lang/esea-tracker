@@ -5,6 +5,10 @@ on:
     branches: [main, ratings/qualifier-strength]
     paths:
       - 'src/utils/qualifier*.js'
+      - 'src/utils/teamRating.js'
+      - 'scripts/recalculateRatings.js'
+      - 'scripts/lib/seasonParticipants.js'
+      - 'scripts/compareQualifierRatingPolicies.js'
       - 'scripts/config/hltvPlayerLinks.json'
       - 'scripts/syncQualifierStrength.js'
       - '.github/workflows/qualifier-ratings.yml'
@@ -13,7 +17,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: qualifier-ratings
+  group: qualifier-ratings-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 jobs:
   verify:
