@@ -184,9 +184,12 @@ test('unknown pages return localized real 404s without the misleading boot timeo
 
 test('application fallback continues serving auth, admin and profile deep links', async t => {
   const base=await fixture(t);
-  for (const pathname of ['/login','/en/register','/de/auth/callback','/admin/preview','/en/admin/verifications','/fr/profile/test/edit','/it/data-status','/en/calendar/new-event','/media/article','/en/forum/new','/forum/moderation','/en/teams/example/matches/match-id']) {
+  for (const pathname of ['/login','/en/register','/de/auth/callback','/admin/preview','/en/admin/verifications','/fr/profile/test/edit','/it/data-status','/en/calendar/new-event','/media/article','/en/forum/new','/forum/moderation']) {
     const response=await fetch(base+pathname);
     assert.equal(response.status,200,pathname);
     assert.match(await response.text(),/SPA entry/);
   }
+  const legacy=await fetch(base+'/en/teams/example/matches/match-id',{redirect:'manual'});
+  assert.equal(legacy.status,308);
+  assert.equal(legacy.headers.get('location'),'/en/match/match-id');
 });
