@@ -28,7 +28,7 @@ async function main() {
   const {data:settings,error}=await db.from('rating_season_settings').select('active_season').single(); if(error)throw error;
   const {data:season,error:seasonError}=await db.from('rating_seasons').select('rating_from').eq('season',settings.active_season).single(); if(seasonError)throw seasonError;
   const [matches,catalog,saved,identities]=await Promise.all([
-    rows('matches','id,competition_name,scheduled_at,finished_at,rating_teams:raw_data->teams',q=>q.gte('scheduled_at',season.rating_from || '2026-01-01')),
+    rows('matches','id,competition_name,scheduled_at,finished_at,rating_teams:raw_data->teams',q=>q.gte('scheduled_at',season.rating_from || '2026-01-01').or('competition_name.ilike.%qual%,competition_name.ilike.%karsinta%,competition_name.ilike.%квалиф%')),
     rows('team_catalog','team_id,team'), rows('hltv_ranking_snapshots','*'), rows('hltv_player_identities','*'),
   ]);
   const sides=[]; const dates=new Set([previousMonday(Date.now()-86400000)]);

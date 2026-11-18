@@ -1,3 +1,4 @@
+import {createClient} from "@supabase/supabase-js";
 import {readFile,writeFile} from 'node:fs/promises';
 import process from 'node:process';
 const [beforePath,afterPath]=process.argv.slice(2);
@@ -17,4 +18,10 @@ const summary={season:after.season,teams:after.ratings.length,processed:after.pr
  verifiedExamples:verified.slice(-8).map(g=>g.detail)};
 console.log(JSON.stringify(summary,null,2));
 await writeFile('qualifier-rating-comparison.json',JSON.stringify({summary,changes},null,2));
+if(process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY)) {
+ const db=createClient(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+ const now=new Date().toISOString();
+ const {error}=await db.from('worker_status').upsert({worker_name:'qualifier-rating-review',status:verified.length?'online':'error',detail:JSON.stringify(summary),last_ping:now,updated_at:now},{onConflict:'worker_name'});
+ if(error)throw error;
+}
 if(games.length && !verified.length)throw new Error('No verified HLTV opponents: refusing to apply an unverified crosswalk');

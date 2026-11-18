@@ -1,3 +1,4 @@
+import { belongsToRatingPeriod } from "../scripts/lib/seasonParticipants.js";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { calculateMatchRating } from '../src/utils/teamRating.js';
@@ -72,4 +73,13 @@ test('a cached external team cannot inherit an old cores strength in the forecas
 test('common qualifier titles are detected without interpreting an ESEA season as a qualifier',()=>{
  for(const name of ['XPrime Championship S2 | 5x5 - Qual 3','Elisa avoin karsinta','BLAST Open Qualifier','Open qualification 1'])assert.equal(isQualifierCompetition(name),true);
  assert.equal(isQualifierCompetition('S59 EU Main A - Regular Season'),false);
+});
+
+test('independent event season numbers are not mistaken for ESEA seasons',()=>{
+ const season={season:59,rating_from:'2026-10-02T00:00:00Z'};
+ for(const competition_name of ['CyberClash Season 3 LAN | Open Qualifier 1','XPrime Championship S2 | 5x5 - Qual 3']) {
+  assert.equal(belongsToRatingPeriod({competition_name,finished_at:'2026-11-01T00:00:00Z'},season),true);
+  assert.equal(belongsToRatingPeriod({competition_name,finished_at:'2026-09-01T00:00:00Z'},season),false);
+ }
+ assert.equal(belongsToRatingPeriod({competition_name:'S58 EU Advanced',finished_at:'2026-11-01T00:00:00Z'},season),false);
 });
