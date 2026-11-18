@@ -10,12 +10,13 @@ old championships and their historical results retain the legacy formula,
 division parsing, period selection and team resolution. Forecasts without a
 lobby can use only an exact approved event name (ignoring a prize suffix).
 
-Publication is paused in `rating_publication_control`. A database trigger
-protects the displayed ratings even from older deployed writers. The replay
-leaves publication paused while no played approved qualifier exists. Once
-one of those future qualifiers has an eligible finished match, the replay
-can resume publication, keeping all historical results on their old policy.
-GitHub verification workflows now only produce dry-run reports.
+The temporary rollback freeze has been lifted following the owner's scope
+clarification. Normal ESEA season jobs publish their usual results with the
+legacy formula. Only approved scheduled qualifier IDs opt into the new
+formula; historical qualifiers remain legacy as well. No separate manual
+recalculation was launched when normal publishing resumed. The private
+publication control and backup remain available for an explicit maintenance
+pause. GitHub verification workflows only produce dry-run reports.
 
 Our initial crosswalk places HLTV #110 at 700 internal points, based on the
 owner's Fire Flux (#116 HLTV / 699 points) and LAG (#102 / 697 points) examples.
