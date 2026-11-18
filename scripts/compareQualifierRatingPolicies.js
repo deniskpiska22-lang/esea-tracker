@@ -21,7 +21,9 @@ await writeFile('qualifier-rating-comparison.json',JSON.stringify({summary,chang
 if(process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY)) {
  const db=createClient(process.env.SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
  const now=new Date().toISOString();
- const {error}=await db.from('worker_status').upsert({worker_name:'qualifier-rating-review',status:verified.length?'online':'error',detail:JSON.stringify(summary),last_ping:now,updated_at:now},{onConflict:'worker_name'});
+ const {error}=await db.from('worker_status').upsert({worker_name:'qualifier-rating-review',status:(!games.length || verified.length)?'online':'error',detail:JSON.stringify(summary),last_ping:now,updated_at:now},{onConflict:'worker_name'});
  if(error)throw error;
 }
 if(games.length && !verified.length)throw new Error('No verified HLTV opponents: refusing to apply an unverified crosswalk');
+
+if(!games.length && changes.some(c=>c.delta!==0))throw new Error('Legacy history changed before any approved new qualifier: publication must remain paused');

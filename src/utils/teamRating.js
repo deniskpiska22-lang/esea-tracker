@@ -93,8 +93,8 @@ export const RATING_CONFIG = Object.freeze({
 /**
  * Приводит названия дивизионов FACEIT к единому формату.
  */
-export function normalizeDivisionName(division) {
-  if (isQualifierCompetition(division)) return "Unknown";
+export function normalizeDivisionName(division, qualifierPolicyEnabled = false) {
+  if (qualifierPolicyEnabled && isQualifierCompetition(division)) return "Unknown";
   const value = String(division ?? "").trim().toLowerCase();
 
   if (value.includes("advanced")) return "Advanced";
@@ -364,6 +364,7 @@ export function calculateMatchRating({
   region = "Unknown",
   resultMultiplier = 1,
   competitionName = "",
+  qualifierPolicyEnabled = false,
   winnerStrength = null,
   loserStrength = null,
   winnerMatchesPlayed = 0,
@@ -386,7 +387,7 @@ export function calculateMatchRating({
   }
 
   const normalizedDivision = normalizeDivisionName(division);
-  const qualifier = isQualifierCompetition(competitionName);
+  const qualifier = qualifierPolicyEnabled && isQualifierCompetition(competitionName);
   const qualifierSettings = qualifierRatingParameters(winnerStrength, loserStrength);
   const kFactor = qualifier ? qualifierSettings.kFactor : getDivisionKFactor(normalizedDivision);
 
@@ -531,6 +532,7 @@ export function applyMatchToTeams({
   region = "Unknown",
   resultMultiplier = 1,
   competitionName = "",
+  qualifierPolicyEnabled = false,
   winnerStrength = null,
   loserStrength = null,
   config,
@@ -568,6 +570,7 @@ export function applyMatchToTeams({
     region,
     resultMultiplier,
     competitionName,
+    qualifierPolicyEnabled,
     winnerStrength,
     loserStrength,
     winnerMatchesPlayed,
