@@ -90,3 +90,9 @@ test('Open Qualifier is not the ESEA Open division and cannot mask external stre
  const outside={points:85,matchesPlayed:0,isLeagueTeam:normalizeDivisionName('Open Qualifier')!=='Unknown'};
  assert.equal(describeQualifierOpponent(outside,['a','b','c'],snapshot,700).source,'hltv');
 });
+
+test('a future room needs three ranked accounts, not one professional plus two cached stand-ins',()=>{
+ const row={is_external:true,strength:{source:'hltv',rankingDate:new Date(Date.now()-2*86400000).toISOString().slice(0,10)},roster_ids:['a','b','c']};
+ assert.equal(validatedForecastRow(row,{matchRoster:['a','standin1','standin2','x','y']},'Open Qualifier'),null);
+ assert.equal(validatedForecastRow(row,{matchRoster:['a','b','c','standin1','standin2']},'Open Qualifier'),row);
+});
