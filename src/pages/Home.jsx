@@ -1799,27 +1799,11 @@ function Home() {
   const filteredUpcoming = filterUpcomingDivision(upcoming, upcomingDivision);
 
   const tournaments = useTournamentSummaries();
-  const liveTournament = useMemo(
-    () =>
-      tournaments.find(
-        (tournament) => getTournamentStatus(tournament) === "live"
-      ) || null,
-    [tournaments]
-  );
-
-  const upcomingTournaments = useMemo(
-    () =>
-      tournaments
-        .filter(
-          (tournament) => getTournamentStatus(tournament) === "upcoming"
-        )
-        .sort(
-          (first, second) =>
-            new Date(first.startDate) - new Date(second.startDate)
-        )
-        .slice(0, 4),
-    [tournaments]
-  );
+  // Re-evaluate on the shared clock tick even if a failed network refresh keeps
+  // the same summaries array: stale source data must expire out of live.
+  const liveTournament = tournaments.find(tournament => getTournamentStatus(tournament) === 'live') || null;
+  const upcomingTournaments = tournaments.filter(tournament => getTournamentStatus(tournament) === 'upcoming')
+    .sort((first,second) => new Date(first.startDate)-new Date(second.startDate)).slice(0,4);
 
   const featuredBase =
     selectFeaturedMatch(liveMatches) ||

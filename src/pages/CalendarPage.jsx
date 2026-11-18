@@ -176,6 +176,8 @@ function StatusBadge({ status }) {
     );
   }
 
+  if (status === 'pending') return <span className="shrink-0 rounded-full border border-slate-500/20 bg-slate-500/10 px-3 py-1 text-[10px] font-bold text-slate-400">{tx('Awaiting schedule')}</span>;
+
   if (status === "finished") {
     return (
       <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-500/20 bg-slate-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">{tx(" Finished ")}</span>
@@ -439,6 +441,7 @@ function CalendarPage() {
         new Date(a.tournament.endDate)
     );
 
+  const pending = withStatus.filter(item => item.status === "pending");
   const upcomingByMonth = new Map();
 
   upcoming.forEach((item) => {
@@ -452,10 +455,10 @@ function CalendarPage() {
   });
 
   const hasAny =
-    live.length > 0 || upcoming.length > 0 || finished.length > 0;
+    live.length > 0 || upcoming.length > 0 || finished.length > 0 || pending.length > 0;
 
   const nextTournament = upcoming[0]?.tournament || null;
-  const totalEvents = live.length + upcoming.length + finished.length;
+  const totalEvents = withStatus.length;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#070c12] text-white">
@@ -610,6 +613,12 @@ function CalendarPage() {
             ))}
           </div>
         )}
+
+        {pending.length > 0 && <section className="mt-12">
+          <SectionHeading title={tx('Awaiting schedule')} count={pending.length} muted />
+          <div className="space-y-3">{pending.map(item => <TournamentListRow key={item.tournament.id}
+            tournament={item.tournament} status="pending" />)}</div>
+        </section>}
 
         {/* FINISHED EVENTS */}
         {finished.length > 0 && (

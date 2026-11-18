@@ -30,6 +30,7 @@ function tournamentFromDbRow(row) {
     startDate: row.start_date,
     endDate: row.end_date,
     completedAt: row.completed_at,
+    lifecycle: row.lifecycle,
     url: row.url,
     prizePool: row.prize_pool,
     description: row.description,
@@ -466,13 +467,13 @@ function TournamentPage() {
   const isLive = status === "live";
 
   useEffect(() => {
-    if (!isLive) {
+    if (!isLive && status !== "pending") {
       return undefined;
     }
 
     const intervalId = window.setInterval(loadLiveTournament, 30000);
     return () => window.clearInterval(intervalId);
-  }, [isLive, loadLiveTournament]);
+  }, [isLive, status, loadLiveTournament]);
 
   // The bracket/schedule structure only changes as often as
   // tournamentWorker.js ticks (a few minutes) — a brand new round doesn't
@@ -651,7 +652,7 @@ function TournamentPage() {
                     <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />{tx(" Live ")}</span>
                 ) : (
                   <span className="rounded-lg border border-white/[0.07] bg-white/[0.035] px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
-                    {tx(status === "finished" ? "Finished" : "Upcoming")}
+                    {tx(status === "pending" ? "Awaiting schedule" : status === "finished" ? "Finished" : "Upcoming")}
                   </span>
                 )}
               </div>

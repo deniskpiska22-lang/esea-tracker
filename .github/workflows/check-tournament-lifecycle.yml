@@ -1,0 +1,17 @@
+name: Check tournament lifecycle
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  tournament-lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/tournament*.test.js
+      - run: npx eslint scripts/lib/tournamentCompletion.js scripts/importTournament.js scripts/tournamentWorker.js scripts/automationWorker.js src/utils/tournaments.js src/utils/tournamentLifecycle.js src/data/tournaments.js src/hooks/useTournamentSummaries.js

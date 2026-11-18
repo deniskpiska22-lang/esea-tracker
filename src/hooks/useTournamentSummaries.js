@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import tournaments from '../data/tournaments.js';
 import { supabase } from '../lib/supabaseClient';
 
-const columns = 'id,championship_id,name,logo,tier,location,start_date,end_date,completed_at,url,prize_pool';
+const columns = 'id,championship_id,name,logo,tier,location,start_date,end_date,completed_at,url,prize_pool,lifecycle';
 const known = new Map(tournaments.map(tournament => [tournament.id, tournament]));
 
 function mergeTournamentSummaries(rows) {
@@ -16,7 +16,7 @@ function mergeTournamentSummaries(rows) {
       id: row.id, championshipId: row.championship_id, name: row.name, logo: row.logo,
       tier: row.tier, location: row.location, startDate: row.start_date || seed?.startDate,
       endDate: completedAt?.slice(0, 10) || row.end_date || seed?.endDate,
-      completedAt, url: row.url, prizePool: row.prize_pool,
+      completedAt, lifecycle: row.lifecycle || seed?.lifecycle, url: row.url, prizePool: row.prize_pool,
     });
   }
   return [...merged.values()];
