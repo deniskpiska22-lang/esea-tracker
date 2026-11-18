@@ -1,5 +1,5 @@
 import { linkedPlayerProfile } from '../src/data/linkedPlayerProfiles.js';
-import { assignmentMatches } from './coachAssignments.js';
+import { assignmentMatches, rosterCoachAssignments } from './coachAssignments.js';
 import { coachAssignmentKey } from './coachHandoff.js';
 import { finished, upcoming } from './coachLobby.js';
 import { normalizeTeamMapHistory } from '../src/utils/teamMapStats.js';
@@ -16,7 +16,7 @@ const validRoom = (room,now) => room.terminal && finished(room.matches.status)
 
 // Coaching is a tenure, not attendance. Only complete, played team games advance
 // the absence streak; unknown room data breaks consecutiveness without ending it.
-export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map(),teamRooms=[],now=Date.now(),catalog=new Map()}) {
+export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map(),teamRooms=[],teamRegistrations=[],now=Date.now(),catalog=new Map()}) {
   const linked=linkedPlayerProfile(coachId), ids=new Set([coachId,linked?.id,...(linked?.linkedIds||[])].filter(Boolean));
   const manual=seeds.filter(seed=>seed.source!=='league_roster');
   const protectedMatch = match => manual.some(seed=>assignmentMatches(seed,match));
@@ -28,6 +28,20 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
   for(const seed of seeds.filter(seed=>seed.source==='league_roster')) {
     const start=Date.parse(seed.start);
     if(Number.isFinite(start)&&start<=now) events.push({at:start,kind:'positive',team:seed.teamId,seed});
+  }
+  // Official registration intervals prove replacements independently of room
+  // attendance. Preserve historical handoffs even after the replacement leaves.
+  const replacements=rosterCoachAssignments(teamRegistrations,[],now);
+  for(const seed of replacements) {
+    const id=linkedPlayerProfile(seed.coachId)?.id||seed.coachId;
+    if(ids.has(id))continue;
+    const start=Date.parse(seed.start);
+    const concurrent=new Set(replacements.filter(other=>other.teamId===seed.teamId
+      && Date.parse(other.start)<=start && (!other.end || Date.parse(other.end)>start))
+      .map(other=>linkedPlayerProfile(other.coachId)?.id||other.coachId));
+    // Explicit concurrent coaching staff is not a confirmed replacement.
+    if(concurrent.size!==1)continue;
+    events.push({at:start,kind:'replacement',team:seed.teamId});
   }
   const roomByMatch=new Map(teamRooms.map(room=>[room.match_id||room.matches?.id,room]));
   for(const room of rooms) {
@@ -46,7 +60,7 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
     const present=known&&side.coaches.some(person=>ids.has(person.id));
     events.push({at:when,kind:'game',team,id:match.id,known:Boolean(known),present});
   }
-  const priority={manual:0,positive:1,game:2};
+  const priority={manual:0,positive:1,game:2,replacement:3};
   events.sort((a,b)=>a.at-b.at||priority[a.kind]-priority[b.kind]||String(a.id||a.matchId||a.team).localeCompare(String(b.id||b.matchId||b.team)));
   const periods=[];
   let current=null;
@@ -88,6 +102,7 @@ export function buildCoachTenures({coachId,seeds=[],rooms=[],teamMatches=new Map
   for(const event of events) {
     if(event.kind==='manual'){close(event.at,'confirmed_assignment');continue;}
     if(event.kind==='positive'){positive(event);continue;}
+    if(event.kind==='replacement'){if(current?.teamId===event.team)close(event.at,'confirmed_replacement');continue;}
     if(event.present){positive({...event,matchId:event.id});continue;}
     if(!current||current.teamId!==event.team)continue;
     if(!event.known){current.absences=[];current.absentMatches=0;continue;}

@@ -1,3 +1,4 @@
+import { coachPath } from "./utils/coachPath.js";
 import Link from "./components/SiteLink.jsx";
 import { tx } from "./i18n/translate.js";
 import {
@@ -189,7 +190,7 @@ function App() {
   function openPlayer(player) {
     closeSearch();
     navigate(player.isCoach
-      ? player.playerNickname ? playerRolePath(player.playerNickname, 'coach') : `/coach/${encodeURIComponent(player.faceit_id)}`
+      ? coachPath({id:player.faceit_id,nickname:player.nickname,playerNickname:player.playerNickname})
       : playerRolePath(player.faceit_id || player.nickname));
   }
 

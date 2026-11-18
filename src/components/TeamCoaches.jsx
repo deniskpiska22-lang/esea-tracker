@@ -1,3 +1,4 @@
+import { coachPath } from "../utils/coachPath.js";
 import CoachPortrait from './CoachPortrait.jsx';
 import { Link } from 'react-router-dom';
 import useCoachData from '../hooks/useCoachData.js';
@@ -15,7 +16,7 @@ export default function TeamCoaches({ teamId, teamLogo }) {
       {coaches.map(({ id, nickname }) => (
         <Link
           key={id}
-          to={`/coach/${id}`}
+          to={coachPath({id,nickname})}
           className="group flex min-w-0 items-center gap-3 rounded-xl border border-[#2b3a4a] bg-linear-to-r from-[#201b18] via-[#131e2a] to-[#101923] px-3 py-2.5 text-white transition-colors hover:border-orange-400/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300 sm:gap-4 sm:px-4"
         >
           <CoachPortrait teamLogo={teamLogo} />
