@@ -1,3 +1,5 @@
+import { playerBiography } from '../data/playerBiographies.js';
+import { playerAgeLabel } from '../i18n/playerBiographies.js';
 import { useUserTimeSettings } from '../hooks/useUserTimeSettings.js';
 import { formatUserDateTime } from '../utils/userTime.js';
 import { linkedPlayerProfile } from '../data/linkedPlayerProfiles.js';
@@ -743,6 +745,8 @@ function PlayerPage() {
         : "← Back"
     );
 
+  const biography = playerBiography(databasePlayer?.faceit_id || resolvedPlayerId);
+
   const localPlayerInfo =
     Object.values(players)
       .flat()
@@ -1429,11 +1433,13 @@ function PlayerPage() {
                 {decodedNickname}
               </h1>
 
-              {localPlayerInfo?.realName && (
+              {(biography?.realName || localPlayerInfo?.realName) && (
                 <div className="mt-2 text-base text-slate-500">
-                  {localPlayerInfo.realName}
+                  {biography?.realName || localPlayerInfo.realName}
                 </div>
               )}
+
+              {biography?.age != null && <p className="mt-2 text-sm text-slate-400">{playerAgeLabel()}: <span className="font-semibold text-slate-200">{biography.age}</span></p>}
 
               <div className="mt-5 flex flex-wrap items-center gap-4">
                 {currentTeam ? (
